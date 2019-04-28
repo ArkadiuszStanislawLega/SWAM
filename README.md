@@ -1,0 +1,2 @@
+# SWAM
+Warehouse management application
