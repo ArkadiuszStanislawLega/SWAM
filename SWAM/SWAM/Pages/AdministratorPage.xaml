@@ -1,0 +1,15 @@
+﻿<local:Page  x:Class="SWAM.AdministratorPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SWAM"
+        Background="{StaticResource LightGrayBrash}"
+        mc:Ignorable="d" Height="450" Width="800">
+    <StackPanel HorizontalAlignment="Center">
+        <TextBlock Text="AdministratorPage" HorizontalAlignment="Center"/>
+        <Button Content="Zmień Strone" 
+                Click="ChangePage_Click" 
+                Width="100"/>
+    </StackPanel>
+</local:Page>
