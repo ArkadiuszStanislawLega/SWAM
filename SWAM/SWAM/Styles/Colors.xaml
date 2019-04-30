@@ -17,6 +17,7 @@
     <SolidColorBrush x:Key="LightGrayBrash" Color="{StaticResource LightGray}" />
 
     <SolidColorBrush x:Key="MainBarBrash" Color="{StaticResource Graphite}"/>
+    <SolidColorBrush x:Key="BackgroundOfPagesBrash" Color="{StaticResource LightGray}"/>
     <SolidColorBrush x:Key="FontsBrash" Color="{StaticResource WhiteCream}"/>
     <SolidColorBrush x:Key="EnabledBrash" Color="{StaticResource LightGray}"/>
 </ResourceDictionary>

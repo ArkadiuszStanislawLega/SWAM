@@ -37,15 +37,15 @@
                 Grid.Column="2">
                 <Button Name="Minimize" 
                         Content="___" 
-                        Style="{StaticResource BasicButton}"
-                        Click="Minimize_Click"/>
+                        Click="Minimize_Click"
+                        FontWeight="Bold"/>
                 <Button Name="Maximise" Content="[ ]"  
-                        Style="{StaticResource BasicButton}"
-                        Click="Maximize_Click"/>
+                        Click="Maximize_Click"
+                        FontWeight="Bold"/>
                 <Button Name="Exit" 
                         Content="X" 
-                        Style="{StaticResource BasicButton}" 
-                        Click="Exit_Click"  />
+                        Click="Exit_Click" 
+                        FontWeight="Bold"/>
             </StackPanel>
         </Grid>
         <!--#endregion-->
@@ -74,6 +74,19 @@
         <!--#region MainContent of the Window-->
         <StackPanel Name="ContentOfWindow">
    
+        </StackPanel>
+        <!--#endregion-->
+
+        <!--#region TemporaryNavigationBar -->
+        <StackPanel Orientation="Horizontal" 
+                    Name="TemporaryNavigationBar" 
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center">
+            <Button Width="130" Content="administratorPage" Name="SwitchToAdministratorPage" Click="TemporaryNaviagionBar_Click"/>
+            <Button Width="130" Content="loginPage" Name="SwitchToLoginPage" Click="TemporaryNaviagionBar_Click"/>
+            <Button Width="130" Content="manageItemsPage" Name="SwitchToManageItemPage" Click="TemporaryNaviagionBar_Click"/>
+            <Button Width="130" Content="manageMagazinePage" Name="SwitchToManageMagazinePage" Click="TemporaryNaviagionBar_Click"/>
+            <Button Width="130" Content="manageOrdersPage" Name="SwitchToManageOrderPage" Click="TemporaryNaviagionBar_Click"/>
         </StackPanel>
         <!--#endregion-->
     </StackPanel>

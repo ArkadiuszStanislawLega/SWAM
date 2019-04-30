@@ -28,8 +28,15 @@ namespace SWAM
             this._mainWindow = mainWindow;
             this._mainWindow.CurrentPageLoaded = NAME_OF_PAGE;
         }
-        #endregion  
+        #endregion
 
+        #region ChangePage_Click
+        /// <summary>
+        /// Use it, when work on this page is finish and u want switch current page to another.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         abstract protected void ChangePage_Click(object sender, RoutedEventArgs e);
+        #endregion
     }
 }

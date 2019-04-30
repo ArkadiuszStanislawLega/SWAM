@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM
 {
@@ -37,7 +26,7 @@ namespace SWAM
 
         #region Setters
         /// <summary>
-        /// <seealso cref="_currentPageLoaded">
+        ///  Indicates which page is currently loaded.
         /// </summary>
         public Pages CurrentPageLoaded { get => this._currentPageLoaded; set => this._currentPageLoaded = value; }
         #endregion
@@ -118,8 +107,7 @@ namespace SWAM
         /// <param name="page">The Page which should be loaded.</param>
         public void ChangeContent(Pages page)
         {
-            if(this._pageContainer.Children.Capacity>0)
-            this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
+            if(this._pageContainer.Children.Capacity>0) this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
 
             switch (page)
             {
@@ -140,24 +128,45 @@ namespace SWAM
                 #region manageItemsPage
                 case Pages.manageItemsPage:
                     {
-                        if (_currentPageLoaded != Pages.manageItemsPage) this._pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != Pages.manageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
                         break;
                     }
                 #endregion
                 #region manageMagazinePage
                 case Pages.manageMagazinePage:
                     {
-                        if (_currentPageLoaded != Pages.manageMagazinePage) _pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != Pages.manageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
                         break;
                     }
                 #endregion
                 #region manageOrdersPage
                 case Pages.manageOrdersPage:
                     {
-                        if (_currentPageLoaded != Pages.manageOrdersPage)_pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != Pages.manageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
                         break;
                     } 
                     #endregion
+            }
+        }
+        #endregion
+
+        #region TemporaryNaviagionBar_Click
+        /// <summary>
+        /// Temporary navigation bar - buttonClicker.
+        /// It is for fast navigation between pages, for debug and project phase.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TemporaryNaviagionBar_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            switch (button.Content)
+            {
+                case "administratorPage":{ ChangeContent(Pages.administratorPage); break; }
+                case "loginPage": { ChangeContent(Pages.loginPage); break; }
+                case "manageItemsPage": { ChangeContent(Pages.manageItemsPage); break; }
+                case "manageMagazinePage": { ChangeContent(Pages.manageMagazinePage); break; }
+                case "manageOrdersPage": { ChangeContent(Pages.manageOrdersPage); break; }
             }
         }
         #endregion

@@ -1,8 +1,11 @@
 ﻿
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\App.xaml;;
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\Pages\AdministratorPage.xaml;;
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\Pages\LoginPage.xaml;;
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\Styles\Fonts.xaml;;
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\Styles\MenuItem.xaml;;
-FC:\Users\Horemheb\source\repos\SWAM\SWAM\Styles\ScrollBar.xaml;;
+FG:\GitRepo\SWAM\SWAM\App.xaml;;
+FG:\GitRepo\SWAM\SWAM\Pages\AdministratorPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\Pages\LoginPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\Styles\Fonts.xaml;;
+FG:\GitRepo\SWAM\SWAM\Styles\MenuItem.xaml;;
+FG:\GitRepo\SWAM\SWAM\Styles\ScrollBar.xaml;;
+FG:\GitRepo\SWAM\SWAM\Pages\ManageItemPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\Pages\ManageMagazinePage.xaml;;
+FG:\GitRepo\SWAM\SWAM\Pages\ManageOrdersPage.xaml;;
 

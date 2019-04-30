@@ -16,18 +16,21 @@ using System.Windows.Shapes;
 namespace SWAM
 {
     /// <summary>
-    /// Logika interakcji dla klasy loginPage.xaml
+    /// Logika interakcji dla klasy ManageMagazinePage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class ManageMagazinePage : Page
     {
-        new Pages NAME_OF_PAGE = Pages.loginPage;
+        new const Pages NAME_OF_PAGE = Pages.manageMagazinePage;
 
-        public LoginPage(MainWindow mainWindow)       
+        public ManageMagazinePage(MainWindow mainWindow)
             : base(mainWindow)
         {
             InitializeComponent();
         }
 
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(Pages.manageItemsPage);
+        protected override void ChangePage_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
