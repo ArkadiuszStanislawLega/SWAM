@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource MainBarBrash}"
@@ -17,11 +18,13 @@
                     Width="auto" Height="30"
                     Background="{StaticResource MainBarBrash}"
                     MouseLeftButtonDown="TopBarContent_MouseDown">
+           <!--#region ColumnDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <!--#endregion-->
             <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
             <TextBlock Name="TitleOfMainPanel" 
                        Text="SWAM" 
@@ -35,17 +38,17 @@
                 HorizontalAlignment="Right"
                 Orientation="Horizontal"
                 Grid.Column="2">
+            
                 <Button Name="Minimize" 
-                        Content="___" 
-                        Click="Minimize_Click"
-                        FontWeight="Bold"/>
-                <Button Name="Maximise" Content="[ ]"  
-                        Click="Maximize_Click"
-                        FontWeight="Bold"/>
+                        Style="{StaticResource FAMinimizeButton}"
+                        Click="Minimize_Click"/>
+                <Button Name="Maximize"
+                        Style="{StaticResource FAMaxymizeButton}"
+                        Click="Maximize_Click"/>
                 <Button Name="Exit" 
-                        Content="X" 
-                        Click="Exit_Click" 
-                        FontWeight="Bold"/>
+                        Style="{StaticResource FAExitButton}"
+                        Click="Exit_Click" />
+                
             </StackPanel>
         </Grid>
         <!--#endregion-->
@@ -73,10 +76,9 @@
         <!--#endregion-->
         <!--#region MainContent of the Window-->
         <StackPanel Name="ContentOfWindow">
-   
+
         </StackPanel>
         <!--#endregion-->
-
         <!--#region TemporaryNavigationBar -->
         <StackPanel Orientation="Horizontal" 
                     Name="TemporaryNavigationBar" 

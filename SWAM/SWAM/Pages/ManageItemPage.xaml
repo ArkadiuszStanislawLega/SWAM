@@ -9,6 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="800">
 
     <StackPanel>
-        <TextBox Name="Title" Text="AdministratorPage" HorizontalAlignment="Center"/>
+        <TextBlock Name="Title" Text="AdministratorPage" HorizontalAlignment="Center"/>
     </StackPanel>
 </local:Page>

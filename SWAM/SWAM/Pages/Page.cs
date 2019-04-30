@@ -23,6 +23,7 @@ namespace SWAM
         #endregion
 
         #region BasicConstructor
+
         public Page(MainWindow mainWindow)
         {
             this._mainWindow = mainWindow;

@@ -37,7 +37,7 @@ namespace SWAM
             InitializeComponent();
 
             this._pageContainer = ContentOfWindow;
-            ChangeContent(Pages.loginPage);
+            ChangeContent(Pages.loginPage);  
         }
         #endregion  
 
