@@ -181,3 +181,49 @@ C:\Users\Marcin\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInp
 C:\Users\Marcin\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 C:\Users\Marcin\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 C:\Users\Marcin\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe.config
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\SWAM.pdb
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\MainWindow.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\App.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_Content.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\App.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\DataGrides.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Fonts.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\MenuItem.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\ScrollBar.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.g.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Properties.Resources.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.GenerateResource.cache
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.InitialModel.resources
