@@ -20,7 +20,7 @@ namespace SWAM
     /// </summary>
     public partial class ManageOrdersPage : Page
     {
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.manageOrdersPage;
+        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageOrdersPage;
 
         public ManageOrdersPage(MainWindow mainWindow)
             :base(mainWindow)

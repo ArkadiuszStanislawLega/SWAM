@@ -20,7 +20,7 @@ namespace SWAM
     /// </summary>
     public partial class ManageMagazinePage : Page
     {
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.manageMagazinePage;
+        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageMagazinePage;
 
         public ManageMagazinePage(MainWindow mainWindow)
             : base(mainWindow)

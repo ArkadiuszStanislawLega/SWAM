@@ -37,8 +37,6 @@ namespace SWAM
             new User("Hermenegilda", "tajneHasło", UsersType.administrator),
         };
 
-
-
         public string[] DataGridValues { get => this._dataGridValues; set => this._dataGridValues = value; }
         public User[] Users { get => _users; set => _users = value; }
 

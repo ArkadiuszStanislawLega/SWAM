@@ -20,7 +20,7 @@ namespace SWAM
     /// </summary>
     public partial class LoginPage : Page
     {
-        new PagesUserControls NAME_OF_PAGE = PagesUserControls.loginPage;
+        new PagesUserControls NAME_OF_PAGE = PagesUserControls.LoginPage;
 
         public LoginPage(MainWindow mainWindow)       
             : base(mainWindow)
@@ -28,6 +28,6 @@ namespace SWAM
             InitializeComponent();
         }
 
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.manageItemsPage);
+        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.ManageItemsPage);
     }
 }

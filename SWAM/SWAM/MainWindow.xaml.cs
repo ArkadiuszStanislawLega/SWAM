@@ -37,7 +37,7 @@ namespace SWAM
             InitializeComponent();
 
             this._pageContainer = ContentOfWindow;
-            ChangeContent(PagesUserControls.loginPage);  
+            ChangeContent(PagesUserControls.LoginPage);  
         }
         #endregion  
 
@@ -112,37 +112,37 @@ namespace SWAM
             switch (page)
             {
                 #region administratorPage
-                case PagesUserControls.administratorPage:
+                case PagesUserControls.AdministratorPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.administratorPage) _pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != PagesUserControls.AdministratorPage) _pageContainer.Children.Add(new AdministratorPage(this));
                         break;
                     }
                 #endregion
                 #region loginPage
-                case PagesUserControls.loginPage:
+                case PagesUserControls.LoginPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.loginPage) _pageContainer.Children.Add(new LoginPage(this));
+                        if (_currentPageLoaded != PagesUserControls.LoginPage) _pageContainer.Children.Add(new LoginPage(this));
                         break;
                     } 
                 #endregion
                 #region manageItemsPage
-                case PagesUserControls.manageItemsPage:
+                case PagesUserControls.ManageItemsPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.manageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
                         break;
                     }
                 #endregion
                 #region manageMagazinePage
-                case PagesUserControls.manageMagazinePage:
+                case PagesUserControls.ManageMagazinePage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.manageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
                         break;
                     }
                 #endregion
                 #region manageOrdersPage
-                case PagesUserControls.manageOrdersPage:
+                case PagesUserControls.ManageOrdersPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.manageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
                         break;
                     } 
                     #endregion
@@ -162,11 +162,11 @@ namespace SWAM
             var button = sender as Button;
             switch (button.Content)
             {
-                case "administratorPage":{ ChangeContent(PagesUserControls.administratorPage); break; }
-                case "loginPage": { ChangeContent(PagesUserControls.loginPage); break; }
-                case "manageItemsPage": { ChangeContent(PagesUserControls.manageItemsPage); break; }
-                case "manageMagazinePage": { ChangeContent(PagesUserControls.manageMagazinePage); break; }
-                case "manageOrdersPage": { ChangeContent(PagesUserControls.manageOrdersPage); break; }
+                case "administratorPage":{ ChangeContent(PagesUserControls.AdministratorPage); break; }
+                case "loginPage": { ChangeContent(PagesUserControls.LoginPage); break; }
+                case "manageItemsPage": { ChangeContent(PagesUserControls.ManageItemsPage); break; }
+                case "manageMagazinePage": { ChangeContent(PagesUserControls.ManageMagazinePage); break; }
+                case "manageOrdersPage": { ChangeContent(PagesUserControls.ManageOrdersPage); break; }
             }
         }
         #endregion

@@ -24,7 +24,7 @@ namespace SWAM
         /// <summary>
         /// Name of the current page.
         /// </summary>
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.manageItemsPage;
+        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageItemsPage;
         #endregion
 
         #region BasicConstructor
@@ -35,6 +35,6 @@ namespace SWAM
         }
         #endregion
 
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.administratorPage);
+        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.AdministratorPage);
     }
 }

@@ -20,7 +20,7 @@ namespace SWAM
     public partial class AdministratorPage : Page
     {
         #region Properties
-        new PagesUserControls NAME_OF_PAGE = PagesUserControls.administratorPage;
+        new PagesUserControls NAME_OF_PAGE = PagesUserControls.AdministratorPage;
 
         /// <summary>
         /// Instances of all controlers in AdministratorPage.
@@ -47,7 +47,7 @@ namespace SWAM
         #endregion
 
         #region Overrided Methods
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.loginPage);
+        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.LoginPage);
         #endregion
 
         private void WarhousesControlPanelBarPage_Click(object sender, RoutedEventArgs e) => ChangeContext(this._userControls[0]);

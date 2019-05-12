@@ -149,6 +149,10 @@
       <DependentUpon>ManageOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Controls Pages\Page.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\WarehouseOrderStatus.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
