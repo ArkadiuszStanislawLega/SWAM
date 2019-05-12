@@ -8,7 +8,42 @@
       Background="{StaticResource BackgroundOfPagesBrash}"
       d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel>
-        <TextBlock Name="Title" Text="AdministratorPage" HorizontalAlignment="Center"/>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Name="Title" Text="ManageItemPage" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="1" HorizontalAlignment="Center"/>
+
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1"
+                      CanUserAddRows="False" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id produktu" Binding="{Binding Id_product}"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
+                <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
+                <DataGridTextColumn Header="Waga" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Selling_price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="1">
+            <Button Margin="10" Content="Dodaj" Width="45"/>
+            <Button Margin="10" Content="Edytuj" Width="45"/>
+            <Button Margin="10" Content="Usuń" Width="45"/>
+        </StackPanel>
+
+    </Grid>
 </local:Page>
