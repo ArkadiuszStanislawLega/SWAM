@@ -15,7 +15,7 @@ namespace SWAM
         /// <summary>
         /// Name of the current page.
         /// </summary>
-        protected const Pages NAME_OF_PAGE = Pages.basicPage;
+        protected const PagesUserControls NAME_OF_PAGE = PagesUserControls.basicPage;
         /// <summary>
         /// Instance of main window.
         /// </summary>

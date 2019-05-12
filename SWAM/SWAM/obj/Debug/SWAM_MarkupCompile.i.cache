@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\GitRepo\SWAM\SWAM\obj\Debug\
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\
 SWAM
 none
 false
 DEBUG;TRACE
-G:\GitRepo\SWAM\SWAM\App.xaml
-11939880447
+G:\GitRepo\SWAM\SWAM\SWAM\App.xaml
+131815427928
 1-479832103
-16-505692629
-14794544600
-MainWindow.xaml;Pages\AdministratorPage.xaml;Pages\LoginPage.xaml;Pages\ManageItemPage.xaml;Pages\ManageMagazinePage.xaml;Pages\ManageOrdersPage.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;
+18-1995653197
+14-1905032767
+MainWindow.xaml;Controls\Controls Pages\AdministratorPage.xaml;Controls\Templates\AdministratorPage\UsersControlPanel.xaml;Controls\Templates\AdministratorPage\WarehousesControlPanel.xaml;Controls\Controls Pages\LoginPage.xaml;Controls\Controls Pages\ManageItemPage.xaml;Controls\Controls Pages\ManageMagazinePage.xaml;Controls\Controls Pages\ManageOrdersPage.xaml;Styles\Colors.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;
 
 True
 

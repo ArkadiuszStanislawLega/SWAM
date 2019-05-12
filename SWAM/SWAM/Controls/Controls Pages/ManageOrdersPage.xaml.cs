@@ -10,23 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SWAM
 {
     /// <summary>
-    /// Logika interakcji dla klasy AdministratorPage.xaml
+    /// Logika interakcji dla klasy ManageOrdersPage.xaml
     /// </summary>
-    public partial class AdministratorPage : Page
+    public partial class ManageOrdersPage : Page
     {
-        new Pages NAME_OF_PAGE = Pages.administratorPage;
+        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.manageOrdersPage;
 
-        public AdministratorPage(MainWindow mainWindow) 
-            : base(mainWindow)
+        public ManageOrdersPage(MainWindow mainWindow)
+            :base(mainWindow)
         {
             InitializeComponent();
         }
 
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(Pages.loginPage);
+        protected override void ChangePage_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

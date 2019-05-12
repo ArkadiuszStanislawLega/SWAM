@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace SWAM
 {
     /// <summary>
-    /// Logika interakcji dla klasy loginPage.xaml
+    /// Logika interakcji dla klasy UsersControlPanel.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class UsersControlPanel : UserControl
     {
-        new Pages NAME_OF_PAGE = Pages.loginPage;
-
-        public LoginPage(MainWindow mainWindow)       
-            : base(mainWindow)
+        public UsersControlPanel()
         {
             InitializeComponent();
         }
-
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(Pages.manageItemsPage);
     }
 }

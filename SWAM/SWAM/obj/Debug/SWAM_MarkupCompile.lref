@@ -1,11 +1,13 @@
 ﻿
-FG:\GitRepo\SWAM\SWAM\App.xaml;;
-FG:\GitRepo\SWAM\SWAM\Pages\AdministratorPage.xaml;;
-FG:\GitRepo\SWAM\SWAM\Pages\LoginPage.xaml;;
-FG:\GitRepo\SWAM\SWAM\Pages\ManageItemPage.xaml;;
-FG:\GitRepo\SWAM\SWAM\Pages\ManageMagazinePage.xaml;;
-FG:\GitRepo\SWAM\SWAM\Pages\ManageOrdersPage.xaml;;
-FG:\GitRepo\SWAM\SWAM\Styles\Fonts.xaml;;
-FG:\GitRepo\SWAM\SWAM\Styles\MenuItem.xaml;;
-FG:\GitRepo\SWAM\SWAM\Styles\ScrollBar.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\App.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\AdministratorPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UsersControlPanel.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\WarehousesControlPanel.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\LoginPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\ManageItemPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\ManageMagazinePage.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\ManageOrdersPage.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Styles\Fonts.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Styles\MenuItem.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 

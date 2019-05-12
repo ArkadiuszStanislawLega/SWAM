@@ -73,12 +73,6 @@
                 <StackPanel></StackPanel>
             </DockPanel>
         </StackPanel>
-        <!--#endregion-->
-        <!--#region MainContent of the Window-->
-        <StackPanel Name="ContentOfWindow">
-
-        </StackPanel>
-        <!--#endregion-->
         <!--#region TemporaryNavigationBar -->
         <StackPanel Orientation="Horizontal" 
                     Name="TemporaryNavigationBar" 
@@ -91,5 +85,12 @@
             <Button Width="130" Content="manageOrdersPage" Name="SwitchToManageOrderPage" Click="TemporaryNaviagionBar_Click"/>
         </StackPanel>
         <!--#endregion-->
+        <!--#endregion-->
+        <!--#region MainContent of the Window-->
+        <StackPanel Name="ContentOfWindow">
+
+        </StackPanel>
+        <!--#endregion-->
+   
     </StackPanel>
 </Window>

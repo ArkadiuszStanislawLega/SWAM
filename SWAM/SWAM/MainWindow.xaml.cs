@@ -17,7 +17,7 @@ namespace SWAM
         /// <summary>
         /// Indicates which page is currently loaded.
         /// </summary>
-        private Pages _currentPageLoaded;
+        private PagesUserControls _currentPageLoaded;
         /// <summary>
         /// Container of the main content of application.
         /// </summary>
@@ -28,7 +28,7 @@ namespace SWAM
         /// <summary>
         ///  Indicates which page is currently loaded.
         /// </summary>
-        public Pages CurrentPageLoaded { get => this._currentPageLoaded; set => this._currentPageLoaded = value; }
+        public PagesUserControls CurrentPageLoaded { get => this._currentPageLoaded; set => this._currentPageLoaded = value; }
         #endregion
 
         #region BasicConstructor
@@ -37,7 +37,7 @@ namespace SWAM
             InitializeComponent();
 
             this._pageContainer = ContentOfWindow;
-            ChangeContent(Pages.loginPage);  
+            ChangeContent(PagesUserControls.loginPage);  
         }
         #endregion  
 
@@ -105,44 +105,44 @@ namespace SWAM
         /// Change current view of application to chosen one.
         /// </summary>
         /// <param name="page">The Page which should be loaded.</param>
-        public void ChangeContent(Pages page)
+        public void ChangeContent(PagesUserControls page)
         {
             if(this._pageContainer.Children.Capacity>0) this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
 
             switch (page)
             {
                 #region administratorPage
-                case Pages.administratorPage:
+                case PagesUserControls.administratorPage:
                     {
-                        if (_currentPageLoaded != Pages.administratorPage) _pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != PagesUserControls.administratorPage) _pageContainer.Children.Add(new AdministratorPage(this));
                         break;
                     }
                 #endregion
                 #region loginPage
-                case Pages.loginPage:
+                case PagesUserControls.loginPage:
                     {
-                        if (_currentPageLoaded != Pages.loginPage) _pageContainer.Children.Add(new LoginPage(this));
+                        if (_currentPageLoaded != PagesUserControls.loginPage) _pageContainer.Children.Add(new LoginPage(this));
                         break;
                     } 
                 #endregion
                 #region manageItemsPage
-                case Pages.manageItemsPage:
+                case PagesUserControls.manageItemsPage:
                     {
-                        if (_currentPageLoaded != Pages.manageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
+                        if (_currentPageLoaded != PagesUserControls.manageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
                         break;
                     }
                 #endregion
                 #region manageMagazinePage
-                case Pages.manageMagazinePage:
+                case PagesUserControls.manageMagazinePage:
                     {
-                        if (_currentPageLoaded != Pages.manageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
+                        if (_currentPageLoaded != PagesUserControls.manageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
                         break;
                     }
                 #endregion
                 #region manageOrdersPage
-                case Pages.manageOrdersPage:
+                case PagesUserControls.manageOrdersPage:
                     {
-                        if (_currentPageLoaded != Pages.manageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
+                        if (_currentPageLoaded != PagesUserControls.manageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
                         break;
                     } 
                     #endregion
@@ -162,11 +162,11 @@ namespace SWAM
             var button = sender as Button;
             switch (button.Content)
             {
-                case "administratorPage":{ ChangeContent(Pages.administratorPage); break; }
-                case "loginPage": { ChangeContent(Pages.loginPage); break; }
-                case "manageItemsPage": { ChangeContent(Pages.manageItemsPage); break; }
-                case "manageMagazinePage": { ChangeContent(Pages.manageMagazinePage); break; }
-                case "manageOrdersPage": { ChangeContent(Pages.manageOrdersPage); break; }
+                case "administratorPage":{ ChangeContent(PagesUserControls.administratorPage); break; }
+                case "loginPage": { ChangeContent(PagesUserControls.loginPage); break; }
+                case "manageItemsPage": { ChangeContent(PagesUserControls.manageItemsPage); break; }
+                case "manageMagazinePage": { ChangeContent(PagesUserControls.manageMagazinePage); break; }
+                case "manageOrdersPage": { ChangeContent(PagesUserControls.manageOrdersPage); break; }
             }
         }
         #endregion

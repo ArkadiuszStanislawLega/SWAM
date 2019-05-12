@@ -1,0 +1,30 @@
+﻿<local:Page  x:Class="SWAM.AdministratorPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SWAM"
+        Background="{StaticResource BackgroundOfPagesBrash}"
+        mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel >
+        <TextBlock Name="Title" Text="AdministratorPage" HorizontalAlignment="Center"/>
+        <!--#region TemporaryNavigationBar -->
+        <StackPanel Orientation="Horizontal" 
+                    Name="TemporaryNavigationBar" 
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left">
+            <Button Width="130" 
+                    Content="Użytkownicy" 
+                    Name="SwitchToUsersControlPanel" 
+                    Click="UsersControlPanelBar_Click"/>
+            <Button Width="130" Content="Magazyny" 
+                    Name="SwitchToWarehousesControlPanel" 
+                    Click="WarhousesControlPanelBarPage_Click"/>
+        </StackPanel>
+        <!--#endregion-->
+        <StackPanel Orientation="Vertical" Name="MainContent">
+            <local:UsersControlPanel />
+        </StackPanel>
+    </StackPanel>
+
+</local:Page>

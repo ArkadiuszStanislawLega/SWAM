@@ -3,7 +3,7 @@
     /// <summary>
     /// An enumerator that stores all kinds of pages in the application.
     /// </summary>
-    public enum Pages
+    public enum PagesUserControls
     {
         basicPage,
         /// <summary>
