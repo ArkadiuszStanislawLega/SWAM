@@ -24,16 +24,18 @@ namespace SWAM
         /// <summary>
         /// Name of the current page.
         /// </summary>
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.manageItemsPage;
+        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageItemsPage;
         #endregion
 
         #region BasicConstructor
         public ManageItemPage(MainWindow mainWindow) 
             :base(mainWindow)
         {
-            Create_sample_products();
-            DataContext = this;
+         
+          
             InitializeComponent();
+
+            DataContext = this;
         }
         #endregion
         public class Item
@@ -58,24 +60,24 @@ namespace SWAM
 
         }
 
-        private void Create_sample_products()
+        private List<Item> items = new List<Item>
         {
-            Items.Add(new Item(1, "Cegła", 10, 2, 0.2, 2.5));
-            Items.Add(new Item(2, "Taczka", 60, 100, 6, 60));
-            Items.Add(new Item(3, "Piasek", 15, 80, 15, 10));
-            Items.Add(new Item(4, "Deska", 20, 60, 0.5, 5));
-            Items.Add(new Item(5, "Kostka brukowa", 10, 10, 0.33, 2));
-            //Trace.WriteLine(Items[4].Name);
+            new Item(2, "Taczka", 60, 100, 6, 60),
+            new Item(3, "Piasek", 15, 80, 15, 10),
+            new Item(2, "Taczka", 60, 100, 6, 60),
+            new Item(3, "Piasek", 15, 80, 15, 10),
+            new Item(2, "Taczka", 60, 100, 6, 60),
+            new Item(3, "Piasek", 15, 80, 15, 10),
+            new Item(2, "Taczka", 60, 100, 6, 60),
+            new Item(3, "Piasek", 15, 80, 15, 10),
 
-        } // tworzenie przykładowych produktów do gridu
-
-        private List<Item> items = new List<Item>();
+        };
 
         public List<Item> Items
         {
             get { return items; }
             set { items = value; }
         }
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.administratorPage);
+        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.AdministratorPage);
     }
 }

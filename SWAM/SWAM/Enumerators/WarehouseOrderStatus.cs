@@ -9,7 +9,7 @@ namespace SWAM
     /// <summary>
     /// Stores the status of the order to the warehouses.
     /// </summary>
-    enum WarehouseOrderStatus
+    public enum WarehouseOrderStatus
     {
         /// <summary>
         /// When the order was delivered to the warehouse.

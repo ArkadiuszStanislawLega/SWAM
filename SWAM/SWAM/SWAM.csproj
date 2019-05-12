@@ -67,6 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controls\Templates\User.cs" />
+    <Compile Include="Enumerators\CustomerOrderStatus.cs" />
     <Compile Include="Enumerators\Pages.cs" />
     <Compile Include="Enumerators\UsersType.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -151,7 +152,11 @@
     <Compile Include="Controls\Controls Pages\Page.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\WarehouseOrderStatus.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\ExternalSupplayer.cs" />
+    <Compile Include="Models\OrderToWarehouse.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Enumerators\WarehouseOrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

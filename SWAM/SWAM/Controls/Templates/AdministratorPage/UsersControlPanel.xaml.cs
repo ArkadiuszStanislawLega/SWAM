@@ -30,11 +30,11 @@ namespace SWAM
 
         User[] _users =
         {
-            new User("Mietek", "tajneHasło", UsersType.administrator),
-            new User("Himen", "tajneHasło", UsersType.seller),
-            new User("Zordon", "tajneHasło", UsersType.warehouseman),
-            new User("Bernadeta", "tajneHasło", UsersType.administrator),
-            new User("Hermenegilda", "tajneHasło", UsersType.administrator),
+            new User("Mietek", "tajneHasło", UsersType.Administrator),
+            new User("Himen", "tajneHasło", UsersType.Seller),
+            new User("Zordon", "tajneHasło", UsersType.Warehouseman),
+            new User("Bernadeta", "tajneHasło", UsersType.Administrator),
+            new User("Hermenegilda", "tajneHasło", UsersType.Administrator),
         };
 
         public string[] DataGridValues { get => this._dataGridValues; set => this._dataGridValues = value; }

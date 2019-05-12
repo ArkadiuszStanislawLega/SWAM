@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace SWAM
 {
-    public enum UsersType { administrator, warehouseman, seller }
+    public enum UsersType { Administrator, Warehouseman, Seller }
 }
