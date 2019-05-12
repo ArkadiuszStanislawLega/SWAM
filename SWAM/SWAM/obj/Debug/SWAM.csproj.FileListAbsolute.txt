@@ -99,3 +99,44 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe.config
+F:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe
+F:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.pdb
+F:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
+F:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\App.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_Content.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\App.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Fonts.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\MenuItem.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\ScrollBar.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.g.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Properties.Resources.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.GenerateResource.cache
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\DataGrides.baml

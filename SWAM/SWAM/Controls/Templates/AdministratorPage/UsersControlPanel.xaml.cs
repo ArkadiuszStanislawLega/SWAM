@@ -20,9 +20,33 @@ namespace SWAM
     /// </summary>
     public partial class UsersControlPanel : UserControl
     {
+
+        string[] _dataGridValues =
+        {
+            "Lp.",
+            "Nazwa",
+            "Uprawnienia"
+        };
+
+        User[] _users =
+        {
+            new User("Mietek", "tajneHasło", UsersType.administrator),
+            new User("Himen", "tajneHasło", UsersType.seller),
+            new User("Zordon", "tajneHasło", UsersType.warehouseman),
+            new User("Bernadeta", "tajneHasło", UsersType.administrator),
+            new User("Hermenegilda", "tajneHasło", UsersType.administrator),
+        };
+
+
+
+        public string[] DataGridValues { get => this._dataGridValues; set => this._dataGridValues = value; }
+        public User[] Users { get => _users; set => _users = value; }
+
         public UsersControlPanel()
         {
             InitializeComponent();
+
+            DataContext = this;
         }
     }
 }
