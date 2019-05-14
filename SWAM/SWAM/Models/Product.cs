@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWAM
+namespace SWAM.Models
 {
     public class Product
     {
@@ -14,7 +14,9 @@ namespace SWAM
         long _length;
         long _width;
         long _height;
-        decimal _sellingPrice;
+        decimal _price;
+        IList<WarehouseOrderPosition> _warehouseOrderPositions;
+        IList<CustomerOrderPosition> _customerOrderPositions;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
@@ -22,6 +24,8 @@ namespace SWAM
         public long Length { get => _length; set => _length = value; }
         public long Width { get => _width; set => _width = value; }
         public long Height { get => _height; set => _height = value; }
-        public decimal SellingPrice { get => _sellingPrice; set => _sellingPrice = value; }
+        public decimal Price { get => _price; set => _price = value; }
+        public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
+        public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
     }
 }

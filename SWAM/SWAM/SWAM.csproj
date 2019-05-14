@@ -75,8 +75,9 @@
     </Compile>
     <Compile Include="Controls\Templates\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
+    <Compile Include="Enumerators\PaymentType.cs" />
     <Compile Include="Enumerators\Pages.cs" />
-    <Compile Include="Enumerators\UsersType.cs" />
+    <Compile Include="Enumerators\UserType.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -157,20 +158,26 @@
       <DependentUpon>ManageOrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Controls Pages\Page.cs" />
-    <Compile Include="Migrations\201905121711027_InitialModel.cs" />
-    <Compile Include="Migrations\201905121711027_InitialModel.Designer.cs">
-      <DependentUpon>201905121711027_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201905142200380_InitialModel.cs" />
+    <Compile Include="Migrations\201905142200380_InitialModel.Designer.cs">
+      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Courier.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\ExternalSupplayer.cs" />
-    <Compile Include="Models\OrderToWarehouse.cs" />
+    <Compile Include="Models\CustomerOrder.cs" />
+    <Compile Include="Models\CustomerOrderPosition.cs" />
+    <Compile Include="Models\ExternalSupplier.cs" />
+    <Compile Include="Enumerators\ShipmentType.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\WarehouseOrder.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Enumerators\WarehouseOrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\WarehouseOrderPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -184,8 +191,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905121711027_InitialModel.resx">
-      <DependentUpon>201905121711027_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905142200380_InitialModel.resx">
+      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWAM
+namespace SWAM.Enumerators
 {
     /// <summary>
     /// Stores the status of the order to the warehouses.
@@ -22,7 +22,7 @@ namespace SWAM
         /// </summary>
         InDelivery,
         /// <summary>
-        /// When the product is oredered but isn't in ship.
+        /// When product is oredered but is not sent yet.
         /// </summary>
         Ordered
     }

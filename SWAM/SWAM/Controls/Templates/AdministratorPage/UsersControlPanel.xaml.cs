@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SWAM.Enumerators;
 
 namespace SWAM
 {
@@ -30,11 +31,11 @@ namespace SWAM
 
         User[] _users =
         {
-            new User("Mietek", "tajneHasło", UsersType.Administrator),
-            new User("Himen", "tajneHasło", UsersType.Seller),
-            new User("Zordon", "tajneHasło", UsersType.Warehouseman),
-            new User("Bernadeta", "tajneHasło", UsersType.Administrator),
-            new User("Hermenegilda", "tajneHasło", UsersType.Administrator),
+            new User("Mietek", "tajneHasło", UserType.Administrator),
+            new User("Himen", "tajneHasło", UserType.Seller),
+            new User("Zordon", "tajneHasło", UserType.Warehouseman),
+            new User("Bernadeta", "tajneHasło", UserType.Administrator),
+            new User("Hermenegilda", "tajneHasło", UserType.Administrator),
         };
 
         public string[] DataGridValues { get => this._dataGridValues; set => this._dataGridValues = value; }
