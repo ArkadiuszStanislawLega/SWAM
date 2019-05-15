@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWAM
+namespace SWAM.Enumerators
 {
     /// <summary>
     /// Stores the status of the order to the customer.
     /// </summary>
-    enum CustomerOrderStatus
+    public enum CustomerOrderStatus
     {
         /// <summary>
         /// When the order was delivered to the customer.
@@ -26,7 +26,7 @@ namespace SWAM
         /// </summary>
         WaitingForPayment,
         /// <summary>
-        /// When the payment is done and product is not sent yet.
+        /// When product is not sent yet.
         /// </summary>
         InProcess
     }

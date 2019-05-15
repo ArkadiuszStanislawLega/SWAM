@@ -1,4 +1,4 @@
-﻿namespace SWAM
+﻿namespace SWAM.Enumerators
 {
     /// <summary>
     /// An enumerator that stores all kinds of pages in the application.
