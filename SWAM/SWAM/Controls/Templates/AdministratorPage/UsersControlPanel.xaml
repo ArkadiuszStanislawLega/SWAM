@@ -10,7 +10,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
-        <!--Create list of enumeration values-->
         <ObjectDataProvider x:Key="UsersType" MethodName="GetValues" 
                             ObjectType="{x:Type System:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -19,22 +18,25 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <DataGrid   
-                   ItemsSource="{Binding Users}" 
-                   AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Lp." 
-                                    Width="Auto" 
-                                    IsReadOnly="True" 
-                                    Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Hasło." Width="Auto" IsReadOnly="True" Binding="{Binding Password}"/>
-                <DataGridComboBoxColumn Header="Order Status"  
-                                        SelectedItemBinding="{Binding Permissions}" 
-                                        ItemsSource="{Binding Source={StaticResource UsersType}}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel>
-            <TextBox Text="UsersControlPanel"/>
+        <StackPanel Margin="5">
+            <TextBox Text="Wyszukaj użytkownika"/>
+            <DataGrid  ItemsSource="{Binding Users}" 
+                       AutoGenerateColumns="False"
+                       >
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Lp." 
+                                        Width="Auto" 
+                                        IsReadOnly="True" 
+                                        Binding="{Binding Name, ValidatesOnDataErrors=False}" 
+                                        />
+                    <DataGridTextColumn Header="Hasło." Width="Auto" 
+                                        IsReadOnly="True" Binding="{Binding Password}"
+                                        />
+                    <DataGridComboBoxColumn Header="Order Status"  
+                                            SelectedItemBinding="{Binding Permissions}" 
+                                            ItemsSource="{Binding Source={StaticResource UsersType}}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </StackPanel>
 </UserControl>

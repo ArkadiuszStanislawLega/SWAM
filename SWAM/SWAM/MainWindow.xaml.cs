@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -37,7 +38,28 @@ namespace SWAM
             InitializeComponent();
 
             this._pageContainer = ContentOfWindow;
-            ChangeContent(PagesUserControls.LoginPage);  
+            ChangeContent(PagesUserControls.LoginPage);
+
+            using (ApplicationDbContext application = new ApplicationDbContext())
+            {
+                
+                var adress = new Address
+                {
+                    ApartmentNumber = "10",
+                    Id = 1,
+                    City = "inowrocław",
+                    HouseNumber = "1",
+                    Country = "Poland",
+                    Street = "Gutentagowa",
+                    PostCode = "11010"
+                };
+
+                application.Addresses.Add(adress);
+                application.SaveChanges();
+                Address address = application.Addresses.FirstOrDefault(u => u.Id == 1);
+                if (address != null) message.Text = "" + address.Id;
+                else message.Text = "null";
+            }
         }
         #endregion  
 

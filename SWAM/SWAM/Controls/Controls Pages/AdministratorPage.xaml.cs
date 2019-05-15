@@ -41,10 +41,17 @@ namespace SWAM
         {
             InitializeComponent();
 
-            _currentContent = _userControls[0];
-            SwitchToUsersControlPanel.Background = this.FindResource("LightGrayBrash") as Brush;
+
         }
         #endregion
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            this._currentContent = this._userControls[1];
+            ChangeButtonsBackground();
+        }
 
         #region Overrided Methods
         override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.LoginPage);
@@ -63,20 +70,30 @@ namespace SWAM
             if (administratorPageControlPanels != this._currentContent)
             {
                 this._currentContent = administratorPageControlPanels;
-                MainContent.Children.RemoveAt(MainContent.Children.Capacity - 1);
-                MainContent.Children.Add(this._currentContent);
-            }
+                this.MainContent.Children.RemoveAt(this.MainContent.Children.Capacity - 1);
+                this.MainContent.Children.Add(this._currentContent);
 
-            if (this._currentContent == _userControls[0]) {
-                SwitchToWarehousesControlPanel.Background = this.FindResource("LightGrayBrash") as Brush;
-                SwitchToUsersControlPanel.Background = this.FindResource("MainBarBrash") as Brush;
-            } 
-            else
-            {
-                SwitchToWarehousesControlPanel.Background = this.FindResource("MainBarBrash") as Brush;
-                SwitchToUsersControlPanel.Background = this.FindResource("LightGrayBrash") as Brush;
+                ChangeButtonsBackground();
             }
         }
-        #endregion  
+        #endregion
+        #region ChangeButtonsBackground
+        /// <summary>
+        /// Changing the colors of buttons that change the content of the page between WarehousesControlPanel and UsersControlPanel.
+        /// </summary>
+        private void ChangeButtonsBackground()
+        {
+            if (this._currentContent == this._userControls[0])
+            {
+                this.SwitchToWarehousesControlPanel.Background = this.FindResource("SelectedBrash") as Brush;
+                this.SwitchToUsersControlPanel.Background = this.FindResource("EnabledBrash") as Brush;
+            }
+            else
+            {
+                this.SwitchToWarehousesControlPanel.Background = this.FindResource("EnabledBrash") as Brush;
+                this.SwitchToUsersControlPanel.Background = this.FindResource("SelectedBrash") as Brush;
+            }
+        }
+        #endregion
     }
 }

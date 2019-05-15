@@ -15,18 +15,16 @@
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Shape.Fill).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource LightGray}" />
+                                                Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Shape.Fill).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
+                                                Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Graphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -98,9 +96,10 @@
                             SnapsToDevicePixels="True"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}">        
+                            Padding="{TemplateBinding Padding}">   
+                        <!--COLOR OF BACKGROUND DATAGRID-->
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource Gray}" />
+                            <SolidColorBrush Color="{StaticResource DarkGraphite}" />
                         </Border.Background>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -108,7 +107,7 @@
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
                                                 Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource LightGray}" />
+                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -233,24 +232,19 @@
         </Setter>
     </Style>
 
-    <!--Style and template for the DataGridRow.-->
-    <Style TargetType="{x:Type DataGridRow}">
+     <!--Style and template for the DataGridRow.-->
+     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background">
             <Setter.Value>
                 <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
             </Setter.Value>
         </Setter>
-        <Setter Property="SnapsToDevicePixels"
-          Value="true" />
-        <Setter Property="Validation.ErrorTemplate"
-          Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <TextBlock Foreground="Red"
-                   Margin="2,0,0,0"
-                   Text="!"
-                   VerticalAlignment="Center" />
+                    <TextBlock Foreground="Red" Margin="2,0,0,0" Text="!" VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -286,10 +280,10 @@
                                 </VisualState>
 
                                 <!--In this example, a row in Editing or selected mode has an
-              identical appearances. In other words, the states 
-              Normal_Selected, Unfocused_Selected, Normal_Editing, 
-              MouseOver_Editing, MouseOver_Unfocused_Editing,
-              and Unfocused_Editing are identical.-->
+                                      identical appearances. In other words, the states 
+                                      Normal_Selected, Unfocused_Selected, Normal_Editing, 
+                                      MouseOver_Editing, MouseOver_Unfocused_Editing,
+                                      and Unfocused_Editing are identical.-->
                                 <VisualState x:Name="Normal_Selected">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
@@ -376,7 +370,7 @@
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[1].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -391,13 +385,13 @@
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[1].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -408,13 +402,13 @@
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[0].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[1].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -490,7 +484,7 @@
                                                 Storyboard.TargetProperty="(Panel.Background).
                       (GradientBrush.GradientStops)[1].(GradientStop.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource LightGray}" />
+                                         Value="{StaticResource DarkGraphite}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>

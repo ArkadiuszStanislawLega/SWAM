@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
+        Padding="10"
         mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel >
+    <StackPanel>
         <TextBlock Name="Title" Text="AdministratorPage" HorizontalAlignment="Center"/>
         <!--#region TemporaryNavigationBar -->
         <StackPanel Orientation="Horizontal" 
