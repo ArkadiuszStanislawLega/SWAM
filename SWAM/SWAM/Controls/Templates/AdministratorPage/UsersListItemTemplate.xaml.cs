@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWAM
+namespace SWAM.Controls.Templates.AdministratorPage
 {
     /// <summary>
-    /// Logika interakcji dla klasy WarehousesControlPanel.xaml
+    /// Logika interakcji dla klasy UsersListItem.xaml
     /// </summary>
-    public partial class WarehousesControlPanel : UserControl
+    public partial class UsersListItemTemplate : UserControl
     {
-        public WarehousesControlPanel()
+        public UsersListItemTemplate()
         {
             InitializeComponent();
         }
+
+
     }
 }

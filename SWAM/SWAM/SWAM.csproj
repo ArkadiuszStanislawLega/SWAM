@@ -67,6 +67,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,6 +82,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml.cs">
+      <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml.cs">
+      <DependentUpon>UsersListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
+    <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
+      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
@@ -88,11 +106,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\UsersControlPanel.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\WarehousesControlPanel.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,11 +159,11 @@
     <Compile Include="Controls\Controls Pages\AdministratorPage.xaml.cs">
       <DependentUpon>AdministratorPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\UsersControlPanel.xaml.cs">
-      <DependentUpon>UsersControlPanel.xaml</DependentUpon>
+    <Compile Include="Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml.cs">
+      <DependentUpon>UsersControlPanelTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\WarehousesControlPanel.xaml.cs">
-      <DependentUpon>WarehousesControlPanel.xaml</DependentUpon>
+    <Compile Include="Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml.cs">
+      <DependentUpon>WarehousesControlPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Controls Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -195,6 +213,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201905142200380_InitialModel.resx">
       <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161620557_AddUsersTable.resx">
+      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

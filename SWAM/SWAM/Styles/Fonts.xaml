@@ -3,6 +3,5 @@
                     xmlns:local="clr-namespace:Styles">
 
     <FontFamily x:Key="BasicFont">Calibri</FontFamily>
-    <!--<FontFamily x:Key="FontAwesome">/Fonts/Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free</FontFamily>-->
 
 </ResourceDictionary>

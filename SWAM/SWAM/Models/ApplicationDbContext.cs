@@ -20,12 +20,13 @@ namespace SWAM
         public DbSet<ExternalSupplier> ExternalSupplayers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<WarehouseOrder> WarehouseOrders { get; set; }
         public DbSet<WarehouseOrderPosition> WarehouseOrderPositions { get; set; }
 
         public ApplicationDbContext()
-            : base("name=DefaultConnection")
+            : base("name=SWAMmodel")
         {
         }
     }

@@ -201,8 +201,6 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.g.cs
@@ -214,8 +212,6 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\App.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
@@ -232,3 +228,13 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddUsersTable.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserProfileTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserProfileTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.baml

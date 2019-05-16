@@ -27,8 +27,8 @@ namespace SWAM
         /// Instances of all controlers in AdministratorPage.
         /// </summary>
         UserControl[] _userControls = {
-            new WarehousesControlPanel(),
-            new UsersControlPanel()
+            new WarehousesControlPanelTemplate(),
+            new UsersControlPanelTemplate()
         };
         /// <summary>
         /// Current visible controler.

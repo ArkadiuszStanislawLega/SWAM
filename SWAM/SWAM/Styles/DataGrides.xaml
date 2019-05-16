@@ -72,7 +72,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+
     <!--Style and template for the DataGrid.-->
     <Style TargetType="{x:Type DataGrid}">
         <Setter Property="Foreground"  Value="{StaticResource FontsBrash}" />

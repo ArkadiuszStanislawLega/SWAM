@@ -1,8 +1,10 @@
 ﻿
 FG:\GitRepo\SWAM\SWAM\SWAM\App.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\AdministratorPage.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UsersControlPanel.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\WarehousesControlPanel.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\LoginPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\ManageItemPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Controls Pages\ManageMagazinePage.xaml;;

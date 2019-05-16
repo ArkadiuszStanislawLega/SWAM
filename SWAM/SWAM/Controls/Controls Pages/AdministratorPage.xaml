@@ -24,7 +24,7 @@
         </StackPanel>
         <!--#endregion-->
         <StackPanel Orientation="Vertical" Name="MainContent">
-            <local:UsersControlPanel />
+            <local:UsersControlPanelTemplate />
         </StackPanel>
     </StackPanel>
 

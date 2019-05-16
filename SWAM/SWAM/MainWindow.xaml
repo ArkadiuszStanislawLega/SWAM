@@ -90,6 +90,5 @@
         <StackPanel Name="ContentOfWindow">
         </StackPanel>
         <!--#endregion-->
-        <TextBlock Name="message" Text="pusto"/>
     </StackPanel>
 </Window>
