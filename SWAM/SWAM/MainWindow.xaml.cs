@@ -48,8 +48,9 @@ namespace SWAM
             ChangeContent(PagesUserControls.LoginPage);
             SetNavigationsButtonPagesContent();
         }
-        #endregion  
+        #endregion
 
+        #region Window Functions Buttons
         #region TopBarContent_MouseDown
         /// <summary>
         /// Moving whole application window after drag top bar of application, when the left button was clicked.
@@ -62,7 +63,6 @@ namespace SWAM
                 this.DragMove();
         }
         #endregion
-
         #region Maximize_Click
         /// <summary>
         /// Maximizing size of the application when the application size is smaller then max size. 
@@ -108,8 +108,9 @@ namespace SWAM
             this.Close();
         }
         #endregion
+        #endregion
 
-        #region ChangeContent
+        #region Change main content of the application
         /// <summary>
         /// Change current view of application to chosen one.
         /// </summary>
@@ -177,12 +178,13 @@ namespace SWAM
         }
         #endregion
 
+        #region Navigation bar stuff 
         #region NaviagionBar_Click
         /// <summary>
-        /// Temporary navigation bar - buttonClicker.
-        /// It is for fast navigation between pages, for debug and project phase.
+        /// Navigation bar - buttonClicker.
+        /// It is for fast navigation between pages.
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender">NavigationButtonTemplate is required!</param>
         /// <param name="e"></param>
         private void NaviagionBar_Click(object sender, RoutedEventArgs e)
         {
@@ -196,10 +198,9 @@ namespace SWAM
             this._currentPageLoaded = button.PageToOpen;
         }
         #endregion
-
+        #region SetNavigationsButtonPagesContent
         /// <summary>
         /// Setting property Pages in navigation buttons representing the value of the page to open.
-        /// 
         /// </summary>
         private void SetNavigationsButtonPagesContent()
         {
@@ -209,5 +210,7 @@ namespace SWAM
             this.SwitchToManageMagazinePage.PageToOpen = PagesUserControls.ManageMagazinePage;
             this.SwitchToManageOrderPage.PageToOpen = PagesUserControls.ManageOrdersPage;
         }
+        #endregion
+        #endregion
     }
 }
