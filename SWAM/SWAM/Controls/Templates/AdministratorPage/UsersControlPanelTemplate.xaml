@@ -4,9 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAM"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:profil="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -20,22 +18,33 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     
-    <StackPanel Orientation="Horizontal">
+    <Grid >
+        <!--#region Rows&Column Definitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
         <!--#region Left section-->
-        <StackPanel  Name="LeftSection" Margin="5">
+        <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
             <TextBox Text="Wyszukaj użytkownika" 
                      FontSize="14" Width="150"
                      HorizontalAlignment="Left"
                      Margin="0 0 0 0"
                      />
-            <ScrollViewer>
+            <ScrollViewer >
                 <!--List with users-->
                 <StackPanel Name="UsersList" Orientation="Vertical"/>
             </ScrollViewer>
         </StackPanel>
         <!--#endregion-->
-        <StackPanel  Name="RightSection" Margin="5">
+        <!--#region Right section-->
+        <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
 
         </StackPanel>
-    </StackPanel>
+        <!--#endregion-->
+    </Grid>
 </UserControl>

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Events.NavigationButton;
 
 namespace SWAM
 {
@@ -30,6 +31,7 @@ namespace SWAM
         private List<User> _users;
         #endregion
 
+        #region Basic Constructor
         public UsersControlPanelTemplate()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace SWAM
 
             AddUsersList();
         }
-
+        #endregion  
         #region AddUsersList
         /// <summary>
         /// Making visible list of all users in service.
@@ -55,7 +57,7 @@ namespace SWAM
                 var usersListItemTemplate = new UsersListItemTemplate();
                 usersListItemTemplate.DataContext = this._users[i];
                 usersListItemTemplate.Tag = i;
-                usersListItemTemplate.MouseLeftButtonDown += UsersListItemTemplate_MouseLeftButtonDown;
+                usersListItemTemplate.Click += UsersListItemTemplate_MouseLeftButtonDown;
 
                 this.UsersList.Children.Add(usersListItemTemplate);
             }
@@ -68,7 +70,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UsersListItemTemplate_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void UsersListItemTemplate_MouseLeftButtonDown(object sender, RoutedEventArgs e)
         {
             var button = sender as UsersListItemTemplate;
         
@@ -76,14 +78,27 @@ namespace SWAM
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
       
             this.RightSection.Children.Add(CreateUserProfile((int)button.Tag));
+
+            for (int i = 0; i < this.UsersList.Children.Count; i++)
+            {
+                var findSelectedButton = this.UsersList.Children[i] as UsersListItemTemplate;
+                if (findSelectedButton.Tag != button.Tag) findSelectedButton.IsSelected = false;
+                else findSelectedButton.IsSelected = true;
+            }
         }
         #endregion
-
+        #region CreateUserProfile
+        /// <summary>
+        /// Made view of the user profile in right section.
+        /// </summary>
+        /// <param name="userIndexInUsersList">Index number of UsersListItemTemplate in the users list.</param>
+        /// <return>Chosen user profile.</return>
         private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
         {
             var userProfileTemplate = new UserProfileTemplate();
             userProfileTemplate.DataContext = this._users[userIndexInUsersList];
             return userProfileTemplate;
         }
+        #endregion
     }
 }

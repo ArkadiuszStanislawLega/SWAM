@@ -36,7 +36,6 @@ namespace SWAM
         ///  Indicates which page is currently loaded.
         /// </summary>
         public PagesUserControls CurrentPageLoaded { get => this._currentPageLoaded; set => this._currentPageLoaded = value; }
-        public DateTime Date { get; private set; }
         #endregion
 
         #region BasicConstructor
@@ -126,10 +125,7 @@ namespace SWAM
                 case PagesUserControls.AdministratorPage:
                     {
                         if (_currentPageLoaded != PagesUserControls.AdministratorPage)
-                        {
                             this._pageContainer.Children.Add(new AdministratorPage(this));
-                   
-                        }   
                         break;
                     }
                 #endregion
@@ -137,10 +133,7 @@ namespace SWAM
                 case PagesUserControls.LoginPage:
                     {
                         if (_currentPageLoaded != PagesUserControls.LoginPage)
-                        {
                             this._pageContainer.Children.Add(new LoginPage(this));
-                  
-                        }
                         break;
                     } 
                 #endregion
@@ -148,10 +141,7 @@ namespace SWAM
                 case PagesUserControls.ManageItemsPage:
                     {
                         if (_currentPageLoaded != PagesUserControls.ManageItemsPage)
-                        {
                             this._pageContainer.Children.Add(new ManageItemPage(this));
-                         
-                        }
                         break;
                     }
                 #endregion
@@ -159,10 +149,7 @@ namespace SWAM
                 case PagesUserControls.ManageMagazinePage:
                     {
                         if (_currentPageLoaded != PagesUserControls.ManageMagazinePage)
-                        {
                             this._pageContainer.Children.Add(new ManageMagazinePage(this));
-           
-                        }
                         break;
                     }
                 #endregion

@@ -42,18 +42,18 @@ namespace SWAM.Controls.Templates.MainWindow
         {
             set
             {
-                ButtonSelectedArgs myArgs;
-                _isSeleceted = value;
+                ButtonSelectedArgs isSelectedArg;
+                this._isSeleceted = value;
 
-                if (_isSeleceted)
+                if (this._isSeleceted)
                 {
-                    myArgs = new ButtonSelectedArgs(true);
-                    IsSelectedEvent(this, myArgs);
+                    isSelectedArg = new ButtonSelectedArgs(true);
+                    IsSelectedEvent(this, isSelectedArg);
                 }
                 else
                 {
-                    myArgs = new ButtonSelectedArgs(false);
-                    IsSelectedEvent(this, myArgs);
+                    isSelectedArg = new ButtonSelectedArgs(false);
+                    IsSelectedEvent(this, isSelectedArg);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace SWAM.Controls.Templates.MainWindow
         {
             InitializeComponent();
 
-            IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
+            this.IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
         }
         #endregion  
         #region NavigationButtonTemplate_IsSelectedEvent
