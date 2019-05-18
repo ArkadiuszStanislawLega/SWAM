@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
 
@@ -44,6 +46,7 @@ namespace SWAM
 
             this._pageContainer = ContentOfWindow;
             ChangeContent(PagesUserControls.LoginPage);
+            SetNavigationsButtonPagesContent();
         }
         #endregion  
 
@@ -113,42 +116,60 @@ namespace SWAM
         /// <param name="page">The Page which should be loaded.</param>
         public void ChangeContent(PagesUserControls page)
         {
-            if(this._pageContainer.Children.Capacity>0) this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
+            if(this._pageContainer.Children.Capacity > 0 && page != this._currentPageLoaded)
+                this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
 
             switch (page)
             {
                 #region administratorPage
                 case PagesUserControls.AdministratorPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.AdministratorPage) _pageContainer.Children.Add(new AdministratorPage(this));
+                        if (_currentPageLoaded != PagesUserControls.AdministratorPage)
+                        {
+                            this._pageContainer.Children.Add(new AdministratorPage(this));
+                   
+                        }   
                         break;
                     }
                 #endregion
                 #region loginPage
                 case PagesUserControls.LoginPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.LoginPage) _pageContainer.Children.Add(new LoginPage(this));
+                        if (_currentPageLoaded != PagesUserControls.LoginPage)
+                        {
+                            this._pageContainer.Children.Add(new LoginPage(this));
+                  
+                        }
                         break;
                     } 
                 #endregion
                 #region manageItemsPage
                 case PagesUserControls.ManageItemsPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.ManageItemsPage) this._pageContainer.Children.Add(new ManageItemPage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageItemsPage)
+                        {
+                            this._pageContainer.Children.Add(new ManageItemPage(this));
+                         
+                        }
                         break;
                     }
                 #endregion
                 #region manageMagazinePage
                 case PagesUserControls.ManageMagazinePage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.ManageMagazinePage) _pageContainer.Children.Add(new ManageMagazinePage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageMagazinePage)
+                        {
+                            this._pageContainer.Children.Add(new ManageMagazinePage(this));
+           
+                        }
                         break;
                     }
                 #endregion
                 #region manageOrdersPage
                 case PagesUserControls.ManageOrdersPage:
                     {
-                        if (_currentPageLoaded != PagesUserControls.ManageOrdersPage)_pageContainer.Children.Add(new ManageOrdersPage(this));
+                        if (_currentPageLoaded != PagesUserControls.ManageOrdersPage)
+                            this._pageContainer.Children.Add(new ManageOrdersPage(this));
                         break;
                     } 
                     #endregion
@@ -156,25 +177,37 @@ namespace SWAM
         }
         #endregion
 
-        #region TemporaryNaviagionBar_Click
+        #region NaviagionBar_Click
         /// <summary>
         /// Temporary navigation bar - buttonClicker.
         /// It is for fast navigation between pages, for debug and project phase.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TemporaryNaviagionBar_Click(object sender, RoutedEventArgs e)
+        private void NaviagionBar_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            switch (button.Content)
-            {
-                case "administratorPage":{ ChangeContent(PagesUserControls.AdministratorPage); break; }
-                case "loginPage": { ChangeContent(PagesUserControls.LoginPage); break; }
-                case "manageItemsPage": { ChangeContent(PagesUserControls.ManageItemsPage); break; }
-                case "manageMagazinePage": { ChangeContent(PagesUserControls.ManageMagazinePage); break; }
-                case "manageOrdersPage": { ChangeContent(PagesUserControls.ManageOrdersPage); break; }
-            }
+            var button = sender as NavigationButtonTemplate;
+            foreach (NavigationButtonTemplate nbt in this.NavigationBar.Children)
+                if (nbt.PageToOpen != button.PageToOpen) nbt.IsSelected = false;
+                else nbt.IsSelected = true;
+
+            ChangeContent(button.PageToOpen);
+
+            this._currentPageLoaded = button.PageToOpen;
         }
         #endregion
+
+        /// <summary>
+        /// Setting property Pages in navigation buttons representing the value of the page to open.
+        /// 
+        /// </summary>
+        private void SetNavigationsButtonPagesContent()
+        {
+            this.SwitchToAdministratorPage.PageToOpen = PagesUserControls.AdministratorPage;
+            this.SwitchToLoginPage.PageToOpen = PagesUserControls.LoginPage;
+            this.SwitchToManageItemPage.PageToOpen = PagesUserControls.ManageItemsPage;
+            this.SwitchToManageMagazinePage.PageToOpen = PagesUserControls.ManageMagazinePage;
+            this.SwitchToManageOrderPage.PageToOpen = PagesUserControls.ManageOrdersPage;
+        }
     }
 }

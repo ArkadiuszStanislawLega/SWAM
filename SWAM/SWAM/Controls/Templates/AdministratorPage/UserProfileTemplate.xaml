@@ -5,21 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Margin="10">
-        <StackPanel Margin="5">
-            <TextBlock Text="Nazwa użytkownika"/>
-            <TextBlock Name="name" Text="{Binding Name}"/>
+             Height="350" Width="500">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Margin="5">
+                <TextBlock Text="Nazwa użytkownika"/>
+                <TextBlock Name="name" Text="{Binding Name}"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Uprawnienia"/>
+                <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Reset hasła"/>
+                <TextBlock Name="Password" Text="{Binding Password}"/>
+            </StackPanel>
         </StackPanel>
-        <StackPanel Margin="5">
-            <TextBlock Text="Uprawnienia"/>
-            <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
-        </StackPanel>
-        <StackPanel Margin="5">
-            <TextBlock Text="Reset hasła"/>
-            <TextBlock Name="Password" Text="{Binding Password}"/>
-        </StackPanel>
-
-
-    </StackPanel>
+        <Button Name="ConfirmChanges" 
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Padding="5"
+                Margin="10"
+                Width="110"
+                Height="40">
+            <TextBlock Text="Zatwierdź zmiany"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 7 7"/>
+        </Button>
+    </Grid>
 </UserControl>

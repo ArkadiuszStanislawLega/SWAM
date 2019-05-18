@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:SWAM">
-    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter" />
+
 
     <!--Style and template for the button in the upper left corner of the DataGrid.-->
     <Style TargetType="{x:Type Button}"  x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}">

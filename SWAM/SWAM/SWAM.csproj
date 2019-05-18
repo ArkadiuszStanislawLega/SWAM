@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,6 +93,10 @@
     <Compile Include="Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml.cs">
       <DependentUpon>UsersListItemTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
+      <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
       <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
@@ -96,7 +104,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />
-    <Compile Include="Enumerators\Pages.cs" />
+    <Compile Include="Enumerators\PagesUserControls.cs" />
     <Compile Include="Enumerators\UserType.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

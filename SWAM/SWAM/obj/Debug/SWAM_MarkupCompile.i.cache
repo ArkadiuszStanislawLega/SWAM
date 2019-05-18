@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 G:\GitRepo\SWAM\SWAM\SWAM\App.xaml
-16-1989989052
+17-1130067605
 1-479832103
-44-1546125330
+46-1186011300
 191844561004
-Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;MainWindow.xaml;Controls\Controls Pages\AdministratorPage.xaml;Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml;Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml;Controls\Controls Pages\LoginPage.xaml;Controls\Controls Pages\ManageItemPage.xaml;Controls\Controls Pages\ManageMagazinePage.xaml;Controls\Controls Pages\ManageOrdersPage.xaml;Styles\Colors.xaml;Styles\DataGrides.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;
+Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;Controls\Templates\MainWindow\NavigationButtonTemplate.xaml;MainWindow.xaml;Controls\Controls Pages\AdministratorPage.xaml;Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml;Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml;Controls\Controls Pages\LoginPage.xaml;Controls\Controls Pages\ManageItemPage.xaml;Controls\Controls Pages\ManageMagazinePage.xaml;Controls\Controls Pages\ManageOrdersPage.xaml;Styles\Colors.xaml;Styles\DataGrides.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;
 
 True
 
