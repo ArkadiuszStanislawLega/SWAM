@@ -298,3 +298,4 @@ G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache

@@ -74,11 +74,15 @@ namespace SWAM
                 new List<PagesUserControls>(){ PagesUserControls.LoginPage,
                                           /**/ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
-                                          /**/ PagesUserControls.ManageOrdersPage }}
+                                          /**/ PagesUserControls.ManageOrdersPage }},
+            { UserType.Programmer,
+                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
+                                          /**/ PagesUserControls.AdministratorPage,
+                                          /**/ PagesUserControls.ManageItemsPage,
+                                          /**/ PagesUserControls.ManageMagazinePage,
+                                          /**/ PagesUserControls.ManageOrdersPage }},
         };
         #endregion
-
-
 
         #region Setters
         /// <summary>
