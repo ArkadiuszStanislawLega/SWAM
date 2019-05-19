@@ -114,7 +114,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\Controls Pages\AdministratorPage.xaml">
+    <Page Include="Controls\Pages\AdministratorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,19 +126,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Controls Pages\LoginPage.xaml">
+    <Page Include="Controls\Pages\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Controls Pages\ManageItemPage.xaml">
+    <Page Include="Controls\Pages\ManageItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Controls Pages\ManageMagazinePage.xaml">
+    <Page Include="Controls\Pages\ManageMagazinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Controls Pages\ManageOrdersPage.xaml">
+    <Page Include="Controls\Pages\ManageOrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,7 +180,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Controls Pages\AdministratorPage.xaml.cs">
+    <Compile Include="Controls\Pages\AdministratorPage.xaml.cs">
       <DependentUpon>AdministratorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml.cs">
@@ -189,19 +189,19 @@
     <Compile Include="Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml.cs">
       <DependentUpon>WarehousesControlPanelTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Controls Pages\LoginPage.xaml.cs">
+    <Compile Include="Controls\Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Controls Pages\ManageItemPage.xaml.cs">
+    <Compile Include="Controls\Pages\ManageItemPage.xaml.cs">
       <DependentUpon>ManageItemPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Controls Pages\ManageMagazinePage.xaml.cs">
+    <Compile Include="Controls\Pages\ManageMagazinePage.xaml.cs">
       <DependentUpon>ManageMagazinePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Controls Pages\ManageOrdersPage.xaml.cs">
+    <Compile Include="Controls\Pages\ManageOrdersPage.xaml.cs">
       <DependentUpon>ManageOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Controls Pages\Page.cs" />
+    <Compile Include="Controls\Pages\Page.cs" />
     <Compile Include="Migrations\201905142200380_InitialModel.cs" />
     <Compile Include="Migrations\201905142200380_InitialModel.Designer.cs">
       <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>

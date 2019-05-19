@@ -11,9 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
+using SWAM.Templates.AdministratorPage;
 
-namespace SWAM
+namespace SWAM.Controls.Pages
 {
     /// <summary>
     /// Logika interakcji dla klasy AdministratorPage.xaml

@@ -17,7 +17,7 @@ using SWAM.Models;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Events.NavigationButton;
 
-namespace SWAM
+namespace SWAM.Controls.Templates.AdministratorPage
 {
     /// <summary>
     /// Logika interakcji dla klasy UsersControlPanel.xaml
