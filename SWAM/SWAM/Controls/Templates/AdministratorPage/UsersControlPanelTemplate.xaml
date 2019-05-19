@@ -30,10 +30,11 @@
             <!--#endregion-->
             <!--#region Left section-->
             <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
-                <TextBox Text="Wyszukaj użytkownika" 
-                         FontSize="14" Width="150"
+                <TextBox Tag="Wyszukaj użytkownika" 
+                         FontSize="14" Width="150" Height="30"
                          HorizontalAlignment="Left"
                          Margin="0 0 0 0"
+                         Style="{StaticResource UserLogin}"
                          />
                 <ScrollViewer >
                     <!--List with users-->

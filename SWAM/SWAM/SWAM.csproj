@@ -87,6 +87,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AtachedProperties\BasedAttachedProperty.cs" />
+    <Compile Include="AtachedProperties\PasswordAttachedProperty.cs" />
     <Compile Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml.cs">
       <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -96,6 +98,8 @@
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
@@ -158,11 +162,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\PasswordBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ScrollBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,8 +262,6 @@
   <ItemGroup>
     <Content Include="ReleaseNotes.css" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

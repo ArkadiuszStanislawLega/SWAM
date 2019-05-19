@@ -79,17 +79,13 @@
                             <Setter Property="Background"  Value="{StaticResource MainBarBrash}" />
                             <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
                         </Trigger>
-                        <Trigger Property="Control.IsFocused" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <!--#endregion-->
-    <!--#region Navigation Buttons-->
+    <!--#region UsersListButtons Buttons-->
     <Style x:Key="UsersListButtons" TargetType="{x:Type Button}"   BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="150"/>
         <Setter Property="Height" Value="45"/>

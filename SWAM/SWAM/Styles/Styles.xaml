@@ -8,11 +8,5 @@
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
     </Style>
     <!--#endregion-->
-    <!--#region TextBoxBasicStyle-->
-    <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-    </Style>
-    <!--#endregion-->
+
 </ResourceDictionary>

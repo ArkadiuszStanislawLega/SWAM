@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 G:\GitRepo\SWAM\SWAM\SWAM\App.xaml
-18-938391920
+20-1419672376
 1-479832103
-46-1186011300
+50-251869728
 191844561004
-Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;Controls\Templates\MainWindow\NavigationButtonTemplate.xaml;MainWindow.xaml;Controls\Controls Pages\AdministratorPage.xaml;Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml;Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml;Controls\Controls Pages\LoginPage.xaml;Controls\Controls Pages\ManageItemPage.xaml;Controls\Controls Pages\ManageMagazinePage.xaml;Controls\Controls Pages\ManageOrdersPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\DataGrides.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;
+Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;Controls\Templates\MainWindow\NavigationButtonTemplate.xaml;MainWindow.xaml;Controls\Controls Pages\AdministratorPage.xaml;Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml;Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml;Controls\Controls Pages\LoginPage.xaml;Controls\Controls Pages\ManageItemPage.xaml;Controls\Controls Pages\ManageMagazinePage.xaml;Controls\Controls Pages\ManageOrdersPage.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\DataGrides.xaml;Styles\Fonts.xaml;Styles\MenuItem.xaml;Styles\PasswordBoxes.xaml;Styles\ScrollBar.xaml;Styles\Styles.xaml;Styles\TextBoxes.xaml;
 
 True
 
