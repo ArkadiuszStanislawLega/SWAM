@@ -7,7 +7,11 @@
              mc:Ignorable="d" 
               d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10" Grid.Row="0">
             <StackPanel Margin="5">
                 <TextBlock Text="Nazwa użytkownika"/>
                 <TextBlock Name="name" Text="{Binding Name}"/>
@@ -27,7 +31,8 @@
                 Padding="5"
                 Margin="10"
                 Width="110"
-                Height="40">
+                Height="40"
+                Grid.Row="1">
             <TextBlock Text="Zatwierdź zmiany"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"

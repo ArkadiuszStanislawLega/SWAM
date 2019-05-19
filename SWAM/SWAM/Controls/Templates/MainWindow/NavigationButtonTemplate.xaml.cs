@@ -58,6 +58,7 @@ namespace SWAM.Controls.Templates.MainWindow
             }
         }
         #endregion
+
         #region BasciConstructor
         public NavigationButtonTemplate()
         {
@@ -65,7 +66,8 @@ namespace SWAM.Controls.Templates.MainWindow
 
             this.IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
         }
-        #endregion  
+        #endregion
+
         #region NavigationButtonTemplate_IsSelectedEvent
         /// <summary>
         /// Action after button clicked.
@@ -75,7 +77,7 @@ namespace SWAM.Controls.Templates.MainWindow
         private void NavigationButtonTemplate_IsSelectedEvent(NavigationButtonTemplate button, ButtonSelectedArgs isSelectedArg)
         {
             if (_isSeleceted) this.Background = this.FindResource("BackgroundOfPagesBrash") as Brush;
-            else this.Background = this.FindResource("EnabledBrash") as Brush;
+            else this.Background = this.FindResource("MainBarBrash") as Brush;
         }
         #endregion
     }

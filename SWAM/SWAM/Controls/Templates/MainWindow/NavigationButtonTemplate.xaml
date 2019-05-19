@@ -4,26 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Background="{StaticResource EnabledBrash}"
-             Foreground="{StaticResource FontsBrash}"
-             BorderThickness="0"
-             BorderBrush="Transparent"
+             Style="{StaticResource NavigationButton}"
              Margin="0 0 1 0"
              d:DesignHeight="50" Width="150">
-    <Button.Style>
-        <Style TargetType="Button">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                    <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-                    <Setter Property="Foreground" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Button.Style>
     <TextBlock Name="NavigationButton"
              Width="130" 
              Text="{Binding Content}" />

@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Styles/MenuItem.xaml"/>
                 <ResourceDictionary Source="Styles/ScrollBar.xaml"/>
                 <ResourceDictionary Source="Styles/DataGrides.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

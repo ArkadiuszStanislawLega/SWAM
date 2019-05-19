@@ -17,34 +17,35 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    
-    <Grid >
-        <!--#region Rows&Column Definitions-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
-        <!--#region Left section-->
-        <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
-            <TextBox Text="Wyszukaj użytkownika" 
-                     FontSize="14" Width="150"
-                     HorizontalAlignment="Left"
-                     Margin="0 0 0 0"
-                     />
-            <ScrollViewer >
-                <!--List with users-->
-                <StackPanel Name="UsersList" Orientation="Vertical"/>
-            </ScrollViewer>
-        </StackPanel>
-        <!--#endregion-->
-        <!--#region Right section-->
-        <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
+    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2">
+        <Grid >
+            <!--#region Rows&Column Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Left section-->
+            <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
+                <TextBox Text="Wyszukaj użytkownika" 
+                         FontSize="14" Width="150"
+                         HorizontalAlignment="Left"
+                         Margin="0 0 0 0"
+                         />
+                <ScrollViewer >
+                    <!--List with users-->
+                    <StackPanel Name="UsersList" Orientation="Vertical"/>
+                </ScrollViewer>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Right section-->
+            <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
 
-        </StackPanel>
-        <!--#endregion-->
-    </Grid>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+    </Border>
 </UserControl>

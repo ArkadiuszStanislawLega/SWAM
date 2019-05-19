@@ -176,13 +176,16 @@ namespace SWAM
         private void NaviagionBar_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as NavigationButtonTemplate;
-            foreach (NavigationButtonTemplate nbt in this.NavigationBar.Children)
-                if (nbt.PageToOpen != button.PageToOpen) nbt.IsSelected = false;
-                else nbt.IsSelected = true;
-
             ChangeContent(button.PageToOpen);
-
             this._currentPageLoaded = button.PageToOpen;
+
+            foreach(NavigationButtonTemplate nvb in this.NavigationBar.Children)
+            {
+                if (this._currentPageLoaded == nvb.PageToOpen)
+                    nvb.IsSelected = true;
+                else
+                    nvb.IsSelected = false;
+            }
         }
         #endregion
         #region SetNavigationsButtonPagesContent

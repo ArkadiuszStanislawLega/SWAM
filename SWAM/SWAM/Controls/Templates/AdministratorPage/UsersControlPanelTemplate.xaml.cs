@@ -78,13 +78,7 @@ namespace SWAM
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
       
             this.RightSection.Children.Add(CreateUserProfile((int)button.Tag));
-
-            for (int i = 0; i < this.UsersList.Children.Count; i++)
-            {
-                var findSelectedButton = this.UsersList.Children[i] as UsersListItemTemplate;
-                if (findSelectedButton.Tag != button.Tag) findSelectedButton.IsSelected = false;
-                else findSelectedButton.IsSelected = true;
-            }
+            
         }
         #endregion
         #region CreateUserProfile
