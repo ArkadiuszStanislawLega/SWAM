@@ -11,18 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
+using SWAM.Templates.AdministratorPage;
 
-namespace SWAM
+namespace SWAM.Controls.Pages
 {
     /// <summary>
     /// Logika interakcji dla klasy AdministratorPage.xaml
     /// </summary>
-    public partial class AdministratorPage : Page
+    public partial class AdministratorPage : UserControl
     {
         #region Properties
-        new PagesUserControls NAME_OF_PAGE = PagesUserControls.AdministratorPage;
-
         /// <summary>
         /// Instances of all controlers in AdministratorPage.
         /// </summary>
@@ -37,12 +37,9 @@ namespace SWAM
         #endregion
 
         #region Basic Constructor
-        public AdministratorPage(MainWindow mainWindow) 
-            : base(mainWindow)
+        public AdministratorPage() 
         {
             InitializeComponent();
-
-
         }
         #endregion
 
@@ -53,10 +50,6 @@ namespace SWAM
             this._currentContent = this._userControls[1];
             ChangeButtonsBackground();
         }
-
-        #region Overrided Methods
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.LoginPage);
-        #endregion
 
         private void WarhousesControlPanelBarPage_Click(object sender, RoutedEventArgs e) => ChangeContext(this._userControls[0]);
         private void UsersControlPanelBar_Click(object sender, RoutedEventArgs e) => ChangeContext(this._userControls[1]);

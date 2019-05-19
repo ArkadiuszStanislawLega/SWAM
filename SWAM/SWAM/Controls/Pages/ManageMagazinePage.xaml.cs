@@ -14,24 +14,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SWAM.Enumerators;
 
-namespace SWAM
+namespace SWAM.Controls.Pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy ManageOrdersPage.xaml
+    /// Logika interakcji dla klasy ManageMagazinePage.xaml
     /// </summary>
-    public partial class ManageOrdersPage : Page
+    public partial class ManageMagazinePage : UserControl
     {
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageOrdersPage;
-
-        public ManageOrdersPage(MainWindow mainWindow)
-            :base(mainWindow)
+        public ManageMagazinePage()
         {
             InitializeComponent();
-        }
-
-        protected override void ChangePage_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

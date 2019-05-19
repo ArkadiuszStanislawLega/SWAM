@@ -14,21 +14,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SWAM.Enumerators;
 
-namespace SWAM
+namespace SWAM.Controls.Pages
 {
     /// <summary>
     /// Logika interakcji dla klasy loginPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class LoginPage : UserControl
     {
-        new PagesUserControls NAME_OF_PAGE = PagesUserControls.LoginPage;
-
-        public LoginPage(MainWindow mainWindow)       
-            : base(mainWindow)
+        public LoginPage()       
         {
             InitializeComponent();
         }
-
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.ManageItemsPage);
     }
 }

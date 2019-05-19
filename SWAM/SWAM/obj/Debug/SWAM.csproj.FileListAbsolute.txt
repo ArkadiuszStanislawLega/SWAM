@@ -203,13 +203,13 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserPro
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\App.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM_Content.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -219,17 +219,18 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\App.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserProfileTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Buttons.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\DataGrides.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Fonts.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\MenuItem.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\PasswordBoxes.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\ScrollBar.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBoxes.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.g.resources
@@ -241,5 +242,59 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\PasswordBoxes.baml
+G:\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe.config
+G:\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe
+G:\SWAM\SWAM\SWAM\bin\Debug\SWAM.pdb
+G:\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.dll
+G:\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.dll
+G:\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
+G:\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.xml
+G:\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.xml
+G:\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserProfileTemplate.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\App.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM_Content.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
+G:\SWAM\SWAM\SWAM\obj\Debug\App.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UserProfileTemplate.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersListItemTemplate.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\MainWindow.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanelTemplate.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\Buttons.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\DataGrides.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\Fonts.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\MenuItem.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\PasswordBoxes.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\ScrollBar.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBoxes.baml
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.g.resources
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.InitialModel.resources
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddUsersTable.resources
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.Properties.Resources.resources
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.GenerateResource.cache
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
+G:\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb

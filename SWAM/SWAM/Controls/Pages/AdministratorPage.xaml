@@ -1,12 +1,13 @@
-﻿<local:Page  x:Class="SWAM.AdministratorPage"
+﻿<UserControl x:Class="SWAM.Controls.Pages.AdministratorPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
         Padding="10"
-        mc:Ignorable="d" d:DesignHeight="450" d:DesignWidth="800">
+        mc:Ignorable="d">
     <StackPanel>
         <!--#region TemporaryNavigationBar -->
         <StackPanel Orientation="Horizontal" 
@@ -23,8 +24,8 @@
         </StackPanel>
         <!--#endregion-->
         <StackPanel Orientation="Vertical" Name="MainContent">
-            <local:UsersControlPanelTemplate />
+            <temp:UsersControlPanelTemplate />
         </StackPanel>
     </StackPanel>
 
-</local:Page>
+</UserControl>

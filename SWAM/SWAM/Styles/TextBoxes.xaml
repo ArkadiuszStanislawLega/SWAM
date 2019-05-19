@@ -4,11 +4,13 @@
                     xmlns:prop="clr-namespace:SWAM.AtachedProperties"
                     xmlns:conv="clr-namespace:SWAM.Converters">
 
+    <!--#region BaseTextBox-->
     <Style TargetType="{x:Type TextBox}" x:Key="BaseTextBox" x:Name="BaseTextBox">
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
-    
+    <!--#endregion-->
+    <!--#region UserLogin-->
     <Style TargetType="{x:Type TextBox}" x:Key="UserLogin" BasedOn="{StaticResource BaseTextBox}">
         <Setter Property="Margin" Value="0 5 0 5" />
         <Setter Property="BorderBrush" Value="Gray" />
@@ -65,7 +67,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-   
-    
+    <!--#endregion-->
 </ResourceDictionary>

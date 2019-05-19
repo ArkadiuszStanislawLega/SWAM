@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
@@ -16,6 +17,21 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Current user logged in to application.
+        /// </summary>
+        public static User LoggedInUser = new User
+        {
+            Id = 1,
+            Name = "Admin",
+            Password = "haslowo",
+            Permissions = UserType.Programmer
+        };
+        /// <summary>
+        /// Flag indication that user is logged in or not.
+        /// </summary>
+        public static bool IsLoggedIn = true;
+
         #region Properties
         /// <summary>
         /// Flag indicating whether the application is maximized.
@@ -29,7 +45,40 @@ namespace SWAM
         /// Container of the main content of application.
         /// </summary>
         private StackPanel _pageContainer;
+        /// <summary>
+        /// Container with whole pages view.
+        /// </summary>
+        private Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
+        {
+            { PagesUserControls.LoginPage,new LoginPage() },
+            { PagesUserControls.AdministratorPage, new AdministratorPage()},
+            { PagesUserControls.ManageItemsPage, new ManageItemPage()},
+            { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },
+            { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() }
+        };
+        /// <summary>
+        /// Container with whole priviligase of UserType.
+        /// </summary>
+        private Dictionary<UserType, List<PagesUserControls>> _pagesForUser = new Dictionary<UserType, List<PagesUserControls>>()
+        {
+           //Settings for administrator
+           { UserType.Administrator,
+                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
+                                          /**/ PagesUserControls.AdministratorPage }},
+           //Settings for Seller
+           { UserType.Seller,
+                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
+                                          /**/ PagesUserControls.ManageMagazinePage }},
+           //Setting for Waegouseman
+           { UserType.Warehouseman,
+                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
+                                          /**/ PagesUserControls.ManageItemsPage,
+                                          /**/ PagesUserControls.ManageMagazinePage,
+                                          /**/ PagesUserControls.ManageOrdersPage }}
+        };
         #endregion
+
+
 
         #region Setters
         /// <summary>
@@ -44,11 +93,12 @@ namespace SWAM
             InitializeComponent();
 
             this._pageContainer = ContentOfWindow;
+
             ChangeContent(PagesUserControls.LoginPage);
             SetNavigationsButtonPagesContent();
+            ChangeApplicationDependsOnUserPermissions();
         }
         #endregion
-
         #region Window Functions Buttons
         #region TopBarContent_MouseDown
         /// <summary>
@@ -71,7 +121,7 @@ namespace SWAM
         /// <param name="e"></param>
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
-            if(!this._IsMaximized)
+            if (!this._IsMaximized)
             {
                 this.WindowState = WindowState.Maximized;
                 this._IsMaximized = true;
@@ -116,51 +166,14 @@ namespace SWAM
         /// <param name="page">The Page which should be loaded.</param>
         public void ChangeContent(PagesUserControls page)
         {
-            if(this._pageContainer.Children.Capacity > 0 && page != this._currentPageLoaded)
+            if (this._pageContainer.Children.Capacity > 0 && page != this._currentPageLoaded)
                 this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
 
-            switch (page)
+            if (page != this._currentPageLoaded)
             {
-                #region administratorPage
-                case PagesUserControls.AdministratorPage:
-                    {
-                        if (_currentPageLoaded != PagesUserControls.AdministratorPage)
-                            this._pageContainer.Children.Add(new AdministratorPage(this));
-                        break;
-                    }
-                #endregion
-                #region loginPage
-                case PagesUserControls.LoginPage:
-                    {
-                        if (_currentPageLoaded != PagesUserControls.LoginPage)
-                            this._pageContainer.Children.Add(new LoginPage(this));
-                        break;
-                    } 
-                #endregion
-                #region manageItemsPage
-                case PagesUserControls.ManageItemsPage:
-                    {
-                        if (_currentPageLoaded != PagesUserControls.ManageItemsPage)
-                            this._pageContainer.Children.Add(new ManageItemPage(this));
-                        break;
-                    }
-                #endregion
-                #region manageMagazinePage
-                case PagesUserControls.ManageMagazinePage:
-                    {
-                        if (_currentPageLoaded != PagesUserControls.ManageMagazinePage)
-                            this._pageContainer.Children.Add(new ManageMagazinePage(this));
-                        break;
-                    }
-                #endregion
-                #region manageOrdersPage
-                case PagesUserControls.ManageOrdersPage:
-                    {
-                        if (_currentPageLoaded != PagesUserControls.ManageOrdersPage)
-                            this._pageContainer.Children.Add(new ManageOrdersPage(this));
-                        break;
-                    } 
-                    #endregion
+                UserControl pagetoAdd;
+                this._pages.TryGetValue(page, out pagetoAdd);
+                this._pageContainer.Children.Add(pagetoAdd);
             }
         }
         #endregion
@@ -179,12 +192,10 @@ namespace SWAM
             ChangeContent(button.PageToOpen);
             this._currentPageLoaded = button.PageToOpen;
 
-            foreach(NavigationButtonTemplate nvb in this.NavigationBar.Children)
+            foreach (NavigationButtonTemplate nvb in this.NavigationBar.Children)
             {
-                if (this._currentPageLoaded == nvb.PageToOpen)
-                    nvb.IsSelected = true;
-                else
-                    nvb.IsSelected = false;
+                if (this._currentPageLoaded == nvb.PageToOpen) nvb.IsSelected = true;
+                else nvb.IsSelected = false;
             }
         }
         #endregion
@@ -201,6 +212,40 @@ namespace SWAM
             this.SwitchToManageOrderPage.PageToOpen = PagesUserControls.ManageOrdersPage;
         }
         #endregion
+        #endregion
+
+        #region ChangeApplicationDependsOnUserPermissions
+        /// <summary>
+        /// Its changes navigation buttons visible or not depends on loged in user permissions.
+        /// </summary>
+        private void ChangeApplicationDependsOnUserPermissions()
+        {
+            if (IsLoggedIn)
+            {
+                //Getting list of priviliges
+                List<PagesUserControls> listWithPermissions;
+                this._pagesForUser.TryGetValue(LoggedInUser.Permissions, out listWithPermissions);
+
+                //Searching for buttons that are responsible for displaying specific pages.
+                foreach (NavigationButtonTemplate nbt in this.NavigationBar.Children)
+                {
+                    foreach (PagesUserControls puc in listWithPermissions)
+                    {
+                        if (nbt.PageToOpen == puc)
+                        {
+                            nbt.Visibility = Visibility.Visible;
+                            nbt.IsEnabled = true;
+                            break;
+                        }
+                        else
+                        {
+                            nbt.Visibility = Visibility.Collapsed;
+                            nbt.IsEnabled = false;
+                        }
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

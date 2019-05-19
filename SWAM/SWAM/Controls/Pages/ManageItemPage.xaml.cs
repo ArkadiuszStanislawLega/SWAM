@@ -19,21 +19,11 @@ namespace SWAM
     /// <summary>
     /// Logika interakcji dla klasy ManageItemPage.xaml
     /// </summary>
-    public partial class ManageItemPage : Page
+    public partial class ManageItemPage : UserControl
     {
-        #region Properties
-        /// <summary>
-        /// Name of the current page.
-        /// </summary>
-        new const PagesUserControls NAME_OF_PAGE = PagesUserControls.ManageItemsPage;
-        #endregion
-
         #region BasicConstructor
-        public ManageItemPage(MainWindow mainWindow) 
-            :base(mainWindow)
+        public ManageItemPage() 
         {
-         
-          
             InitializeComponent();
 
             DataContext = this;
@@ -71,7 +61,6 @@ namespace SWAM
             new Item(3, "Piasek", 15, 80, 15, 10),
             new Item(2, "Taczka", 60, 100, 6, 60),
             new Item(3, "Piasek", 15, 80, 15, 10),
-
         };
 
         public List<Item> Items
@@ -79,6 +68,5 @@ namespace SWAM
             get { return items; }
             set { items = value; }
         }
-        override protected void ChangePage_Click(object sender, RoutedEventArgs e) => this._mainWindow.ChangeContent(PagesUserControls.AdministratorPage);
     }
 }
