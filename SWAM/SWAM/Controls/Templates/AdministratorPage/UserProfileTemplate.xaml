@@ -3,40 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
+             Height="auto"
+             Width="auto"
               d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="UserType"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:UserType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="10" Grid.Row="0">
+        <Label Content="Profil użytkownika" 
+               FontSize="20" FontWeight="Bold"
+               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <StackPanel Margin="10" Grid.Row="1">
             <StackPanel Margin="5">
                 <TextBlock Text="Nazwa użytkownika"/>
-                <TextBlock Name="name" Text="{Binding Name}"/>
+                <TextBlock Name="Name" Text="{Binding Name}"/>
+                <TextBox Name="EditName" Text="{Binding Name}" 
+                         IsEnabled="False" Visibility="Collapsed"/>
             </StackPanel>
             <StackPanel Margin="5">
                 <TextBlock Text="Uprawnienia"/>
                 <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
+                <ComboBox Name="EditPermissions"
+                          ItemsSource="{Binding Source={StaticResource UserType}}"
+                          Visibility="Collapsed"/>
             </StackPanel>
             <StackPanel Margin="5">
                 <TextBlock Text="Reset hasła"/>
                 <TextBlock Name="Password" Text="{Binding Password}"/>
+                <PasswordBox Name="EditPassword" 
+                         IsEnabled="False" Visibility="Collapsed"/>
+                <PasswordBox Name="EditConfirmPassword"
+                         IsEnabled="False" Visibility="Collapsed"/>
             </StackPanel>
         </StackPanel>
-        <Button Name="ConfirmChanges" 
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Right"
-                Padding="5"
-                Margin="10"
-                Width="110"
-                Height="40"
-                Grid.Row="1">
-            <TextBlock Text="Zatwierdź zmiany"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Margin="0 0 7 7"/>
-        </Button>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right" Grid.Row="2">
+            <Button Name="EditUser" 
+                    Width="auto"
+                    Height="40" HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    Margin="0 0 1 0"
+                    Content="Edytuj użytkownika"
+                    Click="EditUser_Click"
+                    Style="{StaticResource NavigationButton}"/>
+            <Button Name="ConfirmChanges" 
+                    Width="auto"
+                    Height="40" HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    Content="Zatwierdź zmiany"
+                    IsEnabled="False"
+                    Click="ConfirmChanges_Click"   
+                    Style="{StaticResource NavigationButton}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

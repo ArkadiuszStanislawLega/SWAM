@@ -1,5 +1,6 @@
 ﻿
 FG:\GitRepo\SWAM\SWAM\SWAM\App.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UserProfileTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\MainWindow.xaml;;
@@ -11,10 +12,12 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\ManageItemPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\ManageMagazinePage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\ManageOrdersPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\Buttons.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ComboBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\DataGrides.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\Fonts.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\MenuItem.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\PasswordBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
 

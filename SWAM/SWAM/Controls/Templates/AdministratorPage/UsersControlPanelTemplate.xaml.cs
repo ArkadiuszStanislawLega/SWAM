@@ -94,5 +94,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
             return userProfileTemplate;
         }
         #endregion
+        #region AddNewUser_Click
+        /// <summary>
+        /// Creatin in right section user control for create new user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.RightSection.Children.Count > 0)
+                this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
+
+            this.RightSection.Children.Add(new CreateNewUserTemplate());
+        }
+        #endregion
     }
 }

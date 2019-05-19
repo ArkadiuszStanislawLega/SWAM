@@ -24,5 +24,25 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             InitializeComponent();
         }
+
+        private void EditUser_Click(object sender, RoutedEventArgs e)
+        {
+            this.Name.Visibility = Visibility.Collapsed;
+            this.Password.Visibility = Visibility.Collapsed;
+            this.Permissions.Visibility = Visibility.Collapsed;
+
+            this.EditName.Visibility = Visibility.Visible;
+            this.EditPassword.Visibility = Visibility.Visible;
+            this.EditPassword.IsEnabled = true;
+            this.EditConfirmPassword.Visibility = Visibility.Visible;
+            this.EditConfirmPassword.IsEnabled = true;
+            this.EditPermissions.Visibility = Visibility.Visible;
+            this.ConfirmChanges.IsEnabled = true;
+        }
+
+        private void ConfirmChanges_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,8 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:enum="clr-namespace:SWAM.Enumerators"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -30,12 +32,19 @@
             <!--#endregion-->
             <!--#region Left section-->
             <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
-                <TextBox Tag="Wyszukaj użytkownika" 
-                         FontSize="14" Width="150" Height="30"
-                         HorizontalAlignment="Left"
-                         Margin="0 0 0 0"
-                         Style="{StaticResource UserLogin}"
-                         />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Tag="Wyszukaj użytkownika" 
+                             FontSize="14" Width="140" Height="30"
+                             HorizontalAlignment="Left"
+                             Margin="0 0 0 0"
+                             Style="{StaticResource UserLogin}"
+                             />
+                    <Button Width="30" Height="30" Click="AddNewUser_Click">
+                        <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
+                                      Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."
+                                    />
+                    </Button>
+                </StackPanel>
                 <ScrollViewer >
                     <!--List with users-->
                     <StackPanel Name="UsersList" Orientation="Vertical"/>
@@ -44,7 +53,7 @@
             <!--#endregion-->
             <!--#region Right section-->
             <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
-
+                <temp:CreateNewUserTemplate/>
             </StackPanel>
             <!--#endregion-->
         </Grid>
