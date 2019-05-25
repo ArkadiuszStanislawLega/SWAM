@@ -44,5 +44,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
 
         }
+
+        private void DeletUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

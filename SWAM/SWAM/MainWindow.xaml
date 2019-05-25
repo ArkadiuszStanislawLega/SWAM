@@ -12,7 +12,7 @@
         Title="SWAM" 
         x:Name="SWAM"
         mc:Ignorable="d"
-        Height="800" Width="1000">
+        Height="auto" Width="auto">
     <StackPanel>
         <!--#region Top Window Title-->
         <Grid Name="TitlePanel"

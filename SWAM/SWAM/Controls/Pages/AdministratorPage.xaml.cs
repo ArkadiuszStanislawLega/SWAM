@@ -30,6 +30,7 @@ namespace SWAM.Controls.Pages
             new WarehousesControlPanelTemplate(),
             new UsersControlPanelTemplate()
         };
+
         /// <summary>
         /// Current visible controler.
         /// </summary>

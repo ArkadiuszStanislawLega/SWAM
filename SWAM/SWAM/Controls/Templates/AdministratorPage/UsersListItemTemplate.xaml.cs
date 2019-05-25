@@ -26,5 +26,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// After click button show Profile of user in UserControlPanelTemplate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).ShowProfile(this);
+        }
     }
 }

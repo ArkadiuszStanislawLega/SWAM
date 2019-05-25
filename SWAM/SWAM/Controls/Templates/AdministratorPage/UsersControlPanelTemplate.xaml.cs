@@ -16,6 +16,8 @@ using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Events.NavigationButton;
+using System.Collections.ObjectModel;
+using SWAM.Models.AdministratorPage;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -29,56 +31,65 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// List with all users in service.
         /// </summary>
         private List<User> _users;
+        /// <summary>
+        /// View model of item in users list.
+        /// </summary>
+        public static UsersListViewModel UserListViewModel { get; set; }
         #endregion
 
         #region Basic Constructor
         public UsersControlPanelTemplate()
         {
+            DataContext = UserListViewModel;
+
             InitializeComponent();
 
-            DataContext = this;
-
-            AddUsersList();
+            UserListViewModel = new UsersListViewModel();
         }
-        #endregion  
-        #region AddUsersList
-        /// <summary>
-        /// Making visible list of all users in service.
-        /// </summary>
-        private void AddUsersList()
+        #endregion
+        #region Overrided Methods
+        protected override void OnRender(DrawingContext drawingContext)
         {
+            base.OnRender(drawingContext);
+
+            RefreshUsersList();
+    
+            UsersList.Height = RightSection.Height - FindUserOrCreate.Height;
+
+            DataContext = UserListViewModel;
+        }
+        #endregion
+        #region RefreshUsersList
+        /// <summary>
+        /// Refreshing view model of users list.
+        /// </summary>
+        public void RefreshUsersList()
+        {
+            if (this._users != null && this._users.Count > 0) this._users.Clear();
+
             using (ApplicationDbContext application = new ApplicationDbContext())
             {
                 _users = application.Users.ToList();
             };
 
-            for (int i = 0; i < this._users.Count; i++)
-            {
-                var usersListItemTemplate = new UsersListItemTemplate();
-                usersListItemTemplate.DataContext = this._users[i];
-                usersListItemTemplate.Tag = i;
-                usersListItemTemplate.Click += UsersListItemTemplate_MouseLeftButtonDown;
+            foreach (User u in _users)
+                UserListViewModel.AddUser(u);
 
-                this.UsersList.Children.Add(usersListItemTemplate);
-            }
         }
         #endregion
-
-        #region UsersListItemTemplate_MouseLeftButtonDown
+        #region ShowPrfile
         /// <summary>
-        /// Action after click item from the list with users.
+        /// Showing the profile of user after
+        /// after click item from the list with users.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UsersListItemTemplate_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        public void ShowProfile(UsersListItemTemplate usersListItemTemplate)
         {
-            var button = sender as UsersListItemTemplate;
-        
             if (this.RightSection.Children.Count > 0)
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
-      
-            this.RightSection.Children.Add(CreateUserProfile((int)button.Tag));
-            
+
+            this.RightSection.Children.Add(CreateUserProfile((int)usersListItemTemplate.Tag));
         }
         #endregion
         #region CreateUserProfile
@@ -90,13 +101,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
         {
             var userProfileTemplate = new UserProfileTemplate();
-            userProfileTemplate.DataContext = this._users[userIndexInUsersList];
+            User currentUser = new User();
+
+            foreach(User u in _users)
+                if (u.Id == userIndexInUsersList)
+                    currentUser = u;
+
+            userProfileTemplate.DataContext = currentUser;
             return userProfileTemplate;
         }
         #endregion
         #region AddNewUser_Click
         /// <summary>
-        /// Creatin in right section user control for create new user.
+        /// Creating in right section user control for create new user.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

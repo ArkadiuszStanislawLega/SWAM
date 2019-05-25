@@ -6,19 +6,21 @@
              xmlns:local="clr-namespace:SWAM"
              Style="{StaticResource UsersListButtons}"
              mc:Ignorable="d" 
+             Click="Button_Click"
+             Tag="{Binding Id}"
              d:DesignHeight="450" d:DesignWidth="150">
-  
-    <StackPanel Orientation="Vertical">
-        <TextBlock Name="UserRole" 
-                   Text="{Binding Permissions}" 
-                   FontSize="10" 
-                   Margin="10 5 0 0"
-                   Foreground="{StaticResource DarkGraphiteBrash}"/>
+    <StackPanel Orientation="Vertical" >
+            <TextBlock Name="UserRole" 
+                           Text="{Binding Permissions}" 
+                           FontSize="10" 
+                           Margin="10 5 0 0"
+                           Foreground="{StaticResource DarkGraphiteBrash}"/>
 
-        <TextBlock Name="UserName" 
-                   TextAlignment="Left"
-                   Text="{Binding Name}"
-                   FontSize="16"
-                   Margin="10 0 10 0" />
-    </StackPanel>
+            <TextBlock Name="UserName" 
+                           TextAlignment="Left"
+                           Text="{Binding Name}"
+                           FontSize="16"
+                           Margin="10 0 10 0" />
+        </StackPanel>
+ 
 </Button>

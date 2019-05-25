@@ -19,7 +19,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2">
+    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
         <Grid >
             <!--#region Rows&Column Definitions-->
             <Grid.ColumnDefinitions>
@@ -31,8 +31,12 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
-                <StackPanel Orientation="Horizontal">
+            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
                     <TextBox Tag="Wyszukaj użytkownika" 
                              FontSize="14" Width="140" Height="30"
                              HorizontalAlignment="Left"
@@ -45,11 +49,22 @@
                                     />
                     </Button>
                 </StackPanel>
-                <ScrollViewer >
-                    <!--List with users-->
-                    <StackPanel Name="UsersList" Orientation="Vertical"/>
-                </ScrollViewer>
-            </StackPanel>
+                <!--#region List with users-->
+                <Grid Name="UsersList" Grid.Row="1" MaxHeight="350">
+                    <ScrollViewer>
+                        <ItemsControl  ItemsSource="{Binding UsersList}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <temp:UsersListItemTemplate/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                <!--#endregion-->
+            </Grid>
             <!--#endregion-->
             <!--#region Right section-->
             <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">

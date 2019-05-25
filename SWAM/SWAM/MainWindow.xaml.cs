@@ -100,7 +100,7 @@ namespace SWAM
 
             ChangeContent(PagesUserControls.LoginPage);
             SetNavigationsButtonPagesContent();
-            ChangeApplicationDependsOnUserPermissions();
+            ChangeApplicationDependsOnUserPermissions();          
         }
         #endregion
         #region Window Functions Buttons
@@ -249,6 +249,27 @@ namespace SWAM
                     }
                 }
             }
+        }
+        #endregion
+
+        #region Statc Methods
+        /// <summary>
+        /// Its looking for parent of object.
+        /// </summary>
+        /// <typeparam name="T">Type of parent.</typeparam>
+        /// <param name="child">Child, current object.</param>
+        /// <returns></returns>
+        public static T FindParent<T> (DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null) return null;
+
+            T parent = parentObject as T;
+            if (parent != null)
+                return parent;
+            else
+                return FindParent<T>(parentObject);
         }
         #endregion
     }

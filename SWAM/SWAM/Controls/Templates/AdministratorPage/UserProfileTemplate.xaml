@@ -19,7 +19,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -53,6 +53,14 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
                     HorizontalAlignment="Right" Grid.Row="2">
+            <Button Name="DeletUser" 
+                    Width="auto"
+                    Height="40" HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    Margin="0 0 1 0"
+                    Content="Usuń użytkownika"
+                    Click="DeletUser_Click"
+                    Style="{StaticResource NavigationButton}"/>
             <Button Name="EditUser" 
                     Width="auto"
                     Height="40" HorizontalContentAlignment="Center"

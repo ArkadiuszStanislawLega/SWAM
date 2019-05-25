@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SWAM;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -30,7 +31,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var lastId = context.Users.Max(u => u.Id);
+                int lastId = 0;
+                try
+                {
+                    lastId = context.Users.Max(u => u.Id);
+                }catch (InvalidOperationException) { }
+
                 var user = new User()
                 {
                     Id = lastId++,
@@ -39,15 +45,20 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue
                 };
 
-                if (user != null) {
+                if (user != null)
+                {
                     context.Users.Add(user);
-                    this.Information.Content = "UDAŁO SIĘ DODAĆ UŻYTKOWNIKA " + user.Name;
+                    this.Information.Content = "Udało się dodać użytkownika " + user.Name;
                 }
                 else
-                    this.Information.Content = "NIE UDAŁO SIĘ DODAĆ UŻYTKOWNIKA " + user.Name;
-
-                context.SaveChanges();  
+                {
+                    this.Information.Content = "Nie udało się dodać użytkownika " + user.Name;
+                    this.Information.Background = this.FindResource("WhiteCream") as Brush;
+                }
+                context.SaveChanges();
+                SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
             }
+          
         }
     }
 }

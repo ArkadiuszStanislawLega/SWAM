@@ -112,6 +112,7 @@
     <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
       <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />

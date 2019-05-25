@@ -7,6 +7,8 @@
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
         Padding="10"
+        Height="auto"
+        Width="auto"
         mc:Ignorable="d">
     <StackPanel>
         <!--#region TemporaryNavigationBar -->
