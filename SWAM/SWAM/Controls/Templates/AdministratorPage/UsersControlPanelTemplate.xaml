@@ -50,7 +50,7 @@
                     </Button>
                 </StackPanel>
                 <!--#region List with users-->
-                <Grid Name="UsersList" Grid.Row="1" MaxHeight="350">
+                <Grid Name="UsersList" Grid.Row="1" >
                     <ScrollViewer>
                         <ItemsControl  ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>

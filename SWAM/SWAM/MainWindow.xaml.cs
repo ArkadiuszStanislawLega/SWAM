@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,6 +18,15 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static double CurrentMonitorDeviceHigh = SystemParameters.PrimaryScreenHeight;
+        public static double CurrentMonitorDeviceWidth = SystemParameters.PrimaryScreenWidth;
+        public static double HeightOfAppliaction;
+        public static double WidthOfApplication;
+        /// <summary>
+        /// Flag indicating whether the application is maximized.
+        /// </summary>
+        public static bool IsMaximized = false;
+
         /// <summary>
         /// Current user logged in to application.
         /// </summary>
@@ -33,10 +43,7 @@ namespace SWAM
         public static bool IsLoggedIn = true;
 
         #region Properties
-        /// <summary>
-        /// Flag indicating whether the application is maximized.
-        /// </summary>
-        private bool _IsMaximized = false;
+
         /// <summary>
         /// Indicates which page is currently loaded.
         /// </summary>
@@ -100,9 +107,23 @@ namespace SWAM
 
             ChangeContent(PagesUserControls.LoginPage);
             SetNavigationsButtonPagesContent();
-            ChangeApplicationDependsOnUserPermissions();          
+            ChangeApplicationDependsOnUserPermissions();
+
+            HeightOfAppliaction = this.ActualHeight;
+            WidthOfApplication = this.ActualWidth;
+
+            SizeChanged += MainWindow_SizeChanged;
+        }
+
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        { 
+            HeightOfAppliaction = this.ActualHeight;
+            WidthOfApplication = this.ActualWidth;
         }
         #endregion
+
+
+
         #region Window Functions Buttons
         #region TopBarContent_MouseDown
         /// <summary>
@@ -125,15 +146,17 @@ namespace SWAM
         /// <param name="e"></param>
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
-            if (!this._IsMaximized)
+            if (!IsMaximized)
             {
+                //Property IsMaximized must by first to current count of list in AdministratorPage-UsersList!!!!
+                IsMaximized = true;
                 this.WindowState = WindowState.Maximized;
-                this._IsMaximized = true;
             }
             else
             {
+                //Property IsMaximized must by first to current count of list in AdministratorPage-UsersList!!!!
+                IsMaximized = false;
                 this.WindowState = WindowState.Normal;
-                this._IsMaximized = false;
             }
         }
 

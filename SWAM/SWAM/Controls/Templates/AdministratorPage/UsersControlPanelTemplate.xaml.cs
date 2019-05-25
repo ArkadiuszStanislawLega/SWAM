@@ -45,6 +45,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
 
             UserListViewModel = new UsersListViewModel();
+            SizeChanged += UsersControlPanelTemplate_SizeChanged;
+
+        }
+
+        private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (SWAM.MainWindow.IsMaximized)
+                this.UsersList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
+            else
+                this.UsersList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
         }
         #endregion
         #region Overrided Methods
