@@ -18,15 +18,27 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Public statics
+        /// <summary>
+        /// Height of the monitor on which the application is currently running.
+        /// </summary>
         public static double CurrentMonitorDeviceHigh = SystemParameters.PrimaryScreenHeight;
+        /// <summary>
+        /// Width of the monitor on which the application is currently running.
+        /// </summary>
         public static double CurrentMonitorDeviceWidth = SystemParameters.PrimaryScreenWidth;
+        /// <summary>
+        /// Current height of application.
+        /// </summary>
         public static double HeightOfAppliaction;
+        /// <summary>
+        /// Current width of application.
+        /// </summary>
         public static double WidthOfApplication;
         /// <summary>
         /// Flag indicating whether the application is maximized.
         /// </summary>
         public static bool IsMaximized = false;
-
         /// <summary>
         /// Current user logged in to application.
         /// </summary>
@@ -34,13 +46,13 @@ namespace SWAM
         {
             Id = 1,
             Name = "Admin",
-            Password = "haslowo",
             Permissions = UserType.Programmer
         };
         /// <summary>
         /// Flag indication that user is logged in or not.
         /// </summary>
         public static bool IsLoggedIn = true;
+        #endregion
 
         #region Properties
 
@@ -103,26 +115,29 @@ namespace SWAM
         {
             InitializeComponent();
 
+            HeightOfAppliaction = this.ActualHeight;
+            WidthOfApplication = this.ActualWidth;
+
             this._pageContainer = ContentOfWindow;
 
             ChangeContent(PagesUserControls.LoginPage);
             SetNavigationsButtonPagesContent();
             ChangeApplicationDependsOnUserPermissions();
-
-            HeightOfAppliaction = this.ActualHeight;
-            WidthOfApplication = this.ActualWidth;
-
-            SizeChanged += MainWindow_SizeChanged;
-        }
-
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        { 
-            HeightOfAppliaction = this.ActualHeight;
-            WidthOfApplication = this.ActualWidth;
         }
         #endregion
 
-
+        #region MainWindow_SizeChanged
+        /// <summary>
+        /// Action after resize application window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            HeightOfAppliaction = this.ActualHeight;
+            WidthOfApplication = this.ActualWidth;
+        }
+        #endregion  
 
         #region Window Functions Buttons
         #region TopBarContent_MouseDown

@@ -19,7 +19,7 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Center" Width="auto" Height="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -43,16 +43,43 @@
                           Visibility="Collapsed"/>
             </StackPanel>
             <StackPanel Margin="5">
+                <TextBlock Text="Data założenia konta"/>
+                <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Data wygaśnięcia konta"/>
+                <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Końcowa data blokady konta"/>
+                <TextBlock Name="BlockadeDate" Text="{Binding ExpiryDateOfTheBlockade}"/>
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Status konta"/>
+                <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
+                <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
+                         IsEnabled="False" Visibility="Collapsed" ToolTip="Jeżeli zaznaczony to aktywne."/>
+            </StackPanel>
+            <StackPanel Margin="5">
                 <TextBlock Text="Reset hasła"/>
                 <TextBlock Name="Password" Text="{Binding Password}"/>
                 <PasswordBox Name="EditPassword" 
                          IsEnabled="False" Visibility="Collapsed"/>
                 <PasswordBox Name="EditConfirmPassword"
                          IsEnabled="False" Visibility="Collapsed"/>
+                
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
                     HorizontalAlignment="Right" Grid.Row="2">
+            <Button Name="BlockUser" 
+                    Width="auto"
+                    Height="40" HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Bottom"
+                    Margin="0 0 1 0"
+                    Content="Zablokuj użytkownika"
+                    Click="BlockUser_Click"
+                    Style="{StaticResource NavigationButton}"/>
             <Button Name="DeletUser" 
                     Width="auto"
                     Height="40" HorizontalContentAlignment="Center"

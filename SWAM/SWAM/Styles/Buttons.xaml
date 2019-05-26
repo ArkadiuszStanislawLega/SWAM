@@ -2,6 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/" 
                     xmlns:local="clr-namespace:SWAM.Styles">
+    <Style x:Key="ButtonTop" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+    </Style>
     <!--#region ButtonBaseStyle-->
     <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>

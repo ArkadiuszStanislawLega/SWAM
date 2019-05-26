@@ -10,6 +10,7 @@ namespace SWAM.Models
     {
         int _id;
         string _name;
+        string _surname;
         IList<Contact> _contacts;
         Address _residentAddress;
         Address _deliveryAddress;
@@ -21,5 +22,6 @@ namespace SWAM.Models
         public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
         public Address DeliveryAddress { get => _deliveryAddress; set => _deliveryAddress = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
+        public string Surname { get => _surname; set => _surname = value; }
     }
 }

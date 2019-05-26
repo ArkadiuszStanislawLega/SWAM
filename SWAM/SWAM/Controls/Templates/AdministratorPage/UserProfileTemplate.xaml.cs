@@ -49,5 +49,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
 
         }
+
+        private void BlockUser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

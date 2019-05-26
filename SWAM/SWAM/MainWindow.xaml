@@ -10,86 +10,90 @@
         Background="{StaticResource MainBarBrash}"
         WindowStyle="None"
         Title="SWAM" 
+        SizeChanged="MainWindow_SizeChanged"
         x:Name="SWAM"
         mc:Ignorable="d"
         Height="auto" Width="auto">
     <StackPanel>
         <!--#region Top Window Title-->
-        <Grid Name="TitlePanel"
+        <ContentControl MouseDoubleClick="Maximize_Click">
+            <Grid Name="TitlePanel"
                     Width="auto" Height="30"
                     Background="{StaticResource MainBarBrash}"
                     MouseLeftButtonDown="TopBarContent_MouseDown">
-           <!--#region ColumnDefinitions-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <!--#endregion-->
-            <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
-            <TextBlock Name="TitleOfMainPanel" 
+                <!--#region ColumnDefinitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+                <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
+
+                <TextBlock Name="TitleOfMainPanel" 
                        Text="SWAM" 
                        FontSize="15"
                        Margin="5"
                        Foreground="{StaticResource FontsBrash}"
                        Grid.Column="1"
                        Grid.Row="0"/>
-            <StackPanel
+                <StackPanel
                 Name="TitlePanelButtons"
                 HorizontalAlignment="Right"
                 Orientation="Horizontal"
                 Grid.Column="2">
-            
-                <Button Name="Minimize" 
+
+                    <Button Name="Minimize" 
                         Style="{StaticResource FAMinimizeButton}"
                         Click="Minimize_Click"/>
-                <Button Name="Maximize"
+                    <Button Name="Maximize"
                         Style="{StaticResource FAMaxymizeButton}"
                         Click="Maximize_Click"/>
-                <Button Name="Exit" 
+                    <Button Name="Exit" 
                         Style="{StaticResource FAExitButton}"
                         Click="Exit_Click" />
-                
-            </StackPanel>
-        </Grid>
+
+                </StackPanel>
+            </Grid>
+        </ContentControl>
         <!--#endregion-->
-        <!--#region Menu of Window-->
-        <StackPanel Name="MenuPanel"
+            <!--#region Menu of Window-->
+            <StackPanel Name="MenuPanel"
                         Grid.Column="1"
                         Grid.Row="1">
-            <DockPanel Name="Menu">
-                <Menu DockPanel.Dock="Top" >
-                    <MenuItem Header="_Plik">
-                        <MenuItem Header="_Otwórz"/>
-                        <MenuItem Header="_Zapisz"/>
-                        <Separator/>
-                        <MenuItem Header="_Zamknij"/>
-                    </MenuItem>
-                    <MenuItem Header="_Ustawienia">
-                        <MenuItem Header="_Opcje"/>
-                        <MenuItem Header="_Połączenie"/>
-                        <MenuItem Header="_Magazyny" IsEnabled="False"/>
-                    </MenuItem>
-                </Menu>
-                <StackPanel></StackPanel>
-            </DockPanel>
-        </StackPanel>
-        <!--#region TemporaryNavigationBar -->
-        <StackPanel Orientation="Horizontal" 
+                <DockPanel Name="Menu">
+                    <Menu DockPanel.Dock="Top" >
+                        <MenuItem Header="_Plik">
+                            <MenuItem Header="_Otwórz"/>
+                            <MenuItem Header="_Zapisz"/>
+                            <Separator/>
+                            <MenuItem Header="_Zamknij"/>
+                        </MenuItem>
+                        <MenuItem Header="_Ustawienia">
+                            <MenuItem Header="_Opcje"/>
+                            <MenuItem Header="_Połączenie"/>
+                            <MenuItem Header="_Magazyny" IsEnabled="False"/>
+                        </MenuItem>
+                    </Menu>
+                    <StackPanel></StackPanel>
+                </DockPanel>
+            </StackPanel>
+            <!--#region TemporaryNavigationBar -->
+            <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar" 
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left">
-            <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Zarządzanie Produktami" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Zarządzanie Magazynem" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Zarządzanie Zamówieniami" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
-        </StackPanel>
-        <!--#endregion-->
-        <!--#endregion-->
-        <!--#region MainContent of the Window-->
-        <StackPanel Name="ContentOfWindow">
-        </StackPanel>
-        <!--#endregion-->
+                <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Zarządzanie Produktami" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Zarządzanie Magazynem" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Zarządzanie Zamówieniami" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--#region MainContent of the Window-->
+            <StackPanel Name="ContentOfWindow">
+            </StackPanel>
+            <!--#endregion-->
     </StackPanel>
 </Window>

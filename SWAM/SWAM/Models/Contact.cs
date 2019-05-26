@@ -19,6 +19,5 @@ namespace SWAM.Models
         public string Email { get => _email; set => _email = value; }
         public Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
         public Courier Courier { get => _courier; set => _courier = value; }
-
     }
 }

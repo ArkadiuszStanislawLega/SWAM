@@ -2,18 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SWAM;
+using System.Security;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -27,11 +20,18 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+        #region Comfirm_Click
+        /// <summary>
+        /// Action after click creat user button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
+            int lastId = 0;
+
             using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                int lastId = 0;
+            { 
                 try
                 {
                     lastId = context.Users.Max(u => u.Id);
@@ -42,7 +42,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     Id = lastId++,
                     Name = this.NewUserName.Text,
                     Password = this.UserPassword.Password,
-                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue
+                    DateOfCreate = DateTime.Now,
+                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
+                    StatusOfUserAccount = this.AccountStatus.IsChecked == true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked
                 };
 
                 if (user != null)
@@ -57,8 +59,23 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 context.SaveChanges();
                 SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
+
+                RestartTextBoxes();
             }
-          
         }
+        #endregion
+
+        #region RestartTextBoxes
+        /// <summary>
+        /// Reset textboxes and combobox after create new user.
+        /// </summary>
+        private void RestartTextBoxes()
+        {
+            this.NewUserName.Text = "";
+            this.UserPassword.Password = "";
+            this.ConfirmPassword.Password = "";
+            this.UserPermissions.SelectedValue = 0;
+        }
+        #endregion
     }
 }
