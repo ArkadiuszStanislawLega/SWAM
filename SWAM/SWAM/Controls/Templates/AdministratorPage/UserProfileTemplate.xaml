@@ -10,6 +10,7 @@
              Height="auto"
              Width="auto"
               d:DesignHeight="450" d:DesignWidth="800">
+    <!--#region Resources-->
     <UserControl.Resources>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
@@ -19,59 +20,128 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Center" Width="auto" Height="auto">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <!--#endregion-->
+    <StackPanel Orientation="Vertical">
         <Label Content="Profil użytkownika" 
                FontSize="20" FontWeight="Bold"
                VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <StackPanel Margin="10" Grid.Row="1">
-            <StackPanel Margin="5">
-                <TextBlock Text="Nazwa użytkownika"/>
-                <TextBlock Name="Name" Text="{Binding Name}"/>
-                <TextBox Name="EditName" Text="{Binding Name}" 
+        <Grid HorizontalAlignment="Center" Width="auto" Height="auto">
+            <!--#region Columns & rows definisions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <!--#region LeftSide Of profile-->
+            <StackPanel Margin="10" Grid.Row="1" Grid.Column="0">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Nazwa użytkownika"/>
+                    <TextBlock Name="Name" Text="{Binding Name}"/>
+                    <TextBox Name="EditName" Text="{Binding Name}" 
                          IsEnabled="False" Visibility="Collapsed"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Uprawnienia"/>
-                <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
-                <ComboBox Name="EditPermissions"
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Uprawnienia"/>
+                    <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
+                    <ComboBox Name="EditPermissions"
                           ItemsSource="{Binding Source={StaticResource UserType}}"
                           Visibility="Collapsed"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Data założenia konta"/>
-                <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Data wygaśnięcia konta"/>
-                <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Końcowa data blokady konta"/>
-                <TextBlock Name="BlockadeDate" Text="{Binding ExpiryDateOfTheBlockade}"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Status konta"/>
-                <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
-                <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Data założenia konta"/>
+                    <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Data wygaśnięcia konta"/>
+                    <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Końcowa data blokady konta"/>
+                    <TextBlock Name="BlockadeDate" Text="{Binding ExpiryDateOfTheBlockade}"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Status konta"/>
+                    <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
+                    <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
                          IsEnabled="False" Visibility="Collapsed" ToolTip="Jeżeli zaznaczony to aktywne."/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Reset hasła"/>
-                <TextBlock Name="Password" Text="{Binding Password}"/>
-                <PasswordBox Name="EditPassword" 
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Reset hasła"/>
+                    <TextBlock Name="Password" Text="{Binding Password}"/>
+                    <PasswordBox Name="EditPassword" 
                          IsEnabled="False" Visibility="Collapsed"/>
-                <PasswordBox Name="EditConfirmPassword"
+                    <PasswordBox Name="EditConfirmPassword"
                          IsEnabled="False" Visibility="Collapsed"/>
-                
+
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+            <!--#endregion-->
+            <!--#region Right side of profile-->
+            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1">
+                <StackPanel Margin="5">
+                    <TextBlock Text="Kraj zamieszkania" />
+                    <TextBlock Name="Country" Text="{Binding ResidentAddress.Country}"/>
+                    <TextBox Name="EditUserCountry" 
+                         IsEnabled="False" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Kod pocztowy"/>
+                        <TextBlock Name="PostCode" Text="{Binding ResidentAddress.PostCode}"/>
+                        <TextBox Name="EditUserPostCode" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Miasto"/>
+                        <TextBlock Name="City" Text="{Binding ResidentAddress.City}"/>
+                        <TextBox Name="EditUserCity" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Ulica"/>
+                    <TextBlock Name="Street" Text="{Binding ResidentAddress.Street}"/>
+                    <TextBox Name="EditUserStreet" 
+                         IsEnabled="False" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Numer domu"/>
+                        <TextBlock Name="HouseNumber" Text="{Binding ResidentAddress.HouseNumber}"/>
+                        <TextBox Name="EditUserHouseNumber" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Numer mieszkania"/>
+                        <TextBlock Name="ApartmentNumber" Text="{Binding ResidentAddress.ApartmentNumber}"/>
+                        <TextBox Name="EditUserHouseApartmentNumber" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Numer kontaktowy"/>
+                    <TextBlock Name="ContactPhoneNumber" Text="{Binding Contacts[0].PhoneNumber}"/>
+                    <TextBox Name="EditUserContactPhoneNumber" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Email"/>
+                    <TextBlock Name="EmailAddress" Text="{Binding Contacts[0].Email}"/>
+                    <TextBox Name="EditUserEmailAddress" 
+                             IsEnabled="False" Visibility="Collapsed"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+        <!--#region Bottom Buttons-->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"
-                    HorizontalAlignment="Right" Grid.Row="2">
+                    HorizontalAlignment="Center" Grid.Row="2">
             <Button Name="BlockUser" 
                     Width="auto"
                     Height="40" HorizontalContentAlignment="Center"
@@ -105,5 +175,6 @@
                     Click="ConfirmChanges_Click"   
                     Style="{StaticResource NavigationButton}"/>
         </StackPanel>
-    </Grid>
+        <!--#endregion-->
+    </StackPanel>
 </UserControl>

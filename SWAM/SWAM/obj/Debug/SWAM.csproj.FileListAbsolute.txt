@@ -325,3 +325,6 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddPropertiesToUserAccount.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpgdateDataUserAccount.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddContactsAndAddressPropertiesToUser.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddPropertiesToUserAccount.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpgdateDataUserAccount.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddContactsAndAddressPropertiesToUser.resources

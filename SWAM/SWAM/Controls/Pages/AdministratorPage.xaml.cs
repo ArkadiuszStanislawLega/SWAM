@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Templates.AdministratorPage;
 
@@ -24,36 +25,61 @@ namespace SWAM.Controls.Pages
     {
         #region Properties
         /// <summary>
-        /// Instances of all controlers in AdministratorPage.
+        /// Instances of all bookmarks in AdministratorPage.
         /// </summary>
-        UserControl[] _userControls = {
-            new WarehousesControlPanelTemplate(),
-            new UsersControlPanelTemplate()
+        Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
+                { BookmarkInPage.WarehousesControlPanel, new WarehousesControlPanelTemplate()},
+                { BookmarkInPage.UsersControlPanel, new UsersControlPanelTemplate() }
         };
-
         /// <summary>
-        /// Current visible controler.
+        /// Current visible bookmark.
         /// </summary>
         UserControl _currentContent;
         #endregion
 
         #region Basic Constructor
-        public AdministratorPage() 
+        public AdministratorPage()
         {
             InitializeComponent();
         }
         #endregion
 
+        #region OnInitialized
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
 
-            this._currentContent = this._userControls[1];
-            ChangeButtonsBackground();
-        }
+            //seting to buttons which are is responsible for which bookmark
+            this.SwitchToUsersControlPanel.Bookmark = BookmarkInPage.UsersControlPanel;
+            this.SwitchToWarehousesControlPanel.Bookmark = BookmarkInPage.WarehousesControlPanel;
 
-        private void WarhousesControlPanelBarPage_Click(object sender, RoutedEventArgs e) => ChangeContext(this._userControls[0]);
-        private void UsersControlPanelBar_Click(object sender, RoutedEventArgs e) => ChangeContext(this._userControls[1]);
+            ChangeThisContent(BookmarkInPage.UsersControlPanel);
+        }
+        #endregion  
+
+        private void WarhousesControlPanelBarPage_Click(object sender, RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.WarehousesControlPanel);
+        private void UsersControlPanelBar_Click(object sender, RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.UsersControlPanel);
+
+        #region ChangeThisContent
+        /// <summary>
+        /// Setting properties buttons depending on whether it is pressed.
+        /// And changing main content of page.
+        /// </summary>
+        /// <param name="bookmarkAdministratorPage">New bookmark.</param>
+        private void ChangeThisContent(BookmarkInPage bookmarkAdministratorPage)
+        {
+            //Find selected button
+            foreach (NavigationButtonTemplate nvb in this.NavigationBar.Children)
+            {
+                if (nvb.Bookmark == bookmarkAdministratorPage) nvb.IsSelected = true;
+                else nvb.IsSelected = false;
+            }
+
+            UserControl userControl;
+            this._userControls.TryGetValue(bookmarkAdministratorPage, out userControl);
+            ChangeContext(userControl);
+        }
+        #endregion
 
         #region ChangeContext
         /// <summary>
@@ -67,26 +93,6 @@ namespace SWAM.Controls.Pages
                 this._currentContent = administratorPageControlPanels;
                 this.MainContent.Children.RemoveAt(this.MainContent.Children.Capacity - 1);
                 this.MainContent.Children.Add(this._currentContent);
-
-                ChangeButtonsBackground();
-            }
-        }
-        #endregion
-        #region ChangeButtonsBackground
-        /// <summary>
-        /// Changing the colors of buttons that change the content of the page between WarehousesControlPanel and UsersControlPanel.
-        /// </summary>
-        private void ChangeButtonsBackground()
-        {
-            if (this._currentContent == this._userControls[0])
-            {
-                this.SwitchToWarehousesControlPanel.Background = this.FindResource("SelectedBrash") as Brush;
-                this.SwitchToUsersControlPanel.Background = this.FindResource("EnabledBrash") as Brush;
-            }
-            else
-            {
-                this.SwitchToWarehousesControlPanel.Background = this.FindResource("EnabledBrash") as Brush;
-                this.SwitchToUsersControlPanel.Background = this.FindResource("SelectedBrash") as Brush;
             }
         }
         #endregion

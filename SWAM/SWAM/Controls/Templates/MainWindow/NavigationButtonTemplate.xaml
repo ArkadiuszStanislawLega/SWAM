@@ -6,8 +6,9 @@
              mc:Ignorable="d" 
              Style="{StaticResource NavigationButton}"
              Margin="0 0 1 0"
-             d:DesignHeight="50" Width="150">
-    <TextBlock Name="NavigationButton"
+             Width="auto"
+             d:DesignHeight="50" >
+    <Label Name="NavigationButton"
              Width="130" 
-             Text="{Binding Content}" />
+             Content="{Binding Content}" />
 </Button>

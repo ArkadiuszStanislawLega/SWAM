@@ -85,9 +85,9 @@
                     HorizontalAlignment="Left">
                 <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
                 <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
-                <nav:NavigationButtonTemplate Content="Zarządzanie Produktami" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
-                <nav:NavigationButtonTemplate Content="Zarządzanie Magazynem" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
-                <nav:NavigationButtonTemplate Content="Zarządzanie Zamówieniami" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Produkty" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Stan Magazynowy" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
+                <nav:NavigationButtonTemplate Content="Zamówienia" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
             </StackPanel>
             <!--#endregion-->
             <!--#endregion-->

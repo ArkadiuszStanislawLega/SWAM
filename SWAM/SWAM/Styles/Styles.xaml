@@ -6,6 +6,7 @@
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="FontSize" Value="14"/>
     </Style>
     <!--#endregion-->
 

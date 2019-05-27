@@ -15,7 +15,7 @@
     </Style>
     <!--#endregion-->
     <!--#region BasicButton-->
-    <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}"   BasedOn="{StaticResource ButtonBaseStyle}">
+    <Style x:Key="Button" TargetType="Button"   BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontSize" Value="12"/>
@@ -60,7 +60,9 @@
     <Style x:Key="NavigationButton" TargetType="Button" >
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -76,7 +78,6 @@
                                Foreground="{TemplateBinding Foreground}"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               FontFamily="{TemplateBinding FontFamily}"
                                />
                     </Border>
                     <ControlTemplate.Triggers>
@@ -85,12 +86,12 @@
                             <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="{StaticResource MainBarBrash}" />
+                            <Setter Property="Background"  Value="{StaticResource EnabledBrash}" />
                             <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
                         </Trigger>
-                             <Trigger Property="IsEnabled" Value="False">
+                            <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource LightGrayBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

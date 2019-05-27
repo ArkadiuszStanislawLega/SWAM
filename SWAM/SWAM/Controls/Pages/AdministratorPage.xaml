@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+        xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
         Padding="10"
@@ -11,18 +12,20 @@
         Width="auto"
         mc:Ignorable="d">
     <StackPanel>
-        <!--#region TemporaryNavigationBar -->
+        <!--#region Navigation Bar between bookmarks-->
         <StackPanel Orientation="Horizontal" 
-                    Name="TemporaryNavigationBar" 
+                    Name="NavigationBar" 
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left">
-            <Button Width="130" 
+            <nav:NavigationButtonTemplate Width="130" 
                     Content="Użytkownicy" 
-                    Name="SwitchToUsersControlPanel" 
-                    Click="UsersControlPanelBar_Click"/>
-            <Button Width="130" Content="Magazyny" 
-                    Name="SwitchToWarehousesControlPanel" 
-                    Click="WarhousesControlPanelBarPage_Click"/>
+                    x:Name="SwitchToUsersControlPanel" 
+                    Click="UsersControlPanelBar_Click"
+                    Style="{StaticResource NavigationButton}"/>
+            <nav:NavigationButtonTemplate Width="130" Content="Magazyny" 
+                    x:Name="SwitchToWarehousesControlPanel" 
+                    Click="WarhousesControlPanelBarPage_Click"
+                    Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
         <StackPanel Orientation="Vertical" Name="MainContent">

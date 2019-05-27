@@ -19,6 +19,9 @@ namespace SWAM.Controls.Templates.MainWindow
 {
     /// <summary>
     /// Logika interakcji dla klasy NavigationButtonTemplate.xaml
+    /// The button pressed once will remain pressed until the IsSelected flag is marked.
+    /// To use this button correctly you should create in BookmarkInPage enum with your tab or PagesUserControls with your page.
+    /// Then assign a successive group of buttons depending on which side you want to open.
     /// </summary>
     public partial class NavigationButtonTemplate : Button
     {
@@ -31,12 +34,21 @@ namespace SWAM.Controls.Templates.MainWindow
         /// Flag indicating whether the button is pressed.
         /// </summary>
         private bool _isSeleceted;
+
         /// <summary>
         /// Shows the page for which the button corresponds.
         /// </summary>
         private PagesUserControls _pageToOpen = PagesUserControls.BasicPage; 
-
         public PagesUserControls PageToOpen { get => this._pageToOpen; set => this._pageToOpen = value; }
+
+        /// <summary>
+        /// Shows the bookmark in administrator page for which the button corresponds.
+        /// </summary>
+        private BookmarkInPage _bookmark;
+        public BookmarkInPage Bookmark { get => _bookmark; set => _bookmark = value; }
+
+
+        public int SelectedValue;
 
         public bool IsSelected
         {
@@ -65,6 +77,21 @@ namespace SWAM.Controls.Templates.MainWindow
             InitializeComponent();
 
             this.IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
+            this.MouseEnter += NavigationButtonTemplate_MouseEnter;
+            this.MouseLeave += NavigationButtonTemplate_MouseLeave;
+        }
+
+        private void NavigationButtonTemplate_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!_isSeleceted) ChangeColoursIsnSelected();
+            else  ChangeColoursIsSelected();
+        }
+
+        private void NavigationButtonTemplate_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!_isSeleceted) ChangeColoursIsSelected();
+            else ChangeColoursIsnSelected();
+           
         }
         #endregion
 
@@ -76,9 +103,21 @@ namespace SWAM.Controls.Templates.MainWindow
         /// <param name="isSelectedArg">Is selected argument, true - button is selected, false - isn't selected.</param>
         private void NavigationButtonTemplate_IsSelectedEvent(NavigationButtonTemplate button, ButtonSelectedArgs isSelectedArg)
         {
-            if (_isSeleceted) this.Background = this.FindResource("BackgroundOfPagesBrash") as Brush;
-            else this.Background = this.FindResource("MainBarBrash") as Brush;
+            if (_isSeleceted) ChangeColoursIsSelected();
+            else ChangeColoursIsnSelected();
         }
         #endregion
+
+        private void ChangeColoursIsSelected()
+        {
+            this.Background = this.FindResource("BackgroundOfPagesBrash") as Brush;
+            this.Foreground = this.FindResource("FontsBrash") as Brush;
+        }
+
+        private void ChangeColoursIsnSelected()
+        {
+            this.Background = this.FindResource("EnabledBrash") as Brush;
+            this.Foreground = this.FindResource("BackgroundOfPagesBrash") as Brush;
+        }
     }
 }

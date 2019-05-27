@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="Converters\BaseValueConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Enumerators\BookmarkInPage.cs" />
     <Compile Include="Enumerators\StatusOfUserAccount.cs" />
     <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />

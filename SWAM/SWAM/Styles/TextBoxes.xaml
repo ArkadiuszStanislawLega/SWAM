@@ -5,13 +5,13 @@
                     xmlns:conv="clr-namespace:SWAM.Converters">
 
     <!--#region BaseTextBox-->
-    <Style TargetType="{x:Type TextBox}" x:Key="BaseTextBox" x:Name="BaseTextBox">
+    <Style TargetType="{x:Type TextBox}" x:Key="{x:Type TextBox}" x:Name="BaseTextBox">
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!--#endregion-->
     <!--#region UserLogin-->
-    <Style TargetType="{x:Type TextBox}" x:Key="UserLogin" BasedOn="{StaticResource BaseTextBox}">
+    <Style TargetType="{x:Type TextBox}" x:Key="UserLogin">
         <Setter Property="Margin" Value="0 5 0 5" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="0 0 0 1" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Enumerators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace SWAM.Templates.AdministratorPage
     /// </summary>
     public partial class WarehousesControlPanelTemplate : UserControl
     {
+        public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
+
         public WarehousesControlPanelTemplate()
         {
             InitializeComponent();
         }
+
+
     }
 }
