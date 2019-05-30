@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -55,7 +56,6 @@ namespace SWAM
         #endregion
 
         #region Properties
-
         /// <summary>
         /// Indicates which page is currently loaded.
         /// </summary>
@@ -124,6 +124,7 @@ namespace SWAM
             SetNavigationsButtonPagesContent();
             ChangeApplicationDependsOnUserPermissions();
         }
+
         #endregion
 
         #region MainWindow_SizeChanged
@@ -138,7 +139,6 @@ namespace SWAM
             WidthOfApplication = this.ActualWidth;
         }
         #endregion  
-
         #region Window Functions Buttons
         #region TopBarContent_MouseDown
         /// <summary>
