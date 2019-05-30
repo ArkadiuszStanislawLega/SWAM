@@ -12,12 +12,13 @@ namespace SWAM
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerOrder> CustomerOrders { get; set; }
         public DbSet<CustomerOrderPosition> CustomerOrderPositions { get; set; }
+        public DbSet<Email> Emails { get; set; }
         public DbSet<ExternalSupplier> ExternalSupplayers { get; set; }
+        public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<User> Users { get; set; }

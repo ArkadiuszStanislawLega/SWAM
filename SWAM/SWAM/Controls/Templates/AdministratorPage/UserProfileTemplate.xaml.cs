@@ -27,17 +27,48 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
         {
-            this.Name.Visibility = Visibility.Collapsed;
-            this.Password.Visibility = Visibility.Collapsed;
-            this.Permissions.Visibility = Visibility.Collapsed;
+            TurnOffValues();
+            TurnOnEditFields();
 
-            this.EditName.Visibility = Visibility.Visible;
-            this.EditPassword.Visibility = Visibility.Visible;
-            this.EditPassword.IsEnabled = true;
-            this.EditConfirmPassword.Visibility = Visibility.Visible;
-            this.EditConfirmPassword.IsEnabled = true;
-            this.EditPermissions.Visibility = Visibility.Visible;
             this.ConfirmChanges.IsEnabled = true;
+        }
+
+        #region TurnOnEditFields
+        /// <summary>
+        /// Switch on all fields required to change user profile values.
+        /// </summary>
+        private void TurnOnEditFields()
+        {
+            TurnOn(this.EditName);
+            TurnOn(this.EditPassword);
+            TurnOn(this.EditConfirmPassword);
+            TurnOn(this.EditPermissions);
+
+            this.UserAddress.EditAddress();
+        }
+        #endregion
+        #region TurnOffValues
+        /// <summary>
+        /// Turn off all uneditables values downloaded from database.
+        /// </summary>
+        private void TurnOffValues()
+        {
+            TurnOff(this.Name);
+            TurnOff(this.Password);
+            TurnOff(this.Permissions);
+        }
+        #endregion
+
+        private void TurnOff(FrameworkElement userControl)
+        {
+            userControl.IsEnabled = false;
+            userControl.Visibility = Visibility.Collapsed;
+        }
+
+        private void TurnOn(FrameworkElement userControl)
+        {
+            userControl.IsEnabled = true;
+            userControl.Visibility = Visibility.Visible;
         }
 
         private void ConfirmChanges_Click(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
              Height="auto"
@@ -83,59 +84,18 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Right side of profile-->
-            <StackPanel Margin="10" Grid.Column="1" Grid.Row="1">
-                <StackPanel Margin="5">
-                    <TextBlock Text="Kraj zamieszkania" />
-                    <TextBlock Name="Country" Text="{Binding ResidentAddress.Country}"/>
-                    <TextBox Name="EditUserCountry" 
-                         IsEnabled="False" Visibility="Collapsed"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Kod pocztowy"/>
-                        <TextBlock Name="PostCode" Text="{Binding ResidentAddress.PostCode}"/>
-                        <TextBox Name="EditUserPostCode" 
+            <temp:AddressTemplate x:Name="UserAddress" Margin="10" Grid.Column="1" Grid.Row="1" DataContext="{Binding ResidentAddress}"/>
+            <StackPanel Margin="5">
+                <TextBlock Text="Numer kontaktowy"/>
+                <TextBlock Name="ContactPhoneNumber" Text="{Binding Phones[0].PhoneNumber}"/>
+                <TextBox Name="EditContactPhoneNumber" Text="{Binding Phones[0].PhoneNumber}"
                              IsEnabled="False" Visibility="Collapsed"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Miasto"/>
-                        <TextBlock Name="City" Text="{Binding ResidentAddress.City}"/>
-                        <TextBox Name="EditUserCity" 
+            </StackPanel>
+            <StackPanel Margin="5">
+                <TextBlock Text="Email"/>
+                <TextBlock Name="EmailAddress" Text="{Binding Emails[0].AddressEmail}"/>
+                <TextBox Name="EditEmailAddress" Text="{Binding Emails[0].AddressEmail}"
                              IsEnabled="False" Visibility="Collapsed"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Ulica"/>
-                    <TextBlock Name="Street" Text="{Binding ResidentAddress.Street}"/>
-                    <TextBox Name="EditUserStreet" 
-                         IsEnabled="False" Visibility="Collapsed"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Numer domu"/>
-                        <TextBlock Name="HouseNumber" Text="{Binding ResidentAddress.HouseNumber}"/>
-                        <TextBox Name="EditUserHouseNumber" 
-                             IsEnabled="False" Visibility="Collapsed"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Numer mieszkania"/>
-                        <TextBlock Name="ApartmentNumber" Text="{Binding ResidentAddress.ApartmentNumber}"/>
-                        <TextBox Name="EditUserHouseApartmentNumber" 
-                             IsEnabled="False" Visibility="Collapsed"/>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Numer kontaktowy"/>
-                    <TextBlock Name="ContactPhoneNumber" Text="{Binding Contacts[0].PhoneNumber}"/>
-                    <TextBox Name="EditUserContactPhoneNumber" 
-                             IsEnabled="False" Visibility="Collapsed"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Email"/>
-                    <TextBlock Name="EmailAddress" Text="{Binding Contacts[0].Email}"/>
-                    <TextBox Name="EditUserEmailAddress" 
-                             IsEnabled="False" Visibility="Collapsed"/>
-                </StackPanel>
             </StackPanel>
             <!--#endregion-->
         </Grid>

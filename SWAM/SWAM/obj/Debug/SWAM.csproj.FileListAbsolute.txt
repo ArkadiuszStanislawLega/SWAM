@@ -328,3 +328,9 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddContactsAndAddressPropert
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddPropertiesToUserAccount.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpgdateDataUserAccount.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddContactsAndAddressPropertiesToUser.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddEmailAndPhoneTables.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateModelsContactsToPhone.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateWarehousesChangeContatctsToUsers.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddEmailsToUserAndCustomer.resources

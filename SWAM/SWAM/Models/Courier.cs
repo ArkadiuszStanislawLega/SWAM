@@ -15,13 +15,13 @@ namespace SWAM.Models
         /// </summary>
         string _tin;
         IList<Address> _addresses;
-        IList<Contact> _contacts;
+        IList<Phone> _phones;
         IList<CustomerOrder> _customerOrders;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
         public IList<Address> Addresses { get => _addresses; set => _addresses = value; }
-        public IList<Contact> Contacts { get => _contacts; set => _contacts = value; }
+        public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public string Tin { get => _tin; set => _tin = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
     }

@@ -19,6 +19,5 @@
                 <ResourceDictionary Source="Styles/ComboBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
     </Application.Resources>
 </Application>

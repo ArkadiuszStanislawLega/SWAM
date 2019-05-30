@@ -18,12 +18,13 @@ namespace SWAM.Models
         DateTime _dateOfCreate;
         DateTime? _dateOfExpiryOfTheAccount; 
         DateTime? _expiryDateOfTheBlockade;
-        IList<Contact> _contacts;
+        IList<Phone> _phones;
+        IList<Email> _emails;
         Address _residentAddress;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
-        public IList<Contact> Contacts { get => _contacts; set => _contacts = value; }
+        public IList<Phone> Contacts { get => _phones; set => _phones = value; }
         public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
         public UserType Permissions { get => _permissions; set => _permissions = value; }
         public DateTime DateOfCreate { get => _dateOfCreate; set => _dateOfCreate = value; }
@@ -31,5 +32,6 @@ namespace SWAM.Models
         public DateTime? DateOfExpiryOfTheAccount { get => _dateOfExpiryOfTheAccount; set => _dateOfExpiryOfTheAccount = value; }
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
         public string Password { get => _password; set => _password = value; }
+        public IList<Email> Emails { get => _emails; set => _emails = value; }
     }
 }

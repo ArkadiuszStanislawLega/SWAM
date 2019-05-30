@@ -67,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Templates\AddressTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +97,9 @@
     </Compile>
     <Compile Include="AtachedProperties\BasedAttachedProperty.cs" />
     <Compile Include="AtachedProperties\PasswordAttachedProperty.cs" />
+    <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
+      <DependentUpon>AddressTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml.cs">
       <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
     </Compile>
@@ -126,7 +133,25 @@
     <Compile Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.Designer.cs">
       <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.cs" />
+    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.Designer.cs">
+      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.cs" />
+    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.Designer.cs">
+      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.cs" />
+    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.Designer.cs">
+      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.cs" />
+    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.Designer.cs">
+      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />
@@ -238,7 +263,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Courier.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerOrder.cs" />
@@ -278,6 +302,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.resx">
       <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300749450_AddEmailAndPhoneTables.resx">
+      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300757275_UpdateModelsContactsToPhone.resx">
+      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.resx">
+      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.resx">
+      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
