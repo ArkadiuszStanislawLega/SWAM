@@ -14,6 +14,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
             <TextBlock Name="Note" Text="{Binding Note}"/>
@@ -44,6 +45,17 @@
             <fa:ImageAwesome Icon="Save" 
                              Foreground="{StaticResource FontsBrash}"
                              ToolTip="Zapisz zmiany."
+                             Margin="-4"/>
+        </Button>
+        <Button Name="Delete" 
+                Click="Delete_Click"
+                Style="{StaticResource NavigationButton}"
+                Height="16" 
+                Width="16"
+                Grid.Column="4">
+            <fa:ImageAwesome Icon="Trash" 
+                             Foreground="{StaticResource FontsBrash}"
+                             ToolTip="Usuń numer."
                              Margin="-4"/>
         </Button>
     </Grid>
