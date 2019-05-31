@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SWAM.Models
         UserType _permissions;
         StatusOfUserAccount _statusOfUserAccount;
         DateTime _dateOfCreate;
-        DateTime? _dateOfExpiryOfTheAccount; 
+        DateTime? _dateOfExpiryOfTheAccount;
         DateTime? _expiryDateOfTheBlockade;
         IList<Phone> _phones;
         IList<Email> _emails;
@@ -24,7 +25,7 @@ namespace SWAM.Models
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
-        public IList<Phone> Contacts { get => _phones; set => _phones = value; }
+        public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
         public UserType Permissions { get => _permissions; set => _permissions = value; }
         public DateTime DateOfCreate { get => _dateOfCreate; set => _dateOfCreate = value; }
@@ -33,5 +34,15 @@ namespace SWAM.Models
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
         public string Password { get => _password; set => _password = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
+
+        public void MakePhoneList()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                this._phones = context.Phones
+                    .SqlQuery("Select * from Phones where User_Id=@id", new SqlParameter("@id", this._id))
+                    .ToList<Phone>();
+            };
+        }
     }
 }

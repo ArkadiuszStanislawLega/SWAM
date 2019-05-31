@@ -75,6 +75,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +110,12 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml.cs">
       <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml.cs">
+      <DependentUpon>PhoneNumberEditableTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.xaml.cs">
+      <DependentUpon>PhoneNumbersEditableListTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml.cs">
       <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
@@ -148,6 +162,14 @@
     <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.cs" />
     <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.Designer.cs">
       <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.cs" />
+    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.Designer.cs">
+      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.cs" />
+    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.Designer.cs">
+      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\Email.cs" />
@@ -314,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.resx">
       <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311706344_UpdatePhoneFromCharToString.resx">
+      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311711280_UpdatePhoneAddNote.resx">
+      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

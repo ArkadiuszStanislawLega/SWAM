@@ -34,5 +34,10 @@ namespace SWAM.Models.AdministratorPage
             }
             else this._usersListViewModel.Add(user);
         }
+
+        public void RemoveAll()
+        {
+            _usersListViewModel.Clear();
+        }
     }
 }

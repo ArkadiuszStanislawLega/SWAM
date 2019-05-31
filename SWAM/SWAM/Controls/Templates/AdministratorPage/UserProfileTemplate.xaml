@@ -84,18 +84,17 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Right side of profile-->
-            <temp:AddressTemplate x:Name="UserAddress" Margin="10" Grid.Column="1" Grid.Row="1" DataContext="{Binding ResidentAddress}"/>
-            <StackPanel Margin="5">
-                <TextBlock Text="Numer kontaktowy"/>
-                <TextBlock Name="ContactPhoneNumber" Text="{Binding Phones[0].PhoneNumber}"/>
-                <TextBox Name="EditContactPhoneNumber" Text="{Binding Phones[0].PhoneNumber}"
+            <StackPanel  Margin="10" Grid.Column="1" Grid.Row="1">
+                <temp:AddressTemplate x:Name="UserAddress" DataContext="{Binding ResidentAddress}"/>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Email"/>
+                    <TextBlock Name="EmailAddress" Text="{Binding Emails[0].AddressEmail}"/>
+                    <TextBox Name="EditEmailAddress" Text="{Binding Emails[0].AddressEmail}"
                              IsEnabled="False" Visibility="Collapsed"/>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <TextBlock Text="Email"/>
-                <TextBlock Name="EmailAddress" Text="{Binding Emails[0].AddressEmail}"/>
-                <TextBox Name="EditEmailAddress" Text="{Binding Emails[0].AddressEmail}"
-                             IsEnabled="False" Visibility="Collapsed"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <local:PhoneNumbersEditableListTemplate/>
+                </StackPanel>
             </StackPanel>
             <!--#endregion-->
         </Grid>

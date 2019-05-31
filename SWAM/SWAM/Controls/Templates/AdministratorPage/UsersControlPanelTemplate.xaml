@@ -43,10 +43,9 @@
                              Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              />
-                    <Button Width="30" Height="30" Click="AddNewUser_Click">
+                    <Button Width="30" Height="30" Click="AddNewUser_Click" Style="{StaticResource NavigationButton}">
                         <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
-                                      Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."
-                                    />
+                                      Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."/>
                     </Button>
                 </StackPanel>
                 <!--#region List with users-->

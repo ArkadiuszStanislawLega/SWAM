@@ -75,6 +75,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshUsersList()
         {
+            UserListViewModel.RemoveAll();
             if (this._users != null && this._users.Count > 0) this._users.Clear();
 
             using (ApplicationDbContext application = new ApplicationDbContext())
@@ -83,7 +84,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             };
 
             foreach (User u in _users)
+            {
+                u.MakePhoneList();
                 UserListViewModel.AddUser(u);
+            }
 
         }
         #endregion

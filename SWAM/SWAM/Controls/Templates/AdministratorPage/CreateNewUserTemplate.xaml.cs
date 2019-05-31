@@ -28,18 +28,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
-            int lastId = 0;
-
             using (ApplicationDbContext context = new ApplicationDbContext())
             { 
-                try
-                {
-                    lastId = context.Users.Max(u => u.Id);
-                }catch (InvalidOperationException) { }
-
                 var user = new User()
                 {
-                    Id = lastId++,
                     Name = this.NewUserName.Text,
                     Password = this.UserPassword.Password,
                     DateOfCreate = DateTime.Now,

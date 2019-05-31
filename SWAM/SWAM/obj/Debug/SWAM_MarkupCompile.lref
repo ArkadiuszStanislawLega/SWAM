@@ -20,4 +20,6 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\PasswordBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.xaml;;
 

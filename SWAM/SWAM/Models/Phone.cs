@@ -10,10 +10,12 @@ namespace SWAM.Models
     {
         int _id;
         User _user;
-        char _phoneNumber;
+        string _note;
+        string _phoneNumber;
 
         public int Id { get => _id; set => _id = value; }
         public User User { get => _user; set => _user = value; }
-        public char PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
+        public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
+        public string Note { get => _note; set => _note = value; }
     }
 }
