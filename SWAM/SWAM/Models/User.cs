@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using SWAM.Enumerators;
 
 namespace SWAM.Models
@@ -12,6 +9,7 @@ namespace SWAM.Models
     public class User
     {
         int _id;
+
         string _name;
         string _password;
         UserType _permissions;
@@ -35,14 +33,15 @@ namespace SWAM.Models
         public string Password { get => _password; set => _password = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
 
-        public void MakePhoneList()
+        public IList<Phone> RefreshPhoneList()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 this._phones = context.Phones
-                    .SqlQuery("Select * from Phones where User_Id=@id", new SqlParameter("@id", this._id))
+                    .SqlQuery("Select * from Phones where UserId=@userId", new SqlParameter("@userId", this._id))
                     .ToList<Phone>();
             };
+            return this._phones;
         }
     }
 }

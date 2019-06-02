@@ -346,3 +346,4 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\PhoneNu
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneFromCharToString.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneAddNote.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneUserToIntIdUser.resources

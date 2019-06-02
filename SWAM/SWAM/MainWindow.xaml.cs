@@ -291,6 +291,27 @@ namespace SWAM
         #endregion
 
         #region Statc Methods
+
+        /// <summary>
+        /// Turn off selected element.
+        /// </summary>
+        /// <param name="frameworkElement">Elemnt to turn off.</param>
+        public static void TurnOff(FrameworkElement frameworkElement)
+        {
+            frameworkElement.IsEnabled = false;
+            frameworkElement.Visibility = Visibility.Collapsed;
+        }
+
+        /// <summary>
+        /// Turn on selected element.
+        /// </summary>
+        /// <param name="frameWorkElement">Elemnt to turn on.</param>
+        public static void TurnOn(FrameworkElement frameWorkElement)
+        {
+            frameWorkElement.IsEnabled = true;
+            frameWorkElement.Visibility = Visibility.Visible;
+        }
+
         /// <summary>
         /// Its looking for parent of object.
         /// </summary>

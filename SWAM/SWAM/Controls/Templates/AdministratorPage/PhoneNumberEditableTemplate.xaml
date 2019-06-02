@@ -19,7 +19,7 @@
         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
             <TextBlock Name="Note" Text="{Binding Note}"/>
             <TextBox Name="EditNote" Text="{Binding Note}"
-                 IsEnabled="False" Visibility="Collapsed"/>
+                 IsEnabled="False" Visibility="Collapsed" Width="130"/>
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 5 0">
             <TextBlock Name="PhoneNumber" Text="{Binding PhoneNumber}"/>
@@ -30,21 +30,24 @@
                 Style="{StaticResource NavigationButton}"
                 Height="16" 
                 Width="16"
-                Grid.Column="2">
+                Grid.Column="2"
+                Margin="1">
             <fa:ImageAwesome Icon="Edit" 
                              Foreground="{StaticResource FontsBrash}"
                              Margin="-4"
-                             ToolTip="Edytuj kontakt."/>
+                             ToolTip="Edytuj kontakt"/>
         </Button>
         <Button Name="Confirm" 
                 Click="Confirm_Click" 
                 Style="{StaticResource NavigationButton}"
                 Height="16" 
                 Width="16"
+                IsEnabled="False"
+                Margin="1"
                 Grid.Column="3">
             <fa:ImageAwesome Icon="Save" 
                              Foreground="{StaticResource FontsBrash}"
-                             ToolTip="Zapisz zmiany."
+                             ToolTip="Zapisz zmiany"
                              Margin="-4"/>
         </Button>
         <Button Name="Delete" 
@@ -52,10 +55,11 @@
                 Style="{StaticResource NavigationButton}"
                 Height="16" 
                 Width="16"
+                Margin="1"
                 Grid.Column="4">
             <fa:ImageAwesome Icon="Trash" 
                              Foreground="{StaticResource FontsBrash}"
-                             ToolTip="Usuń numer."
+                             ToolTip="Usuń numer"
                              Margin="-4"/>
         </Button>
     </Grid>

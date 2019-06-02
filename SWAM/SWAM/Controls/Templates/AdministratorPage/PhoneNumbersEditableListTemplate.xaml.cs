@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
     /// </summary>
@@ -26,11 +27,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
-        private void AddNewPhone_Click(object sender, RoutedEventArgs e)
-        {
-            TurnOn(this.AddNewPhoneContainer);
-        }
-
+        private void AddNewPhone_Click(object sender, RoutedEventArgs e) => TurnOn(this.AddNewPhoneContainer);
+       
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
             User user = DataContext as User;
@@ -41,9 +39,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 {
                     PhoneNumber = this.NewPhone.Text,
                     Note = this.NewPhoneNote.Text,
-                    User = user
+                    UserId = user.Id
                 };
-
 
                 if (phone != null)
                 {
@@ -57,20 +54,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 context.SaveChanges();
             };
-            SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
-        }
 
-
-        private void TurnOff(FrameworkElement userControl)
-        {
-            userControl.IsEnabled = false;
-            userControl.Visibility = Visibility.Collapsed;
-        }
-
-        private void TurnOn(FrameworkElement userControl)
-        {
-            userControl.IsEnabled = true;
-            userControl.Visibility = Visibility.Visible;
+            #region Refresh list of phone numbers in profile
+            PhoneNumbers.Children.RemoveRange(0, PhoneNumbers.Children.Count);
+            foreach (Phone p in user.RefreshPhoneList())
+                PhoneNumbers.Children.Add(new PhoneNumberEditableTemplate() { DataContext = p });
+            #endregion
+            #region Clear editable fields of adding new phone and turn off them
+            this.NewPhone.Text = "";
+            this.NewPhoneNote.Text = "";
+            TurnOff(this.AddNewPhoneContainer);
+            #endregion
         }
     }
 }

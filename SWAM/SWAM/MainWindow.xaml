@@ -19,9 +19,15 @@
         <WindowChrome />
     </WindowChrome.WindowChrome>
 
-    <StackPanel >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <!--#region Top Window Title-->
-        <ContentControl >
+        <ContentControl Grid.Row="0" >
             <Grid Name="TitlePanel"
                     Width="auto" Height="30"
                     Background="{StaticResource MainBarBrash}"
@@ -90,7 +96,7 @@
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar" 
                     VerticalAlignment="Bottom"
-                    HorizontalAlignment="Left">
+                    HorizontalAlignment="Left" Grid.Row="2">
             <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
             <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
             <nav:NavigationButtonTemplate Content="Produkty" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
@@ -100,8 +106,8 @@
         <!--#endregion-->
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <StackPanel Name="ContentOfWindow">
+        <StackPanel Name="ContentOfWindow" Grid.Row="3">
         </StackPanel>
         <!--#endregion-->
-    </StackPanel>
+    </Grid>
 </Window>

@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.Designer.cs">
       <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.cs" />
+    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.Designer.cs">
+      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Phone.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311711280_UpdatePhoneAddNote.resx">
       <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.resx">
+      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

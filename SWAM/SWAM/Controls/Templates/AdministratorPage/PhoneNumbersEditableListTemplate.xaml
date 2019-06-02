@@ -5,16 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Margin="10 1 10 1"
+             Background="{StaticResource GraphiteBrash}"
              mc:Ignorable="d" 
              d:DesignHeight="40" d:DesignWidth="200">
-    <StackPanel>
+    <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Numer kontaktowy"/>
-            <Button Name="AddNewPhone" Click="AddNewPhone_Click" Style="{StaticResource NavigationButton}" 
-                    Margin="20 0 0 0" Height="16" Width="16">
+            <TextBlock Text="Numery kontaktowe"/>
+            <Button Name="AddNewPhone" Click="AddNewPhone_Click" Style="{StaticResource AdditionSign}" 
+                    Margin="20 0 0 0" Height="20" Width="20">
                 <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
-                                 Margin="-4"
+                                 Margin="-1"
                                  ToolTip="Dodaj nowy numer telefonu."/>
             </Button>
         </StackPanel>
@@ -25,12 +27,11 @@
                     Click="ConfirmNewPhone_Click" 
                     Style="{StaticResource NavigationButton}" Height="20" Width="20">
                 <fa:ImageAwesome Icon="Save" 
-                             Foreground="{StaticResource FontsBrash}"
                              ToolTip="Dodaj kontakt."
                              Margin="-4"/>
             </Button>
         </StackPanel>
-        <Grid Name="PhoneNumbers" Grid.Row="1" Margin="0 5 0 0 ">
+        <StackPanel Name="PhoneNumbers" Grid.Row="1" Margin="0 5 0 0 ">
             <ScrollViewer>
                 <ItemsControl  ItemsSource="{Binding Phones}">
                     <ItemsControl.ItemTemplate>
@@ -42,6 +43,6 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-        </Grid>
+        </StackPanel>
     </StackPanel>
 </UserControl>

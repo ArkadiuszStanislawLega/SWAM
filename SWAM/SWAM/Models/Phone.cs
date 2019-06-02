@@ -9,12 +9,14 @@ namespace SWAM.Models
     public class Phone
     {
         int _id;
-        User _user;
+        [System.ComponentModel.DataAnnotations.Key]
+        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("User")]
+        int _userId;
         string _note;
         string _phoneNumber;
 
         public int Id { get => _id; set => _id = value; }
-        public User User { get => _user; set => _user = value; }
+        public int UserId { get => _userId; set => _userId = value; }
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }
     }
