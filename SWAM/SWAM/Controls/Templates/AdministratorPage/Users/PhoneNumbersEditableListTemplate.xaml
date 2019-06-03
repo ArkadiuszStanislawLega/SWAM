@@ -40,7 +40,7 @@
         <StackPanel Name="PhoneNumbers"
                     Margin="0 5 0 0 "
                     HorizontalAlignment="Left">
-            <ItemsControl  ItemsSource="{Binding Phones}">
+            <ItemsControl  ItemsSource="{Binding Phones}" Name="Item">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>

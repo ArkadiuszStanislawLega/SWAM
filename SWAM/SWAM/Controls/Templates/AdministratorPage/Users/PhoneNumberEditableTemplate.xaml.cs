@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using SWAM.Models;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumberEditableTemplate.xaml
@@ -35,12 +36,25 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+            var phone = DataContext as Phone;
 
+            phone.UpdateNumber(EditPhoneNumber.Text);
+            phone.UpdateNote(EditNote.Text);
+
+            TurnOn(this.PhoneNumber);
+            TurnOn(this.Note);
+
+            TurnOff(this.EditPhoneNumber);
+            TurnOff(this.EditNote);
+
+            this.Confirm.IsEnabled = false;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO: Refresh list after delete.
+            var phone = DataContext as Phone;
+            phone.Delete();
         }
     }
 }

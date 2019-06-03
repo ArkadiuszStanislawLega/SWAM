@@ -45,7 +45,7 @@ namespace SWAM.Models
         {
             get
             {
-                //Todo: Catch exceptions - User - Emails
+                //TODO: Catch exceptions - User - Emails
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._emails = context.Emails
@@ -63,7 +63,7 @@ namespace SWAM.Models
         {
             get
             {
-                //Todo: Catch exceptions - User - WarehousesId
+                //TODO: Catch exceptions - User - WarehousesId
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._warehousesId = context.AccessUsersToWarehouses
@@ -81,7 +81,7 @@ namespace SWAM.Models
         {
             get
             {
-                //Todo: Catch exceptions - User - Phones
+                //TODO: Catch exceptions - User - Phones
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._phones = context.Phones

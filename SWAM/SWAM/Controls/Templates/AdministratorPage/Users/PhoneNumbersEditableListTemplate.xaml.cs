@@ -43,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
             User user = DataContext as User;
-
+         
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var phone = new Phone()

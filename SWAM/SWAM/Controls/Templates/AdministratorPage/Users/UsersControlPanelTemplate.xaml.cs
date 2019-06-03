@@ -38,6 +38,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            //TODO: make some static values for this below "185"
             if (SWAM.MainWindow.IsMaximized)
                 this.UsersList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
             else

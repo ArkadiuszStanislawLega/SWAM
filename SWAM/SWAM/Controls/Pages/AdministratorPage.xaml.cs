@@ -80,7 +80,6 @@ namespace SWAM.Controls.Pages
             ChangeContext(userControl);
         }
         #endregion
-
         #region ChangeContext
         /// <summary>
         /// Changing main content of AdministratorPage.
