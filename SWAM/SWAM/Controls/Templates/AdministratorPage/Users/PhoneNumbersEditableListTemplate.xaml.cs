@@ -27,8 +27,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Action after add new phone button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNewPhone_Click(object sender, RoutedEventArgs e) => TurnOn(this.AddNewPhoneContainer);
-       
+
+        #region ConfirmNewPhone_Click
+        /// <summary>
+        /// Action after confirm new phone buttton click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
             User user = DataContext as User;
@@ -45,6 +56,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (phone != null)
                 {
                     context.Phones.Add(phone);
+                    //TODO: Make validations and catch exceptions - phones.
                     //this.Information.Content = "Udało się dodać użytkownika " + user.Name;
                 }
                 else
@@ -66,5 +78,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             TurnOff(this.AddNewPhoneContainer);
             #endregion
         }
+        #endregion
     }
 }

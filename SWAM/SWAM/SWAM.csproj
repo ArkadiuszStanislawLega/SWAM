@@ -71,31 +71,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\EmailEditableListTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\EmailEditableTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,25 +116,25 @@
     <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
       <DependentUpon>AddressTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml.cs">
       <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\EmailEditableListTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.xaml.cs">
       <DependentUpon>EmailEditableListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\EmailEditableTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml.cs">
       <DependentUpon>EmailEditableTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml.cs">
       <DependentUpon>PhoneNumberEditableTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\PhoneNumbersEditableListTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml.cs">
       <DependentUpon>PhoneNumbersEditableListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\UserProfileTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml.cs">
       <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\UsersListItemTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml.cs">
       <DependentUpon>UsersListItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
@@ -214,11 +214,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml">
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,10 +287,10 @@
     <Compile Include="Controls\Pages\AdministratorPage.xaml.cs">
       <DependentUpon>AdministratorPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\UsersControlPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml.cs">
       <DependentUpon>UsersControlPanelTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\WarehousesControlPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.xaml.cs">
       <DependentUpon>WarehousesControlPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Pages\LoginPage.xaml.cs">

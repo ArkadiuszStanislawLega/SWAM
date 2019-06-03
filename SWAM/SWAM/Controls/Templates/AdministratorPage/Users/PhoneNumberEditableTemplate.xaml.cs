@@ -15,6 +15,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+        #region Edit_Click
+        /// <summary>
+        /// Action after edit button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             TurnOff(this.PhoneNumber);
@@ -25,6 +31,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
        
             this.Confirm.IsEnabled = true;
         }
+        #endregion
 
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {

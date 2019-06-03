@@ -26,11 +26,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
-        private void AddNewEmail_Click(object sender, RoutedEventArgs e)
-        {
-            SWAM.MainWindow.TurnOn(AddNewEmailContainer);
-        }
+        /// <summary>
+        /// Action after add new email button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddNewEmail_Click(object sender, RoutedEventArgs e) => SWAM.MainWindow.TurnOn(AddNewEmailContainer);
 
+        #region ConfirmNewEmail_Click
+        /// <summary>
+        /// Action after confirm new email click button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ConfirmNewEmail_Click(object sender, RoutedEventArgs e)
         {
             User user = DataContext as User;
@@ -46,6 +54,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (email != null)
                 {
                     context.Emails.Add(email);
+                    //TODO: Make validations and catch exceptions - mails.
                     //this.Information.Content = "Udało się dodać użytkownika " + user.Name;
                 }
                 else
@@ -55,6 +64,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 context.SaveChanges();
             };
+
+            SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
+            #region Refresh list of emails
+            Emails.Children.RemoveRange(0, Emails.Children.Count);
+            foreach (Email p in user.Emails)
+                Emails.Children.Add(new EmailEditableTemplate() { DataContext = p });
+            #endregion
         }
+        #endregion
     }
 }

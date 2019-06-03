@@ -360,3 +360,9 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEd
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableListTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateEmailTable.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableListTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableListTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\EmailEditableTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddNewTableAccessUsersToWarehouses.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateEmailTable.resources

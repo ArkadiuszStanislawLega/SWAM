@@ -16,8 +16,17 @@ namespace SWAM.Models
         DateTime _dateOfCreate;
         DateTime? _dateOfExpiryOfTheAccount;
         DateTime? _expiryDateOfTheBlockade;
+        /// <summary>
+        /// All user phone numbers.
+        /// </summary>
         IList<Phone> _phones;
+        /// <summary>
+        /// All user emails.
+        /// </summary>
         IList<Email> _emails;
+        /// <summary>
+        /// All ids of warheouses where user have permition to  access.
+        /// </summary>
         IList<AccessUsersToWarehouses> _warehousesId;
 
         public int Id { get => _id; set => _id = value; }
@@ -28,8 +37,15 @@ namespace SWAM.Models
         public DateTime? DateOfExpiryOfTheAccount { get => _dateOfExpiryOfTheAccount; set => _dateOfExpiryOfTheAccount = value; }
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
         public string Password { get => _password; set => _password = value; }
-        public IList<Email> Emails { get
+
+        /// <summary>
+        /// Getting from database all email addresses
+        /// </summary>
+        public IList<Email> Emails
+        {
+            get
             {
+                //Todo: Catch exceptions - User - Emails
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._emails = context.Emails
@@ -38,12 +54,16 @@ namespace SWAM.Models
                 };
                 return this._emails;
             }
-            set => _emails = value; }
+        }
 
+        /// <summary>
+        /// Getting from database all warehouses id where user have permition to access.
+        /// </summary>
         public IList<AccessUsersToWarehouses> WarehousesId
         {
             get
             {
+                //Todo: Catch exceptions - User - WarehousesId
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._warehousesId = context.AccessUsersToWarehouses
@@ -52,13 +72,16 @@ namespace SWAM.Models
                 }; 
                 return this._warehousesId;
             }
-            set => this._warehousesId = value;
         }
 
+        /// <summary>
+        /// Getting from database all user phone numbers.
+        /// </summary>
         public IList<Phone> Phones
         {
             get
             {
+                //Todo: Catch exceptions - User - Phones
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     this._phones = context.Phones
@@ -67,7 +90,6 @@ namespace SWAM.Models
                 };
                 return this._phones;
             }
-            set => _phones = value;
         }
     }
 }

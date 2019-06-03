@@ -12,6 +12,7 @@
     <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Email"/>
+            <!--#region Add new email button-->
             <Button Name="AddNewEmail" Click="AddNewEmail_Click" Style="{StaticResource AdditionSign}" 
                     Margin="20 0 0 0" Height="20" Width="20">
                 <fa:ImageAwesome Icon="Plus" 
@@ -19,9 +20,14 @@
                                  Margin="-1"
                                  ToolTip="Dodaj nowy numer telefonu."/>
             </Button>
+            <!--#endregion-->
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Name="AddNewEmailContainer" Visibility="Collapsed" IsEnabled="False">
+        <StackPanel Orientation="Horizontal" 
+                    Name="AddNewEmailContainer" 
+                    Visibility="Collapsed" 
+                    IsEnabled="False">
             <TextBox Tag="Email" Name="NewEmail" Width="100"  Style="{StaticResource UserLogin}"/>
+            <!--#region Confirm new email button-->
             <Button Name="ConfirmNewEmail" 
                     Click="ConfirmNewEmail_Click"
                     Style="{StaticResource NavigationButton}" Height="20" Width="20">
@@ -29,7 +35,9 @@
                              ToolTip="Dodaj email"
                              Margin="-4"/>
             </Button>
+            <!--#endregion-->
         </StackPanel>
+        <!--#region List of emails-->
         <StackPanel Name="Emails" Grid.Row="1" Margin="0 5 0 0 ">
             <ItemsControl  ItemsSource="{Binding Emails}">
                 <ItemsControl.ItemTemplate>
@@ -41,5 +49,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
+        <!--#endregion-->
     </StackPanel>
 </UserControl>
