@@ -75,6 +75,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\AdministratorPage\EmailEditableListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\EmailEditableTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,6 +118,12 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\CreateNewUserTemplate.xaml.cs">
       <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\EmailEditableListTemplate.xaml.cs">
+      <DependentUpon>EmailEditableListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\EmailEditableTemplate.xaml.cs">
+      <DependentUpon>EmailEditableTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\PhoneNumberEditableTemplate.xaml.cs">
       <DependentUpon>PhoneNumberEditableTemplate.xaml</DependentUpon>
@@ -175,6 +189,15 @@
     <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.Designer.cs">
       <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.cs" />
+    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.Designer.cs">
+      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031126566_UpdateEmailTable.cs" />
+    <Compile Include="Migrations\201906031126566_UpdateEmailTable.Designer.cs">
+      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Phone.cs" />
@@ -349,6 +372,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.resx">
       <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.resx">
+      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031126566_UpdateEmailTable.resx">
+      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

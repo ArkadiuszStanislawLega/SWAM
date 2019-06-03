@@ -43,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             TurnOn(this.EditPassword);
             TurnOn(this.EditConfirmPassword);
             TurnOn(this.EditPermissions);
-            TurnOn(this.EditEmailAddress);
+            //TurnOn(this.EditEmailAddress);
 
             this.UserAddress.EditAddress();
         }
@@ -57,7 +57,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             TurnOff(this.Name);
             TurnOff(this.Password);
             TurnOff(this.Permissions);
-            TurnOff(this.EmailAddress);
+            //TurnOff(this.EmailAddress);
         }
         #endregion
 

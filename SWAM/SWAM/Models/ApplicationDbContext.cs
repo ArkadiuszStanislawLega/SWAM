@@ -11,6 +11,7 @@ namespace SWAM
 {
     public class ApplicationDbContext : DbContext
     {
+        public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<Customer> Customers { get; set; }

@@ -9,7 +9,6 @@ namespace SWAM.Models
     public class User
     {
         int _id;
-
         string _name;
         string _password;
         UserType _permissions;
@@ -19,29 +18,56 @@ namespace SWAM.Models
         DateTime? _expiryDateOfTheBlockade;
         IList<Phone> _phones;
         IList<Email> _emails;
-        Address _residentAddress;
+        IList<AccessUsersToWarehouses> _warehousesId;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
-        public IList<Phone> Phones { get => _phones; set => _phones = value; }
-        public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
         public UserType Permissions { get => _permissions; set => _permissions = value; }
         public DateTime DateOfCreate { get => _dateOfCreate; set => _dateOfCreate = value; }
         public DateTime? ExpiryDateOfTheBlockade { get => _expiryDateOfTheBlockade; set => _expiryDateOfTheBlockade = value; }
         public DateTime? DateOfExpiryOfTheAccount { get => _dateOfExpiryOfTheAccount; set => _dateOfExpiryOfTheAccount = value; }
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
         public string Password { get => _password; set => _password = value; }
-        public IList<Email> Emails { get => _emails; set => _emails = value; }
-
-        public IList<Phone> RefreshPhoneList()
-        {
-            using (ApplicationDbContext context = new ApplicationDbContext())
+        public IList<Email> Emails { get
             {
-                this._phones = context.Phones
-                    .SqlQuery("Select * from Phones where UserId=@userId", new SqlParameter("@userId", this._id))
-                    .ToList<Phone>();
-            };
-            return this._phones;
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    this._emails = context.Emails
+                        .SqlQuery("Select * from Emails where UserId=@userId", new SqlParameter("@userId", this._id))
+                        .ToList<Email>();
+                };
+                return this._emails;
+            }
+            set => _emails = value; }
+
+        public IList<AccessUsersToWarehouses> WarehousesId
+        {
+            get
+            {
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    this._warehousesId = context.AccessUsersToWarehouses
+                        .SqlQuery("Select * from AccessUsersToWarehouses where UserId=@userId", new SqlParameter("@userId", this._id))
+                        .ToList<AccessUsersToWarehouses>();
+                }; 
+                return this._warehousesId;
+            }
+            set => this._warehousesId = value;
+        }
+
+        public IList<Phone> Phones
+        {
+            get
+            {
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    this._phones = context.Phones
+                        .SqlQuery("Select * from Phones where UserId=@userId", new SqlParameter("@userId", this._id))
+                        .ToList<Phone>();
+                };
+                return this._phones;
+            }
+            set => _phones = value;
         }
     }
 }

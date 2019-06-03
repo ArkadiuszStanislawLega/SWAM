@@ -16,35 +16,36 @@ using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using static SWAM.MainWindow;
     /// <summary>
-    /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
+    /// Logika interakcji dla klasy EmailEditableListTemplate.xaml
     /// </summary>
-    public partial class PhoneNumbersEditableListTemplate : UserControl
+    public partial class EmailEditableListTemplate : UserControl
     {
-        public PhoneNumbersEditableListTemplate()
+        public EmailEditableListTemplate()
         {
             InitializeComponent();
         }
 
-        private void AddNewPhone_Click(object sender, RoutedEventArgs e) => TurnOn(this.AddNewPhoneContainer);
-       
-        private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
+        private void AddNewEmail_Click(object sender, RoutedEventArgs e)
+        {
+            SWAM.MainWindow.TurnOn(AddNewEmailContainer);
+        }
+
+        private void ConfirmNewEmail_Click(object sender, RoutedEventArgs e)
         {
             User user = DataContext as User;
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var phone = new Phone()
+                var email = new Email()
                 {
-                    PhoneNumber = this.NewPhone.Text,
-                    Note = this.NewPhoneNote.Text,
+                    AddressEmail = this.NewEmail.Text,
                     UserId = user.Id
                 };
 
-                if (phone != null)
+                if (email != null)
                 {
-                    context.Phones.Add(phone);
+                    context.Emails.Add(email);
                     //this.Information.Content = "Udało się dodać użytkownika " + user.Name;
                 }
                 else
@@ -54,17 +55,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 context.SaveChanges();
             };
-
-            #region Refresh list of phone numbers in profile
-            PhoneNumbers.Children.RemoveRange(0, PhoneNumbers.Children.Count);
-            foreach (Phone p in user.Phones)
-                PhoneNumbers.Children.Add(new PhoneNumberEditableTemplate() { DataContext = p });
-            #endregion
-            #region Clear editable fields of adding new phone and turn off them
-            this.NewPhone.Text = "";
-            this.NewPhoneNote.Text = "";
-            TurnOff(this.AddNewPhoneContainer);
-            #endregion
         }
     }
 }

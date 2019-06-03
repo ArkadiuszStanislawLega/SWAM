@@ -71,10 +71,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             };
 
             foreach (User u in _users)
-            {
-                u.RefreshPhoneList();
                 UserListViewModel.AddUser(u);
-            }
 
         }
         #endregion

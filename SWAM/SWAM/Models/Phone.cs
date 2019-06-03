@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +11,8 @@ namespace SWAM.Models
     public class Phone
     {
         int _id;
-        [System.ComponentModel.DataAnnotations.Key]
-        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("User")]
+        [Key]
+        [ForeignKey("User")]
         int _userId;
         string _note;
         string _phoneNumber;

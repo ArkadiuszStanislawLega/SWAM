@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="SWAM.Controls.Templates.AdministratorPage.EmailEditableListTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             Margin="10 1 10 1"
+             Background="{StaticResource GraphiteBrash}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Margin="5">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Email"/>
+            <Button Name="AddNewEmail" Click="AddNewEmail_Click" Style="{StaticResource AdditionSign}" 
+                    Margin="20 0 0 0" Height="20" Width="20">
+                <fa:ImageAwesome Icon="Plus" 
+                                 Foreground="{StaticResource FontsBrash}"
+                                 Margin="-1"
+                                 ToolTip="Dodaj nowy numer telefonu."/>
+            </Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Name="AddNewEmailContainer" Visibility="Collapsed" IsEnabled="False">
+            <TextBox Tag="Email" Name="NewEmail" Width="100"  Style="{StaticResource UserLogin}"/>
+            <Button Name="ConfirmNewEmail" 
+                    Click="ConfirmNewEmail_Click"
+                    Style="{StaticResource NavigationButton}" Height="20" Width="20">
+                <fa:ImageAwesome Icon="Save" 
+                             ToolTip="Dodaj email"
+                             Margin="-4"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Name="Emails" Grid.Row="1" Margin="0 5 0 0 ">
+            <ItemsControl  ItemsSource="{Binding Emails}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <local:EmailEditableTemplate/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
