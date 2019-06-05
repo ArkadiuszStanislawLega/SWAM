@@ -33,7 +33,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
             this.Confirm.IsEnabled = true;
         }
         #endregion
-
+        #region Confirm_Click
+        /// <summary>
+        /// Action after click button to save changes after 
+        /// edit phone number from list of phones in user profile.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             var phone = DataContext as Phone;
@@ -49,12 +55,20 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             this.Confirm.IsEnabled = false;
         }
-
+        #endregion
+        #region Delete_Click
+        /// <summary>
+        /// Action after click button delete phone number from list of phones in user profile.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Refresh list after delete.
             var phone = DataContext as Phone;
             phone.Delete();
+
+            FindParent<PhoneNumbersEditableListTemplate>(this).RefreshPhoneList();
         }
+        #endregion
     }
 }

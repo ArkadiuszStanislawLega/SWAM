@@ -67,16 +67,34 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 context.SaveChanges();
             };
 
-            #region Refresh list of phone numbers in profile
-            PhoneNumbers.Children.RemoveRange(0, PhoneNumbers.Children.Count);
-            foreach (Phone p in user.Phones)
-                PhoneNumbers.Children.Add(new PhoneNumberEditableTemplate() { DataContext = p });
-            #endregion
-            #region Clear editable fields of adding new phone and turn off them
+            RefreshPhoneList();
+            ClearEditableFieldsAfterAddNewPhone();
+        }
+        #endregion
+
+        #region ClearEditableFieldsAfterEdit
+        /// <summary>
+        /// Clear space in editables places after adding new phone,
+        /// and shut down this view.
+        /// </summary>
+        private void ClearEditableFieldsAfterAddNewPhone()
+        {
             this.NewPhone.Text = "";
             this.NewPhoneNote.Text = "";
             TurnOff(this.AddNewPhoneContainer);
-            #endregion
+        }
+        #endregion
+        #region RefreshPhoneList
+        /// <summary>
+        /// Refreshing view list of phones.
+        /// </summary>
+        public void RefreshPhoneList()
+        {
+            var user = DataContext as User;
+
+            PhoneNumbers.Children.RemoveRange(0, PhoneNumbers.Children.Count);
+            foreach (Phone p in user.Phones)
+                PhoneNumbers.Children.Add(new PhoneNumberEditableTemplate() { DataContext = p });
         }
         #endregion
     }
