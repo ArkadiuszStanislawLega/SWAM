@@ -32,10 +32,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
 
             UserListViewModel = new UsersListViewModel();
-            SizeChanged += UsersControlPanelTemplate_SizeChanged;
-
         }
+        #endregion
 
+        #region UsersControlPanelTemplate_SizeChanged
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             //TODO: make some static values for this below "185"
@@ -68,7 +68,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             using (ApplicationDbContext application = new ApplicationDbContext())
             {
-                _users = application.Users.ToList();
+                this._users = application.Users.ToList();
             };
 
             foreach (User u in _users)
@@ -88,6 +88,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (this.RightSection.Children.Count > 0)
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
 
+
+            //Items in list are tagget in userListItemTemplate. Tag = UserId.
             this.RightSection.Children.Add(CreateUserProfile((int)usersListItemTemplate.Tag));
         }
         #endregion
@@ -98,16 +100,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="userIndexInUsersList">Index number of UsersListItemTemplate in the users list.</param>
         /// <return>Chosen user profile.</return>
         private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
-        {
-            var userProfileTemplate = new UserProfileTemplate();
-            User currentUser = new User();
-
-            foreach(User u in _users)
+        { 
+            //finding user whith specific id from user list
+            foreach (User u in this._users)
                 if (u.Id == userIndexInUsersList)
-                    currentUser = u;
+                    //Returning view of profile
+                    return new UserProfileTemplate() { DataContext = u };
 
-            userProfileTemplate.DataContext = currentUser;
-            return userProfileTemplate;
+            return null;
         }
         #endregion
         #region AddNewUser_Click

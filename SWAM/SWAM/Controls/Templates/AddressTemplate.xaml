@@ -37,13 +37,13 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">
-                <TextBlock Text="Numer domu"/>
+                <TextBlock Text="Numer budynku"/>
                 <TextBlock Name="HouseNumber" Text="{Binding HouseNumber}"/>
                 <TextBox Name="EditHouseNumber" Text="{Binding HouseNumber}"
                              IsEnabled="False" Visibility="Collapsed"/>
             </StackPanel>
             <StackPanel Margin="5">
-                <TextBlock Text="Numer mieszkania"/>
+                <TextBlock Text="Numer lokalu"/>
                 <TextBlock Name="ApartmentNumber" Text="{Binding ApartmentNumber}"/>
                 <TextBox Name="EditApartmentNumber" Text="{Binding ApartmentNumber}"
                              IsEnabled="False" Visibility="Collapsed"/>

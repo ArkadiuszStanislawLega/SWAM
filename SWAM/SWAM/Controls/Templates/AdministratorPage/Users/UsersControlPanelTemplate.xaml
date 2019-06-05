@@ -9,6 +9,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
+             SizeChanged="UsersControlPanelTemplate_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ObjectDataProvider x:Key="UserType"

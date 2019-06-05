@@ -99,6 +99,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +148,15 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml.cs">
       <DependentUpon>UsersListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml.cs">
+      <DependentUpon>CreateNewWarehouseTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml.cs">
+      <DependentUpon>WarehouseListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml.cs">
+      <DependentUpon>WarehouseProfileTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
@@ -197,8 +218,17 @@
     <Compile Include="Migrations\201906031126566_UpdateEmailTable.Designer.cs">
       <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.cs" />
+    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.Designer.cs">
+      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.cs" />
+    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.Designer.cs">
+      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
+    <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\User.cs" />
@@ -378,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906031126566_UpdateEmailTable.resx">
       <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051331159_UpdateWarehouseAddressId.resx">
+      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.resx">
+      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

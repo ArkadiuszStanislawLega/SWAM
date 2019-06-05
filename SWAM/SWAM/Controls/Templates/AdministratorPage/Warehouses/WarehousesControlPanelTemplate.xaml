@@ -4,9 +4,62 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              mc:Ignorable="d" 
+             SizeChanged="WarehousesList_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Vertical">
-        <TextBox Text="WarehousesControlPanel"/>
-    </StackPanel>
+    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
+        <Grid >
+            <!--#region Rows&Column Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Left section-->
+            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Name="FindWarehouseOrCreate" Grid.Row="0">
+                    <TextBox Tag="Wyszukaj magazyn" 
+                             FontSize="14" Width="140" Height="30"
+                             HorizontalAlignment="Left"
+                             Margin="0 0 0 0"
+                             Style="{StaticResource UserLogin}"
+                             />
+                    <Button Name="AddNewWarehouse" Width="30" Height="30" Click="AddNewWarehouse_Click" Style="{StaticResource NavigationButton}">
+                        <fa:ImageAwesome Icon="Plus" Foreground="{StaticResource FontsBrash}"
+                                      Height="20" Width="20" ToolTip="Dodaj nowy magazyn."/>
+                    </Button>
+                </StackPanel>
+                <!--#region List with warehouses-->
+                <Grid Name="WarehousesList" Grid.Row="1" >
+                    <ScrollViewer>
+                        <ItemsControl  ItemsSource="{Binding WarehousesList}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <temp:WarehouseListItemTemplate/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+            <!--#region Right section-->
+            <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
+                <temp:CreateNewWarehouseTemplate/>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+    </Border>
 </UserControl>

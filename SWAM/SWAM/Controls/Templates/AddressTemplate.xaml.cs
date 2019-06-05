@@ -15,11 +15,13 @@ using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates
 {
+    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy Address.xaml
     /// </summary>
     public partial class AddressTemplate : UserControl
     {
+  
         public AddressTemplate()
         {
             InitializeComponent();
@@ -64,16 +66,17 @@ namespace SWAM.Controls.Templates
         }
         #endregion
 
-        private void TurnOff(FrameworkElement userControl)
+        public Address GetAddress()
         {
-            userControl.IsEnabled = false;
-            userControl.Visibility = Visibility.Collapsed;
-        }
-
-        private void TurnOn(FrameworkElement userControl)
-        {
-            userControl.IsEnabled = true;
-            userControl.Visibility = Visibility.Visible;
+            return new Address()
+            {
+                Country = this.EditCountry.Text,
+                PostCode = this.EditPostCode.Text,
+                City = this.EditCity.Text,
+                Street = this.EditStreet.Text,
+                HouseNumber = this.EditHouseNumber.Text,
+                ApartmentNumber = this.EditApartmentNumber.Text,
+            };
         }
     }
 }

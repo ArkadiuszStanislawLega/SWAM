@@ -24,4 +24,7 @@ FF:\GitRepo\SWAM\SWAM\SWAM\Styles\PasswordBoxes.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
 

@@ -366,3 +366,11 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\U
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateWarehouseAddressId.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateNameOfTableToCorrect.resources

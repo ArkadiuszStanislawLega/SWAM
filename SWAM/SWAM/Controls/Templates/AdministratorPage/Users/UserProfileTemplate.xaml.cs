@@ -20,6 +20,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class UserProfileTemplate : UserControl
     {
+ 
         public UserProfileTemplate()
         {
             InitializeComponent();
@@ -39,10 +40,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         private void TurnOnEditFields()
         {
-            TurnOn(this.EditName);
-            TurnOn(this.EditPassword);
-            TurnOn(this.EditConfirmPassword);
-            TurnOn(this.EditPermissions);
+            SWAM.MainWindow.TurnOn(this.EditName);
+            SWAM.MainWindow.TurnOn(this.EditPassword);
+            SWAM.MainWindow.TurnOn(this.EditConfirmPassword);
+            SWAM.MainWindow.TurnOn(this.EditPermissions);
             //TurnOn(this.EditEmailAddress);
 
             this.UserAddress.EditAddress();
@@ -54,24 +55,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         private void TurnOffValues()
         {
-            TurnOff(this.Name);
-            TurnOff(this.Password);
-            TurnOff(this.Permissions);
+            SWAM.MainWindow.TurnOff(this.Name);
+            SWAM.MainWindow.TurnOff(this.Password);
+            SWAM.MainWindow.TurnOff(this.Permissions);
             //TurnOff(this.EmailAddress);
         }
         #endregion
-
-        private void TurnOff(FrameworkElement userControl)
-        {
-            userControl.IsEnabled = false;
-            userControl.Visibility = Visibility.Collapsed;
-        }
-
-        private void TurnOn(FrameworkElement userControl)
-        {
-            userControl.IsEnabled = true;
-            userControl.Visibility = Visibility.Visible;
-        }
 
         private void ConfirmChanges_Click(object sender, RoutedEventArgs e)
         {

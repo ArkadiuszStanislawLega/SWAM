@@ -1,4 +1,6 @@
-﻿using SWAM.Enumerators;
+﻿using SWAM.Controls.Templates.AdministratorPage.Warehouses;
+using SWAM.Enumerators;
+using SWAM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +25,103 @@ namespace SWAM.Templates.AdministratorPage
     {
         public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
 
+        private List<Warehouse> _warehouses;
+        public Models.AdministratorPage.WarehousesListViewModel WarhousesListViewModel { get; set; }
+
         public WarehousesControlPanelTemplate()
         {
             InitializeComponent();
+
+            WarhousesListViewModel = new Models.AdministratorPage.WarehousesListViewModel();
         }
 
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
 
+            DataContext = WarhousesListViewModel;
+
+            RefreshWarhousesList();
+
+            WarehousesList.Height = RightSection.Height - FindWarehouseOrCreate.Height;
+        }
+        #region WarehousesList_SizeChanged
+        /// <summary>
+        /// Action when the main window has been changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WarehousesList_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            //TODO: make some static values for this below "185"
+            if (SWAM.MainWindow.IsMaximized)
+                this.WarehousesList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
+            else
+                this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
+        }
+        #endregion
+
+        #region RefreshWarhousesList
+        /// <summary>
+        /// Refreshing view model of warehouses list.
+        /// </summary>
+        public void RefreshWarhousesList()
+        {
+            if(WarhousesListViewModel.Size > 0) WarhousesListViewModel.RemoveAll();
+            if (this._warehouses != null && this._warehouses.Count > 0) this._warehouses.Clear();
+
+            using (ApplicationDbContext application = new ApplicationDbContext())
+            {
+                this._warehouses = application.Warehouses.ToList();
+            };
+
+            foreach (Warehouse w in this._warehouses)
+                WarhousesListViewModel.AddWarehouse(w);
+        }
+        #endregion
+
+        #region ShowPrfile
+        /// <summary>
+        /// Showing the profile of warehouse after
+        /// after click item from the list with users.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void ShowProfile(WarehouseListItemTemplate warehouseListItemTemplate)
+        {
+            if (this.RightSection.Children.Count > 0)
+                this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
+
+
+            //Items in list are tagget in userListItemTemplate by binding. Tag = UserId.
+            this.RightSection.Children.Add(CreateWarehouseProfile((int)warehouseListItemTemplate.Tag));
+        }
+        #endregion
+
+        #region CreateWarehouseProfile
+        /// <summary>
+        /// Made view of the warehouse profile in right section.
+        /// </summary>
+        /// <param name="warehouseIndexInWaregohouseList">Index number of WarehohousesListItemTemplate in the warehouses list.</param>
+        /// <return>Chosen warehouse profile.</return>
+        private WarehouseProfileTemplate CreateWarehouseProfile(int warehouseIndexInWaregohouseList)
+        {
+            //finding warehouse whith specific id from warehouses list
+            foreach (Warehouse w in this._warehouses)
+                if (w.Id == warehouseIndexInWaregohouseList)
+                    //Returning view of profile
+                    return new WarehouseProfileTemplate() { DataContext = w };
+
+            return null;
+        }
+        #endregion
+
+        private void AddNewWarehouse_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.RightSection.Children.Count > 0)
+                this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
+
+            this.RightSection.Children.Add(new CreateNewWarehouseTemplate());
+        }
     }
 }
