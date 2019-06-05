@@ -19,5 +19,43 @@ namespace SWAM.Models
         public int Id { get => _id; set => _id = value; }
         public int UserId { get => _userId; set => _userId = value; }
         public string AddressEmail { get => _addressEmail; set => _addressEmail = value; }
+
+        #region UpdateEmail
+        /// <summary>
+        /// Update in databse current address email.
+        /// </summary>
+        /// <param name="newEmail">New email address.</param>
+        public void UpdateEmail(string newEmail)
+        {
+            //TODO: Catch exception - Phone - UpdateNumber
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var currentEmail = context.Emails.SingleOrDefault(e => e.Id == this._id);
+                if (currentEmail != null)
+                {
+                    currentEmail.AddressEmail = newEmail;
+                    context.SaveChanges();
+                }
+            };
+        }
+        #endregion
+        #region Delete
+        /// <summary>
+        /// Delete current email from database.
+        /// </summary>
+        public void Delete()
+        {
+            //TODO: Catch exception - Phone - Delete
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var currentEmail = context.Emails.Where(p => p.Id == this._id).First();
+                if (currentEmail != null)
+                {
+                    context.Emails.Remove(currentEmail);
+                    context.SaveChanges();
+                }
+            };
+        }
+        #endregion
     }
 }

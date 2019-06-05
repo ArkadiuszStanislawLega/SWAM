@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy EmailEditableTemplate.xaml
     /// </summary>
@@ -25,19 +27,51 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+        #region Edit_Click
+        /// <summary>
+        /// Action after click edit email button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            TurnOff(this.Email);
+            TurnOn(this.EditEmail);
 
+            this.Confirm.IsEnabled = true;
         }
-
+        #endregion
+        #region Confirm_Click
+        /// <summary>
+        /// Action after click Confirm button after edit email.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+            var email = DataContext as Email;
 
+            email.UpdateEmail(EditEmail.Text);
+
+            TurnOn(this.Email);
+            TurnOff(this.EditEmail);
+
+            this.Confirm.IsEnabled = false;
         }
-
+        #endregion
+        #region Delete_Click
+        /// <summary>
+        /// Action after click delete email button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            var email = DataContext as Email;
+            email.Delete();
 
+            FindParent<EmailEditableListTemplate>(this).RefreshEmailsList();
         }
+        #endregion
     }
 }

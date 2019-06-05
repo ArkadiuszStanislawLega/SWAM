@@ -22,6 +22,11 @@ namespace SWAM.Models
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }
 
+        #region UpdateNumber
+        /// <summary>
+        /// Update current phone number.
+        /// </summary>
+        /// <param name="newPhoneNumber">New phone/edited number.</param>
         public void UpdateNumber(string newPhoneNumber)
         {
             //TODO: Catch exception - Phone - UpdateNumber
@@ -35,7 +40,12 @@ namespace SWAM.Models
                 }
             };
         }
-
+        #endregion
+        #region UpdateNote
+        /// <summary>
+        /// Update in database note of current phone number.
+        /// </summary>
+        /// <param name="newNote">New/edited note of phone number.</param>
         public void UpdateNote(string newNote)
         {
             //TODO: Catch exception - Phone - UpdateNote
@@ -49,7 +59,11 @@ namespace SWAM.Models
                 }
             };
         }
-
+        #endregion
+        #region Delete
+        /// <summary>
+        /// Delete from database current number.
+        /// </summary>
         public void Delete()
         {
             //TODO: Catch exception - Phone - Delete
@@ -63,5 +77,6 @@ namespace SWAM.Models
                 }
             };
         }
+        #endregion
     }
 }

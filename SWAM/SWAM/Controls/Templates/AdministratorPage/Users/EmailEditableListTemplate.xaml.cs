@@ -66,11 +66,24 @@ namespace SWAM.Controls.Templates.AdministratorPage
             };
 
             SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
-            #region Refresh list of emails
+
+            RefreshEmailsList();
+
+        }
+        #endregion
+
+        #region RefreshPhoneList
+        /// <summary>
+        /// Refreshing view list of emails.
+        /// </summary>
+        public void RefreshEmailsList()
+        {
+            var user = DataContext as User;
+            
             Emails.Children.RemoveRange(0, Emails.Children.Count);
-            foreach (Email p in user.Emails)
-                Emails.Children.Add(new EmailEditableTemplate() { DataContext = p });
-            #endregion
+
+            foreach (Email e in user.Emails)
+                Emails.Children.Add(new EmailEditableTemplate { DataContext = e });
         }
         #endregion
     }
