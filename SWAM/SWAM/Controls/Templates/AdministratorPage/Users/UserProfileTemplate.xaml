@@ -6,6 +6,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
+             xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
              Height="auto"
@@ -22,7 +23,9 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <!--#endregion-->
+
     <StackPanel Orientation="Vertical">
+
         <Label Content="Profil użytkownika" 
                FontSize="20" FontWeight="Bold"
                VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -35,7 +38,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
@@ -85,12 +88,13 @@
             <!--#endregion-->
             <!--#region Right side of profile-->
             <StackPanel  Margin="10" Grid.Column="1" Grid.Row="1">
-                <temp:AddressTemplate x:Name="UserAddress" DataContext="{Binding ResidentAddress}"/>
-                <local:EmailEditableListTemplate/>
-                <local:PhoneNumbersEditableListTemplate/>
-
+                <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList"/>
             </StackPanel>
             <!--#endregion-->
+            <StackPanel Grid.Column="2" Grid.Row="1">
+                <local:EmailEditableListTemplate/>
+                <local:PhoneNumbersEditableListTemplate/>
+            </StackPanel>
         </Grid>
         <!--#region Bottom Buttons-->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"

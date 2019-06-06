@@ -38,5 +38,19 @@ namespace SWAM.Models
                 return this._address;
             }
         }
+
+        #region GetAllWharehousesFromDb
+        /// <summary>
+        /// Get list of all Warehouses from database
+        /// </summary>
+        /// <returns>IList with all warehouses in database</returns>
+        public static IList<Warehouse> GetAllWharehousesFromDb()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                return context.Warehouses.ToList();
+            }
+        }
+        #endregion
     }
 }

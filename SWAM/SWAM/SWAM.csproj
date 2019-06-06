@@ -91,6 +91,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +150,12 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml.cs">
       <DependentUpon>PhoneNumbersEditableListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml.cs">
+      <DependentUpon>UserAccessToWarehousesEditableListTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml.cs">
+      <DependentUpon>UserAccessToWarehousesListItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml.cs">
       <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
@@ -225,6 +239,14 @@
     <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.cs" />
     <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.Designer.cs">
       <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs" />
+    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.Designer.cs">
+      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs" />
+    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.Designer.cs">
+      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
@@ -414,6 +436,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.resx">
       <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.resx">
+      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.resx">
+      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

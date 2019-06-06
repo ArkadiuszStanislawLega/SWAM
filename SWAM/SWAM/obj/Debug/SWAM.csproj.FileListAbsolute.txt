@@ -374,3 +374,9 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehou
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateWarehouseAddressId.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateNameOfTableToCorrect.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessTableAddNewProperties.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources

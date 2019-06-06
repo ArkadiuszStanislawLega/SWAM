@@ -79,11 +79,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshEmailsList()
         {
             var user = DataContext as User;
-            
-            Emails.Children.RemoveRange(0, Emails.Children.Count);
-
-            foreach (Email e in user.Emails)
-                Emails.Children.Add(new EmailEditableTemplate { DataContext = e });
+            Emails.ItemsSource = user.Emails;
         }
         #endregion
     }

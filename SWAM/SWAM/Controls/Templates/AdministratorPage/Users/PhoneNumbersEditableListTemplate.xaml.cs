@@ -91,10 +91,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshPhoneList()
         {
             var user = DataContext as User;
-
-            PhoneNumbers.Children.RemoveRange(0, PhoneNumbers.Children.Count);
-            foreach (Phone p in user.Phones)
-                PhoneNumbers.Children.Add(new PhoneNumberEditableTemplate() { DataContext = p });
+            PhoneNumbers.ItemsSource = user.Phones;
         }
         #endregion
     }

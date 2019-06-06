@@ -38,8 +38,8 @@
             <!--#endregion-->
         </StackPanel>
         <!--#region List of emails-->
-        <StackPanel Name="Emails" Grid.Row="1" Margin="0 5 0 0 ">
-            <ItemsControl  ItemsSource="{Binding Emails}">
+        <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
+            <ItemsControl  ItemsSource="{Binding Emails}" Name="Emails">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid>

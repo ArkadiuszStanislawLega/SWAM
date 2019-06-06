@@ -45,8 +45,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             SWAM.MainWindow.TurnOn(this.EditConfirmPassword);
             SWAM.MainWindow.TurnOn(this.EditPermissions);
             //TurnOn(this.EditEmailAddress);
-
-            this.UserAddress.EditAddress();
         }
         #endregion
         #region TurnOffValues

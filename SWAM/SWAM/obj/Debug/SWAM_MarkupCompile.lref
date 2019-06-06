@@ -6,8 +6,13 @@ FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\EmailEdita
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml;;
+FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\MainWindow.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\AdministratorPage.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml;;
@@ -24,7 +29,4 @@ FF:\GitRepo\SWAM\SWAM\SWAM\Styles\PasswordBoxes.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FF:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
-FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml;;
-FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml;;
-FF:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
 
