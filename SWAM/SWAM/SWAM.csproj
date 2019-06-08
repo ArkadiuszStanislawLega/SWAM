@@ -252,6 +252,10 @@
     <Compile Include="Migrations\201906081254382_EmailModelDeleteIdUserAddUser.Designer.cs">
       <DependentUpon>201906081254382_EmailModelDeleteIdUserAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.cs" />
+    <Compile Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.Designer.cs">
+      <DependentUpon>201906081300437_PhonesModelUpdateDeleteUserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
@@ -449,6 +453,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906081254382_EmailModelDeleteIdUserAddUser.resx">
       <DependentUpon>201906081254382_EmailModelDeleteIdUserAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.resx">
+      <DependentUpon>201906081300437_PhonesModelUpdateDeleteUserId.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

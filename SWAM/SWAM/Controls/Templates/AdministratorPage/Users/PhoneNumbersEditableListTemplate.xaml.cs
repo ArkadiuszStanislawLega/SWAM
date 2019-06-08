@@ -50,7 +50,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 {
                     PhoneNumber = this.NewPhone.Text,
                     Note = this.NewPhoneNote.Text,
-                    UserId = user.Id
+                    User = user
                 };
 
                 if (phone != null)

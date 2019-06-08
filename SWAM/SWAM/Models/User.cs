@@ -82,9 +82,7 @@ namespace SWAM.Models
                 //TODO: Catch exceptions - User - Phones
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    this._phones = context.Phones
-                        .SqlQuery("Select * from Phones where UserId=@userId", new SqlParameter("@userId", this._id))
-                        .ToList<Phone>();
+                    this._phones = context.Phones.Where(e => e.User.Id == this._id).ToList();
                 };
                 return this._phones;
             }
