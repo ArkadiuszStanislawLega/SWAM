@@ -380,3 +380,4 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\U
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessTableAddNewProperties.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.EmailModelDeleteIdUserAddUser.resources

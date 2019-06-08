@@ -48,9 +48,7 @@ namespace SWAM.Models
                 //TODO: Catch exceptions - User - Emails
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    this._emails = context.Emails
-                        .SqlQuery("Select * from Emails where UserId=@userId", new SqlParameter("@userId", this._id))
-                        .ToList<Email>();
+                    this._emails = context.Emails.Where(e => e.User.Id == this._id).ToList();
                 };
                 return this._emails;
             }

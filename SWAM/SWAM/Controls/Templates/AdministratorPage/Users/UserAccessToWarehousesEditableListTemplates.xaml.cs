@@ -37,7 +37,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
            // AddNewAccess.IsEnabled = false;
             AddNewAccess.Visibility = Visibility.Collapsed;
             //TODO: Do it to clear the fields as it would at the beginning - Adding access
-
         }
 
         #region RefreshPhoneList

@@ -48,7 +48,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 var email = new Email()
                 {
                     AddressEmail = this.NewEmail.Text,
-                    UserId = user.Id
+                    User = user
                 };
 
                 if (email != null)
