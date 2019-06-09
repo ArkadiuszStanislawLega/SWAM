@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class EmailModelDeleteIdUserAddUser : IMigrationMetadata
+    public sealed partial class AddProductToState : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EmailModelDeleteIdUserAddUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddProductToState));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906081254382_EmailModelDeleteIdUserAddUser"; }
+            get { return "201905152032564_AddProductToState"; }
         }
         
         string IMigrationMetadata.Source

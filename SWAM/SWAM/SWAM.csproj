@@ -248,13 +248,9 @@
     <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.Designer.cs">
       <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906081254382_EmailModelDeleteIdUserAddUser.cs" />
-    <Compile Include="Migrations\201906081254382_EmailModelDeleteIdUserAddUser.Designer.cs">
-      <DependentUpon>201906081254382_EmailModelDeleteIdUserAddUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.cs" />
-    <Compile Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.Designer.cs">
-      <DependentUpon>201906081300437_PhonesModelUpdateDeleteUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201906091702478_ModelUpdate.cs" />
+    <Compile Include="Migrations\201906091702478_ModelUpdate.Designer.cs">
+      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
@@ -451,11 +447,8 @@
     <EmbeddedResource Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.resx">
       <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906081254382_EmailModelDeleteIdUserAddUser.resx">
-      <DependentUpon>201906081254382_EmailModelDeleteIdUserAddUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906081300437_PhonesModelUpdateDeleteUserId.resx">
-      <DependentUpon>201906081300437_PhonesModelUpdateDeleteUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906091702478_ModelUpdate.resx">
+      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

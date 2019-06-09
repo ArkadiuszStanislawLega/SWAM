@@ -110,26 +110,12 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.g.cs
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\App.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_Content.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\App.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\AdministratorPage.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\UsersControlPanel.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\WarehousesControlPanel.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\LoginPage.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageItemPage.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageMagazinePage.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Controls Pages\ManageOrdersPage.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\DataGrides.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Fonts.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\MenuItem.baml
@@ -382,3 +368,68 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehouses
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.EmailModelDeleteIdUserAddUser.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.PhonesModelUpdateDeleteUserId.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Buttons.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\LoginPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageItemPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageMagazinePage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ManageOrdersPage.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\ComboBoxes.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\PasswordBoxes.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBoxes.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\ToolTips.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddUsersTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddPropertiesToUserAccount.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpgdateDataUserAccount.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddContactsAndAddressPropertiesToUser.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddEmailAndPhoneTables.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateModelsContactsToPhone.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateWarehousesChangeContatctsToUsers.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddEmailsToUserAndCustomer.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneFromCharToString.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneAddNote.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdatePhoneUserToIntIdUser.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddNewTableAccessUsersToWarehouses.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateEmailTable.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateWarehouseAddressId.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateNameOfTableToCorrect.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessTableAddNewProperties.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ModelUpdate.resources
