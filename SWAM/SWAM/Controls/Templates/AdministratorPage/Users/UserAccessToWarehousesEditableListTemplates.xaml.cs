@@ -26,6 +26,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             InitializeComponent();
         }
 
+        protected override void OnVisualChildrenChanged(DependencyObject visualAdded, DependencyObject visualRemoved)
+        {
+            base.OnVisualChildrenChanged(visualAdded, visualRemoved);
+            RefreshAccessList();
+        }
+
         private void AddNewAcces_Click(object sender, RoutedEventArgs e)
         {
             this.AddNewAccess.CreateNewAccessMode();
@@ -34,7 +40,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
         public void TurnOffAddNewAccess()
         {
-           // AddNewAccess.IsEnabled = false;
             AddNewAccess.Visibility = Visibility.Collapsed;
             //TODO: Do it to clear the fields as it would at the beginning - Adding access
         }
@@ -45,10 +50,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         public void RefreshAccessList()
         {
-          
             var user = DataContext as User;
 
-            ApplicationDbContext context = new ApplicationDbContext();
+            var context = new ApplicationDbContext();
             List.ItemsSource = context.AccessUsersToWarehouses.Where(u => u.UserId == user.Id).ToList();
         }
         #endregion

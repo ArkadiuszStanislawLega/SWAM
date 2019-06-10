@@ -31,25 +31,9 @@ namespace SWAM.Models
         public virtual Warehouse Warehouse { get; set; }
         public virtual User Administrator { get; set; }
 
-
         public int Id { get => _id; set => _id = value; }
         public UserType TypeOfAccess { get => _typeOfAccess; set => _typeOfAccess = value; }
         public DateTime DateOfGrantingAccess { get => _dateOfGrantingAccess; set => _dateOfGrantingAccess = value; }
         public DateTime? DateOfExpiredAcces { get => _dateOfExpiredAccess; set => _dateOfExpiredAccess = value; }
-
-        
-        /// <summary>
-        /// List of current user access to warehouses list.
-        /// </summary>
-        /// <returns>List of user access list.</returns>
-        public List<AccessUsersToWarehouses> UserListOfAccess()
-        {
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                return  context.AccessUsersToWarehouses
-                        .SqlQuery("Select * from AccessUsersToWarehouses where UserId=@userId", new SqlParameter("@userId", this.UserId))
-                        .ToList<AccessUsersToWarehouses>();
-            }
-        }
     }
 }

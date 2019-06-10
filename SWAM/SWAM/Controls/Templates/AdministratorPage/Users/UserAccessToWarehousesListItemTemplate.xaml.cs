@@ -68,6 +68,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     TypeOfAccess = (Enumerators.UserType)this.EditUserPermissions.SelectedValue,
                     WarehouseId = warehouse.Id,
                     DateOfGrantingAccess = DateTime.Now
+
                     //TODO: Add calendar to set date of expire access
                 });
                 context.SaveChanges();

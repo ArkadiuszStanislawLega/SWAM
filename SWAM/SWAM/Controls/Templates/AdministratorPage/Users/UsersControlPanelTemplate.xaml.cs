@@ -16,10 +16,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
     {
         #region Properties
         /// <summary>
-        /// List with all users in service.
-        /// </summary>
-        private List<User> _users;
-        /// <summary>
         /// View model of item in users list.
         /// </summary>
         public static UsersListViewModel UserListViewModel { get; set; }
@@ -66,12 +62,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshUsersList()
         {
-            this._users = new List<User>();
 
             UserListViewModel.Refresh();
 
-            foreach (User u in UserListViewModel.UsersList)
-                this._users.Add(u);
+
         }
         #endregion
         #region ShowProfile
@@ -98,14 +92,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="userIndexInUsersList">Index number of UsersListItemTemplate in the users list.</param>
         /// <return>Chosen user profile.</return>
         private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
-        { 
+        {
             //finding user whith specific id from user list
-            foreach (User u in this._users)
-                if (u.Id == userIndexInUsersList)
-                    //Returning view of profile
-                    return new UserProfileTemplate() { DataContext = u };
+            var context = new ApplicationDbContext();
+            var user = context.Users.Include(u => u.Accesess)
+                .Include(u => u.Emails)
+                .Include(u => u.Phones)
+                .FirstOrDefault(u => u.Id == userIndexInUsersList);
 
-            return null;
+           return new UserProfileTemplate() { DataContext = user };
+
+      
         }
         #endregion
         #region AddNewUser_Click

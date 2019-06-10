@@ -25,7 +25,7 @@
         <!--#region List of user accesses-->
         <StackPanel Name="Accesses" Grid.Row="1" Margin="0 5 0 0 ">
             <ScrollViewer Name="ScrollOfList">
-                <ItemsControl  ItemsSource="{Binding WarehousesId}" Name="List">
+                <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid>
