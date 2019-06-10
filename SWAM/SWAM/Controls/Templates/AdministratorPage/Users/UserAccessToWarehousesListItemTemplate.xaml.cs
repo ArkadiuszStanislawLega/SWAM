@@ -64,7 +64,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 context.AccessUsersToWarehouses.Add(new Models.AccessUsersToWarehouses()
                 {
                     UserId = user.Id,
-                    WhoGaveAccessUserId = SWAM.MainWindow.LoggedInUser.Id,
+                    AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
                     TypeOfAccess = (Enumerators.UserType)this.EditUserPermissions.SelectedValue,
                     WarehouseId = warehouse.Id,
                     DateOfGrantingAccess = DateTime.Now

@@ -48,7 +48,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 var email = new Email()
                 {
                     AddressEmail = this.NewEmail.Text,
-                    User = user
+                    UserId = user.Id
                 };
 
                 if (email != null)
@@ -79,7 +79,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshEmailsList()
         {
             var user = DataContext as User;
-            Emails.ItemsSource = user.Emails;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+            }
+           
         }
         #endregion
     }

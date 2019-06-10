@@ -50,9 +50,9 @@
                     </Button>
                 </StackPanel>
                 <!--#region List with users-->
-                <Grid Name="UsersList" Grid.Row="1" >
+                <Grid Grid.Row="1" >
                     <ScrollViewer>
-                        <ItemsControl  ItemsSource="{Binding UsersList}">
+                        <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>

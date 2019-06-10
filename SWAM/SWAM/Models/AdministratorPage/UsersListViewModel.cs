@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Data.Entity;
 
 namespace SWAM.Models.AdministratorPage
 {
@@ -17,22 +18,22 @@ namespace SWAM.Models.AdministratorPage
 
         public ObservableCollection<User> UsersList { get => this._usersListViewModel; }
 
-        public void AddUser(User user)
+        public void Refresh()
         {
-            bool idIsInUsersListViewModel = false;
-            if (this._usersListViewModel != null && this._usersListViewModel.Count > 0)
+            this._usersListViewModel.Clear();
+
+            IList<User> dbUsers;
+            using (ApplicationDbContext application = new ApplicationDbContext())
             {
-                foreach (User u in this._usersListViewModel)
-                {
-                    if (user.Id == u.Id)
-                    {
-                        idIsInUsersListViewModel = true;
-                        break;
-                    }
-                }
-                if (!idIsInUsersListViewModel) this._usersListViewModel.Add(user);
-            }
-            else this._usersListViewModel.Add(user);
+                dbUsers = application.Users
+                    .Include(u => u.Phones)
+                    .Include(u => u.Emails)
+                    .Include(u => u.Accesess)
+                    .ToList();
+            };
+
+            foreach (User u in dbUsers)
+                this._usersListViewModel.Add(u);
         }
 
         public void RemoveAll()

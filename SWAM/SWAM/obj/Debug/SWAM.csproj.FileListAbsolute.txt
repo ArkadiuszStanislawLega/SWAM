@@ -449,3 +449,5 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehouses
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ModelUpdate.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyPhones.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyEmails.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ManyToManyUsersAccesses.resources

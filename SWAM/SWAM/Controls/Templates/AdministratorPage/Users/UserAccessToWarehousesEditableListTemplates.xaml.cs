@@ -45,8 +45,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         public void RefreshAccessList()
         {
+          
             var user = DataContext as User;
-            List.ItemsSource = user.WarehousesId;
+
+            ApplicationDbContext context = new ApplicationDbContext();
+            List.ItemsSource = context.AccessUsersToWarehouses.Where(u => u.UserId == user.Id).ToList();
         }
         #endregion
     }

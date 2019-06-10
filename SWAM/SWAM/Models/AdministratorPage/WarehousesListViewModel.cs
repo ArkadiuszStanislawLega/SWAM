@@ -34,6 +34,8 @@ namespace SWAM.Models.AdministratorPage
             else this._warehousesListViewModel.Add(warehouse);
         }
 
+
+
         public void RemoveAll()
         {
             _warehousesListViewModel.Clear();

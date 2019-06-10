@@ -12,11 +12,14 @@ namespace SWAM.Models
     {
         int _id;
         string _addressEmail;
-        User _user;
+
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public int Id { get => _id; set => _id = value; }
         public string AddressEmail { get => _addressEmail; set => _addressEmail = value; }
-        public User User { get => _user; set => _user = value; }
 
         #region UpdateEmail
         /// <summary>

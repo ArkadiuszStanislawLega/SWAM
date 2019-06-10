@@ -30,9 +30,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             DataContext = UserListViewModel;
 
+            UserListViewModel = new UsersListViewModel();
+            UserListViewModel.Refresh();
+
             InitializeComponent();
 
-            UserListViewModel = new UsersListViewModel();
         }
         #endregion
 
@@ -64,20 +66,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshUsersList()
         {
-            UserListViewModel.RemoveAll();
-            if (this._users != null && this._users.Count > 0) this._users.Clear();
+            this._users = new List<User>();
 
-            using (ApplicationDbContext application = new ApplicationDbContext())
-            {
-                this._users = application.Users.Include(u => u.Phones).ToList();
-            };
+            UserListViewModel.Refresh();
 
-            foreach (User u in _users)
-                UserListViewModel.AddUser(u);
-
+            foreach (User u in UserListViewModel.UsersList)
+                this._users.Add(u);
         }
         #endregion
-        #region ShowPrfile
+        #region ShowProfile
         /// <summary>
         /// Showing the profile of user after
         /// after click item from the list with users.

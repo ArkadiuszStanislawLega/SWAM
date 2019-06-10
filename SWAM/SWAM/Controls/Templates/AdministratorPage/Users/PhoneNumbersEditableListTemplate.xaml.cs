@@ -50,7 +50,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 {
                     PhoneNumber = this.NewPhone.Text,
                     Note = this.NewPhoneNote.Text,
-                    User = user
+                    UserId = user.Id
                 };
 
                 if (phone != null)
@@ -91,7 +91,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshPhoneList()
         {
             var user = DataContext as User;
-            PhoneNumbers.ItemsSource = user.Phones;
+
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+            }
+
         }
         #endregion
     }

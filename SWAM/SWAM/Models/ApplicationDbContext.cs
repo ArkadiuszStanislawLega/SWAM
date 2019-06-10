@@ -38,7 +38,12 @@ namespace SWAM
             modelBuilder.Entity<Phone>()
                 .HasRequired(c => c.User)
                 .WithMany(c => c.Phones)
-                .HasForeignKey(u => u.UserId); 
+                .HasForeignKey(u => u.UserId);
+
+            modelBuilder.Entity<Email>()
+                .HasRequired(c => c.User)
+                .WithMany(c => c.Emails)
+                .HasForeignKey(u => u.UserId);               
         }
     }
 }

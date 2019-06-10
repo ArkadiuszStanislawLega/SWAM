@@ -19,7 +19,6 @@ namespace SWAM.Models
         public int UserId { get; set; }
         public virtual User User { get; set; }
 
-
         public int Id { get => _id; set => _id = value; }
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }

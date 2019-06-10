@@ -27,7 +27,7 @@ namespace SWAM.Models
         /// <summary>
         /// All ids of warheouses where user have permition to  access.
         /// </summary>
-        IList<AccessUsersToWarehouses> _warehousesId;
+        public IList<AccessUsersToWarehouses> Accesess { get; set; }
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
@@ -39,6 +39,5 @@ namespace SWAM.Models
         public string Password { get => _password; set => _password = value; }
         public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
-        public IList<AccessUsersToWarehouses> WarehousesId { get => _warehousesId; set => _warehousesId = value; }
     }
 }
