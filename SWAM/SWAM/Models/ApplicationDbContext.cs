@@ -31,5 +31,14 @@ namespace SWAM
             : base("name=DefaultConnection")
         {
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Phone>()
+                .HasRequired(c => c.User)
+                .WithMany(c => c.Phones)
+                .HasForeignKey(u => u.UserId); 
+        }
     }
 }

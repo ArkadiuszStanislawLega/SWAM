@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
+using System.Data.Entity;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -68,7 +69,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             using (ApplicationDbContext application = new ApplicationDbContext())
             {
-                this._users = application.Users.ToList();
+                this._users = application.Users.Include(u => u.Phones).ToList();
             };
 
             foreach (User u in _users)

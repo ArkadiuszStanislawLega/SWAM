@@ -37,55 +37,8 @@ namespace SWAM.Models
         public DateTime? DateOfExpiryOfTheAccount { get => _dateOfExpiryOfTheAccount; set => _dateOfExpiryOfTheAccount = value; }
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
         public string Password { get => _password; set => _password = value; }
-
-        /// <summary>
-        /// Getting from database all email addresses
-        /// </summary>
-        public IList<Email> Emails
-        {
-            get
-            {
-                //TODO: Catch exceptions - User - Emails
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    this._emails = context.Emails.Where(e => e.User.Id == this._id).ToList();
-                };
-                return this._emails;
-            }
-        }
-
-        /// <summary>
-        /// Getting from database all warehouses id where user have permition to access.
-        /// </summary>
-        public IList<AccessUsersToWarehouses> WarehousesId
-        {
-            get
-            {
-                //TODO: Catch exceptions - User - WarehousesId
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    this._warehousesId = context.AccessUsersToWarehouses
-                        .SqlQuery("Select * from AccessUsersToWarehouses where UserId=@userId", new SqlParameter("@userId", this._id))
-                        .ToList<AccessUsersToWarehouses>();
-                }; 
-                return this._warehousesId;
-            }
-        }
-
-        /// <summary>
-        /// Getting from database all user phone numbers.
-        /// </summary>
-        public IList<Phone> Phones
-        {
-            get
-            {
-                //TODO: Catch exceptions - User - Phones
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    this._phones = context.Phones.Where(e => e.User.Id == this._id).ToList();
-                };
-                return this._phones;
-            }
-        }
+        public IList<Phone> Phones { get => _phones; set => _phones = value; }
+        public IList<Email> Emails { get => _emails; set => _emails = value; }
+        public IList<AccessUsersToWarehouses> WarehousesId { get => _warehousesId; set => _warehousesId = value; }
     }
 }

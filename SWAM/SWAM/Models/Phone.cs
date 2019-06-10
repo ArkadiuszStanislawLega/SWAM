@@ -13,12 +13,16 @@ namespace SWAM.Models
         int _id;
         string _note;
         string _phoneNumber;
-        User _user;
+
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
 
         public int Id { get => _id; set => _id = value; }
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }
-        public User User { get => _user; set => _user = value; }
 
         #region UpdateNumber
         /// <summary>
