@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace SWAM.Templates.AdministratorPage
 {
@@ -92,7 +93,6 @@ namespace SWAM.Templates.AdministratorPage
             if (this.RightSection.Children.Count > 0)
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
 
-
             //Items in list are tagget in userListItemTemplate by binding. Tag = UserId.
             this.RightSection.Children.Add(CreateWarehouseProfile((int)warehouseListItemTemplate.Tag));
         }
@@ -106,13 +106,10 @@ namespace SWAM.Templates.AdministratorPage
         /// <return>Chosen warehouse profile.</return>
         private WarehouseProfileTemplate CreateWarehouseProfile(int warehouseIndexInWaregohouseList)
         {
-            //finding warehouse whith specific id from warehouses list
-            foreach (Warehouse w in this._warehouses)
-                if (w.Id == warehouseIndexInWaregohouseList)
-                    //Returning view of profile
-                    return new WarehouseProfileTemplate() { DataContext = w };
-
-            return null;
+            var context = new ApplicationDbContext();
+            return new WarehouseProfileTemplate() {
+                DataContext = context.Warehouses.Include(a => a.Address).FirstOrDefault(w => w.Id == warehouseIndexInWaregohouseList)
+            };
         }
         #endregion
 

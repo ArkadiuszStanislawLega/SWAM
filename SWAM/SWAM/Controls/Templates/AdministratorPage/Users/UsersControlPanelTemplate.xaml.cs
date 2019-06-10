@@ -62,10 +62,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshUsersList()
         {
-
             UserListViewModel.Refresh();
-
-
         }
         #endregion
         #region ShowProfile

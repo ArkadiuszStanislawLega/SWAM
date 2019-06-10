@@ -32,9 +32,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).ShowProfile(this);
-        }
+        private void Button_Click(object sender, RoutedEventArgs e) => SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).ShowProfile(this);
+      
     }
 }

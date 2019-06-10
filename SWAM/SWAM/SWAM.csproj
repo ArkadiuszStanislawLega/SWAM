@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201906101521062_ManyToManyUsersAccesses.Designer.cs">
       <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906101801341_WarehouseModelReview.cs" />
+    <Compile Include="Migrations\201906101801341_WarehouseModelReview.Designer.cs">
+      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
@@ -470,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906101521062_ManyToManyUsersAccesses.resx">
       <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101801341_WarehouseModelReview.resx">
+      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

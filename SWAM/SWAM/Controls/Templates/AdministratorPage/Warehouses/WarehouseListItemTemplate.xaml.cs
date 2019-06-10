@@ -26,9 +26,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this).ShowProfile(this);
-        }
+        private void Button_Click(object sender, RoutedEventArgs e) => SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this).ShowProfile(this);
+        
     }
 }

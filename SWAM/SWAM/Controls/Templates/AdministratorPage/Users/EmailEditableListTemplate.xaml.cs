@@ -79,11 +79,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshEmailsList()
         {
             var user = DataContext as User;
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
-            }
-           
+            var context = new ApplicationDbContext();
+            Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
         }
         #endregion
     }

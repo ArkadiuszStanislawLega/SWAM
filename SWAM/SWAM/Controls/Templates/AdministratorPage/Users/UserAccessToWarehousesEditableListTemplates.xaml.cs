@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
@@ -44,7 +45,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             //TODO: Do it to clear the fields as it would at the beginning - Adding access
         }
 
-        #region RefreshPhoneList
+        #region RefreshAccessList
         /// <summary>
         /// Refreshing view list of accesses.
         /// </summary>
@@ -53,7 +54,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             var user = DataContext as User;
 
             var context = new ApplicationDbContext();
-            List.ItemsSource = context.AccessUsersToWarehouses.Where(u => u.UserId == user.Id).ToList();
+            List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse).Where(u => u.UserId == user.Id).ToList();
         }
         #endregion
     }
