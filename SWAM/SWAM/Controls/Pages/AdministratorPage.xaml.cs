@@ -75,8 +75,7 @@ namespace SWAM.Controls.Pages
                 else nvb.IsSelected = false;
             }
 
-            UserControl userControl;
-            this._userControls.TryGetValue(bookmarkAdministratorPage, out userControl);
+            this._userControls.TryGetValue(bookmarkAdministratorPage, out UserControl userControl);
             ChangeContext(userControl);
         }
         #endregion

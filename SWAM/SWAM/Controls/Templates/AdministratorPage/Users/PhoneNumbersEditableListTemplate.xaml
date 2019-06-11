@@ -8,6 +8,7 @@
              Margin="10 1 10 1"
              Background="{StaticResource GraphiteBrash}"
              mc:Ignorable="d" 
+              MaxWidth="400"
              d:DesignHeight="40" d:DesignWidth="200">
     <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal">

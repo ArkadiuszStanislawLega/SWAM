@@ -7,7 +7,9 @@
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource MainBarBrash}"
+
+        MinHeight="400"
+        MinWidth="300"
         WindowStyle="None"
         Title="SWAM" 
         SizeChanged="MainWindow_SizeChanged"
@@ -15,16 +17,20 @@
         mc:Ignorable="d"
         Height="auto" Width="auto" >
     
+    <Window.Background>
+        <SolidColorBrush Opacity="0.5" Color="{StaticResource Graphite}"/>
+    </Window.Background>
+
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--#region Top Window Title-->
         <ContentControl Grid.Row="0" >
@@ -72,7 +78,7 @@
         </ContentControl>
         <!--#endregion-->
         <!--#region Menu of Window-->
-        <StackPanel Name="MenuPanel"
+        <StackPanel Name="MenuPanel" Height="25" 
                         Grid.Column="1"
                         Grid.Row="1">
             <DockPanel Name="Menu">
@@ -94,8 +100,9 @@
         </StackPanel>
         <!--#region TemporaryNavigationBar -->
         <StackPanel Orientation="Horizontal" 
-                    Name="NavigationBar" 
+                    Name="NavigationBar"  Height="30"
                     VerticalAlignment="Bottom"
+                    Margin="5 0 0 0"
                     HorizontalAlignment="Left" Grid.Row="2">
             <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
             <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
@@ -106,8 +113,20 @@
         <!--#endregion-->
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <StackPanel Name="ContentOfWindow" Grid.Row="3">
-        </StackPanel>
+        <ScrollViewer Grid.Row="3" VerticalAlignment="Top" Name="ScrollContentOfWindow"
+                      HorizontalScrollBarVisibility="Auto">
+            <StackPanel Name="ContentOfWindow" Margin="5 0 5 5">
+            </StackPanel>
+        </ScrollViewer>
         <!--#endregion-->
+
+        <StackPanel Name="Information"  Grid.Row="4"  Margin="5 0 0 10"
+                    VerticalAlignment="Top" Height="20" >
+            <Grid Background="{StaticResource  MainBarBrash}"
+              Opacity="0.8">
+                <Label Name="InformationLabel" Content="Jesteś nie zalogowany" Padding="2"/>
+            </Grid>
+        </StackPanel>
+
     </Grid>
 </Window>

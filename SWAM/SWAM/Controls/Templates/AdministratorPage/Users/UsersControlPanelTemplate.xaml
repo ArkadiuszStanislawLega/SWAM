@@ -28,11 +28,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+            <Grid  Name="LeftSection" Margin="5" Grid.Column="0" Width="190">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
@@ -50,7 +50,7 @@
                     </Button>
                 </StackPanel>
                 <!--#region List with users-->
-                <Grid Grid.Row="1" >
+                <Grid Grid.Row="1" VerticalAlignment="Top">
                     <ScrollViewer>
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
@@ -67,9 +67,13 @@
             </Grid>
             <!--#endregion-->
             <!--#region Right section-->
-            <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
-                <temp:CreateNewUserTemplate/>
-            </StackPanel>
+            <ScrollViewer Name="RightSectionScroll" Margin="5" Grid.Column="1" Grid.Row="0"
+                          HorizontalScrollBarVisibility="Auto" >
+                <StackPanel  Name="RightSection" >
+                    <temp:CreateNewUserTemplate/>
+                </StackPanel>
+
+            </ScrollViewer>
             <!--#endregion-->
         </Grid>
     </Border>

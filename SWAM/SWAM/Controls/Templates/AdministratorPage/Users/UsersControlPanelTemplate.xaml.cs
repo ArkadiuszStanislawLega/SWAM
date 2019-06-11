@@ -9,6 +9,7 @@ using System.Data.Entity;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy UsersControlPanel.xaml
     /// </summary>
@@ -37,11 +38,20 @@ namespace SWAM.Controls.Templates.AdministratorPage
         #region UsersControlPanelTemplate_SizeChanged
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //TODO: make some static values for this below "185"
             if (SWAM.MainWindow.IsMaximized)
-                this.UsersList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
+            {
+                this.UsersList.MaxHeight = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height;
+
+                //var contentOfUserControl = (UserControl)this.RightSection.Children[0];
+                //contentOfUserControl.Height = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height - 65;
+            }
             else
-                this.UsersList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
+            {
+                this.UsersList.MaxHeight = HeightOfAppliaction - Title_Menu_NavigationBar_Height;
+
+                //var contentOfUserControl = (UserControl)this.RightSection.Children[0];
+                //contentOfUserControl.Height = HeightOfAppliaction - Title_Menu_NavigationBar_Height - 85;
+            }
         }
         #endregion
         #region Overrided Methods

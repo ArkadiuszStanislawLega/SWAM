@@ -20,6 +20,7 @@ namespace SWAM
     public partial class MainWindow : Window
     {
         #region Public statics
+        public static double Title_Menu_NavigationBar_Height = 0;
         /// <summary>
         /// Height of the monitor on which the application is currently running.
         /// </summary>
@@ -137,6 +138,7 @@ namespace SWAM
         {
             HeightOfAppliaction = this.ActualHeight;
             WidthOfApplication = this.ActualWidth;
+            Title_Menu_NavigationBar_Height = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
         }
         #endregion  
         #region Window Functions Buttons
