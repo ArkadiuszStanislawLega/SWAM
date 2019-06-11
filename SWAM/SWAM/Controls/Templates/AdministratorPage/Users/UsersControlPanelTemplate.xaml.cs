@@ -42,15 +42,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 this.UsersList.MaxHeight = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height;
 
-                //var contentOfUserControl = (UserControl)this.RightSection.Children[0];
-                //contentOfUserControl.Height = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height - 65;
+                var contentOfUserControl = (UserControl)this.RightSection.Children[0];
+                contentOfUserControl.Height = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height - 65;
             }
             else
             {
                 this.UsersList.MaxHeight = HeightOfAppliaction - Title_Menu_NavigationBar_Height;
 
-                //var contentOfUserControl = (UserControl)this.RightSection.Children[0];
-                //contentOfUserControl.Height = HeightOfAppliaction - Title_Menu_NavigationBar_Height - 85;
+                var contentOfUserControl = (UserControl)this.RightSection.Children[0];
+                contentOfUserControl.Height = HeightOfAppliaction - Title_Menu_NavigationBar_Height - 85;
             }
         }
         #endregion
