@@ -28,6 +28,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
+            //Label in main menu to put information about creating new user.
+            var informationLabel = SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationLabel;
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             { 
                 var user = new User()
@@ -42,12 +45,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (user != null)
                 {
                     context.Users.Add(user);
-                    this.Information.Content = "Udało się dodać użytkownika " + user.Name;
+                    informationLabel.Content = "Udało się dodać użytkownika " + user.Name;
                 }
                 else
                 {
-                    this.Information.Content = "Nie udało się dodać użytkownika " + user.Name;
-                    this.Information.Background = this.FindResource("WhiteCream") as Brush;
+                    informationLabel.Content = "Nie udało się dodać użytkownika " + user.Name;
+                    informationLabel.Background = this.FindResource("WhiteCream") as Brush;
                 }
                 context.SaveChanges();
                 SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();

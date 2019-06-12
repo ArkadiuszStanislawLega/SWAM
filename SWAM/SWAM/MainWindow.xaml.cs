@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
@@ -331,6 +332,47 @@ namespace SWAM
                 return parent;
             else
                 return FindParent<T>(parentObject);
+        }
+        #endregion
+
+        #region Animation
+        /// <summary>
+        /// Slide animation with messages.
+        /// </summary>
+        /// <param name="obj">Object to animate</param>
+        /// <param name="right">If right > 0 and left lower then 0 animation is going from right to left. </param>
+        /// <param name="left">If left > 0 and right lower then 0 animation is going from left to right.</param>
+        /// <param name="time">Duration of animation.</param>
+        /// <param name="opacity">Opacity value after animation.</param>
+        public static void Animation(DependencyObject obj, float right, float left, double time = 1, double opacity = 1)
+        {
+            Storyboard sb = new Storyboard();
+
+            var slideAnimation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(time)),
+                To = new Thickness(0),
+                From = new Thickness(right, 0, left, 0),
+                DecelerationRatio = 1f
+            };
+
+            Storyboard.SetTarget(slideAnimation, obj);
+            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
+            sb.Children.Add(slideAnimation);
+
+            var opacityAnimation = new DoubleAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(time)),
+                From = 0,
+                To = opacity,
+                DecelerationRatio = 1f
+            };
+
+            Storyboard.SetTarget(opacityAnimation, obj);
+            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
+            sb.Children.Add(opacityAnimation);
+
+            sb.Begin();
         }
         #endregion
     }

@@ -11,8 +11,7 @@
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
-             Background="Transparent"
-              d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
         <ObjectDataProvider x:Key="UserType"
@@ -24,7 +23,6 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <!--#endregion-->
-
     <Grid>
         <Grid Name="Content" >
             <!--#region RowDefinitions-->
@@ -99,10 +97,7 @@
                 </ScrollViewer>
                 <!--#endregion-->
 
-                <ScrollViewer>
-                    <userTemp:UserAccessToWarehousesTemplates 
-                        x:Name="AccesToWarehousesList"/>
-                </ScrollViewer>
+                <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList"/>
 
                 <!--#region Right side of profile-->
                 <StackPanel Grid.Column="2" Grid.Row="1">
@@ -111,10 +106,6 @@
                 </StackPanel>
                 <!--#endregion-->
             </StackPanel>
-            <!--#endregion-->
-            <!--#region Bottom Buttons-->
-
-
             <!--#endregion-->
         </Grid>
         <StackPanel 

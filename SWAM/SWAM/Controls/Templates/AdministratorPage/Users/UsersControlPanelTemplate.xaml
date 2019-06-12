@@ -11,6 +11,7 @@
              mc:Ignorable="d" 
              SizeChanged="UsersControlPanelTemplate_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--#region Resources-->
     <UserControl.Resources>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
@@ -20,16 +21,15 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
+    <!--#endregion-->
+    <Border BorderBrush="{StaticResource GraphiteBrash}" 
+            BorderThickness="2" Name="CurrentView">
         <Grid >
             <!--#region Rows&Column Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
             <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
@@ -67,8 +67,7 @@
             </Grid>
             <!--#endregion-->
             <!--#region Right section-->
-
-            <StackPanel  Name="RightSection" Grid.Column="1" Grid.Row="0">
+            <StackPanel  Name="RightSection" Grid.Column="1">
                 <temp:CreateNewUserTemplate />
             </StackPanel>
             <!--#endregion-->
