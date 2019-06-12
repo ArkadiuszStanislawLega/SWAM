@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <Grid  Name="LeftSection" Margin="5" Grid.Column="0" Width="190">
+            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>

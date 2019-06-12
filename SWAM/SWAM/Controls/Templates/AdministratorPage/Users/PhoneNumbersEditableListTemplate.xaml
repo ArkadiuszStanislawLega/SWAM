@@ -6,51 +6,72 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Margin="10 1 10 1"
-             Background="{StaticResource GraphiteBrash}"
              mc:Ignorable="d" 
               MaxWidth="400"
              d:DesignHeight="40" d:DesignWidth="200">
     <StackPanel Margin="5">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Numery kontaktowe"/>
-            <!--#region Button add new phone-->
-            <Button Name="AddNewPhone" Click="AddNewPhone_Click" Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20">
-                <fa:ImageAwesome Icon="Plus" 
+        <!--#region Title-->
+        <Border CornerRadius="10 10 0 0" Padding="5 5 5 0">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.7"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Numery kontaktowe"
+                           Style="{StaticResource TitleOfLists}"
+                           Grid.Column="0"/>
+                <!--#region Button add new phone-->
+                <Button Name="AddNewPhone" Click="AddNewPhone_Click" Style="{StaticResource AdditionSign}" 
+                    Margin="20 0 0 0" Height="20" Width="20" Grid.Column="2">
+                    <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
                                  Margin="-1"
                                  ToolTip="Dodaj nowy numer telefonu."/>
-            </Button>
-            <!--#endregion-->
-        </StackPanel>
-        <!--#region Add new phone type section-->
-        <StackPanel Orientation="Horizontal" Name="AddNewPhoneContainer" Visibility="Collapsed" IsEnabled="False">
-            <TextBox Tag="Nazwa kontaktu" Name="NewPhoneNote" Width="100" Style="{StaticResource UserLogin}"/>
-            <TextBox Tag="Numer telefonu" Name="NewPhone" Width="100"  Style="{StaticResource UserLogin}"/>
-            <Button Name="ConfirmNewPhone" 
+                </Button>
+                <!--#endregion-->
+            </Grid>
+        </Border>
+        <!--#endregion-->
+        <Border CornerRadius="0 0 10 10"
+                Padding="5">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.1"/>
+            </Border.Background>
+            <StackPanel>
+                <!--#region Add new phone type section-->
+                <StackPanel Orientation="Horizontal" Name="AddNewPhoneContainer" Visibility="Collapsed" IsEnabled="False">
+                    <TextBox Tag="Nazwa kontaktu" Name="NewPhoneNote" Width="100" Style="{StaticResource UserLogin}"/>
+                    <TextBox Tag="Numer telefonu" Name="NewPhone" Width="100"  Style="{StaticResource UserLogin}"/>
+                    <Button Name="ConfirmNewPhone" 
                     Click="ConfirmNewPhone_Click" 
                     Style="{StaticResource NavigationButton}" 
                     Height="20" Width="20">
-                <fa:ImageAwesome Icon="Save" 
+                        <fa:ImageAwesome Icon="Save" 
                              ToolTip="Dodaj kontakt."
                              Margin="-4"/>
-            </Button>
-        </StackPanel>
-        <!--#endregion-->
-        <!--#region phone list-->
-        <StackPanel 
+                    </Button>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region phone list-->
+                <StackPanel 
                     Margin="0 5 0 0 "
                     HorizontalAlignment="Left">
-            <ItemsControl  ItemsSource="{Binding Phones}" Name="PhoneNumbers">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <local:PhoneNumberEditableTemplate/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-        <!--#endregion-->
+                    <ItemsControl  ItemsSource="{Binding Phones}" Name="PhoneNumbers">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <local:PhoneNumberEditableTemplate/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+        </Border>
     </StackPanel>
 </UserControl>

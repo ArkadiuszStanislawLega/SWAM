@@ -366,8 +366,6 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\U
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessTableAddNewProperties.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdataAccessUserToWarehousessCorrectNames.resources
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.EmailModelDeleteIdUserAddUser.resources
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.PhonesModelUpdateDeleteUserId.resources
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\NavigationButtonTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Styles\Buttons.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.g.cs
@@ -452,3 +450,10 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyPhones.resource
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyEmails.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ManyToManyUsersAccesses.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseModelReview.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ModelUpdate.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyPhones.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserOneToManyEmails.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ManyToManyUsersAccesses.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseModelReview.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Labels.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBlocks.baml

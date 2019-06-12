@@ -43,8 +43,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             SWAM.MainWindow.TurnOn(this.ConfirmAddAccess);
             SWAM.MainWindow.TurnOn(this.EditWarehouse);
 
-            this.AdministatorName.Content = SWAM.MainWindow.LoggedInUser.Name;
-            this.DateOfGrantingAccess.Content = DateTime.Now;
+            this.AdministatorName.Text = SWAM.MainWindow.LoggedInUser.Name;
+            this.DateOfGrantingAccess.Text = ""+DateTime.Now;
         }
         #endregion
 

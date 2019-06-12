@@ -8,23 +8,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Margin="5">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Dostęp do magazynów"/>
-            <!--#region Add new email button-->
-            <Button Name="AddNewAccessButton" Click="AddNewAcces_Click" Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20">
-                <fa:ImageAwesome Icon="Plus" 
+        <!--#region Title-->
+        <Border CornerRadius="10 10 0 0" Padding="3 3 3 0">
+            <Border.Background>
+                <SolidColorBrush Opacity="0.6" Color="{StaticResource LightGray}"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Dostęp do magazynów"
+                           Foreground="{StaticResource FontsBrash}"
+                           FontWeight="Bold"
+                       Style="{StaticResource ProfileProperties}"
+                           Grid.Column="0"/>
+
+                <!--#region Add new email button-->
+                <Button Name="AddNewAccessButton" Click="AddNewAcces_Click" Style="{StaticResource AdditionSign}" 
+                    Margin="20 0 0 0" Height="20" Width="20" Grid.Column="2">
+                    <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
                                  Margin="-1"
                                  ToolTip="Dodaj nowe uprawnienia do magazynu."/>
-            </Button>
-            <!--#endregion-->
-        </StackPanel>
+                </Button>
+                <!--#endregion-->
+
+            </Grid>
+        </Border>
+        <!--#endregion-->
         <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess"
                 IsEnabled="False" Visibility="Collapsed"/>
         <!--#region List of user accesses-->
-        <StackPanel Name="Accesses" Grid.Row="1" Margin="0 5 0 0 ">
-            <ScrollViewer Name="ScrollOfList">
+        <Border  Grid.Row="1" 
+                 CornerRadius="0 0 10 10"
+                 Padding="5">
+            <Border.Background>
+                <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+            </Border.Background>
+            <StackPanel>
                 <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -34,8 +57,9 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </ScrollViewer>
-        </StackPanel>
+            </StackPanel>
+        </Border>
         <!--#endregion-->
-    </StackPanel>
+        </StackPanel>
+
 </UserControl>

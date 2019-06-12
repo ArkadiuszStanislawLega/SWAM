@@ -17,6 +17,8 @@
                 <ResourceDictionary Source="Styles/PasswordBoxes.xaml"/>
                 <ResourceDictionary Source="Styles/ToolTips.xaml"/>
                 <ResourceDictionary Source="Styles/ComboBoxes.xaml"/>
+                <ResourceDictionary Source="Styles/Labels.xaml"/>
+                <ResourceDictionary Source="Styles/TextBlocks.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

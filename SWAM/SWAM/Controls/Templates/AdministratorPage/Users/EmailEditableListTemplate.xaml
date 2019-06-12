@@ -7,48 +7,71 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Margin="10 1 10 1"
-             Background="{StaticResource GraphiteBrash}"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Margin="5">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Email"/>
-            <!--#region Add new email button-->
-            <Button Name="AddNewEmail" Click="AddNewEmail_Click" Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20">
-                <fa:ImageAwesome Icon="Plus" 
+        <!--#region Title-->
+        <Border CornerRadius="5 5 0 0"
+                Padding="5 5 5 0">
+            <Border.Background>
+                <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Email"
+                       Style="{StaticResource TitleOfLists}"
+                       Grid.Column="0"/>
+                <!--#region Add new email button-->
+                <Button Name="AddNewEmail" Click="AddNewEmail_Click" Style="{StaticResource AdditionSign}" 
+                    Margin="20 0 0 0" Height="20" Width="20"
+                    Grid.Column="2">
+                    <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
                                  Margin="-1"
                                  ToolTip="Dodaj nowy numer telefonu."/>
-            </Button>
-            <!--#endregion-->
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" 
+                </Button>
+                <!--#endregion-->
+            </Grid>
+        </Border>
+        <!--#endregion-->
+        <Border CornerRadius="0 0 10 10"
+                Padding="5">
+            <Border.Background>
+                <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+            </Border.Background>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" 
                     Name="AddNewEmailContainer" 
                     Visibility="Collapsed" 
                     IsEnabled="False">
-            <TextBox Tag="Email" Name="NewEmail" Width="100"  Style="{StaticResource UserLogin}"/>
-            <!--#region Confirm new email button-->
-            <Button Name="ConfirmNewEmail" 
+                    <TextBox Tag="Email" Name="NewEmail" Width="100"  Style="{StaticResource UserLogin}"/>
+                    <!--#region Confirm new email button-->
+                    <Button Name="ConfirmNewEmail" 
                     Click="ConfirmNewEmail_Click"
                     Style="{StaticResource NavigationButton}" Height="20" Width="20">
-                <fa:ImageAwesome Icon="Save" 
+                        <fa:ImageAwesome Icon="Save" 
                              ToolTip="Dodaj email"
                              Margin="-4"/>
-            </Button>
-            <!--#endregion-->
-        </StackPanel>
-        <!--#region List of emails-->
-        <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
-            <ItemsControl  ItemsSource="{Binding Emails}" Name="Emails">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <local:EmailEditableTemplate/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-        <!--#endregion-->
+                    </Button>
+                    <!--#endregion-->
+                </StackPanel>
+                <!--#region List of emails-->
+                <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
+                    <ItemsControl  ItemsSource="{Binding Emails}" Name="Emails">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <local:EmailEditableTemplate/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+        </Border>
     </StackPanel>
 </UserControl>

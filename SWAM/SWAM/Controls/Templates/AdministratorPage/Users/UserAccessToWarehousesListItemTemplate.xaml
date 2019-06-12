@@ -21,47 +21,130 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
-    <StackPanel Background="{StaticResource GraphiteBrash}">
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Typ uprawnienia:"/>
-            <Label Name="UserPermision" Content="{Binding TypeOfAccess}" />
-            <ComboBox Visibility="Collapsed" 
+    <Border CornerRadius="10" Padding="10">
+        <Border.Background>
+            <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
+        </Border.Background>
+        
+        <StackPanel>
+            <!--#region Type of permission-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Typ uprawnienia:"
+                   Style="{StaticResource ProfileProperties}"
+                           Grid.Column="0"/>
+                <TextBlock Name="UserPermision" 
+                           Text="{Binding TypeOfAccess}"
+                           HorizontalAlignment="Right"
+                           Grid.Column="2"/>
+                <ComboBox Visibility="Collapsed" 
                       IsEnabled="False"
                       Name="EditUserPermissions" 
+                      Grid.Column="2"
                       ItemsSource="{Binding Source={StaticResource UserType}}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <Label Content="Magazyn:"/>
-            <Label Name="WarehouseName" Content="{Binding Warehouse.Name}" />
-            <ComboBox Visibility="Collapsed" 
+            </Grid>
+            <!--#endregion-->
+            <!--#region Warehouse name-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Magazyn:" Grid.Column="0"
+                       Style="{StaticResource ProfileProperties}"/>
+                <TextBlock Name="WarehouseName" 
+                       Text="{Binding Warehouse.Name}" 
+                       Grid.Column="2"/>
+                <ComboBox Visibility="Collapsed" 
                       IsEnabled="False"
-                      Name="EditWarehouse" >
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Label Content="{Binding Name}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </StackPanel>
-        <Label Content="Nazwa użytkownika przydzielającego uprawnienia:"/>
-        <Label Name="AdministatorName" Content="{Binding AdministratorNameWhoGaveGrant}"/>
-        <Label Content="Data przydzielenia uprawnienia" />
-        <Label Name="DateOfGrantingAccess" Content="{Binding DateOfGrantingAccess}"/>
-        <Label Content="Data wygaśnięcia uprawnienia" />
-        <StackPanel Orientation="Horizontal">
-            <Label Name="DateOfAccessExpired" Content="{Binding DateOfExpiredAcces}"/>
-            <Button Width="20" Height="20" 
-                    Style="{StaticResource NavigationButton}"
-                    Margin="20 0 0 0">
-                <fa:ImageAwesome Icon="Calendar" 
+                      Name="EditWarehouse"
+                          Grid.Column="2">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Label Content="{Binding Name}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <!--#endregion-->
+            <!--#region Administrator name-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Nazwa użytkownika przydzielającego uprawnienia:"
+                   Style="{StaticResource ProfileProperties}"
+                           Grid.Column="0"/>
+                <TextBlock Name="AdministatorName" 
+                       Text="{Binding AdministratorNameWhoGaveGrant}"
+                           Grid.Column="2"
+                           Grid.Row="1"/>
+            </Grid>
+            <!--#endregion-->
+            <!--#region Date of create access-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Data przydzielenia uprawnienia"
+                           Style="{StaticResource ProfileProperties}"
+                           Grid.Column="0"/>
+                <TextBlock Name="DateOfGrantingAccess" 
+                           Text="{Binding DateOfGrantingAccess}"
+                           Grid.Column="2"
+                           Grid.Row="1
+"/>
+            </Grid>
+            <!--#endregion-->
+            <!--#region Date of expire access-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Data wygaśnięcia uprawnienia" 
+                            Style="{StaticResource ProfileProperties}"
+                           Grid.Column="0"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="2"
+                            Grid.Row="1">
+                    <Button Width="20" Height="20" 
+                            Style="{StaticResource NavigationButton}"
+                            Margin="20 0 0 0">
+                        <fa:ImageAwesome Icon="Calendar" 
                              Foreground="{StaticResource FontsBrash}"
                              Margin="-4"
                              ToolTip="Edytuj kontakt"/>
-            </Button>
-        </StackPanel>
-        <Button Name="ConfirmAddAccess"
+                    </Button>
+                    <Label Name="DateOfAccessExpired" Content="{Binding DateOfExpiredAcces}"/>
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
+            <Button Name="ConfirmAddAccess"
                 Click="ConfirmAddAccess_Click"
                 Margin="5"
                 IsEnabled="False"
@@ -69,5 +152,6 @@
                 Width="140" 
                 Content="Dodaj uprawnienia"
                 Style="{StaticResource NavigationButton}"/>
-    </StackPanel>
+        </StackPanel>
+    </Border>
 </UserControl>
