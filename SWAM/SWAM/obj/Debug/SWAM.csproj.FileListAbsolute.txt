@@ -457,3 +457,5 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ManyToManyUsersAccesses.reso
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseModelReview.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Labels.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBlocks.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Labels.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\TextBlocks.baml

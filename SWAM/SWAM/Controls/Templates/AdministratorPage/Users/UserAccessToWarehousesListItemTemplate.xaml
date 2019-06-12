@@ -138,7 +138,7 @@
                         <fa:ImageAwesome Icon="Calendar" 
                              Foreground="{StaticResource FontsBrash}"
                              Margin="-4"
-                             ToolTip="Edytuj kontakt"/>
+                             ToolTip="Edytuj czas wygaśnięcia uprawnienia"/>
                     </Button>
                     <Label Name="DateOfAccessExpired" Content="{Binding DateOfExpiredAcces}"/>
                 </StackPanel>

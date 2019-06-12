@@ -31,7 +31,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             TurnOffValues();
             TurnOnEditFields();
 
-            this.ConfirmChanges.IsEnabled = true;
+            SWAM.MainWindow.TurnOn(this.ConfirmChanges);
         }
 
         #region TurnOnEditFields

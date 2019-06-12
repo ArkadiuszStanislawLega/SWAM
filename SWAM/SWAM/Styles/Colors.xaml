@@ -19,6 +19,12 @@
 
     <Color x:Key="DarkGraphite">#1e1e1e</Color>
     <SolidColorBrush x:Key="DarkGraphiteBrash" Color="{StaticResource DarkGraphite}" />
+
+    <Color x:Key="LightBlue">#7ac1ff</Color>
+    <SolidColorBrush x:Key="LightBlueBrash" Color="{StaticResource LightBlue}" />
+
+    <Color x:Key="Blue">#007acc</Color>
+    <SolidColorBrush x:Key="BlueBrash" Color="{StaticResource Blue}" />
     <!--#endregion-->
     
     <SolidColorBrush x:Key="MainBarBrash" Color="{StaticResource Graphite}"/>

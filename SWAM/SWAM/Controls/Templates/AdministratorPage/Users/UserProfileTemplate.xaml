@@ -11,6 +11,7 @@
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
+             Background="Transparent"
               d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
@@ -24,120 +25,121 @@
     </UserControl.Resources>
     <!--#endregion-->
 
-    <Grid Name="Content" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" 
-               Style="{StaticResource Title}"
-                Text="Profil użytkownika:"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+    <Grid>
+        <Grid Name="Content" >
+            <!--#region RowDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <!--#endregion-->
-            <!--#region LeftSide Of profile-->
-            <ScrollViewer>
-                <StackPanel Margin="10" Grid.Row="1" Grid.Column="0">
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Nazwa użytkownika" 
+            <TextBlock Grid.Row="0" 
+               Style="{StaticResource Title}"
+               Text="Profil użytkownika:"/>
+            <!--#region User Profile-->
+            <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Grid.Row="1">
+
+                <!--#region Left Side Of profile-->
+                <ScrollViewer>
+                    <StackPanel Margin="10" Grid.Row="1" Grid.Column="0">
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Nazwa użytkownika" 
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="Name" Text="{Binding Name}"/>
-                        <TextBox Name="EditName" Text="{Binding Name}" 
+                            <TextBlock Name="Name" Text="{Binding Name}"/>
+                            <TextBox Name="EditName" Text="{Binding Name}" 
                          IsEnabled="False" Visibility="Collapsed"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Uprawnienia" 
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Uprawnienia" 
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
-                        <ComboBox Name="EditPermissions"
+                            <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
+                            <ComboBox Name="EditPermissions"
                           ItemsSource="{Binding Source={StaticResource UserType}}"
                           Visibility="Collapsed"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Data założenia konta"
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Data założenia konta"
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Data wygaśnięcia konta"
+                            <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Data wygaśnięcia konta"
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Końcowa data blokady konta"
+                            <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Końcowa data blokady konta"
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="BlockadeDate" Text="{Binding ExpiryDateOfTheBlockade}"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Status konta"
+                            <TextBlock Name="BlockadeDate" Text="{Binding ExpiryDateOfTheBlockade}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Status konta"
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
-                        <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
+                            <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
+                            <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
                          IsEnabled="False" Visibility="Collapsed" ToolTip="Jeżeli zaznaczony to aktywne."/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Reset hasła"
+                        </StackPanel>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Reset hasła"
                                Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Name="Password" Text="{Binding Password}"/>
-                        <PasswordBox Name="EditPassword" 
+                            <TextBlock Name="Password" Text="{Binding Password}"/>
+                            <PasswordBox Name="EditPassword" 
                          IsEnabled="False" Visibility="Collapsed"/>
-                        <PasswordBox Name="EditConfirmPassword"
+                            <PasswordBox Name="EditConfirmPassword"
                          IsEnabled="False" Visibility="Collapsed"/>
 
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
-            <!--#endregion-->
-            <ScrollViewer>
-                <userTemp:UserAccessToWarehousesTemplates 
-                        x:Name="AccesToWarehousesList"/>
-            </ScrollViewer>
+                </ScrollViewer>
+                <!--#endregion-->
 
-            <!--#region Left side of profile-->
-            <StackPanel Grid.Column="2" Grid.Row="1">
-                <local:EmailEditableListTemplate/>
-                <local:PhoneNumbersEditableListTemplate/>
+                <ScrollViewer>
+                    <userTemp:UserAccessToWarehousesTemplates 
+                        x:Name="AccesToWarehousesList"/>
+                </ScrollViewer>
+
+                <!--#region Right side of profile-->
+                <StackPanel Grid.Column="2" Grid.Row="1">
+                    <local:EmailEditableListTemplate/>
+                    <local:PhoneNumbersEditableListTemplate/>
+                </StackPanel>
+                <!--#endregion-->
             </StackPanel>
             <!--#endregion-->
-        </StackPanel>
+            <!--#region Bottom Buttons-->
 
-        <!--#region Bottom Buttons-->
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Height="40"
-                    HorizontalAlignment="Center" Grid.Row="2" Name="Buttons"
-                        >
+
+            <!--#endregion-->
+        </Grid>
+        <StackPanel 
+                    Orientation="Horizontal"  
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Name="Buttons">
             <Button Name="BlockUser" 
-                    Width="auto"
-                    Height="40" HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Bottom"
-                    Margin="0 0 1 0"
-                    Content="Zablokuj użytkownika"
-                    Click="BlockUser_Click"
-                    Style="{StaticResource NavigationButton}"/>
+                        Content="Zablokuj"
+                        Click="BlockUser_Click"
+                        Style="{StaticResource UserProfilebuttons}"/>
             <Button Name="DeletUser" 
-                    Width="auto"
-                    Height="40" HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Bottom"
-                    Margin="0 0 1 0"
-                    Content="Usuń użytkownika"
-                    Click="DeletUser_Click"
-                    Style="{StaticResource NavigationButton}"/>
+                        Content="Usuń "
+                        Click="DeletUser_Click"
+                        Style="{StaticResource UserProfilebuttons}"/>
             <Button Name="EditUser" 
-                    Width="auto"
-                    Height="40" HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Bottom"
-                    Margin="0 0 1 0"
-                    Content="Edytuj użytkownika"
-                    Click="EditUser_Click"
-                    Style="{StaticResource NavigationButton}"/>
+                        Content="Edytuj"
+                        Click="EditUser_Click"
+                        Style="{StaticResource UserProfilebuttons}"/>
             <Button Name="ConfirmChanges" 
-                    Width="auto"
-                    Height="40" HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Bottom"
-                    Content="Zatwierdź zmiany"
-                    IsEnabled="False"
-                    Click="ConfirmChanges_Click"   
-                    Style="{StaticResource NavigationButton}"/>
+                        Content="Zatwierdź zmiany"
+                        IsEnabled="False"
+                        Visibility="Collapsed"
+                        Click="ConfirmChanges_Click"   
+                        Style="{StaticResource UserProfilebuttons}"/>
         </StackPanel>
-        <!--#endregion-->
     </Grid>
 </UserControl>

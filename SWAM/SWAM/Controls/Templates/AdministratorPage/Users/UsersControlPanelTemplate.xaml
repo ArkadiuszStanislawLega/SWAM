@@ -67,13 +67,10 @@
             </Grid>
             <!--#endregion-->
             <!--#region Right section-->
-            <ScrollViewer Name="RightSectionScroll" Margin="5" Grid.Column="1" Grid.Row="0"
-                          HorizontalScrollBarVisibility="Auto" >
-                <StackPanel  Name="RightSection" >
-                    <temp:CreateNewUserTemplate/>
-                </StackPanel>
 
-            </ScrollViewer>
+            <StackPanel  Name="RightSection" Grid.Column="1" Grid.Row="0">
+                <temp:CreateNewUserTemplate />
+            </StackPanel>
             <!--#endregion-->
         </Grid>
     </Border>
