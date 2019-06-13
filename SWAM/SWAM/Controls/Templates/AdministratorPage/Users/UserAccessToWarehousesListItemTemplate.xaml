@@ -89,7 +89,7 @@
                    Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
                 <TextBlock Name="AdministatorName" 
-                       Text="{Binding AdministratorNameWhoGaveGrant}"
+                       Text="{Binding Administrator.Name}"
                            Grid.Column="2"
                            Grid.Row="1"/>
             </Grid>

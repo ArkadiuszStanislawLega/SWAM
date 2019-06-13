@@ -25,7 +25,7 @@ namespace SWAM.Models
 
         [Required]
         [ForeignKey("Administrator")]
-        public int AdministratorId;
+        public int AdministratorId { get; set; }
 
         public virtual User User { get; set; }
         public virtual Warehouse Warehouse { get; set; }

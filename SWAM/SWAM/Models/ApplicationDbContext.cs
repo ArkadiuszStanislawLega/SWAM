@@ -47,6 +47,16 @@ namespace SWAM
 
             modelBuilder.Entity<Warehouse>()
                 .HasRequired(a => a.Address);
+
+            modelBuilder.Entity<AccessUsersToWarehouses>()
+                        .HasRequired(c => c.Administrator)
+                        .WithMany()
+                        .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AccessUsersToWarehouses>()
+                  .HasRequired(c => c.User)
+                  .WithMany()
+                  .WillCascadeOnDelete(false);
         }
     }
 }

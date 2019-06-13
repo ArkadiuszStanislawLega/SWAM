@@ -15,7 +15,7 @@ namespace SWAM.Converters
     /// </summary>
     class DateOfExpireColorConverter : System.Windows.Data.IValueConverter
     {
-        Brush _returnBrash = Brushes.White;
+        Brush _returnBrash = (Brush)Application.Current.FindResource("FontsBrash");
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

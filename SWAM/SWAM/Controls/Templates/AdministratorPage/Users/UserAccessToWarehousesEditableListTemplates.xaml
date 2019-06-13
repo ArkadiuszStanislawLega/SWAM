@@ -37,10 +37,6 @@
 
             </Grid>
         </Border>
-        <!--#endregion-->
-        <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess"
-                IsEnabled="False" Visibility="Collapsed"/>
-        <!--#region List of user accesses-->
         <Border  Grid.Row="1" 
                  CornerRadius="0 0 10 10"
                  Padding="5">
@@ -48,6 +44,10 @@
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <StackPanel>
+                <!--#endregion-->
+                <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess"
+                        IsEnabled="False" Visibility="Collapsed"/>
+                <!--#region List of user accesses-->
                 <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

@@ -54,7 +54,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             var user = DataContext as User;
 
             var context = new ApplicationDbContext();
-            List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse).Where(u => u.UserId == user.Id).ToList();
+            List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse)
+                .Include(a => a.Administrator)
+                .Where(u => u.UserId == user.Id).ToList();
         }
         #endregion
     }
