@@ -75,8 +75,9 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                     <Label Content="Zaznacz datę wygaśnięcia konta"/>
-                    <Calendar  Height="170" HorizontalAlignment="Center" Margin="10 0 0 10"
-                 Name="AccoutnExpireCallendar" VerticalAlignment="Center" Width="180" />
+                    <Calendar  HorizontalAlignment="Center" Margin="10 0 0 10"
+                                Name="AccoutnExpireCallendar" VerticalAlignment="Center" 
+                              />
                 </StackPanel>
             </Grid>
  

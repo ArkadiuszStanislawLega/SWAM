@@ -19,6 +19,7 @@
                 <ResourceDictionary Source="Styles/ComboBoxes.xaml"/>
                 <ResourceDictionary Source="Styles/Labels.xaml"/>
                 <ResourceDictionary Source="Styles/TextBlocks.xaml"/>
+                <ResourceDictionary Source="Styles/Callendar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
