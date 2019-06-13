@@ -70,4 +70,23 @@
         </StackPanel>
         <!--#endregion-->
     </Grid>
+    <!--#region On loaded animation-->
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                     Duration="0:0:0.7" 
+                                     From="0" To="20"
+                                     DecelerationRatio="1"
+                                     />
+                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:0.7"
+                                        From="0" To="1"
+                                        DecelerationRatio="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <!--#endregion-->
 </UserControl>

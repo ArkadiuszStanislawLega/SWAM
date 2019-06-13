@@ -32,8 +32,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             InitializeComponent();
 
             this.EditWarehouse.ItemsSource = _warehouses;
-
-            this.Loaded += (sender, e) => ShowPageAnimation(this).Begin();
         }
         #region CreateNewAccessMode
         /// <summary>
@@ -78,84 +76,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             UserAccessToWarehousesTemplates userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
             userAccessToWarehousesTemplates.RefreshAccessList();
             userAccessToWarehousesTemplates.TurnOffAddNewAccess();
-        }
-        #endregion
-
-
-        #region HidePageAnimation
-        /// <summary>
-        /// Animation for hide page.
-        /// </summary>
-        /// <param name="obj">Container whom is animating.</param>
-        /// <returns></returns>
-        protected Storyboard HidePageAnimation(DependencyObject obj)
-        {
-            Storyboard sb = new Storyboard();
-
-            var opacityAnimation = new DoubleAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(0.4)),
-                From = 200,
-                To = 0,
-                DecelerationRatio = 1f
-            };
-
-            var slideAnimation = new ThicknessAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(0.4)),
-                From = new Thickness(0),
-                To = new Thickness(0, - 200, 0, 200),
-                DecelerationRatio = 1f
-            };
-
-            Storyboard.SetTarget(slideAnimation, obj);
-            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
-            sb.Children.Add(slideAnimation);
-
-
-            Storyboard.SetTarget(opacityAnimation, obj);
-            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Height"));
-            sb.Children.Add(opacityAnimation);
-
-            return sb;
-        }
-        #endregion
-        #region ShowPageAnimation
-        /// <summary>
-        /// Animation for show page/load.
-        /// </summary>
-        /// <param name="obj">Container whom is animating.</param>
-        /// <returns></returns>
-        protected Storyboard ShowPageAnimation(DependencyObject obj)
-        {
-            Storyboard sb = new Storyboard();
-
-            var heightAnimation = new DoubleAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(0.4)),
-                From = 0,
-                To = 200,
-                DecelerationRatio = 1f
-            };
-
-            var slideAnimation = new ThicknessAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(0.4)),
-                From = new Thickness(0, 0, 0, 0),
-                To = new Thickness(0),
-                DecelerationRatio = 1f
-            };
-
-            Storyboard.SetTarget(slideAnimation, obj);
-            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
-            sb.Children.Add(slideAnimation);
-
-
-            Storyboard.SetTarget(heightAnimation, obj);
-            Storyboard.SetTargetProperty(heightAnimation, new PropertyPath("Height"));
-            sb.Children.Add(heightAnimation);
-
-            return sb;
         }
         #endregion
     }

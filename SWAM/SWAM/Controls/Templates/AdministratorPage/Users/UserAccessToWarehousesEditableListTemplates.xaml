@@ -60,6 +60,24 @@
             </StackPanel>
         </Border>
         <!--#endregion-->
-        </StackPanel>
+    </StackPanel>
+    <!--#region On loaded animation-->
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1"
+                                        From="0 -50 0 0" To="1"
+                                        DecelerationRatio="1"/>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:1" 
+                                      From="0" To="1"/>
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <!--#endregion-->
 
 </UserControl>
