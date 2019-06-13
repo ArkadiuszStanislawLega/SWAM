@@ -8,12 +8,14 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:conv="clr-namespace:SWAM.Converters"
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
              d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
+        <conv:DateOfExpireColorConverter x:Key="dateOfExpireColorConverter"/>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
                 ObjectType="{x:Type System:Enum}">
@@ -69,7 +71,9 @@
                         <StackPanel Margin="5">
                             <TextBlock Text="Data wygaśnięcia konta"
                                Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"/>
+                            <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"
+                                       Foreground="{Binding  ElementName=ExpireDate, Path=Text, 
+                                       Converter={StaticResource dateOfExpireColorConverter}}"/>
                         </StackPanel>
                         <StackPanel Margin="5">
                             <TextBlock Text="Końcowa data blokady konta"

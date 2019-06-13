@@ -32,14 +32,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
             var informationLabel = SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationLabel;
 
             using (ApplicationDbContext context = new ApplicationDbContext())
-            { 
+            {
                 var user = new User()
                 {
                     Name = this.NewUserName.Text,
                     Password = this.UserPassword.Password,
                     DateOfCreate = DateTime.Now,
                     Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                    StatusOfUserAccount = this.AccountStatus.IsChecked == true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked
+                    StatusOfUserAccount = this.AccountStatus.IsChecked == true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                    DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
                 };
 
                 if (user != null)

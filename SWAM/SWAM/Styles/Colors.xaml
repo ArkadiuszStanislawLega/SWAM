@@ -25,7 +25,10 @@
 
     <Color x:Key="Blue">#007acc</Color>
     <SolidColorBrush x:Key="BlueBrash" Color="{StaticResource Blue}" />
-    
+
+    <Color x:Key="Red">#bd3835</Color>
+    <SolidColorBrush x:Key="RedBrash" Color="{StaticResource Red}" />
+
     <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
     <!--#endregion-->
     
@@ -33,7 +36,8 @@
     <SolidColorBrush x:Key="BackgroundOfPagesBrash" Color="{StaticResource DarkGraphite}"/>
     
     <SolidColorBrush x:Key="FontsBrash" Color="{StaticResource WhiteCream}"/>
-    
+    <SolidColorBrush x:Key="WarningBrash" Color="{StaticResource Red}"/>
+
     <SolidColorBrush x:Key="EnabledBrash" Color="{StaticResource LightGray}"/>
     <SolidColorBrush x:Key="SelectedBrash" Color="{StaticResource Graphite}"/>
 

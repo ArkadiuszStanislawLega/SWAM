@@ -51,34 +51,46 @@
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
                 <StackPanel Grid.Row="1" >
+                    <!--#region Name of user-->
                     <StackPanel Margin="10">
                         <TextBlock Text="Nazwa użytkownika"
                            Style="{StaticResource ProfileProperties}"/>
                         <TextBox Name="NewUserName" Width="250"/>
                     </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Password-->
                     <StackPanel Margin="10">
                         <TextBlock Text="Hasło"
                            Style="{StaticResource ProfileProperties}"/>
                         <PasswordBox Name="UserPassword"/>
                     </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Confirm password-->
                     <StackPanel Margin="10">
                         <TextBlock Text="Potwierdź Hasło"
-                       Style="{StaticResource ProfileProperties}"/>
+                                   Style="{StaticResource ProfileProperties}"/>
                         <PasswordBox Name="ConfirmPassword"/>
                     </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Type of user-->
                     <StackPanel Margin="10">
                         <TextBlock Text="Typ użytkownika"
                            Style="{StaticResource ProfileProperties}"/>
                         <ComboBox Name="UserPermissions" ItemsSource="{Binding Source={StaticResource UserType}}"/>
                     </StackPanel>
+                    <!--#endregion-->
                     <CheckBox Name="AccountStatus" Content="Aktywuj konto" Margin="5" IsChecked="True"/>
                 </StackPanel>
+                <!--#region Callendar Date of expire-->
                 <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
-                    <Label Content="Zaznacz datę wygaśnięcia konta"/>
-                    <Calendar  HorizontalAlignment="Center" Margin="10 0 0 10"
-                                Name="AccoutnExpireCallendar" VerticalAlignment="Center" 
-                              />
+                    <TextBlock Text="Data wygaśnięcia konta"  
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource ProfileProperties}"/>
+                    <Calendar  Name="AccoutnExpireCallendar"
+                               HorizontalAlignment="Center" Margin="10 0 0 10"
+                               VerticalAlignment="Center" />
                 </StackPanel>
+                <!--#endregion-->
             </Grid>
  
    
@@ -88,9 +100,5 @@
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
                 Style="{StaticResource UserProfilebuttons}"/>
-        
-        <Label Name="Information" Grid.Column="0" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>
