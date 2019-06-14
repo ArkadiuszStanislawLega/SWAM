@@ -51,13 +51,16 @@
                 </StackPanel>
                 <!--#region List with users-->
                 <Grid Grid.Row="1" VerticalAlignment="Top">
-                    <ScrollViewer>
+                    <ScrollViewer Name="ScrollOfUserList">
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
+
                                 <DataTemplate>
+
                                     <Grid>
                                         <temp:UsersListItemTemplate/>
                                     </Grid>
+
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

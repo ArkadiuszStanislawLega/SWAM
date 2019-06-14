@@ -43,8 +43,6 @@ namespace SWAM.Templates.AdministratorPage
             DataContext = WarhousesListViewModel;
 
             RefreshWarhousesList();
-
-            WarehousesList.Height = RightSection.Height - FindWarehouseOrCreate.Height;
         }
         #region WarehousesList_SizeChanged
         /// <summary>
@@ -54,11 +52,9 @@ namespace SWAM.Templates.AdministratorPage
         /// <param name="e"></param>
         private void WarehousesList_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //TODO: make some static values for this below "185"
-            if (SWAM.MainWindow.IsMaximized)
-                this.WarehousesList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
-            else
-                this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
+            //TODO: Veryfy this 185.
+            if (SWAM.MainWindow.IsMaximized) this.WarehousesList.MaxHeight = SWAM.MainWindow.CurrentMonitorDeviceHigh - 185;
+            else this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
         }
         #endregion
 

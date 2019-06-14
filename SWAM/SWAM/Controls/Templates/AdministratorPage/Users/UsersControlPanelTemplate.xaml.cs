@@ -37,20 +37,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         #region UsersControlPanelTemplate_SizeChanged
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (SWAM.MainWindow.IsMaximized)
-            {
-                this.UsersList.MaxHeight = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height;
-
-                var contentOfUserControl = (UserControl)this.RightSection.Children[0];
-                contentOfUserControl.Height = CurrentMonitorDeviceHigh - Title_Menu_NavigationBar_Height - 50;
-            }
-            else
-            {
-                this.UsersList.MaxHeight = HeightOfAppliaction - Title_Menu_NavigationBar_Height;
-
-                var contentOfUserControl = (UserControl)this.RightSection.Children[0];
-                contentOfUserControl.Height = HeightOfAppliaction - Title_Menu_NavigationBar_Height - 70;
-            }
+            //TODO: Veryfy this 64.
+            if (SWAM.MainWindow.IsMaximized) this.Height = CurrentMonitorDeviceHigh - EverythingExceptTheMainContentHeight - 64;
+            else this.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 64;
+      
             ChangeSizeOfScrollInProfile();
         }
         #endregion

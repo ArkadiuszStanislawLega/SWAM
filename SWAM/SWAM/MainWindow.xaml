@@ -7,7 +7,6 @@
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-
         MinHeight="400"
         MinWidth="300"
         WindowStyle="None"
@@ -25,6 +24,7 @@
         <WindowChrome />
     </WindowChrome.WindowChrome>
     <Grid>
+        <!--#region Rows definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -32,6 +32,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <!--#endregion-->
         <!--#region Top Window Title-->
         <ContentControl Grid.Row="0" >
             <Grid Name="TitlePanel"
@@ -99,7 +100,7 @@
                 <StackPanel></StackPanel>
             </DockPanel>
         </StackPanel>
-        <!--#region TemporaryNavigationBar -->
+        <!--#region NavigationBar -->
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar"  Height="30"
                     VerticalAlignment="Bottom"
@@ -114,19 +115,22 @@
         <!--#endregion-->
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <ScrollViewer Grid.Row="3" VerticalAlignment="Top" Name="ScrollContentOfWindow"
-                      HorizontalScrollBarVisibility="Auto">
-            <StackPanel Name="ContentOfWindow" Margin="5 0 5 5">
+        <ScrollViewer Margin="5 0 5 5" Grid.Row="3" 
+                      HorizontalScrollBarVisibility="Auto" 
+                      Name="ScrollOfContent">
+            <StackPanel Name="ContentOfWindow" Margin="5 0 5 5" Grid.Row="3" VerticalAlignment="Top" >
+        
             </StackPanel>
         </ScrollViewer>
-        <!--#endregion-->
 
+        <!--#endregion-->
+        <!--#region Information-->
         <StackPanel Name="Information"  Grid.Row="4"  Margin="5 0 0 10"
                     VerticalAlignment="Top" Height="20" >
             <Grid Background="{StaticResource  MainBarBrash}" Opacity="0.8">
                 <Label Name="InformationLabel" Content="Jesteś nie zalogowany" Padding="2"/>
             </Grid>
         </StackPanel>
-
+        <!--#endregion-->
     </Grid>
 </Window>

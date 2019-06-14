@@ -6,11 +6,12 @@
         xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:local="clr-namespace:SWAM"
+    
         Background="{StaticResource BackgroundOfPagesBrash}"
         Padding="10"
         mc:Ignorable="d">
     <StackPanel>
-            <!--#region Navigation Bar between bookmarks-->
+        <!--#region Navigation Bar between bookmarks-->
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar" 
                     VerticalAlignment="Bottom"
@@ -27,9 +28,8 @@
                     Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <StackPanel Orientation="Vertical" Name="MainContent">
+        <StackPanel Orientation="Vertical" Name="MainContent"          >
             <temp:UsersControlPanelTemplate Grid.Row="1"/>
         </StackPanel>
     </StackPanel>
-
 </UserControl>
