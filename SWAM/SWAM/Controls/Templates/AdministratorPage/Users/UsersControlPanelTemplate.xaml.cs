@@ -31,7 +31,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UserListViewModel.Refresh();
 
             InitializeComponent();
-
         }
         #endregion
 
@@ -52,8 +51,27 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 var contentOfUserControl = (UserControl)this.RightSection.Children[0];
                 contentOfUserControl.Height = HeightOfAppliaction - Title_Menu_NavigationBar_Height - 70;
             }
+            ChangeSizeOfScrollInProfile();
         }
         #endregion
+
+        #region ChangeSizeOfScrollInProfile
+        /// <summary>
+        /// Changing size of scrollViewer in profile with list to  accesses to warehouses. 
+        /// </summary>
+        private void ChangeSizeOfScrollInProfile()
+        {
+            if (RightSection.Children != null &&
+                RightSection.Children.Count > 0 &&
+                RightSection.Children[0] != null &&
+                RightSection.Children[0].GetType() == new UserProfileTemplate().GetType())
+            {
+                var profile = RightSection.Children[0] as UserProfileTemplate;
+                profile.AccesToWarehousesList.FitViewToFillInParent();
+            }
+        }
+        #endregion  
+
         #region Overrided Methods
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -77,7 +95,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         #endregion
         #region ShowProfile
         /// <summary>
-        /// Showing the profile of user after
+        /// Showing the profile of user,
         /// after click item from the list with users.
         /// </summary>
         /// <param name="sender"></param>
@@ -86,7 +104,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (this.RightSection.Children.Count > 0)
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
-
 
             //Items in list are tagget in userListItemTemplate. Tag = UserId.
             this.RightSection.Children.Add(CreateUserProfile((int)usersListItemTemplate.Tag));
@@ -107,9 +124,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 .Include(u => u.Phones)
                 .FirstOrDefault(u => u.Id == userIndexInUsersList);
 
-           return new UserProfileTemplate() { DataContext = user };
-
-      
+            return new UserProfileTemplate() { DataContext = user };
         }
         #endregion
         #region AddNewUser_Click

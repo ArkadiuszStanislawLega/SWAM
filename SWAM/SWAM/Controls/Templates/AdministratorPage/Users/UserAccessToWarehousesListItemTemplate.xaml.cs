@@ -45,6 +45,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
             this.AdministatorName.Text = SWAM.MainWindow.LoggedInUser.Name;
             this.DateOfGrantingAccess.Text = ""+DateTime.Now;
+            this.Content.Margin = new Thickness(0, -10, 0 , -10);
         }
         #endregion
 

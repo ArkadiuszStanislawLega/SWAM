@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
-            <TextBlock Grid.Row="0" 
+            <TextBlock Grid.Row="0" Name="Title"
                Style="{StaticResource Title}"
                Text="Profil użytkownika:"/>
             <!--#region User Profile-->
@@ -46,7 +46,7 @@
                     Grid.Row="1">
 
                 <!--#region Left Side Of profile-->
-                <ScrollViewer>
+                <ScrollViewer Name="LeftSideOfProfile">
                     <StackPanel Margin="10" Grid.Row="1" Grid.Column="0">
                         <StackPanel Margin="5">
                             <TextBlock Text="Nazwa użytkownika" 

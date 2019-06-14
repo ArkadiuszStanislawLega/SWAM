@@ -24,7 +24,7 @@
     <!--#endregion-->
     <Border BorderBrush="{StaticResource GraphiteBrash}" 
             BorderThickness="2" Name="CurrentView">
-        <Grid >
+        <Grid>
             <!--#region Rows&Column Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>

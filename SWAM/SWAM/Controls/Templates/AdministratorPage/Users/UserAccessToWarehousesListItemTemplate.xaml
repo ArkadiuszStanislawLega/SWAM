@@ -12,6 +12,7 @@
              Margin="0 1 0 1"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--#region Resources-->
     <UserControl.Resources>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
@@ -21,12 +22,13 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
     </UserControl.Resources>
+    <!--#endregion-->
     <Border CornerRadius="10" Padding="10">
         <Border.Background>
             <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
         </Border.Background>
 
-        <StackPanel>
+        <StackPanel Name="Content">
             <!--#region Type of permission-->
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -76,6 +78,7 @@
             <!--#endregion-->
             <!--#region Administrator name-->
             <Grid>
+                <!--#region Column&rows definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
@@ -85,6 +88,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
                 <TextBlock Text="Nazwa użytkownika przydzielającego uprawnienia:"
                    Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
@@ -146,12 +150,10 @@
             <!--#endregion-->
             <Button Name="ConfirmAddAccess"
                 Click="ConfirmAddAccess_Click"
-                Margin="5"
                 IsEnabled="False"
-                Visibility="Collapsed"
-                Width="140" 
                 Content="Dodaj uprawnienia"
-                Style="{StaticResource NavigationButton}"/>
+                Visibility="Collapsed"
+                Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
         </StackPanel>
     </Border>
     <!--#region On loaded animation-->
