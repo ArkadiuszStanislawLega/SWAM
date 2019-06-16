@@ -35,6 +35,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            /*
             if (ShowDateOfUserBlock.Text == "")
                 ConfirmUserBlockadeData.Stop();
 
@@ -42,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 ShowDateOfUserBlock.Text = "Kliknięte";
                 ConfirmUserBlockadeData.Begin();
-            }
+            }*/
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
@@ -96,8 +97,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void EditDateOfUserBlock_Click(object sender, RoutedEventArgs e)
         {
-            UserBlockCallendar.IsEnabled = true;
-            UserBlockCallendar.Visibility = Visibility;
+
         }
     }
 }

@@ -134,6 +134,9 @@ namespace SWAM
         {
             HeightOfAppliaction = this.ActualHeight;
             WidthOfApplication = this.ActualWidth;
+
+            if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
+            else this.ScrollOfContent.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 10;
         }
         #endregion  
         #region Window Functions Buttons
