@@ -24,6 +24,25 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UserProfileTemplate()
         {
             InitializeComponent();
+
+        }
+
+        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+
+        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (ShowDateOfUserBlock.Text == "")
+                ConfirmUserBlockadeData.Stop();
+
+            if (ShowDateOfUserBlock.Text == "Kliknięte")
+            {
+                ShowDateOfUserBlock.Text = "Kliknięte";
+                ConfirmUserBlockadeData.Begin();
+            }
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
@@ -73,6 +92,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void BlockUser_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void EditDateOfUserBlock_Click(object sender, RoutedEventArgs e)
+        {
+            UserBlockCallendar.IsEnabled = true;
+            UserBlockCallendar.Visibility = Visibility;
         }
     }
 }

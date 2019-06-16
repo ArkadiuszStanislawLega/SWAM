@@ -31,7 +31,7 @@
                     <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
                                  Margin="-1"
-                                 ToolTip="Dodaj nowy numer telefonu."/>
+                                 ToolTip="Dodaj nowy adres email."/>
                 </Button>
                 <!--#endregion-->
             </Grid>
