@@ -23,14 +23,6 @@ namespace SWAM
         #region Public statics
         public static double EverythingExceptTheMainContentHeight = 0;
         /// <summary>
-        /// Height of the monitor on which the application is currently running.
-        /// </summary>
-        public static double CurrentMonitorDeviceHigh = SystemParameters.PrimaryScreenHeight;
-        /// <summary>
-        /// Width of the monitor on which the application is currently running.
-        /// </summary>
-        public static double CurrentMonitorDeviceWidth = SystemParameters.PrimaryScreenWidth;
-        /// <summary>
         /// Current height of application.
         /// </summary>
         public static double HeightOfAppliaction;
@@ -126,23 +118,22 @@ namespace SWAM
             SetNavigationsButtonPagesContent();
             ChangeApplicationDependsOnUserPermissions();
 
-            //TODO: Verifiy this 150.
-            this.ScrollOfContent.Height = CurrentMonitorDeviceHigh - EverythingExceptTheMainContentHeight - 115;
-         }
+            //TODO: Verifiy this 115.
+            this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
+            EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
+        }
+        #endregion
 
-    #endregion
-
-    #region MainWindow_SizeChanged
-    /// <summary>
-    /// Action after resize application window.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        #region MainWindow_SizeChanged
+        /// <summary>
+        /// Action after resize application window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             HeightOfAppliaction = this.ActualHeight;
             WidthOfApplication = this.ActualWidth;
-            EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
         }
         #endregion  
         #region Window Functions Buttons

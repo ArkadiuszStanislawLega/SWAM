@@ -74,7 +74,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 });
                 context.SaveChanges();
             }
-            UserAccessToWarehousesTemplates userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
+            var userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
             userAccessToWarehousesTemplates.RefreshAccessList();
             userAccessToWarehousesTemplates.TurnOffAddNewAccess();
         }

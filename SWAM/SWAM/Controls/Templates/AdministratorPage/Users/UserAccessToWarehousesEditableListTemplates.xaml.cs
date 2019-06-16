@@ -25,6 +25,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         public UserAccessToWarehousesTemplates()
         {
             InitializeComponent();
+            //Showing scroll viewer after loaded animation of list of accesses to warehouses has been finished. 
+            this.LoadedAnimation.Completed += (sender, e) => FitViewToFillInParent();
         }
 
         #region FitViewToFillInParent
@@ -38,14 +40,17 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             //Finding parent of the parent...
             var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) as UsersControlPanelTemplate;
             //finding first parent...
-            var profile = parent.RightSection.Children[0] as UserProfileTemplate;
+            if (parent != null && parent.RightSection != null && parent.RightSection.Children[0] != null)
+            {
+                var profile = parent.RightSection.Children[0] as UserProfileTemplate;
 
-            //Counting max height of the scroll viewer
-            //Is needed to know how big is our parent of the first parent, then we deduct size of titles. 
-            //So now we have our space between title of the list and bottom possition of current first parent.
-            //Number 30 it is sum sizes of margins.
-            profile.AccesToWarehousesList.ListScroll.MaxHeight = parent.ActualHeight - profile.AccesToWarehousesList.Title.ActualHeight 
-                - profile.Title.ActualHeight - 30;
+                //Counting max height of the scroll viewer
+                //Is needed to know how big is our parent of the first parent, then we deduct size of titles. 
+                //So now we have our space between title of the list and bottom possition of current first parent.
+                //Number 30 it is sum sizes of margins.
+                profile.AccesToWarehousesList.ListScroll.MaxHeight = parent.ActualHeight - profile.AccesToWarehousesList.Title.ActualHeight
+                    - profile.Title.ActualHeight - 30;
+            }
         }
         #endregion
         #region OnVisualChildrenChanged

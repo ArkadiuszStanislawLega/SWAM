@@ -71,7 +71,7 @@
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
-                <Storyboard>
+                <Storyboard Name="LoadedAnimation">
                     <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                         Duration="0:0:1"
                                         From="0 -50 0 0" To="1"
