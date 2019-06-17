@@ -50,7 +50,7 @@
             </Border.Background>
             <StackPanel Visibility="{Binding  ElementName=UserBlockCallendar, Path=IsEnabled, 
                                                 Converter={conv:BooleanToVisiblityConverter}}">
-                <Calendar Name="Calendar" />
+                <Calendar Name="Calendar" SelectionMode="SingleDate" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                     <!--#region Button-->
                     <Button Style="{StaticResource  UserProfilebuttons}" 
