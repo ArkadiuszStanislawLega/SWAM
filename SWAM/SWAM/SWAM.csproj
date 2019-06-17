@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\CalendarWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +140,8 @@
     <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
       <DependentUpon>AddressTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserBlockDate.cs" />
+    <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserExpiredDate.cs" />
     <Compile Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml.cs">
       <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
     </Compile>
@@ -171,6 +177,9 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml.cs">
       <DependentUpon>WarehouseProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\CalendarWithButton.xaml.cs">
+      <DependentUpon>CalendarWithButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>

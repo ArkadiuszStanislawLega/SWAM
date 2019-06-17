@@ -12,6 +12,7 @@
         WindowStyle="None"
         Title="SWAM" 
         SizeChanged="MainWindow_SizeChanged"
+        Icon="/Resorces/Pictures/icon.png"
         Name="SWAM"
         mc:Ignorable="d"
         Height="auto" Width="auto" >

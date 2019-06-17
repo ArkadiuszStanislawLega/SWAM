@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,26 +25,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UserProfileTemplate()
         {
             InitializeComponent();
-
         }
 
-        private void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        public void RefreshData()
         {
-            e.CanExecute = true;
-        }
-
-
-        private void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            /*
-            if (ShowDateOfUserBlock.Text == "")
-                ConfirmUserBlockadeData.Stop();
-
-            if (ShowDateOfUserBlock.Text == "Kliknięte")
-            {
-                ShowDateOfUserBlock.Text = "Kliknięte";
-                ConfirmUserBlockadeData.Begin();
-            }*/
+            var user = DataContext as User;
+            ApplicationDbContext context = new ApplicationDbContext();
+            this.DataContext = context.Users.FirstOrDefault(u => u.Id == user.Id);
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
@@ -53,7 +41,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             SWAM.MainWindow.TurnOn(this.ConfirmChanges);
         }
-
+      
         #region TurnOnEditFields
         /// <summary>
         /// Switch on all fields required to change user profile values.
@@ -97,7 +85,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         private void EditDateOfUserBlock_Click(object sender, RoutedEventArgs e)
         {
-
+   
         }
     }
 }
