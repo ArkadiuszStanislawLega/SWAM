@@ -52,7 +52,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             SWAM.MainWindow.TurnOn(this.EditPassword);
             SWAM.MainWindow.TurnOn(this.EditConfirmPassword);
             SWAM.MainWindow.TurnOn(this.EditPermissions);
-            //TurnOn(this.EditEmailAddress);
         }
         #endregion
         #region TurnOffValues
@@ -64,7 +63,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             SWAM.MainWindow.TurnOff(this.Name);
             SWAM.MainWindow.TurnOff(this.Password);
             SWAM.MainWindow.TurnOff(this.Permissions);
-            //TurnOff(this.EmailAddress);
         }
         #endregion
 
@@ -86,6 +84,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void EditDateOfUserBlock_Click(object sender, RoutedEventArgs e)
         {
    
+        }
+
+        private void EditPermissionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SWAM.MainWindow.TurnOn(this.EditPermissionsContainer);
         }
     }
 }
