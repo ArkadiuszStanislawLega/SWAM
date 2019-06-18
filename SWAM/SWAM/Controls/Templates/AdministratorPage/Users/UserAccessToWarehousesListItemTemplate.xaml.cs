@@ -22,8 +22,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// </summary>
     public partial class UserAccessToWarehousesListItemTemplate : UserControl
     {
+        /// <summary>
+        /// List with all warehouses available in database.
+        /// </summary>
         private IList<Warehouse> _warehouses;
 
+        #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
         {
             //Create list of warehouses in database - is required to add new access for user.
@@ -33,6 +37,22 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
             this.EditWarehouse.ItemsSource = _warehouses;
         }
+        #endregion
+
+        #region Overrided
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            var access = this.DataContext as AccessUsersToWarehouses;
+            if (access != null)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
+            }
+        }
+        #endregion
+
         #region CreateNewAccessMode
         /// <summary>
         /// Preapering view for add new access for user.
@@ -48,6 +68,29 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.Content.Margin = new Thickness(0, -10, 0 , -10);
         }
         #endregion
+
+        #region NewCommand_Executed
+        /// <summary>
+        /// Command after adding/editing date of expired access to warehuse.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(this.Calendar.SelectedDate != null)
+            {
+                var access = this.DataContext as AccessUsersToWarehouses;
+                if (access != null)
+                {
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces = this.Calendar.SelectedDate;
+                    context.SaveChanges();
+
+                    DataContext = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id);
+                }
+            }
+        }
+        #endregion  
 
         #region ConfirmAddAccess_Click
         /// <summary>
@@ -68,12 +111,16 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
                     TypeOfAccess = (Enumerators.UserType)this.EditUserPermissions.SelectedValue,
                     WarehouseId = warehouse.Id,
-                    DateOfGrantingAccess = DateTime.Now
-
-                    //TODO: Add calendar to set date of expire access
+                    DateOfGrantingAccess = DateTime.Now,
+                    DateOfExpiredAcces = this.Calendar.SelectedDate
                 });
                 context.SaveChanges();
             }
+
+            this.EditWarehouse.SelectedValue = null;
+            this.EditUserPermissions.SelectedValue = null;
+            this.Calendar.SelectedDate = null;
+
             var userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
             userAccessToWarehousesTemplates.RefreshAccessList();
             userAccessToWarehousesTemplates.TurnOffAddNewAccess();

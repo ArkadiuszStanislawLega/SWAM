@@ -8,6 +8,8 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:conv="clr-namespace:SWAM.Converters"
+             Name="WarehouseAccessContent"
              Tag="{Binding Id}"
              Margin="0 1 0 1"
              mc:Ignorable="d" 
@@ -23,138 +25,225 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <!--#endregion-->
+    <UserControl.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
+    </UserControl.CommandBindings>
     <Border CornerRadius="10" Padding="10">
         <Border.Background>
             <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
         </Border.Background>
-
-        <StackPanel Name="Content">
-            <!--#region Type of permission-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Typ uprawnienia:"
+        <Grid>
+            <StackPanel Name="Content">
+                <!--#region Type of permission-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Typ uprawnienia:"
                    Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
-                <TextBlock Name="UserPermision" 
+                    <TextBlock Name="UserPermision" 
                            Text="{Binding TypeOfAccess}"
                            HorizontalAlignment="Right"
                            Grid.Column="2"/>
-                <ComboBox Visibility="Collapsed" 
+                    <ComboBox Visibility="Collapsed" 
                       IsEnabled="False"
                       Name="EditUserPermissions" 
                       Grid.Column="2"
                       ItemsSource="{Binding Source={StaticResource UserType}}"/>
-            </Grid>
-            <!--#endregion-->
-            <!--#region Warehouse name-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Magazyn:" Grid.Column="0"
+                </Grid>
+                <!--#endregion-->
+                <!--#region Warehouse name-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Magazyn:" Grid.Column="0"
                        Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="WarehouseName" 
+                    <TextBlock Name="WarehouseName" 
                        Text="{Binding Warehouse.Name}" 
                        Grid.Column="2"/>
-                <ComboBox Visibility="Collapsed" 
+                    <ComboBox Visibility="Collapsed" 
                       IsEnabled="False"
                       Name="EditWarehouse"
                           Grid.Column="2">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Label Content="{Binding Name}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-            </Grid>
-            <!--#endregion-->
-            <!--#region Administrator name-->
-            <Grid>
-                <!--#region Column&rows definitions-->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Label Content="{Binding Name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
                 <!--#endregion-->
-                <TextBlock Text="Nazwa użytkownika przydzielającego uprawnienia:"
+                <!--#region Administrator name-->
+                <Grid>
+                    <!--#region Column&rows definitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <TextBlock Text="Nazwa użytkownika przydzielającego uprawnienia:"
                    Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
-                <TextBlock Name="AdministatorName" 
+                    <TextBlock Name="AdministatorName" 
                        Text="{Binding Administrator.Name}"
                            Grid.Column="2"
                            Grid.Row="1"/>
-            </Grid>
-            <!--#endregion-->
-            <!--#region Date of create access-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Data przydzielenia uprawnienia"
+                </Grid>
+                <!--#endregion-->
+                <!--#region Date of create access-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Data przydzielenia uprawnienia"
                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
-                <TextBlock Name="DateOfGrantingAccess" 
+                    <TextBlock Name="DateOfGrantingAccess" 
                            Text="{Binding DateOfGrantingAccess}"
                            Grid.Column="2"
-                           Grid.Row="1
-"/>
-            </Grid>
-            <!--#endregion-->
-            <!--#region Date of expire access-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Data wygaśnięcia uprawnienia" 
-                            Style="{StaticResource ProfileProperties}"
-                           Grid.Column="0"/>
-                <StackPanel Orientation="Horizontal"
-                            Grid.Column="2"
-                            Grid.Row="1">
-                    <Button Width="20" Height="20" 
-                            Style="{StaticResource NavigationButton}"
-                            Margin="20 0 0 0">
+                           Grid.Row="1"/>
+                </Grid>
+                <!--#endregion-->
+                <!--#region Date of expire access-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Data wygaśnięcia uprawnienia" 
+                                Style="{StaticResource ProfileProperties}"
+                               Grid.Column="0"/>
+
+                    <Button Name="ShowCallendar"
+                                Width="20" Height="20" 
+                                Style="{StaticResource NavigationButton}"
+                                HorizontalAlignment="Left"
+                                Grid.Column="0"
+                                Grid.Row="1">
                         <fa:ImageAwesome Icon="Calendar" 
-                             Foreground="{StaticResource FontsBrash}"
-                             Margin="-4"
-                             ToolTip="Edytuj czas wygaśnięcia uprawnienia"/>
+                                             Foreground="{StaticResource FontsBrash}"
+                                             Margin="-4"
+                                             ToolTip="Edytuj czas wygaśnięcia uprawnienia"/>
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click" SourceName="ShowCallendar">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="CalendarContainer"
+                                                            Duration="0:0:0.5"
+                                                            From="0 0 -290 0"
+                                                            DecelerationRatio="1"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="CalendarContainer"
+                                                         Duration="0:0:0.3" 
+                                                         From="0" To="1"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         Storyboard.TargetName="WarehouseAccessContent"
+                                                         Duration="0:0:0.3" 
+                                                         To="300"/>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
+                                                                        Storyboard.TargetProperty="IsEnabled"
+                                                                        FillBehavior="HoldEnd">
+                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
+                                        </BooleanAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
                     </Button>
-                    <Label Name="DateOfAccessExpired" Content="{Binding DateOfExpiredAcces}"/>
+                    <TextBlock Name="DateOfAccessExpired" 
+                           Text="{Binding DateOfExpiredAcces}"
+                           Grid.Row="1"
+                           Grid.Column="2"/>
+                </Grid>
+                <!--#endregion-->
+                <Button Name="ConfirmAddAccess"
+                        Click="ConfirmAddAccess_Click"
+                        IsEnabled="False"
+                        Content="Dodaj uprawnienia"
+                        Visibility="Collapsed"
+                        Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
+            </StackPanel>
+            <!--#region Callendar -->
+            <Border  Name="CalendarContainer"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"
+                     CornerRadius="5" 
+                     Padding="5" 
+                     IsEnabled="False" 
+                     Visibility="{Binding ElementName=CalendarContainer, Path=IsEnabled,
+                                     Converter={conv:BooleanToVisiblityConverter}}">
+                <Border.Background>
+                    <SolidColorBrush Opacity="0.5" Color="{StaticResource DarkGraphite}"/>
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect Opacity="0.6" Direction="90"  BlurRadius="250"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Wygaśnięcie uprawnienia" HorizontalAlignment="Center"
+                               FontWeight="Bold" TextWrapping="Wrap"/>
+                    <Calendar Name="Calendar"  SelectionMode="SingleDate" />
+                    <Button Content="Zatwierdź" 
+                            Style="{StaticResource  UserProfilebuttons}"
+                            Command="ApplicationCommands.New">
+                        <!--#region Triggers-->
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <Storyboard>
+                                            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="CalendarContainer"
+                                                            Duration="0:0:0.3"
+                                                            To="-190 0 0 0"
+                                                            DecelerationRatio="1"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         Storyboard.TargetName="WarehouseAccessContent"
+                                                         Duration="0:0:0.7" 
+                                                         To="200"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="CalendarContainer"
+                                                         Duration="0:0:0.2" 
+                                                         From="1" To="0"/>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
+                                                                        Storyboard.TargetProperty="IsEnabled"
+                                                                        FillBehavior="HoldEnd">
+                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.2" />
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
+                        <!--#endregion-->
+                    </Button>
                 </StackPanel>
-            </Grid>
+            </Border>
             <!--#endregion-->
-            <Button Name="ConfirmAddAccess"
-                Click="ConfirmAddAccess_Click"
-                IsEnabled="False"
-                Content="Dodaj uprawnienia"
-                Visibility="Collapsed"
-                Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
-        </StackPanel>
+        </Grid>
     </Border>
     <!--#region On loaded animation-->
     <UserControl.Triggers>

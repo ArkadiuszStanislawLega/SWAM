@@ -26,11 +26,6 @@ namespace SWAM.Controls.Templates
             InitializeComponent();
         }
 
-        protected void NewCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
         virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
                // Here type action.
