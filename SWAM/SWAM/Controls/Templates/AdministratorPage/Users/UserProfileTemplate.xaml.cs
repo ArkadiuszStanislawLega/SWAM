@@ -86,9 +86,24 @@ namespace SWAM.Controls.Templates.AdministratorPage
    
         }
 
-        private void EditPermissionsButton_Click(object sender, RoutedEventArgs e)
+        private void ConfirmEditPermission_Click(object sender, RoutedEventArgs e)
         {
-            SWAM.MainWindow.TurnOn(this.EditPermissionsContainer);
+
+        }
+
+        virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var user = DataContext as User;
+            var userType = (Enumerators.UserType)this.EditPermissions.SelectedValue;
+
+            if (userType != user.Permissions)
+            {
+                ApplicationDbContext context = new ApplicationDbContext();
+                context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions = userType;
+                context.SaveChanges();
+
+                Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
+            }
         }
     }
 }
