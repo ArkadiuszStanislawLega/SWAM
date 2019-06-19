@@ -291,7 +291,6 @@ namespace SWAM
         #endregion
 
         #region Statc Methods
-
         /// <summary>
         /// Turn off selected element.
         /// </summary>
@@ -372,5 +371,13 @@ namespace SWAM
             sb.Begin();
         }
         #endregion
+
+        #region InformationForUser
+        /// <summary>
+        /// Information about action in bottomBar in main window.
+        /// </summary>
+        /// <param name="newInformation"></param>
+        public void InformationForUser(string newInformation) => InformationLabel.Content = newInformation;
+        #endregion  
     }
 }

@@ -65,9 +65,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     //this.Information.Background = this.FindResource("WhiteCream") as Brush;
                 }
                 context.SaveChanges();
+
+                PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
             };
 
-            RefreshPhoneList();
             ClearEditableFieldsAfterAddNewPhone();
         }
         #endregion
@@ -92,11 +94,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             var user = DataContext as User;
 
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
-            }
-
+            ApplicationDbContext context = new ApplicationDbContext();
+            PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
         }
         #endregion
     }

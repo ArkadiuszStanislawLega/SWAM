@@ -87,6 +87,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     context.SaveChanges();
 
                     DataContext = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id);
+                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                        InformationForUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {access.User.Name} do magazynu {access.Warehouse.Name} została edytowana.");
                 }
             }
         }
@@ -102,6 +104,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             var user = SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext as User;
             var warehouse = this.EditWarehouse.SelectedValue as Warehouse;
+            var accessType = (Enumerators.UserType)this.EditUserPermissions.SelectedValue;
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -109,7 +112,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 {
                     UserId = user.Id,
                     AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
-                    TypeOfAccess = (Enumerators.UserType)this.EditUserPermissions.SelectedValue,
+                    TypeOfAccess = accessType,
                     WarehouseId = warehouse.Id,
                     DateOfGrantingAccess = DateTime.Now,
                     DateOfExpiredAcces = this.Calendar.SelectedDate
@@ -124,6 +127,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             var userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
             userAccessToWarehousesTemplates.RefreshAccessList();
             userAccessToWarehousesTemplates.TurnOffAddNewAccess();
+
+            SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                InformationForUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
         }
         #endregion
     }

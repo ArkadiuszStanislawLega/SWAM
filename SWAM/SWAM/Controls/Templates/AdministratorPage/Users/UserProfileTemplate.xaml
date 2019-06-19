@@ -42,12 +42,13 @@
             <!--#region User Profile-->
             <Grid  HorizontalAlignment="Center" 
                    Grid.Row="1" Grid.Column="0">
+                <!--#region Column Definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
+                <!--#endregion-->
                 <!--#region Left Side Of profile-->
                 <ScrollViewer Name="LeftSideOfProfile" Grid.Row="1" Grid.Column="0">
                     <StackPanel Margin="10">
@@ -56,8 +57,10 @@
                             <TextBlock Text="Nazwa użytkownika" 
                                Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Name="Name" Text="{Binding Name}"/>
-                            <TextBox Name="EditName" Text="{Binding Name}" 
-                         IsEnabled="False" Visibility="Collapsed"/>
+                            <TextBox Name="EditName" 
+                                     Text="{Binding Name}" 
+                                     IsEnabled="False" 
+                                     Visibility="Collapsed"/>
                         </StackPanel>
                         <!--#endregion-->
                         <!--#region Permissions-->
@@ -113,7 +116,6 @@
                                           ItemsSource="{Binding Source={StaticResource UserType}}" />
                                 <Button Name="ConfirmEditPermission" Grid.Column="2" 
                                         Style="{StaticResource FaNoBackground}"
-                                        Click="ConfirmEditPermission_Click" 
                                         Command="ApplicationCommands.New" 
                                         IsEnabled="False">
                                     <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
@@ -142,7 +144,7 @@
                         <!--#region Date of create account-->
                         <StackPanel Margin="5">
                             <TextBlock Text="Data założenia konta"
-                               Style="{StaticResource ProfileProperties}"/>
+                                        Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
                         </StackPanel>
                         <!--#endregion-->
@@ -157,8 +159,10 @@
                         <!--#endregion-->
                         <!--#region Date of User block-->
                         <StackPanel Margin="5">
-                            <TextBlock Text="Końcowa data blokady konta" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="ShowDateOfUserBlock" Text="{Binding ExpiryDateOfTheBlockade}"/>
+                            <TextBlock Text="Końcowa data blokady konta" 
+                                       Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Name="ShowDateOfUserBlock" 
+                                       Text="{Binding ExpiryDateOfTheBlockade}"/>
                         </StackPanel>
                         <!--#endregion-->
                         <!--#region Account Status-->
@@ -167,7 +171,8 @@
                                    Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
                             <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
-                             IsEnabled="False" Visibility="Collapsed" ToolTip="Jeżeli zaznaczony to aktywne."/>
+                                      IsEnabled="False" Visibility="Collapsed" 
+                                      ToolTip="Jeżeli zaznaczony to aktywne."/>
                         </StackPanel>
                         <!--#endregion-->
                         <!--#region Password reset-->
@@ -232,7 +237,6 @@
                         Content="Zatwierdź zmiany"
                         IsEnabled="False"
                         Visibility="Collapsed"
-                        Click="ConfirmChanges_Click"   
                         Style="{StaticResource UserProfilebuttons}"/>
         </StackPanel>
 

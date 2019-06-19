@@ -41,6 +41,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 context.SaveChanges();
 
                 SWAM.MainWindow.FindParent<UserProfileTemplate>(this).RefreshData();
+
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                    InformationForUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
             }
         }
     }

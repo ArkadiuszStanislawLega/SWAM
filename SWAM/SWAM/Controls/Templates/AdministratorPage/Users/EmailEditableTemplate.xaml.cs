@@ -35,6 +35,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            //TODO: Make this fuction in xaml.
             TurnOff(this.Email);
             TurnOn(this.EditEmail);
 
@@ -52,7 +53,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
             var email = DataContext as Email;
 
             email.UpdateEmail(EditEmail.Text);
+            FindParent<SWAM.MainWindow>(this).InformationForUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
 
+            //TODO: Make this function in xaml
             TurnOn(this.Email);
             TurnOff(this.EditEmail);
 
@@ -71,6 +74,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             email.Delete();
 
             FindParent<EmailEditableListTemplate>(this).RefreshEmailsList();
+            FindParent<SWAM.MainWindow>(this).InformationForUser($"Usnięto adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
         }
         #endregion
     }

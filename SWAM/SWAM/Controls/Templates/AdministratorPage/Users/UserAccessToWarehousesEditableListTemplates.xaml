@@ -28,9 +28,10 @@
                            FontWeight="Bold"
                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
-
                 <!--#region Add new access button-->
-                <Button Name="AddNewAccessButton" Click="AddNewAcces_Click" Style="{StaticResource AdditionSign}" 
+                <Button Name="AddNewAccessButton" 
+                        Click="AddNewAcces_Click" 
+                        Style="{StaticResource AdditionSign}" 
                     Margin="20 0 0 0" Height="20" Width="20" Grid.Column="2">
                     <fa:ImageAwesome Icon="Plus" 
                                  Foreground="{StaticResource FontsBrash}"
@@ -38,7 +39,6 @@
                                  ToolTip="Dodaj nowe uprawnienia do magazynu."/>
                 </Button>
                 <!--#endregion-->
-
             </Grid>
         </Border>
         <!--#endregion-->
@@ -49,7 +49,7 @@
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <StackPanel>
-            
+
                 <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess"
                         IsEnabled="False" Visibility="Collapsed"/>
                 <!--#region List of user accesses-->
@@ -64,9 +64,9 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
+                <!--#endregion-->
             </StackPanel>
         </Border>
-        <!--#endregion-->
     </StackPanel>
     <!--#region On loaded animation-->
     <UserControl.Triggers>

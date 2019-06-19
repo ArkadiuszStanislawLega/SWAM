@@ -55,6 +55,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 context.SaveChanges();
                 SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
 
                 RestartTextBoxes();
             }

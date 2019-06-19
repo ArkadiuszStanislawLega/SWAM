@@ -38,8 +38,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             TurnOffValues();
             TurnOnEditFields();
-
-            SWAM.MainWindow.TurnOn(this.ConfirmChanges);
         }
       
         #region TurnOnEditFields
@@ -66,10 +64,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         }
         #endregion
 
-        private void ConfirmChanges_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void DeletUser_Click(object sender, RoutedEventArgs e)
         {
@@ -81,15 +75,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         }
 
-        private void EditDateOfUserBlock_Click(object sender, RoutedEventArgs e)
-        {
-   
-        }
-
-        private void ConfirmEditPermission_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -103,6 +88,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 context.SaveChanges();
 
                 Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
+
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                    InformationForUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}.");
             }
         }
     }

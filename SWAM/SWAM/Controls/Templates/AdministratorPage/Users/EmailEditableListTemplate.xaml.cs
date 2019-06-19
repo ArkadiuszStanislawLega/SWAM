@@ -63,12 +63,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     //this.Information.Background = this.FindResource("WhiteCream") as Brush;
                 }
                 context.SaveChanges();
+                Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
             };
-
+            //TODO: Make this function in xaml.
             SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
-
-            RefreshEmailsList();
-
         }
         #endregion
 

@@ -46,7 +46,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             phone.UpdateNumber(EditPhoneNumber.Text);
             phone.UpdateNote(EditNote.Text);
+            SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
 
+            //TODO: Make this functions in xaml.
             TurnOn(this.PhoneNumber);
             TurnOn(this.Note);
 
@@ -66,6 +68,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             var phone = DataContext as Phone;
             phone.Delete();
+
+            SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 
             FindParent<PhoneNumbersEditableListTemplate>(this).RefreshPhoneList();
         }
