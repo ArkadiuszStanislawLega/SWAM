@@ -20,7 +20,6 @@
     <Window.Background>
         <SolidColorBrush Opacity="0.5" Color="{StaticResource Graphite}"/>
     </Window.Background>
-
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
@@ -38,8 +37,7 @@
         <ContentControl Grid.Row="0" >
             <Grid Name="TitlePanel"
                     Width="auto" Height="30"
-                    Background="{StaticResource MainBarBrash}"
-                    MouseLeftButtonDown="TopBarContent_MouseDown">
+                    Background="{StaticResource MainBarBrash}">
                 <!--#region ColumnDefinitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -107,11 +105,11 @@
                     VerticalAlignment="Bottom"
                     Margin="5 0 0 0"
                     HorizontalAlignment="Left" Grid.Row="2">
-            <nav:NavigationButtonTemplate Content="Narzędzia Administratora" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Strona Logowania" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Produkty" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Stan Magazynowy" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
-            <nav:NavigationButtonTemplate Content="Zamówienia" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
+            <nav:NavigationButtonTemplate Content="Narzędzia Administratora" PageToOpen="AdministratorPage" x:Name="SwitchToAdministratorPage" Click="NaviagionBar_Click"/>
+            <nav:NavigationButtonTemplate Content="Strona Logowania" PageToOpen="LoginPage" x:Name="SwitchToLoginPage" Click="NaviagionBar_Click"/>
+            <nav:NavigationButtonTemplate Content="Produkty" PageToOpen="ManageItemsPage" x:Name="SwitchToManageItemPage" Click="NaviagionBar_Click"/>
+            <nav:NavigationButtonTemplate Content="Stan Magazynowy" PageToOpen="ManageMagazinePage" x:Name="SwitchToManageMagazinePage" Click="NaviagionBar_Click"/>
+            <nav:NavigationButtonTemplate Content="Zamówienia" PageToOpen="ManageOrdersPage" x:Name="SwitchToManageOrderPage" Click="NaviagionBar_Click"/>
         </StackPanel>
         <!--#endregion-->
         <!--#endregion-->

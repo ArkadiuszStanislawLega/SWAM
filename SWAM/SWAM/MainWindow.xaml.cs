@@ -55,10 +55,6 @@ namespace SWAM
         /// </summary>
         private PagesUserControls _currentPageLoaded;
         /// <summary>
-        /// Container of the main content of application.
-        /// </summary>
-        private StackPanel _pageContainer;
-        /// <summary>
         /// Container with whole pages view.
         /// </summary>
         private Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
@@ -101,7 +97,7 @@ namespace SWAM
         /// <summary>
         ///  Indicates which page is currently loaded.
         /// </summary>
-        public PagesUserControls CurrentPageLoaded { get => this._currentPageLoaded; set => this._currentPageLoaded = value; }
+        public PagesUserControls CurrentPageLoaded { get => this._currentPageLoaded; private set => this._currentPageLoaded = value; }
         #endregion
 
         #region BasicConstructor
@@ -109,14 +105,15 @@ namespace SWAM
         {
             InitializeComponent();
 
-            HeightOfAppliaction = this.ActualHeight;
-            WidthOfApplication = this.ActualWidth;
-
-            this._pageContainer = ContentOfWindow;
-
             ChangeContent(PagesUserControls.LoginPage);
-            SetNavigationsButtonPagesContent();
             ChangeApplicationDependsOnUserPermissions();
+        }
+        #endregion
+
+        #region Overrided Methods
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
 
             //TODO: Verifiy this 115.
             this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
@@ -140,18 +137,6 @@ namespace SWAM
         }
         #endregion  
         #region Window Functions Buttons
-        #region TopBarContent_MouseDown
-        /// <summary>
-        /// Moving whole application window after drag top bar of application, when the left button was clicked.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TopBarContent_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
-        }
-        #endregion
         #region Maximize_Click
         /// <summary>
         /// Maximizing size of the application when the application size is smaller then max size. 
@@ -208,19 +193,19 @@ namespace SWAM
         /// <param name="page">The Page which should be loaded.</param>
         public void ChangeContent(PagesUserControls page)
         {
-            if (this._pageContainer.Children.Capacity > 0 && page != this._currentPageLoaded)
-                this._pageContainer.Children.RemoveAt(_pageContainer.Children.Count - 1);
+            if (this.ContentOfWindow.Children.Capacity > 0 && page != this._currentPageLoaded)
+                this.ContentOfWindow.Children.RemoveAt(this.ContentOfWindow.Children.Count - 1);
 
             if (page != this._currentPageLoaded)
             {
-                UserControl pagetoAdd;
-                this._pages.TryGetValue(page, out pagetoAdd);
-                this._pageContainer.Children.Add(pagetoAdd);
+                if(this._pages.TryGetValue(page, out UserControl pagetoAdd))
+                    this.ContentOfWindow.Children.Add(pagetoAdd);
+                else
+                    this.ContentOfWindow.Children.Add(new SWAM.Controls.Pages.ErrorPage());
             }
         }
         #endregion
 
-        #region Navigation bar stuff 
         #region NaviagionBar_Click
         /// <summary>
         /// Navigation bar - buttonClicker.
@@ -241,21 +226,6 @@ namespace SWAM
             }
         }
         #endregion
-        #region SetNavigationsButtonPagesContent
-        /// <summary>
-        /// Setting property Pages in navigation buttons representing the value of the page to open.
-        /// </summary>
-        private void SetNavigationsButtonPagesContent()
-        {
-            this.SwitchToAdministratorPage.PageToOpen = PagesUserControls.AdministratorPage;
-            this.SwitchToLoginPage.PageToOpen = PagesUserControls.LoginPage;
-            this.SwitchToManageItemPage.PageToOpen = PagesUserControls.ManageItemsPage;
-            this.SwitchToManageMagazinePage.PageToOpen = PagesUserControls.ManageMagazinePage;
-            this.SwitchToManageOrderPage.PageToOpen = PagesUserControls.ManageOrdersPage;
-        }
-        #endregion
-        #endregion
-
         #region ChangeApplicationDependsOnUserPermissions
         /// <summary>
         /// Its changes navigation buttons visible or not depends on loged in user permissions.
@@ -289,6 +259,14 @@ namespace SWAM
             }
         }
         #endregion
+
+        #region InformationForUser
+        /// <summary>
+        /// Information about action in bottomBar in main window.
+        /// </summary>
+        /// <param name="newInformation"></param>
+        public void InformationForUser(string newInformation) => InformationLabel.Content = newInformation;
+        #endregion  
 
         #region Statc Methods
         /// <summary>
@@ -331,53 +309,5 @@ namespace SWAM
         }
         #endregion
 
-        #region Animation
-        /// <summary>
-        /// Slide animation with messages.
-        /// </summary>
-        /// <param name="obj">Object to animate</param>
-        /// <param name="right">If right > 0 and left lower then 0 animation is going from right to left. </param>
-        /// <param name="left">If left > 0 and right lower then 0 animation is going from left to right.</param>
-        /// <param name="time">Duration of animation.</param>
-        /// <param name="opacity">Opacity value after animation.</param>
-        public static void Animation(DependencyObject obj, float right, float left, double time = 1, double opacity = 1)
-        {
-            Storyboard sb = new Storyboard();
-
-            var slideAnimation = new ThicknessAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(time)),
-                To = new Thickness(0),
-                From = new Thickness(right, 0, left, 0),
-                DecelerationRatio = 1f
-            };
-
-            Storyboard.SetTarget(slideAnimation, obj);
-            Storyboard.SetTargetProperty(slideAnimation, new PropertyPath("Margin"));
-            sb.Children.Add(slideAnimation);
-
-            var opacityAnimation = new DoubleAnimation
-            {
-                Duration = new Duration(TimeSpan.FromSeconds(time)),
-                From = 0,
-                To = opacity,
-                DecelerationRatio = 1f
-            };
-
-            Storyboard.SetTarget(opacityAnimation, obj);
-            Storyboard.SetTargetProperty(opacityAnimation, new PropertyPath("Opacity"));
-            sb.Children.Add(opacityAnimation);
-
-            sb.Begin();
-        }
-        #endregion
-
-        #region InformationForUser
-        /// <summary>
-        /// Information about action in bottomBar in main window.
-        /// </summary>
-        /// <param name="newInformation"></param>
-        public void InformationForUser(string newInformation) => InformationLabel.Content = newInformation;
-        #endregion  
     }
 }

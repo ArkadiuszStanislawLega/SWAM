@@ -67,6 +67,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Pages\ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AddressTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +141,9 @@
     </Compile>
     <Compile Include="AtachedProperties\BasedAttachedProperty.cs" />
     <Compile Include="AtachedProperties\PasswordAttachedProperty.cs" />
+    <Compile Include="Controls\Pages\ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
       <DependentUpon>AddressTemplate.xaml</DependentUpon>
     </Compile>

@@ -28,8 +28,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
-            //Label in main menu to put information about creating new user.
-            var informationLabel = SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationLabel;
+            SWAM.MainWindow mainWindow = SWAM.MainWindow.FindParent<SWAM.MainWindow>(this);
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -39,24 +38,18 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     Password = this.UserPassword.Password,
                     DateOfCreate = DateTime.Now,
                     Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                    StatusOfUserAccount = this.AccountStatus.IsChecked == true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                    StatusOfUserAccount = this.AccountStatus.IsChecked == 
+                                                            true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
                     DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
                 };
 
-                if (user != null)
-                {
-                    context.Users.Add(user);
-                    informationLabel.Content = "Udało się dodać użytkownika " + user.Name;
-                }
-                else
-                {
-                    informationLabel.Content = "Nie udało się dodać użytkownika " + user.Name;
-                    informationLabel.Background = this.FindResource("WhiteCream") as Brush;
-                }
+                if (user != null) context.Users.Add(user);
+                else mainWindow.InformationForUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.");
+           
                 context.SaveChanges();
-                SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
-                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                mainWindow.InformationForUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
 
+                SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).RefreshUsersList();
                 RestartTextBoxes();
             }
         }

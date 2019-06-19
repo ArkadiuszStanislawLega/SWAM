@@ -463,3 +463,5 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ErrorPage.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ErrorPage.baml
