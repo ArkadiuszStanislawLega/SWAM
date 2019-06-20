@@ -4,10 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM"
-             mc:Ignorable="d" 
+             xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
              Background="{StaticResource BackgroundOfPagesBrash}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Padding="10"
+             Height="auto"
+             Width="auto"
+             mc:Ignorable="d">
     <StackPanel>
-        <TextBlock Name="Title" Text="ManageOrdersPage" HorizontalAlignment="Center"/>
+        <!--#region Navigation Bar between bookmarks-->
+        <StackPanel Orientation="Horizontal" 
+                    Name="NavigationBar" 
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left">
+            <nav:NavigationButtonTemplate Width="150" 
+                    Content="Zlecenia magazynowe" 
+                    x:Name="SwitchToWarehouseOrdersControlPanel" 
+                    Style="{StaticResource NavigationButton}"/>
+            <nav:NavigationButtonTemplate Width="150"
+                    Content="Zlecenia klienckie" 
+                    x:Name="SwitchToCustomerOrdersControlPanel" 
+                    Style="{StaticResource NavigationButton}"/>
+        </StackPanel>
+        <!--#endregion-->
     </StackPanel>
 </UserControl>
