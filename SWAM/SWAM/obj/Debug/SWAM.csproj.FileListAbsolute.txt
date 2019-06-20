@@ -574,3 +574,7 @@ C:\Users\User-PC\Documents\Visual Studio 2017\SWAM\SWAM\SWAM\obj\Debug\SWAM.cspr
 C:\Users\User-PC\Documents\Visual Studio 2017\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 C:\Users\User-PC\Documents\Visual Studio 2017\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 C:\Users\User-PC\Documents\Visual Studio 2017\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.baml

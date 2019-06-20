@@ -17,14 +17,21 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left">
             <nav:NavigationButtonTemplate Width="150" 
+                    Bookmark="WarehouseOrdersPanel"
                     Content="Zlecenia magazynowe" 
                     x:Name="SwitchToWarehouseOrdersControlPanel" 
+                    Click="SwitchToWarehouseOrdersControlPanel_Click"
                     Style="{StaticResource NavigationButton}"/>
             <nav:NavigationButtonTemplate Width="150"
+                    Bookmark="CustomerOrdersPanel"
+                    Click="SwitchToCustomerOrdersControlPanel_Click"
                     Content="Zlecenia klienckie" 
                     x:Name="SwitchToCustomerOrdersControlPanel" 
                     Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
+        <StackPanel Orientation="Vertical" Name="MainContent"          >
+      
+        </StackPanel>
     </StackPanel>
 </UserControl>

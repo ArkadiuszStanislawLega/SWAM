@@ -131,6 +131,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -190,6 +198,12 @@
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.xaml.cs">
+      <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.xaml.cs">
+      <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BaseValueConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />

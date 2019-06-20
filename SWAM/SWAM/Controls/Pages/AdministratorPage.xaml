@@ -6,7 +6,6 @@
         xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:local="clr-namespace:SWAM"
-    
         Background="{StaticResource BackgroundOfPagesBrash}"
         Padding="10"
         mc:Ignorable="d">
