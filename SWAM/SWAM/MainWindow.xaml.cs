@@ -68,7 +68,7 @@ namespace SWAM
         /// <summary>
         /// Container with whole priviligase of UserType.
         /// </summary>
-        private Dictionary<UserType, List<PagesUserControls>> _pagesForUser = new Dictionary<UserType, List<PagesUserControls>>()
+        public static readonly Dictionary<UserType, List<PagesUserControls>> PAGES_FOR_USER = new Dictionary<UserType, List<PagesUserControls>>()
         {
            //Settings for administrator
            { UserType.Administrator,
@@ -106,7 +106,6 @@ namespace SWAM
             InitializeComponent();
 
             ChangeContent(PagesUserControls.LoginPage);
-            ChangeApplicationDependsOnUserPermissions();
         }
         #endregion
 
@@ -226,39 +225,6 @@ namespace SWAM
             }
         }
         #endregion
-        #region ChangeApplicationDependsOnUserPermissions
-        /// <summary>
-        /// Its changes navigation buttons visible or not depends on loged in user permissions.
-        /// </summary>
-        private void ChangeApplicationDependsOnUserPermissions()
-        {
-            if (IsLoggedIn)
-            {
-                //Getting list of priviliges
-                List<PagesUserControls> listWithPermissions;
-                this._pagesForUser.TryGetValue(LoggedInUser.Permissions, out listWithPermissions);
-
-                //Searching for buttons that are responsible for displaying specific pages.
-                foreach (NavigationButtonTemplate nbt in this.NavigationBar.Children)
-                {
-                    foreach (PagesUserControls puc in listWithPermissions)
-                    {
-                        if (nbt.PageToOpen == puc)
-                        {
-                            nbt.Visibility = Visibility.Visible;
-                            nbt.IsEnabled = true;
-                            break;
-                        }
-                        else
-                        {
-                            nbt.Visibility = Visibility.Collapsed;
-                            nbt.IsEnabled = false;
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
 
         #region InformationForUser
         /// <summary>
@@ -308,6 +274,5 @@ namespace SWAM
                 return FindParent<T>(parentObject);
         }
         #endregion
-
     }
 }

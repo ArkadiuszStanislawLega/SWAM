@@ -47,14 +47,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         #region ChangeSizeOfScrollInProfile
         /// <summary>
-        /// Changing size of scrollViewer in profile with list to  accesses to warehouses. 
+        /// Changing size of scrollViewer in profile with list to accesses to warehouses. 
         /// </summary>
         private void ChangeSizeOfScrollInProfile()
         {
-            if (RightSection.Children != null &&
-                RightSection.Children.Count > 0 &&
-                RightSection.Children[0] != null &&
-                RightSection.Children[0].GetType() == new UserProfileTemplate().GetType())
+            if (RightSection.Children != null
+               && RightSection.Children.Count > 0
+               && RightSection.Children[0] != null
+               && RightSection.Children[0].GetType() == new UserProfileTemplate().GetType())
             {
                 var profile = RightSection.Children[0] as UserProfileTemplate;
                 profile.AccesToWarehousesList.FitViewToFillInParent();
