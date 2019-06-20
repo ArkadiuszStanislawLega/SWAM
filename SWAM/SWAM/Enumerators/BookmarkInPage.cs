@@ -8,6 +8,7 @@ namespace SWAM.Enumerators
 {
     public enum BookmarkInPage
     {
+        EmptyBookmark,
         /// <summary>
         /// Manage of warehoueses by administrator in Administator page.
         /// </summary>

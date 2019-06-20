@@ -6,6 +6,8 @@
              xmlns:conv="clr-namespace:SWAM.Converters"
              mc:Ignorable="d" 
              Style="{StaticResource NavigationButton}"
+             MouseEnter="NavigationButtonTemplate_MouseEnter"
+             MouseLeave="NavigationButtonTemplate_MouseLeave"
              Margin="0 0 1 0"
              Width="auto"
              d:DesignHeight="50" >

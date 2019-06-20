@@ -18,14 +18,17 @@
                     HorizontalAlignment="Left"
                     Grid.Row="0">
             <nav:NavigationButtonTemplate Width="130" 
-                    Content="Użytkownicy" 
-                    x:Name="SwitchToUsersControlPanel" 
-                    Click="UsersControlPanelBar_Click"
-                    Style="{StaticResource NavigationButton}"/>
+                                          Bookmark="UsersControlPanel"
+                                          Content="Użytkownicy" 
+                                          x:Name="SwitchToUsersControlPanel" 
+                                          Click="UsersControlPanelBar_Click"
+                                          Style="{StaticResource NavigationButton}"/>
+            
             <nav:NavigationButtonTemplate Width="130" Content="Magazyny" 
-                    x:Name="SwitchToWarehousesControlPanel" 
-                    Click="WarhousesControlPanelBarPage_Click"
-                    Style="{StaticResource NavigationButton}"/>
+                                          Bookmark="WarehousesControlPanel"
+                                          x:Name="SwitchToWarehousesControlPanel" 
+                                          Click="WarhousesControlPanelBarPage_Click"
+                                          Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
         <StackPanel Orientation="Vertical" Name="MainContent"          >

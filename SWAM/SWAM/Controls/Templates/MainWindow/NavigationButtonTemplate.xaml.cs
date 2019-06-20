@@ -17,6 +17,7 @@ using SWAM.Events.NavigationButton;
 
 namespace SWAM.Controls.Templates.MainWindow
 {
+    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy NavigationButtonTemplate.xaml
     /// The button pressed once will remain pressed until the IsSelected flag is marked.
@@ -38,7 +39,7 @@ namespace SWAM.Controls.Templates.MainWindow
         /// <summary>
         /// Shows the page for which the button corresponds.
         /// </summary>
-        private PagesUserControls _pageToOpen = PagesUserControls.BasicPage; 
+        private PagesUserControls _pageToOpen = PagesUserControls.EmptyPage; 
         public PagesUserControls PageToOpen { get => this._pageToOpen; set => this._pageToOpen = value; }
 
         /// <summary>
@@ -77,8 +78,42 @@ namespace SWAM.Controls.Templates.MainWindow
             InitializeComponent();
 
             this.IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
-            this.MouseEnter += NavigationButtonTemplate_MouseEnter;
-            this.MouseLeave += NavigationButtonTemplate_MouseLeave;
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            bool pageCanBeOpen = false;
+
+            if (PageToOpen != PagesUserControls.EmptyPage)
+            {
+                if (IsLoggedIn)
+                {
+                    if (PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
+                    {
+                        foreach (PagesUserControls puc in listWithPermissions)
+                        {
+                            if (puc == this.PageToOpen)
+                            {
+                                pageCanBeOpen = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                //TODO:Make this in xaml
+                if (pageCanBeOpen)
+                {
+                    this.IsEnabled = true;
+                    this.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.IsEnabled = false;
+                    this.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         private void NavigationButtonTemplate_MouseLeave(object sender, MouseEventArgs e)
@@ -108,6 +143,7 @@ namespace SWAM.Controls.Templates.MainWindow
         }
         #endregion
 
+        //TODO:Make this in xaml
         private void ChangeColoursIsSelected()
         {
             this.Background = this.FindResource("BackgroundOfPagesBrash") as Brush;

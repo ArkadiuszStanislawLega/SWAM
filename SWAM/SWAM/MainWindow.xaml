@@ -110,57 +110,27 @@
             <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
                                           PageToOpen="AdministratorPage" 
                                           x:Name="SwitchToAdministratorPage"
-                                          Click="NaviagionBar_Click"
-                                          IsEnabled="{Binding ElementName=SwitchToAdministratorPage, 
-                                                 Path=PageToOpen,
-                                                 Converter={conv:PagesUserControlsToBoolean}}"
-                                          Visibility="{Binding ElementName=SwitchToAdministratorPage, 
-                                                 Path=IsEnabled,
-                                                 Converter={conv:BooleanToVisiblityConverter}}"/>
+                                          Click="NaviagionBar_Click"/>
             
             <nav:NavigationButtonTemplate Content="Strona Logowania" 
                                           PageToOpen="LoginPage" 
                                           x:Name="SwitchToLoginPage"
-                                          Click="NaviagionBar_Click"
-                                          IsEnabled="{Binding ElementName=SwitchToLoginPage, 
-                                                 Path=PageToOpen,
-                                                 Converter={conv:PagesUserControlsToBoolean}}"
-                                          Visibility="{Binding ElementName=SwitchToLoginPage, 
-                                                 Path=IsEnabled,
-                                                 Converter={conv:BooleanToVisiblityConverter}}"/>
+                                          Click="NaviagionBar_Click" />
             
             <nav:NavigationButtonTemplate Content="Produkty" 
                                           PageToOpen="ManageItemsPage"
                                           x:Name="SwitchToManageItemPage"
-                                          Click="NaviagionBar_Click"
-                                          IsEnabled="{Binding ElementName=SwitchToManageItemPage, 
-                                                 Path=PageToOpen,
-                                                 Converter={conv:PagesUserControlsToBoolean}}"
-                                          Visibility="{Binding ElementName=SwitchToManageItemPage, 
-                                                 Path=IsEnabled,
-                                                 Converter={conv:BooleanToVisiblityConverter}}" />
+                                          Click="NaviagionBar_Click" />
             
             <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
                                           PageToOpen="ManageMagazinePage"
                                           x:Name="SwitchToManageMagazinePage"
-                                          Click="NaviagionBar_Click"
-                                          IsEnabled="{Binding ElementName=SwitchToManageMagazinePage, 
-                                                 Path=PageToOpen,
-                                                 Converter={conv:PagesUserControlsToBoolean}}"
-                                          Visibility="{Binding ElementName=SwitchToManageMagazinePage, 
-                                                 Path=IsEnabled,
-                                                 Converter={conv:BooleanToVisiblityConverter}}" />
+                                          Click="NaviagionBar_Click" />
             
             <nav:NavigationButtonTemplate Content="Zamówienia" 
                                           PageToOpen="ManageOrdersPage" 
                                           x:Name="SwitchToManageOrderPage" 
-                                          Click="NaviagionBar_Click"
-                                          IsEnabled="{Binding ElementName=SwitchToManageOrderPage, 
-                                                 Path=PageToOpen,
-                                                 Converter={conv:PagesUserControlsToBoolean}}"
-                                          Visibility="{Binding ElementName=SwitchToManageOrderPage, 
-                                                 Path=IsEnabled,
-                                                 Converter={conv:BooleanToVisiblityConverter}}" />
+                                          Click="NaviagionBar_Click" />
         </StackPanel>
         <!--#endregion-->
         <!--#endregion-->

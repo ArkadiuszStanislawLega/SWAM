@@ -10,6 +10,65 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed"/>
     </UserControl.CommandBindings>
+    <!--#region Storyboards-->
+    <UserControl.Resources>
+        <Storyboard x:Key="HideCallendar">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="UserBlockCallendar"
+                                                            Duration="0:0:1"
+                                                            To="0 0 -195 0"
+                                                            DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="UserBlockCallendar"
+                                                         Duration="0:0:0.7" 
+                                                         From="1" To="0"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
+                                                                        Storyboard.TargetProperty="IsEnabled"
+                                                                        FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
+            </BooleanAnimationUsingKeyFrames>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="EditDateOfUserBlock"
+                                                            Duration="0:0:0.7"
+                                                            To="195 0 0 -265"
+                                                            DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames
+                                                                    Storyboard.TargetName="EditDateOfUserBlock"
+                                                                    Storyboard.TargetProperty="IsEnabled"
+                                                                    FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.001" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowCallendar">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Storyboard.TargetName="UserBlockCallendar"
+                                        Duration="0:0:0.7"
+                                        From="0 0 -195 0"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     Storyboard.TargetName="UserBlockCallendar"
+                                     Duration="0:0:0.7" 
+                                     From="0" To="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
+                                                    Storyboard.TargetProperty="IsEnabled"
+                                                    FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1" />
+            </BooleanAnimationUsingKeyFrames>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Storyboard.TargetName="EditDateOfUserBlock"
+                                        Duration="0:0:1"
+                                        From="195 0 0 -265"
+                                        DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditDateOfUserBlock"
+                                                    Storyboard.TargetProperty="IsEnabled"
+                                                    FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.001" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <!--#endregion-->
     <Grid HorizontalAlignment="Right" VerticalAlignment="Center" 
                                 Width="230" Height="230">
         <!--#region Column Definitions-->
@@ -59,36 +118,7 @@
                             Name="ConfirmDateOfClock">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click" SourceName="ConfirmDateOfClock">
-                                <BeginStoryboard>
-                                    <Storyboard Name="ConfirmUserBlockadeData">
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="UserBlockCallendar"
-                                                            Duration="0:0:1"
-                                                            To="0 0 -190 0"
-                                                            DecelerationRatio="1"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="UserBlockCallendar"
-                                                         Duration="0:0:0.7" 
-                                                         From="1" To="0"/>
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
-                                                                        Storyboard.TargetProperty="IsEnabled"
-                                                                        FillBehavior="HoldEnd">
-                                            <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
-                                        </BooleanAnimationUsingKeyFrames>
-
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="EditDateOfUserBlock"
-                                                            Duration="0:0:0.7"
-                                                            To="190 0 0 -260"
-                                                            DecelerationRatio="1"/> 
-                                        <BooleanAnimationUsingKeyFrames
-                                                                    Storyboard.TargetName="EditDateOfUserBlock"
-                                                                    Storyboard.TargetProperty="IsEnabled"
-                                                                    FillBehavior="HoldEnd">
-                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.001" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
@@ -100,35 +130,10 @@
     </Grid>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Button.Click" SourceName="EditDateOfUserBlock">
-            <BeginStoryboard>
-                <Storyboard>
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Storyboard.TargetName="UserBlockCallendar"
-                                        Duration="0:0:0.7"
-                                        From="0 0 -190 0"
-                                        DecelerationRatio="1"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     Storyboard.TargetName="UserBlockCallendar"
-                                     Duration="0:0:0.7" 
-                                     From="0" To="1"/>
-                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
-                                                    Storyboard.TargetProperty="IsEnabled"
-                                                    FillBehavior="HoldEnd">
-                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1" />
-                    </BooleanAnimationUsingKeyFrames>
-
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Storyboard.TargetName="EditDateOfUserBlock"
-                                        Duration="0:0:1"
-                                        From="190 0 0 -260"
-                                        DecelerationRatio="1"/>
-                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditDateOfUserBlock"
-                                                    Storyboard.TargetProperty="IsEnabled"
-                                                    FillBehavior="HoldEnd">
-                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.001" />
-                    </BooleanAnimationUsingKeyFrames>
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource ShowCallendar}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="Loaded" SourceName="EditDateOfUserBlock">
+            <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
         </EventTrigger>
     </UserControl.Triggers>
 

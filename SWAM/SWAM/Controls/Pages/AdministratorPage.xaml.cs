@@ -49,10 +49,6 @@ namespace SWAM.Controls.Pages
         {
             base.OnInitialized(e);
 
-            //seting to buttons which are is responsible for which bookmark
-            this.SwitchToUsersControlPanel.Bookmark = BookmarkInPage.UsersControlPanel;
-            this.SwitchToWarehousesControlPanel.Bookmark = BookmarkInPage.WarehousesControlPanel;
-
             ChangeThisContent(BookmarkInPage.UsersControlPanel);
         }
         #endregion  

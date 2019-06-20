@@ -5,7 +5,7 @@
     /// </summary>
     public enum PagesUserControls
     {
-        BasicPage,
+        EmptyPage,
         /// <summary>
         /// Page where can eneter only administrator of database.
         /// Administrator can there manage of the users rights.

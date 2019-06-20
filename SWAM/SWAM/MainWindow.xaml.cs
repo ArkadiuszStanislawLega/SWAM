@@ -197,8 +197,11 @@ namespace SWAM
 
             if (page != this._currentPageLoaded)
             {
-                if(this._pages.TryGetValue(page, out UserControl pagetoAdd))
+                if (this._pages.TryGetValue(page, out UserControl pagetoAdd))
+                {
                     this.ContentOfWindow.Children.Add(pagetoAdd);
+                    this._currentPageLoaded = page;
+                }
                 else
                     this.ContentOfWindow.Children.Add(new SWAM.Controls.Pages.ErrorPage());
             }
@@ -216,7 +219,6 @@ namespace SWAM
         {
             var button = sender as NavigationButtonTemplate;
             ChangeContent(button.PageToOpen);
-            this._currentPageLoaded = button.PageToOpen;
 
             foreach (NavigationButtonTemplate nvb in this.NavigationBar.Children)
             {

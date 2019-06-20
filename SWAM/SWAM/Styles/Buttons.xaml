@@ -140,7 +140,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
+    
     <!--#region FaNoBackground-->
     <!-- Font awesome with transparent bacground. -->
     <Style x:Key="FaNoBackground" TargetType="Button">
