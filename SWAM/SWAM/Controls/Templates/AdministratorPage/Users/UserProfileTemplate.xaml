@@ -16,6 +16,8 @@
     <UserControl.Resources>
         <conv:DateOfExpireColorConverter x:Key="dateOfExpireColorConverter"/>
         <conv:BooleanToVisiblityConverter x:Key="visbilityConverter"/>
+        <conv:AccountBlockToColorConverter x:Key="accountBlockToColorConverter"/>
+        <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
                 ObjectType="{x:Type System:Enum}">
@@ -102,7 +104,7 @@
                             <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
                             <Grid Name="EditPermissionsContainer"            
                                   Visibility="{Binding ElementName=ConfirmEditPermission, Path=IsEnabled,
-                                                Converter={conv:BooleanToVisiblityConverter}}">
+                                                Converter={StaticResource visbilityConverter}}">
                                 <!--#region Column definition-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
@@ -169,7 +171,9 @@
                         <StackPanel Margin="5">
                             <TextBlock Text="Status konta"
                                    Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"/>
+                            <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"
+                                       Foreground="{Binding  ElementName=AccountStatus, Path=Text, 
+                                       Converter={StaticResource accountBlockToColorConverter}}"/>
                             <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
                                       IsEnabled="False" Visibility="Collapsed" 
                                       ToolTip="Jeżeli zaznaczony to aktywne."/>
@@ -222,9 +226,10 @@
                     Name="Buttons"
                     Margin="0 0 50 0">
             <Button Name="BlockUser" 
-                        Content="Zablokuj"
-                        Click="BlockUser_Click"
-                        Style="{StaticResource UserProfilebuttons}"/>
+                    Content="{Binding  ElementName=AccountStatus, Path=Text, 
+                      Converter={StaticResource accountBlockToTextConverter}}"
+                    Click="BlockUser_Click"
+                    Style="{StaticResource UserProfilebuttons}"/>
             <Button Name="DeletUser" 
                         Content="Usuń "
                         Click="DeletUser_Click"

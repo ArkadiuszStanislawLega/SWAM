@@ -59,9 +59,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         public void CreateNewAccessMode()
         {
+            //TODO: Make this in xaml.
             SWAM.MainWindow.TurnOn(this.EditUserPermissions);
             SWAM.MainWindow.TurnOn(this.ConfirmAddAccess);
             SWAM.MainWindow.TurnOn(this.EditWarehouse);
+            SWAM.MainWindow.TurnOff(this.DeleteCurrentAccess);
 
             this.AdministatorName.Text = SWAM.MainWindow.LoggedInUser.Name;
             this.DateOfGrantingAccess.Text = ""+DateTime.Now;
@@ -130,6 +132,39 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
             SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
                 InformationForUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+        }
+        #endregion
+
+        #region RefreshParent
+        /// <summary>
+        /// Refreshing parent container with user accesses.
+        /// </summary>
+        private void RefreshParent()
+        {
+            var userAccessToWarehousesTemplates = SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this);
+            userAccessToWarehousesTemplates.RefreshAccessList();
+        }
+        #endregion
+        #region Delete_Click
+        /// <summary>
+        /// Action after click delete access button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //TODO: Make a window asking if you really want to delete this permission.
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var accessToRemove = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == (int)this.Tag);
+
+                if (accessToRemove != null)
+                {
+                    context.AccessUsersToWarehouses.Remove(accessToRemove);
+                    context.SaveChanges();
+                }
+            }
+            RefreshParent();
         }
         #endregion
     }

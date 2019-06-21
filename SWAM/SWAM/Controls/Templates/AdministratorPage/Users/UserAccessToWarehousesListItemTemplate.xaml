@@ -28,7 +28,7 @@
     <UserControl.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
     </UserControl.CommandBindings>
-    <Border CornerRadius="10" Padding="10">
+    <Border CornerRadius="10" Padding="10 10 10 0">
         <Border.Background>
             <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
         </Border.Background>
@@ -140,7 +140,7 @@
 
                     <Button Name="ShowCallendar"
                                 Width="20" Height="20" 
-                                Style="{StaticResource NavigationButton}"
+                                Style="{StaticResource FaNoBackground}"
                                 HorizontalAlignment="Left"
                                 Grid.Column="0"
                                 Grid.Row="1">
@@ -181,12 +181,7 @@
                            Grid.Column="2"/>
                 </Grid>
                 <!--#endregion-->
-                <Button Name="ConfirmAddAccess"
-                        Click="ConfirmAddAccess_Click"
-                        IsEnabled="False"
-                        Content="Dodaj uprawnienia"
-                        Visibility="Collapsed"
-                        Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
+
             </StackPanel>
             <!--#region Callendar -->
             <Border  Name="CalendarContainer"
@@ -243,6 +238,27 @@
                 </StackPanel>
             </Border>
             <!--#endregion-->
+            <Button Name="DeleteCurrentAccess" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Style="{StaticResource FaNoBackground}"
+                    Click="Delete_Click"
+                    Height="20" 
+                    Width="20"
+                    Margin="5"
+                    ToolTip="Usuń uprawenienie">
+                <fa:ImageAwesome Icon="Trash" 
+                             Foreground="{StaticResource FontsBrash}"
+                             Margin="-4"/>
+            </Button>
+            <Button Name="ConfirmAddAccess"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Click="ConfirmAddAccess_Click"
+                    IsEnabled="False"
+                    Content="Dodaj uprawnienia"
+                    Visibility="Collapsed"
+                    Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
         </Grid>
     </Border>
     <!--#region On loaded animation-->

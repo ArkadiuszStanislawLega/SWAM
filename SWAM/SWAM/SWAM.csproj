@@ -240,6 +240,8 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
       <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AccountBlockToColorConverter.cs" />
+    <Compile Include="Converters\AccountBlockToTextConverter.cs" />
     <Compile Include="Converters\BaseValueConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\DateOfExpireColorConverter.cs" />
