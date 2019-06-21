@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
-            <temp:CustomerDetailsFormTemplate Grid.Row="0"/>
+            <temp:CustomerDetailsFormTemplate Grid.Column="0"/>
             <address:AddressOrderFormTemplate Grid.Column="1"/>
             <temp:CustomerListFromDbTemplate  Grid.Column="2"/>
         </Grid>
