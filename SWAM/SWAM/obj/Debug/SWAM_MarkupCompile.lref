@@ -1,50 +1,4 @@
 ﻿
-<<<<<<< HEAD
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\App.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\ErrorPage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AddressTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\CalendarWithButton.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\MainWindow\NavigationButtonTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\MainWindow.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\AdministratorPage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\LoginPage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\ManageItemPage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\ManageMagazinePage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Pages\ManageOrdersPage.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\Buttons.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\Callendar.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\ComboBoxes.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\DataGrides.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\Fonts.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\Labels.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\MenuItem.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\PasswordBoxes.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\TextBlocks.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml;;
-FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml;;
-=======
 FG:\GitRepo\SWAM\SWAM\SWAM\App.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\ErrorPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AddressTemplate.xaml;;
@@ -62,8 +16,13 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\Wareh
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\CalendarWithButton.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MainWindow\NavigationButtonTemplate.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\MainWindow.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\AdministratorPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml;;
@@ -84,5 +43,4 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ScrollBar.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBlocks.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
->>>>>>> 38992ed02c0f7b2843ce9326b36ca895099d31e8
 

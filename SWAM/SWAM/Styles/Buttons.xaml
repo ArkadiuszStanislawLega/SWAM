@@ -79,17 +79,24 @@
                         <Label Content="{TemplateBinding Content}"
                                Foreground="{TemplateBinding Foreground}"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               />
+                               VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Label.RenderTransform>
+                                <RotateTransform  x:Name="MyAnimatedTransform" CenterX="10" CenterY="10"/>
+                            </Label.RenderTransform>
+                        </Label>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource EnabledBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="{StaticResource GraphiteBrash}" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                                    Storyboard.TargetName="MyAnimatedTransform"
+                                                    Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                                    From="0" To="360" Duration="0:0:1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

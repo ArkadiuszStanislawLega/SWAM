@@ -19,7 +19,7 @@
         Height="auto" Width="auto" >
     
     <Window.Background>
-        <SolidColorBrush Opacity="0.5" Color="{StaticResource Graphite}"/>
+        <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
     </Window.Background>
     <WindowChrome.WindowChrome >
         <WindowChrome />
