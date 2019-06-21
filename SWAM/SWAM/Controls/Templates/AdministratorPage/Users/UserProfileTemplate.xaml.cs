@@ -90,6 +90,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     else userDb.StatusOfUserAccount = Enumerators.StatusOfUserAccount.Active;
 
                     context.SaveChanges();
+
+                    this.DataContext = context.Users.FirstOrDefault(u => u.Id == user.Id);
                 }
             }
         }

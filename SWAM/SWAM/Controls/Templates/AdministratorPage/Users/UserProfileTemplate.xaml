@@ -104,7 +104,7 @@
                             <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
                             <Grid Name="EditPermissionsContainer"            
                                   Visibility="{Binding ElementName=ConfirmEditPermission, Path=IsEnabled,
-                                                Converter={conv:BooleanToVisiblityConverter}}">
+                                                Converter={StaticResource visbilityConverter}}">
                                 <!--#region Column definition-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
