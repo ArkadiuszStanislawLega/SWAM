@@ -15,56 +15,55 @@
     <UserControl.Resources>
         <Storyboard x:Key="HideCallendar">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="UserBlockCallendar"
-                                                            Duration="0:0:1"
-                                                            To="0 0 -195 0"
-                                                            DecelerationRatio="1"/>
+                                Storyboard.TargetName="UserBlockCallendar"
+                                Duration="0:0:1"
+                                To="0 0 -195 0"
+                                DecelerationRatio="1"/>
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="UserBlockCallendar"
-                                                         Duration="0:0:0.7" 
-                                                         From="1" To="0"/>
+                             Storyboard.TargetName="UserBlockCallendar"
+                             Duration="0:0:0.7" 
+                             From="1" To="0"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
-                                                                        Storyboard.TargetProperty="IsEnabled"
-                                                                        FillBehavior="HoldEnd">
+                                            Storyboard.TargetProperty="IsEnabled"
+                                            FillBehavior="HoldEnd">
                 <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:1" />
             </BooleanAnimationUsingKeyFrames>
 
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="EditDateOfUserBlock"
-                                                            Duration="0:0:0.7"
-                                                            To="195 0 0 -265"
-                                                            DecelerationRatio="1"/>
-            <BooleanAnimationUsingKeyFrames
-                                                                    Storyboard.TargetName="EditDateOfUserBlock"
-                                                                    Storyboard.TargetProperty="IsEnabled"
-                                                                    FillBehavior="HoldEnd">
+                                Storyboard.TargetName="EditDateOfUserBlock"
+                                Duration="0:0:0.7"
+                                To="195 0 0 -265"
+                                DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditDateOfUserBlock"
+                                            Storyboard.TargetProperty="IsEnabled"
+                                            FillBehavior="HoldEnd">
                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.001" />
             </BooleanAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="ShowCallendar">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Storyboard.TargetName="UserBlockCallendar"
-                                        Duration="0:0:0.7"
-                                        From="0 0 -195 0"
-                                        DecelerationRatio="1"/>
+                                Storyboard.TargetName="UserBlockCallendar"
+                                Duration="0:0:0.7"
+                                From="0 0 -195 0"
+                                DecelerationRatio="1"/>
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     Storyboard.TargetName="UserBlockCallendar"
-                                     Duration="0:0:0.7" 
-                                     From="0" To="1"/>
+                             Storyboard.TargetName="UserBlockCallendar"
+                             Duration="0:0:0.7" 
+                             From="0" To="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="UserBlockCallendar"
-                                                    Storyboard.TargetProperty="IsEnabled"
-                                                    FillBehavior="HoldEnd">
+                                            Storyboard.TargetProperty="IsEnabled"
+                                            FillBehavior="HoldEnd">
                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1" />
             </BooleanAnimationUsingKeyFrames>
 
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Storyboard.TargetName="EditDateOfUserBlock"
-                                        Duration="0:0:1"
-                                        From="195 0 0 -265"
-                                        DecelerationRatio="1"/>
+                                Storyboard.TargetName="EditDateOfUserBlock"
+                                Duration="0:0:1"
+                                From="195 0 0 -265"
+                                DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditDateOfUserBlock"
-                                                    Storyboard.TargetProperty="IsEnabled"
-                                                    FillBehavior="HoldEnd">
+                                            Storyboard.TargetProperty="IsEnabled"
+                                            FillBehavior="HoldEnd">
                 <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.001" />
             </BooleanAnimationUsingKeyFrames>
         </Storyboard>
