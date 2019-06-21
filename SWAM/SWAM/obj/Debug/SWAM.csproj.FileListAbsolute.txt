@@ -602,3 +602,5 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.baml
