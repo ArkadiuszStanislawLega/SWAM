@@ -598,3 +598,5 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.baml

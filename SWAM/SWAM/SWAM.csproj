@@ -139,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -212,6 +216,9 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml.cs">
       <DependentUpon>CustomerListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml.cs">
+      <DependentUpon>CustomerOrdersNavigationTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
       <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
