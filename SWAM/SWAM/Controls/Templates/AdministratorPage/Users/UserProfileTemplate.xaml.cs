@@ -70,11 +70,30 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
         }
 
+        #region BlockUser_Click
+        /// <summary>
+        /// Action after click button block user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BlockUser_Click(object sender, RoutedEventArgs e)
         {
+            //TODO: Make a window asking if you really want to block this user.
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var user = DataContext as User;
+                var userDb = context.Users.FirstOrDefault(u => u.Id == user.Id);
 
+                if (userDb != null )
+                {
+                    if (userDb.StatusOfUserAccount == Enumerators.StatusOfUserAccount.Active) userDb.StatusOfUserAccount = Enumerators.StatusOfUserAccount.Blocked;
+                    else userDb.StatusOfUserAccount = Enumerators.StatusOfUserAccount.Active;
+
+                    context.SaveChanges();
+                }
+            }
         }
-
+        #endregion
 
         virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {

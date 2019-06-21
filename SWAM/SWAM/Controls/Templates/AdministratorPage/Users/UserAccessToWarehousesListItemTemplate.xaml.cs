@@ -59,6 +59,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         public void CreateNewAccessMode()
         {
+            //TODO: Make this in xaml.
             SWAM.MainWindow.TurnOn(this.EditUserPermissions);
             SWAM.MainWindow.TurnOn(this.ConfirmAddAccess);
             SWAM.MainWindow.TurnOn(this.EditWarehouse);
