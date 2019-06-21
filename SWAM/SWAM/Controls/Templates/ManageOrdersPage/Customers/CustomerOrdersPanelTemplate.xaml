@@ -13,5 +13,36 @@
     <Border BorderBrush="{StaticResource GraphiteBrash}" 
             BorderThickness="2" Name="CurrentView">
 
+        <Grid>
+            <!--#region Rows&Column Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+
+            <Grid Grid.Column="0">
+                <Border Margin="5">
+                    <StackPanel  
+                        Name="NavigationBar">
+                        <nav:NavigationButtonTemplate Width="100" 
+                                              Content="Lista zleceń"
+                                              x:Name="SwitchToUsersControlPanel" 
+                                              Style="{StaticResource NavigationButton}"/>
+
+                        <nav:NavigationButtonTemplate Width="100" 
+                                              Margin="0 5 0 0"
+                                              Content="Nowe zlecenie" 
+                                              x:Name="SwitchToWarehousesControlPanel" 
+                                              Style="{StaticResource NavigationButton}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <temp:CreateNewCustomerOrderTemplate/>
+            </Grid>
+
+        </Grid>
     </Border>
 </UserControl>
