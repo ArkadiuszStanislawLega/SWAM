@@ -131,11 +131,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,10 +203,13 @@
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\WarehousesOrdersPage\CustomerOrdersPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml.cs">
+      <DependentUpon>AddressOrderFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
       <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\WarehousesOrdersPage\WarehouseOrdersPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
       <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BaseValueConverter.cs" />

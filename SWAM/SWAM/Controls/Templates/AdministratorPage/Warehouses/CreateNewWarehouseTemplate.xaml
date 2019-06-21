@@ -13,7 +13,7 @@
             <Label Content="Nazwa magazynu" Foreground="{StaticResource FontsBrash}"/>
             <TextBox Name="Name" Tag="Nazwa magazynu" Style="{StaticResource UserLogin }"/>
         </StackPanel>
-        <temp:AddressTemplate x:Name="Address"/>
+        <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
         
         <Button Name="Confirm" Click="Confirm_Click" 
                 Width="200" Content="Dodaj magazyn" 

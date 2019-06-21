@@ -52,5 +52,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 context.SaveChanges();
             }
         }
+
+        private void Address_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
