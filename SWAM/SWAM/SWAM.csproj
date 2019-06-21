@@ -135,6 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -213,6 +217,9 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml.cs">
       <DependentUpon>AddressOrderFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml.cs">
+      <DependentUpon>CustomerDetailsFormTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml.cs">
       <DependentUpon>CustomerListFromDbTemplate.xaml</DependentUpon>
