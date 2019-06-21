@@ -1,18 +1,10 @@
 ﻿using SWAM.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Data.Entity;
+
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -31,7 +23,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             var user = DataContext as User;
             ApplicationDbContext context = new ApplicationDbContext();
-            this.DataContext = context.Users.FirstOrDefault(u => u.Id == user.Id);
+            this.DataContext = context.Users.Include(u => u.Accesess)
+                                             .Include(u => u.Emails)
+                                             .Include(u => u.Phones)
+                                             .FirstOrDefault(u => u.Id == user.Id);
         }
 
         private void EditUser_Click(object sender, RoutedEventArgs e)
@@ -91,7 +86,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                     context.SaveChanges();
 
-                    this.DataContext = context.Users.FirstOrDefault(u => u.Id == user.Id);
+                    this.DataContext = context.Users.Include(u => u.Accesess)
+                                                    .Include(u => u.Emails)
+                                                    .Include(u => u.Phones)
+                                                    .FirstOrDefault(u => u.Id == user.Id);
                 }
             }
         }
