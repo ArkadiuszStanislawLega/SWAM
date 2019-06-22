@@ -21,24 +21,33 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             base.OnRender(drawingContext);
 
-            var user = DataContext as User;
-            if (user != null)
+            if (DataContext is User user && user != null)
             {
-                ApplicationDbContext context = new ApplicationDbContext();
-                this.Calendar.SelectedDate = (context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade);
+                //TODO: Try-catch
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    this.Calendar.SelectedDate = (context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade);
+                }
             }
         }
 
+        #region NewCommand_Executed
+        /// <summary>
+        /// Action after click button "ok" when change date of user block.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         override protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             //TODO: Create validation.
-            if (this.Calendar.SelectedDate != null)
+            if (this.Calendar.SelectedDate != null && DataContext is User user)
             {
-                var user = DataContext as User;
-
-                ApplicationDbContext context = new ApplicationDbContext();
-                context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade = this.Calendar.SelectedDate;
-                context.SaveChanges();
+                //TODO: Try-catch
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade = this.Calendar.SelectedDate;
+                    context.SaveChanges();
+                }
 
                 SWAM.MainWindow.FindParent<UserProfileTemplate>(this).RefreshData();
 
@@ -46,5 +55,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     InformationForUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
             }
         }
+        #endregion
     }
 }

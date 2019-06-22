@@ -54,13 +54,10 @@
                     <ScrollViewer Name="ScrollOfUserList">
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
-
                                 <DataTemplate>
-
                                     <Grid>
                                         <temp:UsersListItemTemplate/>
                                     </Grid>
-
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
