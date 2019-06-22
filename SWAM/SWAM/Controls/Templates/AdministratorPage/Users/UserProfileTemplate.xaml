@@ -27,12 +27,14 @@
         </ObjectDataProvider>
     </UserControl.Resources>
     <!--#endregion-->
+    <!--#region Commands-->
     <UserControl.CommandBindings>
         <CommandBinding Command="com:UserProfileCommands.EditUserPermissions" 
                         Executed="EditUserPermissionsCommand_Executed"/>
         <CommandBinding Command="com:UserProfileCommands.EditUserName"
                         Executed="EditNameCommand_Executed"/>
     </UserControl.CommandBindings>
+    <!--#endregion-->
     <Grid>
         <Grid Name="Content" >
             <!--#region RowDefinitions-->
@@ -303,7 +305,6 @@
                     <local:EmailEditableListTemplate/>
                     <local:PhoneNumbersEditableListTemplate/>
                 </StackPanel>
-
                 <!--#endregion-->
             </Grid>
             <!--#endregion-->
@@ -322,11 +323,6 @@
             <Button Name="DeletUser" 
                         Content="Usuń "
                         Click="DeletUser_Click"
-                        Style="{StaticResource UserProfilebuttons}"/>
-            <Button Name="ConfirmChanges" 
-                        Content="Zatwierdź zmiany"
-                        IsEnabled="False"
-                        Visibility="Collapsed"
                         Style="{StaticResource UserProfilebuttons}"/>
         </StackPanel>
 

@@ -19,6 +19,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+        #region RefreshData
+        /// <summary>
+        /// Getting data from database and refresh profile.
+        /// </summary>
         public void RefreshData()
         {
             if (DataContext is User user)
@@ -33,7 +37,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
             }
         }
-
+        #endregion  
         #region DeletUser_Click
         /// <summary>
         /// Action after click button delete user.
@@ -68,7 +72,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             }
         }
         #endregion
-
         #region BlockUser_Click
         /// <summary>
         /// Action after click button block user.
@@ -100,36 +103,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
             }
         }
-        #endregion
-        #region NewCommand_Executed
-        /// <summary>
-        /// Action after clock confirm change permision button.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (DataContext is User user)
-            {
-                var userType = (Enumerators.UserType)this.EditPermissions.SelectedValue;
-
-                if (userType != user.Permissions)
-                {
-                    //TODO: Try - catch
-                    using (ApplicationDbContext context = new ApplicationDbContext())
-                    {
-                        context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions = userType;
-                        context.SaveChanges();
-
-                        Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
-                    }
-
-                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                            InformationForUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}.");
-                }
-            }
-        }
-
         #endregion
         #region EditNameCommand_Executed
         /// <summary>
