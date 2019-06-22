@@ -34,36 +34,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             }
         }
 
-        private void EditUser_Click(object sender, RoutedEventArgs e)
-        {
-            TurnOffValues();
-            TurnOnEditFields();
-        }
-
-        #region TurnOnEditFields
-        /// <summary>
-        /// Switch on all fields required to change user profile values.
-        /// </summary>
-        private void TurnOnEditFields()
-        {
-            SWAM.MainWindow.TurnOn(this.EditName);
-            SWAM.MainWindow.TurnOn(this.EditPassword);
-            SWAM.MainWindow.TurnOn(this.EditConfirmPassword);
-            SWAM.MainWindow.TurnOn(this.EditPermissions);
-        }
-        #endregion
-        #region TurnOffValues
-        /// <summary>
-        /// Turn off all uneditables values downloaded from database.
-        /// </summary>
-        private void TurnOffValues()
-        {
-            SWAM.MainWindow.TurnOff(this.Name);
-            SWAM.MainWindow.TurnOff(this.Password);
-            SWAM.MainWindow.TurnOff(this.Permissions);
-        }
-        #endregion
-
         #region DeletUser_Click
         /// <summary>
         /// Action after click button delete user.

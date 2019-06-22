@@ -55,15 +55,92 @@
                 <ScrollViewer Name="LeftSideOfProfile" Grid.Row="1" Grid.Column="0">
                     <StackPanel Margin="10">
                         <!--#region User Name-->
-                        <StackPanel Margin="5">
+                        <Grid Margin="5">
+                            <!--#region Columnd & rows definitions-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <!--#endregion-->
                             <TextBlock Text="Nazwa użytkownika" 
-                               Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="Name" Text="{Binding Name}"/>
+                                       Grid.Column="0" Grid.Row="0"
+                                       Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Name="Name" Text="{Binding Name}"
+                                       Grid.Column="0" Grid.Row="1"/>
+                            <Button Name="EditNameOfUserButton"
+                                    Grid.Column="2" Grid.Row="0"
+                                    Style="{StaticResource FaNoBackground}">
+                                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+                                <!--#region Trieggers-->
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditName"
+                                                                                Storyboard.TargetProperty="IsEnabled">
+                                                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetName="EditName"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="0" To="1"
+                                                                     Duration="0:0:0.3"/>
+
+                                                <BooleanAnimationUsingKeyFrames  Storyboard.TargetName="ConfirmChangeName"
+                                                                                 Storyboard.TargetProperty="IsEnabled">
+                                                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1"/>
+                                                </BooleanAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetName="ConfirmChangeName"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="0" To="1"
+                                                                     Duration="0:0:0.3"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <!--#endregion-->
+                            </Button>
+                            <!--#region Edit user name fields-->
                             <TextBox Name="EditName" 
+                                     Grid.Column="0" Grid.Row="2"
                                      Text="{Binding Name}" 
                                      IsEnabled="False" 
-                                     Visibility="Collapsed"/>
-                        </StackPanel>
+                                     Visibility="{Binding ElementName=EditName, Path=IsEnabled,
+                                                Converter={StaticResource visbilityConverter}}"/>
+                            <Button Name="ConfirmChangeName"
+                                    Grid.Column="2" Grid.Row="2"
+                                    Style="{StaticResource FaNoBackground}"
+                                    Visibility="{Binding ElementName=ConfirmChangeName, Path=IsEnabled,
+                                                Converter={StaticResource visbilityConverter}}"
+                                    IsEnabled="False" 
+                                    Command="ApplicationCommands.New" >
+                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                                <!--#region Triggers-->
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="EditName"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="1" To="0"
+                                                                     Duration="0:0:0.3"/>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditName"
+                                                                                   Storyboard.TargetProperty="IsEnabled">
+                                                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
+                                                </BooleanAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
+                            <!--#endregion-->
+                            <!--#endregion-->
+                        </Grid>
                         <!--#endregion-->
                         <!--#region Permissions-->
                         <StackPanel Margin="5">
@@ -233,10 +310,6 @@
             <Button Name="DeletUser" 
                         Content="Usuń "
                         Click="DeletUser_Click"
-                        Style="{StaticResource UserProfilebuttons}"/>
-            <Button Name="EditUser" 
-                        Content="Edytuj"
-                        Click="EditUser_Click"
                         Style="{StaticResource UserProfilebuttons}"/>
             <Button Name="ConfirmChanges" 
                         Content="Zatwierdź zmiany"

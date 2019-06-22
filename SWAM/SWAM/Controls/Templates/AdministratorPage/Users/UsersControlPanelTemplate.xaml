@@ -42,8 +42,7 @@
                              FontSize="14" Width="140" Height="30"
                              HorizontalAlignment="Left"
                              Margin="0 0 0 0"
-                             Style="{StaticResource UserLogin}"
-                             />
+                             Style="{StaticResource UserLogin}"/>
                     <Button Width="30" Height="30" Click="AddNewUser_Click" Style="{StaticResource NavigationButton}">
                         <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
                                       Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."/>
