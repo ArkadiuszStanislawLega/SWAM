@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="AtachedProperties\BasedAttachedProperty.cs" />
     <Compile Include="AtachedProperties\PasswordAttachedProperty.cs" />
+    <Compile Include="Commands\AdministratorPage\UserProfileCommands.cs" />
     <Compile Include="Controls\Pages\ErrorPage.xaml.cs">
       <DependentUpon>ErrorPage.xaml</DependentUpon>
     </Compile>

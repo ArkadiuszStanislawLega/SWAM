@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:temp="clr-namespace:SWAM.Controls.Templates"
-             xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
-             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:com="clr-namespace:SWAM.Commands.AdministratorPage"
              xmlns:conv="clr-namespace:SWAM.Converters"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -28,7 +28,10 @@
     </UserControl.Resources>
     <!--#endregion-->
     <UserControl.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed"/>
+        <CommandBinding Command="com:UserProfileCommands.EditUserPermissions" 
+                        Executed="EditUserPermissionsCommand_Executed"/>
+        <CommandBinding Command="com:UserProfileCommands.EditUserName"
+                        Executed="EditNameCommand_Executed"/>
     </UserControl.CommandBindings>
     <Grid>
         <Grid Name="Content" >
@@ -118,7 +121,7 @@
                                     Visibility="{Binding ElementName=ConfirmChangeName, Path=IsEnabled,
                                                 Converter={StaticResource visbilityConverter}}"
                                     IsEnabled="False" 
-                                    Command="ApplicationCommands.New" >
+                                    Command="com:UserProfileCommands.EditUserName" >
                                 <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                                 <!--#region Triggers-->
                                 <Button.Triggers>
@@ -130,6 +133,15 @@
                                                                      From="1" To="0"
                                                                      Duration="0:0:0.3"/>
                                                 <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditName"
+                                                                                   Storyboard.TargetProperty="IsEnabled">
+                                                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
+                                                </BooleanAnimationUsingKeyFrames>
+
+                                                <DoubleAnimation Storyboard.TargetName="ConfirmChangeName"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="1" To="0"
+                                                                     Duration="0:0:0.3"/>
+                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ConfirmChangeName"
                                                                                    Storyboard.TargetProperty="IsEnabled">
                                                     <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
                                                 </BooleanAnimationUsingKeyFrames>
@@ -195,7 +207,7 @@
                                           ItemsSource="{Binding Source={StaticResource UserType}}" />
                                 <Button Name="ConfirmEditPermission" Grid.Column="2" 
                                         Style="{StaticResource FaNoBackground}"
-                                        Command="ApplicationCommands.New" 
+                                        Command="com:UserProfileCommands.EditUserPermissions" 
                                         IsEnabled="False">
                                     <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                                     <!--#region Triggers-->
