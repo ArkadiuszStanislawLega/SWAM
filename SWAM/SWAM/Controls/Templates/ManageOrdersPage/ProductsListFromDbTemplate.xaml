@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ProductsListFromDbTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+             xmlns:product="clr-namespace:SWAM.Models"
+             mc:Ignorable="d">
+    <!--#region Resources to access GetProducts method in Product class-->
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Products"
+         ObjectType="{x:Type product:Product}"
+         MethodName="GetProducts"/>
+    </UserControl.Resources>
+    <!--#endregion-->
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding Source={StaticResource Products}}" LoadingRow="NumberRowIteration" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1"
+                      CanUserAddRows="False" SelectionMode="Single" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
+                <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
+                <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

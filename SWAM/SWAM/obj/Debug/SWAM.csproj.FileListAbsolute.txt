@@ -248,16 +248,6 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\B
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.baml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.exe.config
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.exe
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.pdb
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.dll
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.xml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
-C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Styles\Colors.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Styles\Styles.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Pages\ErrorPage.g.cs
@@ -283,6 +273,7 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\De
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.g.cs
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\MainWindow.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.g.cs
@@ -297,6 +288,15 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\De
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.cache
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM_MarkupCompile.lref
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.exe.config
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.exe
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\SWAM.pdb
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\App.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Pages\ErrorPage.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\AddressTemplate.baml
@@ -321,6 +321,7 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\De
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.baml
+C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\MainWindow.baml
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.baml

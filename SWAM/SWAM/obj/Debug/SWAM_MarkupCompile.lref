@@ -1,4 +1,4 @@
-﻿C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\App.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Pages\ErrorPage.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\AddressTemplate.xaml;;
@@ -23,6 +23,7 @@ FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Contr
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml;;
+FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\MainWindow.xaml;;
 FC:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\Controls\Pages\AdministratorPage.xaml;;

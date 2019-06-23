@@ -159,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,6 +248,9 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
       <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml.cs">
+      <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
       <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
