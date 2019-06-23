@@ -3,38 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:com="clr-namespace:SWAM.Commands.AdministratorPage"
-             xmlns:conv="clr-namespace:SWAM.Converters"
-             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:conv="clr-namespace:SWAM.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--#region Resources-->
     <UserControl.Resources>
-        <conv:DateOfExpireColorConverter x:Key="dateOfExpireColorConverter"/>
-        <conv:BooleanToVisiblityConverter x:Key="visbilityConverter"/>
-        <conv:AccountBlockToColorConverter x:Key="accountBlockToColorConverter"/>
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
-        <ObjectDataProvider x:Key="UserType"
-                MethodName="GetValues" 
-                ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="enum:UserType" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
     </UserControl.Resources>
-    <!--#endregion-->
-    <!--#region Commands-->
-    <UserControl.CommandBindings>
-        <CommandBinding Command="com:UserProfileCommands.EditUserPermissions" 
-                        Executed="EditUserPermissionsCommand_Executed"/>
-        <CommandBinding Command="com:UserProfileCommands.EditUserName"
-                        Executed="EditNameCommand_Executed"/>
-    </UserControl.CommandBindings>
-    <!--#endregion-->
     <Grid>
         <Grid Name="Content" >
             <!--#region RowDefinitions-->
@@ -56,249 +32,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
-                <!--#region Left Side Of profile-->
-                <ScrollViewer Name="LeftSideOfProfile" Grid.Row="1" Grid.Column="0">
-                    <StackPanel Margin="10">
-                        <!--#region User Name-->
-                        <Grid Margin="5">
-                            <!--#region Columnd & rows definitions-->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <!--#endregion-->
-                            <TextBlock Text="Nazwa użytkownika" 
-                                       Grid.Column="0" Grid.Row="0"
-                                       Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="Name" Text="{Binding Name}"
-                                       Grid.Column="0" Grid.Row="1"/>
-                            <Button Name="EditNameOfUserButton"
-                                    Grid.Column="2" Grid.Row="0"
-                                    Style="{StaticResource FaNoBackground}">
-                                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
-                                <!--#region Trieggers-->
-                                <Button.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditName"
-                                                                                Storyboard.TargetProperty="IsEnabled">
-                                                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1"/>
-                                                </BooleanAnimationUsingKeyFrames>
-                                                <DoubleAnimation Storyboard.TargetName="EditName"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="0" To="1"
-                                                                     Duration="0:0:0.3"/>
-
-                                                <BooleanAnimationUsingKeyFrames  Storyboard.TargetName="ConfirmChangeName"
-                                                                                 Storyboard.TargetProperty="IsEnabled">
-                                                    <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1"/>
-                                                </BooleanAnimationUsingKeyFrames>
-                                                <DoubleAnimation Storyboard.TargetName="ConfirmChangeName"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="0" To="1"
-                                                                     Duration="0:0:0.3"/>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Button.Triggers>
-                                <!--#endregion-->
-                            </Button>
-                            <!--#region Edit user name fields-->
-                            <TextBox Name="EditName" 
-                                     Grid.Column="0" Grid.Row="2"
-                                     Text="{Binding Name}" 
-                                     IsEnabled="False" 
-                                     Visibility="{Binding ElementName=EditName, Path=IsEnabled,
-                                                Converter={StaticResource visbilityConverter}}"/>
-                            <Button Name="ConfirmChangeName"
-                                    Grid.Column="2" Grid.Row="2"
-                                    Style="{StaticResource FaNoBackground}"
-                                    Visibility="{Binding ElementName=ConfirmChangeName, Path=IsEnabled,
-                                                Converter={StaticResource visbilityConverter}}"
-                                    IsEnabled="False" 
-                                    Command="com:UserProfileCommands.EditUserName" >
-                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
-                                <!--#region Triggers-->
-                                <Button.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard>
-                                            <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="EditName"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="1" To="0"
-                                                                     Duration="0:0:0.3"/>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditName"
-                                                                                   Storyboard.TargetProperty="IsEnabled">
-                                                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
-                                                </BooleanAnimationUsingKeyFrames>
-
-                                                <DoubleAnimation Storyboard.TargetName="ConfirmChangeName"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="1" To="0"
-                                                                     Duration="0:0:0.3"/>
-                                                <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ConfirmChangeName"
-                                                                                   Storyboard.TargetProperty="IsEnabled">
-                                                    <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
-                                                </BooleanAnimationUsingKeyFrames>
-                                            </Storyboard>
-                                        </BeginStoryboard>
-                                    </EventTrigger>
-                                </Button.Triggers>
-                            </Button>
-                            <!--#endregion-->
-                            <!--#endregion-->
-                        </Grid>
-                        <!--#endregion-->
-                        <!--#region Permissions-->
-                        <StackPanel Margin="5">
-                            <Grid>
-                                <!--#region Column definition-->
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <!--#endregion-->
-                                <TextBlock Text="Uprawnienia" Grid.Column="0"
-                                            Style="{StaticResource ProfileProperties}"/>
-                                <Button Name="EditPermissionsButton"
-                                        Grid.Column="2" 
-                                        Style="{StaticResource FaNoBackground}">
-                                    <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
-                                    <!--#region Trieggers-->
-                                    <Button.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="EditPermissionsContainer"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="0" To="1"
-                                                                     Duration="0:0:0.3"/>
-                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
-                                                                                    Storyboard.TargetName="ConfirmEditPermission">
-                                                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.1"/>
-                                                    </BooleanAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </Button.Triggers>
-                                    <!--#endregion-->
-                                </Button>
-                            </Grid>
-                            <TextBlock Name="Permissions" Text="{Binding Permissions}"/>
-                            <Grid Name="EditPermissionsContainer"            
-                                  Visibility="{Binding ElementName=ConfirmEditPermission, Path=IsEnabled,
-                                                Converter={StaticResource visbilityConverter}}">
-                                <!--#region Column definition-->
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
-                                <!--#endregion-->
-                                <ComboBox Name="EditPermissions"
-                                          Grid.Column="0" 
-                                          IsEditable="False"   
-                                          ItemsSource="{Binding Source={StaticResource UserType}}" />
-                                <Button Name="ConfirmEditPermission" Grid.Column="2" 
-                                        Style="{StaticResource FaNoBackground}"
-                                        Command="com:UserProfileCommands.EditUserPermissions" 
-                                        IsEnabled="False">
-                                    <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
-                                    <!--#region Triggers-->
-                                    <Button.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation Storyboard.TargetName="EditPermissionsContainer"
-                                                                     Storyboard.TargetProperty="Opacity"
-                                                                     From="1" To="0"
-                                                                     Duration="0:0:0.3"/>
-                                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="ConfirmEditPermission"
-                                                                                   Storyboard.TargetProperty="IsEnabled">
-                                                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.1" />
-                                                    </BooleanAnimationUsingKeyFrames>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </Button.Triggers>
-                                    <!--#endregion-->
-                                </Button>
-                            </Grid>
-                        </StackPanel>
-                        <!--#endregion-->
-                        <!--#region Date of create account-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Data założenia konta"
-                                        Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
-                        </StackPanel>
-                        <!--#endregion-->
-                        <!--#region Date of account expired-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Data wygaśnięcia konta"
-                               Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"
-                                       Foreground="{Binding  ElementName=ExpireDate, Path=Text, 
-                                       Converter={StaticResource dateOfExpireColorConverter}}"/>
-                        </StackPanel>
-                        <!--#endregion-->
-                        <!--#region Date of User block-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Końcowa data blokady konta" 
-                                       Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="ShowDateOfUserBlock" 
-                                       Text="{Binding ExpiryDateOfTheBlockade}"/>
-                        </StackPanel>
-                        <!--#endregion-->
-                        <!--#region Account Status-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Status konta"
-                                   Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"
-                                       Foreground="{Binding  ElementName=AccountStatus, Path=Text, 
-                                       Converter={StaticResource accountBlockToColorConverter}}"/>
-                            <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
-                                      IsEnabled="False" Visibility="Collapsed" 
-                                      ToolTip="Jeżeli zaznaczony to aktywne."/>
-                        </StackPanel>
-                        <!--#endregion-->
-                        <!--#region Password reset-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Reset hasła"
-                                   Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="Password" Text="{Binding Password}"/>
-                            <PasswordBox Name="EditPassword" IsEnabled="False" Visibility="Collapsed"/>
-                            <PasswordBox Name="EditConfirmPassword" IsEnabled="False" Visibility="Collapsed"/>
-                        </StackPanel>
-                        <!--#endregion-->
-                    </StackPanel>
-                    <!--#region On loaded animation-->
-                    <ScrollViewer.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <BeginStoryboard>
-                                <Storyboard>
-                                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:1.5"
-                                        From="-300 0 0 0" To="1"
-                                        DecelerationRatio="1"/>
-                                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                      Duration="0:0:1.5" 
-                                      From="0" To="1"/>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </ScrollViewer.Triggers>
-                    <!--#endregion-->
-                </ScrollViewer>
-                <!--#endregion-->
+                <userTemp:BasicInformationAboutUserTemplate Grid.Column="0" />
                 <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList" Grid.Column="1"/>
                 <!--#region Right side of profile-->
                 <StackPanel HorizontalAlignment="Right" Grid.Column="2">
@@ -316,7 +50,7 @@
                     Name="Buttons"
                     Margin="0 0 50 0">
             <Button Name="BlockUser" 
-                    Content="{Binding  ElementName=AccountStatus, Path=Text, 
+                    Content="{Binding  StatusOfUserAccount, 
                       Converter={StaticResource accountBlockToTextConverter}}"
                     Click="BlockUser_Click"
                     Style="{StaticResource UserProfilebuttons}"/>

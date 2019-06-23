@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +179,9 @@
     </Compile>
     <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
       <DependentUpon>AddressTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.xaml.cs">
+      <DependentUpon>BasicInformationAboutUserTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserBlockDate.cs" />
     <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserExpiredDate.cs" />
