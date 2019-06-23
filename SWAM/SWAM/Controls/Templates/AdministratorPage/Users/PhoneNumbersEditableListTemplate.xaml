@@ -25,12 +25,10 @@
                            Style="{StaticResource TitleOfLists}"
                            Grid.Column="0"/>
                 <!--#region Button add new phone-->
-                <Button Name="AddNewPhone" Click="AddNewPhone_Click" Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20" Grid.Column="2">
-                    <fa:ImageAwesome Icon="Plus" 
-                                 Foreground="{StaticResource FontsBrash}"
-                                 Margin="-1"
-                                 ToolTip="Dodaj nowy numer telefonu."/>
+                <Button Name="AddNewPhone" Click="AddNewPhone_Click"
+                        Style="{StaticResource AdditionSign}" 
+                        Margin="20 0 0 0"  Grid.Column="2"
+                        ToolTip="Dodaj nowy numer telefonu.">
                 </Button>
                 <!--#endregion-->
             </Grid>

@@ -59,8 +59,8 @@
     <!--#endregion-->
     <!--#region AdditionSign Buttons-->
     <Style x:Key="AdditionSign" TargetType="Button" >
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Background" Value="{StaticResource GraphiteBrash}"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
@@ -76,27 +76,33 @@
                             Height="{TemplateBinding Height}"
                             Background="{TemplateBinding Background}"
                             CornerRadius="90">
-                        <Label Content="{TemplateBinding Content}"
-                               Foreground="{TemplateBinding Foreground}"
+                        <Label Foreground="{TemplateBinding Foreground}"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <fa:ImageAwesome Icon="Plus" 
+                                 Foreground="{StaticResource FontsBrash}"
+                                 Margin="-1"/>
                             <Label.RenderTransform>
                                 <RotateTransform  x:Name="MyAnimatedTransform" CenterX="10" CenterY="10"/>
                             </Label.RenderTransform>
                         </Label>
                     </Border>
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="Spin">
+                            <DoubleAnimation  Storyboard.TargetName="MyAnimatedTransform"
+                                              Storyboard.TargetProperty="(RotateTransform.Angle)"
+                                              RepeatBehavior="Forever" 
+                                              From="0" To="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation
-                                                    Storyboard.TargetName="MyAnimatedTransform"
-                                                    Storyboard.TargetProperty="(RotateTransform.Angle)"
-                                                    From="0" To="360" Duration="0:0:1"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                <BeginStoryboard Storyboard="{StaticResource Spin}" x:Name="SpinStory"/>
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="SpinStory"/>
+                            </Trigger.ExitActions>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -147,9 +153,6 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
-
-
     <!--#region FaNoBcgrEnbleForeground-->
     <!-- Font awesome with transparent bacground and enabled-colour foregoround
          and autoriverse animation when maouse is over. -->
@@ -206,7 +209,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
+    <!--#region ArrowBackButton -->
     <Style x:Key="ArrowBackButton" TargetType="Button" >
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -259,7 +262,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <!--#endregion-->
     <!--#region FaNoBackground-->
     <!-- Font awesome with transparent bacground. -->
     <Style x:Key="FaNoBackground" TargetType="Button">

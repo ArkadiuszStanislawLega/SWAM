@@ -215,11 +215,9 @@
                      Visibility="{Binding ElementName=CalendarContainer, Path=IsEnabled,
                                      Converter={conv:BooleanToVisiblityConverter}}">
                 <Border.Background>
-                    <SolidColorBrush Opacity="0.5" Color="{StaticResource DarkGraphite}"/>
+                    <SolidColorBrush Opacity="0.7" Color="{StaticResource DarkGraphite}"/>
                 </Border.Background>
-                <Border.Effect>
-                    <DropShadowEffect Opacity="0.6" Direction="90"  BlurRadius="250"/>
-                </Border.Effect>
+
                 <StackPanel>
                     <TextBlock Text="Wygaśnięcie uprawnienia" HorizontalAlignment="Center"
                                FontWeight="Bold" TextWrapping="Wrap"/>
@@ -237,8 +235,9 @@
                             <!--#endregion-->
                         </Button>
                         <!--#region Hide button-->
-                        <Button Style="{StaticResource ArrowBackButton}" Height="20" Width="30"
-                            HorizontalAlignment="Right" ToolTip="Ukryj kalendarz">
+                        <Button Style="{StaticResource ArrowBackButton}"
+                                HorizontalAlignment="Right"
+                                ToolTip="Ukryj kalendarz">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
                                     <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>

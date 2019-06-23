@@ -74,7 +74,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             email.Delete();
 
             FindParent<EmailEditableListTemplate>(this).RefreshEmailsList();
-            FindParent<SWAM.MainWindow>(this).InformationForUser($"Usnięto adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+            FindParent<SWAM.MainWindow>(this).InformationForUser($"Usnięto adress email {email.AddressEmail}.");
+
         }
         #endregion
     }
