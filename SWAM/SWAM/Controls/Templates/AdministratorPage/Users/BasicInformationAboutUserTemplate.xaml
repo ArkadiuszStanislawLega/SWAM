@@ -10,7 +10,7 @@
              xmlns:conv="clr-namespace:SWAM.Converters" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="250">
     <!--#region Resources-->
     <UserControl.Resources>
         <conv:DateOfExpireColorConverter x:Key="dateOfExpireColorConverter"/>
@@ -31,6 +31,8 @@
                         Executed="EditUserPermissionsCommand_Executed"/>
         <CommandBinding Command="com:UserProfileCommands.EditUserName"
                         Executed="EditNameCommand_Executed"/>
+        <CommandBinding Command="com:UserProfileCommands.EditUserPassword"
+                        Executed="EditUserPasswordCommand_Executed"/>
     </UserControl.CommandBindings>
     <!--#endregion-->
     <!--#region Left Side Of profile-->
@@ -89,18 +91,18 @@
                 </Button>
                 <!--#region Edit user name fields-->
                 <TextBox Name="EditName" 
-                                     Grid.Column="0" Grid.Row="2"
-                                     Text="{Binding Name}" 
-                                     IsEnabled="False" 
-                                     Visibility="{Binding ElementName=EditName, Path=IsEnabled,
+                         Grid.Column="0" Grid.Row="2"
+                         Text="{Binding Name}" 
+                         IsEnabled="False" 
+                         Visibility="{Binding ElementName=EditName, Path=IsEnabled,
                                                 Converter={StaticResource visbilityConverter}}"/>
                 <Button Name="ConfirmChangeName"
-                                    Grid.Column="2" Grid.Row="2"
-                                    Style="{StaticResource FaNoBackground}"
-                                    Visibility="{Binding ElementName=ConfirmChangeName, Path=IsEnabled,
-                                                Converter={StaticResource visbilityConverter}}"
-                                    IsEnabled="False" 
-                                    Command="com:UserProfileCommands.EditUserName" >
+                        Grid.Column="2" Grid.Row="2"
+                        Style="{StaticResource FaNoBackground}"
+                        Visibility="{Binding ElementName=ConfirmChangeName, Path=IsEnabled,
+                                    Converter={StaticResource visbilityConverter}}"
+                        IsEnabled="False" 
+                        Command="com:UserProfileCommands.EditUserName" >
                     <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     <!--#region Triggers-->
                     <Button.Triggers>
@@ -248,13 +250,114 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Password reset-->
-            <StackPanel Margin="5">
-                <TextBlock Text="Reset hasła"
-                                   Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="Password" Text="{Binding Password}"/>
-                <PasswordBox Name="EditPassword" IsEnabled="False" Visibility="Collapsed"/>
-                <PasswordBox Name="EditConfirmPassword" IsEnabled="False" Visibility="Collapsed"/>
-            </StackPanel>
+            <Grid Margin="5">
+                <!--#region Column & rows definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                <TextBlock Text="Reset hasła" 
+                           Grid.Column="0" Grid.Row="0"
+                           Style="{StaticResource ProfileProperties}"/>
+                <TextBlock Name="Password" 
+                           Grid.Column="0" Grid.Row="1"
+                           Text="{Binding Password}"/>
+                <Button Name="EditPasswordButton"
+                        Grid.Column="2" 
+                        Style="{StaticResource FaNoBackground}">
+                    <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+                    <!--#region Trieggers-->
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="EditPasswordGrid"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="0" To="1"
+                                                                     Duration="0:0:0.3"/>
+
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                                                                    Storyboard.TargetName="EditPasswordGrid">
+                                        <DiscreteBooleanKeyFrame Value="True" KeyTime="0"/>
+                                    </BooleanAnimationUsingKeyFrames>
+
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditPasswordGrid" 
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ConfirmEditPasswordButton" 
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <!--#endregion-->
+                </Button>
+                <Grid Name="EditPasswordGrid"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Visibility="Collapsed">
+                    <!--#region Rows definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <PasswordBox Name="EditPassword" Grid.Row="0" Width="121" 
+                                 Style="{StaticResource PasswordBox}"
+                                 Tag="Nowe hasło"/>
+                    <PasswordBox Name="EditConfirmPassword" Grid.Row="1" Width="121"
+                                 Style="{StaticResource PasswordBox}"
+                                 Tag="Potwierdź hasło" />
+                </Grid>
+                <Button Name="ConfirmEditPasswordButton" 
+                        HorizontalAlignment="Right"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Visibility="Collapsed"
+                        Style="{StaticResource FaNoBackground}"
+                        Command="com:UserProfileCommands.EditUserPassword" >
+                    <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                    <!--#region Triggers-->
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditPasswordGrid" 
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+
+                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ConfirmEditPasswordButton" 
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                                    </ObjectAnimationUsingKeyFrames>
+
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditPasswordGrid"
+                                                                                   Storyboard.TargetProperty="IsEnabled">
+                                        <DiscreteBooleanKeyFrame Value="False" KeyTime="0" />
+                                    </BooleanAnimationUsingKeyFrames>
+
+                                    <DoubleAnimation Storyboard.TargetName="EditPasswordGrid"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     From="1" To="0"
+                                                                     Duration="0:0:0.3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <!--#endregion-->
+                </Button>
+            </Grid>
             <!--#endregion-->
         </StackPanel>
         <!--#region On loaded animation-->

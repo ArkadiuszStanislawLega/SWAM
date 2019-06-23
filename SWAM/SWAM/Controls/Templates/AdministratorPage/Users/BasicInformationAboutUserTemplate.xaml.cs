@@ -79,6 +79,35 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 }
             }
         }
-        #endregion  
+        #endregion
+        #region EditUserPasswordCommand_Executed
+        /// <summary>
+        /// Action after click confirm user password change button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditUserPasswordCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if(this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
+            {
+                //TODO: Try - catch
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    //TODO: Add hash funkction on password.
+                    context.Users.FirstOrDefault(u => u.Id == user.Id).Password = this.EditConfirmPassword.Password;
+                    context.SaveChanges();
+
+                    //TODO: After add hash function and debug - delete this one line.
+                    this.Password.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Password;
+
+                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                            InformationForUser($"Hasło użytkownika {user.Name} zostało zmienione.");
+                }
+            }
+            else
+                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
+                           InformationForUser($"Hasła są niezgodne. Hasła muszą być takie same.");
+        }
+        #endregion
     }
 }
