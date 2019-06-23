@@ -16,6 +16,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
+        <!--#region Enums-->
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
                 ObjectType="{x:Type System:Enum}">
@@ -23,6 +24,49 @@
                 <x:Type TypeName="enum:UserType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <!--#endregion-->
+        <!--#region Storyboards-->
+        <Storyboard x:Key="HideCallendar">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="CalendarContainer"
+                                                            Duration="0:0:0.3"
+                                                            To="-190 0 0 0"
+                                                            DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         Storyboard.TargetName="WarehouseAccessContent"
+                                                         Duration="0:0:0.7" 
+                                                         To="200"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="CalendarContainer"
+                                                         Duration="0:0:0.2" 
+                                                         From="1" To="0"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
+                                                                        Storyboard.TargetProperty="IsEnabled"
+                                                                        FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.2" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowCallendar">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                                            Storyboard.TargetName="CalendarContainer"
+                                                            Duration="0:0:0.5"
+                                                            From="0 0 -290 0"
+                                                            DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                         Storyboard.TargetName="CalendarContainer"
+                                                         Duration="0:0:0.3" 
+                                                         From="0" To="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                         Storyboard.TargetName="WarehouseAccessContent"
+                                                         Duration="0:0:0.3" 
+                                                         To="300"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
+                                                                        Storyboard.TargetProperty="IsEnabled"
+                                                                        FillBehavior="HoldEnd">
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
     <!--#endregion-->
     <UserControl.CommandBindings>
@@ -150,28 +194,7 @@
                                              ToolTip="Edytuj czas wygaśnięcia uprawnienia"/>
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click" SourceName="ShowCallendar">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="CalendarContainer"
-                                                            Duration="0:0:0.5"
-                                                            From="0 0 -290 0"
-                                                            DecelerationRatio="1"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="CalendarContainer"
-                                                         Duration="0:0:0.3" 
-                                                         From="0" To="1"/>
-                                        <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         Storyboard.TargetName="WarehouseAccessContent"
-                                                         Duration="0:0:0.3" 
-                                                         To="300"/>
-                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
-                                                                        Storyboard.TargetProperty="IsEnabled"
-                                                                        FillBehavior="HoldEnd">
-                                            <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
-                                        </BooleanAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </BeginStoryboard>
+                                <BeginStoryboard Storyboard="{StaticResource ShowCallendar}"/>
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
@@ -201,40 +224,32 @@
                     <TextBlock Text="Wygaśnięcie uprawnienia" HorizontalAlignment="Center"
                                FontWeight="Bold" TextWrapping="Wrap"/>
                     <Calendar Name="Calendar"  SelectionMode="SingleDate" />
-                    <Button Content="Zatwierdź" 
+                    <Grid>
+                        <Button Content="Zatwierdź" 
                             Style="{StaticResource  UserProfilebuttons}"
                             Command="ApplicationCommands.New">
-                        <!--#region Triggers-->
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <Storyboard>
-                                            <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                                            Storyboard.TargetName="CalendarContainer"
-                                                            Duration="0:0:0.3"
-                                                            To="-190 0 0 0"
-                                                            DecelerationRatio="1"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Height"
-                                                         Storyboard.TargetName="WarehouseAccessContent"
-                                                         Duration="0:0:0.7" 
-                                                         To="200"/>
-                                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="CalendarContainer"
-                                                         Duration="0:0:0.2" 
-                                                         From="1" To="0"/>
-                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="CalendarContainer"
-                                                                        Storyboard.TargetProperty="IsEnabled"
-                                                                        FillBehavior="HoldEnd">
-                                                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.2" />
-                                            </BooleanAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
+                            <!--#region Triggers-->
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <!--#endregion-->
+                        </Button>
+                        <!--#region Hide button-->
+                        <Button Style="{StaticResource FaNoBcgrEnbleForeground}" Height="20" Width="20"
+                            HorizontalAlignment="Right" ToolTip="Ukryj kalendarz">
+                            <fa:ImageAwesome Icon="ArrowRight"  
+                                         Margin="-2" 
+                                         Foreground="{StaticResource EnabledBrash}"/>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
                         <!--#endregion-->
-                    </Button>
+                    </Grid>
                 </StackPanel>
             </Border>
             <!--#endregion-->
