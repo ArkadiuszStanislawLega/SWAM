@@ -237,11 +237,8 @@
                             <!--#endregion-->
                         </Button>
                         <!--#region Hide button-->
-                        <Button Style="{StaticResource FaNoBcgrEnbleForeground}" Height="20" Width="20"
+                        <Button Style="{StaticResource ArrowBackButton}" Height="20" Width="30"
                             HorizontalAlignment="Right" ToolTip="Ukryj kalendarz">
-                            <fa:ImageAwesome Icon="ArrowRight"  
-                                         Margin="-2" 
-                                         Foreground="{StaticResource EnabledBrash}"/>
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
                                     <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
