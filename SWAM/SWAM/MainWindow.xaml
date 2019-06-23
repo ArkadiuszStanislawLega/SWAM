@@ -148,7 +148,7 @@
         <StackPanel Name="Information"  Grid.Row="4"  Margin="5 0 0 10"
                     VerticalAlignment="Top" Height="20" >
             <Grid Background="{StaticResource  MainBarBrash}" Opacity="0.8">
-                <Label Name="InformationLabel" Content="Jesteś nie zalogowany" Padding="2"/>
+                <TextBlock Name="InformationLabel" Text="Jesteś nie zalogowany" Padding="2"/>
             </Grid>
         </StackPanel>
         <!--#endregion-->

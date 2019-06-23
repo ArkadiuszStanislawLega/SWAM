@@ -232,10 +232,16 @@ namespace SWAM
         /// <summary>
         /// Information about action in bottomBar in main window.
         /// </summary>
-        /// <param name="newInformation"></param>
-        public void InformationForUser(string newInformation) => InformationLabel.Content = newInformation;
-        #endregion  
+        /// <param name="newInformation">Iformation for the user to be displayed</param>
+        /// <param name="warning">If true - background red, false - background transparent</param>
+        public void InformationForUser(string newInformation, bool warning = false)
+        {
+            InformationLabel.Text = newInformation;
 
+            if (warning) InformationLabel.Background = (Brush)Application.Current.FindResource("WarningBrash"); 
+            else InformationLabel.Background = Brushes.Transparent;
+        }
+        #endregion
         #region Statc Methods
         /// <summary>
         /// Turn off selected element.

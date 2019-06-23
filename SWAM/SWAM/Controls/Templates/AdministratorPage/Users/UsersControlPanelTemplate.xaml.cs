@@ -83,6 +83,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UserListViewModel.Refresh();
         }
         #endregion
+
         #region ShowProfile
         /// <summary>
         /// Showing the profile of user,

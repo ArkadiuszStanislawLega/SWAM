@@ -246,3 +246,5 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.baml

@@ -35,7 +35,7 @@
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="EditDateOfUserBlock"
                                             Storyboard.TargetProperty="IsEnabled">
-                <DiscreteBooleanKeyFrame Value="True" KeyTime="0" />
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.7" />
             </BooleanAnimationUsingKeyFrames>
 
         </Storyboard>

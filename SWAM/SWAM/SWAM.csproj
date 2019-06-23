@@ -256,7 +256,12 @@
     <Compile Include="Converters\DateOfExpireColorConverter.cs" />
     <Compile Include="Enumerators\BookmarkInPage.cs" />
     <Compile Include="Enumerators\StatusOfUserAccount.cs" />
+    <Compile Include="ErrorMesages.cs" />
     <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
+    <Compile Include="Exceptions\BasicException.cs" />
+    <Compile Include="Exceptions\InformationLabelException.cs" />
+    <Compile Include="Exceptions\RefreshUserListException.cs" />
+    <Compile Include="Exceptions\RefreshUserProfileException.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
       <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>

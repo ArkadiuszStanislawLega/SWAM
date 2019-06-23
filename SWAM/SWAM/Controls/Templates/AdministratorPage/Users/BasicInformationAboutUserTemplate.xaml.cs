@@ -1,4 +1,5 @@
-﻿using SWAM.Models;
+﻿using SWAM.Exceptions;
+using SWAM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// </summary>
     public partial class BasicInformationAboutUserTemplate : UserControl
     {
+        /// <summary>
+        /// Information about action.
+        /// </summary>
+        private string _message;
+
         public BasicInformationAboutUserTemplate()
         {
             InitializeComponent();
@@ -44,10 +50,25 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     context.SaveChanges();
                 }
 
-                SWAM.MainWindow.FindParent<UserProfileTemplate>(this).RefreshData();
+                this._message = $"Nazwa użytkownika {user.Name} została zmienione na {this.EditName.Text}.";
+                try
+                {
+                    if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                        mainWindow.InformationForUser(this._message);
+                    else throw new InformationLabelException(this._message);
 
-                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                        InformationForUser($"Nazwa użytkownika {user.Name} została zmienione na {this.EditName.Text}.");
+                    if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
+                        userProfileTemplate.RefreshData();
+                    else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
+
+                    if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate usersControlPanelTemplate)
+                        usersControlPanelTemplate.RefreshUsersList();
+                    else throw new RefreshUserListException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
+
+                }
+                catch (InformationLabelException ex) { ex.ShowMessage(); }
+                catch (RefreshUserProfileException ex) { ex.ShowMessage(); }
+                catch (RefreshUserListException ex) { ex.ShowMessage(); }
             }
         }
         #endregion 
@@ -74,11 +95,25 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                         Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
                     }
 
-                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                            InformationForUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}.");
+                    #region Information for the user about the correctly carried out action
+                    this._message = $"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ";
+                    try
+                    {
+                        if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                            mainWindow.InformationForUser(this._message);
+                        else throw new InformationLabelException(this._message);
+
+                        if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate usersControlPanelTemplate)
+                            usersControlPanelTemplate.RefreshUsersList();
+                        else throw new RefreshUserListException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
+                    }
+                    catch (InformationLabelException ex) { ex.ShowMessage(); }
+                    catch (RefreshUserListException ex) { ex.ShowMessage(); }
                 }
+                #endregion
             }
         }
+    
         #endregion
         #region EditUserPasswordCommand_Executed
         /// <summary>
@@ -88,7 +123,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void EditUserPasswordCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if(this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
+
+            if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
             {
                 //TODO: Try - catch
                 using (ApplicationDbContext context = new ApplicationDbContext())
@@ -100,13 +136,31 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     //TODO: After add hash function and debug - delete this one line.
                     this.Password.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Password;
 
-                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                            InformationForUser($"Hasło użytkownika {user.Name} zostało zmienione.");
+                    #region Information for the user about the correctly carried out action
+                    this._message = $"Hasło użytkownika {user.Name} zostało zmienione.";
+                    try
+                    {
+                        if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                            mainWindow.InformationForUser(this._message);
+                        else throw new InformationLabelException(this._message);
+                    }
+                    catch (InformationLabelException ex) { ex.ShowMessage(); }
+                    #endregion
                 }
             }
             else
-                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                           InformationForUser($"Hasła są niezgodne. Hasła muszą być takie same.");
+            {
+                #region Information for the user about the incorrectly carried out action
+                this._message = $"Hasła są niezgodne. Hasła muszą być takie same.";
+                try
+                {
+                    if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                        mainWindow.InformationForUser(this._message);
+                    else throw new InformationLabelException(this._message);
+                }
+                catch (InformationLabelException ex) { ex.ShowMessage(); }
+                #endregion
+            }
         }
         #endregion
     }
