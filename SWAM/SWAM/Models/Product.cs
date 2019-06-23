@@ -17,6 +17,7 @@ namespace SWAM.Models
         decimal _price;
         IList<WarehouseOrderPosition> _warehouseOrderPositions;
         IList<CustomerOrderPosition> _customerOrderPositions;
+        ApplicationDbContext _context = new ApplicationDbContext();
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
@@ -27,5 +28,6 @@ namespace SWAM.Models
         public decimal Price { get => _price; set => _price = value; }
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
+        public List<Product> GetProducts() { return _context.Products.ToList(); }
     }
 }
