@@ -155,7 +155,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
             catch (RefreshWarehousessAccessesListExeption ex)
             {
-                ex.ShowMessage();
+                ex.ShowMessage(this);
                 return null;
             }
         }
@@ -172,7 +172,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     mainWindow.InformationForUser(this._message);
                 else throw new InformationLabelException(this._message);
             }
-            catch (InformationLabelException ex) { ex.ShowMessage(); }
+            catch (InformationLabelException ex) { ex.ShowMessage(this); }
         }
         #endregion
 
