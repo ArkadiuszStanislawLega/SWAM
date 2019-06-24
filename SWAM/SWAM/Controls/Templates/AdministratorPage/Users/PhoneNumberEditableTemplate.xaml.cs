@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using SWAM.Exceptions;
     using SWAM.Models;
     using static SWAM.MainWindow;
     /// <summary>
@@ -11,6 +12,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class PhoneNumberEditableTemplate : UserControl
     {
+        /// <summary>
+        /// Information about actions to user.
+        /// </summary>
+        private string _message;
+
         public PhoneNumberEditableTemplate()
         {
             InitializeComponent();
@@ -42,20 +48,23 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            var phone = DataContext as Phone;
+            if (DataContext is Phone phone)
+            {
+                phone.UpdateNumber(EditPhoneNumber.Text);
+                phone.UpdateNote(EditNote.Text);
 
-            phone.UpdateNumber(EditPhoneNumber.Text);
-            phone.UpdateNote(EditNote.Text);
-            SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
+                this._message = $"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.";
+                InformationToUser();
 
-            //TODO: Make this functions in xaml.
-            TurnOn(this.PhoneNumber);
-            TurnOn(this.Note);
+                //TODO: Make this in xaml.
+                TurnOn(this.PhoneNumber);
+                TurnOn(this.Note);
 
-            TurnOff(this.EditPhoneNumber);
-            TurnOff(this.EditNote);
+                TurnOff(this.EditPhoneNumber);
+                TurnOff(this.EditNote);
 
-            this.Confirm.IsEnabled = false;
+                this.Confirm.IsEnabled = false;
+            }
         }
         #endregion
         #region Delete_Click
@@ -66,12 +75,33 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var phone = DataContext as Phone;
-            phone.Delete();
+            if (DataContext is Phone phone)
+            {
+                phone.Delete();
 
-            SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
+                this._message = $"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.";
+                InformationToUser();
 
-            FindParent<PhoneNumbersEditableListTemplate>(this).RefreshPhoneList();
+                var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
+                if (phoneList != null)
+                    phoneList.RefreshPhoneList();
+            }
+        }
+        #endregion
+
+        #region InformationToUser
+        /// <summary>
+        /// Make information in MainWindow to user about action.
+        /// </summary>
+        private void InformationToUser()
+        {
+            try
+            {
+                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                    mainWindow.InformationForUser(this._message);
+                else throw new InformationLabelException(this._message);
+            }
+            catch (InformationLabelException ex) { ex.ShowMessage(this); }
         }
         #endregion
     }
