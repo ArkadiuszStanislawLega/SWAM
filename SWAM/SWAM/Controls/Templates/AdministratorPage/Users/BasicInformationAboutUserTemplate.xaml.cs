@@ -69,7 +69,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }
         #endregion
-
         #region UserListRefresh
         /// <summary>
         /// Refreshing user list.
