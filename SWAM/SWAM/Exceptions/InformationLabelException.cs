@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Exceptions
 {
@@ -14,6 +15,11 @@ namespace SWAM.Exceptions
     {
         public InformationLabelException(string message) :
             base($"{message} {ErrorMesages.INFORMATION_LABEL_ERROR}")
-        { }  
+        { }
+
+        new public void ShowMessage(UserControl content)
+        {
+            MessageBox.Show(this.Message);
+        }
     }
 }

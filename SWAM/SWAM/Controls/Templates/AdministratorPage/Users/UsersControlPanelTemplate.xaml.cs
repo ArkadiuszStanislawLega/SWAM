@@ -86,6 +86,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
         {
             //finding user whith specific id from user list
+            //TODO: try - catch
             var context = new ApplicationDbContext();
             var user = context.Users.Include(u => u.Accesess)
                 .Include(u => u.Emails)
