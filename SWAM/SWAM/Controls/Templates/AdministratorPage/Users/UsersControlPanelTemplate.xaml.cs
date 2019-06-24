@@ -19,18 +19,22 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <summary>
         /// View model of item in users list.
         /// </summary>
-        public static UsersListViewModel UserListViewModel { get; set; }
+        public static UsersListViewModel UserListViewModel { get; set; } = new UsersListViewModel();
         #endregion
 
         #region Basic Constructor
         public UsersControlPanelTemplate()
         {
-            DataContext = UserListViewModel;
-
-            UserListViewModel = new UsersListViewModel();
-            UserListViewModel.Refresh();
-
             InitializeComponent();
+        }
+
+        private void UsersControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshUsersList();
+
+            UsersList.Height = RightSection.Height - FindUserOrCreate.Height;
+
+            DataContext = UserListViewModel;
         }
         #endregion
 
@@ -54,34 +58,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (RightSection.Children != null
                && RightSection.Children.Count > 0
                && RightSection.Children[0] != null
-               && RightSection.Children[0].GetType() == new UserProfileTemplate().GetType())
-            {
-                var profile = RightSection.Children[0] as UserProfileTemplate;
-                profile.AccesToWarehousesList.FitViewToFillInParent();
-            }
+               && RightSection.Children[0] is UserProfileTemplate profile) profile.AccesToWarehousesList.FitViewToFillInParent();
         }
         #endregion  
-
-        #region Overrided Methods
-        protected override void OnRender(DrawingContext drawingContext)
-        {
-            base.OnRender(drawingContext);
-
-            RefreshUsersList();
-    
-            UsersList.Height = RightSection.Height - FindUserOrCreate.Height;
-
-            DataContext = UserListViewModel;
-        }
-        #endregion
         #region RefreshUsersList
         /// <summary>
         /// Refreshing view model of users list.
         /// </summary>
-        public void RefreshUsersList()
-        {
-            UserListViewModel.Refresh();
-        }
+        public void RefreshUsersList() => UserListViewModel.Refresh();
         #endregion
 
         #region ShowProfile
@@ -91,14 +75,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ShowProfile(UsersListItemTemplate usersListItemTemplate)
-        {
-            if (this.RightSection.Children.Count > 0)
-                this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
-
-            //Items in list are tagget in userListItemTemplate. Tag = UserId.
-            this.RightSection.Children.Add(CreateUserProfile((int)usersListItemTemplate.Tag));
-        }
+        public void ShowProfile(UsersListItemTemplate usersListItemTemplate) => ChangeContent(CreateUserProfile((int)usersListItemTemplate.Tag));
         #endregion
         #region CreateUserProfile
         /// <summary>
@@ -124,12 +101,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        private void AddNewUser_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewUserTemplate());
+        #endregion
+        #region ChangeContent
+        /// <summary>
+        /// Changing content for the new one in right section of this user control.
+        /// </summary>
+        /// <param name="newContent">Profile of user template or New user template.</param>
+        private void ChangeContent(UserControl newContent)
         {
             if (this.RightSection.Children.Count > 0)
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
 
-            this.RightSection.Children.Add(new CreateNewUserTemplate());
+            this.RightSection.Children.Add(newContent);
         }
         #endregion
     }

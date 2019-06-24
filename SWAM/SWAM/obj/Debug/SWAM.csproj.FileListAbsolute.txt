@@ -374,3 +374,5 @@ C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\De
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM.exe
 C:\Users\User-PC\Documents\Visual Studio 2017\Projects\swamrepo\SWAM\SWAM\obj\Debug\SWAM.pdb
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.baml
