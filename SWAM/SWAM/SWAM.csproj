@@ -269,6 +269,7 @@
     <Compile Include="Exceptions\InformationLabelException.cs" />
     <Compile Include="Exceptions\RefreshUserListException.cs" />
     <Compile Include="Exceptions\RefreshUserProfileException.cs" />
+    <Compile Include="Exceptions\RefreshWarehousessAccessesListExeption.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
     <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
       <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>

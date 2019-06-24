@@ -13,6 +13,7 @@
              Tag="{Binding Id}"
              Margin="0 1 0 1"
              mc:Ignorable="d" 
+             Loaded="UserAccessToWarehousesListItemTemplate_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
@@ -93,7 +94,6 @@
                            HorizontalAlignment="Right"
                            Grid.Column="2"/>
                     <ComboBox Visibility="Collapsed" 
-                      IsEnabled="False"
                       Name="EditUserPermissions" 
                       Grid.Column="2"
                       ItemsSource="{Binding Source={StaticResource UserType}}"/>
@@ -112,7 +112,6 @@
                        Text="{Binding Warehouse.Name}" 
                        Grid.Column="2"/>
                     <ComboBox Visibility="Collapsed" 
-                      IsEnabled="False"
                       Name="EditWarehouse"
                           Grid.Column="2">
                         <ComboBox.ItemTemplate>
@@ -266,7 +265,6 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Click="ConfirmAddAccess_Click"
-                    IsEnabled="False"
                     Content="Dodaj uprawnienia"
                     Visibility="Collapsed"
                     Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
