@@ -1,4 +1,5 @@
-﻿using SWAM.Models;
+﻿using SWAM.Exceptions;
+using SWAM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class EmailEditableListTemplate : UserControl
     {
+        /// <summary>
+        /// Information to user about actions.
+        /// </summary>
+        private string _message;
+
         public EmailEditableListTemplate()
         {
             InitializeComponent();
@@ -31,7 +37,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNewEmail_Click(object sender, RoutedEventArgs e) => SWAM.MainWindow.TurnOn(AddNewEmailContainer);
+        private void AddNewEmail_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: Make this in xaml.
+            SWAM.MainWindow.TurnOn(AddNewEmailContainer);
+        }
 
         #region ConfirmNewEmail_Click
         /// <summary>
@@ -41,32 +51,36 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void ConfirmNewEmail_Click(object sender, RoutedEventArgs e)
         {
-            User user = DataContext as User;
-
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            if (DataContext is User user)
             {
-                var email = new Email()
+                //TODO: try - catch
+                using (var context = new ApplicationDbContext())
                 {
-                    AddressEmail = this.NewEmail.Text,
-                    UserId = user.Id
+                    var email = new Email()
+                    {
+                        AddressEmail = this.NewEmail.Text,
+                        UserId = user.Id
+                    };
+
+                    if (email != null)
+                    {
+                        context.Emails.Add(email);
+                        context.SaveChanges();
+
+                        Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+
+                        this._message = $"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.";
+                        InformationToUser();
+                        //TODO: Make validations and catch exceptions - mails.
+                    }
+                    else
+                    {
+                        this._message = $"Nie udało się dodać użytkownikowi {user.Name} nowego maila.";
+                        InformationToUser();
+                    }
                 };
+            }
 
-                if (email != null)
-                {
-                    context.Emails.Add(email);
-                    //TODO: Make validations and catch exceptions - mails.
-                    //this.Information.Content = "Udało się dodać użytkownika " + user.Name;
-                }
-                else
-                {
-                    //this.Information.Content = "Nie udało się dodać użytkownika " + user.Name;
-                    //this.Information.Background = this.FindResource("WhiteCream") as Brush;
-                }
-                context.SaveChanges();
-                Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
-
-                SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).InformationForUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
-            };
             //TODO: Make this function in xaml.
             SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
         }
@@ -78,9 +92,34 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshEmailsList()
         {
-            var user = DataContext as User;
-            var context = new ApplicationDbContext();
-            Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+            if (DataContext is User user)
+            {
+                using (var context = new ApplicationDbContext())
+                    Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+            }
+        }
+        #endregion
+
+        #region InformationToUser
+        /// <summary>
+        /// Changing content inforamtion label in main window.
+        /// </summary>
+        private bool InformationToUser(bool warning = false)
+        {
+            try
+            {
+                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                {
+                    mainWindow.InformationForUser(this._message, warning);
+                    return true;
+                }
+                else throw new InformationLabelException(this._message);
+            }
+            catch (InformationLabelException ex)
+            {
+                ex.ShowMessage(this);
+                return false;
+            }
         }
         #endregion
     }
