@@ -28,7 +28,7 @@
         <TextBlock Name="Title" Text="ManageItemPage" Grid.Row="0" Grid.ColumnSpan="4" Grid.Column="1" HorizontalAlignment="Center"/>
 
         <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1"
-                      CanUserAddRows="False" SelectionMode="Single">
+                      CanUserAddRows="False" SelectionMode="Single" SelectedIndex="0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id produktu" Binding="{Binding Id_product}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
@@ -40,9 +40,9 @@
         </DataGrid>
 
         <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="1">
-            <Button Margin="10" Content="Dodaj" Width="45"/>
-            <Button Margin="10" Content="Edytuj" Width="45"/>
-            <Button Margin="10" Content="Usuń" Width="45"/>
+            <Button Name="AddButton" Margin="10" Content="Dodaj" Width="45" Click="AddButton_Click"/>
+            <Button Name="EditButton" Margin="10" Content="Edytuj" Width="45" Click="EditButton_Click"/>
+            <Button Name="DeleteButton" Margin="10" Content="Usuń" Width="45" Click="DeleteButton_Click"/>
         </StackPanel>
 
     </Grid>

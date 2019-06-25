@@ -167,6 +167,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Windows\AddProductWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Windows\DeleteProductWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Windows\EditProductWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -255,6 +267,15 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
       <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Windows\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Windows\DeleteProductWindow.xaml.cs">
+      <DependentUpon>DeleteProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Windows\EditProductWindow.xaml.cs">
+      <DependentUpon>EditProductWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AccountBlockToColorConverter.cs" />
     <Compile Include="Converters\AccountBlockToTextConverter.cs" />
