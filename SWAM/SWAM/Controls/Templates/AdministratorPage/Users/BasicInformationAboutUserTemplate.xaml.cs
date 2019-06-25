@@ -37,13 +37,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             if (DataContext is User user)
             {
-                //TODO: Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    //TODO: Validation of user name.
-                    context.Users.FirstOrDefault(u => u.Id == user.Id).Name = this.EditName.Text;
-                    context.SaveChanges();
-                }
+                user.ChangeName(this.EditName.Text);
                 InformationToUser($"Nazwa użytkownika {user.Name} została zmienione na {this.EditName.Text}.");
                 UserProfileRefresh();
                 UserListRefresh();
@@ -64,14 +58,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
                 if (userType != user.Permissions)
                 {
-                    //TODO: Try - catch
-                    using (ApplicationDbContext context = new ApplicationDbContext())
-                    {
-                        context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions = userType;
-                        context.SaveChanges();
+                    user.ChangePermissions(userType);
+                    Permissions.Text = user.Permissions.ToString();
 
+                    //TODO: Try - catch
+                    using (var context = new ApplicationDbContext())
                         Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
-                    }
+                    
                     InformationToUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ");
                     UserListRefresh();
                 }
@@ -86,20 +79,15 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void EditUserPasswordCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-
             if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
             {
-                //TODO: Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    //TODO: Add hash funkction on password.
-                    context.Users.FirstOrDefault(u => u.Id == user.Id).Password = this.EditConfirmPassword.Password;
-                    context.SaveChanges();
+                //TODO: Add hash funkction on password.
+                user.ChangePassword(this.EditConfirmPassword.Password);
+                InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
 
-                    //TODO: After add hash function and debug - delete this one line.
+                //TODO: Try - catch - DELETE this after add hash function to password.
+                using (ApplicationDbContext context = new ApplicationDbContext())
                     this.Password.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Password;
-                    InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
-                }
             }
             else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
         }

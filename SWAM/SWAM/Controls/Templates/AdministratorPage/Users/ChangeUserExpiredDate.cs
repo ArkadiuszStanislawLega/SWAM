@@ -12,11 +12,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
     class ChangeUserExpiredDate : CalendarWithButton
     {
-        /// <summary>
-        /// Infomration to user about actions.
-        /// </summary>
-        private string _message;
-
         public ChangeUserExpiredDate()
         {
             InitializeComponent();
@@ -27,13 +22,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         private void ChangeUserExpiredDate_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             if (DataContext is User user)
-            {
-                //TODO: Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    this.Calendar.SelectedDate = context.Users.FirstOrDefault(u => u.Id == user.Id).DateOfExpiryOfTheAccount;
-                }
-            }
+                    this.Calendar.SelectedDate = user.DateOfExpiryOfTheAccount;
         }
 
         #region NewCommand_Executed
@@ -47,15 +36,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             //TODO: Create validation.
             if (this.Calendar.SelectedDate != null && DataContext is User user)
             {
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    context.Users.FirstOrDefault(u => u.Id == user.Id).DateOfExpiryOfTheAccount = this.Calendar.SelectedDate;
-                    context.SaveChanges();
-                }
-
+                user.ChangeDateOfExpiryOfTheAccount(this.Calendar.SelectedDate);
                 UserProfileRefresh();
-                this._message = $"Data wygaśnięcia konta {user.Name} została zmieniona na {this.Calendar.SelectedDate}.";
-                InformationToUser();
+                InformationToUser($"Data wygaśnięcia konta {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
             }
         }
         #endregion
@@ -64,16 +47,16 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// Changing content inforamtion label in main window.
         /// </summary>
-        private bool InformationToUser(bool warning = false)
+        private bool InformationToUser(string message, bool warning = false)
         {
             try
             {
                 if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
                 {
-                    mainWindow.InformationForUser(this._message, warning);
+                    mainWindow.InformationForUser(message, warning);
                     return true;
                 }
-                else throw new InformationLabelException(this._message);
+                else throw new InformationLabelException(message);
             }
             catch (InformationLabelException ex)
             {
@@ -92,7 +75,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
                     userProfileTemplate.RefreshData();
-                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
+                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}");
             }
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }

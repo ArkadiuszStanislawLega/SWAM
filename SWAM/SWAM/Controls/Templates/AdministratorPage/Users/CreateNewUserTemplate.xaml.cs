@@ -29,31 +29,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Try - catch
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            var user = new User()
             {
-                var user = context.Users.Add(new User()
-                {
-                    Name = this.NewUserName.Text,
-                    Password = this.UserPassword.Password,
-                    DateOfCreate = DateTime.Now,
-                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                    StatusOfUserAccount = this.AccountStatus.IsChecked ==
-                                                        true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
-                    DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
-                });
-                context.SaveChanges();
+                Name = this.NewUserName.Text,
+                Password = this.UserPassword.Password,
+                DateOfCreate = DateTime.Now,
+                Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
+                StatusOfUserAccount = this.AccountStatus.IsChecked ==
+                                                    true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
+            };
 
-                if (user != null)
-                {
-                    InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
-
-                    UserListRefresh();
-                }
-                else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
-                
-                RestartTextBoxes();
+            if (user != null)
+            {
+                User.AddNewUser(user);
+                InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                UserListRefresh();
             }
+            else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
+
+            RestartTextBoxes();
         }
         #endregion
         #region RestartTextBoxes

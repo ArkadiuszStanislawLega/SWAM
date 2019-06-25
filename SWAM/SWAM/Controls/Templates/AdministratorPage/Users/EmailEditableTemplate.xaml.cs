@@ -75,11 +75,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (DataContext is Email email)
             {
                 email.Delete();
-
                 InformationToUser($"Usnięto adress email {email.AddressEmail}.");
-
-                var emailList = FindParent<EmailEditableListTemplate>(this);
-                if (emailList != null) emailList.RefreshEmailsList();
+                try
+                {
+                    var emailList = FindParent<EmailEditableListTemplate>(this);
+                    if (emailList != null) emailList.RefreshEmailsList();
+                    else throw new RefreshUserEmailListException();
+                }
+                catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); };
             }
         }
         #endregion

@@ -28,12 +28,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             if (DataContext is User user && user != null)
             {
-                //TODO: Try-catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    var date = context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade;
-                    if (date != null) this.Calendar.SelectedDate = (context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade);
-                }
+                var date = user.ExpiryDateOfTheBlockade;
+                if (date != null) this.Calendar.SelectedDate = User.GetUser(user.Id).ExpiryDateOfTheBlockade;
             }
         }
 
@@ -48,12 +44,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             //TODO: Create validation.
             if (this.Calendar.SelectedDate != null && DataContext is User user)
             {
-                //TODO: Try-catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    context.Users.FirstOrDefault(u => u.Id == user.Id).ExpiryDateOfTheBlockade = this.Calendar.SelectedDate;
-                    context.SaveChanges();
-                }
+                user.ChangeExpiryDateOfTheBlockade(this.Calendar.SelectedDate);
                 UserProfileRefresh();
 
                 this._message = $"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.";
@@ -72,7 +63,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
                     userProfileTemplate.RefreshData();
-                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
+                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}");
             }
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }

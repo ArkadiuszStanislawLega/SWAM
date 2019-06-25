@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using SWAM.Enumerators;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -39,5 +39,107 @@ namespace SWAM.Models
         public string Password { get => _password; set => _password = value; }
         public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
+
+        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+
+        private static ApplicationDbContext context()
+        {
+            //TODO: Make all exceptions
+            try
+            {
+                return DB_CONTEXT;
+            }
+            catch (Exception) { return null; }
+        }
+        #region CreateNewUser
+        /// <summary>
+        /// Add new user to database.
+        /// </summary>
+        /// <param name="user"></param>
+        public static void AddNewUser(User user)
+        {
+            if (user != null)
+            {
+                context().Users.Add(user);
+                context().SaveChanges();
+            }
+        }
+        #endregion
+        #region ChangeName
+        /// <summary>
+        /// Changing name of the user in database.
+        /// </summary>
+        /// <param name="name">New name of user.</param>
+        public void ChangeName(string name)
+        {
+            context().Users.FirstOrDefault(u => u.Id == this.Id).Name = name;
+            context().SaveChanges();
+        }
+        #endregion
+        #region ChangePermissions
+        /// <summary>
+        /// Changing user permissions in database.
+        /// </summary>
+        /// <param name="userType">New perminssion.</param>
+        public void ChangePermissions(UserType userType)
+        {
+            context().Users.FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
+            context().SaveChanges();
+        }
+        #endregion
+        #region ChangePassword
+        /// <summary>
+        /// Change user password in database.
+        /// </summary>
+        /// <param name="password">New password.</param>
+        public void ChangePassword(string password)
+        {
+            context().Users.FirstOrDefault(u => u.Id == this.Id).Password = password;
+            context().SaveChanges();
+        }
+        #endregion
+        #region GetUser
+        /// <summary>
+        /// Find user in database.
+        /// </summary>
+        /// <param name="userID">User number id in database.</param>
+        /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
+        public static User GetUser(int userID)
+        {
+                return context().Users
+                    .Include(a => a.Accesess)
+                    .Include(e => e.Emails)
+                    .Include(p => p.Phones)
+                    .FirstOrDefault(u => u.Id == userID);
+        }
+        #endregion
+        #region ChangeExpiryDateOfTheBlockade
+        /// <summary>
+        /// Changing date of the blockade user account.
+        /// </summary>
+        /// <param name="dateTime">New date od blockade of user accout.</param>
+        public void ChangeExpiryDateOfTheBlockade(DateTime? dateTime)
+        {
+            if (dateTime != null)
+            {
+                context().Users.FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
+                context().SaveChanges();
+            }
+        }
+        #endregion
+        #region ChangeDateOfExpiryOfTheAccount
+        /// <summary>
+        /// Changing date of the blockade user account.
+        /// </summary>
+        /// <param name="dateTime">New date of expiry user accout.</param>
+        public void ChangeDateOfExpiryOfTheAccount(DateTime? dateTime)
+        {
+            if (dateTime != null)
+            {
+                context().Users.FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
+                context().SaveChanges();
+            }
+        }
+        #endregion
     }
 }

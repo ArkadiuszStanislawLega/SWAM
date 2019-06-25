@@ -48,28 +48,21 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                //TODO: try - catch
-                using (var context = new ApplicationDbContext())
+                var email = new Email()
                 {
-                    var email = new Email()
-                    {
-                        AddressEmail = this.NewEmail.Text,
-                        UserId = user.Id
-                    };
-
-                    if (email != null)
-                    {
-                        context.Emails.Add(email);
-                        context.SaveChanges();
-
-                        Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
-
-                        InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
-                        //TODO: Make validations and catch exceptions - mails.
-                    }
-                    else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego maila.");
+                    AddressEmail = this.NewEmail.Text,
+                    UserId = user.Id
                 };
+
+                if (email != null)
+                {
+                    Email.AddEmail(email);
+                    RefreshEmailsList();
+                    InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
+                }
+                else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
             }
+            else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress email.");
 
             //TODO: Make this function in xaml.
             SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
@@ -84,9 +77,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                //TODO: Try catch
+                //TODO: try - catch
                 using (var context = new ApplicationDbContext())
-                    Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
+                {
+                    var userEmails = context.Emails.Where(u => u.UserId == user.Id).ToList();
+                    try
+                    {
+                        if (userEmails != null) Emails.ItemsSource = userEmails;
+                        else throw new RefreshUserEmailListException();
+                    }
+                    catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); }
+                }
             }
         }
         #endregion
