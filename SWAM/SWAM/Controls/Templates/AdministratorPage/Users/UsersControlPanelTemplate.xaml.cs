@@ -13,7 +13,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy UsersControlPanel.xaml
     /// </summary>
-    public partial class UsersControlPanelTemplate : UserControl
+    public partial class UsersControlPanelTemplate : BasicUserControl
     {
         #region Properties
         /// <summary>

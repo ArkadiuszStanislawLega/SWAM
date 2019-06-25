@@ -18,7 +18,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
     /// <summary>
     /// Logika interakcji dla klasy WarehouseProfileTemplate.xaml
     /// </summary>
-    public partial class WarehouseProfileTemplate : UserControl
+    public partial class WarehouseProfileTemplate : BasicUserControl
     {
         public WarehouseProfileTemplate()
         {

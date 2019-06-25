@@ -10,13 +10,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumberEditableTemplate.xaml
     /// </summary>
-    public partial class PhoneNumberEditableTemplate : UserControl
+    public partial class PhoneNumberEditableTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information about actions to user.
-        /// </summary>
-        private string _message;
-
         public PhoneNumberEditableTemplate()
         {
             InitializeComponent();
@@ -53,8 +48,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 phone.UpdateNumber(EditPhoneNumber.Text);
                 phone.UpdateNote(EditNote.Text);
 
-                this._message = $"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.";
-                InformationToUser();
+                InformationToUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
 
                 //TODO: Make this in xaml.
                 TurnOn(this.PhoneNumber);
@@ -78,30 +72,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (DataContext is Phone phone)
             {
                 phone.Delete();
-
-                this._message = $"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.";
-                InformationToUser();
+                InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 
                 var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
                 if (phoneList != null)
                     phoneList.RefreshPhoneList();
             }
-        }
-        #endregion
-
-        #region InformationToUser
-        /// <summary>
-        /// Make information in MainWindow to user about action.
-        /// </summary>
-        private void InformationToUser()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                    mainWindow.InformationForUser(this._message);
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex) { ex.ShowMessage(this); }
         }
         #endregion
     }

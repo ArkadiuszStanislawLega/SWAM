@@ -1,18 +1,7 @@
 ﻿using SWAM.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -21,13 +10,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
     /// </summary>
-    public partial class PhoneNumbersEditableListTemplate : UserControl
+    public partial class PhoneNumbersEditableListTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information about actions to user.
-        /// </summary>
-        private string _message;
-
         public PhoneNumbersEditableListTemplate()
         {
             InitializeComponent();
@@ -70,17 +54,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         context.SaveChanges();
 
                         PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
-                        this._message = ($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
-                        InformationToUser();
+                        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
                         ClearEditableFieldsAfterAddNewPhone();
                         //TODO: Make validations and catch exceptions - phones.
                     }
-                    else
-                    {
-                        this._message = ($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
-                        InformationToUser(true);
-                    }
+                    else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
+                    
                 };
             }
         }
@@ -110,23 +90,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 using (var context = new ApplicationDbContext())
                     PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
             }
-        }
-        #endregion
-
-        #region InformationToUser
-        /// <summary>
-        /// ake information in MainWindow to user about action.
-        /// </summary>
-        /// <param name="warning">True - content of information have some worning.</param>
-        private void InformationToUser(bool warning = false)
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                    mainWindow.InformationForUser(this._message, warning);
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex) { ex.ShowMessage(this); }
         }
         #endregion
     }

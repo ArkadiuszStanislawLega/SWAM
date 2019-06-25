@@ -20,13 +20,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy EmailEditableListTemplate.xaml
     /// </summary>
-    public partial class EmailEditableListTemplate : UserControl
+    public partial class EmailEditableListTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information to user about actions.
-        /// </summary>
-        private string _message;
-
         public EmailEditableListTemplate()
         {
             InitializeComponent();
@@ -69,15 +64,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                         Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
 
-                        this._message = $"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.";
-                        InformationToUser();
+                        InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
                         //TODO: Make validations and catch exceptions - mails.
                     }
-                    else
-                    {
-                        this._message = $"Nie udało się dodać użytkownikowi {user.Name} nowego maila.";
-                        InformationToUser();
-                    }
+                    else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego maila.");
                 };
             }
 
@@ -94,31 +84,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
+                //TODO: Try catch
                 using (var context = new ApplicationDbContext())
                     Emails.ItemsSource = context.Emails.Where(u => u.UserId == user.Id).ToList();
-            }
-        }
-        #endregion
-
-        #region InformationToUser
-        /// <summary>
-        /// Changing content inforamtion label in main window.
-        /// </summary>
-        private bool InformationToUser(bool warning = false)
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                {
-                    mainWindow.InformationForUser(this._message, warning);
-                    return true;
-                }
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex)
-            {
-                ex.ShowMessage(this);
-                return false;
             }
         }
         #endregion

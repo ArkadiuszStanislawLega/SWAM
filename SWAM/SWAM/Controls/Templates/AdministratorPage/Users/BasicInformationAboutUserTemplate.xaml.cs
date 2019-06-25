@@ -20,70 +20,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// <summary>
     /// Logika interakcji dla klasy BasicInformationAboutUserTemplate.xaml
     /// </summary>
-    public partial class BasicInformationAboutUserTemplate : UserControl
+    public partial class BasicInformationAboutUserTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information about action.
-        /// </summary>
-        private string _message;
-
         public BasicInformationAboutUserTemplate()
         {
             InitializeComponent();
         }
-
-        #region InformationToUser
-        /// <summary>
-        /// Changing content inforamtion label in main window.
-        /// </summary>
-        private bool InformationToUser(bool warning = false)
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                {
-                    mainWindow.InformationForUser(this._message, warning);
-                    return true;
-                }
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex)
-            {
-                ex.ShowMessage(this);
-                return false;
-            }
-        }
-        #endregion
-        #region UserProfileRefresh
-        /// <summary>
-        /// Refresh current user profile.
-        /// </summary>
-        private void UserProfileRefresh()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
-                    userProfileTemplate.RefreshData();
-                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
-            }
-            catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
-        #region UserListRefresh
-        /// <summary>
-        /// Refreshing user list.
-        /// </summary>
-        private void UserListRefresh()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate usersControlPanelTemplate)
-                    usersControlPanelTemplate.RefreshUsersList();
-                else throw new RefreshUserListException($"{typeof(BasicInformationAboutUserTemplate).ToString()}\n");
-            }
-            catch (RefreshUserListException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
 
         #region EditNameCommand_Executed
         /// <summary>
@@ -102,10 +44,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     context.Users.FirstOrDefault(u => u.Id == user.Id).Name = this.EditName.Text;
                     context.SaveChanges();
                 }
-
-                this._message = $"Nazwa użytkownika {user.Name} została zmienione na {this.EditName.Text}.";
-
-                InformationToUser();
+                InformationToUser($"Nazwa użytkownika {user.Name} została zmienione na {this.EditName.Text}.");
                 UserProfileRefresh();
                 UserListRefresh();
             }
@@ -133,17 +72,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
                         Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
                     }
-
-                    #region Information for the user about the correctly carried out action
-                    this._message = $"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ";
-
-                    InformationToUser();
+                    InformationToUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ");
                     UserListRefresh();
                 }
-                #endregion
             }
         }
-    
         #endregion
         #region EditUserPasswordCommand_Executed
         /// <summary>
@@ -165,16 +98,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
                     //TODO: After add hash function and debug - delete this one line.
                     this.Password.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Password;
-
-                    this._message = $"Hasło użytkownika {user.Name} zostało zmienione.";
-                    InformationToUser();
+                    InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
                 }
             }
-            else
-            {
-                this._message = $"Hasła są niezgodne. Hasła muszą być takie same.";
-                InformationToUser(true);
-            }
+            else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
         }
         #endregion
     }

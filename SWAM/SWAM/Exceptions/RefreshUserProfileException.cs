@@ -9,7 +9,7 @@ namespace SWAM.Exceptions
 {
     public class RefreshUserProfileException : BasicException
     {
-        public RefreshUserProfileException(string message) :
+        public RefreshUserProfileException(string message = "") :
             base($"{message} {ErrorMesages.REFRESH_USER_PROFILE_ERROR}") { }
     }
 }

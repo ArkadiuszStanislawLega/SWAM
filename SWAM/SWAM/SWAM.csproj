@@ -184,6 +184,7 @@
     <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
       <DependentUpon>AddressTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\BasicUserControl.cs" />
     <Compile Include="Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.xaml.cs">
       <DependentUpon>BasicInformationAboutUserTemplate.xaml</DependentUpon>
     </Compile>

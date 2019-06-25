@@ -14,13 +14,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy CreateNewUserTemplate.xaml
     /// </summary>
-    public partial class CreateNewUserTemplate : UserControl
+    public partial class CreateNewUserTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information to user about actions.
-        /// </summary>
-        string _message;
-
         public CreateNewUserTemplate()
         {
             InitializeComponent();
@@ -51,53 +46,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 if (user != null)
                 {
-                    this._message = $"Dodano nowego {user.Permissions.ToString()} {user.Name}.";
-                    InformationToUser();
+                    InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
 
                     UserListRefresh();
                 }
-                else
-                {
-                    this._message = $"Nie udało się dodać nużytkownika {this.NewUserName.Text}.";
-                    InformationToUser(true);
-                }
+                else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
+                
                 RestartTextBoxes();
             }
         }
         #endregion
-
-        #region UserListRefresh
-        /// <summary>
-        /// Refreshing user list.
-        /// </summary>
-        private void UserListRefresh()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate usersControlPanelTemplate)
-                    usersControlPanelTemplate.RefreshUsersList();
-                else throw new RefreshUserListException($"{typeof(CreateNewUserTemplate).ToString()}\n");
-            }
-            catch (RefreshUserListException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
-        #region InformationToUser
-        /// <summary>
-        ///  Make information in MainWindow to user about action.
-        /// </summary>
-        /// <param name="warning">Tue - When content of inforamtion is warning.</param>
-        private void InformationToUser(bool warning = false)
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                    mainWindow.InformationForUser(this._message, warning);
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
-
         #region RestartTextBoxes
         /// <summary>
         /// Reset textboxes and combobox after create new user.

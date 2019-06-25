@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.AdministratorPage.EmailEditableTemplate"
+﻿<local:BasicUserControl x:Class="SWAM.Controls.Templates.AdministratorPage.EmailEditableTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -79,4 +79,4 @@
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->
-</UserControl>
+</local:BasicUserControl>

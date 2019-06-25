@@ -16,13 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using SWAM.Controls.Templates.AdministratorPage;
 
 namespace SWAM.Templates.AdministratorPage
 {
     /// <summary>
     /// Logika interakcji dla klasy WarehousesControlPanel.xaml
     /// </summary>
-    public partial class WarehousesControlPanelTemplate : UserControl
+    public partial class WarehousesControlPanelTemplate : BasicUserControl
     {
         public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
 
@@ -36,14 +37,14 @@ namespace SWAM.Templates.AdministratorPage
             WarhousesListViewModel = new Models.AdministratorPage.WarehousesListViewModel();
         }
 
-        protected override void OnRender(DrawingContext drawingContext)
+        private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
-            base.OnRender(drawingContext);
 
             DataContext = WarhousesListViewModel;
 
             RefreshWarhousesList();
         }
+
         #region WarehousesList_SizeChanged
         /// <summary>
         /// Action when the main window has been changed.

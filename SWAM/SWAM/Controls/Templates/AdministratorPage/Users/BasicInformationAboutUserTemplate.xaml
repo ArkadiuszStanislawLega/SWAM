@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.AdministratorPage.Users.BasicInformationAboutUserTemplate"
+﻿<class:BasicUserControl x:Class="SWAM.Controls.Templates.AdministratorPage.Users.BasicInformationAboutUserTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:com="clr-namespace:SWAM.Commands.AdministratorPage"
@@ -379,4 +380,4 @@
         <!--#endregion-->
     </ScrollViewer>
     <!--#endregion-->
-</UserControl>
+</class:BasicUserControl>

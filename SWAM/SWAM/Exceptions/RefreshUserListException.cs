@@ -12,6 +12,6 @@ namespace SWAM.Exceptions
     /// </summary>
     public class RefreshUserListException : BasicException
     {
-        public RefreshUserListException(string message) : base($"{message} {ErrorMesages.REFRESH_USER_LIST_ERROR}") { }
+        public RefreshUserListException(string message = "") : base($"{message} {ErrorMesages.REFRESH_USER_LIST_ERROR}") { }
     }
 }

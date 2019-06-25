@@ -20,7 +20,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// <summary>
     /// Logika interakcji dla klasy UserAccessToWarehousesTemplates.xaml
     /// </summary>
-    public partial class UserAccessToWarehousesTemplates : UserControl
+    public partial class UserAccessToWarehousesTemplates : BasicUserControl
     {
         public UserAccessToWarehousesTemplates()
         {

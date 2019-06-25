@@ -14,17 +14,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// <summary>
     /// Logika interakcji dla klasy UserAccessToWarehousesListItemTemplate.xaml
     /// </summary>
-    public partial class UserAccessToWarehousesListItemTemplate : UserControl
+    public partial class UserAccessToWarehousesListItemTemplate : BasicUserControl
     {
         /// <summary>
         /// List with all warehouses available in database.
         /// </summary>
         private IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
-
-        /// <summary>
-        /// Information for user about all actions.
-        /// </summary>
-        private string _message;
 
         #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
@@ -87,8 +82,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     if (newAccess != null)
                     {
                         DataContext = newAccess;
-                        this._message = $"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.";
-                        InformationToUser();
+                        InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
                     }
                 }
             }
@@ -131,8 +125,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 if (userAccessToWarehousesTemplates  != null)
                         userAccessToWarehousesTemplates.TurnOffAddNewAccess();
 
-                this._message = $"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.";
-                InformationToUser();
+                InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
             }
         }
         #endregion
@@ -160,21 +153,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
         }
         #endregion
-        #region InformationToUser
-        /// <summary>
-        /// Make information in MainWindow to user about action.
-        /// </summary>
-        private void InformationToUser()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                    mainWindow.InformationForUser(this._message);
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
 
         #region Delete_Click
         /// <summary>
@@ -196,10 +174,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     context.SaveChanges();
 
                     if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
-                    {
-                        this._message = $"Uprawnienie  {user.Name} zostało usunięte.";
-                        InformationToUser();
-                    }
+                        InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
                 }
             }
             RefreshParent();

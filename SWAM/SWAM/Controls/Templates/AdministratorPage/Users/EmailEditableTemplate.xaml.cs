@@ -21,13 +21,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy EmailEditableTemplate.xaml
     /// </summary>
-    public partial class EmailEditableTemplate : UserControl
+    public partial class EmailEditableTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Information about actions to user.
-        /// </summary>
-        private string _message;
-
         public EmailEditableTemplate()
         {
             InitializeComponent();
@@ -59,9 +54,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (DataContext is Email email)
             {
                 email.UpdateEmail(EditEmail.Text);
-
-                this._message = ($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
-                InformationToUser();
+                InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
 
                 //TODO: Make this in xaml
                 TurnOn(this.Email);
@@ -83,29 +76,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 email.Delete();
 
+                InformationToUser($"Usnięto adress email {email.AddressEmail}.");
+
                 var emailList = FindParent<EmailEditableListTemplate>(this);
                 if (emailList != null) emailList.RefreshEmailsList();
-
-                this._message = $"Usnięto adress email {email.AddressEmail}.";
-                InformationToUser();
             }
-
-        }
-        #endregion
-
-        #region InformationToUser
-        /// <summary>
-        /// Make information in MainWindow to user about action.
-        /// </summary>
-        private void InformationToUser()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-                    mainWindow.InformationForUser(this._message);
-                else throw new InformationLabelException(this._message);
-            }
-            catch (InformationLabelException ex) { ex.ShowMessage(this); }
         }
         #endregion
     }

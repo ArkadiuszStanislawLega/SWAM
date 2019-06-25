@@ -11,7 +11,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// <summary>
     /// Logika interakcji dla klasy UserProfileTemplate.xaml
     /// </summary>
-    public partial class UserProfileTemplate : UserControl
+    public partial class UserProfileTemplate : BasicUserControl
     {
         public UserProfileTemplate()
         {
@@ -65,8 +65,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
                         parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
 
-                    SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                                InformationForUser($"Użytkownik {user.Name} został usunięty.");
+                    InformationToUser($"Użytkownik {user.Name} został usunięty.");
                 }
             }
         }
@@ -99,8 +98,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                                                         .Include(u => u.Phones)
                                                         .FirstOrDefault(u => u.Id == user.Id);
 
-                        SWAM.MainWindow.FindParent<SWAM.MainWindow>(this).
-                             InformationForUser($"Status konta użytkownika {user.Name} została zmieniony na {userDb.StatusOfUserAccount.ToString()}.");
+                        InformationToUser($"Status konta użytkownika {user.Name} została zmieniony na {userDb.StatusOfUserAccount.ToString()}.");
                     }
                 }
             }

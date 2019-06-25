@@ -27,7 +27,7 @@ namespace SWAM.Exceptions
             {
                 if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(content) is SWAM.MainWindow mainWindow)
                 {
-                    mainWindow.InformationForUser(this.Message, true);
+                    mainWindow.InformationForUser($"{this.Message} {content.GetType().ToString()}", true);
                     return true;
                 }
                 else throw new InformationLabelException(this.Message);
