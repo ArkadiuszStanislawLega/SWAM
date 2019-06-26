@@ -511,3 +511,9 @@ E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml

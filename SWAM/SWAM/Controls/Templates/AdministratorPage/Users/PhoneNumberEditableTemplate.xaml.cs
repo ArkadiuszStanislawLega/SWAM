@@ -59,6 +59,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 this.Confirm.IsEnabled = false;
             }
+            else InformationToUser(ErrorMesages.DURING_EDIT_PHONE_ERROR, true);
         }
         #endregion
         #region Delete_Click
@@ -74,10 +75,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 phone.Delete();
                 InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 
-                var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
-                if (phoneList != null)
-                    phoneList.RefreshPhoneList();
+                //Refresh phones list.
+                try
+                {
+                    var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
+                    if (phoneList != null)
+                        phoneList.RefreshPhoneList();
+                    else throw new RefreshUserPhonesListException();
+                }
+                catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
             }
+            else InformationToUser(ErrorMesages.DURING_DELETE_PHONE_ERROR, true);
         }
         #endregion
     }

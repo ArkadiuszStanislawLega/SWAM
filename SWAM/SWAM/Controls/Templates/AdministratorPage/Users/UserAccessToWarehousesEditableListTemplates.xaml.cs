@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using SWAM.Exceptions;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
@@ -90,12 +91,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         public void RefreshAccessList()
         {
-            var user = DataContext as User;
-
-            var context = new ApplicationDbContext();
-            List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse)
-                .Include(a => a.Administrator)
-                .Where(u => u.UserId == user.Id).ToList();
+            try
+            {
+                if (DataContext is User user)
+                {
+                    //TODO: try - catch
+                    var context = new ApplicationDbContext();
+                    List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse)
+                        .Include(a => a.Administrator)
+                        .Where(u => u.UserId == user.Id).ToList();
+                }
+                else throw new RefreshWarehousessAccessesListExeption();
+            }
+            catch(RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
         }
         #endregion
     }

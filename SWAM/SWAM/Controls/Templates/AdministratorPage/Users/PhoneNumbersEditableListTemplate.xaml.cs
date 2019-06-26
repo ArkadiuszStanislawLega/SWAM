@@ -38,31 +38,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                //TODO: Try - catch
-                using (var context = new ApplicationDbContext())
+                var phone = new Phone()
                 {
-                    var phone = new Phone()
-                    {
-                        PhoneNumber = this.NewPhone.Text,
-                        Note = this.NewPhoneNote.Text,
-                        UserId = user.Id
-                    };
-
-                    if (phone != null)
-                    {
-                        context.Phones.Add(phone);
-                        context.SaveChanges();
-
-                        PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
-                        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
-
-                        ClearEditableFieldsAfterAddNewPhone();
-                        //TODO: Make validations and catch exceptions - phones.
-                    }
-                    else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
-                    
+                    PhoneNumber = this.NewPhone.Text,
+                    Note = this.NewPhoneNote.Text,
+                    UserId = user.Id
                 };
+
+                if (phone != null)
+                {
+                    Phone.AddNewPhone(phone);
+                    //TODO: Try - catch
+                    using (var context = new ApplicationDbContext())
+                        PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+
+                    InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
+                    ClearEditableFieldsAfterAddNewPhone();
+                }
+                else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
             }
+            else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
         }
         #endregion
 
@@ -84,12 +79,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshPhoneList()
         {
-            if (DataContext is User user)
+            try
             {
-                //TODO: try - catch
-                using (var context = new ApplicationDbContext())
-                    PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+                if (DataContext is User user)
+                {
+                    //TODO: try - catch
+                    using (var context = new ApplicationDbContext())
+                        PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+                }
+                else throw new RefreshUserPhonesListException();
             }
+            catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
         }
         #endregion
     }

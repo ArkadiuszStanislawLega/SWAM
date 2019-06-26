@@ -62,6 +62,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 this.Confirm.IsEnabled = false;
             }
+            else InformationToUser(ErrorMesages.DURING_EDIT_EMAIL_ERROR, true);
         }
         #endregion
         #region Delete_Click
@@ -84,6 +85,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 }
                 catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); };
             }
+            else InformationToUser(ErrorMesages.DURIGN_DELETE_EMAIL_ERROR, true);
         }
         #endregion
     }

@@ -45,12 +45,23 @@ namespace SWAM.Models
         private static ApplicationDbContext context()
         {
             //TODO: Make all exceptions
-            try
-            {
+          
                 return DB_CONTEXT;
-            }
-            catch (Exception) { return null; }
+  
         }
+        #region Remove
+        /// <summary>
+        /// Remove user from database.
+        /// </summary>
+        public void Remove()
+        {
+            //TODO: Poprawić model, trzeba zrobić kaskadowe usuwanie, z access to warehouses
+            var user = context().Users.FirstOrDefault(u => u.Id == this.Id);
+            context().Users.Remove(user);
+            context().SaveChanges();
+        }
+        #endregion
+
         #region CreateNewUser
         /// <summary>
         /// Add new user to database.

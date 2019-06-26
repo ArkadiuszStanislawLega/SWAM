@@ -89,6 +89,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); }
                 }
             }
+            else InformationToUser(ErrorMesages.REFRESH_EMAILS_LIST_ERROR, true);
         }
         #endregion
     }

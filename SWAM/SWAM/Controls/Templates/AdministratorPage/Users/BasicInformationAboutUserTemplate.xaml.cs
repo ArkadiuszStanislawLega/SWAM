@@ -42,6 +42,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 UserProfileRefresh();
                 UserListRefresh();
             }
+            else InformationToUser(ErrorMesages.DURING_EDIT_USER_ERROR, true);
         }
         #endregion 
         #region EditUserPermissionsCommand_Executed
@@ -64,11 +65,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     //TODO: Try - catch
                     using (var context = new ApplicationDbContext())
                         Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
-                    
+
                     InformationToUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ");
                     UserListRefresh();
                 }
+                else InformationToUser("Uprawnienia są tego samego typu. Nie zostało nic zmienione.");
             }
+            else InformationToUser(ErrorMesages.DURING_EDIT_USER_ERROR, true);
         }
         #endregion
         #region EditUserPasswordCommand_Executed

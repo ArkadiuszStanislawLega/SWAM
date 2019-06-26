@@ -23,6 +23,31 @@ namespace SWAM.Models
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }
 
+        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+
+        private static ApplicationDbContext context()
+        {
+            //TODO: Make all exceptions
+
+            return DB_CONTEXT;
+
+        }
+
+        #region AddNewPhone
+        /// <summary>
+        /// Adding new Phone to database.
+        /// </summary>
+        /// <param name="phone"></param>
+        public static void AddNewPhone(Phone phone)
+        {
+            if (phone != null)
+            {
+                context().Phones.Add(phone);
+                context().SaveChanges();
+            }
+        }
+        #endregion
+
         #region UpdateNumber
         /// <summary>
         /// Update current phone number.
@@ -30,16 +55,8 @@ namespace SWAM.Models
         /// <param name="newPhoneNumber">New phone/edited number.</param>
         public void UpdateNumber(string newPhoneNumber)
         {
-            //TODO: Catch exception - Phone - UpdateNumber
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                var currentPhone = context.Phones.SingleOrDefault(p => p.Id == this._id);
-                if (currentPhone != null)
-                {
-                    currentPhone._phoneNumber = newPhoneNumber;
-                    context.SaveChanges();
-                }
-            };
+            context().Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
+            context().SaveChanges();
         }
         #endregion
         #region UpdateNote
@@ -49,16 +66,8 @@ namespace SWAM.Models
         /// <param name="newNote">New/edited note of phone number.</param>
         public void UpdateNote(string newNote)
         {
-            //TODO: Catch exception - Phone - UpdateNote
-            using (ApplicationDbContext context = new ApplicationDbContext())
-            {
-                var currentPhone = context.Phones.SingleOrDefault(p => p.Id == this._id);
-                if (currentPhone != null)
-                {
-                    currentPhone._note = newNote;
-                    context.SaveChanges();
-                }
-            };
+            context().Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
+            context().SaveChanges();
         }
         #endregion
         #region Delete
@@ -67,16 +76,12 @@ namespace SWAM.Models
         /// </summary>
         public void Delete()
         {
-            //TODO: Catch exception - Phone - Delete
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            var phone = context().Phones.FirstOrDefault(p => p.Id == this.Id);
+            if (phone != null)
             {
-                var currentPhone = context.Phones.Where(p => p.Id == this._id).First();
-                if (currentPhone != null)
-                {
-                    context.Phones.Remove(currentPhone);
-                    context.SaveChanges();
-                }
-            };
+                context().Phones.Remove(phone);
+                context().SaveChanges();
+            }
         }
         #endregion
     }

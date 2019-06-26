@@ -27,11 +27,7 @@ namespace SWAM.Models
         private static ApplicationDbContext context()
         {
             //TODO: Make all exceptions
-            try
-            {
                 return DB_CONTEXT;
-            }
-            catch (Exception) { return null; }
         }
 
         /// <summary>

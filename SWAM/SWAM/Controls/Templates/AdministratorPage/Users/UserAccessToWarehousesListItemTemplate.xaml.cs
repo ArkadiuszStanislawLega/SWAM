@@ -32,14 +32,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
         private void UserAccessToWarehousesListItemTemplate_Loaded(object sender, RoutedEventArgs e)
         {
-            if(this.DataContext is AccessUsersToWarehouses access)
+            try
             {
-                //TODO: Try - catch
-                ApplicationDbContext context = new ApplicationDbContext();
-                this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
+                if (this.DataContext is AccessUsersToWarehouses access)
+                {
+                    //TODO: Try - catch
+                    var context = new ApplicationDbContext();
+                    this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
+                }
+                else throw new RefreshWarehousessAccessesListExeption();
             }
+            catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
         }
- 
+
         #region CreateNewAccessMode
         /// <summary>
         /// Preapering view for add new access for user.
@@ -52,9 +57,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
             this.DeleteCurrentAccess.Visibility = Visibility.Collapsed;
 
-             this.AdministatorName.Text = SWAM.MainWindow.LoggedInUser.Name;
-            this.DateOfGrantingAccess.Text = ""+DateTime.Now;
-            this.Content.Margin = new Thickness(0, -10, 0 , -10);
+            this.AdministatorName.Text = SWAM.MainWindow.LoggedInUser.Name;
+            this.DateOfGrantingAccess.Text = "" + DateTime.Now;
+            this.Content.Margin = new Thickness(0, -10, 0, -10);
         }
         #endregion
 
@@ -71,8 +76,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 //Try - catch
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces = this.Calendar.SelectedDate;
-                    context.SaveChanges();
+                    access.EditExpiredAccess(this.Calendar.SelectedDate);
 
                     var newAccess = context.AccessUsersToWarehouses
                         .Include(u => u.User)
@@ -84,8 +88,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                         DataContext = newAccess;
                         InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
                     }
+                    else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
                 }
             }
+            else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
         }
         #endregion  
 
@@ -102,32 +108,30 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 var accessType = (Enumerators.UserType)this.EditUserPermissions.SelectedValue;
 
-                //TODO: try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
+                if (AccessUsersToWarehouses.AddNewAccess(new AccessUsersToWarehouses()
                 {
-                    context.AccessUsersToWarehouses.Add(new Models.AccessUsersToWarehouses()
-                    {
-                        UserId = user.Id,
-                        AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
-                        TypeOfAccess = accessType,
-                        WarehouseId = warehouse.Id,
-                        DateOfGrantingAccess = DateTime.Now,
-                        DateOfExpiredAcces = this.Calendar.SelectedDate
-                    });
-                    context.SaveChanges();
-                }
+                    UserId = user.Id,
+                    AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
+                    TypeOfAccess = accessType,
+                    WarehouseId = warehouse.Id,
+                    DateOfGrantingAccess = DateTime.Now,
+                    DateOfExpiredAcces = this.Calendar.SelectedDate
+                }))
+                {
+                    this.EditWarehouse.SelectedValue = null;
+                    this.EditUserPermissions.SelectedValue = null;
+                    this.Calendar.SelectedDate = null;
 
-                this.EditWarehouse.SelectedValue = null;
-                this.EditUserPermissions.SelectedValue = null;
-                this.Calendar.SelectedDate = null;
-
-                var userAccessToWarehousesTemplates = RefreshParent();
-                if (userAccessToWarehousesTemplates  != null)
+                    var userAccessToWarehousesTemplates = RefreshParent();
+                    if (userAccessToWarehousesTemplates != null)
                         userAccessToWarehousesTemplates.TurnOffAddNewAccess();
 
-                InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+                    InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+                }
+                else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
             }
-        }
+            else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
+        } 
         #endregion
 
         #region RefreshParent
@@ -164,20 +168,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             //TODO: Make a window asking if you really want to delete this permission.
             //TODO: Try - catch
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag) && SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
             {
-                var accessToRemove = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == (int)this.Tag);
-
-                if (accessToRemove != null)
-                {
-                    context.AccessUsersToWarehouses.Remove(accessToRemove);
-                    context.SaveChanges();
-
-                    if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
-                        InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
-                }
+                InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
+                RefreshParent();
             }
-            RefreshParent();
+            else InformationToUser(ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR, true);
         }
         #endregion
     }

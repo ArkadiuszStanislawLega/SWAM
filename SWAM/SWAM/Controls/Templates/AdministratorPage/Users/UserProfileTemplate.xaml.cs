@@ -47,27 +47,20 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             //TODO: Make a window asking if your realy want to delete this user.
             //TODO: Try - catch
-            using (ApplicationDbContext context = new ApplicationDbContext())
+
+            if (DataContext is User user)
             {
-                if (DataContext is User user)
-                {
-                    var userDb = context.Users.FirstOrDefault(u => u.Id == user.Id);
+                user.Remove();
 
-                    if (userDb != null)
-                    {
-                        context.Users.Remove(userDb);
-                        context.SaveChanges();
-                    }
+                var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
+                parent.RefreshUsersList();
+                InformationToUser($"Użytkownik {user.Name} został usunięty.");
 
-                    var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
-                    parent.RefreshUsersList();
-                    //Show profile of the first user in the list.
-                    if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
-                        parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
-
-                    InformationToUser($"Użytkownik {user.Name} został usunięty.");
-                }
+                //Show profile of the first user in the list.
+                if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
+                    parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
             }
+            else InformationToUser(ErrorMesages.DURING_DELETE_USER_ERROR, true);
         }
         #endregion
         #region BlockUser_Click
