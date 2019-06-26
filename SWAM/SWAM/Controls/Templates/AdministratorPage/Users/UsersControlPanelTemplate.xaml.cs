@@ -83,18 +83,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="userIndexInUsersList">Index number of UsersListItemTemplate in the users list.</param>
         /// <return>Chosen user profile.</return>
-        private UserProfileTemplate CreateUserProfile(int userIndexInUsersList)
-        {
-            //finding user whith specific id from user list
-            //TODO: try - catch
-            var context = new ApplicationDbContext();
-            var user = context.Users.Include(u => u.Accesess)
-                .Include(u => u.Emails)
-                .Include(u => u.Phones)
-                .FirstOrDefault(u => u.Id == userIndexInUsersList);
-
-            return new UserProfileTemplate() { DataContext = user };
-        }
+        private UserProfileTemplate CreateUserProfile(int userIndexInUsersList) => new UserProfileTemplate() { DataContext = User.GetUser(userIndexInUsersList) };
         #endregion
         #region AddNewUser_Click
         /// <summary>

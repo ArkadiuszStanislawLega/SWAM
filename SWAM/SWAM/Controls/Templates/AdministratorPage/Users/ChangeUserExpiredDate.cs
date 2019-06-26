@@ -75,7 +75,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
                     userProfileTemplate.RefreshData();
-                else throw new RefreshUserProfileException($"{typeof(BasicInformationAboutUserTemplate).ToString()}");
+                else throw new RefreshUserProfileException();
             }
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }

@@ -13,8 +13,10 @@ namespace SWAM
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";
+        public const string DURING_CHANGING_STATUS_USER_ACCOUT_ERROR = "Wystąpił błąd podczas zmiany statusu konta użytkownika.";
         public const string DURING_EDIT_USER_ERROR = "Wystąpił błąd podczas edytowania danych użytkownika.";
         public const string DURING_DELETE_USER_ERROR = "Wystąpił błąd podczas usuwania użytkownika.";
+        public const string DURING_CHANGING_USER_PROFILE_ERROR = "Wystąpił błąd przełączania profilu użytkownika.";
         #endregion
         #region User accesses to warehouses
         public const string REFRESH_WAREHOUSES_ACCESSES_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy dostępu do magazynów.";

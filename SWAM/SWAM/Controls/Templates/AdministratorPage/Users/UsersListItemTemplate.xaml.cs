@@ -1,4 +1,5 @@
 ﻿using SWAM.Events.NavigationButton;
+using SWAM.Exceptions;
 using SWAM.Models;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,35 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e) => SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this).ShowProfile(this);
-      
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var userControlPanel = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
+            if (userControlPanel != null)
+                userControlPanel.ShowProfile(this);
+            else InformationToUser(ErrorMesages.DURING_CHANGING_USER_PROFILE_ERROR);
+        }
+
+        #region InformationToUser
+        /// <summary>
+        /// Changing content inforamtion label in main window.
+        /// </summary>
+        protected bool InformationToUser(string message, bool warning = false)
+        {
+            try
+            {
+                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                {
+                    mainWindow.InformationForUser(message, warning);
+                    return true;
+                }
+                else throw new InformationLabelException(message);
+            }
+            catch (InformationLabelException ex)
+            {
+                ex.ShowMessage(this);
+                return false;
+            }
+        }
+        #endregion
     }
 }

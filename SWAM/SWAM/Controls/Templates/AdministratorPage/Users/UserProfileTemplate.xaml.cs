@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Data.Entity;
-
+using SWAM.Exceptions;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -24,17 +24,23 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshData()
         {
-            if (DataContext is User user)
+            try
             {
-                //TODO: Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
+                if (DataContext is User user)
                 {
-                    this.DataContext = context.Users.Include(u => u.Accesess)
-                                                     .Include(u => u.Emails)
-                                                     .Include(u => u.Phones)
-                                                     .FirstOrDefault(u => u.Id == user.Id);
+                    //TODO: Try - catch
+                    using (var context = new ApplicationDbContext())
+                    {
+                        this.DataContext = context.Users.Include(u => u.Accesess)
+                                                         .Include(u => u.Emails)
+                                                         .Include(u => u.Phones)
+                                                         .FirstOrDefault(u => u.Id == user.Id);
+                    }
+                    if(DataContext == null) throw new RefreshUserProfileException();
                 }
+                else throw new RefreshUserProfileException("RefreshData");
             }
+            catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }
         #endregion  
         #region DeletUser_Click
@@ -46,19 +52,25 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void DeletUser_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make a window asking if your realy want to delete this user.
-            //TODO: Try - catch
-
             if (DataContext is User user)
             {
                 user.Remove();
-
-                var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
-                parent.RefreshUsersList();
                 InformationToUser($"Użytkownik {user.Name} został usunięty.");
 
-                //Show profile of the first user in the list.
-                if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
-                    parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
+                try
+                {
+                    var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
+                    if (parent != null)
+                    {
+                        parent.RefreshUsersList();
+
+                        //Show profile of the first user in the list.
+                        if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
+                            parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
+                    }
+                    else throw new RefreshUserProfileException(ErrorMesages.DURING_DELETE_USER_ERROR);
+                }
+                catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
             }
             else InformationToUser(ErrorMesages.DURING_DELETE_USER_ERROR, true);
         }
@@ -72,29 +84,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void BlockUser_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make a window asking if you really want to block this user.
-            //TODO: Try - catch
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            if (DataContext is User user)
             {
-                if (DataContext is User user)
-                {
-                    var userDb = context.Users.FirstOrDefault(u => u.Id == user.Id);
+                //its needed to clear the datacontext because the refresh function did not work properly after downloading the data after the change
+                this.DataContext = null;
+                if (user.StatusOfUserAccount == Enumerators.StatusOfUserAccount.Active) user.ChangeStatus(Enumerators.StatusOfUserAccount.Blocked);
+                else user.ChangeStatus(Enumerators.StatusOfUserAccount.Active);
+                InformationToUser($"Status konta użytkownika {user.Name} została zmieniony.");
 
-                    if (userDb != null)
-                    {
-                        if (userDb.StatusOfUserAccount == Enumerators.StatusOfUserAccount.Active) userDb.StatusOfUserAccount = Enumerators.StatusOfUserAccount.Blocked;
-                        else userDb.StatusOfUserAccount = Enumerators.StatusOfUserAccount.Active;
-
-                        context.SaveChanges();
-
-                        this.DataContext = context.Users.Include(u => u.Accesess)
-                                                        .Include(u => u.Emails)
-                                                        .Include(u => u.Phones)
-                                                        .FirstOrDefault(u => u.Id == user.Id);
-
-                        InformationToUser($"Status konta użytkownika {user.Name} została zmieniony na {userDb.StatusOfUserAccount.ToString()}.");
-                    }
-                }
+                this.DataContext = User.GetUser(user.Id);
             }
+            else InformationToUser(ErrorMesages.DURING_CHANGING_STATUS_USER_ACCOUT_ERROR, true);
         }
         #endregion
     }

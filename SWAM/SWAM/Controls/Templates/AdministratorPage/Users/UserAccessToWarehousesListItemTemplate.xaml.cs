@@ -40,6 +40,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     var context = new ApplicationDbContext();
                     this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
                 }
+                else if (this.DataContext is User user){ /*this is required because when the first element is loaded datacontext is User*/}
                 else throw new RefreshWarehousessAccessesListExeption();
             }
             catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }

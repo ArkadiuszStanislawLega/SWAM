@@ -84,13 +84,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
             {
-                //TODO: Add hash funkction on password.
+                //TODO: Add hash function on password.
                 user.ChangePassword(this.EditConfirmPassword.Password);
                 InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
-
-                //TODO: Try - catch - DELETE this after add hash function to password.
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                    this.Password.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Password;
+                //TODO: Delete this after add hash function.
+                this.Password.Text = User.GetUser(user.Id).Password;
             }
             else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
         }

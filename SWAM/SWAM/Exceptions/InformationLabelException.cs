@@ -17,7 +17,7 @@ namespace SWAM.Exceptions
             base($"{message} {ErrorMesages.INFORMATION_LABEL_ERROR}")
         { }
 
-        new public void ShowMessage(UserControl content)
+        new public void ShowMessage(FrameworkElement content)
         {
             MessageBox.Show(this.Message);
         }

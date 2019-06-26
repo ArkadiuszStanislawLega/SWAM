@@ -152,5 +152,16 @@ namespace SWAM.Models
             }
         }
         #endregion
+        #region ChangeStatus
+        /// <summary>
+        /// Changing status of user account in database.
+        /// </summary>
+        /// <param name="statusOfUserAccount">New status of account.</param>
+        public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
+        {
+            context().Users.FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            context().SaveChanges();
+        }
+        #endregion  
     }
 }

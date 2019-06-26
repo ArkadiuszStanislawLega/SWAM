@@ -11,7 +11,7 @@ namespace SWAM.Exceptions
     public abstract class BasicException : Exception
     {
         public BasicException(string message) : base (message) { }
-        public void ShowMessage(UserControl content)
+        public void ShowMessage(FrameworkElement content)
         {
             if(!InformationToUser(content))
                 MessageBox.Show(this.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -21,7 +21,7 @@ namespace SWAM.Exceptions
         /// <summary>
         /// Changing content inforamtion label in main window.
         /// </summary>
-        private bool InformationToUser(UserControl content)
+        private bool InformationToUser(FrameworkElement content)
         {
             try
             {
