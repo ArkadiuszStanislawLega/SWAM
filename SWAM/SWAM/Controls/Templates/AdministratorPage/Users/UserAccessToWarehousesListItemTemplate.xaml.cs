@@ -168,7 +168,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make a window asking if you really want to delete this permission.
-            //TODO: Try - catch
             if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag) && SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
             {
                 InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");

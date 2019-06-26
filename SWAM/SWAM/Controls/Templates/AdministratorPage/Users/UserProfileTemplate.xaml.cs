@@ -28,15 +28,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 if (DataContext is User user)
                 {
-                    //TODO: Try - catch
-                    using (var context = new ApplicationDbContext())
-                    {
-                        this.DataContext = context.Users.Include(u => u.Accesess)
-                                                         .Include(u => u.Emails)
-                                                         .Include(u => u.Phones)
-                                                         .FirstOrDefault(u => u.Id == user.Id);
-                    }
-                    if(DataContext == null) throw new RefreshUserProfileException();
+                    var refreshedUser = User.GetUser(user.Id);
+                    if (refreshedUser != null)
+                        this.DataContext = refreshedUser;
+                    else throw new RefreshUserProfileException("RefreshData");
                 }
                 else throw new RefreshUserProfileException("RefreshData");
             }

@@ -95,11 +95,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (DataContext is User user)
                 {
-                    //TODO: try - catch
-                    var context = new ApplicationDbContext();
-                    List.ItemsSource = context.AccessUsersToWarehouses.Include(w => w.Warehouse)
-                        .Include(a => a.Administrator)
-                        .Where(u => u.UserId == user.Id).ToList();
+                    var accesses = AccessUsersToWarehouses.GetUserAccesses(user.Id);
+                    if (accesses != null)
+                        List.ItemsSource = accesses;
+                    else throw new RefreshWarehousessAccessesListExeption();
                 }
                 else throw new RefreshWarehousessAccessesListExeption();
             }

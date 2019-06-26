@@ -48,11 +48,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (phone != null)
                 {
                     Phone.AddNewPhone(phone);
-                    //TODO: Try - catch
-                    using (var context = new ApplicationDbContext())
-                        PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
-
                     InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
+
+                    RefreshPhoneList();
                     ClearEditableFieldsAfterAddNewPhone();
                 }
                 else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
@@ -83,9 +81,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 if (DataContext is User user)
                 {
-                    //TODO: try - catch
-                    using (var context = new ApplicationDbContext())
-                        PhoneNumbers.ItemsSource = context.Phones.Where(u => u.UserId == user.Id).ToList();
+                    var phonesList = Phone.GetUserPhones(user.Id);
+                    if (phonesList != null)
+                        PhoneNumbers.ItemsSource = phonesList;
+                    else throw new RefreshUserPhonesListException();
                 }
                 else throw new RefreshUserPhonesListException();
             }

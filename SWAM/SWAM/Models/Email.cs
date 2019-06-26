@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -30,6 +28,16 @@ namespace SWAM.Models
                 return DB_CONTEXT;
         }
 
+        #region GetUserEmails
+        /// <summary>
+        /// Make list with email addresses of specific user.
+        /// </summary>
+        /// <param name="id">User id from database.</param>
+        /// <returns>List with email addresses.</returns>
+        public static IEnumerable<Email> GetUserEmails(int id) => context().Emails.ToList().Where(u => u.UserId == id);
+        #endregion
+
+        #region AddEmail
         /// <summary>
         /// Add new email to database.
         /// </summary>
@@ -42,7 +50,7 @@ namespace SWAM.Models
                 context().SaveChanges();
             }
         }
-
+        #endregion
         #region UpdateEmail
         /// <summary>
         /// Update in databse current address email.

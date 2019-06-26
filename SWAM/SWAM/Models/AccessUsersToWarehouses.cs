@@ -45,7 +45,14 @@ namespace SWAM.Models
             return DB_CONTEXT;
 
         }
-
+        #region GetUserAccesses
+        /// <summary>
+        /// Get list with specific user accesses to warehouses from database. 
+        /// </summary>
+        /// <param name="userId">User id</param>
+        /// <returns>List with user accesses to warehouses</returns>
+        public static IEnumerable<AccessUsersToWarehouses> GetUserAccesses(int userId) => context().AccessUsersToWarehouses.ToList().Where(u => u.UserId == userId);
+        #endregion
         #region RemoveAccess
         /// <summary>
         /// Remove specific access from database.
@@ -68,8 +75,6 @@ namespace SWAM.Models
             else return false;
         }
         #endregion
-
-
         #region AddNewAccess
         /// <summary>
         /// Adding new access to database.

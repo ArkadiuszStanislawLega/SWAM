@@ -32,6 +32,14 @@ namespace SWAM.Models
             return DB_CONTEXT;
 
         }
+        #region GetUserPhones
+        /// <summary>
+        /// Make list of specific user phone numbers.
+        /// </summary>
+        /// <param name="userId">User id</param>
+        /// <returns>List with phones of user.</returns>
+        public static IEnumerable<Phone> GetUserPhones(int userId) => context().Phones.ToList().Where(u => u.UserId == userId);
+        #endregion
 
         #region AddNewPhone
         /// <summary>

@@ -68,7 +68,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
         }
         #endregion
-
         #region RefreshPhoneList
         /// <summary>
         /// Refreshing view list of emails.
@@ -77,17 +76,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                //TODO: try - catch
-                using (var context = new ApplicationDbContext())
+                var userEmails = Email.GetUserEmails(user.Id);
+                try
                 {
-                    var userEmails = context.Emails.Where(u => u.UserId == user.Id).ToList();
-                    try
-                    {
-                        if (userEmails != null) Emails.ItemsSource = userEmails;
-                        else throw new RefreshUserEmailListException();
-                    }
-                    catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); }
+                    if (userEmails != null) Emails.ItemsSource = userEmails;
+                    else throw new RefreshUserEmailListException();
                 }
+                catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); }
             }
             else InformationToUser(ErrorMesages.REFRESH_EMAILS_LIST_ERROR, true);
         }

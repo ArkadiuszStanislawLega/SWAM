@@ -47,7 +47,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         #endregion 
         #region EditUserPermissionsCommand_Executed
         /// <summary>
-        /// Action after clock confirm change permision button.
+        /// Action after click confirm change permision button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -60,11 +60,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 if (userType != user.Permissions)
                 {
                     user.ChangePermissions(userType);
-                    Permissions.Text = user.Permissions.ToString();
-
-                    //TODO: Try - catch
-                    using (var context = new ApplicationDbContext())
-                        Permissions.Text = context.Users.FirstOrDefault(u => u.Id == user.Id).Permissions.ToString();
+                    Permissions.Text = User.GetUser(user.Id).Permissions.ToString();
 
                     InformationToUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ");
                     UserListRefresh();
