@@ -386,6 +386,10 @@
     <Compile Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.Designer.cs">
       <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.cs" />
+    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.Designer.cs">
+      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
@@ -610,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.resx">
       <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.resx">
+      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

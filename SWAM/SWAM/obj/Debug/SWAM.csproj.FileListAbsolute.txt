@@ -523,3 +523,4 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
