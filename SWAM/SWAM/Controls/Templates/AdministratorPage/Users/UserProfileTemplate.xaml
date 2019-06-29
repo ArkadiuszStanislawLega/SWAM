@@ -54,10 +54,6 @@
                       Converter={StaticResource accountBlockToTextConverter}}"
                     Click="BlockUser_Click"
                     Style="{StaticResource UserProfilebuttons}"/>
-            <Button Name="DeletUser" 
-                        Content="Usuń "
-                        Click="DeletUser_Click"
-                        Style="{StaticResource UserProfilebuttons}"/>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" >

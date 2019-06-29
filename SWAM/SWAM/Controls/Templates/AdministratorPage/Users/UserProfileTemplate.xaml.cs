@@ -38,38 +38,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }
         #endregion  
-        #region DeletUser_Click
-        /// <summary>
-        /// Action after click button delete user.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DeletUser_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Make a window asking if your realy want to delete this user.
-            if (DataContext is User user)
-            {
-                user.Remove();
-                InformationToUser($"Użytkownik {user.Name} został usunięty.");
-
-                try
-                {
-                    var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this);
-                    if (parent != null)
-                    {
-                        parent.RefreshUsersList();
-
-                        //Show profile of the first user in the list.
-                        if (parent.UsersList.Items.Count > 0 && parent.UsersList.Items[0] is User firstUser)
-                            parent.ShowProfile(new UsersListItemTemplate() { Tag = firstUser.Id, DataContext = firstUser });
-                    }
-                    else throw new RefreshUserProfileException(ErrorMesages.DURING_DELETE_USER_ERROR);
-                }
-                catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
-            }
-            else InformationToUser(ErrorMesages.DURING_DELETE_USER_ERROR, true);
-        }
-        #endregion
         #region BlockUser_Click
         /// <summary>
         /// Action after click button block user.
