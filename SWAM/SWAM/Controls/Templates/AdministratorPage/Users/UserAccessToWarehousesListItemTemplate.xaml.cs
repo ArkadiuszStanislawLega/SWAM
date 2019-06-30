@@ -40,7 +40,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     var context = new ApplicationDbContext();
                     this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
                 }
-                else if (this.DataContext is User user){ /*this is required because when the first element is loaded datacontext is User*/}
+                else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/ }
                 else throw new RefreshWarehousessAccessesListExeption();
             }
             catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
@@ -165,6 +165,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
                 }
             }
+            else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
             else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
         }
         #endregion
