@@ -60,16 +60,15 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock Name="Email" Grid.Column="0" 
-                   Text="{Binding AddressEmail}"
-                   Margin="0 0 15 0"/>
+                   Text="{Binding AddressEmail}"/>
         <TextBox Name="EditEmail"  Grid.Column="0"
                  Text="{Binding AddressEmail}"
-                 Margin="0 0 15 0"
                  Visibility="Collapsed"/>
         <!--#region Buttons-->
         <StackPanel  Grid.Column="1" 
                      HorizontalAlignment="Right" 
-                     Orientation="Horizontal">
+                     Orientation="Horizontal"
+                     Margin="1 0 0 0">
             <Button Name="Edit" 
                     Style="{StaticResource EditButton}"
                     Margin="1"

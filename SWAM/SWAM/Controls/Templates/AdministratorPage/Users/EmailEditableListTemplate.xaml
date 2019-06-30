@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             Margin="10 1 10 1"
+   
              Width="330"
              d:DesignHeight="450" d:DesignWidth="800">
     <local:BasicUserControl.Resources>
@@ -53,7 +53,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
-                <TextBlock Text="Email"
+                <TextBlock Text="Adresy email"
                        Style="{StaticResource TitleOfLists}"
                        Grid.Column="0"/>
                 <Button Name="AddNewEmail" 
@@ -75,7 +75,7 @@
             <Border.Background>
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <Grid Name="AddNewEmailContainer" 
                       VerticalAlignment="Center"
                       Visibility="Collapsed">

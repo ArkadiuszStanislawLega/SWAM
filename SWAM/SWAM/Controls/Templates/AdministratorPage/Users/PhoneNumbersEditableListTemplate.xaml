@@ -70,11 +70,11 @@
         </Border>
         <!--#endregion-->
         <Border CornerRadius="0 0 10 10"
-                Padding="5">
+                Padding="3">
             <Border.Background>
                 <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.1"/>
             </Border.Background>
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <!--#region Add new phone type section-->
                 <Grid Name="AddNewPhoneContainer" Visibility="Collapsed">
                     <!--#region Columns definitions-->
