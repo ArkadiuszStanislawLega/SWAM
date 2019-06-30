@@ -57,8 +57,8 @@
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" >
-            <userTemp:ChangeUserBlockDate Margin="0 0 0 1" Tag="Data blokady konta"/>
-            <userTemp:ChangeUserExpiredDate Tag="Data wygaśnięcia konta"/>
+            <userTemp:ChangeUserExpiredDate Margin="0 0 0 1" Tag="Data wygaśnięcia konta"/>
+            <userTemp:ChangeUserBlockDate Tag="Data blokady konta"/>
         </StackPanel>
     </Grid>
 </local:BasicUserControl>

@@ -26,8 +26,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             try
             {
-                if (DataContext is User user)
+                if (this.DataContext is User user)
                 {
+                    //Clearing datacontext... is required for proper refresh of profile.
+                    this.DataContext = null;
+
                     var refreshedUser = User.GetUser(user.Id);
                     if (refreshedUser != null)
                         this.DataContext = refreshedUser;
