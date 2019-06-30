@@ -87,15 +87,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     DateOfExpiredAcces = this.Calendar.SelectedDate
                 }))
                 {
+                    InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+
                     this.EditWarehouse.SelectedValue = null;
                     this.EditUserPermissions.SelectedValue = null;
                     this.Calendar.SelectedDate = null;
 
-                    var userAccessToWarehousesTemplates = RefreshParent();
-                    if (userAccessToWarehousesTemplates != null)
-                        userAccessToWarehousesTemplates.TurnOffAddNewAccess();
-
-                    InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+                    RefreshParent();
                 }
                 else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
             }
@@ -106,22 +104,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// Refreshing parent container with user accesses.
         /// </summary>
-        /// <returns>Parent <see cref="UserAccessToWarehousesTemplates"/>.</returns>
-        private UserAccessToWarehousesTemplates RefreshParent()
+        private void RefreshParent()
         {
             try
             {
                 if (SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this) is UserAccessToWarehousesTemplates userAccessToWarehousesTemplates)
-                {
                     userAccessToWarehousesTemplates.RefreshAccessList();
-                    return userAccessToWarehousesTemplates;
-                }
+               
                 else throw new RefreshWarehousessAccessesListExeption(typeof(UserAccessToWarehousesListItemTemplate).ToString());  
             }
             catch (RefreshWarehousessAccessesListExeption ex)
             {
                 ex.ShowMessage(this);
-                return null;
+         
             }
         }
         #endregion

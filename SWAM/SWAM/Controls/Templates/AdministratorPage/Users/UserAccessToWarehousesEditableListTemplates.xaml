@@ -8,6 +8,23 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <class:BasicUserControl.Resources>
+        <Storyboard x:Key="ShowAddNewAccessStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewAccess"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OnLoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1"
+                                        From="0 -50 0 0" To="1"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:1" 
+                                      From="0" To="1"/>
+        </Storyboard>
+    </class:BasicUserControl.Resources>
     <StackPanel Margin="5" Name="AllContent">
         <!--#region Title-->
         <Border CornerRadius="10 10 0 0" Padding="3 3 3 0" >
@@ -33,7 +50,13 @@
                         Grid.Column="2"
                         Click="AddNewAcces_Click" 
                         Style="{StaticResource AdditionSign}" 
-                        Margin="20 0 0 0"  />
+                        Margin="20 0 0 0"  >
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowAddNewAccessStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
             </Grid>
         </Border>
         <!--#endregion-->
@@ -44,9 +67,7 @@
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <StackPanel>
-
-                <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess"
-                        IsEnabled="False" Visibility="Collapsed"/>
+                <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess" Visibility="Collapsed"/>
                 <!--#region List of user accesses-->
                 <ScrollViewer Name="ListScroll">
                     <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
@@ -66,17 +87,7 @@
     <!--#region On loaded animation-->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard>
-                <Storyboard Name="LoadedAnimation">
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:1"
-                                        From="0 -50 0 0" To="1"
-                                        DecelerationRatio="1"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                      Duration="0:0:1" 
-                                      From="0" To="1"/>
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->

@@ -26,8 +26,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         public UserAccessToWarehousesTemplates()
         {
             InitializeComponent();
-            //Showing scroll viewer after loaded animation of list of accesses to warehouses has been finished. 
-            this.LoadedAnimation.Completed += (sender, e) => FitViewToFillInParent();
+
+            //fill scroll viewer to the window height
+            this.Loaded += (sender, e) => FitViewToFillInParent();
         }
 
         #region FitViewToFillInParent
@@ -72,19 +73,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNewAcces_Click(object sender, RoutedEventArgs e)
-        {
-            this.AddNewAccess.CreateNewAccessMode();
-            SWAM.MainWindow.TurnOn(this.AddNewAccess);
-        }
+        private void AddNewAcces_Click(object sender, RoutedEventArgs e) => this.AddNewAccess.CreateNewAccessMode();
         #endregion
-
-        public void TurnOffAddNewAccess()
-        {
-            AddNewAccess.Visibility = Visibility.Collapsed;
-            //TODO: Do it to clear the fields as it would at the beginning - Adding access
-        }
-
         #region RefreshAccessList
         /// <summary>
         /// Refreshing view list of accesses.

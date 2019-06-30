@@ -4,11 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
-             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
-             xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:conv="clr-namespace:SWAM.Converters"
              x:Name="WarehouseAccessContent"
              Tag="{Binding Id}"
@@ -82,6 +79,14 @@
                                                                         FillBehavior="HoldEnd">
                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0.3" />
             </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideThisStory-->
+        <Storyboard x:Key="HideThisStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WarehouseAccessContent"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
     </UserControl.Resources>
@@ -272,14 +277,19 @@
                     Click="Delete_Click"
                     Margin="5"
                     ToolTip="Usuń uprawenienie"/>
-
             <Button Name="ConfirmAddAccess"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     Click="ConfirmAddAccess_Click"
                     Content="Dodaj uprawnienia"
                     Visibility="Collapsed"
-                    Style="{StaticResource  ConfirmAddNewWarehouseAccess}"/>
+                    Style="{StaticResource  ConfirmAddNewWarehouseAccess}">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideThisStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
         </Grid>
     </Border>
     <!--#region On loaded animation-->

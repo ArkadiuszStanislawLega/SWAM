@@ -8,6 +8,36 @@
              mc:Ignorable="d" 
              Width="300"
              d:DesignHeight="20" d:DesignWidth="300">
+    <local:BasicUserControl.Resources>
+        <!--#region OnLoadedStory-->
+        <Storyboard x:Key="OnLoadedStory">
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                     Duration="0:0:0.4" 
+                                     From="0" To="20"
+                                     DecelerationRatio="1"/>
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:0.4"
+                                        From="0" To="1"
+                                        DecelerationRatio="1"/>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region ShowConfirmButtonStory-->
+        <Storyboard x:Key="ShowConfirmButtonStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideConfirmButtonStory-->
+        <Storyboard x:Key="HideConfirmButtonStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+    </local:BasicUserControl.Resources>
     <Grid Name="Content">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -31,14 +61,7 @@
                     ToolTip="Edytuj adres email">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
-                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
-                                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource ShowConfirmButtonStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
             </Button>
@@ -50,14 +73,7 @@
                 ToolTip="Zapisz zmiany">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
-                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
-                                    <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
-                                </ObjectAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </BeginStoryboard>
+                        <BeginStoryboard Storyboard="{StaticResource HideConfirmButtonStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
             </Button>
@@ -72,18 +88,7 @@
     <!--#region On loaded animation-->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                     Duration="0:0:0.4" 
-                                     From="0" To="20"
-                                     DecelerationRatio="1"/>
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:0.4"
-                                        From="0" To="1"
-                                        DecelerationRatio="1"/>
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->
