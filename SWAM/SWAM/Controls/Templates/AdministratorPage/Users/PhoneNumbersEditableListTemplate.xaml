@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
              Margin="10 1 10 1"
              mc:Ignorable="d" 
-              MaxWidth="400"
+             Width="330"
              d:DesignHeight="40" d:DesignWidth="200">
     <StackPanel Margin="5">
         <!--#region Title-->
@@ -28,8 +27,7 @@
                 <Button Name="AddNewPhone" Click="AddNewPhone_Click"
                         Style="{StaticResource AdditionSign}" 
                         Margin="20 0 0 0"  Grid.Column="2"
-                        ToolTip="Dodaj nowy numer telefonu.">
-                </Button>
+                        ToolTip="Dodaj nowy numer telefonu."/>
                 <!--#endregion-->
             </Grid>
         </Border>
@@ -41,18 +39,30 @@
             </Border.Background>
             <StackPanel>
                 <!--#region Add new phone type section-->
-                <StackPanel Orientation="Horizontal" Name="AddNewPhoneContainer" Visibility="Collapsed" IsEnabled="False">
-                    <TextBox Tag="Nazwa kontaktu" Name="NewPhoneNote" Width="100" Style="{StaticResource UserLogin}"/>
-                    <TextBox Tag="Numer telefonu" Name="NewPhone" Width="100"  Style="{StaticResource UserLogin}"/>
+                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed" IsEnabled="False">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="NewPhoneNote"  
+                             Grid.Column="0"
+                             Tag="Nazwa kontaktu" 
+                             Style="{StaticResource UserLogin}"/>
+                    <Label Grid.Column="1" Content="-"/>
+                    <TextBox Name="NewPhone" 
+                             Grid.Column="2"
+                             Tag="Numer telefonu" 
+                             Style="{StaticResource UserLogin}"/>
                     <Button Name="ConfirmNewPhone" 
-                    Click="ConfirmNewPhone_Click" 
-                    Style="{StaticResource NavigationButton}" 
-                    Height="20" Width="20">
-                        <fa:ImageAwesome Icon="Save" 
-                             ToolTip="Dodaj kontakt."
-                             Margin="-4"/>
+                            Margin="3"
+                            Grid.Column="3"
+                            Click="ConfirmNewPhone_Click" 
+                            Style="{StaticResource SaveButton}" 
+                            ToolTip="Zapisz kontakt.">
                     </Button>
-                </StackPanel>
+                </Grid>
                 <!--#endregion-->
                 <!--#region phone list-->
                 <StackPanel 

@@ -16,15 +16,15 @@ namespace SWAM.Models
         DateTime? _dateOfExpiredAccess;
 
         [Required]
-        [ForeignKey("User")]
+        [ForeignKey(nameof(User))]
         public int UserId { get; set; }
 
         [Required]
-        [ForeignKey("Warehouse")]
+        [ForeignKey(nameof(Warehouse))]
         public int WarehouseId { get; set; }
 
         [Required]
-        [ForeignKey("Administrator")]
+        [ForeignKey(nameof(Administrator))]
         public int AdministratorId { get; set; }
 
         public virtual User User { get; set; }

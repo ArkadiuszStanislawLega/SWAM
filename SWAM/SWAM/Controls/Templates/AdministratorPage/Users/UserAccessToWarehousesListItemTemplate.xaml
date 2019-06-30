@@ -27,8 +27,21 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
         <!--#endregion-->
-        <!--#region Storyboards-->
-        <Storyboard x:Key="HideCallendar">
+        <!--#region OnLoadedStory-->
+        <Storyboard x:Key="OnLoadedStory">
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                     Duration="0:0:1" 
+                                     From="0" To="200"
+                                     DecelerationRatio="1"
+                                     />
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1"
+                                        From="0" To="1"
+                                        DecelerationRatio="1"/>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideCallendarStory-->
+        <Storyboard x:Key="HideCallendarStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="CalendarContainer"
                                                             Duration="0:0:0.3"
@@ -48,7 +61,9 @@
                 <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0.2" />
             </BooleanAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="ShowCallendar">
+        <!--#endregion-->
+        <!--#region ShowCallendarStory-->
+        <Storyboard x:Key="ShowCallendarStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                                             Storyboard.TargetName="CalendarContainer"
                                                             Duration="0:0:0.5"
@@ -71,9 +86,6 @@
         <!--#endregion-->
     </UserControl.Resources>
     <!--#endregion-->
-    <UserControl.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.New" Executed="NewCommand_Executed" />
-    </UserControl.CommandBindings>
     <Border CornerRadius="10" Padding="10 10 10 0">
         <Border.Background>
             <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
@@ -82,39 +94,43 @@
             <StackPanel Name="Content">
                 <!--#region Type of permission-->
                 <Grid>
+                    <!--#region Columns definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
+                    <!--#endregion-->
                     <TextBlock Text="Typ uprawnienia:"
-                   Style="{StaticResource ProfileProperties}"
+                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
                     <TextBlock Name="UserPermision" 
                            Text="{Binding TypeOfAccess}"
                            HorizontalAlignment="Right"
                            Grid.Column="2"/>
                     <ComboBox Visibility="Collapsed" 
-                      Name="EditUserPermissions" 
-                      Grid.Column="2"
-                      ItemsSource="{Binding Source={StaticResource UserType}}"/>
+                              Name="EditUserPermissions" 
+                              Grid.Column="2"
+                              ItemsSource="{Binding Source={StaticResource UserType}}"/>
                 </Grid>
                 <!--#endregion-->
                 <!--#region Warehouse name-->
                 <Grid>
+                    <!--#region Columns Definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
+                    <!--#endregion-->
                     <TextBlock Text="Magazyn:" Grid.Column="0"
                        Style="{StaticResource ProfileProperties}"/>
                     <TextBlock Name="WarehouseName" 
                        Text="{Binding Warehouse.Name}" 
                        Grid.Column="2"/>
                     <ComboBox Visibility="Collapsed" 
-                      Name="EditWarehouse"
-                          Grid.Column="2">
+                              Name="EditWarehouse"
+                              Grid.Column="2">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -139,16 +155,17 @@
                     </Grid.RowDefinitions>
                     <!--#endregion-->
                     <TextBlock Text="Nazwa użytkownika przydzielającego uprawnienia:"
-                   Style="{StaticResource ProfileProperties}"
-                           Grid.Column="0"/>
+                                Style="{StaticResource ProfileProperties}"
+                                Grid.Column="0"/>
                     <TextBlock Name="AdministatorName" 
-                       Text="{Binding Administrator.Name}"
-                           Grid.Column="2"
-                           Grid.Row="1"/>
+                                Text="{Binding Administrator.Name}"
+                                Grid.Column="2"
+                                Grid.Row="1"/>
                 </Grid>
                 <!--#endregion-->
                 <!--#region Date of create access-->
                 <Grid>
+                    <!--#region Columns&Rows Defitnitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -158,6 +175,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
+                    <!--#endregion-->
                     <TextBlock Text="Data przydzielenia uprawnienia"
                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
@@ -169,6 +187,7 @@
                 <!--#endregion-->
                 <!--#region Date of expire access-->
                 <Grid>
+                    <!--#region Columns&Rows Definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -178,33 +197,30 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
+                    <!--#endregion-->
                     <TextBlock Text="Data wygaśnięcia uprawnienia" 
                                 Style="{StaticResource ProfileProperties}"
                                Grid.Column="0"/>
-
                     <Button Name="ShowCallendar"
-                                Width="20" Height="20" 
-                                Style="{StaticResource FaNoBackground}"
-                                HorizontalAlignment="Left"
-                                Grid.Column="0"
-                                Grid.Row="1">
-                        <fa:ImageAwesome Icon="Calendar" 
-                                             Foreground="{StaticResource FontsBrash}"
-                                             Margin="-4"
-                                             ToolTip="Edytuj czas wygaśnięcia uprawnienia"/>
+                            Style="{StaticResource CallendarButton}"
+                            HorizontalAlignment="Left"
+                            Grid.Column="0" Grid.Row="1"
+                            Margin="10"
+                            ToolTip="Edytuj czas wygaśnięcia uprawnienia">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click" SourceName="ShowCallendar">
-                                <BeginStoryboard Storyboard="{StaticResource ShowCallendar}"/>
+                                <BeginStoryboard Storyboard="{StaticResource ShowCallendarStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
                     <TextBlock Name="DateOfAccessExpired" 
                            Text="{Binding DateOfExpiredAcces}"
+                           Foreground="{Binding  ElementName=DateOfAccessExpired, Path=Text, 
+                                       Converter={conv:DateOfExpireColorConverter}}"
                            Grid.Row="1"
                            Grid.Column="2"/>
                 </Grid>
                 <!--#endregion-->
-
             </StackPanel>
             <!--#region Callendar -->
             <Border  Name="CalendarContainer"
@@ -223,24 +239,24 @@
                                FontWeight="Bold" TextWrapping="Wrap"/>
                     <Calendar Name="Calendar"  SelectionMode="SingleDate" />
                     <Grid>
+                        <!--#region Confirm button-->
                         <Button Content="Zatwierdź" 
                             Style="{StaticResource  UserProfilebuttons}"
-                            Command="ApplicationCommands.New">
-                            <!--#region Triggers-->
+                            Click="ConfirmExpiredDate_Click">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource HideCallendarStory}"/>
                                 </EventTrigger>
                             </Button.Triggers>
-                            <!--#endregion-->
                         </Button>
+                        <!--#endregion-->
                         <!--#region Hide button-->
                         <Button Style="{StaticResource ArrowBackButton}"
                                 HorizontalAlignment="Right"
                                 ToolTip="Ukryj kalendarz">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HideCallendar}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource HideCallendarStory}"/>
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
@@ -252,16 +268,11 @@
             <Button Name="DeleteCurrentAccess" 
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Style="{StaticResource FaNoBackground}"
+                    Style="{StaticResource DeleteButton}"
                     Click="Delete_Click"
-                    Height="20" 
-                    Width="20"
                     Margin="5"
-                    ToolTip="Usuń uprawenienie">
-                <fa:ImageAwesome Icon="Trash" 
-                             Foreground="{StaticResource FontsBrash}"
-                             Margin="-4"/>
-            </Button>
+                    ToolTip="Usuń uprawenienie"/>
+
             <Button Name="ConfirmAddAccess"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
@@ -274,19 +285,7 @@
     <!--#region On loaded animation-->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Height"
-                                     Duration="0:0:1" 
-                                     From="0" To="200"
-                                     DecelerationRatio="1"
-                                     />
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:1"
-                                        From="0" To="1"
-                                        DecelerationRatio="1"/>
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->

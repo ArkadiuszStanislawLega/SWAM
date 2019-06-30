@@ -26,14 +26,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             InitializeComponent();
         }
-
-        #region EditNameCommand_Executed
+        #region ConfirmChangeName_Click
         /// <summary>
         /// Action after click confrim change user name button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EditNameCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void ConfirmChangeName_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is User user)
             {
@@ -44,14 +43,14 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
             else InformationToUser(ErrorMesages.DURING_EDIT_USER_ERROR, true);
         }
-        #endregion 
-        #region EditUserPermissionsCommand_Executed
+        #endregion
+        #region ConfirmEditPermission_Click
         /// <summary>
         /// Action after click confirm change permision button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EditUserPermissionsCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void ConfirmEditPermission_Click(object sender, RoutedEventArgs e)
         {
             if (DataContext is User user)
             {
@@ -70,13 +69,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             else InformationToUser(ErrorMesages.DURING_EDIT_USER_ERROR, true);
         }
         #endregion
-        #region EditUserPasswordCommand_Executed
+        #region ConfirmEditPasswordButton_Click
         /// <summary>
         /// Action after click confirm user password change button.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EditUserPasswordCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void ConfirmEditPasswordButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
             {

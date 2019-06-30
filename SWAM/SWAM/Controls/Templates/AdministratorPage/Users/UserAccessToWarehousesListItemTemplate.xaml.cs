@@ -63,39 +63,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.Content.Margin = new Thickness(0, -10, 0, -10);
         }
         #endregion
-
-        #region NewCommand_Executed
-        /// <summary>
-        /// Command after adding/editing date of expired access to warehuse.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        virtual protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (this.Calendar.SelectedDate != null && this.DataContext is AccessUsersToWarehouses access)
-            {
-                //Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    access.EditExpiredAccess(this.Calendar.SelectedDate);
-
-                    var newAccess = context.AccessUsersToWarehouses
-                        .Include(u => u.User)
-                        .Include(w => w.Warehouse)
-                        .FirstOrDefault(a => a.Id == access.Id);
-
-                    if (newAccess != null)
-                    {
-                        DataContext = newAccess;
-                        InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
-                    }
-                    else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
-                }
-            }
-            else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
-        }
-        #endregion  
-
+    
         #region ConfirmAddAccess_Click
         /// <summary>
         /// Action after confirm button click to add new access.
@@ -134,7 +102,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
         } 
         #endregion
-
         #region RefreshParent
         /// <summary>
         /// Refreshing parent container with user accesses.
@@ -158,7 +125,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
         }
         #endregion
-
         #region Delete_Click
         /// <summary>
         /// Action after click delete access button.
@@ -174,6 +140,37 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 RefreshParent();
             }
             else InformationToUser(ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR, true);
+        }
+        #endregion
+        #region ConfirmExpiredDate_Click
+        /// <summary>
+        /// Command after adding/editing date of expired access to warehuse.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfirmExpiredDate_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.Calendar.SelectedDate != null && this.DataContext is AccessUsersToWarehouses access)
+            {
+                //Try - catch
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    access.EditExpiredAccess(this.Calendar.SelectedDate);
+
+                    var newAccess = context.AccessUsersToWarehouses
+                        .Include(u => u.User)
+                        .Include(w => w.Warehouse)
+                        .FirstOrDefault(a => a.Id == access.Id);
+
+                    if (newAccess != null)
+                    {
+                        DataContext = newAccess;
+                        InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
+                    }
+                    else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
+                }
+            }
+            else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
         }
         #endregion
     }

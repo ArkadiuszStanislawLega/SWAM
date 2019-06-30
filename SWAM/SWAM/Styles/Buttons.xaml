@@ -8,6 +8,170 @@
         <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
     </Style>
+
+    <!--#region BasicFunctionalButtons-->
+    <Style x:Key="BasicFunctionalButtons" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Width" Value="16" />
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region EditButton-->
+    <Style x:Key="EditButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style> 
+    <!--#endregion-->
+    <!--#region ConfirmButton-->
+    <Style x:Key="ConfirmButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region DeleteButton-->
+    <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region CallendarButton-->
+    <Style x:Key="CallendarButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Calendar" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region SaveButton-->
+    <Style x:Key="SaveButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
     <!--#region ButtonBaseStyle-->
     <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
@@ -265,7 +429,7 @@
     <!--#endregion-->
     <!--#region FaNoBackground-->
     <!-- Font awesome with transparent bacground. -->
-    <Style x:Key="FaNoBackground" TargetType="Button">
+    <Style x:Key="FaNoBackground" TargetType="Button" x:Name="FaNoBackground">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
@@ -278,7 +442,8 @@
                 <ControlTemplate TargetType="Button">
                     <Border Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}">
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
                         <Label  Width="22"
                                 Height="22"
                                 FontSize="20"
@@ -289,7 +454,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource EnabledBrash}" />
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
                             <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">

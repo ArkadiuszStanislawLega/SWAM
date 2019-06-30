@@ -12,11 +12,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
     public class ChangeUserBlockDate : CalendarWithButton
     {
-        /// <summary>
-        /// Information to user about actions.
-        /// </summary>
-        private string _message;
-
         public ChangeUserBlockDate()
         {
             InitializeComponent();
@@ -47,8 +42,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 user.ChangeExpiryDateOfTheBlockade(this.Calendar.SelectedDate);
                 UserProfileRefresh();
 
-                this._message = $"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.";
-                InformationToUser();
+                InformationToUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
             }
         }
         #endregion
@@ -72,16 +66,16 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// Changing content inforamtion label in main window.
         /// </summary>
-        private bool InformationToUser(bool warning = false)
+        private bool InformationToUser(string message, bool warning = false)
         {
             try
             {
                 if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
                 {
-                    mainWindow.InformationForUser(this._message, warning);
+                    mainWindow.InformationForUser(message, warning);
                     return true;
                 }
-                else throw new InformationLabelException(this._message);
+                else throw new InformationLabelException(message);
             }
             catch (InformationLabelException ex)
             {
@@ -90,6 +84,5 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
         }
         #endregion
-
     }
 }
