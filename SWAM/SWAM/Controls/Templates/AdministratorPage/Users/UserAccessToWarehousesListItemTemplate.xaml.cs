@@ -8,6 +8,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Data.Entity;
 using SWAM.Exceptions;
+using SWAM.Enumerators;
+using SWAM.Windows;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
@@ -128,14 +130,25 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            bool answer = false;
             //TODO: Make a window asking if you really want to delete this permission.
-            if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag) && SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
+            if (SWAM.MainWindow.MessageBoxes.TryGetValue(WindowType.Question,  out Window messageWindow) && messageWindow != null)
             {
-                InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
-                RefreshParent();
+                var qustionWindow = messageWindow as ConfirmWindow;
+                qustionWindow.Show("Czy na pewno chcesz usunąć uprawnienia użytkownika", out answer);
+
+                if (answer)
+                {
+                    if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag) && SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
+                    {
+                        InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
+                        RefreshParent();
+                    }
+                    else InformationToUser(ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR, true);
+                }
             }
-            else InformationToUser(ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR, true);
         }
+
         #endregion
         #region ConfirmExpiredDate_Click
         /// <summary>

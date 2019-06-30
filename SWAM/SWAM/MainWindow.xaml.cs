@@ -12,13 +12,14 @@ using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
+using SWAM.Windows;
 
 namespace SWAM
 {
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         #region Public statics
         public static double EverythingExceptTheMainContentHeight = 0;
@@ -47,6 +48,12 @@ namespace SWAM
         /// Flag indication that user is logged in or not.
         /// </summary>
         public static bool IsLoggedIn = true;
+        public static Dictionary<WindowType, Window> MessageBoxes = new Dictionary<WindowType, Window>()
+        {
+            {WindowType.Question, new ConfirmWindow(currentInstance) }
+        };
+
+        private static MainWindow currentInstance;
         #endregion
 
         #region Properties
@@ -106,6 +113,8 @@ namespace SWAM
             InitializeComponent();
 
             ChangeContent(PagesUserControls.LoginPage);
+
+            currentInstance = this;
         }
         #endregion
 
@@ -181,6 +190,9 @@ namespace SWAM
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
+            MessageBoxes.TryGetValue(WindowType.Question, out Window window);
+            window.Close();
         }
         #endregion
         #endregion

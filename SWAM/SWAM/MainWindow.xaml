@@ -22,7 +22,7 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-    <Grid>
+    <Grid Name="EverythinInWindow">
         <!--#region Rows definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

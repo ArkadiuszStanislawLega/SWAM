@@ -1,0 +1,125 @@
+﻿<Window x:Class="SWAM.Windows.ConfirmWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SWAM.Windows"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Height="250"
+        Width="400"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        Title="ConfirmWindow">
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="15" Direction="-90" 
+                          RenderingBias="Quality" ShadowDepth="2"/>
+    </Window.Effect>
+    <Window.Background>
+        <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
+    </Window.Background>
+    <WindowChrome.WindowChrome >
+        <WindowChrome />
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <!--#region ColumnDefinition-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <!--#region Top Window Title-->
+        <ContentControl Grid.Row="0" >
+
+            <Grid Name="TitlePanel"
+                    Width="auto" Height="30"
+                    Background="{StaticResource MainBarBrash}">
+                <!--#region ColumnDefinitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+                <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
+                <TextBlock Name="TitleOfMainPanel" 
+                       Text="Czy jesteś pewien" 
+                       FontSize="15"
+                       Margin="5"
+                       Foreground="{StaticResource FontsBrash}"
+                       Grid.Column="1"
+                       Grid.Row="0"/>
+                <!--#region Title buttons-->
+                <StackPanel
+                    Name="TitlePanelButtons"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Grid.Column="2">
+                    <Button Name="Exit" 
+                        Style="{StaticResource FAExitButton}"
+                        Click="Exit_Click" 
+                        WindowChrome.IsHitTestVisibleInChrome="True"/>
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+        </ContentControl>
+        <!--#endregion-->
+        <Grid Grid.Row="1" Margin="10">
+            <!--#region Column definition-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <!--#region Qeustion mark-->
+            <Grid  Grid.Column="0" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <fa:ImageAwesome Icon="Question" 
+                             Grid.Row="1"
+                             Height="40" 
+                             Width="40" 
+                             Foreground="{StaticResource FontsBrash}" />
+            </Grid>
+            <!--#endregion-->
+            <!--#region Information-->
+            <Grid  Grid.Column="1" Margin="10">
+                <!--#region Rows Definitions-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                <TextBlock Name="Question" Grid.Row="1"
+                               TextWrapping="Wrap"
+                               MaxWidth="300"
+                               MaxHeight="150"
+                               Text="Tutaj wpisujemy zapytanie dla użytkownika, czy jest aby na pewno pewien swego wyboru."/>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+        <!--#region Buttons-->
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal"
+                        Margin="10"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right">
+                <Button Name="Yes" Content="Tak" 
+                        Style="{StaticResource  Button}" 
+                        Margin="5 0 0 0"
+                        Click="Yes_Click"/>
+                <Button Name="No" Content="Nie" 
+                        Style="{StaticResource Button}" 
+                        Margin="1 5 5 5"
+                        Click="No_Click"/>
+            </StackPanel>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</Window>
