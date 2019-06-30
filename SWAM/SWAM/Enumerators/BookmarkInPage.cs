@@ -17,8 +17,13 @@ namespace SWAM.Enumerators
         /// Manage of users by administrator in Administator page.
         /// </summary>
         UsersControlPanel,
-        //TODO: Make documentation
+        /// <summary>
+        /// Manage of warehouses orders.
+        /// </summary>
         WarehouseOrdersPanel,
+        /// <summary>
+        /// Manage of customers orders.
+        /// </summary>
         CustomerOrdersPanel
     }
 }

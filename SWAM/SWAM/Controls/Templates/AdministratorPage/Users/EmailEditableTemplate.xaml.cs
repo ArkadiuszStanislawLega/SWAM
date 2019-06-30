@@ -29,21 +29,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             
         }
 
-        #region Edit_Click
-        /// <summary>
-        /// Action after click edit email button.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Make this fuction in xaml.
-            TurnOff(this.Email);
-            TurnOn(this.EditEmail);
-
-            this.Confirm.IsEnabled = true;
-        }
-        #endregion
         #region Confirm_Click
         /// <summary>
         /// Action after click Confirm button after edit email.
@@ -56,12 +41,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 email.UpdateEmail(EditEmail.Text);
                 InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
-
-                //TODO: Make this in xaml
-                TurnOn(this.Email);
-                TurnOff(this.EditEmail);
-
-                this.Confirm.IsEnabled = false;
             }
             else InformationToUser(ErrorMesages.DURING_EDIT_EMAIL_ERROR, true);
         }

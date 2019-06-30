@@ -21,19 +21,35 @@
                                         DecelerationRatio="1"/>
         </Storyboard>
         <!--#endregion-->
-        <!--#region ShowConfirmButtonStory-->
-        <Storyboard x:Key="ShowConfirmButtonStory">
+        <!--#region ShowEditFieldsStory-->
+        <Storyboard x:Key="ShowEditFieldsStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditEmail"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Email"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
-        <!--#region HideConfirmButtonStory-->
-        <Storyboard x:Key="HideConfirmButtonStory">
+        <!--#region HideEditFieldsStory-->
+        <Storyboard x:Key="HideEditFieldsStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditEmail"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Email"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
@@ -49,19 +65,18 @@
         <TextBox Name="EditEmail"  Grid.Column="0"
                  Text="{Binding AddressEmail}"
                  Margin="0 0 15 0"
-                 IsEnabled="False" Visibility="Collapsed"/>
+                 Visibility="Collapsed"/>
         <!--#region Buttons-->
         <StackPanel  Grid.Column="1" 
                      HorizontalAlignment="Right" 
                      Orientation="Horizontal">
             <Button Name="Edit" 
-                    Click="Edit_Click"
                     Style="{StaticResource EditButton}"
                     Margin="1"
                     ToolTip="Edytuj adres email">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard Storyboard="{StaticResource ShowConfirmButtonStory}"/>
+                        <BeginStoryboard Storyboard="{StaticResource ShowEditFieldsStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
             </Button>
@@ -73,7 +88,7 @@
                 ToolTip="Zapisz zmiany">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard Storyboard="{StaticResource HideConfirmButtonStory}"/>
+                        <BeginStoryboard Storyboard="{StaticResource HideEditFieldsStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
             </Button>

@@ -17,23 +17,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
-        #region Edit_Click
-        /// <summary>
-        /// Action after edit button click.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Edit_Click(object sender, RoutedEventArgs e)
-        {
-            TurnOff(this.PhoneNumber);
-            TurnOff(this.Note);
-
-            TurnOn(this.EditPhoneNumber);
-            TurnOn(this.EditNote);
-       
-            this.Confirm.IsEnabled = true;
-        }
-        #endregion
         #region Confirm_Click
         /// <summary>
         /// Action after click button to save changes after 
@@ -49,15 +32,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 phone.UpdateNote(EditNote.Text);
 
                 InformationToUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
-
-                //TODO: Make this in xaml.
-                TurnOn(this.PhoneNumber);
-                TurnOn(this.Note);
-
-                TurnOff(this.EditPhoneNumber);
-                TurnOff(this.EditNote);
-
-                this.Confirm.IsEnabled = false;
             }
             else InformationToUser(ErrorMesages.DURING_EDIT_PHONE_ERROR, true);
         }
