@@ -17,17 +17,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Action after add new phone button click.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddNewPhone_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Make this in xaml
-            TurnOn(this.AddNewPhoneContainer);
-        }
-
         #region ConfirmNewPhone_Click
         /// <summary>
         /// Action after confirm new phone buttton click.
@@ -68,7 +57,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             this.NewPhone.Text = "";
             this.NewPhoneNote.Text = "";
-            TurnOff(this.AddNewPhoneContainer);
         }
         #endregion
         #region RefreshPhoneList

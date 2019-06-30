@@ -7,7 +7,37 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Margin="10 1 10 1"
+             Width="330"
              d:DesignHeight="450" d:DesignWidth="800">
+    <local:BasicUserControl.Resources>
+        <!--#region OnLoadedStory-->
+        <Storyboard x:Key="OnLoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1.5"
+                                        From="0 -100 0 0 " To="1"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:1.5" 
+                                      From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region ShowAddNewEmailAddressStory-->
+        <Storyboard x:Key="ShowAddNewEmailAddressStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewEmailContainer"
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideAddNewEmailAddressStory-->
+        <Storyboard x:Key="HideAddNewEmailAddressStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewEmailContainer"
+                                                                   Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+    </local:BasicUserControl.Resources>
     <StackPanel Margin="5">
         <!--#region Title-->
         <Border CornerRadius="5 5 0 0"
@@ -16,50 +46,64 @@
                 <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <Grid>
+                <!--#region Columns definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                <!--#endregion-->
                 <TextBlock Text="Email"
                        Style="{StaticResource TitleOfLists}"
                        Grid.Column="0"/>
-                <!--#region Add new email button-->
-                <Button Name="AddNewEmail" Click="AddNewEmail_Click" Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20"
-                    Grid.Column="2">
-                    <fa:ImageAwesome Icon="Plus" 
-                                 Foreground="{StaticResource FontsBrash}"
-                                 Margin="-1"
-                                 ToolTip="Dodaj nowy adres email."/>
+                <Button Name="AddNewEmail" 
+                        Grid.Column="2"
+                        Style="{StaticResource AdditionSign}" 
+                        Margin="20 0 0 0" Height="20" Width="20"
+                        ToolTip="Dodaj nowy adres email.">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowAddNewEmailAddressStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
                 </Button>
-                <!--#endregion-->
             </Grid>
         </Border>
         <!--#endregion-->
         <Border CornerRadius="0 0 10 10"
-                Padding="5">
+                Padding="3">
             <Border.Background>
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <StackPanel>
-                <StackPanel Orientation="Horizontal" 
-                    Name="AddNewEmailContainer" 
-                    Visibility="Collapsed" 
-                    IsEnabled="False">
-                    <TextBox Tag="Email" Name="NewEmail" Width="100"  Style="{StaticResource UserLogin}"/>
-                    <!--#region Confirm new email button-->
-                    <Button Name="ConfirmNewEmail" 
-                            Click="ConfirmNewEmail_Click"
-                            Style="{StaticResource NavigationButton}" Height="20" Width="20">
-                        <fa:ImageAwesome Icon="Save" 
-                             ToolTip="Dodaj email"
-                             Margin="-4"/>
-                    </Button>
+                <Grid Name="AddNewEmailContainer" 
+                      VerticalAlignment="Center"
+                      Visibility="Collapsed">
+                    <!--#region Columns definitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
                     <!--#endregion-->
-                </StackPanel>
+                    <TextBox Name="NewEmail"
+                             Grid.Column="0" 
+                             Width="290"
+                             Style="{StaticResource UserLogin}"
+                             Tag="Wprowadź nowy adress email" />
+                    <Button Grid.Column="1"
+                            Name="ConfirmNewEmail" 
+                            Click="ConfirmNewEmail_Click"
+                            Style="{StaticResource SaveButton}" 
+                            ToolTip="Dodaj email">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideAddNewEmailAddressStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
                 <!--#region List of emails-->
-                <StackPanel Grid.Row="1" Margin="0 5 0 0 ">
+                <StackPanel Margin="0 5 0 0 ">
                     <ItemsControl  ItemsSource="{Binding Emails}" Name="Emails">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -77,18 +121,7 @@
     <!--#region On loaded animation-->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:1.5"
-                                        From="0 -100 0 0 " To="1"
-                                        DecelerationRatio="1"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                      Duration="0:0:1.5" 
-                                      From="0" To="1"/>
-
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->

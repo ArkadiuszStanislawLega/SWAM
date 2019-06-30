@@ -8,6 +8,35 @@
              mc:Ignorable="d" 
              Width="330"
              d:DesignHeight="40" d:DesignWidth="200">
+    <local:BasicUserControl.Resources>
+        <!--#region ShowAddNewPhoneStory-->
+        <Storyboard x:Key="ShowAddNewPhoneStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewPhoneContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideAddNewPhoneStory-->
+        <Storyboard  x:Key="HideAddNewPhoneStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewPhoneContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region OnLoadedStory-->
+        <Storyboard x:Key="OnLoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1"
+                                        From=" 0 0 0 -100" To="1"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:1" 
+                                      From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+    </local:BasicUserControl.Resources>
     <StackPanel Margin="5">
         <!--#region Title-->
         <Border CornerRadius="10 10 0 0" Padding="5 5 5 0">
@@ -15,19 +44,27 @@
                 <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.7"/>
             </Border.Background>
             <Grid>
+                <!--#region Columns definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                <!--#endregion-->
                 <TextBlock Text="Numery kontaktowe"
                            Style="{StaticResource TitleOfLists}"
                            Grid.Column="0"/>
                 <!--#region Button add new phone-->
-                <Button Name="AddNewPhone" Click="AddNewPhone_Click"
+                <Button Name="AddNewPhone"
                         Style="{StaticResource AdditionSign}" 
                         Margin="20 0 0 0"  Grid.Column="2"
-                        ToolTip="Dodaj nowy numer telefonu."/>
+                        ToolTip="Dodaj nowy numer telefonu.">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowAddNewPhoneStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
                 <!--#endregion-->
             </Grid>
         </Border>
@@ -39,19 +76,23 @@
             </Border.Background>
             <StackPanel>
                 <!--#region Add new phone type section-->
-                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed" IsEnabled="False">
+                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed">
+                    <!--#region Columns definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
+                    <!--#endregion-->
                     <TextBox Name="NewPhoneNote"  
                              Grid.Column="0"
+                             Width="135"
                              Tag="Nazwa kontaktu" 
                              Style="{StaticResource UserLogin}"/>
                     <Label Grid.Column="1" Content="-"/>
                     <TextBox Name="NewPhone" 
+                             Width="135"
                              Grid.Column="2"
                              Tag="Numer telefonu" 
                              Style="{StaticResource UserLogin}"/>
@@ -61,6 +102,11 @@
                             Click="ConfirmNewPhone_Click" 
                             Style="{StaticResource SaveButton}" 
                             ToolTip="Zapisz kontakt.">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideAddNewPhoneStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
                     </Button>
                 </Grid>
                 <!--#endregion-->
@@ -85,18 +131,7 @@
     <!--#region On loaded animation-->
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
-            <BeginStoryboard>
-                <Storyboard>
-                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                        Duration="0:0:1"
-                                        From=" 0 0 0 -100" To="1"
-                                        DecelerationRatio="1"/>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                      Duration="0:0:1" 
-                                      From="0" To="1"/>
-
-                </Storyboard>
-            </BeginStoryboard>
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
     <!--#endregion-->

@@ -26,6 +26,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public EmailEditableTemplate()
         {
             InitializeComponent();
+            
         }
 
         #region Edit_Click

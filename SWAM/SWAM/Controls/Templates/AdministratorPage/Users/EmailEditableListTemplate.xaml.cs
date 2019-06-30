@@ -27,17 +27,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Action after add new email button click.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddNewEmail_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Make this in xaml.
-            SWAM.MainWindow.TurnOn(AddNewEmailContainer);
-        }
-
         #region ConfirmNewEmail_Click
         /// <summary>
         /// Action after confirm new email click button.
@@ -63,9 +52,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
             }
             else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress email.");
-
-            //TODO: Make this function in xaml.
-            SWAM.MainWindow.TurnOff(this.AddNewEmailContainer);
         }
         #endregion
         #region RefreshPhoneList

@@ -29,17 +29,11 @@
                            FontWeight="Bold"
                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
-                <!--#region Add new access button-->
                 <Button Name="AddNewAccessButton" 
+                        Grid.Column="2"
                         Click="AddNewAcces_Click" 
                         Style="{StaticResource AdditionSign}" 
-                    Margin="20 0 0 0" Height="20" Width="20" Grid.Column="2">
-                    <fa:ImageAwesome Icon="Plus" 
-                                 Foreground="{StaticResource FontsBrash}"
-                                 Margin="-1"
-                                 ToolTip="Dodaj nowe uprawnienia do magazynu."/>
-                </Button>
-                <!--#endregion-->
+                        Margin="20 0 0 0"  />
             </Grid>
         </Border>
         <!--#endregion-->
