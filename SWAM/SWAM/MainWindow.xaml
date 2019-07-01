@@ -9,6 +9,7 @@
         MinHeight="400"
         MinWidth="300"
         WindowStyle="None"
+        Closed="SWAM_Closed"
         Title="SWAM" 
         SizeChanged="MainWindow_SizeChanged"
         Icon="/Resorces/Pictures/icon.png"
@@ -22,7 +23,7 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-    <Grid Name="EverythinInWindow">
+    <Grid Name="EverythingInWindow">
         <!--#region Rows definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

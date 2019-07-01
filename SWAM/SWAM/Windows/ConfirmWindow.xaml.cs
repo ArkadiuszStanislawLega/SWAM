@@ -19,44 +19,68 @@ namespace SWAM.Windows
     /// </summary>
     public partial class ConfirmWindow : Window
     {
-        //TODO: Documentations
+        /// <summary>
+        /// User answer.
+        /// </summary>
         bool _userAnswer = false;
-        MainWindow _main;
-
-        public ConfirmWindow(MainWindow main)
+    
+        public ConfirmWindow()
         {
             InitializeComponent();
-            this._main = main;
         }
-
+        #region Show
+        /// <summary>
+        /// Showing the confirm window and disable main window.
+        /// </summary>
+        /// <param name="message">Question for user, what action it's needed confirmation</param>
+        /// <param name="answer">Reference to property where answare is required</param>
         public void Show(string message, out bool answer)
         {
-            this.ShowDialog();
             this.Question.Text = message;
+            //TODO: Debug this.
+            try
+            {
+                this.ShowDialog();
+            }
+            catch(InvalidOperationException) { }
+
             answer = this._userAnswer;
 
-            if(this._main != null)
-                this._main.EverythinInWindow.IsEnabled = false;
+            MainWindow.DisabledEverything();
         }
- 
+        #endregion
+        #region Yes_Click
+        /// <summary>
+        /// Action after click Yes button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Yes_Click(object sender, RoutedEventArgs e)
         {
             this._userAnswer = true;
-
-            if (this._main != null)
-                this._main.EverythinInWindow.IsEnabled = true;
-            this.Hide();
+            EverythingIsEnabledAndWindowHide();
         }
-
+        #endregion
+        #region No_Click
+        /// <summary>
+        /// Action after click No button.
+        /// </summary>
         private void No_Click(object sender, RoutedEventArgs e)
         {
             this._userAnswer = false;
-
-            if (this._main != null)
-                this._main.EverythinInWindow.IsEnabled = true;
+            EverythingIsEnabledAndWindowHide();
+        }
+        #endregion
+        #region EverythingIsEnabledAndWindowHide
+        /// <summary>
+        /// Make Stack panel in main window Enabled
+        /// </summary>
+        private void EverythingIsEnabledAndWindowHide()
+        {
+            MainWindow.EnabledEverything();
             this.Hide();
         }
-
+        #endregion
         #region Exit_Click
         /// <summary>
         /// Action after click in top bar right corner button.
@@ -67,9 +91,9 @@ namespace SWAM.Windows
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this._userAnswer = false;
+            MainWindow.EnabledEverything();
             this.Hide();
         }
         #endregion
-
     }
 }

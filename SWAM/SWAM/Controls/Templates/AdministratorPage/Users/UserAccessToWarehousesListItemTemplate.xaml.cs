@@ -22,7 +22,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// List with all warehouses available in database.
         /// </summary>
         private IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
-
         #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
         {
@@ -65,7 +64,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.Content.Margin = new Thickness(0, -10, 0, -10);
         }
         #endregion
-    
+
         #region ConfirmAddAccess_Click
         /// <summary>
         /// Action after confirm button click to add new access.
@@ -74,8 +73,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void ConfirmAddAccess_Click(object sender, RoutedEventArgs e)
         {
-            if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user
-                && this.EditWarehouse.SelectedValue is Warehouse warehouse)
+            if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user && this.EditWarehouse.SelectedValue is Warehouse warehouse)
             {
                 var accessType = (Enumerators.UserType)this.EditUserPermissions.SelectedValue;
 
@@ -97,10 +95,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
                     RefreshParent();
                 }
-                else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
+                else InformationToUser($"{ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
             else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
-        } 
+        }
         #endregion
         #region RefreshParent
         /// <summary>
@@ -112,13 +110,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this) is UserAccessToWarehousesTemplates userAccessToWarehousesTemplates)
                     userAccessToWarehousesTemplates.RefreshAccessList();
-               
-                else throw new RefreshWarehousessAccessesListExeption(typeof(UserAccessToWarehousesListItemTemplate).ToString());  
+
+                else throw new RefreshWarehousessAccessesListExeption(typeof(UserAccessToWarehousesListItemTemplate).ToString());
             }
             catch (RefreshWarehousessAccessesListExeption ex)
             {
                 ex.ShowMessage(this);
-         
+
             }
         }
         #endregion
@@ -130,26 +128,29 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            bool answer = false;
-            //TODO: Make a window asking if you really want to delete this permission.
-            if (SWAM.MainWindow.MessageBoxes.TryGetValue(WindowType.Question,  out Window messageWindow) && messageWindow != null)
+            if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
             {
-                var qustionWindow = messageWindow as ConfirmWindow;
-                qustionWindow.Show("Czy na pewno chcesz usunąć uprawnienia użytkownika", out answer);
-
-                if (answer)
+                if (this._confirmWindow != null)
                 {
-                    if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag) && SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
-                    {
-                        InformationToUser($"Uprawnienie  {user.Name} zostało usunięte.");
-                        RefreshParent();
-                    }
-                    else InformationToUser(ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR, true);
-                }
-            }
-        }
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool answer);
 
+                    if (answer)
+                    {
+                        if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag))
+                        {
+                            InformationToUser($"Uprawnienie {user.Name} zostało usunięte.");
+                            RefreshParent();
+                        }
+                        else InformationToUser($"{ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                    }
+                }
+                else InformationToUser($"{ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
+            }
+            else InformationToUser($"{ErrorMesages.DURING_DELETE_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+        }
         #endregion
+
+
         #region ConfirmExpiredDate_Click
         /// <summary>
         /// Command after adding/editing date of expired access to warehuse.
@@ -175,11 +176,11 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                         DataContext = newAccess;
                         InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
                     }
-                    else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                 }
             }
             else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
-            else InformationToUser(ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR, true);
+            else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR}  {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
     }

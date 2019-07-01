@@ -10,6 +10,9 @@ namespace SWAM
     public static class ErrorMesages
     {
         public const string INFORMATION_LABEL_ERROR = "Wystąpił błąd, nie znaleziono paska informacyjnego.";
+        public const string DATACONTEXT_ERROR = "Wystąpił problem z DataContext widoku.";
+        public const string MESSAGE_WINDOW_ERROR = "Wystąpił problem z oknem zapytania.";
+        public const string DATABASE_ERROR = "Wystąpił problem z bazą danych.";
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";

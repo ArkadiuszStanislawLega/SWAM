@@ -48,15 +48,21 @@ namespace SWAM
         /// Flag indication that user is logged in or not.
         /// </summary>
         public static bool IsLoggedIn = true;
-        public static Dictionary<WindowType, Window> MessageBoxes = new Dictionary<WindowType, Window>()
-        {
-            {WindowType.Question, new ConfirmWindow(currentInstance) }
-        };
 
+        /// <summary>
+        /// Static instance of main window.
+        /// </summary>
         private static MainWindow currentInstance;
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Container with whole messageBoxes.
+        /// </summary>
+        public Dictionary<WindowType, Window> MessageBoxes = new Dictionary<WindowType, Window>()
+        {
+            { WindowType.Question, new ConfirmWindow()}
+        };
         /// <summary>
         /// Indicates which page is currently loaded.
         /// </summary>
@@ -191,8 +197,6 @@ namespace SWAM
         {
             this.Close();
 
-            MessageBoxes.TryGetValue(WindowType.Question, out Window window);
-            window.Close();
         }
         #endregion
         #endregion
@@ -293,6 +297,27 @@ namespace SWAM
             else
                 return FindParent<T>(parentObject);
         }
+
+        #region EnabledEverything
+        /// <summary>
+        /// Enable every controls in widnow.
+        /// </summary>
+        public static void EnabledEverything() => currentInstance.EverythingInWindow.IsEnabled = false;
         #endregion
+        #region DisabledEverything
+        /// <summary>
+        /// Disable every control in windwo.
+        /// </summary>
+        public static void DisabledEverything() => currentInstance.EverythingInWindow.IsEnabled = true;
+        #endregion
+
+        #endregion
+
+        private void SWAM_Closed(object sender, EventArgs e)
+        {
+            //close all open messageBoxes...
+            foreach (KeyValuePair<WindowType, Window> entry in MessageBoxes)
+                entry.Value.Close();
+        }
     }
 }
