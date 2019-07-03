@@ -57,6 +57,7 @@ namespace SWAM.Models
         {
             if (email != null)
             {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
                 _context.Emails.Add(email);
                 _context.SaveChanges();
             }
@@ -67,28 +68,34 @@ namespace SWAM.Models
         /// Update in databse current address email.
         /// </summary>
         /// <param name="newEmail">New email address.</param>
-        public void UpdateEmail(string newEmail)
+        public bool UpdateEmail(string newEmail)
         {
             var currentEmail = _context.Emails.SingleOrDefault(e => e.Id == this._id);
             if (currentEmail != null)
             {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
                 currentEmail.AddressEmail = newEmail;
                 _context.SaveChanges();
+                return true;
             }
+            else return false;
         }
         #endregion
         #region Delete
         /// <summary>
         /// Delete current email from database.
         /// </summary>
-        public void Delete()
+        public bool Delete()
         {
             var currentEmail = _context.Emails.Where(p => p.Id == this._id).First();
             if (currentEmail != null)
             {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
                 _context.Emails.Remove(currentEmail);
                 _context.SaveChanges();
+                return true;
             }
+            else return false;
         }
         #endregion
     }

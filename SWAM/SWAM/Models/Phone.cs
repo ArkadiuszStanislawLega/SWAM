@@ -102,5 +102,7 @@ namespace SWAM.Models
             }
         }
         #endregion
+
+        public override string ToString() => $"{this._note} - {this._phoneNumber}";
     }
 }

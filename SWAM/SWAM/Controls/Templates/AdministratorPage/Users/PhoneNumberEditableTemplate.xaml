@@ -131,7 +131,6 @@
                 Style="{StaticResource DeleteButton}"
                 Margin="1"
                 ToolTip="Usuń numer telefonu"/>
-
             <Button Name="Cancel" Style="{StaticResource EscapeButton}" Visibility="Collapsed" 
                     Click="Cancel_Click" Foreground="Red">
                 <Button.Triggers>

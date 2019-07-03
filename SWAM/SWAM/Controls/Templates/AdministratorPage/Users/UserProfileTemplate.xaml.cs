@@ -49,18 +49,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void BlockUser_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Make a window asking if you really want to block this user.
             if (DataContext is User user)
             {
-                //its needed to clear the datacontext because the refresh function did not work properly after downloading the data after the change
-                this.DataContext = null;
-                if (user.StatusOfUserAccount == Enumerators.StatusOfUserAccount.Active) user.ChangeStatus(Enumerators.StatusOfUserAccount.Blocked);
-                else user.ChangeStatus(Enumerators.StatusOfUserAccount.Active);
-                InformationToUser($"Status konta użytkownika {user.Name} została zmieniony.");
+                if (this._confirmWindow != null)
+                {
+                    this._confirmWindow.Show($"Czy na pewno chcesz zablokować użytkownika {user.Name}?", out bool isConfirmed, "Potwierdź zablokowaniu użykownika");
+                    if (isConfirmed)
+                    {
+                        //its needed to clear the datacontext because the refresh function did not work properly after downloading the data after the change
+                        this.DataContext = null;
 
-                this.DataContext = User.GetUser(user.Id);
+                        if (user.StatusOfUserAccount == Enumerators.StatusOfUserAccount.Active) user.ChangeStatus(Enumerators.StatusOfUserAccount.Blocked);
+                        else user.ChangeStatus(Enumerators.StatusOfUserAccount.Active);
+                        InformationToUser($"Status konta użytkownika {user.Name} została zmieniony.");
+
+                        this.DataContext = User.GetUser(user.Id);
+                    }
+                }
+                else InformationToUser($"{ErrorMesages.DURING_CHANGING_STATUS_USER_ACCOUT_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
             }
-            else InformationToUser(ErrorMesages.DURING_CHANGING_STATUS_USER_ACCOUT_ERROR, true);
+            else InformationToUser($"{ErrorMesages.DURING_CHANGING_STATUS_USER_ACCOUT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
     }

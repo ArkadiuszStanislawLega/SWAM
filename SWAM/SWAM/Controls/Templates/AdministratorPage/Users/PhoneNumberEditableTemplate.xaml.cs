@@ -46,20 +46,28 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is Phone phone)
             {
-                phone.Delete();
-                InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
-
-                //Refresh phones list.
-                try
+                if (this._confirmWindow != null)
                 {
-                    var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
-                    if (phoneList != null)
-                        phoneList.RefreshPhoneList();
-                    else throw new RefreshUserPhonesListException();
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąc numer telefonu {phone.ToString()}?", out bool isConfirmed, "Potwierdź usunięcie kontaktu");
+                    if (isConfirmed)
+                    {
+                        phone.Delete();
+                        InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
+
+                        //Refresh phones list.
+                        try
+                        {
+                            var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
+                            if (phoneList != null)
+                                phoneList.RefreshPhoneList();
+                            else throw new RefreshUserPhonesListException();
+                        }
+                        catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
+                    }
                 }
-                catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
+                else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
             }
-            else InformationToUser(ErrorMesages.DURING_DELETE_PHONE_ERROR, true);
+            else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region Cancel_Click

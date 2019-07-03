@@ -138,9 +138,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (this._confirmWindow != null)
                 {
-                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool answer, "Potiwerdź usunięcie uprawnień");
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool isConfirmed, "Potiwerdź usunięcie uprawnień");
 
-                    if (answer)
+                    if (isConfirmed)
                     {
                         if (AccessUsersToWarehouses.RemoveAccess((int)this.Tag))
                         {

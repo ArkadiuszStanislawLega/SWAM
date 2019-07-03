@@ -25,8 +25,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
     {
         public EmailEditableTemplate()
         {
-            InitializeComponent();
-            
+            InitializeComponent();  
         }
 
         #region Confirm_Click
@@ -37,12 +36,32 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+            //Make sure that datacontext is email
             if (DataContext is Email email)
             {
-                email.UpdateEmail(EditEmail.Text);
-                InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                //Make sure confirm window is not null and is ready to show message for user.
+                if (this._confirmWindow != null)
+                {
+                    //Take email from database to show user how this email look in database.
+                    if (SWAM.Models.Email.GetEmailById(email.Id) is Email dbEmail)
+                    {
+                        //Show confirmation window about changes.
+                        this._confirmWindow.Show($"Czy jesteś pewien że chcesz nadpisać {dbEmail.AddressEmail} i zastąpić go {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                        //If user confirmed in dialog window changes...
+                        if (isConfirmed)
+                        {
+                            //Update email in database and inform user about it.
+                            if (email.UpdateEmail(EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                            else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                        }
+                        else
+                            DataContext = dbEmail;
+                    }
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                }
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
             }
-            else InformationToUser(ErrorMesages.DURING_EDIT_EMAIL_ERROR, true);
+            else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region Delete_Click
@@ -53,19 +72,37 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            //Make sure that datacontext is email
             if (DataContext is Email email)
             {
-                email.Delete();
-                InformationToUser($"Usnięto adress email {email.AddressEmail}.");
-                try
+                //Make sure confirm window is not null and is ready to show message for user.
+                if (this._confirmWindow != null)
                 {
-                    var emailList = FindParent<EmailEditableListTemplate>(this);
-                    if (emailList != null) emailList.RefreshEmailsList();
-                    else throw new RefreshUserEmailListException();
+                    //Show confirmation window about changes.
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąc adres email {email.AddressEmail}?", out bool isConfirmed, "Potwierdź usunięcie adresu email");
+                    //If user confirmed in dialog window changes...
+                    if (isConfirmed)
+                    {
+                        //Delete email in database and inform user about it.
+                        if (email.Delete())
+                        {
+                            InformationToUser($"Usunięto adress email {email.AddressEmail}.");
+                            try
+                            {
+                                //Try refresh list with emails in user profile.
+                                var emailList = FindParent<EmailEditableListTemplate>(this);
+                                if (emailList != null) emailList.RefreshEmailsList();
+                                else throw new RefreshUserEmailListException();
+                            }
+                            catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); };
+                        }
+                        else InformationToUser($"{ErrorMesages.DURIGN_DELETE_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+
+                    }
                 }
-                catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); };
+                else InformationToUser($"{ErrorMesages.DURIGN_DELETE_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
             }
-            else InformationToUser(ErrorMesages.DURIGN_DELETE_EMAIL_ERROR, true);
+            else InformationToUser($"{ErrorMesages.DURIGN_DELETE_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region Cancel_Click
@@ -78,13 +115,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is Email email)
             {
-                Email dbEmail = SWAM.Models.Email.GetEmailById(email.Id);
-                if (dbEmail != null)
-                {
-                    this.Email.Text = dbEmail.AddressEmail;
-                    this.EditEmail.Text = dbEmail.AddressEmail;
-                }
-                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
+                if (SWAM.Models.Email.GetEmailById(email.Id) is Email dbEmail)
+                    DataContext = dbEmail;
+                
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
             else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
         }
