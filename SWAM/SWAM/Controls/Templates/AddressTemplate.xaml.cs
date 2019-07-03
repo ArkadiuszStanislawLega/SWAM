@@ -33,36 +33,12 @@ namespace SWAM.Controls.Templates
         /// </summary>
         public void EditAddress()
         {
-            TurnOffValues();
-            TurnOnEditControls();
-        }
-        #endregion
-        #region TurnOnEditControls
-        /// <summary>
-        /// Turning on all edit controls.
-        /// </summary>
-        private void TurnOnEditControls()
-        {
-            TurnOn(this.EditCountry);
-            TurnOn(this.EditPostCode);
-            TurnOn(this.EditCity);
-            TurnOn(this.EditStreet);
-            TurnOn(this.EditHouseNumber);
-            TurnOn(this.EditApartmentNumber);
-        }
-        #endregion
-        #region TurnOffValues
-        /// <summary>
-        /// Turning off visibility of user profile values.
-        /// </summary>
-        private void TurnOffValues()
-        {
-            TurnOff(this.Country);
-            TurnOff(this.PostCode);
-            TurnOff(this.City);
-            TurnOff(this.Street);
-            TurnOff(this.HouseNumber);
-            TurnOff(this.ApartmentNumber);
+            this.EditCity.Visibility = Visibility.Collapsed;
+            this.EditCountry.Visibility = Visibility.Collapsed;
+            this.EditHouseNumber.Visibility = Visibility.Collapsed; 
+            this.EditPostCode.Visibility = Visibility.Collapsed; 
+            this.EditStreet.Visibility = Visibility.Collapsed;
+            this.EditApartmentNumber.Visibility = Visibility.Collapsed;
         }
         #endregion
 

@@ -7,8 +7,12 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
+        MinHeight="250"
+        MaxHeight="250"
         Height="250"
         Width="400"
+        MinWidth="400"
+        MaxWidth="400"
         WindowStyle="None"
         mc:Ignorable="d"
         Title="ConfirmWindow">
@@ -45,7 +49,7 @@
                 <!--#endregion-->
                 <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
                 <TextBlock Name="TitleOfMainPanel" 
-                       Text="Czy jesteś pewien" 
+                       Text="Czy jesteś pewien?" 
                        FontSize="15"
                        Margin="5"
                        Foreground="{StaticResource FontsBrash}"

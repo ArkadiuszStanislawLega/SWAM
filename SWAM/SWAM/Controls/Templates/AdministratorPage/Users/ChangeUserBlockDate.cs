@@ -19,6 +19,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             Loaded += ChangeUserBlockDate_Loaded;
         }
 
+        #region ChangeUserBlockDate_Loaded
+        /// <summary>
+        /// Action after callendar is loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ChangeUserBlockDate_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             if (DataContext is User user && user != null)
@@ -27,7 +33,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 if (date != null) this.Calendar.SelectedDate = User.GetUser(user.Id).ExpiryDateOfTheBlockade;
             }
         }
-
+        #endregion
         #region NewCommand_Executed
         /// <summary>
         /// Action after click button "ok" when change date of user block.

@@ -48,7 +48,6 @@ namespace SWAM
         /// Flag indication that user is logged in or not.
         /// </summary>
         public static bool IsLoggedIn = true;
-
         /// <summary>
         /// Static instance of main window.
         /// </summary>
@@ -123,18 +122,6 @@ namespace SWAM
             currentInstance = this;
         }
         #endregion
-
-        #region Overrided Methods
-        protected override void OnRender(DrawingContext drawingContext)
-        {
-            base.OnRender(drawingContext);
-
-            //TODO: Verifiy this 115.
-            this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
-            EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
-        }
-        #endregion
-
         #region MainWindow_SizeChanged
         /// <summary>
         /// Action after resize application window.
@@ -193,11 +180,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-
-        }
+        private void Exit_Click(object sender, RoutedEventArgs e) => this.Close();
         #endregion
         #endregion
 
@@ -259,26 +242,7 @@ namespace SWAM
         }
         #endregion
         #region Statc Methods
-        /// <summary>
-        /// Turn off selected element.
-        /// </summary>
-        /// <param name="frameworkElement">Elemnt to turn off.</param>
-        public static void TurnOff(FrameworkElement frameworkElement)
-        {
-            frameworkElement.IsEnabled = false;
-            frameworkElement.Visibility = Visibility.Collapsed;
-        }
-
-        /// <summary>
-        /// Turn on selected element.
-        /// </summary>
-        /// <param name="frameWorkElement">Elemnt to turn on.</param>
-        public static void TurnOn(FrameworkElement frameWorkElement)
-        {
-            frameWorkElement.IsEnabled = true;
-            frameWorkElement.Visibility = Visibility.Visible;
-        }
-
+        #region FindParent
         /// <summary>
         /// Its looking for parent of object.
         /// </summary>
@@ -297,7 +261,7 @@ namespace SWAM
             else
                 return FindParent<T>(parentObject);
         }
-
+        #endregion
         #region EnabledEverything
         /// <summary>
         /// Enable every controls in widnow.
@@ -310,14 +274,32 @@ namespace SWAM
         /// </summary>
         public static void DisabledEverything() => currentInstance.EverythingInWindow.IsEnabled = true;
         #endregion
-
         #endregion
-
+        #region SWAM_Closed
+        /// <summary>
+        /// Action after application is closed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SWAM_Closed(object sender, EventArgs e)
         {
             //close all open messageBoxes...
             foreach (KeyValuePair<WindowType, Window> entry in MessageBoxes)
                 entry.Value.Close();
         }
+        #endregion
+        #region SWAM_Loaded
+        /// <summary>
+        /// Action after application is loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SWAM_Loaded(object sender, RoutedEventArgs e)
+        {
+            //TODO: Verifiy this 115.
+            this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
+            EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
+        }
+        #endregion
     }
 }

@@ -10,10 +10,11 @@
         MinWidth="300"
         WindowStyle="None"
         Closed="SWAM_Closed"
-        Title="SWAM" 
         SizeChanged="MainWindow_SizeChanged"
-        Icon="/Resorces/Pictures/icon.png"
+        Loaded="SWAM_Loaded"
         Name="SWAM"
+        Title="SWAM" 
+        Icon="/Resorces/Pictures/icon.png"
         mc:Ignorable="d"
         Height="auto" Width="auto" >
     

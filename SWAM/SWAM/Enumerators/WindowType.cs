@@ -8,6 +8,9 @@ namespace SWAM.Enumerators
 {
     public enum WindowType
     {
+        /// <summary>
+        /// Messagebox with question.
+        /// </summary>
         Question
     }
 }

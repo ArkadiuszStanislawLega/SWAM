@@ -19,11 +19,13 @@ namespace SWAM.Windows
     /// </summary>
     public partial class ConfirmWindow : Window
     {
+        #region Properties
         /// <summary>
         /// User answer.
         /// </summary>
         bool _userAnswer = false;
-    
+        #endregion
+
         public ConfirmWindow()
         {
             InitializeComponent();
@@ -34,15 +36,23 @@ namespace SWAM.Windows
         /// </summary>
         /// <param name="message">Question for user, what action it's needed confirmation</param>
         /// <param name="answer">Reference to property where answare is required</param>
-        public void Show(string message, out bool answer)
+        /// <param name="title">Message in top title of the window</param>
+        public void Show(string message, out bool answer, string title ="Czy jesteś pewien?")
         {
             this.Question.Text = message;
-            //TODO: Debug this.
+            this.TitleOfMainPanel.Text = title;
+
             try
             {
-                this.ShowDialog();
+                if(!this.ShowActivated)
+                    this.ShowDialog();
+                else
+                { 
+                    Hide();
+                    ShowDialog();
+                }
             }
-            catch(InvalidOperationException) { }
+            catch(InvalidOperationException) {  /*TODO: Debug this.*/ }
 
             answer = this._userAnswer;
 

@@ -22,6 +22,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// List with all warehouses available in database.
         /// </summary>
         private IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
+
         #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
         {
@@ -30,7 +31,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.EditWarehouse.ItemsSource = _warehouses;
         }
         #endregion
-
+        #region UserAccessToWarehousesListItemTemplate_Loaded
+        /// <summary>
+        /// Action after callendar is loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserAccessToWarehousesListItemTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -46,7 +52,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
             catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
         }
-
+        #endregion  
         #region CreateNewAccessMode
         /// <summary>
         /// Preapering view for add new access for user.
@@ -132,7 +138,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             {
                 if (this._confirmWindow != null)
                 {
-                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool answer);
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool answer, "Potiwerdź usunięcie uprawnień");
 
                     if (answer)
                     {
