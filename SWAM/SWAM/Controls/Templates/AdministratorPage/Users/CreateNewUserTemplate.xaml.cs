@@ -29,26 +29,33 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
-            var user = new User()
+            //TODO: Make passwords and user name validation.
+            if (this.NewUserName.Text != "" && 
+                this.UserPassword.Password != "" && 
+                this.ConfirmPassword.Password == this.UserPassword.Password && 
+                this.UserPermissions.SelectedValue != null)
             {
-                Name = this.NewUserName.Text,
-                Password = this.UserPassword.Password,
-                DateOfCreate = DateTime.Now,
-                Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                StatusOfUserAccount = this.AccountStatus.IsChecked ==
-                                                    true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
-                DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
-            };
+                var user = new User()
+                {
+                    Name = this.NewUserName.Text,
+                    Password = this.UserPassword.Password,
+                    DateOfCreate = DateTime.Now,
+                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
+                    StatusOfUserAccount = this.AccountStatus.IsChecked ==
+                                                        true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                    DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
+                };
 
-            if (user != null)
-            {
-                User.AddNewUser(user);
-                InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
-                UserListRefresh();
+                if (user != null)
+                {
+                    User.AddNewUser(user);
+                    InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                    UserListRefresh();
+                }
+                else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
+
+                RestartTextBoxes();
             }
-            else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
-
-            RestartTextBoxes();
         }
         #endregion
         #region RestartTextBoxes

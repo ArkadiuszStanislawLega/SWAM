@@ -25,11 +25,13 @@ namespace SWAM.Models
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
-        private static ApplicationDbContext context()
+        private static ApplicationDbContext _context
         {
             //TODO: Make all exceptions
-
-            return DB_CONTEXT;
+            get
+            {
+                return DB_CONTEXT;
+            }
 
         }
         #region GetUserPhones
@@ -38,7 +40,15 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId">User id</param>
         /// <returns>List with phones of user.</returns>
-        public static IEnumerable<Phone> GetUserPhones(int userId) => context().Phones.ToList().Where(u => u.UserId == userId);
+        public static IEnumerable<Phone> GetUserPhones(int userId) => _context.Phones.ToList().Where(u => u.UserId == userId);
+        #endregion
+        #region GetPhoneById
+        /// <summary>
+        /// Geting phone number from database with specific id phone number from database.
+        /// </summary>
+        /// <param name="phoneId">Phone id in database.</param>
+        /// <returns>Phone from database.</returns>
+        public static Phone GetPhoneById(int phoneId) => _context.Phones.FirstOrDefault(p => p.Id == phoneId);
         #endregion
 
         #region AddNewPhone
@@ -50,8 +60,8 @@ namespace SWAM.Models
         {
             if (phone != null)
             {
-                context().Phones.Add(phone);
-                context().SaveChanges();
+                _context.Phones.Add(phone);
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -63,8 +73,8 @@ namespace SWAM.Models
         /// <param name="newPhoneNumber">New phone/edited number.</param>
         public void UpdateNumber(string newPhoneNumber)
         {
-            context().Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
-            context().SaveChanges();
+            _context.Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
+            _context.SaveChanges();
         }
         #endregion
         #region UpdateNote
@@ -74,8 +84,8 @@ namespace SWAM.Models
         /// <param name="newNote">New/edited note of phone number.</param>
         public void UpdateNote(string newNote)
         {
-            context().Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
-            context().SaveChanges();
+            _context.Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
+            _context.SaveChanges();
         }
         #endregion
         #region Delete
@@ -84,11 +94,11 @@ namespace SWAM.Models
         /// </summary>
         public void Delete()
         {
-            var phone = context().Phones.FirstOrDefault(p => p.Id == this.Id);
+            var phone = _context.Phones.FirstOrDefault(p => p.Id == this.Id);
             if (phone != null)
             {
-                context().Phones.Remove(phone);
-                context().SaveChanges();
+                _context.Phones.Remove(phone);
+                _context.SaveChanges();
             }
         }
         #endregion

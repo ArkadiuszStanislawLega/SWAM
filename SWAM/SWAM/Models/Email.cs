@@ -22,10 +22,13 @@ namespace SWAM.Models
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
-        private static ApplicationDbContext context()
+        private static ApplicationDbContext _context 
         {
-            //TODO: Make all exceptions
+            get
+            {
+                //TODO: Make all exceptions
                 return DB_CONTEXT;
+            }
         }
 
         #region GetUserEmails
@@ -34,7 +37,15 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="id">User id from database.</param>
         /// <returns>List with email addresses.</returns>
-        public static IEnumerable<Email> GetUserEmails(int id) => context().Emails.ToList().Where(u => u.UserId == id);
+        public static IEnumerable<Email> GetUserEmails(int id) => _context.Emails.ToList().Where(u => u.UserId == id);
+        #endregion
+        #region GetEmailById
+        /// <summary>
+        /// Getting from database email with specific number id from database.
+        /// </summary>
+        /// <param name="emailId">Email id number in database</param>
+        /// <returns>Email with given id number</returns>
+        public static Email GetEmailById(int emailId) => _context.Emails.FirstOrDefault(e => e.Id == emailId);
         #endregion
 
         #region AddEmail
@@ -46,8 +57,8 @@ namespace SWAM.Models
         {
             if (email != null)
             {
-                context().Emails.Add(email);
-                context().SaveChanges();
+                _context.Emails.Add(email);
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -58,11 +69,11 @@ namespace SWAM.Models
         /// <param name="newEmail">New email address.</param>
         public void UpdateEmail(string newEmail)
         {
-            var currentEmail = context().Emails.SingleOrDefault(e => e.Id == this._id);
+            var currentEmail = _context.Emails.SingleOrDefault(e => e.Id == this._id);
             if (currentEmail != null)
             {
                 currentEmail.AddressEmail = newEmail;
-                context().SaveChanges();
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -72,11 +83,11 @@ namespace SWAM.Models
         /// </summary>
         public void Delete()
         {
-            var currentEmail = context().Emails.Where(p => p.Id == this._id).First();
+            var currentEmail = _context.Emails.Where(p => p.Id == this._id).First();
             if (currentEmail != null)
             {
-                context().Emails.Remove(currentEmail);
-                context().SaveChanges();
+                _context.Emails.Remove(currentEmail);
+                _context.SaveChanges();
             }
         }
         #endregion

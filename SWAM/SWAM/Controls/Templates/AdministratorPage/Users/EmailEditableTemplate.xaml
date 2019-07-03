@@ -27,6 +27,10 @@
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Cancel"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditEmail"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
@@ -40,6 +44,10 @@
         <!--#region HideEditFieldsStory-->
         <Storyboard x:Key="HideEditFieldsStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Cancel"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -96,6 +104,18 @@
                     Style="{StaticResource DeleteButton}"
                     Margin="1"
                     ToolTip="Usuń adres email"/>
+            <Button Name="Cancel" 
+                    Click="Cancel_Click"
+                    Visibility="Collapsed"
+                    Style="{StaticResource EscapeButton}"
+                    Margin="1"
+                    ToolTip="Anuluj edytowanie adresu email">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditFieldsStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
         </StackPanel>
         <!--#endregion-->
     </Grid>

@@ -13,6 +13,7 @@ namespace SWAM
         public const string DATACONTEXT_ERROR = "Wystąpił problem z DataContext widoku.";
         public const string MESSAGE_WINDOW_ERROR = "Wystąpił problem z oknem zapytania.";
         public const string DATABASE_ERROR = "Wystąpił problem z bazą danych.";
+        public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";

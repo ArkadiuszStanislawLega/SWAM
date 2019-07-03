@@ -171,6 +171,36 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    <!--#region SaveButton-->
+    <Style x:Key="EscapeButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="Transparent" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
 
     <!--#region ButtonBaseStyle-->
     <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">

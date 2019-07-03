@@ -150,7 +150,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         }
         #endregion
 
-
         #region ConfirmExpiredDate_Click
         /// <summary>
         /// Command after adding/editing date of expired access to warehuse.

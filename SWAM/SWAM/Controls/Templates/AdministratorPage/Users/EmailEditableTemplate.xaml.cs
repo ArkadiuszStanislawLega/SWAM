@@ -68,5 +68,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
             else InformationToUser(ErrorMesages.DURIGN_DELETE_EMAIL_ERROR, true);
         }
         #endregion
+        #region Cancel_Click
+        /// <summary>
+        /// Action after click cancel button during edit addres email.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Email email)
+            {
+                Email dbEmail = SWAM.Models.Email.GetEmailById(email.Id);
+                if (dbEmail != null)
+                {
+                    this.Email.Text = dbEmail.AddressEmail;
+                    this.EditEmail.Text = dbEmail.AddressEmail;
+                }
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
+            }
+            else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
+        }
+        #endregion
     }
 }

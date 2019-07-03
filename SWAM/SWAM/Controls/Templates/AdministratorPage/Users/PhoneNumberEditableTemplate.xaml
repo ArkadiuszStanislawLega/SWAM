@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+                            xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Width="300"
              d:DesignHeight="20" d:DesignWidth="100">
@@ -11,6 +12,10 @@
         <!--#region ShowEditPhoneFieldStory-->
         <Storyboard x:Key="ShowEditPhoneFieldStory">
             <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Confirm"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Cancel"
                                         Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -35,6 +40,10 @@
         <!--#region HideEditPhoneFieldStory-->
         <Storyboard x:Key="HideEditPhoneFieldStory">
             <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Confirm"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Cancel"
                                         Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -97,7 +106,8 @@
                     HorizontalAlignment="Right">
             <Button Name="Edit"
                     Style="{StaticResource EditButton}"
-                    Margin="1">
+                    Margin="1"
+                    ToolTip="Edytuj numer telefonu">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
                         <BeginStoryboard Storyboard="{StaticResource ShowEditPhoneFieldStory}"/>
@@ -108,7 +118,8 @@
                     Click="Confirm_Click" 
                     Style="{StaticResource SaveButton}"
                     Visibility="Collapsed"
-                    Margin="1">
+                    Margin="1"
+                    ToolTip="Zatwierdź zmiany">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
                         <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
@@ -118,7 +129,19 @@
             <Button Name="Delete" 
                 Click="Delete_Click"
                 Style="{StaticResource DeleteButton}"
-                Margin="1"/>
+                Margin="1"
+                ToolTip="Usuń numer telefonu"/>
+
+            <Button Name="Cancel" Style="{StaticResource EscapeButton}" Visibility="Collapsed" 
+                    Click="Cancel_Click" Foreground="Red">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+
+
         </StackPanel>
         <!--#endregion-->
     </Grid>
