@@ -171,7 +171,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    <!--#region SaveButton-->
+    <!--#region EscapeButton-->
     <Style x:Key="EscapeButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Template">
             <Setter.Value>

@@ -42,12 +42,13 @@ namespace SWAM.Models
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
-        private static ApplicationDbContext context()
+        private static ApplicationDbContext _context
         {
             //TODO: Make all exceptions
-          
+            get
+            {
                 return DB_CONTEXT;
-  
+            }
         }
         #region Remove
         /// <summary>
@@ -56,9 +57,9 @@ namespace SWAM.Models
         public void Remove()
         {
             //TODO: Poprawić model, trzeba zrobić kaskadowe usuwanie, z access to warehouses
-            var user = context().Users.FirstOrDefault(u => u.Id == this.Id);
-            context().Users.Remove(user);
-            context().SaveChanges();
+            var user = _context.Users.FirstOrDefault(u => u.Id == this.Id);
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
         #endregion
 
@@ -71,8 +72,8 @@ namespace SWAM.Models
         {
             if (user != null)
             {
-                context().Users.Add(user);
-                context().SaveChanges();
+                _context.Users.Add(user);
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -83,8 +84,8 @@ namespace SWAM.Models
         /// <param name="name">New name of user.</param>
         public void ChangeName(string name)
         {
-            context().Users.FirstOrDefault(u => u.Id == this.Id).Name = name;
-            context().SaveChanges();
+            _context.Users.FirstOrDefault(u => u.Id == this.Id).Name = name;
+            _context.SaveChanges();
         }
         #endregion
         #region ChangePermissions
@@ -94,8 +95,8 @@ namespace SWAM.Models
         /// <param name="userType">New perminssion.</param>
         public void ChangePermissions(UserType userType)
         {
-            context().Users.FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
-            context().SaveChanges();
+            _context.Users.FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
+            _context.SaveChanges();
         }
         #endregion
         #region ChangePassword
@@ -105,8 +106,8 @@ namespace SWAM.Models
         /// <param name="password">New password.</param>
         public void ChangePassword(string password)
         {
-            context().Users.FirstOrDefault(u => u.Id == this.Id).Password = password;
-            context().SaveChanges();
+            _context.Users.FirstOrDefault(u => u.Id == this.Id).Password = password;
+            _context.SaveChanges();
         }
         #endregion
         #region GetUser
@@ -117,7 +118,7 @@ namespace SWAM.Models
         /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
         public static User GetUser(int userID)
         {
-                return context().Users
+            return _context.Users
                     .Include(a => a.Accesess)
                     .Include(e => e.Emails)
                     .Include(p => p.Phones)
@@ -133,8 +134,8 @@ namespace SWAM.Models
         {
             if (dateTime != null)
             {
-                context().Users.FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
-                context().SaveChanges();
+                _context.Users.FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -147,8 +148,8 @@ namespace SWAM.Models
         {
             if (dateTime != null)
             {
-                context().Users.FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
-                context().SaveChanges();
+                _context.Users.FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -159,8 +160,8 @@ namespace SWAM.Models
         /// <param name="statusOfUserAccount">New status of account.</param>
         public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
         {
-            context().Users.FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
-            context().SaveChanges();
+            _context.Users.FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            _context.SaveChanges();
         }
         #endregion  
     }

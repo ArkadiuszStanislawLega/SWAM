@@ -22,6 +22,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// </summary>
     public partial class BasicInformationAboutUserTemplate : BasicUserControl
     {
+
+
         public BasicInformationAboutUserTemplate()
         {
             InitializeComponent();
@@ -63,6 +65,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
 
                     InformationToUser($"Upraweninia użytkownika {user.Name} zostały zmienione na {userType.ToString()}. ");
                     UserListRefresh();
+
+                    this.EditPermissions.SelectedValue = null;
                 }
                 else InformationToUser("Uprawnienia są tego samego typu. Nie zostało nic zmienione.");
             }
@@ -86,6 +90,35 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 this.Password.Text = User.GetUser(user.Id).Password;
             }
             else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
+        }
+        #endregion
+
+        #region CancelChangeName_Click
+        /// <summary>
+        /// Action after click cancel change name button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelChangeName_Click(object sender, RoutedEventArgs e) => this.EditName.Text = "";
+        #endregion
+        #region CancelEditPermission_Click
+        /// <summary>
+        /// Acton after click cancel edit permisions during editting.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelEditPermission_Click(object sender, RoutedEventArgs e) => EditPermissions.SelectedValue = null;
+        #endregion
+        #region CancelEditPasswordButton_Click
+        /// <summary>
+        /// Action after click cancel edit password button during editting password.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelEditPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.EditPassword.Password = "";
+            this.EditConfirmPassword.Password = "";
         }
         #endregion
     }
