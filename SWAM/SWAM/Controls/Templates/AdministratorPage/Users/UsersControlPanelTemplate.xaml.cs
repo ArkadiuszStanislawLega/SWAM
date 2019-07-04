@@ -9,6 +9,9 @@ using System.Data.Entity;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Data;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy UsersControlPanel.xaml
@@ -26,6 +29,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UsersControlPanelTemplate()
         {
             InitializeComponent();
+
+            UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
 
         private void UsersControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +49,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             //TODO: Veryfy this 64.
             if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 64;
             else this.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 64;
-      
+
             ChangeSizeOfScrollInProfile();
         }
         #endregion
@@ -104,6 +109,24 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
 
             this.RightSection.Children.Add(newContent);
+        }
+        #endregion
+
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Filtering list depends on text typed in TextBox named FindUser.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //filter is required observable collection.
+            ICollectionView filter = CollectionViewSource.GetDefaultView(UserListViewModel.UsersList);
+            filter.Filter = user =>
+            {
+                User allUsersWhose = user as User;
+                return allUsersWhose.Name.Contains(FindUser.Text);
+            };
         }
         #endregion
     }
