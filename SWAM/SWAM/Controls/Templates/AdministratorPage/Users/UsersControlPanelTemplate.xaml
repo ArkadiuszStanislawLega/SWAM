@@ -21,6 +21,50 @@
                 <x:Type TypeName="enum:UserType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <!--#region ShowFiltersContainer-->
+        <Storyboard x:Key="ShowFiltersContainer">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="FiltersContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                Storyboard.TargetName="FiltersContainer"
+                                Duration="0:0:0.5"
+                                From="0"
+                                To="110"
+                                DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideFiltersContainer-->
+        <Storyboard x:Key="HideFiltersContainer">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="FiltersContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                Storyboard.TargetName="FiltersContainer"
+                                Duration="0:0:0.5"
+                                From="110"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
     <!--#endregion-->
     <Border BorderBrush="{StaticResource GraphiteBrash}" 
@@ -36,6 +80,7 @@
             <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
@@ -46,13 +91,66 @@
                              Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              TextChanged="TextBox_TextChanged"/>
+                    <Button Name="FiltersButton"
+                            Width="30" Height="30" 
+                            Style="{StaticResource NavigationButton}"
+                            ToolTip="Ustawienia filtra listy"
+                            ToolTipService.InitialShowDelay="10000">
+                        <fa:ImageAwesome Icon="Filter" Foreground="{StaticResource FontsBrash}"
+                                      Height="20" Width="20" />
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
                     <Button Width="30" Height="30" Click="AddNewUser_Click" Style="{StaticResource NavigationButton}">
                         <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
                                       Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."/>
                     </Button>
                 </StackPanel>
+                <!--#region Filter Container-->
+                <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Border 
+                        Opacity="0.4"
+                            Background="{StaticResource TopGrayBrash}"/>
+                    <Border BorderThickness="2 0 2 2"
+                        BorderBrush="{StaticResource EnabledBrash}"/>
+                    <StackPanel Margin="5" Grid.Row="0">
+                        <TextBlock Text="Filtruj według:"/>
+                        <RadioButton Name="FiltrByName"
+                                 Content="Nazwy użytkownika" 
+                                 IsChecked="True" 
+                                 Margin="5 0 0 0"
+                                 GroupName="Filter"/>
+                        <RadioButton Name="FiltrByUserType"
+                                 Content="Rodzaju uprawnienia" 
+                                 Margin="5 0 0 0"
+                                 GroupName="Filter"/>
+                        <CheckBox Name="SortAscending"
+                            Content="Rosnąco" 
+                            IsChecked="True" 
+                            Margin="0 5 0 0"
+                            Click="SortAscending_Click"/>
+                    </StackPanel>
+                    <Button Grid.Row="1" 
+                            Height="25" 
+                            Width="200" 
+                            Style="{StaticResource ArrowUpHide}"   >
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+                <!--#endregion-->
                 <!--#region List with users-->
-                <Grid Grid.Row="1" VerticalAlignment="Top">
+                <Grid Grid.Row="2" VerticalAlignment="Top">
                     <ScrollViewer Name="ScrollOfUserList">
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>

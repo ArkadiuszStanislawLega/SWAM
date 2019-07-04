@@ -29,16 +29,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UsersControlPanelTemplate()
         {
             InitializeComponent();
-
-            UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
 
         private void UsersControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshUsersList();
-
+            //Set the user list height to match the size of the window.
             UsersList.Height = RightSection.Height - FindUserOrCreate.Height;
-
+            //Make filtr in user list ascending.
+            UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+            //Take userlist from database.
             DataContext = UserListViewModel;
         }
         #endregion
@@ -125,8 +125,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
-                return allUsersWhose.Name.Contains(FindUser.Text);
+                return this.FiltrByName.IsChecked == true ? allUsersWhose.Name.Contains(FindUser.Text) : allUsersWhose.Permissions.ToString().Contains(FindUser.Text);
             };
+        }
+        #endregion
+        #region SortAscending_Click
+        /// <summary>
+        /// Action after click checkBox in filters container to change type of sorting(ascending/descending) user list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortAscending_Click(object sender, RoutedEventArgs e)
+        {
+            //Delete the last setting
+            if (UsersList.Items.SortDescriptions.Count > 0)
+                UsersList.Items.SortDescriptions.RemoveAt(UsersList.Items.SortDescriptions.Count-1);
+
+            if (SortAscending.IsChecked == true)
+                UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+            else
+                UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
         }
         #endregion
     }
