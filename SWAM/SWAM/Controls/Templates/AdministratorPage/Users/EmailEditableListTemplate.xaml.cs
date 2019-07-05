@@ -73,5 +73,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
             else InformationToUser(ErrorMesages.REFRESH_EMAILS_LIST_ERROR, true);
         }
         #endregion
+        #region CancelCreateNewEmail_Click
+        /// <summary>
+        /// Action after click cancel create new email button during creating new email address.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelCreateNewEmail_Click(object sender, RoutedEventArgs e) => this.NewEmail.Text = "";
+        #endregion
     }
 }

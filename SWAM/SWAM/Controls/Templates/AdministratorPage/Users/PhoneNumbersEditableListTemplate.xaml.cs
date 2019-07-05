@@ -79,5 +79,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
             catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
         }
         #endregion
+        #region CancelCreateNewPhone_Click
+        /// <summary>
+        /// Action after click cancel add new phone number button during creating new contatact.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e)
+        {
+            this.NewPhone.Text = "";
+            this.NewPhoneNote.Text = "";
+        }
+        #endregion
     }
 }

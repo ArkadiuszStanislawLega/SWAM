@@ -23,9 +23,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class EmailEditableTemplate : BasicUserControl
     {
+        /// <summary>
+        /// Email address before edit.
+        /// </summary>
+        private string _emailAddress;
         public EmailEditableTemplate()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
 
         #region Confirm_Click
@@ -113,15 +117,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Email email)
-            {
-                if (SWAM.Models.Email.GetEmailById(email.Id) is Email dbEmail)
-                    DataContext = dbEmail;
-                
-                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
-            }
-            else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
+            this.Email.Text = this._emailAddress;
+            this.EditEmail.Text = this._emailAddress;
         }
+        #endregion
+        #region Edit_Click
+        /// <summary>
+        /// Make instance with email address before edit it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Edit_Click(object sender, RoutedEventArgs e) => this._emailAddress = Email.Text;
         #endregion
     }
 }

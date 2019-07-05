@@ -12,6 +12,17 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class PhoneNumberEditableTemplate : BasicUserControl
     {
+        #region Properties
+        /// <summary>
+        /// Phone numbe before edit.
+        /// </summary>
+        private string _phone;
+        /// <summary>
+        /// Phone note before edit.
+        /// </summary>
+        private string _note;
+        #endregion
+
         public PhoneNumberEditableTemplate()
         {
             InitializeComponent();
@@ -77,21 +88,24 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Cancel_Click(object sender, RoutedEventArgs e)
-        { 
-            if (DataContext is Phone phone)
-            {
-                Phone dbPhone = Phone.GetPhoneById(phone.Id);
-                if (dbPhone != null)
-                {
-                    this.EditPhoneNumber.Text = dbPhone.PhoneNumber;
-                    this.EditNote.Text = dbPhone.Note;
+        {
+            this.EditNote.Text = this._note;
+            this.EditPhoneNumber.Text = this._phone;
 
-                    this.PhoneNumber.Text = dbPhone.PhoneNumber;
-                    this.Note.Text = dbPhone.Note;
-                }
-                 else InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
-            }
-            else InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} {ErrorMesages.CANCEL_ERROR}", true);
+            this.Note.Text = this._note;
+            this.PhoneNumber.Text = this._phone;
+        }
+        #endregion
+        #region Edit_Click
+        /// <summary>
+        /// Action after click edit contact.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            this._phone = this.PhoneNumber.Text;
+            this._note = this.Note.Text;
         }
         #endregion
     }

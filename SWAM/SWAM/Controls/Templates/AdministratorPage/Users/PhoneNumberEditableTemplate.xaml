@@ -107,6 +107,7 @@
             <Button Name="Edit"
                     Style="{StaticResource EditButton}"
                     Margin="1"
+                    Click="Edit_Click"
                     ToolTip="Edytuj numer telefonu">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">

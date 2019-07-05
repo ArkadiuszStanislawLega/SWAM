@@ -138,6 +138,7 @@
                     <TextBlock Name="Name" Text="{Binding Name}"
                                        Grid.Column="0" Grid.Row="1"/>
                     <Button Name="EditNameOfUserButton"
+                            Click="EditNameOfUserButton_Click"
                         Grid.Column="2" Grid.Row="0"
                         Style="{StaticResource EditButton}"
                         ToolTip="Zmień nazwę użytkownika.">

@@ -22,12 +22,16 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
     /// </summary>
     public partial class BasicInformationAboutUserTemplate : BasicUserControl
     {
-
+        /// <summary>
+        /// Name before edit.
+        /// </summary>
+        private string _name;
 
         public BasicInformationAboutUserTemplate()
         {
             InitializeComponent();
         }
+    
         #region ConfirmChangeName_Click
         /// <summary>
         /// Action after click confrim change user name button.
@@ -99,7 +103,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelChangeName_Click(object sender, RoutedEventArgs e) => this.EditName.Text = "";
+        private void CancelChangeName_Click(object sender, RoutedEventArgs e) => this.EditName.Text = this._name;
         #endregion
         #region CancelEditPermission_Click
         /// <summary>
@@ -120,6 +124,15 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.EditPassword.Password = "";
             this.EditConfirmPassword.Password = "";
         }
+        #endregion
+
+        #region EditNameOfUserButton_Click
+        /// <summary>
+        /// Action after click edit user name button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditNameOfUserButton_Click(object sender, RoutedEventArgs e)=> this._name = this.Name.Text;
         #endregion
     }
 }
