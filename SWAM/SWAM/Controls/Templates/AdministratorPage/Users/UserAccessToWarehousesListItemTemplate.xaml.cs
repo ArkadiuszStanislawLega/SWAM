@@ -10,6 +10,7 @@ using System.Data.Entity;
 using SWAM.Exceptions;
 using SWAM.Enumerators;
 using SWAM.Windows;
+using System.Windows.Media.Animation;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
@@ -62,6 +63,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             this.EditUserPermissions.Visibility = Visibility.Visible;
             this.ConfirmAddAccess.Visibility = Visibility.Visible;
             this.EditWarehouse.Visibility = Visibility.Visible;
+            this.CancelCreateNewAccess.Visibility = Visibility.Visible;
 
             this.DeleteCurrentAccess.Visibility = Visibility.Collapsed;
 
@@ -186,6 +188,20 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             }
             else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
             else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR}  {ErrorMesages.DATACONTEXT_ERROR}", true);
+        }
+        #endregion
+        #region CancelCreateNewAccess_Click
+        /// <summary>
+        /// Action after click cancel adding new access button durign creating new access.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelCreateNewAccess_Click(object sender, RoutedEventArgs e)
+        {
+            SWAM.MainWindow.FindParent<UserAccessToWarehousesTemplates>(this).HideAddNewAccess();
+
+            this.EditUserPermissions.SelectedValue = null;
+            this.EditWarehouse.SelectedValue = null; 
         }
         #endregion
     }

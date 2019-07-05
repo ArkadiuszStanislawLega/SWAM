@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using SWAM.Exceptions;
+using System.Windows.Media.Animation;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {
@@ -93,6 +94,15 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 else throw new RefreshWarehousessAccessesListExeption();
             }
             catch(RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
+        }
+        #endregion
+        #region HideAddNewAccess
+        /// <summary>
+        /// Hide new access view.
+        /// </summary>
+        public void HideAddNewAccess()
+        {
+            if(TryFindResource("HideAddNewAccessStory") is Storyboard story) story.Begin();
         }
         #endregion
     }

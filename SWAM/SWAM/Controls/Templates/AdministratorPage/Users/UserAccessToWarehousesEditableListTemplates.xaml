@@ -15,6 +15,12 @@
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="HideAddNewAccessStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewAccess"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
         <Storyboard x:Key="OnLoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                         Duration="0:0:1"
