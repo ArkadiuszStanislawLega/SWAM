@@ -5,48 +5,76 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
-             Background="{StaticResource GraphiteBrash}"
              Margin="10 1 10 1"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel >
         <StackPanel Margin="5">
-            <TextBlock Text="Kraj" />
+            <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}" />
             <TextBlock Name="Country" Text="{Binding Country}"/>
-            <TextBox Name="EditCountry" Text="{Binding Country}"
-                         IsEnabled="False" Visibility="Collapsed"/>
+            <TextBox Name="EditCountry" 
+                     HorizontalAlignment="Left"
+                     TextAlignment="Center"
+                     Tag="Państwo"
+                     Width="246"
+                     Visibility="Collapsed"
+                     Text="{Binding Country}"
+                     Style="{StaticResource UserLogin}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">
-                <TextBlock Text="Kod pocztowy"/>
+                <TextBlock Text="Kod pocztowy"  Style="{StaticResource ProfileProperties}"/>
                 <TextBlock Name="PostCode" Text="{Binding PostCode}"/>
-                <TextBox Name="EditPostCode" Text="{Binding PostCode}"
-                             IsEnabled="False" Visibility="Collapsed"/>
+                <TextBox Name="EditPostCode" 
+                         HorizontalAlignment="Left"
+                         TextAlignment="Center"
+                         Tag="Kod pocztowy"
+                         Text="{Binding PostCode}"
+                         Visibility="Collapsed"  
+                         Style="{StaticResource UserLogin}"/>
             </StackPanel>
             <StackPanel Margin="5">
-                <TextBlock Text="Miasto"/>
+                <TextBlock Text="Miasto"  Style="{StaticResource ProfileProperties}"/>
                 <TextBlock Name="City" Text="{Binding City}"/>
-                <TextBox Name="EditCity" Width="130" Text="{Binding City}"
-                             IsEnabled="False" Visibility="Collapsed"/>
+                <TextBox Name="EditCity" 
+                         Tag="Miasto"
+                         Width="150" 
+                         Text="{Binding City}"
+                         Visibility="Collapsed"  
+                         Style="{StaticResource UserLogin}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="5">
-            <TextBlock Text="Ulica"/>
+            <TextBlock Text="Ulica"  Style="{StaticResource ProfileProperties}"/>
             <TextBlock Name="Street" Text="{Binding Street}"/>
-            <TextBox Name="EditStreet" Text="{Binding Street}"
-                         IsEnabled="False" Visibility="Collapsed"/>
+            <TextBox Name="EditStreet" 
+                     Tag="Ulica"
+                     Width="246"
+                     HorizontalAlignment="Left"
+                     TextAlignment="Center"
+                     Text="{Binding Street}"
+                     Visibility="Collapsed"  
+                     Style="{StaticResource UserLogin}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">
-                <TextBlock Text="Numer budynku"/>
+                <TextBlock Text="Numer budynku"  Style="{StaticResource ProfileProperties}"/>
                 <TextBlock Name="HouseNumber" Text="{Binding HouseNumber}"/>
-                <TextBox Name="EditHouseNumber" Text="{Binding HouseNumber}"
-                             IsEnabled="False" Visibility="Collapsed"/>
+                <TextBox Name="EditHouseNumber" 
+                         Tag="Number budynku"
+                         HorizontalAlignment="Left"
+                         TextAlignment="Center"
+                         Text="{Binding HouseNumber}"
+                         Visibility="Collapsed"  
+                         Style="{StaticResource UserLogin}"/>
             </StackPanel>
             <StackPanel Margin="5">
-                <TextBlock Text="Numer lokalu"/>
+                <TextBlock Text="Numer lokalu"  Style="{StaticResource ProfileProperties}"/>
                 <TextBlock Name="ApartmentNumber" Text="{Binding ApartmentNumber}"/>
-                <TextBox Name="EditApartmentNumber" Text="{Binding ApartmentNumber}"
-                             IsEnabled="False" Visibility="Collapsed"/>
+                <TextBox Name="EditApartmentNumber" 
+                         Tag="Numer lokalu"
+                         Text="{Binding ApartmentNumber}"
+                         Visibility="Collapsed"
+                         Style="{StaticResource UserLogin}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>

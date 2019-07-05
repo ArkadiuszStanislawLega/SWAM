@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Data.Entity;
 
 namespace SWAM.Models.AdministratorPage
 {
@@ -34,7 +32,22 @@ namespace SWAM.Models.AdministratorPage
             else this._warehousesListViewModel.Add(warehouse);
         }
 
+        public void Refresh()
+        {
+            this._warehousesListViewModel.Clear();
 
+            IList<Warehouse> dbWarehouses;
+            using (ApplicationDbContext application = new ApplicationDbContext())
+            {
+                dbWarehouses = application.Warehouses
+                    .Include(a => a.Address)
+                    .Include(a => a.CustomerOrders)
+                    .ToList();
+            };
+
+            foreach (Warehouse u in dbWarehouses)
+                this._warehousesListViewModel.Add(u);
+        }
 
         public void RemoveAll()
         {

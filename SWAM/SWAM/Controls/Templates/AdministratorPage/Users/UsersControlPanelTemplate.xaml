@@ -97,7 +97,7 @@
                     <Button Name="FiltersButton"
                             Width="15" Height="30" 
                             Style="{StaticResource FaLightGrayBackground}"
-                            ToolTip="Ustawienia filtra listy">
+                            ToolTip="Ustawienia filtrów listy">
                         <fa:ImageAwesome Icon="Filter" 
                                          Foreground="{StaticResource FontsBrash}"/>
                         <Button.Triggers>

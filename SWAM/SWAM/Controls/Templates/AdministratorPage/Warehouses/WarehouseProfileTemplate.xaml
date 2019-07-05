@@ -8,8 +8,30 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Label Name="WarehouseName" Content="{Binding Name}" />
-        <temp:AddressTemplate DataContext="{Binding Address}" />
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="WarehouseName"
+                HorizontalAlignment="Left"
+                Grid.Row="0"
+                Text="{Binding Name}" 
+                Style="{StaticResource Title}"/>
+        <temp:AddressTemplate DataContext="{Binding Address}" 
+                              Grid.Row="1" 
+                              HorizontalAlignment="Center"/>
+        <StackPanel VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Name="Edit"
+                Content="Edytuj"
+                Click="Edit_Click"
+                Style="{StaticResource UserProfilebuttons}"/>
+            <Button Name="Delete"
+                Content="Usuń"
+                Click="Delete_Click"
+                Style="{StaticResource UserProfilebuttons}"/>
+        </StackPanel>
+    </Grid>
 </class:BasicUserControl>

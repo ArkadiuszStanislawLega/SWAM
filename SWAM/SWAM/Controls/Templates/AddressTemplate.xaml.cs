@@ -33,14 +33,31 @@ namespace SWAM.Controls.Templates
         /// </summary>
         public void EditAddress()
         {
-            this.EditCity.Visibility = Visibility.Collapsed;
-            this.EditCountry.Visibility = Visibility.Collapsed;
-            this.EditHouseNumber.Visibility = Visibility.Collapsed; 
-            this.EditPostCode.Visibility = Visibility.Collapsed; 
-            this.EditStreet.Visibility = Visibility.Collapsed;
-            this.EditApartmentNumber.Visibility = Visibility.Collapsed;
+            this.EditCity.Visibility = Visibility.Visible;
+            this.EditCountry.Visibility = Visibility.Visible;
+            this.EditHouseNumber.Visibility = Visibility.Visible; 
+            this.EditPostCode.Visibility = Visibility.Visible; 
+            this.EditStreet.Visibility = Visibility.Visible;
+            this.EditApartmentNumber.Visibility = Visibility.Visible;
+
+            this.City.Visibility = Visibility.Collapsed;
+            this.Country.Visibility = Visibility.Collapsed;
+            this.HouseNumber.Visibility = Visibility.Collapsed; 
+            this.PostCode.Visibility = Visibility.Collapsed; 
+            this.Street.Visibility = Visibility.Collapsed; 
+            this.ApartmentNumber.Visibility = Visibility.Collapsed;
         }
         #endregion
+
+        public void ClearEditValues()
+        {
+            this.EditApartmentNumber.Text = "";
+            this.EditCity.Text = "";
+            this.EditCountry.Text = "";
+            this.EditHouseNumber.Text = "";
+            this.EditPostCode.Text = "";
+            this.EditStreet.Text = "";
+        }
 
         public Address GetAddress()
         {

@@ -8,16 +8,31 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="10"
-                    Background="{StaticResource GraphiteBrash}">
-            <Label Content="Nazwa magazynu" Foreground="{StaticResource FontsBrash}"/>
-            <TextBox Name="Name" Tag="Nazwa magazynu" Style="{StaticResource UserLogin }"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+                HorizontalAlignment="Left"
+                Grid.Row="0"
+                Text="Utwórz magazyn" 
+                Style="{StaticResource Title}"/>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="Nazwa magazynu"  
+                           Style="{StaticResource ProfileProperties}"/>
+                <TextBox Name="Name" 
+                         Width="300" 
+                         Tag="Nazwa magazynu" 
+                         Style="{StaticResource UserLogin }"/>
+            </StackPanel>
+            <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
         </StackPanel>
-        <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
-        
-        <Button Name="Confirm" Click="Confirm_Click" 
-                Width="200" Content="Dodaj magazyn" 
-                Style="{StaticResource NavigationButton}"/>
-    </StackPanel>
+        <Button Name="Comfirm"
+                Content="Utwórz" Click="Confirm_Click"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Style="{StaticResource UserProfilebuttons}"/>
+    </Grid>
 </class:BasicUserControl>

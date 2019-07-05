@@ -17,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using SWAM.Controls.Templates.AdministratorPage;
+using System.ComponentModel;
+using SWAM.Models.AdministratorPage;
 
 namespace SWAM.Templates.AdministratorPage
 {
@@ -27,23 +29,21 @@ namespace SWAM.Templates.AdministratorPage
     {
         public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
 
-        private List<Warehouse> _warehouses;
-        public Models.AdministratorPage.WarehousesListViewModel WarhousesListViewModel { get; set; }
+        private Models.AdministratorPage.WarehousesListViewModel warhousesListViewModel { get; set; } = new Models.AdministratorPage.WarehousesListViewModel();
 
         public WarehousesControlPanelTemplate()
         {
             InitializeComponent();
-
-            WarhousesListViewModel = new Models.AdministratorPage.WarehousesListViewModel();
         }
 
         private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
+            warhousesListViewModel.Refresh();
 
-            DataContext = WarhousesListViewModel;
-
-            RefreshWarhousesList();
+            DataContext = warhousesListViewModel;
         }
+
+        public void RefreshList() => warhousesListViewModel.Refresh();
 
         #region WarehousesList_SizeChanged
         /// <summary>
@@ -56,25 +56,10 @@ namespace SWAM.Templates.AdministratorPage
             //TODO: Veryfy this 185.
             if (SWAM.MainWindow.IsMaximized) this.WarehousesList.MaxHeight = SystemParameters.PrimaryScreenHeight - 185;
             else this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
-        }
-        #endregion
 
-        #region RefreshWarhousesList
-        /// <summary>
-        /// Refreshing view model of warehouses list.
-        /// </summary>
-        public void RefreshWarhousesList()
-        {
-            if(WarhousesListViewModel.Size > 0) WarhousesListViewModel.RemoveAll();
-            if (this._warehouses != null && this._warehouses.Count > 0) this._warehouses.Clear();
-
-            using (ApplicationDbContext application = new ApplicationDbContext())
-            {
-                this._warehouses = application.Warehouses.ToList();
-            };
-
-            foreach (Warehouse w in this._warehouses)
-                WarhousesListViewModel.AddWarehouse(w);
+            //TODO: Veryfy this 64.
+            if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
+            else this.Height = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
         }
         #endregion
 
@@ -117,5 +102,41 @@ namespace SWAM.Templates.AdministratorPage
 
             this.RightSection.Children.Add(new CreateNewWarehouseTemplate());
         }
+
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Filtering list depends on text typed in TextBox named FindWarehouse.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //filter is required observable collection.
+            ICollectionView filter = CollectionViewSource.GetDefaultView(warhousesListViewModel.WarehousesList);
+            filter.Filter = warehouse =>
+            {
+                Warehouse allWarehousesWhose = warehouse as Warehouse;
+                return allWarehousesWhose.Name.Contains(FindWarehouse.Text);
+            };
+        }
+        #endregion
+        #region SortAscending_Click
+        /// <summary>
+        /// Action after click checkBox in filters container to change type of sorting(ascending/descending) user list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortAscending_Click(object sender, RoutedEventArgs e)
+        {
+            //Delete the last setting
+            if (WarehousesList.Items.SortDescriptions.Count > 0)
+                WarehousesList.Items.SortDescriptions.RemoveAt(WarehousesList.Items.SortDescriptions.Count - 1);
+
+            if (SortAscending.IsChecked == true)
+                WarehousesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+            else
+                WarehousesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
+        }
+        #endregion
     }
 }

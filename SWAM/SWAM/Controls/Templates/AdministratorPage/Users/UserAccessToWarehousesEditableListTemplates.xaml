@@ -12,13 +12,21 @@
         <Storyboard x:Key="ShowAddNewAccessStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewAccess"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="AddNewAccess"
+                Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:0.4" 
+                                      From="0" To="1"/>
         </Storyboard>
         <Storyboard x:Key="HideAddNewAccessStory">
+            <DoubleAnimation Storyboard.TargetName="AddNewAccess"
+                Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:0.4" 
+                                      From="1" To="0"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewAccess"
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="OnLoadedStory">
