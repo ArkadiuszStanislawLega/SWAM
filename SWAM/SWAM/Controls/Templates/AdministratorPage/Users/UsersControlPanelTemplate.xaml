@@ -77,49 +77,56 @@
             </Grid.ColumnDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+            <Grid  Name="LeftSection" Margin="5" Grid.Row="0" Grid.Column="0">
+                <!--#region RowsDefinitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
+                <!--#region Find User-->
                 <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
                     <TextBox Name="FindUser"
                              Tag="Wyszukaj użytkownika" 
-                             FontSize="14" Width="140" Height="30"
+                             FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Left"
                              Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              TextChanged="TextBox_TextChanged"/>
                     <Button Name="FiltersButton"
-                            Width="30" Height="30" 
-                            Style="{StaticResource NavigationButton}"
-                            ToolTip="Ustawienia filtra listy"
-                            ToolTipService.InitialShowDelay="10000">
-                        <fa:ImageAwesome Icon="Filter" Foreground="{StaticResource FontsBrash}"
-                                      Height="20" Width="20" />
+                            Width="15" Height="30" 
+                            Style="{StaticResource FaLightGrayBackground}"
+                            ToolTip="Ustawienia filtra listy">
+                        <fa:ImageAwesome Icon="Filter" 
+                                         Foreground="{StaticResource FontsBrash}"/>
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Width="30" Height="30" Click="AddNewUser_Click" Style="{StaticResource NavigationButton}">
-                        <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
-                                      Height="20" Width="20" ToolTip="Dodaj nowego użytkownika."/>
+                    <Button Width="15" 
+                            Height="30"
+                            Click="AddNewUser_Click" 
+                            Style="{StaticResource FaLightGrayBackground}">
+                        <fa:ImageAwesome Icon="Plus" 
+                                         Foreground="{StaticResource FontsBrash}"
+                                         ToolTip="Dodaj nowego użytkownika."/>
                     </Button>
                 </StackPanel>
+                <!--#endregion-->
                 <!--#region Filter Container-->
                 <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Border 
-                        Opacity="0.4"
-                            Background="{StaticResource TopGrayBrash}"/>
-                    <Border BorderThickness="2 0 2 2"
-                        BorderBrush="{StaticResource EnabledBrash}"/>
+                    <Border Opacity="0.4"
+                            Background="{StaticResource LightGrayBrash}"/>
+                    <Border BorderThickness="0 0 1 1"
+                            Opacity="0.4"
+                            BorderBrush="{StaticResource LightGrayBrash}"/>
                     <StackPanel Margin="5" Grid.Row="0">
                         <TextBlock Text="Filtruj według:"/>
                         <RadioButton Name="FiltrByName"
@@ -151,6 +158,9 @@
                 <!--#endregion-->
                 <!--#region List with users-->
                 <Grid Grid.Row="2" VerticalAlignment="Top">
+                    <Border BorderThickness="0 0 1 1" 
+                            BorderBrush="{StaticResource LightGrayBrash}"
+                            Opacity="0.4"/>
                     <ScrollViewer Name="ScrollOfUserList">
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
