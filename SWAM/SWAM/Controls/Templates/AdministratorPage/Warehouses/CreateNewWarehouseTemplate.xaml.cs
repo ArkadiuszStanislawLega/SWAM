@@ -43,12 +43,38 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 a.HouseNumber == newAddress.HouseNumber &&
                 a.ApartmentNumber == newAddress.ApartmentNumber); //Take address with database address Id
 
-                context.Warehouses.Add(new Models.Warehouse()
+
+                if (long.TryParse(Height.Text, out long isHeight))
                 {
-                    Name = Name.Text,
-                    AddressId = dbAddress.Id
-                });
-                context.SaveChanges(); //Add warehouse to database
+                    if (long.TryParse(Width.Text, out long isWidth))
+                    {
+                        if (long.TryParse(SurfaceAreaNetto.Text, out long isSurfaceAreaNetto))
+                        {
+                            if (long.TryParse(SurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton))
+                            {
+                                if (long.TryParse(AcceptableWeight.Text, out long isAcceptableWeight))
+                                {
+                                    context.Warehouses.Add(new Models.Warehouse()
+                                    {
+                                        Name = Name.Text,
+                                        AddressId = dbAddress.Id,
+                                        Height = isHeight,
+                                        Width = isWidth,
+                                        SurfaceAreaNetto = isSurfaceAreaNetto,
+                                        SurfaceAreaBrutton = isSurfaceAreaBrutton,
+                                        AcceptableWeight = isAcceptableWeight
+                                    });
+                                    context.SaveChanges(); //Add warehouse to database
+                                }
+                                else InformationToUser("Sprawdź wartość dopuszczalna waga - jest nie poprawna.", true);
+                            }
+                            else InformationToUser("Sprawdź wartość powierzchnia brutton - jest nie poprawna.", true);
+                        }
+                        else InformationToUser("Sprawdź wartość powierzchnia netto - jest nie poprawna.", true);
+                    }
+                    else InformationToUser("Sprawdź wartość szerokość - jest nie poprawna.", true);
+                }
+                else InformationToUser("Sprawdź wartość wysokość - jest nie poprawna.", true);
             }
 
             //Refresh List with warehouses

@@ -12,7 +12,7 @@
         <Storyboard x:Key="ShowEditStory">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              Storyboard.TargetName="EditCountry"
-                             Duration="0:0:0.7" 
+                             Duration="0:0:0.4" 
                              From="0" To="1"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditCountry" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -29,16 +29,16 @@
         <Storyboard x:Key="HideEditStory">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              Storyboard.TargetName="EditCountry"
-                             Duration="0:0:0.7" 
+                             Duration="0:0:0.4" 
                              From="1" To="0"/>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditCountry" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
 
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Country" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
@@ -51,7 +51,7 @@
                      HorizontalAlignment="Left"
                      TextAlignment="Center"
                      Width="246"
-                     Visibility="Visible"
+                     Visibility="Collapsed"
                      Text="{Binding Country}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -64,14 +64,13 @@
                 <TextBox Name="EditPostCode" 
                          HorizontalAlignment="Left"
                          TextAlignment="Center"
-                           Width="80" 
+                         Width="80" 
                          Text="{Binding PostCode}"
                          Opacity="{Binding Opacity, ElementName=EditCountry}"
                          Visibility="{Binding Visibility, ElementName=EditCountry}"  />
             </StackPanel>
             <StackPanel Margin="5">
                 <TextBlock Text="Miasto" 
-                    
                            Style="{StaticResource ProfileProperties}"/>
                 <TextBlock Name="City" 
                            Text="{Binding City}"      

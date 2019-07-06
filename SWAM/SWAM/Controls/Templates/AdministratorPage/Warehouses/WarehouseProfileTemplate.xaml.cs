@@ -27,12 +27,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Address.ShowEditControls();
+            this.WarehouseTechnicalDate.ShowEditControls();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Confirm_Click(object sender, RoutedEventArgs e)
+        {
+            this.Address.HideEditControls();
+            this.WarehouseTechnicalDate.HideEditControls();
         }
     }
 }
