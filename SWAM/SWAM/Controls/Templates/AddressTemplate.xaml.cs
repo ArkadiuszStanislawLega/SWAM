@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates
 {
+    using System.Windows.Media.Animation;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy Address.xaml
@@ -27,27 +28,15 @@ namespace SWAM.Controls.Templates
             InitializeComponent();
         }
 
-        #region EditAddress
         /// <summary>
-        /// Change visibility of controls for edit mode.
+        /// Starting storyboard after which the data is in the edit mode.
         /// </summary>
-        public void EditAddress()
-        {
-            this.EditCity.Visibility = Visibility.Visible;
-            this.EditCountry.Visibility = Visibility.Visible;
-            this.EditHouseNumber.Visibility = Visibility.Visible; 
-            this.EditPostCode.Visibility = Visibility.Visible; 
-            this.EditStreet.Visibility = Visibility.Visible;
-            this.EditApartmentNumber.Visibility = Visibility.Visible;
+        public void ShowEditControls() => BeginStoryboard(FindResource("ShowEditStory") as Storyboard);
+        /// <summary>
+        /// Starting storyboard after which the data is in the read only mode.
+        /// </summary>
+        public void HideEditControls() => BeginStoryboard(FindResource("HideEditStory") as Storyboard);
 
-            this.City.Visibility = Visibility.Collapsed;
-            this.Country.Visibility = Visibility.Collapsed;
-            this.HouseNumber.Visibility = Visibility.Collapsed; 
-            this.PostCode.Visibility = Visibility.Collapsed; 
-            this.Street.Visibility = Visibility.Collapsed; 
-            this.ApartmentNumber.Visibility = Visibility.Collapsed;
-        }
-        #endregion
 
         public void ClearEditValues()
         {

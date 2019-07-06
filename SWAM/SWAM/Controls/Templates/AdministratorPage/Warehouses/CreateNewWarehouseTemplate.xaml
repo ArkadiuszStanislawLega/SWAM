@@ -8,31 +8,114 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
+        <!--#region Rows deifnitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock 
-                HorizontalAlignment="Left"
-                Grid.Row="0"
-                Text="Utwórz magazyn" 
-                Style="{StaticResource Title}"/>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" Margin="10">
-                <TextBlock Text="Nazwa magazynu"  
-                           Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="Name" 
-                         Width="300" 
-                         Tag="Nazwa magazynu" 
-                         Style="{StaticResource UserLogin }"/>
-            </StackPanel>
-            <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
-        </StackPanel>
+        <!--#endregion-->
         <Button Name="Comfirm"
                 Content="Utwórz" Click="Confirm_Click"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
                 Style="{StaticResource UserProfilebuttons}"/>
+        <TextBlock 
+                HorizontalAlignment="Left"
+                Grid.Row="0"
+                Text="Utwórz magazyn" 
+                Style="{StaticResource Title}"/>
+        <Grid  HorizontalAlignment="Center" Grid.Row="1">
+            <!--#region Column deifnitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+             <!--#endregion-->
+            <!--#region Basic information-->
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                    <TextBlock Text="Nazwa magazynu"  Margin="15 0 0 0"
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBox Name="Name" Width="246" />
+                </StackPanel>
+                <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region More accure informations-->
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Wysokość magazynu"  Grid.Column="0"
+                           Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Text="[mm]"  
+                               Grid.Column="2"
+                               Style="{StaticResource ProfileProperties}"/>
+                </Grid>
+                <TextBox Name="Height" Grid.Row="1"
+                         Width="246" />
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Szerokość"    Grid.Column="0"
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Text="[mm]"  Grid.Column="2"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource ProfileProperties}"/>
+                </Grid>
+                <TextBox Name="Width" Grid.Row="1"
+                         Width="246" />
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Pole powierzchni netto"    Grid.Column="0"
+                               ToolTip="Pole powierzchni użytkowe netto magazynu dla produktów."
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Text="[mm]"  Grid.Column="2"
+                                Style="{StaticResource ProfileProperties}"/>
+                </Grid>
+                <TextBox Name="SurfaceAreaNetto"/>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Pole powierzchni brutton"    Grid.Column="0"
+                               ToolTip="Pole powierzchni użytkowe brutto magazynu dla produktów."
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Text="[mm]"  Grid.Column="2"
+                                Style="{StaticResource ProfileProperties}"/>
+                </Grid>
+                <TextBox Name="SurfaceAreaBrutton"/>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Dopuszczalna waga"    
+                               Grid.Column="0"
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Text="[g]"  
+                               Grid.Column="2"
+                               Style="{StaticResource ProfileProperties}"/>
+                </Grid>
+                <TextBox Name="AcceptableWeight"/>
+            </StackPanel>
+        </Grid>
+        <!--#endregion-->
     </Grid>
 </class:BasicUserControl>

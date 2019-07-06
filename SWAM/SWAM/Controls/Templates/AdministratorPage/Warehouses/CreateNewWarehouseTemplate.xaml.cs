@@ -60,9 +60,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             this.Address.ClearEditValues();
         }
 
-        private void Address_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.Address.EditAddress();
-        }
+        private void Address_Loaded(object sender, RoutedEventArgs e) => this.Address.ShowEditControls();
+        
     }
 }

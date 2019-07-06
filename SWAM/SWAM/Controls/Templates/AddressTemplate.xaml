@@ -7,6 +7,42 @@
              mc:Ignorable="d" 
              Margin="10 1 10 1"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--#region ShowEditStory-->
+        <Storyboard x:Key="ShowEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditCountry"
+                             Duration="0:0:0.7" 
+                             From="0" To="1"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditCountry" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Country" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideEditStory-->
+        <Storyboard x:Key="HideEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditCountry"
+                             Duration="0:0:0.7" 
+                             From="1" To="0"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditCountry" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Country" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <!--#endregion-->
     <StackPanel >
         <StackPanel Margin="5">
             <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}" />
@@ -14,67 +50,79 @@
             <TextBox Name="EditCountry" 
                      HorizontalAlignment="Left"
                      TextAlignment="Center"
-                     Tag="Państwo"
                      Width="246"
-                     Visibility="Collapsed"
-                     Text="{Binding Country}"
-                     Style="{StaticResource UserLogin}"/>
+                     Visibility="Visible"
+                     Text="{Binding Country}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">
                 <TextBlock Text="Kod pocztowy"  Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="PostCode" Text="{Binding PostCode}"/>
+                <TextBlock Name="PostCode" 
+                           Text="{Binding PostCode}"
+                           Opacity="{Binding Opacity, ElementName=Country}"
+                           Visibility="{Binding Visibility, ElementName=Country}" />
                 <TextBox Name="EditPostCode" 
                          HorizontalAlignment="Left"
                          TextAlignment="Center"
-                         Tag="Kod pocztowy"
+                           Width="80" 
                          Text="{Binding PostCode}"
-                         Visibility="Collapsed"  
-                         Style="{StaticResource UserLogin}"/>
+                         Opacity="{Binding Opacity, ElementName=EditCountry}"
+                         Visibility="{Binding Visibility, ElementName=EditCountry}"  />
             </StackPanel>
             <StackPanel Margin="5">
-                <TextBlock Text="Miasto"  Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="City" Text="{Binding City}"/>
+                <TextBlock Text="Miasto" 
+                    
+                           Style="{StaticResource ProfileProperties}"/>
+                <TextBlock Name="City" 
+                           Text="{Binding City}"      
+                           Opacity="{Binding Opacity, ElementName=Country}"
+                           Visibility="{Binding Visibility, ElementName=Country}" />
                 <TextBox Name="EditCity" 
-                         Tag="Miasto"
                          Width="150" 
                          Text="{Binding City}"
-                         Visibility="Collapsed"  
-                         Style="{StaticResource UserLogin}"/>
+                         Opacity="{Binding Opacity, ElementName=EditCountry}"
+                         Visibility="{Binding Visibility, ElementName=EditCountry}"  />
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="5">
             <TextBlock Text="Ulica"  Style="{StaticResource ProfileProperties}"/>
-            <TextBlock Name="Street" Text="{Binding Street}"/>
+            <TextBlock Name="Street" Text="{Binding Street}" 
+                       Opacity="{Binding Opacity, ElementName=Country}"
+                       Visibility="{Binding Visibility, ElementName=Country}" />
             <TextBox Name="EditStreet" 
-                     Tag="Ulica"
                      Width="246"
                      HorizontalAlignment="Left"
                      TextAlignment="Center"
                      Text="{Binding Street}"
-                     Visibility="Collapsed"  
-                     Style="{StaticResource UserLogin}"/>
+                     Opacity="{Binding Opacity, ElementName=EditCountry}"
+                     Visibility="{Binding Visibility, ElementName=EditCountry}" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="5">
                 <TextBlock Text="Numer budynku"  Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="HouseNumber" Text="{Binding HouseNumber}"/>
+                <TextBlock Name="HouseNumber" 
+                           Text="{Binding HouseNumber}"
+                           Opacity="{Binding Opacity, ElementName=Country}"
+                           Visibility="{Binding Visibility, ElementName=Country}" />
                 <TextBox Name="EditHouseNumber" 
-                         Tag="Number budynku"
+                         Width="80"
                          HorizontalAlignment="Left"
                          TextAlignment="Center"
                          Text="{Binding HouseNumber}"
-                         Visibility="Collapsed"  
-                         Style="{StaticResource UserLogin}"/>
+                         Opacity="{Binding Opacity, ElementName=EditCountry}"
+                         Visibility="{Binding Visibility, ElementName=EditCountry}" />
             </StackPanel>
             <StackPanel Margin="5">
                 <TextBlock Text="Numer lokalu"  Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="ApartmentNumber" Text="{Binding ApartmentNumber}"/>
+                <TextBlock Name="ApartmentNumber" 
+                           Text="{Binding ApartmentNumber}"
+                           Opacity="{Binding Opacity, ElementName=Country}"
+                           Visibility="{Binding Visibility, ElementName=Country}" />
                 <TextBox Name="EditApartmentNumber" 
-                         Tag="Numer lokalu"
+                         Width="80"
                          Text="{Binding ApartmentNumber}"
-                         Visibility="Collapsed"
-                         Style="{StaticResource UserLogin}"/>
+                         Opacity="{Binding Opacity, ElementName=EditCountry}"
+                         Visibility="{Binding Visibility, ElementName=EditCountry}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
