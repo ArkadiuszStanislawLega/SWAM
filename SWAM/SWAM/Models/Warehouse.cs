@@ -13,6 +13,11 @@ namespace SWAM.Models
     {
         int _id;
         string _name;
+        long _height;
+        long _width;
+        long _surfaceAreaNetto;
+        long _surfaceAreaBrutton;
+        long _acceptableWeight;
         IList<User> _users;
         IList<CustomerOrder> _customerOrders;
 
@@ -23,9 +28,16 @@ namespace SWAM.Models
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
+        public long Height { get => _height; set => _height = value; }
+        public long Width { get => _width; set => _width = value; }
+        public long SurfaceAreaNetto { get => _surfaceAreaNetto; set => _surfaceAreaNetto = value; }
+        public long SurfaceAreaBrutton { get => _surfaceAreaBrutton; set => _surfaceAreaBrutton = value; }
+        public long AcceptableWeight { get => _acceptableWeight; set => _acceptableWeight = value; }
+
         public IList<User> Users { get => _users; set => _users = value; }
         public int AddressId { get => _addressId; set => _addressId = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
+
 
         #region GetAllWharehousesFromDb
         /// <summary>

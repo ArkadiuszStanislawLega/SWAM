@@ -71,6 +71,10 @@
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enumerators\WindowType.cs" />
+    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
+    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
+      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -632,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.resx">
       <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907061652217_WarehousesModelUpdate.resx">
+      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

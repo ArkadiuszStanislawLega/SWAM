@@ -531,3 +531,4 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehousesModelUpdate.resources
