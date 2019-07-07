@@ -41,7 +41,8 @@ namespace SWAM.Models.AdministratorPage
             {
                 dbWarehouses = application.Warehouses
                     .Include(a => a.Address)
-                    .Include(a => a.CustomerOrders)
+                    .Include(co => co.CustomerOrders)
+                    .Include(u => u.Users)
                     .ToList();
             };
 

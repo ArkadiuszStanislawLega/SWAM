@@ -48,6 +48,9 @@ namespace SWAM
             modelBuilder.Entity<Warehouse>()
                 .HasRequired(a => a.Address);
 
+           // modelBuilder.Entity<Warehouse>()
+           //     .HasMany(u => u.Users); 
+
             modelBuilder.Entity<AccessUsersToWarehouses>()
                         .HasRequired(c => c.Administrator)
                         .WithMany()

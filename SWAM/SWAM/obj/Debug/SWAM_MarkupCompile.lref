@@ -25,6 +25,7 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\Custome
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\WarehouseTechnicalDataTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Windows\AddProductWindow.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Windows\DeleteProductWindow.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Windows\EditProductWindow.xaml;;
@@ -49,5 +50,5 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBlocks.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\ConfirmWindow.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\WarehouseTechnicalDataTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.xaml;;
 

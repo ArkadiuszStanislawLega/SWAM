@@ -78,6 +78,7 @@
                            Visibility="{Binding Visibility, ElementName=Country}" />
                 <TextBox Name="EditCity" 
                          Width="150" 
+                         TextAlignment="Center"
                          Text="{Binding City}"
                          Opacity="{Binding Opacity, ElementName=EditCountry}"
                          Visibility="{Binding Visibility, ElementName=EditCountry}"  />

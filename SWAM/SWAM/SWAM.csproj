@@ -67,6 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.xaml.cs">
+      <DependentUpon>UserListItemInWarehouseProfile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

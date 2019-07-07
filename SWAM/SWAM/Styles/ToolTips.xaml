@@ -4,29 +4,42 @@
                     xmlns:local="clr-namespace:SWAM.Styles">
     <Style x:Key="{x:Type ToolTip}" TargetType="{x:Type ToolTip}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="MaxWidth" Value="250" />
         <Setter Property="HasDropShadow" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToolTip">
-                    <Border Name="Border"
-                            BorderThickness="1"
-                            CornerRadius="10"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{StaticResource DarkGraphiteBrash}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="InfoCircle" 
-                                             Width="15"
-                                             Height="15"
-                                             Margin="5 0 5 0"
-                                             VerticalAlignment="Center" 
-                                             HorizontalAlignment="Center" 
-                                             Foreground="{StaticResource FontsBrash}" />
-                            <ContentPresenter Margin="4"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top" />
-                        </StackPanel>
-                    </Border>
+                    <Grid>
+                        <Border  BorderThickness="1"
+                                 BorderBrush="{StaticResource EnabledBrash}"
+                                 Background="{StaticResource DarkGraphiteBrash}"
+                                 Opacity="0.8"/>
+                        <Border BorderThickness="0 0 2 2"
+                                BorderBrush="{StaticResource BlueBrash}"
+                                Opacity="0.7">
+                            <Border.Effect>
+                                <DropShadowEffect Color="{StaticResource Blue}" />
+                            </Border.Effect>
+                        </Border>
+                        <Border Name="Border"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="InfoCircle" 
+                                                 Width="15"
+                                                 Height="15"
+                                                 Margin="5 0 5 0"
+                                                 VerticalAlignment="Center" 
+                                                 HorizontalAlignment="Center" 
+                                                 Foreground="{StaticResource FontsBrash}" />
+                                <ContentPresenter Margin="4"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow" Value="true">
                             <Setter TargetName="Border" Property="CornerRadius" Value="4" />

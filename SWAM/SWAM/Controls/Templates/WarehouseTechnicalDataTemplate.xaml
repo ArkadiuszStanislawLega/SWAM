@@ -60,7 +60,8 @@
         </Grid>
         <!--#endregion-->
         <TextBlock Name="Height" Text="{Binding Height}" 
-                   HorizontalAlignment="Right"/>
+                   HorizontalAlignment="Right"
+                   Margin="0 0 5 0"/>
         <TextBox Name="EditHeight" Grid.Row="1"
                  Visibility="Collapsed" Text="{Binding Height}"
                  Width="264" />
@@ -79,6 +80,7 @@
         </Grid>
         <!--#endregion-->
         <TextBlock Name="Width"  HorizontalAlignment="Right"
+                   Margin="0 0 5 0"
                    Text="{Binding Width}" 
                    Opacity="{Binding Opacity, ElementName=Height}"
                    Visibility="{Binding Visibility, ElementName=Height}"/>
@@ -94,8 +96,22 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Pole powierzchni netto"    Grid.Column="0"
-                       ToolTip="Pole powierzchni użytkowe netto magazynu dla produktów."
-                       Style="{StaticResource ProfileProperties}"/>
+                       ToolTipService.ShowDuration="50000"
+                       Style="{StaticResource ProfileProperties}">
+                <TextBlock.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="Pole powierzchni netto:" 
+                                   FontStyle="Italic"
+                                   TextDecorations="Underline"
+                                   FontSize="14" 
+                                   Style="{StaticResource Title}"/>
+                        <TextBlock TextWrapping="Wrap" MaxWidth="200"
+                        Text="Pole powierzchni użytkowe netto magazynu dla produktów. 
+                              Ilość miejsca przeznaczonego tylko i wyłącznie na produkty.
+                              Nie włączająć w to przejść, przejazdów, dyletacji."/>
+                    </StackPanel>
+                </TextBlock.ToolTip>
+            </TextBlock>
             <TextBlock Grid.Column="2"
                         Style="{StaticResource ProfileProperties}">
                      <Run>m</Run>
@@ -105,6 +121,7 @@
         </Grid>
         <!--#endregion-->
         <TextBlock Name="SurfaceAreaNetto" HorizontalAlignment="Right"
+                   Margin="0 0 5 0"
                    Text="{Binding SurfaceAreaNetto}"
                    Opacity="{Binding Opacity, ElementName=Height}"
                    Visibility="{Binding Visibility, ElementName=Height}"/>
@@ -119,11 +136,24 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Pole powierzchni brutton"    Grid.Column="0"
-                               ToolTip="Pole powierzchni użytkowe brutto magazynu dla produktów."
-                               Style="{StaticResource ProfileProperties}"/>
-            <TextBlock Grid.Column="2"
-                                Style="{StaticResource ProfileProperties}">
+            <TextBlock Text="Pole powierzchni brutto"    Grid.Column="0"
+                       ToolTipService.ShowDuration="50000"
+                       Style="{StaticResource ProfileProperties}">
+                <TextBlock.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="Pole powierzchni  brutto:" 
+                                   FontStyle="Italic"
+                                   TextDecorations="Underline"
+                                   FontSize="14" 
+                                   Style="{StaticResource Title}"/>
+                        <TextBlock TextWrapping="Wrap" MaxWidth="200"
+                            Text="Całe pole powierzchni brutto magazynu.
+                                  Ilość miejsca przeznaczonego na produkty 
+                                  włączająć w to przejścia, przejazdy oraz dyletacje."/>
+                    </StackPanel>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <TextBlock Grid.Column="2" Style="{StaticResource ProfileProperties}">
                      <Run>m</Run>
                      <Run Typography.Variants="Superscript">2</Run>
                      <Run></Run>
@@ -131,6 +161,7 @@
         </Grid>
         <!--#endregion-->
         <TextBlock Name="SurfaceAreaBrutton"  HorizontalAlignment="Right"
+                   Margin="0 0 5 0"
                    Text="{Binding SurfaceAreaBrutton}"
                    Opacity="{Binding Opacity, ElementName=Height}"
                    Visibility="{Binding Visibility, ElementName=Height}"/>
@@ -154,6 +185,7 @@
         </Grid>
         <!--#endregion-->
         <TextBlock Name="AcceptableWeight" HorizontalAlignment="Right"
+                   Margin="0 0 5 0"
                    Text="{Binding AcceptableWeight}"
                    Opacity="{Binding Opacity, ElementName=Height}"
                    Visibility="{Binding Visibility, ElementName=Height}"/>
