@@ -18,7 +18,7 @@ namespace SWAM.Models
         long _surfaceAreaNetto;
         long _surfaceAreaBrutton;
         long _acceptableWeight;
-        IList<User> _users;
+        IList<AccessUsersToWarehouses> _accesses;
         IList<CustomerOrder> _customerOrders;
 
         [Required]
@@ -34,8 +34,8 @@ namespace SWAM.Models
         public long SurfaceAreaBrutton { get => _surfaceAreaBrutton; set => _surfaceAreaBrutton = value; }
         public long AcceptableWeight { get => _acceptableWeight; set => _acceptableWeight = value; }
 
-        public IList<User> Users { get => _users; set => _users = value; }
         public int AddressId { get => _addressId; set => _addressId = value; }
+        public IList<AccessUsersToWarehouses> Accesses { get => _accesses; set => _accesses = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
 
 

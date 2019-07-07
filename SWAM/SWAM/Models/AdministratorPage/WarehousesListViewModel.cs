@@ -42,8 +42,16 @@ namespace SWAM.Models.AdministratorPage
                 dbWarehouses = application.Warehouses
                     .Include(a => a.Address)
                     .Include(co => co.CustomerOrders)
-                    .Include(u => u.Users)
+                    .Include(u => u.Accesses)
                     .ToList();
+
+                foreach(Warehouse w  in dbWarehouses)
+                {
+                    foreach(AccessUsersToWarehouses a in w.Accesses)
+                    {
+                        a.User = User.GetUser(a.Id);
+                    }
+                }
             };
 
             foreach (Warehouse u in dbWarehouses)

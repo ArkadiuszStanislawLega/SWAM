@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SWAM.Models;
+using SWAM.Models.AdministratorPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,18 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         public WarehouseProfileTemplate()
         {
             InitializeComponent();
+            Loaded += WarehouseProfileTemplate_Loaded;
+        }
+
+        private void WarehouseProfileTemplate_Loaded(object sender, RoutedEventArgs e)
+        {
+            WarehousesListViewModel warehouses = new WarehousesListViewModel();
+            warehouses.Refresh();
+
+            var data = DataContext as Warehouse;
+            foreach (Warehouse w in warehouses.WarehousesList)
+                if (w.Id == data.Id)
+                    DataContext = w;
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)

@@ -5,10 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
-             xmlns:conv="clr-namespace:SWAM.Converters"
+             xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <class:BasicUserControl.DataContext>
+        <mod:Warehouse/>
+    </class:BasicUserControl.DataContext>
     <class:BasicUserControl.Resources>
         <!--#region ShowSaveChangesStory-->
         <Storyboard x:Key="ShowSaveChangesStory">
@@ -71,10 +74,12 @@
                     <TextBlock Text="Rodzaj uprawnienia" Margin="2"/>
                 </StackPanel>
                 <ScrollViewer Grid.Row="1">
-                    <ItemsControl ItemsSource="{Binding Users}" >
+                    <ItemsControl Name="UserList" ItemsSource="{Binding Accesses}" >
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:UserListItemInWarehouseProfile/>
+                                <Grid>
+                                    <local:UserListItemInWarehouseProfile/>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

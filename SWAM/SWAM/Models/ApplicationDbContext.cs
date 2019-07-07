@@ -48,17 +48,29 @@ namespace SWAM
             modelBuilder.Entity<Warehouse>()
                 .HasRequired(a => a.Address);
 
-           // modelBuilder.Entity<Warehouse>()
-           //     .HasMany(u => u.Users); 
+            modelBuilder.Entity<Warehouse>()
+                               .HasMany(a => a.Accesses)
+                               .WithRequired(w => w.Warehouse)
+                               .HasForeignKey(w => w.WarehouseId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(a => a.Accesess)
+                .WithRequired(u => u.User)
+                .HasForeignKey(u => u.UserId);
+
+            modelBuilder.Entity<User>()
+                     .HasMany(a => a.Accesess)
+                     .WithRequired(u => u.Administrator)
+                     .HasForeignKey(u => u.AdministratorId);
 
             modelBuilder.Entity<AccessUsersToWarehouses>()
-                        .HasRequired(c => c.Administrator)
+                        .HasRequired(c => c.User)
                         .WithMany()
                         .HasForeignKey(u => u.UserId)
                         .WillCascadeOnDelete(false);
-
+            
             modelBuilder.Entity<AccessUsersToWarehouses>()
-                  .HasRequired(c => c.User)
+                  .HasRequired(c => c.Administrator)
                   .WithMany()
                   .HasForeignKey(a => a.AdministratorId)
                   .WillCascadeOnDelete(false);

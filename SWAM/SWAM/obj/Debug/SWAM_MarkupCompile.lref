@@ -13,6 +13,7 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserAccess
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\CalendarWithButton.xaml;;
@@ -50,5 +51,4 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBlocks.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\ConfirmWindow.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.xaml;;
 

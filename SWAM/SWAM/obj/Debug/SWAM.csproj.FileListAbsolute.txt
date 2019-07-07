@@ -390,6 +390,9 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe.config
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\SWAM.pdb
@@ -414,6 +417,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\U
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\CalendarWithButton.g.cs
@@ -426,6 +430,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customer
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
@@ -457,6 +462,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\U
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\CalendarWithButton.baml
@@ -469,6 +475,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customer
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml
@@ -519,18 +526,11 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.ManyToManyUsersAccesses.reso
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseModelReview.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AccessUserTowarehousesDebugAdministratorIdProperty.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehousesModelUpdate.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.FixError.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Properties.Resources.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.GenerateResource.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.g.cs
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.baml
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehousesModelUpdate.resources
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.baml

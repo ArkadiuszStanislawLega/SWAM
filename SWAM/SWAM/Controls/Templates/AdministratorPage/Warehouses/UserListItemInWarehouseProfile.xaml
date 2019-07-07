@@ -12,7 +12,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding Name}" Grid.Column="0"/>
-        <TextBlock Text="{Binding Permissions}" Grid.Column="2"/>
+        <TextBlock Name="Name" Text="{Binding User.Name}" Grid.Column="0"/>
+        <TextBlock Name ="Permissions"
+                   Text="{Binding User.Permissions}" Grid.Column="2"/>
     </Grid>
 </UserControl>
