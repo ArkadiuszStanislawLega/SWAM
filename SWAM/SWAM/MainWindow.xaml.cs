@@ -71,7 +71,7 @@ namespace SWAM
         /// </summary>
         private Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
         {
-            { PagesUserControls.LoginPage,new LoginPage() },
+            { PagesUserControls.LoginPage,new LoginPage()},
             { PagesUserControls.AdministratorPage, new AdministratorPage()},
             { PagesUserControls.ManageItemsPage, new ManageItemPage()},
             { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },

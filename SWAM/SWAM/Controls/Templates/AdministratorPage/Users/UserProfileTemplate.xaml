@@ -7,6 +7,8 @@
              xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:conv="clr-namespace:SWAM.Converters" 
              mc:Ignorable="d" 
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>

@@ -7,8 +7,7 @@
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch"
+        MinHeight="200"
         Padding="10"
         mc:Ignorable="d">
     <StackPanel>
@@ -32,10 +31,13 @@
                                           Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <StackPanel Orientation="Vertical" Name="MainContent" 
-                    HorizontalAlignment="Stretch" 
-                    VerticalAlignment="Stretch" >
+        <Grid  Name="MainContent" >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="*"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
             <temp:UsersControlPanelTemplate Grid.Row="1"/>
-        </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>

@@ -8,6 +8,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              mc:Ignorable="d" 
+                        VerticalContentAlignment="Top"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Loaded="WarehousesControlPanelTemplate_Loaded"
@@ -60,11 +61,7 @@
         <!--#endregion-->
     </class:BasicUserControl.Resources>
     <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
-        <DockPanel              VerticalAlignment="Stretch"
-             HorizontalAlignment="Stretch">
-            <!--#region Rows&Column Definitions-->
-
-            <!--#endregion-->
+        <DockPanel  >
             <!--#region Left section-->
             <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
                 <StackPanel Orientation="Horizontal" Name="FindWarehouseOrCreate" Grid.Row="0">
@@ -141,7 +138,9 @@
                     <Border BorderThickness="0 0 1 1" 
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
-                    <ScrollViewer>
+                    <ScrollViewer MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
+                           AncestorType={x:Type Grid}},
+                           Path=RowDefinitions[1].ActualHeight}">
                         <ItemsControl Name="WarehousesList"  ItemsSource="{Binding WarehousesList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -157,9 +156,14 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Right section-->
-            <StackPanel  Name="RightSection" Margin="5" Grid.Column="1">
-                <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse"/>
-            </StackPanel>
+            <Grid  Name="RightSection" Margin="5" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+                <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" Grid.Row="1"/>
+            </Grid>
             <!--#endregion-->
         </DockPanel>
     </Border>

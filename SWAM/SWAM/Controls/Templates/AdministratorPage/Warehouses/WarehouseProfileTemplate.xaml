@@ -9,6 +9,9 @@
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
+             MinHeight="200"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <class:BasicUserControl.DataContext>
@@ -52,7 +55,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
         <TextBlock Name="WarehouseName"
@@ -61,29 +64,29 @@
                 Text="{Binding Name}" 
                 Style="{StaticResource Title}"/>
         <!--#region Informations-->
-
-            
-            <Grid Grid.Row="1" HorizontalAlignment="Center" >
-                <!--#region Column definitions-->
+         <Grid Grid.Row="1" HorizontalAlignment="Center" >
+             <!--#region Column definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
-                <temp:AddressTemplate x:Name="Address"
-                                  DataContext="{Binding Address}" 
-                                  Grid.Column="0"/>
-                <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
-                Grid.Column="1"/>
+             <temp:AddressTemplate x:Name="Address"
+                               DataContext="{Binding Address}" 
+                               Grid.Column="0"/>
+             <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
+             Grid.Column="1"/>
 
-            </Grid>
+         </Grid>
         <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
             <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
                       Width="708"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
                       AutoGenerateColumns="False" 
                       IsReadOnly="True"  
                       VerticalScrollBarVisibility="Auto" 
@@ -106,7 +109,6 @@
             </DataGrid>
         </Border>
         <!--#endregion-->
-
         <!--#endregion-->
         <!--#region Buttons-->
         <StackPanel VerticalAlignment="Top"
