@@ -1,19 +1,7 @@
 ﻿using SWAM.Models;
 using SWAM.Models.AdministratorPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
 {
@@ -33,10 +21,17 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             WarehousesListViewModel warehouses = new WarehousesListViewModel();
             warehouses.Refresh();
 
-            var data = DataContext as Warehouse;
-            foreach (Warehouse w in warehouses.WarehousesList)
-                if (w.Id == data.Id)
-                    DataContext = w;
+            if (DataContext is Warehouse data)
+            {
+                foreach (Warehouse w in warehouses.WarehousesList)
+                {
+                    if (w.Id == data.Id)
+                    {
+                        DataContext = w;
+                        break;
+                    }
+                }
+            }
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)

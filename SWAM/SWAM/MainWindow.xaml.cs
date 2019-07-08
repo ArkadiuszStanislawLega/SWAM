@@ -133,8 +133,8 @@ namespace SWAM
             HeightOfAppliaction = this.ActualHeight;
             WidthOfApplication = this.ActualWidth;
 
-            if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
-            else this.ScrollOfContent.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 10;
+           // if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
+            //else this.ScrollOfContent.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 10;
         }
         #endregion  
         #region Window Functions Buttons
@@ -255,8 +255,7 @@ namespace SWAM
 
             if (parentObject == null) return null;
 
-            T parent = parentObject as T;
-            if (parent != null)
+            if (parentObject is T parent)
                 return parent;
             else
                 return FindParent<T>(parentObject);
@@ -297,7 +296,7 @@ namespace SWAM
         private void SWAM_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO: Verifiy this 115.
-            this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
+            //this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
             EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
         }
         #endregion

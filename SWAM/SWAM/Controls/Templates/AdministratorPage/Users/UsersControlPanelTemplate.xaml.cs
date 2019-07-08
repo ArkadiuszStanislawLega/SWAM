@@ -46,9 +46,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         #region UsersControlPanelTemplate_SizeChanged
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //TODO: Veryfy this 64.
-            if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 64;
-            else this.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 64;
+            //TODO: Veryfy this static values   
+            if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 45;
+            else this.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 60;
 
             ChangeSizeOfScrollInProfile();
         }

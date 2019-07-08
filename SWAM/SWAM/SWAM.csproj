@@ -675,6 +675,5 @@
   <ItemGroup>
     <Content Include="ReleaseNotes.css" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

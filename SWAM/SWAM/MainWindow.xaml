@@ -24,7 +24,7 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-    <Grid Name="EverythingInWindow">
+    <Grid Name="EverythingInWindow"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <!--#region Rows definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -100,48 +100,47 @@
                 <StackPanel></StackPanel>
             </DockPanel>
         </StackPanel>
+        <!--#endregion-->
         <!--#region NavigationBar -->
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar"  Height="30"
                     VerticalAlignment="Bottom"
                     Margin="5 0 0 0"
                     HorizontalAlignment="Left" Grid.Row="2">
-            
+
             <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
                                           PageToOpen="AdministratorPage" 
                                           x:Name="SwitchToAdministratorPage"
                                           Click="NaviagionBar_Click"/>
-            
+
             <nav:NavigationButtonTemplate Content="Strona Logowania" 
                                           PageToOpen="LoginPage" 
                                           x:Name="SwitchToLoginPage"
                                           Click="NaviagionBar_Click" />
-            
+
             <nav:NavigationButtonTemplate Content="Produkty" 
                                           PageToOpen="ManageItemsPage"
                                           x:Name="SwitchToManageItemPage"
                                           Click="NaviagionBar_Click" />
-            
+
             <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
                                           PageToOpen="ManageMagazinePage"
                                           x:Name="SwitchToManageMagazinePage"
                                           Click="NaviagionBar_Click" />
-            
+
             <nav:NavigationButtonTemplate Content="Zamówienia" 
                                           PageToOpen="ManageOrdersPage" 
                                           x:Name="SwitchToManageOrderPage" 
                                           Click="NaviagionBar_Click" />
         </StackPanel>
         <!--#endregion-->
-        <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <ScrollViewer Margin="5 0 5 5" Grid.Row="3" 
-                      HorizontalScrollBarVisibility="Auto" 
-                      Name="ScrollOfContent">
-            <StackPanel Name="ContentOfWindow" Grid.Row="3" VerticalAlignment="Top" >
 
-            </StackPanel>
-        </ScrollViewer>
+        <Grid Name="ContentOfWindow" Grid.Row="3"   
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch">
+            </Grid>
+
         <!--#endregion-->
         <!--#region Information-->
         <StackPanel Name="Information"  Grid.Row="4"  Margin="5 0 0 10"

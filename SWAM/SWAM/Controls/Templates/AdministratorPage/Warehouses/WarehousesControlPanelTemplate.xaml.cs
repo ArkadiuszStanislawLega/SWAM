@@ -47,8 +47,8 @@ namespace SWAM.Templates.AdministratorPage
             else this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
 
             //TODO: Veryfy this 64.
-            if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
-            else this.Height = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
+            //if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
+            //else this.Height = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 64;
         }
         #endregion
 

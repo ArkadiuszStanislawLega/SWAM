@@ -402,6 +402,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.dll
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.xml
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\EntityFramework.SqlServer.xml
 G:\GitRepo\SWAM\SWAM\SWAM\bin\Debug\FontAwesome.WPF.xml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Colors.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Styles\Styles.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\ErrorPage.g.cs

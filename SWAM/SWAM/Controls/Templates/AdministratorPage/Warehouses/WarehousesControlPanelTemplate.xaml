@@ -8,6 +8,8 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              mc:Ignorable="d" 
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
              Loaded="WarehousesControlPanelTemplate_Loaded"
              SizeChanged="WarehousesList_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -58,15 +60,10 @@
         <!--#endregion-->
     </class:BasicUserControl.Resources>
     <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
-        <Grid >
+        <DockPanel              VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch">
             <!--#region Rows&Column Definitions-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+
             <!--#endregion-->
             <!--#region Left section-->
             <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
@@ -164,6 +161,6 @@
                 <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse"/>
             </StackPanel>
             <!--#endregion-->
-        </Grid>
+        </DockPanel>
     </Border>
 </class:BasicUserControl>

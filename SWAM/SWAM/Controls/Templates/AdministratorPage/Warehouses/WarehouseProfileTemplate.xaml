@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
@@ -13,6 +15,13 @@
         <mod:Warehouse/>
     </class:BasicUserControl.DataContext>
     <class:BasicUserControl.Resources>
+        <ObjectDataProvider x:Key="UserType"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:UserType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
         <!--#region ShowSaveChangesStory-->
         <Storyboard x:Key="ShowSaveChangesStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Confirm"
@@ -43,6 +52,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
         <TextBlock Name="WarehouseName"
@@ -50,7 +60,7 @@
                 Grid.Row="0"
                 Text="{Binding Name}" 
                 Style="{StaticResource Title}"/>
-        <!--#region MainContent-->
+        <!--#region Informations-->
         <Grid Grid.Row="1" HorizontalAlignment="Center" >
             <!--#region Column definitions-->
             <Grid.ColumnDefinitions>
@@ -64,28 +74,35 @@
                                   Grid.Column="0"/>
             <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
                 Grid.Column="1"/>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Nazwa użytkownika" Margin="2"/>
-                    <TextBlock Text="Rodzaj uprawnienia" Margin="2"/>
-                </StackPanel>
-                <ScrollViewer Grid.Row="1">
-                    <ItemsControl Name="UserList" ItemsSource="{Binding Accesses}" >
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <local:UserListItemInWarehouseProfile/>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </Grid>
         </Grid>
+        <!--#endregion-->
+        <Border BorderThickness="1" Grid.Row="2" BorderBrush="{StaticResource EnabledBrash}"
+                     HorizontalAlignment="Center">
+            <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
+                          Width="708"
+                      HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"  
+                          VerticalScrollBarVisibility="Auto" 
+                          HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
+                    <DataGridComboBoxColumn Header="Uprawnienia" 
+                                                SelectedItemBinding="{Binding TypeOfAccess}"
+                                                ItemsSource="{Binding Source={StaticResource UserType}}"/>
+                    <DataGridTextColumn Header="Administrator"  Binding="{Binding Administrator.Name}"/>
+                    <DataGridTextColumn Header="Nazwa Magazynu"  Binding="{Binding Warehouse.Name}"/>
+                    <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
+                    <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
+                </DataGrid.Columns>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:UserListItemInWarehouseProfile/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </DataGrid>
+        </Border>
         <!--#endregion-->
         <!--#region Buttons-->
         <StackPanel VerticalAlignment="Top"

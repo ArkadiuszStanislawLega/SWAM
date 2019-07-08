@@ -45,11 +45,13 @@ namespace SWAM.Models.AdministratorPage
                     .Include(u => u.Accesses)
                     .ToList();
 
+                //TODO: Make this more pro!!
                 foreach(Warehouse w  in dbWarehouses)
                 {
                     foreach(AccessUsersToWarehouses a in w.Accesses)
                     {
-                        a.User = User.GetUser(a.Id);
+                        a.User = User.GetUser(a.UserId);
+                        a.Administrator = User.GetUser(a.AdministratorId);
                     }
                 }
             };
