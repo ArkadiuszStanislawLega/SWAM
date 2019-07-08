@@ -96,7 +96,7 @@
             <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
         </Border.Background>
         <Grid>
-            <StackPanel Name="Content">
+            <StackPanel Name="MainContent">
                 <!--#region Type of permission-->
                 <Grid>
                     <!--#region Columns definitions-->

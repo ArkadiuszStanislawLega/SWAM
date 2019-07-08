@@ -12,7 +12,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Name="Name" Text="{Binding User.Name}" Grid.Column="0"/>
+        <TextBlock Name="UserName" Text="{Binding User.Name}" Grid.Column="0"/>
         <TextBlock Name ="Permissions"
                    Text="{Binding User.Permissions}" Grid.Column="2"/>
     </Grid>

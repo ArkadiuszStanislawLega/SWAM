@@ -12,7 +12,7 @@
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Grid Name="Content" >
+        <Grid Name="MainContent" >
             <!--#region RowDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

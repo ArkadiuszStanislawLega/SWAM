@@ -62,7 +62,7 @@
         </Storyboard>
         <!--#endregion-->
     </local:BasicUserControl.Resources>
-    <Grid Name="Content">
+    <Grid Name="MainContent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>

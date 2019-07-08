@@ -61,32 +61,33 @@
                 Text="{Binding Name}" 
                 Style="{StaticResource Title}"/>
         <!--#region Informations-->
-        <Grid Grid.Row="1" HorizontalAlignment="Center" >
-            <!--#region Column definitions-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <!--#endregion-->
-            <temp:AddressTemplate x:Name="Address"
+
+            
+            <Grid Grid.Row="1" HorizontalAlignment="Center" >
+                <!--#region Column definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+                <temp:AddressTemplate x:Name="Address"
                                   DataContext="{Binding Address}" 
                                   Grid.Column="0"/>
-            <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
+                <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
                 Grid.Column="1"/>
-  
-        </Grid>
 
+            </Grid>
         <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
             <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
-                          Width="708"
+                      Width="708"
                       HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          AutoGenerateColumns="False" 
-                          IsReadOnly="False"  
-                          VerticalScrollBarVisibility="Auto" 
-                          HorizontalScrollBarVisibility="Auto">
+                      VerticalAlignment="Center"
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True"  
+                      VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
                     <DataGridComboBoxColumn Header="Uprawnienia" 

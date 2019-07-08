@@ -132,7 +132,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void EditNameOfUserButton_Click(object sender, RoutedEventArgs e)=> this._name = this.Name.Text;
+        private void EditNameOfUserButton_Click(object sender, RoutedEventArgs e)=> this._name = this.UserName.Text;
         #endregion
     }
 }

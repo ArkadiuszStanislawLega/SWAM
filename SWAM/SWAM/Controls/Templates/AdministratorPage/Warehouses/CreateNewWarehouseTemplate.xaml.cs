@@ -44,19 +44,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 a.ApartmentNumber == newAddress.ApartmentNumber); //Take address with database address Id
 
 
-                if (long.TryParse(Height.Text, out long isHeight))
+                if (long.TryParse(pHeight.Text, out long isHeight))
                 {
-                    if (long.TryParse(Width.Text, out long isWidth))
+                    if (long.TryParse(pWidth.Text, out long isWidth))
                     {
-                        if (long.TryParse(SurfaceAreaNetto.Text, out long isSurfaceAreaNetto))
+                        if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto))
                         {
-                            if (long.TryParse(SurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton))
+                            if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton))
                             {
-                                if (long.TryParse(AcceptableWeight.Text, out long isAcceptableWeight))
+                                if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight))
                                 {
                                     context.Warehouses.Add(new Models.Warehouse()
                                     {
-                                        Name = Name.Text,
+                                        Name = WarehouseName.Text,
                                         AddressId = dbAddress.Id,
                                         Height = isHeight,
                                         Width = isWidth,
@@ -82,7 +82,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 template.RefreshList();
 
             //Restart all controls
-            this.Name.Text = "";
+            this.WarehouseName.Text = "";
             this.Address.ClearEditValues();
         }
 

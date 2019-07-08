@@ -39,7 +39,7 @@
                 <StackPanel Orientation="Vertical" Margin="0 10 0 0">
                     <TextBlock Text="Nazwa magazynu"  Margin="15 0 0 0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBox Name="Name" Width="246" TextAlignment="Center"/>
+                    <TextBox Name="WarehouseName" Width="246" TextAlignment="Center"/>
                 </StackPanel>
                 <temp:AddressTemplate x:Name="Address" Loaded="Address_Loaded"/>
             </StackPanel>
@@ -61,7 +61,7 @@
                                Grid.Column="2"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
-                <TextBox Name="Height" 
+                <TextBox Name="pHeight" 
                          Width="246" 
                          TextAlignment="Right"
                          Text="0"/>
@@ -81,7 +81,7 @@
                                HorizontalAlignment="Right"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
-                <TextBox Name="Width"  
+                <TextBox Name="pWidth"  
                          TextAlignment="Right"
                          Text="0"/>
                 <!--#endregion-->
@@ -118,7 +118,7 @@
                          <Run></Run>
                     </TextBlock>
                 </Grid>
-                <TextBox Name="SurfaceAreaNetto" 
+                <TextBox Name="pSurfaceAreaNetto" 
                          TextAlignment="Right"
                          Text="0"/>
                 <!--#endregion-->
@@ -155,7 +155,7 @@
                               <Run></Run>
                         </TextBlock>
                 </Grid>
-                <TextBox Name="SurfaceAreaBrutton" TextAlignment="Right" Text="0"/>
+                <TextBox Name="pSurfaceAreaBrutton" TextAlignment="Right" Text="0"/>
                 <!--#endregion-->
                 <!--#region AcceptableWeight-->
                 <Grid Margin="5">
@@ -174,7 +174,7 @@
                                Grid.Column="2"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
-                <TextBox Name="AcceptableWeight" 
+                <TextBox Name="pAcceptableWeight" 
                          TextAlignment="Right"
                          Text="0"/>
                 <!--#endregion-->

@@ -59,7 +59,7 @@
                                Style="{StaticResource ProfileProperties}"/>
         </Grid>
         <!--#endregion-->
-        <TextBlock Name="Height" Text="{Binding Height}" 
+        <TextBlock Name="pHeight" Text="{Binding Height}" 
                    HorizontalAlignment="Right"
                    Margin="0 0 5 0"/>
         <TextBox Name="EditHeight" Grid.Row="1"
@@ -79,7 +79,7 @@
                                Style="{StaticResource ProfileProperties}"/>
         </Grid>
         <!--#endregion-->
-        <TextBlock Name="Width"  HorizontalAlignment="Right"
+        <TextBlock Name="pWidth"  HorizontalAlignment="Right"
                    Margin="0 0 5 0"
                    Text="{Binding Width}" 
                    Opacity="{Binding Opacity, ElementName=Height}"
@@ -120,7 +120,7 @@
             </TextBlock>
         </Grid>
         <!--#endregion-->
-        <TextBlock Name="SurfaceAreaNetto" HorizontalAlignment="Right"
+        <TextBlock Name="pSurfaceAreaNetto" HorizontalAlignment="Right"
                    Margin="0 0 5 0"
                    Text="{Binding SurfaceAreaNetto}"
                    Opacity="{Binding Opacity, ElementName=Height}"
@@ -160,7 +160,7 @@
             </TextBlock>
         </Grid>
         <!--#endregion-->
-        <TextBlock Name="SurfaceAreaBrutton"  HorizontalAlignment="Right"
+        <TextBlock Name="pSurfaceAreaBrutton"  HorizontalAlignment="Right"
                    Margin="0 0 5 0"
                    Text="{Binding SurfaceAreaBrutton}"
                    Opacity="{Binding Opacity, ElementName=Height}"
@@ -184,7 +184,7 @@
                                Style="{StaticResource ProfileProperties}"/>
         </Grid>
         <!--#endregion-->
-        <TextBlock Name="AcceptableWeight" HorizontalAlignment="Right"
+        <TextBlock Name="pAcceptableWeight" HorizontalAlignment="Right"
                    Margin="0 0 5 0"
                    Text="{Binding AcceptableWeight}"
                    Opacity="{Binding Opacity, ElementName=Height}"
