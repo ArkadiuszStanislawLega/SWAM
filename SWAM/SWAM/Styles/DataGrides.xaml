@@ -3,8 +3,10 @@
                     xmlns:local="clr-namespace:SWAM">
 
 
+    <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter" />
+
     <!--Style and template for the button in the upper left corner of the DataGrid.-->
-    <Style TargetType="{x:Type Button}"  x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}">
+    <Style TargetType="{x:Type Button}" x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -15,54 +17,42 @@
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DarkGraphite}" />
+                                                Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"  Value="{StaticResource LightBlue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Graphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"  Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"  Value="{StaticResource Gray}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                 Storyboard.TargetName="Arrow">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                            Value="{x:Static Visibility.Collapsed}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Arrow">
+                                            <DiscreteObjectKeyFrame KeyTime="0"  Value="{x:Static Visibility.Collapsed}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="Border"
-                     SnapsToDevicePixels="True">
+                        <Rectangle x:Name="Border"  SnapsToDevicePixels="True">
                             <Rectangle.Stroke>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                   StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource BorderMediumColor}" Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="Transparent"/>
                             </Rectangle.Stroke>
                             <Rectangle.Fill>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                   StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource ControlLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="Transparent"/>
                             </Rectangle.Fill>
                         </Rectangle>
                         <Polygon x:Name="Arrow"
-                   HorizontalAlignment="Right"
-                   Margin="8,8,3,3"
-                   Opacity="0.15"
-                   Points="0,10 10,10 10,0"
-                   Stretch="Uniform"
-                   VerticalAlignment="Bottom">
+                                   HorizontalAlignment="Right"
+                                   Margin="8,8,3,3"
+                                   Opacity="0.15"
+                                   Points="0,10 10,10 10,0"
+                                   Stretch="Uniform"
+                                   VerticalAlignment="Bottom">
                             <Polygon.Fill>
                                 <SolidColorBrush Color="{DynamicResource GlyphColor}" />
                             </Polygon.Fill>
@@ -73,23 +63,23 @@
         </Setter>
     </Style>
 
-
     <!--Style and template for the DataGrid.-->
     <Style TargetType="{x:Type DataGrid}">
-        <Setter Property="Foreground"  Value="{StaticResource FontsBrash}" />
+        <Setter Property="Foreground" >
+            <Setter.Value>
+                <SolidColorBrush Color="{StaticResource WhiteCream}" Opacity="0.6" />
+            </Setter.Value>
+            </Setter>
         <Setter Property="BorderBrush">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0" />
-                    <GradientStop Color="{DynamicResource BorderDarkColor}" Offset="1" />
-                </LinearGradientBrush>
+                <SolidColorBrush Color="{StaticResource Gray}" Opacity="0.3"/>
             </Setter.Value>
         </Setter>
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="RowDetailsVisibilityMode"  Value="VisibleWhenSelected" />
-        <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
-        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
-        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="BorderThickness"  Value="1" />
+        <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+        <Setter Property="ScrollViewer.CanContentScroll"  Value="true" />
+        <Setter Property="ScrollViewer.PanningMode"  Value="Both" />
+        <Setter Property="Stylus.IsFlicksEnabled"  Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGrid}">
@@ -97,18 +87,16 @@
                             SnapsToDevicePixels="True"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            Padding="{TemplateBinding Padding}">   
-                        <!--COLOR OF BACKGROUND DATAGRID-->
+                            Padding="{TemplateBinding Padding}">
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource DarkGraphite}" />
+                            <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
                         </Border.Background>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
-                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource DarkGraphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource ControlLightColor}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -116,8 +104,8 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <ScrollViewer x:Name="DG_ScrollViewer"
-                                        Focusable="false"
-                                        Background="Black">     
+                                    Focusable="false"
+                                    Background="Black">
                             <ScrollViewer.Template>
                                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                                     <Grid>
@@ -133,43 +121,41 @@
                                         </Grid.RowDefinitions>
 
                                         <Button Focusable="false"
-                                                  Command="{x:Static DataGrid.SelectAllCommand}"
-                                                  Style="{DynamicResource {ComponentResourceKey 
-                                                          ResourceId=DataGridSelectAllButtonStyle, 
-                                                          TypeInTargetAssembly={x:Type DataGrid}}}"
-                                                  Visibility="{Binding HeadersVisibility, 
+                                              Command="{x:Static DataGrid.SelectAllCommand}"
+                                              Style="{DynamicResource {ComponentResourceKey 
+                                                      ResourceId=DataGridSelectAllButtonStyle, 
+                                                      TypeInTargetAssembly={x:Type DataGrid}}}"
+                                              Visibility="{Binding HeadersVisibility, 
                                                               ConverterParameter={x:Static DataGridHeadersVisibility.All}, 
                                                               Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
                                                               RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                                  Width="{Binding CellsPanelHorizontalOffset, 
-                                                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                              Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
 
                                         <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
-                                                  Grid.Column="1"
-                                                  Visibility="{Binding HeadersVisibility, 
-                                                  ConverterParameter={x:Static DataGridHeadersVisibility.Column}, 
-                                                  Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
-                                                  RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                                                      Grid.Column="1"
+                                                                      Visibility="{Binding HeadersVisibility, 
+                                                                                          ConverterParameter={x:Static DataGridHeadersVisibility.Column}, 
+                                                                                          Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
+                                                                                          RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
 
                                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
-                                          Grid.ColumnSpan="2"
-                                          Grid.Row="1"
-                                          CanContentScroll="{TemplateBinding CanContentScroll}" />
+                                                                  Grid.ColumnSpan="2"
+                                                                  Grid.Row="1"
+                                                                  CanContentScroll="{TemplateBinding CanContentScroll}" />
 
                                         <ScrollBar x:Name="PART_VerticalScrollBar"
-                                                     Grid.Column="2"
-                                                     Grid.Row="1"
-                                                     Orientation="Vertical"
-                                                     ViewportSize="{TemplateBinding ViewportHeight}"
-                                                     Maximum="{TemplateBinding ScrollableHeight}"
-                                                     Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                                                     Value="{Binding VerticalOffset, Mode=OneWay, 
-                                                    RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                 Grid.Column="2"
+                                                 Grid.Row="1"
+                                                 Orientation="Vertical"
+                                                 ViewportSize="{TemplateBinding ViewportHeight}"
+                                                 Maximum="{TemplateBinding ScrollableHeight}"
+                                                 Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                                 Value="{Binding VerticalOffset, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
 
                                         <Grid Grid.Column="1" Grid.Row="2">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, 
-                                                                         RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                                <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset,  RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <ScrollBar x:Name="PART_HorizontalScrollBar"
@@ -179,7 +165,7 @@
                                                        Maximum="{TemplateBinding ScrollableWidth}"
                                                        Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
                                                        Value="{Binding HorizontalOffset, Mode=OneWay, 
-                                                        RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                RelativeSource={RelativeSource TemplatedParent}}"/>
                                         </Grid>
                                     </Grid>
                                 </ControlTemplate>
@@ -191,10 +177,8 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="IsGrouping"
-             Value="true">
-                <Setter Property="ScrollViewer.CanContentScroll"
-              Value="false" />
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -207,7 +191,7 @@
                     <Border x:Name="border"
                             BorderBrush="Transparent"
                             BorderThickness="1"
-                            Background="Transparent"
+                            Background="{StaticResource GraphiteBrash}"
                             SnapsToDevicePixels="True">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
@@ -215,12 +199,11 @@
                                 <VisualState x:Name="Focused" />
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="CurrentStates">
-                                <VisualState x:Name="Regular" />
+                                <VisualState x:Name="Regular"/>
                                 <VisualState x:Name="Current">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
-                                                Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Graphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -233,8 +216,8 @@
         </Setter>
     </Style>
 
-     <!--Style and template for the DataGridRow.-->
-     <Style TargetType="{x:Type DataGridRow}">
+    <!--Style and template for the DataGridRow.-->
+    <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background">
             <Setter.Value>
                 <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
@@ -245,7 +228,10 @@
         <Setter Property="ValidationErrorTemplate">
             <Setter.Value>
                 <ControlTemplate>
-                    <TextBlock Foreground="Transparent" Margin="2,0,0,0" Text="!" VerticalAlignment="Center" /><!-- Validation of error we dont't need this for now.-->
+                    <TextBlock Foreground="Red"
+                               Margin="2,0,0,0"
+                               Text="!"
+                               VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -253,15 +239,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridRow}">
                     <Border x:Name="DGR_Border"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="True">
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
                         <Border.Background>
-                            <LinearGradientBrush EndPoint="0.5,1"
-                                 StartPoint="0.5,0">
-                                <GradientStop Color="Transparent" Offset="0" />
-                                <GradientStop Color="{DynamicResource ControlLightColor}" Offset="1" />
-                            </LinearGradientBrush>
+                            <SolidColorBrush Color="Transparent" />
                         </Border.Background>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -270,12 +252,8 @@
                                 <!--Provide a different appearance for every other row.-->
                                 <VisualState x:Name="Normal_AlternatingRow">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -287,91 +265,53 @@
                                       and Unfocused_Editing are identical.-->
                                 <VisualState x:Name="Normal_Selected">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Unfocused_Selected">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="Normal_Editing">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"   Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
-
                                 <VisualState x:Name="MouseOver_Editing">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="MouseOver_Unfocused_Editing">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="Unfocused_Editing">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource TopGray}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource Gray}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -382,34 +322,16 @@
               MouseOver_Editing and MouseOver_Unfocused_Editing are identical.-->
                                 <VisualState x:Name="MouseOver_Selected">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0"  Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="MouseOver_Unfocused_Selected">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[0].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="DGR_Border" Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -432,16 +354,16 @@
                                       Grid.Row="1"
                                       Visibility="{TemplateBinding DetailsVisibility}"
                                       SelectiveScrollingGrid.SelectiveScrollingOrientation=
-                "{Binding AreRowDetailsFrozen, 
-                ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical},
-                Converter={x:Static DataGrid.RowDetailsScrollingConverter}, 
-                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                    "{Binding AreRowDetailsFrozen, 
+                                    ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical},
+                                    Converter={x:Static DataGrid.RowDetailsScrollingConverter}, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                             <DataGridRowHeader Grid.RowSpan="2"
-                               SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
-                               Visibility="{Binding HeadersVisibility, 
-                ConverterParameter={x:Static DataGridHeadersVisibility.Row}, 
-                Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
-                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                               SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                               Visibility="{Binding HeadersVisibility, 
+                                ConverterParameter={x:Static DataGridHeadersVisibility.Row}, 
+                                Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
+                                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
                         </SelectiveScrollingGrid>
                     </Border>
                 </ControlTemplate>
@@ -457,7 +379,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" />
+                    <Border Background="{TemplateBinding Background}"  Padding="{TemplateBinding Padding}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -481,11 +403,8 @@
                                 <VisualState x:Name="Normal_EditingRow" />
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="rowHeaderBorder"
-                                                Storyboard.TargetProperty="(Panel.Background).
-                      (GradientBrush.GradientStops)[1].(GradientStop.Color)">
-                                            <EasingColorKeyFrame KeyTime="0"
-                                         Value="{StaticResource DarkGraphite}" />
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="rowHeaderBorder"  Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0" Value="{StaticResource Blue}" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -503,37 +422,26 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="rowHeaderBorder"
-                                Width="10"
-                                BorderThickness="1">
+                              Width="10"
+                              BorderThickness="1">
                             <Border.BorderBrush>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                   StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource BorderDarkColor}" Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.4"/>
                             </Border.BorderBrush>
                             <Border.Background>
-                                <LinearGradientBrush EndPoint="0.5,1"  StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource ControlLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource ControlMediumColor}"
-                              Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="Transparent"/>
                             </Border.Background>
                             <StackPanel Orientation="Horizontal">
-                                <ContentPresenter VerticalAlignment="Center"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <ContentPresenter VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                 <Control SnapsToDevicePixels="false"
-                       Template="{Binding ValidationErrorTemplate, 
-                  RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                                           Template="{Binding ValidationErrorTemplate, 
+                                      RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"
+                                           Visibility="{Binding (Validation.HasError), 
+                                      Converter={StaticResource bool2VisibilityConverter}, 
+                                      RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
                             </StackPanel>
                         </Border>
-
-                        <Thumb x:Name="PART_TopHeaderGripper"
-                 Style="{StaticResource RowHeaderGripperStyle}"
-                 VerticalAlignment="Top" />
-                        <Thumb x:Name="PART_BottomHeaderGripper"
-                 Style="{StaticResource RowHeaderGripperStyle}"
-                 VerticalAlignment="Bottom" />
+                        <Thumb x:Name="PART_TopHeaderGripper" Style="{StaticResource RowHeaderGripperStyle}"  VerticalAlignment="Top" />
+                        <Thumb x:Name="PART_BottomHeaderGripper" Style="{StaticResource RowHeaderGripperStyle}" VerticalAlignment="Bottom" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -541,8 +449,9 @@
     </Style>
 
     <!--Style and template for the resize control on the DataGridColumnHeader.-->
-    <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
-        <Setter Property="Width"  Value="8" />
+    <Style x:Key="ColumnHeaderGripperStyle"
+       TargetType="{x:Type Thumb}">
+        <Setter Property="Width" Value="8" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="SizeWE" />
         <Setter Property="Template">
@@ -561,25 +470,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
-                        <Border x:Name="columnHeaderBorder" BorderThickness="1" Padding="3,0,3,0">
+                        <Border x:Name="columnHeaderBorder" BorderThickness="1 0 0 1" Padding="3,0,3,0">
                             <Border.BorderBrush>
-                                <LinearGradientBrush EndPoint="0.5,1"
-                                   StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource BorderDarkColor}" Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.4"/>
                             </Border.BorderBrush>
                             <Border.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="{DynamicResource ControlLightColor}" Offset="0" />
-                                    <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="1" />
-                                </LinearGradientBrush>
+                                <SolidColorBrush Color="Transparent" />
                             </Border.Background>
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         </Border>
-                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
+                        <Thumb x:Name="PART_LeftHeaderGripper"  HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
                         <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}" />
                     </Grid>
                 </ControlTemplate>
@@ -587,10 +489,7 @@
         </Setter>
         <Setter Property="Background">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="{DynamicResource ControlLightColor}" Offset="0" />
-                    <GradientStop Color="{DynamicResource ControlMediumColor}" Offset="1" />
-                </LinearGradientBrush>
+                <SolidColorBrush Color="Transparent"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -608,5 +507,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+        
 </ResourceDictionary>

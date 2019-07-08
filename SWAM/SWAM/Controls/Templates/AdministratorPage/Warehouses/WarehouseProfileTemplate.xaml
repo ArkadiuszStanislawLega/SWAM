@@ -74,16 +74,17 @@
                                   Grid.Column="0"/>
             <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
                 Grid.Column="1"/>
+  
         </Grid>
-        <!--#endregion-->
-        <Border BorderThickness="1" Grid.Row="2" BorderBrush="{StaticResource EnabledBrash}"
+
+        <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
             <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
                           Width="708"
                       HorizontalAlignment="Center"
                           VerticalAlignment="Center"
                           AutoGenerateColumns="False" 
-                          IsReadOnly="True"  
+                          IsReadOnly="False"  
                           VerticalScrollBarVisibility="Auto" 
                           HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
@@ -103,6 +104,8 @@
                 </ItemsControl.ItemTemplate>
             </DataGrid>
         </Border>
+        <!--#endregion-->
+
         <!--#endregion-->
         <!--#region Buttons-->
         <StackPanel VerticalAlignment="Top"
