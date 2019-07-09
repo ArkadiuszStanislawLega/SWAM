@@ -133,7 +133,7 @@ namespace SWAM
             HeightOfAppliaction = this.ActualHeight;
             WidthOfApplication = this.ActualWidth;
 
-           // if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
+            //if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
             //else this.ScrollOfContent.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 10;
         }
         #endregion  
@@ -287,6 +287,7 @@ namespace SWAM
                 entry.Value.Close();
         }
         #endregion
+
         #region SWAM_Loaded
         /// <summary>
         /// Action after application is loaded.

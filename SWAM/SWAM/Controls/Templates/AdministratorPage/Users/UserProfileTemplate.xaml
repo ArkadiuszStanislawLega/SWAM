@@ -14,7 +14,9 @@
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
     </UserControl.Resources>
     <Grid>
-        <Grid Name="MainContent" >
+        <Grid Name="MainContent"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
             <!--#region RowDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -25,24 +27,41 @@
                Style="{StaticResource Title}"
                Text="Profil użytkownika:"/>
             <!--#region User Profile-->
-            <Grid  HorizontalAlignment="Center" 
-                   Grid.Row="1" Grid.Column="0">
-                <!--#region Column Definitions-->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--#endregion-->
-                <userTemp:BasicInformationAboutUserTemplate Grid.Column="0" />
-                <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList" Grid.Column="1"/>
-                <!--#region Right side of profile-->
-                <StackPanel HorizontalAlignment="Right" Grid.Column="2">
-                    <local:EmailEditableListTemplate/>
-                    <local:PhoneNumbersEditableListTemplate/>
-                </StackPanel>
-                <!--#endregion-->
-            </Grid>
+            <ScrollViewer  Grid.Row="1" Grid.Column="0"
+                           VerticalScrollBarVisibility="Auto"
+                           HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid>
+                        <ScrollViewer 
+                                VerticalScrollBarVisibility="Disabled"
+                               HorizontalScrollBarVisibility="Auto">
+                            <Grid  HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <!--#region Column Definitions-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!--#endregion-->
+                                <userTemp:BasicInformationAboutUserTemplate Grid.Column="0" />
+                                <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList" Grid.Column="1"/>
+                                <!--#region Right side of profile-->
+                                <StackPanel HorizontalAlignment="Right" Grid.Column="2" Margin="0 0 25 0">
+                                    <local:EmailEditableListTemplate/>
+                                    <local:PhoneNumbersEditableListTemplate/>
+                                </StackPanel>
+                                <!--#endregion-->
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                    <StackPanel HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" >
+                        <userTemp:ChangeUserExpiredDate Margin="0 0 0 1" Tag="Data wygaśnięcia konta"/>
+                        <userTemp:ChangeUserBlockDate Tag="Data blokady konta"/>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
             <!--#endregion-->
         </Grid>
         <StackPanel Grid.Column="0"
@@ -56,11 +75,6 @@
                       Converter={StaticResource accountBlockToTextConverter}}"
                     Click="BlockUser_Click"
                     Style="{StaticResource UserProfilebuttons}"/>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" >
-            <userTemp:ChangeUserExpiredDate Margin="0 0 0 1" Tag="Data wygaśnięcia konta"/>
-            <userTemp:ChangeUserBlockDate Tag="Data blokady konta"/>
         </StackPanel>
     </Grid>
 </local:BasicUserControl>

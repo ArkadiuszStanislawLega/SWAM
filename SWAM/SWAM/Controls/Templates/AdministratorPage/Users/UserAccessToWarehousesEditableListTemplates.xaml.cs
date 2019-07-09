@@ -41,9 +41,10 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         public void FitViewToFillInParent()
         {
             //Finding parent of the parent...
-            var parent = SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) as UsersControlPanelTemplate;
             //finding first parent...
-            if (parent != null && parent.RightSection != null && parent.RightSection.Children[0] != null)
+            if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate parent && 
+                parent.RightSection != null && 
+                parent.RightSection.Children[0] != null)
             {
                 var profile = parent.RightSection.Children[0] as UserProfileTemplate;
 

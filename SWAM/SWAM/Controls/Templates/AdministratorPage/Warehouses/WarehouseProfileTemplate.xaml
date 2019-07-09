@@ -10,8 +10,6 @@
              xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              MinHeight="200"
-             VerticalAlignment="Stretch"
-             HorizontalAlignment="Stretch"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <class:BasicUserControl.DataContext>
@@ -50,96 +48,96 @@
         </Storyboard>
         <!--#endregion-->
     </class:BasicUserControl.Resources>
-    <Grid>
-        <!--#region Column definitions-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
-        <TextBlock Name="WarehouseName"
+    <ScrollViewer
+        VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <!--#region Column definitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <TextBlock Name="WarehouseName"
                 HorizontalAlignment="Left"
                 Grid.Row="0"
                 Text="{Binding Name}" 
                 Style="{StaticResource Title}"/>
-        <!--#region Informations-->
-         <Grid Grid.Row="1" HorizontalAlignment="Center" >
-             <!--#region Column definitions-->
+            <!--#region Informations-->
+            <Grid Grid.Row="1" HorizontalAlignment="Center" >
+                <!--#region Column definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
-             <temp:AddressTemplate x:Name="Address"
+                <temp:AddressTemplate x:Name="Address"
                                DataContext="{Binding Address}" 
                                Grid.Column="0"/>
-             <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
+                <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
              Grid.Column="1"/>
 
-         </Grid>
-        <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
+            </Grid>
+            <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
-            <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
+                <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
                       Width="708"
-                      VerticalContentAlignment="Center"
-                      HorizontalContentAlignment="Center"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
                       AutoGenerateColumns="False" 
                       IsReadOnly="True"  
                       VerticalScrollBarVisibility="Auto" 
                       HorizontalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
-                    <DataGridComboBoxColumn Header="Uprawnienia" 
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
+                        <DataGridComboBoxColumn Header="Uprawnienia" 
                                                 SelectedItemBinding="{Binding TypeOfAccess}"
                                                 ItemsSource="{Binding Source={StaticResource UserType}}"/>
-                    <DataGridTextColumn Header="Administrator"  Binding="{Binding Administrator.Name}"/>
-                    <DataGridTextColumn Header="Nazwa Magazynu"  Binding="{Binding Warehouse.Name}"/>
-                    <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
-                    <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
-                </DataGrid.Columns>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:UserListItemInWarehouseProfile/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </DataGrid>
-        </Border>
-        <!--#endregion-->
-        <!--#endregion-->
-        <!--#region Buttons-->
-        <StackPanel VerticalAlignment="Top"
+                        <DataGridTextColumn Header="Administrator"  Binding="{Binding Administrator.Name}"/>
+                        <DataGridTextColumn Header="Nazwa Magazynu"  Binding="{Binding Warehouse.Name}"/>
+                        <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
+                        <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
+                    </DataGrid.Columns>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:UserListItemInWarehouseProfile/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </DataGrid>
+            </Border>
+            <!--#endregion-->
+            <!--#endregion-->
+            <!--#region Buttons-->
+            <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-            <Button Name="Edit"
-                Content="Edytuj"
-                Click="Edit_Click"
-                Style="{StaticResource UserProfilebuttons}">
-                <Button.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard Storyboard="{StaticResource ShowSaveChangesStory}"/>
-                    </EventTrigger>
-                </Button.Triggers>
-            </Button>
-            <Button Name="Confirm"
-                Content="Zapisz"
-                Visibility="Collapsed"
-                Click="Confirm_Click"
-                Style="{StaticResource UserProfilebuttons}">
-                <Button.Triggers>
-                    <EventTrigger RoutedEvent="Button.Click">
-                        <BeginStoryboard Storyboard="{StaticResource HideSaveChangesStory}"/>
-                    </EventTrigger>
-                </Button.Triggers>
-            </Button>
-            <Button Name="Delete"
+                <Button Name="Edit"
+                    Content="Edytuj"
+                    Click="Edit_Click"
+                    Style="{StaticResource UserProfilebuttons}">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowSaveChangesStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Name="Confirm"
+                    Content="Zapisz"
+                    Visibility="Collapsed"
+                    Click="Confirm_Click"
+                    Style="{StaticResource UserProfilebuttons}">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource HideSaveChangesStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Name="Delete"
                 Content="Usuń"
                 Click="Delete_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
-        </StackPanel>
-        <!--#endregion-->
-    </Grid>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
+    </ScrollViewer>
 </class:BasicUserControl>

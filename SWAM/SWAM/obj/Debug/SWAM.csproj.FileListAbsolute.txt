@@ -534,3 +534,9 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\UserListItemInWarehouseProfile.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehousesModelUpdate.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.FixError.resources

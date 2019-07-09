@@ -33,11 +33,9 @@
         <!--#endregion-->
         <Grid  Name="MainContent" >
             <Grid.RowDefinitions>
-                <RowDefinition />
                 <RowDefinition Height="*"/>
-                <RowDefinition />
             </Grid.RowDefinitions>
-            <temp:UsersControlPanelTemplate Grid.Row="1"/>
+            <temp:UsersControlPanelTemplate Grid.Row="0"/>
         </Grid>
     </StackPanel>
 </UserControl>

@@ -83,7 +83,9 @@
             <StackPanel>
                 <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess" Visibility="Collapsed"/>
                 <!--#region List of user accesses-->
-                <ScrollViewer Name="ListScroll">
+                <ScrollViewer Name="ListScroll" 
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Hidden">
                     <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

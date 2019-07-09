@@ -43,8 +43,8 @@ namespace SWAM.Templates.AdministratorPage
         private void WarehousesList_SizeChanged(object sender, SizeChangedEventArgs e)
         { 
             //TODO: Veryfy this 185.
-            //if (SWAM.MainWindow.IsMaximized) this.WarehousesList.MaxHeight = SystemParameters.PrimaryScreenHeight - 185;
-            //else this.WarehousesList.MaxHeight = SWAM.MainWindow.HeightOfAppliaction - 185;
+            if (SWAM.MainWindow.IsMaximized) this.WarehousesList.Height = SystemParameters.PrimaryScreenHeight - 50;
+            else this.WarehousesList.Height = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 73;
         }
         #endregion
 

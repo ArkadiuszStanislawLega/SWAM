@@ -168,8 +168,8 @@
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
                     <ScrollViewer Name="ScrollOfUserList" MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
-                           AncestorType={x:Type Grid}},
-                           Path=RowDefinitions[1].ActualHeight}" VerticalScrollBarVisibility="Auto">
+                           AncestorType={x:Type Window}},
+                           Path=ActualHeight}" VerticalScrollBarVisibility="Auto">
                         <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

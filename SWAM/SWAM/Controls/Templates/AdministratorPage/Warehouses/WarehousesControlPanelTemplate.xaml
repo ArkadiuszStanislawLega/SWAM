@@ -8,7 +8,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              mc:Ignorable="d" 
-                        VerticalContentAlignment="Top"
+             VerticalContentAlignment="Center"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Loaded="WarehousesControlPanelTemplate_Loaded"
@@ -138,9 +138,7 @@
                     <Border BorderThickness="0 0 1 1" 
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
-                    <ScrollViewer MaxHeight="{Binding RelativeSource={RelativeSource FindAncestor,
-                           AncestorType={x:Type Grid}},
-                           Path=RowDefinitions[1].ActualHeight}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ItemsControl Name="WarehousesList"  ItemsSource="{Binding WarehousesList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -156,13 +154,9 @@
             </StackPanel>
             <!--#endregion-->
             <!--#region Right section-->
-            <Grid  Name="RightSection" Margin="5" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="1"/>
-                </Grid.RowDefinitions>
-                <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" Grid.Row="1"/>
+            <Grid  Name="RightSection" Margin="5" Grid.Column="1" 
+                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" />
             </Grid>
             <!--#endregion-->
         </DockPanel>

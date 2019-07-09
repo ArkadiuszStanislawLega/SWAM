@@ -22,13 +22,12 @@
     </UserControl.Resources>
     <!--#endregion-->
     <Grid>
-        <Grid>
+        <Grid HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
             <!--#region RowsDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <!--#endregion-->
             <!-- Title -->
@@ -37,14 +36,11 @@
                 Text="Utwórz użytkownika" 
                 Style="{StaticResource Title}"/>
 
-            <Grid HorizontalAlignment="Center" Grid.Row="1">
+            <Grid HorizontalAlignment="Center" 
+                  VerticalAlignment="Center"
+                  
+                  Grid.Row="1">
                 <!--#region Columns&Rows definitions-->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
@@ -92,8 +88,6 @@
                 </StackPanel>
                 <!--#endregion-->
             </Grid>
- 
-   
         </Grid>
         <Button Name="Comfirm"
                 Content="Utwórz" Click="Comfirm_Click"
