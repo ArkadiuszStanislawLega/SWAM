@@ -54,7 +54,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
-                    <TextBlock Text="Wysokość magazynu"  Grid.Column="0"
+                    <TextBlock Text="Wysokość"  Grid.Column="0"
                            Style="{StaticResource ProfileProperties}"/>
                     <TextBlock Text="mm"  
                                Grid.Column="2"

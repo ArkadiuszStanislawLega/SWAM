@@ -14,6 +14,7 @@ namespace SWAM
         public const string MESSAGE_WINDOW_ERROR = "Wystąpił problem z oknem zapytania.";
         public const string DATABASE_ERROR = "Wystąpił problem z bazą danych.";
         public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
+
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";
@@ -33,11 +34,16 @@ namespace SWAM
         public const string DURIGN_DELETE_EMAIL_ERROR = "Wystąpił błąd podczas usuwania adresu email.";
         public const string DURING_EDIT_EMAIL_ERROR = "Wystąpił błąd podczas edytowania adresu email.";
         #endregion
-        #region Phones
+        #region Phone
         public const string REFRESH_PHONES_LIST_ERROR = "Wystąpił błąd podczas wczytywania listy telefonów użytkownika.";
         public const string DURING_DELETE_PHONE_ERROR = "Wystąpił błąd podczas usuwania numeru telefonu.";
         public const string DURING_ADD_PHONE_ERROR = "Wystąpił błąd podczas dodawania nowego numeru telefonu.";
         public const string DURING_EDIT_PHONE_ERROR = "Wystąpił błąd podczas edytowania numeru telefonu.";
+        #endregion
+        #region Warehouse
+        public const string REFRESH_WAREHOUSES_LIST_ERROR = "W czasie odświerzania listy magazynów.";
+        public const string DURGIN_DELETE_WAREHOUSE_ERROR = "Wystąpił błąd podczas usuwania magazynu.";
+        public const string DURGIN_ADD_WAREHOUSE_ERROR = "Wystąpił błąd podczas dodawania nowego magazynu.";
         #endregion
     }
 }

@@ -41,10 +41,21 @@ namespace SWAM.Templates.AdministratorPage
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void WarehousesList_SizeChanged(object sender, SizeChangedEventArgs e)
-        { 
-            //TODO: Veryfy this 185.
-            if (SWAM.MainWindow.IsMaximized) this.WarehousesList.Height = SystemParameters.PrimaryScreenHeight - 50;
-            else this.WarehousesList.Height = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight - 73;
+        {
+            double margins;
+            //TODO: Veryfy this 155 and 65.
+            if (SWAM.MainWindow.IsMaximized)
+            {
+                margins = SystemParameters.PrimaryScreenHeight - 155;
+                this.WarehouseListScroll.Height = margins;
+                this.Height = margins;
+            }
+            else
+            {
+                margins = SWAM.MainWindow.HeightOfAppliaction - SWAM.MainWindow.EverythingExceptTheMainContentHeight -  65;
+                this.WarehouseListScroll.Height =  margins;
+                this.Height = margins;
+            }
         }
         #endregion
 

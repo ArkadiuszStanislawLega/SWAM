@@ -37,6 +37,33 @@ namespace SWAM.Models
         public int AddressId { get => _addressId; set => _addressId = value; }
         public IList<AccessUsersToWarehouses> Accesses { get => _accesses; set => _accesses = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
+        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+
+        private static ApplicationDbContext _context
+        {
+            //TODO: Make all exceptions
+            get
+            {
+                return DB_CONTEXT;
+            }
+        }
+        #region Remove
+        /// <summary>
+        /// Remove user from database.
+        /// </summary>
+        public bool Remove()
+        {
+            //TODO: Make block try-catch
+            var warehouse = _context.Warehouses.FirstOrDefault(w => w.Id == this.Id);
+            if (warehouse != null)
+            {
+                _context.Warehouses.Remove(warehouse);
+                _context.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
+        #endregion
 
 
         #region GetAllWharehousesFromDb
