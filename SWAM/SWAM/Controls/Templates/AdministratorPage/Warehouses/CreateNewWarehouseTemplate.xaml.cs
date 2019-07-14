@@ -1,19 +1,9 @@
 ﻿using SWAM.Templates.AdministratorPage;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
 {
@@ -129,18 +119,17 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         /// <param name="e">New char in text field event</param>
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
-            var value = sender as TextBox;
-
             char[] charArray;
-            Regex regex = new Regex("[^0-9]+");
 
-            if (regex.IsMatch(value.Text))
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
             {
-                var values = value.Text.ToList();
+                var values = textBox.Text.ToList();
                 values.RemoveAt(values.Count - 1);
+
                 charArray = values.ToArray();
 
-                value.Text = new string(charArray);
+                textBox.Text = new string(charArray);
                 InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
             }
             else InformationToUser("");
