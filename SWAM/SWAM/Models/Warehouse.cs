@@ -15,6 +15,7 @@ namespace SWAM.Models
         string _name;
         long _height;
         long _width;
+        long _length;
         long _surfaceAreaNetto;
         long _surfaceAreaBrutton;
         long _acceptableWeight;
@@ -30,10 +31,10 @@ namespace SWAM.Models
         public string Name { get => _name; set => _name = value; }
         public long Height { get => _height; set => _height = value; }
         public long Width { get => _width; set => _width = value; }
+        public long Length { get => _length; set => _length = value; }
         public long SurfaceAreaNetto { get => _surfaceAreaNetto; set => _surfaceAreaNetto = value; }
         public long SurfaceAreaBrutton { get => _surfaceAreaBrutton; set => _surfaceAreaBrutton = value; }
         public long AcceptableWeight { get => _acceptableWeight; set => _acceptableWeight = value; }
-
         public int AddressId { get => _addressId; set => _addressId = value; }
         public IList<AccessUsersToWarehouses> Accesses { get => _accesses; set => _accesses = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
@@ -47,6 +48,8 @@ namespace SWAM.Models
                 return DB_CONTEXT;
             }
         }
+
+
         #region Remove
         /// <summary>
         /// Remove user from database.

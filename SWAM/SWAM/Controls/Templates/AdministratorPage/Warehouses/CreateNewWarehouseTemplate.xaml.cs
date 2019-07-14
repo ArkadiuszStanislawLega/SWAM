@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,31 +61,36 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                         {
                             if (long.TryParse(pWidth.Text, out long isWidth) && isWidth > 0)
                             {
-                                if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto) && isSurfaceAreaNetto > 0)
+                                if (long.TryParse(pLength.Text, out long isLength) && isLength > 0)
                                 {
-                                    if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton) && isSurfaceAreaBrutton > 0)
+                                    if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto) && isSurfaceAreaNetto > 0)
                                     {
-                                        if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
+                                        if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton) && isSurfaceAreaBrutton > 0)
                                         {
-                                            context.Warehouses.Add(new Models.Warehouse()
+                                            if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
                                             {
-                                                Name = WarehouseName.Text,
-                                                AddressId = dbAddress.Id,
-                                                Height = isHeight,
-                                                Width = isWidth,
-                                                SurfaceAreaNetto = isSurfaceAreaNetto,
-                                                SurfaceAreaBrutton = isSurfaceAreaBrutton,
-                                                AcceptableWeight = isAcceptableWeight
-                                            });
-                                            context.SaveChanges(); //Add warehouse to database
-                                            InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
-                                            isWarehouseCreated = true;
+                                                context.Warehouses.Add(new Models.Warehouse()
+                                                {
+                                                    Name = WarehouseName.Text,
+                                                    AddressId = dbAddress.Id,
+                                                    Height = isHeight,
+                                                    Width = isWidth,
+                                                    Length = isLength,
+                                                    SurfaceAreaNetto = isSurfaceAreaNetto,
+                                                    SurfaceAreaBrutton = isSurfaceAreaBrutton,
+                                                    AcceptableWeight = isAcceptableWeight
+                                                });
+                                                context.SaveChanges(); //Add warehouse to database
+                                                InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
+                                                isWarehouseCreated = true;
+                                            }
+                                            else BadValueMessage(tbAcceptableWeight.Text);
                                         }
-                                        else BadValueMessage(tbAcceptableWeight.Text);
+                                        else BadValueMessage(tbSurfaceAreaBrutton.Text);
                                     }
-                                    else BadValueMessage(tbSurfaceAreaBrutton.Text);
+                                    else BadValueMessage(tbSurfaceAreaNetto.Text);
                                 }
-                                else BadValueMessage(tbSurfaceAreaNetto.Text);
+                                else BadValueMessage(tbLength.Text);
                             }
                             else BadValueMessage(tbWidth.Text);
                         }
@@ -114,5 +120,31 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         /// </summary>
         /// <param name="value">Property which is incorrect</param>
         private void BadValueMessage(string value) => InformationToUser($"Sprawdź wartość - {value} - jest niepoprawna.", true);
+
+        #region TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var value = sender as TextBox;
+
+            char[] charArray;
+            Regex regex = new Regex("[^0-9]+");
+
+            if (regex.IsMatch(value.Text))
+            {
+                var values = value.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+                charArray = values.ToArray();
+
+                value.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
+        }
+        #endregion
     }
 }

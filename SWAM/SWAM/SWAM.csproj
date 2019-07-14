@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201907070918593_FixError.Designer.cs">
       <DependentUpon>201907070918593_FixError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.cs" />
+    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.Designer.cs">
+      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -653,6 +657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907070918593_FixError.resx">
       <DependentUpon>201907070918593_FixError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907141735338_WarehouseAddPropertyLength.resx">
+      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

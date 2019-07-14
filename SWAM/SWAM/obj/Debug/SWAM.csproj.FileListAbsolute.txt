@@ -541,3 +541,4 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTem
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehousesModelUpdate.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.FixError.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseAddPropertyLength.resources
