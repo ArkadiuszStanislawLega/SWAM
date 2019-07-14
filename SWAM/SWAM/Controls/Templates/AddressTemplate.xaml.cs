@@ -50,15 +50,19 @@ namespace SWAM.Controls.Templates
 
         public Address GetAddress()
         {
-            return new Address()
+            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
             {
-                Country = this.EditCountry.Text,
-                PostCode = this.EditPostCode.Text,
-                City = this.EditCity.Text,
-                Street = this.EditStreet.Text,
-                HouseNumber = this.EditHouseNumber.Text,
-                ApartmentNumber = this.EditApartmentNumber.Text,
-            };
+                return new Address()
+                {
+                    Country = this.EditCountry.Text,
+                    PostCode = this.EditPostCode.Text,
+                    City = this.EditCity.Text,
+                    Street = this.EditStreet.Text,
+                    HouseNumber = this.EditHouseNumber.Text,
+                    ApartmentNumber = this.EditApartmentNumber.Text,
+                };
+            }
+            else return null;
         }
     }
 }

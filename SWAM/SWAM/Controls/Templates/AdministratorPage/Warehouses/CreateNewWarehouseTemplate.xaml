@@ -37,6 +37,7 @@
             <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" Margin="0 10 0 0">
                     <TextBlock Text="Nazwa magazynu"  Margin="15 0 0 0"
+                               Name="tbWarehouseName"
                                Style="{StaticResource ProfileProperties}"/>
                     <TextBox Name="WarehouseName" Width="246" TextAlignment="Center"/>
                 </StackPanel>
@@ -55,6 +56,7 @@
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <TextBlock Text="Wysokość"  Grid.Column="0"
+                               Name="tbHeight"
                            Style="{StaticResource ProfileProperties}"/>
                     <TextBlock Text="mm"  
                                Grid.Column="2"
@@ -74,7 +76,8 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
-                    <TextBlock Text="Szerokość"    Grid.Column="0"
+                    <TextBlock Text="Szerokość"  
+                               Name="tbWidth" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
                     <TextBlock Text="mm"  Grid.Column="2"
                                HorizontalAlignment="Right"
@@ -93,7 +96,8 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
-                    <TextBlock Text="Pole powierzchni netto"    Grid.Column="0"
+                    <TextBlock Text="Pole powierzchni netto"   
+                               Name="tbSurfaceAreaNetto" Grid.Column="0"
                                ToolTipService.ShowDuration="50000"
                                Style="{StaticResource ProfileProperties}">
                         <TextBlock.ToolTip>
@@ -131,6 +135,7 @@
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <TextBlock Text="Pole powierzchni brutto"   
+                               Name="tbSurfaceAreaBrutton"
                                Grid.Column="0"
                                ToolTipService.ShowDuration="50000"
                                Style="{StaticResource ProfileProperties}">
@@ -166,7 +171,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
-                    <TextBlock Text="Dopuszczalna waga"    
+                    <TextBlock Text="Dopuszczalna waga" Name="tbAcceptableWeight"     
                                ToolTip="Maksymalna łączna waga towarów umieszona magazynie"
                                Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>

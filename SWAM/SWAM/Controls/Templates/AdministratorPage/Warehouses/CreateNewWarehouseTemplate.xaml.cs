@@ -41,67 +41,70 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var newAddress = this.Address.GetAddress();//Take address from view 
-
-                context.Addresses.Add(newAddress);
-                context.SaveChanges();
-
-                var dbAddress = context.Addresses.FirstOrDefault(a =>
-                a.Country == newAddress.Country &&
-                a.PostCode == newAddress.PostCode &&
-                a.City == newAddress.City &&
-                a.Street == newAddress.Street &&
-                a.HouseNumber == newAddress.HouseNumber &&
-                a.ApartmentNumber == newAddress.ApartmentNumber); //Take address with database address Id
-
-                if (WarehouseName.Text != "")
+                if (newAddress != null)
                 {
-                    if (long.TryParse(pHeight.Text, out long isHeight) && isHeight > 0)
+                    context.Addresses.Add(newAddress);
+                    context.SaveChanges();
+
+                    var dbAddress = context.Addresses.FirstOrDefault(a =>
+                    a.Country == newAddress.Country &&
+                    a.PostCode == newAddress.PostCode &&
+                    a.City == newAddress.City &&
+                    a.Street == newAddress.Street &&
+                    a.HouseNumber == newAddress.HouseNumber &&
+                    a.ApartmentNumber == newAddress.ApartmentNumber); //Take address with database address Id
+
+                    if (WarehouseName.Text != "")
                     {
-                        if (long.TryParse(pWidth.Text, out long isWidth) && isWidth > 0)
+                        if (long.TryParse(pHeight.Text, out long isHeight) && isHeight > 0)
                         {
-                            if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto) && isSurfaceAreaNetto > 0)
+                            if (long.TryParse(pWidth.Text, out long isWidth) && isWidth > 0)
                             {
-                                if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton) && isSurfaceAreaBrutton > 0)
+                                if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto) && isSurfaceAreaNetto > 0)
                                 {
-                                    if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
+                                    if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton) && isSurfaceAreaBrutton > 0)
                                     {
-                                        context.Warehouses.Add(new Models.Warehouse()
+                                        if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
                                         {
-                                            Name = WarehouseName.Text,
-                                            AddressId = dbAddress.Id,
-                                            Height = isHeight,
-                                            Width = isWidth,
-                                            SurfaceAreaNetto = isSurfaceAreaNetto,
-                                            SurfaceAreaBrutton = isSurfaceAreaBrutton,
-                                            AcceptableWeight = isAcceptableWeight
-                                        });
-                                        context.SaveChanges(); //Add warehouse to database
-                                        InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
-                                        isWarehouseCreated = true;
+                                            context.Warehouses.Add(new Models.Warehouse()
+                                            {
+                                                Name = WarehouseName.Text,
+                                                AddressId = dbAddress.Id,
+                                                Height = isHeight,
+                                                Width = isWidth,
+                                                SurfaceAreaNetto = isSurfaceAreaNetto,
+                                                SurfaceAreaBrutton = isSurfaceAreaBrutton,
+                                                AcceptableWeight = isAcceptableWeight
+                                            });
+                                            context.SaveChanges(); //Add warehouse to database
+                                            InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
+                                            isWarehouseCreated = true;
+                                        }
+                                        else BadValueMessage(tbAcceptableWeight.Text);
                                     }
-                                    else BadValueMessage("dopuszczalna waga");
+                                    else BadValueMessage(tbSurfaceAreaBrutton.Text);
                                 }
-                                else BadValueMessage("powierzchnia brutton");
+                                else BadValueMessage(tbSurfaceAreaNetto.Text);
                             }
-                            else BadValueMessage("powierzchnia netto");
+                            else BadValueMessage(tbWidth.Text);
                         }
-                        else BadValueMessage("szerokość"); 
+                        else BadValueMessage(tbHeight.Text);
                     }
-                    else BadValueMessage("wysokość"); 
+                    else BadValueMessage(tbWarehouseName.Text);//TODO: Consider validating the same warehouse name.
+
+                    //Refresh List with warehouses
+                    if (SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this) is WarehousesControlPanelTemplate template)
+                        template.RefreshList();
+                    else InformationToUser($"{ErrorMesages.DURGIN_ADD_WAREHOUSE_ERROR} {ErrorMesages.REFRESH_WAREHOUSES_LIST_ERROR}", true);
+
+                    //Restart all controls
+                    if (isWarehouseCreated)
+                    {
+                        this.WarehouseName.Text = "";
+                        this.Address.ClearEditValues();
+                    }
                 }
-                else BadValueMessage("nazwa magazynu");//TODO: Zastanowić się nad validacją tej samej nazwy magazynu.
-            }
-
-            //Refresh List with warehouses
-            if (SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this) is WarehousesControlPanelTemplate template)
-                template.RefreshList();
-            else InformationToUser($"{ErrorMesages.DURGIN_ADD_WAREHOUSE_ERROR} {ErrorMesages.REFRESH_WAREHOUSES_LIST_ERROR}", true);
-
-            //Restart all controls
-            if (isWarehouseCreated)
-            {
-                this.WarehouseName.Text = "";
-                this.Address.ClearEditValues();
+                else BadValueMessage("Adres");
             }
         }
         #endregion
