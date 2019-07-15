@@ -10,8 +10,6 @@
         MinWidth="300"
         WindowStyle="None"
         Closed="SWAM_Closed"
-        SizeChanged="MainWindow_SizeChanged"
-        Loaded="SWAM_Loaded"
         Name="SWAM"
         Title="SWAM" 
         Icon="/Resorces/Pictures/icon.png"
@@ -135,16 +133,7 @@
         </StackPanel>
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <Grid  Grid.Row="3" Height="Auto">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="1"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Name="ContentOfWindow">
-                
-            </Grid>
-        </Grid>
+        <Grid Grid.Row="3" Name="ContentOfWindow" VerticalAlignment="Stretch"/>
         <!--#endregion-->
         <!--#region Information-->
         <StackPanel Name="Information"  Grid.Row="4"  Margin="5 0 0 10"

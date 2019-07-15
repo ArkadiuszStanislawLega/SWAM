@@ -14,6 +14,9 @@
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid Name="MainContent"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch">
@@ -27,7 +30,7 @@
                Style="{StaticResource Title}"
                Text="Profil użytkownika:"/>
             <!--#region User Profile-->
-            <ScrollViewer  Grid.Row="1" Grid.Column="0"
+            <ScrollViewer  Grid.Row="1" 
                            VerticalScrollBarVisibility="Auto"
                            HorizontalScrollBarVisibility="Disabled">
                 <Grid>

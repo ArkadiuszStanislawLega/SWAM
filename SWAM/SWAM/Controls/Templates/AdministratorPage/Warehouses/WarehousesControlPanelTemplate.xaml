@@ -8,7 +8,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              mc:Ignorable="d" 
-             VerticalContentAlignment="Center"
+             VerticalContentAlignment="Top"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Loaded="WarehousesControlPanelTemplate_Loaded"

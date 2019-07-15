@@ -22,15 +22,6 @@ namespace SWAM
     public partial class MainWindow : System.Windows.Window
     {
         #region Public statics
-        public static double EverythingExceptTheMainContentHeight = 0;
-        /// <summary>
-        /// Current height of application.
-        /// </summary>
-        public static double HeightOfAppliaction;
-        /// <summary>
-        /// Current width of application.
-        /// </summary>
-        public static double WidthOfApplication;
         /// <summary>
         /// Flag indicating whether the application is maximized.
         /// </summary>
@@ -122,21 +113,7 @@ namespace SWAM
             currentInstance = this;
         }
         #endregion
-        #region MainWindow_SizeChanged
-        /// <summary>
-        /// Action after resize application window.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            HeightOfAppliaction = this.ActualHeight;
-            WidthOfApplication = this.ActualWidth;
-
-            //if (IsMaximized) this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 10;
-            //else this.ScrollOfContent.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 10;
-        }
-        #endregion  
+        
         #region Window Functions Buttons
         #region Maximize_Click
         /// <summary>
@@ -285,20 +262,6 @@ namespace SWAM
             //close all open messageBoxes...
             foreach (KeyValuePair<WindowType, Window> entry in MessageBoxes)
                 entry.Value.Close();
-        }
-        #endregion
-
-        #region SWAM_Loaded
-        /// <summary>
-        /// Action after application is loaded.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SWAM_Loaded(object sender, RoutedEventArgs e)
-        {
-            //TODO: Verifiy this 115.
-            //this.ScrollOfContent.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 115;
-            EverythingExceptTheMainContentHeight = this.TitlePanel.Height + this.MenuPanel.Height + this.NavigationBar.Height + this.Information.Height;
         }
         #endregion
     }

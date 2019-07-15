@@ -108,8 +108,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         /// <summary>
         /// Information to user with red background about typed wrong value. 
         /// </summary>
-        /// <param name="value">Property which is incorrect</param>
-        private void BadValueMessage(string value) => InformationToUser($"Sprawdź wartość - {value} - jest niepoprawna.", true);
+        /// <param name="incorrectValue">Property which is incorrect</param>
+        private void BadValueMessage(string incorrectValue) => InformationToUser($"Sprawdź wartość - {incorrectValue} - jest niepoprawna.", true);
 
         #region TextChanged
         /// <summary>

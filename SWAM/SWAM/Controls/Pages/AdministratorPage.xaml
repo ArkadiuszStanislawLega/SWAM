@@ -7,10 +7,15 @@
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
-        MinHeight="200"
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch"
         Padding="10"
         mc:Ignorable="d">
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <!--#region Navigation Bar between bookmarks-->
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar" 
@@ -31,11 +36,8 @@
                                           Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <Grid  Name="MainContent" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <temp:UsersControlPanelTemplate Grid.Row="0"/>
+        <Grid  Name="MainContent" Grid.Row="1" >
+            <temp:UsersControlPanelTemplate />
         </Grid>
-    </StackPanel>
+    </Grid>
 </UserControl>

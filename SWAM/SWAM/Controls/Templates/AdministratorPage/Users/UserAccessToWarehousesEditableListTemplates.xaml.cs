@@ -27,36 +27,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         public UserAccessToWarehousesTemplates()
         {
             InitializeComponent();
-
-            //fill scroll viewer to the window height
-            this.Loaded += (sender, e) => FitViewToFillInParent();
         }
 
-        #region FitViewToFillInParent
-        /// <summary>
-        /// Changes the size of the scroll viewer appearance to a size that matches the size of the parent.
-        /// It's counting free space between title of the list and bottom position of current first parent.
-        /// Parent must be <see cref="UserProfileTemplate"/>class in <see cref="UsersControlPanelTemplate"/> class.
-        /// </summary>
-        public void FitViewToFillInParent()
-        {
-            //Finding parent of the parent...
-            //finding first parent...
-            if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate parent && 
-                parent.RightSection != null && 
-                parent.RightSection.Children[0] != null)
-            {
-                var profile = parent.RightSection.Children[0] as UserProfileTemplate;
-
-                //Counting max height of the scroll viewer
-                //Is needed to know how big is our parent of the first parent, then we deduct size of titles. 
-                //So now we have our space between title of the list and bottom possition of current first parent.
-                //Number 30 it is sum sizes of margins.
-                profile.AccesToWarehousesList.ListScroll.MaxHeight = parent.ActualHeight - profile.AccesToWarehousesList.Title.ActualHeight
-                    - profile.Title.ActualHeight - 30;
-            }
-        }
-        #endregion
         #region OnVisualChildrenChanged
         /// <summary>
         /// When new user acces to warehouses is added is needed to refresh data in list.

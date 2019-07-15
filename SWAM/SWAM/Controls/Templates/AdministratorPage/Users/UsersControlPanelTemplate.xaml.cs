@@ -34,8 +34,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void UsersControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshUsersList();
-            //Set the user list height to match the size of the window.
-            UsersList.Height = RightSection.Height - FindUserOrCreate.Height;
             //Make filtr in user list ascending.
             UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
             //Take userlist from database.
@@ -44,28 +42,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
         #endregion
 
         #region UsersControlPanelTemplate_SizeChanged
+        /// <summary>
+        /// Change Scroll of user list when the size of window is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //TODO: Veryfy this static values   
-            if (SWAM.MainWindow.IsMaximized) this.Height = SystemParameters.PrimaryScreenHeight - EverythingExceptTheMainContentHeight - 50;
-            else this.Height = HeightOfAppliaction - EverythingExceptTheMainContentHeight - 73;
-
-            ChangeSizeOfScrollInProfile();
+            this.ScrollOfUserList.Visibility = Visibility.Collapsed;
+            this.ScrollOfUserList.Height = this.ActualHeight - this.FindUserOrCreate.ActualHeight;
+            this.ScrollOfUserList.Visibility = Visibility.Visible;
         }
         #endregion
 
-        #region ChangeSizeOfScrollInProfile
-        /// <summary>
-        /// Changing size of scrollViewer in profile with list to accesses to warehouses. 
-        /// </summary>
-        private void ChangeSizeOfScrollInProfile()
-        {
-            if (RightSection.Children != null
-               && RightSection.Children.Count > 0
-               && RightSection.Children[0] != null
-               && RightSection.Children[0] is UserProfileTemplate profile) profile.AccesToWarehousesList.FitViewToFillInParent();
-        }
-        #endregion  
         #region RefreshUsersList
         /// <summary>
         /// Refreshing view model of users list.
