@@ -8,6 +8,7 @@
              Style="{StaticResource NavigationButton}"
              MouseEnter="NavigationButtonTemplate_MouseEnter"
              MouseLeave="NavigationButtonTemplate_MouseLeave"
+             Loaded="Button_Loaded"
              Margin="0 0 1 0"
              Width="auto"
              d:DesignHeight="50" >

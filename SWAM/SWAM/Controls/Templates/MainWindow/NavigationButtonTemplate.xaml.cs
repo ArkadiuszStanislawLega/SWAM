@@ -80,42 +80,6 @@ namespace SWAM.Controls.Templates.MainWindow
             this.IsSelectedEvent += NavigationButtonTemplate_IsSelectedEvent;
         }
 
-        protected override void OnRender(DrawingContext drawingContext)
-        {
-            base.OnRender(drawingContext);
-
-            bool pageCanBeOpen = false;
-
-            if (PageToOpen != PagesUserControls.EmptyPage)
-            {
-                if (IsLoggedIn)
-                {
-                    if (PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
-                    {
-                        foreach (PagesUserControls puc in listWithPermissions)
-                        {
-                            if (puc == this.PageToOpen)
-                            {
-                                pageCanBeOpen = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                //TODO:Make this in xaml
-                if (pageCanBeOpen)
-                {
-                    this.IsEnabled = true;
-                    this.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    this.IsEnabled = false;
-                    this.Visibility = Visibility.Collapsed;
-                }
-            }
-        }
-
         private void NavigationButtonTemplate_MouseLeave(object sender, MouseEventArgs e)
         {
             if (!_isSeleceted) ChangeColoursIsnSelected();
@@ -155,5 +119,41 @@ namespace SWAM.Controls.Templates.MainWindow
             this.Background = this.FindResource("EnabledBrash") as Brush;
             this.Foreground = this.FindResource("BackgroundOfPagesBrash") as Brush;
         }
+
+        #region Button_Loaded
+        /// <summary>
+        /// Checks if the button can be seen by the current user.
+        /// </summary>
+        /// <param name="sender">Button that open a specific page</param>
+        /// <param name="e">Button is loaded event</param>
+        private void Button_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool pageCanBeOpen = false;
+
+            if (PageToOpen != PagesUserControls.EmptyPage)
+            {
+                if (IsLoggedIn)
+                {
+                    if (PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
+                    {
+                        foreach (PagesUserControls puc in listWithPermissions)
+                        {
+                            if (puc == this.PageToOpen)
+                            {
+                                pageCanBeOpen = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (pageCanBeOpen)
+                    this.Visibility = Visibility.Visible;
+               
+                else
+                    this.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
     }
 }

@@ -50,18 +50,6 @@ namespace SWAM.Models
                 return DB_CONTEXT;
             }
         }
-        #region Remove
-        /// <summary>
-        /// Remove user from database.
-        /// </summary>
-        public void Remove()
-        {
-            //TODO: Poprawić model, trzeba zrobić kaskadowe usuwanie, z access to warehouses
-            var user = _context.Users.FirstOrDefault(u => u.Id == this.Id);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-        }
-        #endregion
 
         #region CreateNewUser
         /// <summary>
