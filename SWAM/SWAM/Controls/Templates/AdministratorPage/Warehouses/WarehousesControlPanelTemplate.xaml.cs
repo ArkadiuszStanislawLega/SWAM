@@ -27,27 +27,12 @@ namespace SWAM.Templates.AdministratorPage
 
         private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
-            warhousesListViewModel.Refresh();
+            RefreshList();
 
             DataContext = warhousesListViewModel;
         }
 
         public void RefreshList() => warhousesListViewModel.Refresh();
-
-        #region WarehousesList_SizeChanged
-        /// <summary>
-        /// Action when the main window has been changed.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void WarehousesList_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            //Colapsed visibility of scroll is required to take real size of parent height without this list.
-            this.WarehouseListScroll.Visibility = Visibility.Collapsed;
-            this.WarehouseListScroll.MaxHeight = this.ActualHeight - this.FindWarehouse.ActualHeight;
-            this.WarehouseListScroll.Visibility = Visibility.Visible;
-        }
-        #endregion
 
         #region ShowPrfile
         /// <summary>
@@ -81,6 +66,7 @@ namespace SWAM.Templates.AdministratorPage
         }
         #endregion
 
+        #region AddNewWarehouse_Click
         private void AddNewWarehouse_Click(object sender, RoutedEventArgs e)
         {
             if (this.RightSection.Children.Count > 0)
@@ -88,6 +74,7 @@ namespace SWAM.Templates.AdministratorPage
 
             this.RightSection.Children.Add(new CreateNewWarehouseTemplate());
         }
+        #endregion
 
         #region TextBox_TextChanged
         /// <summary>

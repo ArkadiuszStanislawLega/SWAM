@@ -30,7 +30,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             InitializeComponent();
         }
-
+        #endregion
+        #region UsersControlPanelTemplate_Loaded
         private void UsersControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshUsersList();
@@ -38,20 +39,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
             //Take userlist from database.
             DataContext = UserListViewModel;
-        }
-        #endregion
-
-        #region UsersControlPanelTemplate_SizeChanged
-        /// <summary>
-        /// Change Scroll of user list when the size of window is changed.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UsersControlPanelTemplate_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            this.ScrollOfUserList.Visibility = Visibility.Collapsed;
-            this.ScrollOfUserList.Height = this.ActualHeight - this.FindUserOrCreate.ActualHeight;
-            this.ScrollOfUserList.Visibility = Visibility.Visible;
         }
         #endregion
 

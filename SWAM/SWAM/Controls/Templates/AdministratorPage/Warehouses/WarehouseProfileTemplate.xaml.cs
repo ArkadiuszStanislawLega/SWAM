@@ -14,9 +14,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         public WarehouseProfileTemplate()
         {
             InitializeComponent();
-            Loaded += WarehouseProfileTemplate_Loaded;
         }
-
+        #region WarehouseProfileTemplate_Loaded
         private void WarehouseProfileTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             WarehousesListViewModel warehouses = new WarehousesListViewModel();
@@ -34,12 +33,15 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 }
             }
         }
+        #endregion
 
+        #region Edit_Click
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
             this.Address.ShowEditControls();
             this.WarehouseTechnicalDate.ShowEditControls();
         }
+        #endregion
 
         #region Delete_Click
         /// <summary>
@@ -72,10 +74,12 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         }
         #endregion
 
+        #region Confirm_Click
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             this.Address.HideEditControls();
             this.WarehouseTechnicalDate.HideEditControls();
         }
+        #endregion
     }
 }
