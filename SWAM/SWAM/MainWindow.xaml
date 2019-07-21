@@ -45,14 +45,28 @@
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
                 <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
-
-                <TextBlock Name="TitleOfMainPanel" 
-                       Text="SWAM" 
-                       FontSize="15"
-                       Margin="5"
-                       Foreground="{StaticResource FontsBrash}"
-                       Grid.Column="1"
-                       Grid.Row="0"/>
+                <!--#region Menu of Window-->
+                <StackPanel Name="MenuPanel" Height="25" 
+                        Grid.Column="1"
+                        Grid.Row="0">
+                    <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Menu DockPanel.Dock="Top" >
+                            <MenuItem Header="_Plik">
+                                <MenuItem Header="_Otwórz"/>
+                                <MenuItem Header="_Zapisz"/>
+                                <Separator/>
+                                <MenuItem Header="_Zamknij"/>
+                            </MenuItem>
+                            <MenuItem Header="_Ustawienia">
+                                <MenuItem Header="_Opcje"/>
+                                <MenuItem Header="_Połączenie"/>
+                                <MenuItem Header="_Magazyny" IsEnabled="False"/>
+                            </MenuItem>
+                        </Menu>
+                        <StackPanel></StackPanel>
+                    </DockPanel>
+                </StackPanel>
+                <!--#endregion-->
                 <!--#region Title buttons-->
                 <StackPanel
                     Name="TitlePanelButtons"
@@ -77,60 +91,45 @@
             </Grid>
         </ContentControl>
         <!--#endregion-->
-        <!--#region Menu of Window-->
-        <StackPanel Name="MenuPanel" Height="25" 
-                        Grid.Column="1"
-                        Grid.Row="1">
-            <DockPanel Name="Menu">
-                <Menu DockPanel.Dock="Top" >
-                    <MenuItem Header="_Plik">
-                        <MenuItem Header="_Otwórz"/>
-                        <MenuItem Header="_Zapisz"/>
-                        <Separator/>
-                        <MenuItem Header="_Zamknij"/>
-                    </MenuItem>
-                    <MenuItem Header="_Ustawienia">
-                        <MenuItem Header="_Opcje"/>
-                        <MenuItem Header="_Połączenie"/>
-                        <MenuItem Header="_Magazyny" IsEnabled="False"/>
-                    </MenuItem>
-                </Menu>
-                <StackPanel></StackPanel>
-            </DockPanel>
-        </StackPanel>
-        <!--#endregion-->
         <!--#region NavigationBar -->
-        <StackPanel Orientation="Horizontal" 
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar"  Height="30"
                     VerticalAlignment="Bottom"
                     Margin="5 0 0 0"
-                    HorizontalAlignment="Left" Grid.Row="2">
+                    HorizontalAlignment="Left" >
 
-            <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
+                <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
                                           PageToOpen="AdministratorPage" 
                                           x:Name="SwitchToAdministratorPage"
                                           Click="NaviagionBar_Click"/>
 
-            <nav:NavigationButtonTemplate Content="Strona Logowania" 
+                <nav:NavigationButtonTemplate Content="Strona Logowania" 
                                           PageToOpen="LoginPage" 
                                           x:Name="SwitchToLoginPage"
                                           Click="NaviagionBar_Click" />
 
-            <nav:NavigationButtonTemplate Content="Produkty" 
+                <nav:NavigationButtonTemplate Content="Produkty" 
                                           PageToOpen="ManageItemsPage"
                                           x:Name="SwitchToManageItemPage"
                                           Click="NaviagionBar_Click" />
 
-            <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
+                <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
                                           PageToOpen="ManageMagazinePage"
                                           x:Name="SwitchToManageMagazinePage"
                                           Click="NaviagionBar_Click" />
 
-            <nav:NavigationButtonTemplate Content="Zamówienia" 
+                <nav:NavigationButtonTemplate Content="Zamówienia" 
                                           PageToOpen="ManageOrdersPage" 
                                           x:Name="SwitchToManageOrderPage" 
                                           Click="NaviagionBar_Click" />
-        </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0 5 0"
+                        Orientation="Horizontal">
+                <Button Style="{StaticResource MailButton}" Content="1" />
+                <Button Style="{StaticResource ProfileButton}" />
+            </StackPanel>
+        </Grid>
         <!--#endregion-->
         <!--#region MainContent of the Window-->
         <Grid Grid.Row="3" Name="ContentOfWindow" VerticalAlignment="Stretch"/>

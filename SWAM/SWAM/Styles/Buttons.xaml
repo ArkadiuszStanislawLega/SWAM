@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:conv="clr-namespace:SWAM.Converters">
+    <conv:TextToVisibilityConverter x:Key="textToVisibilityConverter" />
     
     <Style x:Key="ButtonTop" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
@@ -21,6 +22,126 @@
         <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
     </Style>
     <!--#endregion-->
+    <!--#region MessageButton-->
+    <Style x:Key="MailButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <Grid>
+                            <fa:ImageAwesome Icon="Envelope" Foreground="{StaticResource FontsBrash}" Width="20" Height="20"/>
+                            <Border CornerRadius="90" Background="{StaticResource RedBrash}" 
+                                    Visibility="{Binding  ElementName=ContentText, Path=Text, 
+                                       Converter={StaticResource textToVisibilityConverter}}"
+                                    Height="14" 
+                                    Width="14" 
+                                    HorizontalAlignment="Right" 
+                                    VerticalAlignment="Top">
+                                <TextBlock  x:Name="ContentText"
+                                           Text="{TemplateBinding Content}" 
+                                           FontSize="11"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" 
+                                           Foreground="{StaticResource FontsBrash}"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region ProfileButton-->
+    <Style x:Key="ProfileButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border 
+                            Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <fa:ImageAwesome Icon="User" Foreground="{StaticResource FontsBrash}" Width="20" Height="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
     <!--#region EditButton-->
     <Style x:Key="EditButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Template">

@@ -73,6 +73,7 @@
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
