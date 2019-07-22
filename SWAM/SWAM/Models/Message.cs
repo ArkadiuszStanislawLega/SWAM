@@ -16,6 +16,7 @@ namespace SWAM.Models
 
         private User _sender;
         private User _receiver;
+        private string _titleOfMessage;
         private string _contentOfMessage;
         private DateTime _postDate;
         private DateTime _dateOfReading;
@@ -24,6 +25,7 @@ namespace SWAM.Models
         public User Sender { get => _sender; set => _sender = value; }
         public User Receiver { get => _receiver; set => _receiver = value; }
         public string ContentOfMessage { get => _contentOfMessage; set => _contentOfMessage = value; }
+        public string TitleOfMessage { get => _titleOfMessage; set => _titleOfMessage = value; }
         public DateTime PostDate { get => _postDate; set => _postDate = value; }
         public DateTime DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
     }

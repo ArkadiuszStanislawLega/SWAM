@@ -73,6 +73,9 @@
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\MainWindow\MessageListItemTemplate.xaml.cs">
+      <DependentUpon>MessageListItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MainWindow\MessagesPageTemplate.xaml.cs">
       <DependentUpon>MessagesPageTemplate.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
     <Compile Include="Migrations\201907221133526_AddMessageModel.cs" />
     <Compile Include="Migrations\201907221133526_AddMessageModel.Designer.cs">
       <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.cs" />
+    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.Designer.cs">
+      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
@@ -166,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CalendarWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MainWindow\MessageListItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -683,6 +694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907221133526_AddMessageModel.resx">
       <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221214065_UpdateMessageModelAddTitle.resx">
+      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

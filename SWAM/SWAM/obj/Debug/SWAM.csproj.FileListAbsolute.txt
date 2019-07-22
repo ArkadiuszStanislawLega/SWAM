@@ -547,3 +547,7 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserPro
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListItemTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListItemTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddMessageModel.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessageModelAddTitle.resources
