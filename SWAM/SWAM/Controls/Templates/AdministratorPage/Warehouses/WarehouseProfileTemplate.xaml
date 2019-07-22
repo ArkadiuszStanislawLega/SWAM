@@ -84,6 +84,7 @@
             <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
                 <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
+                           Style="{StaticResource BasicDataGrid}"
                       Width="708"
                       AutoGenerateColumns="False" 
                       IsReadOnly="True"  

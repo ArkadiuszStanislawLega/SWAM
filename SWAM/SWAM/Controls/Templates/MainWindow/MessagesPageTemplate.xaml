@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.MainWindow"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
+             Margin="5 0 5 0"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,59 +15,53 @@
             <RowDefinition Height="3"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <StackPanel Name="MessagesContainer" Grid.Row="0">
-            <Grid Name="ColumnNamesOfDataGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Name="DateOfSending" Text="Data Wysłania" 
-                           HorizontalAlignment="Stretch"
-                           Grid.Column="0" Grid.Row="0"/>
-                <GridSplitter Grid.Row="0" Grid.Column="1" 
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" />
-                <TextBlock Text="Nadawca" Grid.Column="2" Grid.Row="0"/>
-                <GridSplitter Grid.Row="0" Grid.Column="3" 
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" />
-                <TextBlock Text="Tytuł" Grid.Column="4"  Grid.Row="0"/>
-                
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding Messages}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding PostDate}" Grid.Column="0" 
-                                           Width="{Binding Width, ElementName=DateOfSending}"/>
-                                <TextBlock Text="{Binding Sender.Name}" Grid.Column="2"
-                                           Width="{Binding Width, ElementName=ColumnNamesOfDataGrid.Column[2]}"/>
-                                <TextBlock Text="{Binding TitleOfMessage}" Grid.Column="4" 
-                                           Width="{Binding Width, ElementName=ColumnNamesOfDataGrid.Column[4]}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{StaticResource NewMessage}"
+                        Margin="2"
+                        ToolTip="Nowa wiadomość" />
+                <Button Style="{StaticResource SendedMessages}"
+                        Margin="2"
+                        ToolTip="Wiadomości wysłane" />
+                <Button Style="{StaticResource RecivedMessages}"
+                        Margin="2"
+                        ToolTip="Wiadomości odebrane" />
+            </StackPanel>
+            
+            <DataGrid Name="ColumnNamesOfDataGrid" ItemsSource="{Binding Messages}"
+                      Style="{StaticResource BasicDataGrid}"
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True"  
+                      VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="auto" Header="Data wysłania"  Binding="{Binding  PostDate}"/>
+                    <DataGridTextColumn Width="auto"  Header="Nazwa użytkownika"  Binding="{Binding  Sender.Name}"/>
+                    <DataGridCheckBoxColumn Width="auto"  Header="Odczytana"  Binding="{Binding  IsReaded}"/>
+                    <DataGridTextColumn Width="*"  Header="Tytuł"  Binding="{Binding  TitleOfMessage}"/>
+                </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+            </DataGrid>
         </StackPanel>
-
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
         <Grid Grid.Row="2" Name="Message">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top">
+                <TextBlock Name="DateOfSend"/>
+                <TextBlock Name="SenderName" />
+            </StackPanel>
+            <TextBlock Name="CurrentMessage" 
+                       Grid.Row="1"
+                       HorizontalAlignment="Left"/>
         </Grid>
     </Grid>
 </bpage:BasicUserControl>

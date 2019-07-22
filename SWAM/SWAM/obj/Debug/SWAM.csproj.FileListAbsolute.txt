@@ -551,3 +551,12 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListIte
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddMessageModel.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessageModelAddTitle.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListItemTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessageListItemTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddMessageModel.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessageModelAddTitle.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesPropertyIsReaded.resources

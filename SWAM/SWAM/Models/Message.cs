@@ -20,6 +20,7 @@ namespace SWAM.Models
         private string _contentOfMessage;
         private DateTime _postDate;
         private DateTime _dateOfReading;
+        private bool _isReaded;
 
         public int Id { get => _id; set => _id = value; }
         public User Sender { get => _sender; set => _sender = value; }
@@ -28,5 +29,6 @@ namespace SWAM.Models
         public string TitleOfMessage { get => _titleOfMessage; set => _titleOfMessage = value; }
         public DateTime PostDate { get => _postDate; set => _postDate = value; }
         public DateTime DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
+        public bool IsReaded { get => _isReaded; set => _isReaded = value; }
     }
 }

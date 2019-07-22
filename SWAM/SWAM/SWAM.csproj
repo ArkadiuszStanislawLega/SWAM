@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.Designer.cs">
       <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.cs" />
+    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.Designer.cs">
+      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
@@ -697,6 +701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907221214065_UpdateMessageModelAddTitle.resx">
       <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.resx">
+      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

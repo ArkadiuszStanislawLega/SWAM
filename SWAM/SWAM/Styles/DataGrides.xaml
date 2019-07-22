@@ -64,7 +64,7 @@
     </Style>
 
     <!--Style and template for the DataGrid.-->
-    <Style TargetType="{x:Type DataGrid}">
+    <Style TargetType="{x:Type DataGrid}" x:Key="BasicDataGrid">
         <Setter Property="Foreground" >
             <Setter.Value>
                 <SolidColorBrush Color="{StaticResource WhiteCream}" Opacity="0.6" />

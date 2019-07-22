@@ -22,6 +22,57 @@
         <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
     </Style>
     <!--#endregion-->
+    <!--#region ButtonBaseStyle-->
+    <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+    </Style>
+    <!--#endregion-->
+    <!--#region BasicButton-->
+    <Style x:Key="Button" TargetType="Button"   BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}">
+                        <Label Content="{TemplateBinding Content}"
+                               Foreground="{TemplateBinding Foreground}"
+                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                               FontFamily="{TemplateBinding FontFamily}"
+                               />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{x:Null}" />
+                            <Setter Property="Foreground" Value="{x:Null}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource LightGrayBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region MainWindow-->
     <!--#region MessageButton-->
     <Style x:Key="MailButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Height" Value="30"/>
@@ -141,7 +192,260 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    <!--#region FAMaxymizeButton-->
+    <!-- To properly work of fanAwesome Buttons you should make run the following command in the Package Manager Console:
+            PM> Install-Package FontAwesome.WPF -->
+    <Style x:Key="FAMaxymizeButton" TargetType="Button">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            Padding="3 8 5 8">
+                        <fa:ImageAwesome Icon="WindowMaximize" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region FAExitButton-->
+    <Style x:Key="FAExitButton" TargetType="Button">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            Padding="3 8 5 8">
+
+                        <fa:ImageAwesome Icon="Close" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--#endregion-->
+    <!--#region FAMinimizeButton-->
+    <Style x:Key="FAMinimizeButton" TargetType="Button">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            Padding="3 8 5 8">
+                        <fa:ImageAwesome Margin="1 8 1 1" Icon="WindowMinimize" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="{StaticResource FontsBrash}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#endregion-->
     
+    <!--#region Messages-->
+    <!--#region RecivedMessages-->
+    <Style x:Key="RecivedMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <fa:ImageAwesome Icon="EnvelopeOpen" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region SendedMessages-->
+    <Style x:Key="SendedMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <fa:ImageAwesome Icon="Envelope" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region NewMessage-->
+    <Style x:Key="NewMessage" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <fa:ImageAwesome Icon="Send" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#endregion-->
+
     <!--#region EditButton-->
     <Style x:Key="EditButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Template">
@@ -323,55 +627,6 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region ButtonBaseStyle-->
-    <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-    </Style>
-    <!--#endregion-->
-    <!--#region BasicButton-->
-    <Style x:Key="Button" TargetType="Button"   BasedOn="{StaticResource ButtonBaseStyle}">
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}">
-                        <Label Content="{TemplateBinding Content}"
-                               Foreground="{TemplateBinding Foreground}"
-                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               FontFamily="{TemplateBinding FontFamily}"
-                               />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{x:Null}" />
-                            <Setter Property="Foreground" Value="{x:Null}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource LightGrayBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
     <!--#region AdditionSign Buttons-->
     <Style x:Key="AdditionSign" TargetType="Button" >
         <Setter Property="Width" Value="20"/>
@@ -632,7 +887,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    <!--#region FaNoBackground-->
+    <!--#region FaLightGrayBackground-->
     <!-- Font awesome with transparent bacground. -->
     <Style x:Key="FaLightGrayBackground" TargetType="Button" x:Name="FaLightGrayBackground">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
@@ -857,104 +1112,5 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
-    <!--#region FAMaxymizeButton-->
-    <!-- To properly work of fanAwesome Buttons you should make run the following command in the Package Manager Console:
-            PM> Install-Package FontAwesome.WPF -->
-    <Style x:Key="FAMaxymizeButton" TargetType="Button">
-        <Setter Property="Margin" Value="2"/>
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            Padding="3 8 5 8">
-                        <fa:ImageAwesome Icon="WindowMaximize" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region FAExitButton-->
-    <Style x:Key="FAExitButton" TargetType="Button">
-        <Setter Property="Margin" Value="2"/>
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            Padding="3 8 5 8">
-
-                        <fa:ImageAwesome Icon="Close" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!--#endregion-->
-    <!--#region FAMinimizeButton-->
-    <Style x:Key="FAMinimizeButton" TargetType="Button">
-        <Setter Property="Margin" Value="2"/>
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            Padding="3 8 5 8">
-                        <fa:ImageAwesome Margin="1 8 1 1" Icon="WindowMinimize" VerticalAlignment="Center" HorizontalAlignment="Center"  Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource LightGrayBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" Value="{StaticResource MainBarBrash}"/>
-                            <Setter Property="FontSize" Value="12"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
+    
 </ResourceDictionary>

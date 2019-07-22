@@ -25,6 +25,8 @@ namespace SWAM.Controls.Templates.MainWindow
         public MessagesPageTemplate()
         {
             InitializeComponent();
+
+            //TODO: Delete this when sending message is work.
             SWAM.MainWindow.LoggedInUser.Messages = new List<Message>()
             {
                 new Message()
@@ -32,7 +34,8 @@ namespace SWAM.Controls.Templates.MainWindow
                     Sender = new User(){Name = "Mietek" },
                     TitleOfMessage = "Witaj w systemie",
                     ContentOfMessage = "Zostałeś poprawnie dodany do systemu. Przestrzegaj zasad i regulaminu systemu.",
-                    PostDate = DateTime.Now
+                    PostDate = DateTime.Now,
+                    IsReaded = true
                 },
                 new Message()
                 {
@@ -49,7 +52,26 @@ namespace SWAM.Controls.Templates.MainWindow
                     PostDate = DateTime.Now
                 }
             };
+
             DataContext = SWAM.MainWindow.LoggedInUser;
         }
+
+        #region Row_DoubleClick
+        /// <summary>
+        /// Action after double click a row in data grid with messages.
+        /// </summary>
+        /// <param name="sender">Data grid row</param>
+        /// <param name="e">Double click action</param>
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is DataGridRow row && row.Item is Message message)
+            {
+                this.CurrentMessage.Text = message.ContentOfMessage;
+                this.SenderName.Text = message.Sender.Name;
+                this.DateOfSend.Text = message.PostDate.ToString();
+            }
+            else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+        }
+        #endregion
     }
 }

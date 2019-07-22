@@ -45,5 +45,8 @@ namespace SWAM
         public const string DURGIN_DELETE_WAREHOUSE_ERROR = "Wystąpił błąd podczas usuwania magazynu.";
         public const string DURGIN_ADD_WAREHOUSE_ERROR = "Wystąpił błąd podczas dodawania nowego magazynu.";
         #endregion
+        #region Message
+        public const string MESSAGE_READ_ERROR = "Wystąpił błąd wczytywania wiadomości.";
+        #endregion
     }
 }
