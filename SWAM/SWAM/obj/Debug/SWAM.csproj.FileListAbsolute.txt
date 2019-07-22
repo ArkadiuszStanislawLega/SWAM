@@ -543,3 +543,5 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.FixError.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseAddPropertyLength.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseAddPropertyLength.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.baml

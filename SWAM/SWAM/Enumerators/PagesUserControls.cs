@@ -27,5 +27,13 @@
         /// The site where the shop assistant and department manager can manage all orders.
         /// </summary>
         ManageOrdersPage,
+        /// <summary>
+        /// The page where the logged in user in the application can check his account settings.
+        /// </summary>
+        LogedInUserProfile,
+        /// <summary>
+        /// The page where user can check his emails.
+        /// </summary>
+        Mails
     }
 }

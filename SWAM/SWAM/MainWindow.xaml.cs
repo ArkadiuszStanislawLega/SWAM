@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
+using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
@@ -66,7 +67,9 @@ namespace SWAM
             { PagesUserControls.AdministratorPage, new AdministratorPage()},
             { PagesUserControls.ManageItemsPage, new ManageItemPage()},
             { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },
-            { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() }
+            { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
+            { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate(){ DataContext = LoggedInUser} }
+
         };
         /// <summary>
         /// Container with whole priviligase of UserType.
@@ -264,5 +267,8 @@ namespace SWAM
                 entry.Value.Close();
         }
         #endregion
+
+        private void UserProfile_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.LogedInUserProfile);
+        
     }
 }

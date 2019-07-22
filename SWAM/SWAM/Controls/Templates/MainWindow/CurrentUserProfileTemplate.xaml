@@ -1,0 +1,73 @@
+﻿<local:BasicUserControl x:Class="SWAM.Controls.Templates.MainWindow.CurrentUserProfileTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
+             xmlns:conv="clr-namespace:SWAM.Converters" 
+             mc:Ignorable="d" 
+             Background="{StaticResource BackgroundOfPagesBrash}"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="MainContent"
+              Margin="10"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch">
+            <!--#region RowDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <TextBlock Grid.Row="0" Name="Title"
+               Style="{StaticResource Title}"
+               Text="Profil użytkownika:"/>
+            <!--#region User Profile-->
+            <ScrollViewer  Grid.Row="1" 
+                           VerticalScrollBarVisibility="Auto"
+                           HorizontalScrollBarVisibility="Disabled">
+                <Grid>
+                    <Grid>
+                        <ScrollViewer 
+                                VerticalScrollBarVisibility="Disabled"
+                               HorizontalScrollBarVisibility="Auto">
+                            <Grid  HorizontalAlignment="Center"
+                                   VerticalAlignment="Top">
+                                <!--#region Column Definitions-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!--#endregion-->
+                                <userTemp:BasicInformationAboutUserTemplate x:Name="BasicInformationAboutUser"
+                                                                            IsEnabled="False"
+                                                                            Grid.Column="0" />
+                                <userTemp:UserAccessToWarehousesTemplates x:Name="AccesToWarehousesList"
+                                                                          IsEnabled="False"
+                                                                          Grid.Column="1"/>
+                                <!--#region Right side of profile-->
+                                <StackPanel HorizontalAlignment="Right" Grid.Column="2" Margin="0 0 25 0">
+                                    <local:EmailEditableListTemplate/>
+                                    <local:PhoneNumbersEditableListTemplate/>
+                                </StackPanel>
+                                <!--#endregion-->
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+</local:BasicUserControl>

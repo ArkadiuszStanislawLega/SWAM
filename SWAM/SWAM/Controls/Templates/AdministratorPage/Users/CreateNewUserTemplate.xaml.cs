@@ -52,7 +52,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
                     UserListRefresh();
                 }
-                else InformationToUser($"Nie udało się dodać nużytkownika {this.NewUserName.Text}.", true);
+                else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
 
                 RestartTextBoxes();
             }

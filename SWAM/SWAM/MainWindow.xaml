@@ -127,7 +127,7 @@
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0 5 0"
                         Orientation="Horizontal">
                 <Button Style="{StaticResource MailButton}" Content="1" />
-                <Button Style="{StaticResource ProfileButton}" />
+                <Button Style="{StaticResource ProfileButton}" Click="UserProfile_Click"/>
             </StackPanel>
         </Grid>
         <!--#endregion-->
