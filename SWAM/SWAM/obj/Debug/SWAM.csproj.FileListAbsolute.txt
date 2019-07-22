@@ -545,3 +545,5 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseAddPropertyLength.r
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.WarehouseAddPropertyLength.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserProfileTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\MessagesPageTemplate.baml

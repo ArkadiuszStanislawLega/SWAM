@@ -29,6 +29,8 @@ namespace SWAM.Models
         /// </summary>
         public IList<AccessUsersToWarehouses> Accesess { get; set; }
 
+        public IList<Message> Messages { get; set; }
+
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
         public UserType Permissions { get => _permissions; set => _permissions = value; }

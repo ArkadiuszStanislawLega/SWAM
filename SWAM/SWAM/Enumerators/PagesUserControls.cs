@@ -34,6 +34,6 @@
         /// <summary>
         /// The page where user can check his emails.
         /// </summary>
-        Mails
+        MessagesPage
     }
 }

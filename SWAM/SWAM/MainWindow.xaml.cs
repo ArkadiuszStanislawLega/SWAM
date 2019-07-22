@@ -68,7 +68,8 @@ namespace SWAM
             { PagesUserControls.ManageItemsPage, new ManageItemPage()},
             { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },
             { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
-            { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate(){ DataContext = LoggedInUser} }
+            { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate(){ DataContext = LoggedInUser} },
+            { PagesUserControls.MessagesPage, new MessagesPageTemplate() }
 
         };
         /// <summary>
@@ -269,6 +270,7 @@ namespace SWAM
         #endregion
 
         private void UserProfile_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.LogedInUserProfile);
-        
+
+        private void Messages_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.MessagesPage);
     }
 }

@@ -19,6 +19,7 @@ namespace SWAM
         public DbSet<CustomerOrderPosition> CustomerOrderPositions { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<ExternalSupplier> ExternalSupplayers { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<State> States { get; set; }
@@ -52,6 +53,18 @@ namespace SWAM
                                .HasMany(a => a.Accesses)
                                .WithRequired(w => w.Warehouse)
                                .HasForeignKey(w => w.WarehouseId);
+
+            modelBuilder.Entity<Message>()
+                  .HasRequired(s => s.Sender)
+                  .WithMany()
+                  .HasForeignKey(s => s.SenderId)
+                  .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Message>()
+                  .HasRequired(r => r.Receiver)
+                  .WithMany()
+                  .HasForeignKey(r => r.ReceiverId)
+                  .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(a => a.Accesess)
