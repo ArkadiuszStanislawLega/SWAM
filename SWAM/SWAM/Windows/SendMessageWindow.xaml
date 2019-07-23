@@ -8,6 +8,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        Closed="Window_Closed"
         Title="SendMessageWindow" Height="450" Width="800">
     <Window.Effect>
         <DropShadowEffect BlurRadius="15" Direction="-90" 
@@ -19,7 +20,8 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-    <Grid Margin="5 0 5 5" Name="MainContent">
+    <Grid Name="MainContent"
+           FocusManager.FocusedElement="{Binding ElementName=Message}">
         <!--#region RowsDefinition-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -73,7 +75,7 @@
             </Grid>
         </ContentControl>
         <!--#endregion-->
-        <Grid Grid.Row="1" Margin="2">
+        <Grid Grid.Row="1" Margin="10 2 10 2" >
             <!--#region Columns definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -86,13 +88,14 @@
                        Style="{StaticResource ProfileProperties}"
                        VerticalAlignment="Center"
                        Margin="0 0 4 0"/>
-            <Button Content="Wyszukaj" 
+            <Button Name="FindUser"
+                    Content="Wyszukaj" 
                     Grid.Column="1" Width="100" 
                     Style="{StaticResource NavigationButton}"/>
             <TextBlock Grid.Column="2" 
                      Name="ReceiverName" />
         </Grid>
-        <Grid Grid.Row="2" Margin="2">
+        <Grid Grid.Row="2" Margin="10 2 10 2">
             <!--#region Columns Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -116,9 +119,9 @@
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Stretch"
                  AcceptsReturn="True"
-                 Margin="2"
+                 Margin="10 2 10 2"
                  Grid.Row="3"/>
-        <StackPanel Margin="5"
+        <StackPanel Margin="10 5 10 5"
                     HorizontalAlignment="Right"
                     Grid.Row="4" 
                     Orientation="Horizontal">

@@ -98,6 +98,8 @@ namespace SWAM
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage }},
         };
+
+        public static List<SendMessageWindow> MessagesWindows = new List<SendMessageWindow>();
         #endregion
 
         #region Setters
@@ -263,9 +265,11 @@ namespace SWAM
         /// <param name="e"></param>
         private void SWAM_Closed(object sender, EventArgs e)
         {
-            //close all open messageBoxes...
+            //close all opened Windows
             foreach (KeyValuePair<WindowType, Window> entry in MessageBoxes)
                 entry.Value.Close();
+            foreach (SendMessageWindow messagesPageTemplate in MessagesWindows)
+                messagesPageTemplate.Close();
         }
         #endregion
 

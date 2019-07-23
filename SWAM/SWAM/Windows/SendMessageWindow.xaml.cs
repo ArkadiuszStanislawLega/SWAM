@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,21 @@ namespace SWAM.Windows
         {
             InitializeComponent();
         }
+
+        #region GetReplayMessage
+        /// <summary>
+        /// Sets all the values of the messages to which we respond. 
+        /// </summary>
+        /// <param name="message">The message to which the answer is written</param>
+        public void SetReplayMessage(Message message)
+        {
+            this.ReceiverName.Text = message.Receiver.Name;
+            this.FindUser.IsEnabled = false;
+            this.Title.Text = $"Re:{message.TitleOfMessage}";
+            this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n \t--- Koniec wiadomości ---";
+            this.Message.ScrollToHome();
+        }
+        #endregion
 
         #region Exit_Click
         /// <summary>
@@ -67,6 +83,19 @@ namespace SWAM.Windows
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+        #endregion
+
+        #region Window_Closed
+        /// <summary>
+        /// Action after this windows is closed.
+        /// Removing window from the list with all opened windows.
+        /// </summary>
+        /// <param name="sender">This window.</param>
+        /// <param name="e">Event windows is closed.</param>
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (SWAM.MainWindow.MessagesWindows.Count > 0) SWAM.MainWindow.MessagesWindows.RemoveAt((int)this.Tag);
         }
         #endregion
     }
