@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
+using SWAM.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,5 +75,11 @@ namespace SWAM.Controls.Templates.MainWindow
             else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
+
+        private void NewMessage_Click(object sender, RoutedEventArgs e)
+        {
+            SendMessageWindow sendMessageWindow = new SendMessageWindow();
+            sendMessageWindow.Show();
+        }
     }
 }

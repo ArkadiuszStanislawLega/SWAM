@@ -19,11 +19,14 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-    <Grid>
+    <Grid Margin="5 0 5 5" Name="MainContent">
         <!--#region RowsDefinition-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
         <!--#region Top Window Title-->
@@ -70,5 +73,57 @@
             </Grid>
         </ContentControl>
         <!--#endregion-->
+        <Grid Grid.Row="1" Margin="2">
+            <!--#region Columns definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <TextBlock Text="Adresat" 
+                       Grid.Column="0" 
+                       Style="{StaticResource ProfileProperties}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 4 0"/>
+            <Button Content="Wyszukaj" 
+                    Grid.Column="1" Width="100" 
+                    Style="{StaticResource NavigationButton}"/>
+            <TextBlock Grid.Column="2" 
+                     Name="ReceiverName" />
+        </Grid>
+        <Grid Grid.Row="2" Margin="2">
+            <!--#region Columns Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <TextBlock Text="Tytuł wiadomości:" 
+                       Style="{StaticResource ProfileProperties}"
+                       VerticalAlignment="Center"
+                       Grid.Column="0"
+                       Margin="0 0 4 0"/>
+            <TextBox Name="Title"
+                     Grid.Column="1" 
+                     Style="{StaticResource Default}"/>
+        </Grid>
+        <TextBox Name="Message"
+                 HorizontalContentAlignment="Left"
+                 Style="{StaticResource Default}"
+                 VerticalContentAlignment="Top"
+                 TextWrapping="Wrap"
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch"
+                 AcceptsReturn="True"
+                 Margin="2"
+                 Grid.Row="3"/>
+        <StackPanel Margin="5"
+                    HorizontalAlignment="Right"
+                    Grid.Row="4" 
+                    Orientation="Horizontal">
+            <Button Content="Anuluj" Margin="0 0 1 0" Width="100" Style="{StaticResource NavigationButton}"/>
+            <Button Content="Wyślij" Width="100" Style="{StaticResource NavigationButton}"/>
+        </StackPanel>
     </Grid>
 </Window>

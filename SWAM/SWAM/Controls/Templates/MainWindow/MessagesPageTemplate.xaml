@@ -18,6 +18,7 @@
         <StackPanel Name="MessagesContainer" Grid.Row="0">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource NewMessage}"
+                        Click="NewMessage_Click"
                         Margin="2"
                         ToolTip="Nowa wiadomość" />
                 <Button Style="{StaticResource SendedMessages}"

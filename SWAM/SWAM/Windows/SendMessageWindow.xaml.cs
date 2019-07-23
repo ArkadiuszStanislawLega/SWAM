@@ -34,7 +34,6 @@ namespace SWAM.Windows
         /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e) => this.Close();
         #endregion
-
         #region Maximize_Click
         /// <summary>
         /// Maximizing size of the application when the application size is smaller then max size. 

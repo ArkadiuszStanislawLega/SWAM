@@ -10,7 +10,14 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!--#endregion-->
-    <!--#region UserLogin-->
+    <!--#region BaseTextBox-->
+    <Style TargetType="TextBox" x:Key="TransparentTextBox" x:Name="TransparentTextBox">
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <!--#endregion-->
+     <!--#region UserLogin-->
     <Style TargetType="{x:Type TextBox}" x:Key="UserLogin">
         <Setter Property="Margin" Value="0 5 0 5" />
         <Setter Property="BorderBrush" Value="Gray" />
@@ -67,4 +74,37 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    <Style TargetType="TextBox" x:Key="Default">
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="120" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border Name="Border"
+                            CornerRadius="10"
+                            Padding="5"
+                            BorderThickness="0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource Graphite}" Opacity="0.7" />
+                        </Border.Background>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled"/>
+                                <VisualState x:Name="ReadOnly"/>
+                                <VisualState x:Name="MouseOver" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
