@@ -1,4 +1,6 @@
-﻿using SWAM.Models;
+﻿using SWAM.Controls.Templates.Messages;
+using SWAM.Enumerators;
+using SWAM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,26 +22,36 @@ namespace SWAM.Windows
     /// </summary>
     public partial class SendMessageWindow : Window
     {
+        #region Properties
         private bool _isMaximized;
+
+        private Dictionary<BookmarkInPage, UserControl> _contents = new Dictionary<BookmarkInPage, UserControl>()
+        {
+            {BookmarkInPage.SendMessageMessagesWindow, new SendMessageTemplate() },
+            {BookmarkInPage.FindUserMessagesWindow, new FindUserTemplate() }
+        };
+
+        /// <summary>
+        /// Template in which I answer for a message 
+        /// </summary>
+        public SendMessageTemplate SendMessageReplay
+        {
+            get
+            {
+                if (this._contents.TryGetValue(BookmarkInPage.SendMessageMessagesWindow, out UserControl userControl) 
+                    && userControl is SendMessageTemplate sendMessageTemplate)
+                    return sendMessageTemplate;
+
+                else return null;
+            }
+        }
+        #endregion
+
         public SendMessageWindow()
         {
             InitializeComponent();
+            ChangeContent(BookmarkInPage.SendMessageMessagesWindow);
         }
-
-        #region GetReplayMessage
-        /// <summary>
-        /// Sets all the values of the messages to which we respond. 
-        /// </summary>
-        /// <param name="message">The message to which the answer is written</param>
-        public void SetReplayMessage(Message message)
-        {
-            this.ReceiverName.Text = message.Receiver.Name;
-            this.FindUser.IsEnabled = false;
-            this.Title.Text = $"Re:{message.TitleOfMessage}";
-            this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n \t--- Koniec wiadomości ---";
-            this.Message.ScrollToHome();
-        }
-        #endregion
 
         #region Exit_Click
         /// <summary>
@@ -96,6 +108,26 @@ namespace SWAM.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             if (SWAM.MainWindow.MessagesWindows.Count > 0) SWAM.MainWindow.MessagesWindows.RemoveAt((int)this.Tag);
+
+        }
+        #endregion
+
+        #region ChangeContent
+        /// <summary>
+        /// Changing main content of this window.
+        /// </summary>
+        /// <param name="content"><see cref="BookmarkInPage"/> new content of the window</param>
+        public void ChangeContent(BookmarkInPage content)
+        {
+            if (this.Content.Children.Count > 0)
+            {
+                this.Content.Children.RemoveAt(this.Content.Children.Count - 1);
+
+                if (this._contents.TryGetValue(content, out UserControl userControl))
+                    this.Content.Children.Add(userControl);
+            }
+            else if (this._contents.TryGetValue(content, out UserControl userControl))
+                this.Content.Children.Add(userControl);
         }
         #endregion
     }

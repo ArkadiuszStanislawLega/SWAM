@@ -16,13 +16,6 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
-        <ObjectDataProvider x:Key="UserType"
-                MethodName="GetValues" 
-                ObjectType="{x:Type System:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="enum:UserType" />
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
         <!--#region ShowFiltersContainer-->
         <Storyboard x:Key="ShowFiltersContainer">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"

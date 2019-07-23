@@ -275,10 +275,6 @@ namespace SWAM
 
         private void UserProfile_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.LogedInUserProfile);
 
-        private void Messages_Click(object sender, RoutedEventArgs e)
-        { 
-            ChangeContent(PagesUserControls.MessagesPage);
-
-        }
+        private void Messages_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.MessagesPage);
     }
 }

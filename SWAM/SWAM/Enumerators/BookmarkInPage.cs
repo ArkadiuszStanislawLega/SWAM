@@ -10,11 +10,11 @@ namespace SWAM.Enumerators
     {
         EmptyBookmark,
         /// <summary>
-        /// Manage of warehoueses by administrator in Administator page.
+        /// Manage of warehoueses by administrator in <see cref="AdministratorPage"/>.
         /// </summary>
         WarehousesControlPanel,
         /// <summary>
-        /// Manage of users by administrator in Administator page.
+        /// Manage of users by administrator in <see cref="AdministratorPage"/>.
         /// </summary>
         UsersControlPanel,
         /// <summary>
@@ -24,6 +24,14 @@ namespace SWAM.Enumerators
         /// <summary>
         /// Manage of customers orders.
         /// </summary>
-        CustomerOrdersPanel
+        CustomerOrdersPanel,
+        /// <summary>
+        /// Sending message template in <see cref="SendMessageMessagesWindow"/>.
+        /// </summary>
+        SendMessageMessagesWindow,
+        /// <summary>
+        /// Finding user template in <see cref="SendMessageMessagesWindow"/>.
+        /// </summary>
+        FindUserMessagesWindow
     }
 }

@@ -19,7 +19,7 @@ namespace SWAM.Models
         private string _titleOfMessage;
         private string _contentOfMessage;
         private DateTime _postDate;
-        private DateTime _dateOfReading;
+        private DateTime? _dateOfReading;
         private bool _isReaded;
 
         public int Id { get => _id; set => _id = value; }
@@ -28,7 +28,27 @@ namespace SWAM.Models
         public string ContentOfMessage { get => _contentOfMessage; set => _contentOfMessage = value; }
         public string TitleOfMessage { get => _titleOfMessage; set => _titleOfMessage = value; }
         public DateTime PostDate { get => _postDate; set => _postDate = value; }
-        public DateTime DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
+        public DateTime? DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
         public bool IsReaded { get => _isReaded; set => _isReaded = value; }
+
+        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+
+        private static ApplicationDbContext _context
+        {
+            //TODO: Make all exceptions
+            get
+            {
+                return DB_CONTEXT;
+            }
+        }
+
+        public static void AddMessage(Message message)
+        {
+            if (message != null)
+            {
+                _context.Messages.Add(message);
+                _context.SaveChanges();
+            }
+        }
     }
 }

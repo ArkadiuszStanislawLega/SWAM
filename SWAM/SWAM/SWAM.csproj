@@ -79,6 +79,12 @@
     <Compile Include="Controls\Templates\MainWindow\MessagesPageTemplate.xaml.cs">
       <DependentUpon>MessagesPageTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\Messages\FindUserTemplate.xaml.cs">
+      <DependentUpon>FindUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\Messages\SendMessageTemplate.xaml.cs">
+      <DependentUpon>SendMessageTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
@@ -108,7 +114,17 @@
     <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.Designer.cs">
       <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.cs" />
+    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.Designer.cs">
+      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.cs" />
+    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.Designer.cs">
+      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Messages\MessagesUsersList.cs" />
+    <Compile Include="Windows\BookmarkIPage.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -228,6 +244,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\Messages\FindUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\Messages\SendMessageTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -711,6 +735,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.resx">
       <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.resx">
+      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.resx">
+      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

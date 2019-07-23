@@ -80,7 +80,12 @@ namespace SWAM.Controls.Templates.MainWindow
             else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
-
+        #region NewMessage_Click
+        /// <summary>
+        /// Action after click new message button.
+        /// </summary>
+        /// <param name="sender">Button new message</param>
+        /// <param name="e">Event click button</param>
         private void NewMessage_Click(object sender, RoutedEventArgs e)
         {
             SendMessageWindow sendMessageWindow = new SendMessageWindow();
@@ -88,19 +93,24 @@ namespace SWAM.Controls.Templates.MainWindow
             SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
             SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
         }
-
+        #endregion
+        #region ReplayMessage_Click
+        /// <summary>
+        /// Action after click replay message button.
+        /// </summary>
+        /// <param name="sender">Button replay message</param>
+        /// <param name="e">Event click button</param>
         private void ReplayMessage_Click(object sender, RoutedEventArgs e)
         {
             if (this._currentMessage != null)
             {
                 SendMessageWindow sendMessageWindow = new SendMessageWindow();
                 sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
-                sendMessageWindow.SetReplayMessage(this._currentMessage);
+                sendMessageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
                 SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
                 SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
             }
         }
-
-
+        #endregion
     }
 }

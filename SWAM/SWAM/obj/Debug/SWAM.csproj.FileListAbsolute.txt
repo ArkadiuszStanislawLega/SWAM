@@ -563,3 +563,11 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesPropertyIsRead
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesPropertyIsReaded.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\FindUserTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\SendMessageTemplate.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\FindUserTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\SendMessageTemplate.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDateOfReadingNullable.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDatesAreDateTime2Type.resources
