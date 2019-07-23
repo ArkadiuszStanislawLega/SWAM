@@ -26,19 +26,37 @@
                 <Button Style="{StaticResource RecivedMessages}"
                         Margin="2"
                         ToolTip="Wiadomości odebrane" />
+                <Button Style="{StaticResource ReplayMessages}"
+                        Margin="5"
+                        ToolTip="Odpowiedz na wiadomość"/>
+                <Button Style="{StaticResource DeleteMessages}"
+                        Margin="2"
+                        ToolTip="Usuń wiadomości"/>
             </StackPanel>
             
             <DataGrid Name="ColumnNamesOfDataGrid" ItemsSource="{Binding Messages}"
                       Style="{StaticResource BasicDataGrid}"
                       AutoGenerateColumns="False" 
-                      IsReadOnly="True"  
                       VerticalScrollBarVisibility="Auto" 
                       HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="auto" Header="Data wysłania"  Binding="{Binding  PostDate}"/>
-                    <DataGridTextColumn Width="auto"  Header="Nazwa użytkownika"  Binding="{Binding  Sender.Name}"/>
-                    <DataGridCheckBoxColumn Width="auto"  Header="Odczytana"  Binding="{Binding  IsReaded}"/>
-                    <DataGridTextColumn Width="*"  Header="Tytuł"  Binding="{Binding  TitleOfMessage}"/>
+                    <DataGridCheckBoxColumn Width="auto"  Header="Usuń" IsReadOnly="False"/>
+                    <DataGridTextColumn Width="auto" 
+                                        Header="Data wysłania"
+                                        IsReadOnly="True"    
+                                        Binding="{Binding  PostDate}"/>
+                    <DataGridTextColumn Width="auto"  
+                                        Header="Nazwa użytkownika"  
+                                        IsReadOnly="True"  
+                                        Binding="{Binding  Sender.Name}"/>
+                    <DataGridCheckBoxColumn Width="auto"  
+                                            Header="Odczytana" 
+                                            IsReadOnly="True"   
+                                            Binding="{Binding  IsReaded}"/>
+                    <DataGridTextColumn Width="*"  
+                                        Header="Tytuł" 
+                                        IsReadOnly="True"   
+                                        Binding="{Binding  TitleOfMessage}"/>
                 </DataGrid.Columns>
                 <DataGrid.ItemContainerStyle>
                     <Style TargetType="DataGridRow">
@@ -56,12 +74,37 @@
             <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top">
-                <TextBlock Name="DateOfSend"/>
-                <TextBlock Name="SenderName" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Data wysłania wiadomości: "
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Name="DateOfSend"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Nadawca wiadomości: "
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Name="SenderName" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Tytuł: "
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Name="TitleOfMessage"/>
+                </StackPanel>
             </StackPanel>
             <TextBlock Name="CurrentMessage" 
                        Grid.Row="1"
+                       Margin="10"
                        HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal" Margin="20"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                <Button Style="{StaticResource ReplyButton}"
+                         Margin="5"
+                         ToolTip="Odpowiedz na wiadomość"/>
+                <Button Style="{StaticResource DeleteButton}"
+                         Margin="5"
+                         ToolTip="Usuń wiadomość"/>
+     
+            </StackPanel>
         </Grid>
     </Grid>
 </bpage:BasicUserControl>

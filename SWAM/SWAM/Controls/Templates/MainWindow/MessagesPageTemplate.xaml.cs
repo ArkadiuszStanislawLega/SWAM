@@ -69,6 +69,7 @@ namespace SWAM.Controls.Templates.MainWindow
                 this.CurrentMessage.Text = message.ContentOfMessage;
                 this.SenderName.Text = message.Sender.Name;
                 this.DateOfSend.Text = message.PostDate.ToString();
+                this.TitleOfMessage.Text = message.TitleOfMessage;
             }
             else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }

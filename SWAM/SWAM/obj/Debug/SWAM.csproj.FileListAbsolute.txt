@@ -560,3 +560,6 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MainWindow\CurrentUserPro
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.AddMessageModel.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessageModelAddTitle.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesPropertyIsReaded.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesPropertyIsReaded.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\SendMessageWindow.baml
