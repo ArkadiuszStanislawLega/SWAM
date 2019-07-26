@@ -66,16 +66,6 @@ namespace SWAM
                   .HasForeignKey(r => r.ReceiverId)
                   .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Message>()
-                .Property(f => f.PostDate)
-                .HasColumnType("datetime2")
-                .HasPrecision(0);
-
-            modelBuilder.Entity<Message>()
-                 .Property(f => f.DateOfReading)
-                 .HasColumnType("datetime2")
-                 .HasPrecision(0);
-
             modelBuilder.Entity<User>()
                 .HasMany(a => a.Accesess)
                 .WithRequired(u => u.User)

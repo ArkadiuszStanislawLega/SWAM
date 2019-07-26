@@ -571,3 +571,10 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\FindUserTemplate
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\SendMessageTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDateOfReadingNullable.resources
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDatesAreDateTime2Type.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\FindUserTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\SendMessageTemplate.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\FindUserTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\Messages\SendMessageTemplate.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDateOfReadingNullable.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UpdateMessagesDatesAreDateTime2Type.resources
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.deleteDataTime2FromMessageModel.resources

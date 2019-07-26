@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.Designer.cs">
       <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.cs" />
+    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.Designer.cs">
+      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Windows\BookmarkIPage.cs" />
@@ -741,6 +745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.resx">
       <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.resx">
+      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

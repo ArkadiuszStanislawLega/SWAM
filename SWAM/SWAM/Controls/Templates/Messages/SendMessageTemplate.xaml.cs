@@ -32,8 +32,8 @@ namespace SWAM.Controls.Templates.Messages
         {
             if (receiver != null)
             {
-                this.MessageToSend.Receiver = receiver;
-                this.ReceiverName.Text = this.MessageToSend.Receiver.Name;
+                this.MessageToSend.ReceiverId = receiver.Id;
+                this.ReceiverName.Text = receiver.Name;
             }
         }
 
@@ -61,9 +61,9 @@ namespace SWAM.Controls.Templates.Messages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageToSend.Receiver != null)
+            if (MessageToSend.ReceiverId != 0)
             {
-                MessageToSend.Sender = SWAM.MainWindow.LoggedInUser;
+                MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
                 MessageToSend.ContentOfMessage = this.Message.Text;
                 MessageToSend.TitleOfMessage = this.Title.Text;
                 MessageToSend.PostDate = DateTime.Now;
