@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
+using SWAM.Models.Messages;
 using SWAM.Windows;
 using System;
 using System.Collections.Generic;
@@ -14,42 +15,12 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class MessagesPage : BasicUserControl
     {
+        public MessagesListViewModel MessagesListViewModel { get; set; } = new MessagesListViewModel();
+
         private Message _currentMessage;
         public MessagesPage()
         {
             InitializeComponent();
-
-            //TODO: Delete this when sending message is work.
-            SWAM.MainWindow.LoggedInUser.Messages = new List<Message>()
-            {
-                new Message()
-                {
-                    Sender = new User(){Name = "Mietek" },
-                    Receiver = new User(){Name = "Czesiek"},
-                    TitleOfMessage = "Witaj w systemie",
-                    ContentOfMessage = "Zostałeś poprawnie dodany do systemu. Przestrzegaj zasad i regulaminu systemu.",
-                    PostDate = DateTime.Now,
-                    IsReaded = true
-                },
-                new Message()
-                {
-                    Sender = new User(){Name = "Czesiek" },
-                    Receiver = new User(){Name = "Mietek" },
-                    TitleOfMessage = "Faktura za gwoździe",
-                    ContentOfMessage = "Czy to ty zrobiłeś fakturę numer 8000 na gwoździe, jest w niej błąd.",
-                    PostDate = DateTime.Now
-                },
-                new Message()
-                {
-                    Sender = new User(){Name = "Monika" },
-                    Receiver = new User(){Name = "Mietek" },
-                    TitleOfMessage = "Potrzebuję numeru faktury",
-                    ContentOfMessage = "Potrzebna jest faktura za gwoździe które Jan Kowalski kupił w zeszłym tygodniu. Tam była ilość 10000 gwoździ.",
-                    PostDate = DateTime.Now
-                }
-            };
-
-            DataContext = SWAM.MainWindow.LoggedInUser;
         }
 
         #region Row_DoubleClick
@@ -103,5 +74,13 @@ namespace SWAM.Controls.Pages
             }
         }
         #endregion
+
+        private void BasicUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            MessagesListViewModel.Refresh(SWAM.MainWindow.LoggedInUser.Id);
+
+            //TODO: Think about it Why this don't Work in xaml
+            ColumnNamesOfDataGrid.ItemsSource = MessagesListViewModel.MessagesList;
+        }
     }
 }

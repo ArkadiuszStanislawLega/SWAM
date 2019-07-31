@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -40,6 +37,16 @@ namespace SWAM.Models
             {
                 return DB_CONTEXT;
             }
+        }
+
+        public static IList<Message> AllMessages(int userId)
+        {
+            if (userId > 0)
+                return _context.Messages
+                    .Include(m => m.Receiver)
+                    .Include(m => m.Sender)
+                    .Where(m => m.Receiver.Id == userId).ToList();
+            else return null;
         }
 
         public static void AddMessage(Message message)

@@ -22,6 +22,12 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
+        //TODO: Delete this in released 
+        /// <summary>
+        /// Temporary user id for debug.
+        /// </summary>
+        private const int TEMPORARY_USER_ID = 1;
+
         #region Public statics
         /// <summary>
         /// Flag indicating whether the application is maximized.
@@ -32,9 +38,10 @@ namespace SWAM
         /// </summary>
         public static User LoggedInUser = new User
         {
-            Id = 1,
+            Id = TEMPORARY_USER_ID,
             Name = "Admin",
-            Permissions = UserType.Programmer
+            Permissions = UserType.Programmer,
+            Messages = Message.AllMessages(TEMPORARY_USER_ID)
         };
         /// <summary>
         /// Flag indication that user is logged in or not.

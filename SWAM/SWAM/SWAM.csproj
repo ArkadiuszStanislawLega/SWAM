@@ -127,6 +127,7 @@
       <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Windows\BookmarkIPage.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">

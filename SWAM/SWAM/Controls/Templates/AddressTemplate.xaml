@@ -41,8 +41,8 @@
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
-    <!--#endregion-->
     <StackPanel >
         <StackPanel Margin="5">
             <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}" />
