@@ -124,6 +124,8 @@ namespace SWAM
             ChangeContent(PagesUserControls.LoginPage);
 
             currentInstance = this;
+
+            RefreshMessagesButton();
         }
         #endregion
         
@@ -295,6 +297,18 @@ namespace SWAM
         /// <param name="sender">Messages button</param>
         /// <param name="e">Action clicked</param>
         private void Messages_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.MessagesPage);
+        #endregion
+
+        #region RefreshMessagesButton
+        /// <summary>
+        /// Getting number of user unread messages, and update content of button.
+        /// </summary>
+        public static void RefreshMessagesButton()
+        {
+            int number = Message.CountUnreadedMessages(LoggedInUser.Id);
+            currentInstance.Messages.Content = number >= 0 ? $"{number}" : "";
+        }
+
         #endregion
     }
 }

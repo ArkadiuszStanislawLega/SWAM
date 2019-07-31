@@ -82,6 +82,8 @@ namespace SWAM.Controls.Templates.MessagesPage
 
                 if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
                     sendMessageWindow.Close();
+
+                SWAM.MainWindow.RefreshMessagesButton();
             }
         }
         #endregion
