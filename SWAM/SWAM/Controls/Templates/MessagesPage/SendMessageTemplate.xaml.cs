@@ -11,12 +11,20 @@ namespace SWAM.Controls.Templates.MessagesPage
     /// </summary>
     public partial class SendMessageTemplate : UserControl
     {
+        /// <summary>
+        /// Typed message
+        /// </summary>
         public Message MessageToSend = new Message();
         public SendMessageTemplate()
         {
             InitializeComponent();
         }
 
+        #region SetResceiver
+        /// <summary>
+        /// Sets the user who is the recipient of the message.
+        /// </summary>
+        /// <param name="receiver">Recipient of the message.</param>
         public void SetResceiver(User receiver)
         {
             if (receiver != null)
@@ -25,6 +33,7 @@ namespace SWAM.Controls.Templates.MessagesPage
                 this.ReceiverName.Text = receiver.Name;
             }
         }
+        #endregion
 
         #region GetReplayMessage
         /// <summary>
@@ -42,12 +51,25 @@ namespace SWAM.Controls.Templates.MessagesPage
         }
         #endregion
 
+        #region FindUser_Click
+        /// <summary>
+        /// Action after click find user button.
+        /// </summary>
+        /// <param name="sender">Find user button</param>
+        /// <param name="e">Action clicked</param>
         private void FindUser_Click(object sender, RoutedEventArgs e)
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow parent)
                 parent.ChangeContent(Enumerators.BookmarkInPage.FindUserMessagesWindow);
         }
-
+        #endregion
+        #region SendMessage_Click
+        /// <summary>
+        /// Action after click send message button.
+        /// Sending to database message, and closing current window.
+        /// </summary>
+        /// <param name="sender">Send message button</param>
+        /// <param name="e">Action clicked.</param>
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
             if (MessageToSend.ReceiverId != 0)
@@ -57,7 +79,11 @@ namespace SWAM.Controls.Templates.MessagesPage
                 MessageToSend.TitleOfMessage = this.Title.Text;
                 MessageToSend.PostDate = DateTime.Now;
                 SWAM.Models.Message.AddMessage(MessageToSend);
+
+                if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+                    sendMessageWindow.Close();
             }
         }
+        #endregion
     }
 }

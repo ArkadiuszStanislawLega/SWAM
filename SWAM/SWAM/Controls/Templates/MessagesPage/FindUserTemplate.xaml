@@ -20,7 +20,7 @@
             <TextBlock Text="Podaj nazwę użytkownika:"
                        Grid.Column="0"
                        VerticalAlignment="Center"/>
-            <TextBox Name="UserName" Grid.Column="1" 
+            <TextBox Name="FindUserName" Grid.Column="1" 
                      TextChanged="UserName_TextChanged"
                      Style="{StaticResource Default}"/>
         </Grid>
