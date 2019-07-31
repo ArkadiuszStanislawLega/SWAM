@@ -69,7 +69,7 @@ namespace SWAM
             { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },
             { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
             { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate(){ DataContext = LoggedInUser} },
-            { PagesUserControls.MessagesPage, new MessagesPageTemplate() }
+            { PagesUserControls.MessagesPage, new MessagesPage() }
 
         };
         /// <summary>
@@ -273,8 +273,21 @@ namespace SWAM
         }
         #endregion
 
+        #region UserProfile_Click
+        /// <summary>
+        /// Action after click user profile button. 
+        /// </summary>
+        /// <param name="sender">User profile button</param>
+        /// <param name="e">Action clicked</param>
         private void UserProfile_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.LogedInUserProfile);
-
+        #endregion
+        #region Messages_Click
+        /// <summary>
+        /// Action after click messages button.
+        /// </summary>
+        /// <param name="sender">Messages button</param>
+        /// <param name="e">Action clicked</param>
         private void Messages_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.MessagesPage);
+        #endregion
     }
 }

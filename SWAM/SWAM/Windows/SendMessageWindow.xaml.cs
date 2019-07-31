@@ -1,19 +1,9 @@
-﻿using SWAM.Controls.Templates.Messages;
+﻿using SWAM.Controls.Templates.MessagesPage;
 using SWAM.Enumerators;
-using SWAM.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SWAM.Windows
 {
@@ -23,28 +13,18 @@ namespace SWAM.Windows
     public partial class SendMessageWindow : Window
     {
         #region Properties
+        /// <summary>
+        /// A flag indicating whether the window is maximized
+        /// </summary>
         private bool _isMaximized;
-
+        /// <summary>
+        /// Container with bookmarks in this window for navigation.
+        /// </summary>
         private Dictionary<BookmarkInPage, UserControl> _contents = new Dictionary<BookmarkInPage, UserControl>()
         {
             {BookmarkInPage.SendMessageMessagesWindow, new SendMessageTemplate() },
             {BookmarkInPage.FindUserMessagesWindow, new FindUserTemplate() }
         };
-
-        /// <summary>
-        /// Template in which I answer for a message 
-        /// </summary>
-        public SendMessageTemplate SendMessageReplay
-        {
-            get
-            {
-                if (this._contents.TryGetValue(BookmarkInPage.SendMessageMessagesWindow, out UserControl userControl) 
-                    && userControl is SendMessageTemplate sendMessageTemplate)
-                    return sendMessageTemplate;
-
-                else return null;
-            }
-        }
         #endregion
 
         public SendMessageWindow()
@@ -108,7 +88,6 @@ namespace SWAM.Windows
         private void Window_Closed(object sender, EventArgs e)
         {
             if (SWAM.MainWindow.MessagesWindows.Count > 0) SWAM.MainWindow.MessagesWindows.RemoveAt((int)this.Tag);
-
         }
         #endregion
 
@@ -128,6 +107,23 @@ namespace SWAM.Windows
             }
             else if (this._contents.TryGetValue(content, out UserControl userControl))
                 this.Content.Children.Add(userControl);
+        }
+        #endregion
+
+        #region SendMessageReplay
+        /// <summary>
+        /// Template in which user is answering for a message
+        /// </summary>
+        public SendMessageTemplate SendMessageReplay
+        {
+            get
+            {
+                if (this._contents.TryGetValue(BookmarkInPage.SendMessageMessagesWindow, out UserControl userControl)
+                    && userControl is SendMessageTemplate sendMessageTemplate)
+                    return sendMessageTemplate;
+
+                else return null;
+            }
         }
         #endregion
     }

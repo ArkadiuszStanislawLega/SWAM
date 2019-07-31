@@ -3,28 +3,19 @@ using SWAM.Models;
 using SWAM.Windows;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace SWAM.Controls.Templates.MainWindow
+namespace SWAM.Controls.Pages
 {
     /// <summary>
     /// Logika interakcji dla klasy MessagesPageTemplate.xaml
     /// </summary>
-    public partial class MessagesPageTemplate : BasicUserControl
+    public partial class MessagesPage : BasicUserControl
     {
         private Message _currentMessage;
-        public MessagesPageTemplate()
+        public MessagesPage()
         {
             InitializeComponent();
 

@@ -76,13 +76,13 @@
     <Compile Include="Controls\Templates\MainWindow\MessageListItemTemplate.xaml.cs">
       <DependentUpon>MessageListItemTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\MainWindow\MessagesPageTemplate.xaml.cs">
-      <DependentUpon>MessagesPageTemplate.xaml</DependentUpon>
+    <Compile Include="Controls\Pages\MessagesPage.xaml.cs">
+      <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\Messages\FindUserTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
       <DependentUpon>FindUserTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\Messages\SendMessageTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\MessagesPage\SendMessageTemplate.xaml.cs">
       <DependentUpon>SendMessageTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
@@ -207,7 +207,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\MainWindow\MessagesPageTemplate.xaml">
+    <Page Include="Controls\Pages\MessagesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -251,11 +251,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\Messages\FindUserTemplate.xaml">
+    <Page Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\Messages\SendMessageTemplate.xaml">
+    <Page Include="Controls\Templates\MessagesPage\SendMessageTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
