@@ -40,37 +40,41 @@
                         Margin="2"
                         ToolTip="Usuń wiadomości"/>
             </StackPanel>
+            <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
+                     HorizontalAlignment="Center">
+                <DataGrid Name="MessagesList" ItemsSource="{Binding MessagesList}"
 
-            <DataGrid Name="ColumnNamesOfDataGrid" ItemsSource="{Binding MessagesList}"
-                      Style="{StaticResource BasicDataGrid}"
+                        Style="{StaticResource BasicDataGrid}"
                       AutoGenerateColumns="False" 
+                      CanUserAddRows="False"
                       VerticalScrollBarVisibility="Auto" 
                       HorizontalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Width="auto"  Header="Usuń" IsReadOnly="False"/>
-                    <DataGridTextColumn Width="auto" 
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn Width="auto"  Header="Usuń" IsReadOnly="False"/>
+                        <DataGridTextColumn Width="auto" 
                                         Header="Data wysłania"
-                                        IsReadOnly="True"    
+                                        IsReadOnly="True" 
                                         Binding="{Binding  PostDate}"/>
-                    <DataGridTextColumn Width="auto"  
+                        <DataGridTextColumn Width="auto"  
                                         Header="Nazwa użytkownika"  
                                         IsReadOnly="True"  
                                         Binding="{Binding  Sender.Name}"/>
-                    <DataGridCheckBoxColumn Width="auto"  
+                        <DataGridCheckBoxColumn Width="auto"  
                                             Header="Odczytana" 
                                             IsReadOnly="True"   
                                             Binding="{Binding  IsReaded}"/>
-                    <DataGridTextColumn Width="*"  
+                        <DataGridTextColumn Width="*"  
                                         Header="Tytuł" 
                                         IsReadOnly="True"   
                                         Binding="{Binding  TitleOfMessage}"/>
-                </DataGrid.Columns>
-                <DataGrid.ItemContainerStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                    </Style>
-                </DataGrid.ItemContainerStyle>
-            </DataGrid>
+                    </DataGrid.Columns>
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
+                </DataGrid>
+            </Border>
         </StackPanel>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
         <Grid Grid.Row="2" Name="Message">
@@ -81,11 +85,25 @@
             <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Data wysłania wiadomości: "
+                <!--#region Dates-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Data wysłania wiadomości: " Grid.Row="0" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="DateOfSend"/>
-                </StackPanel>
+                    <TextBlock Name="DateOfSend" Grid.Row="0" Grid.Column="1"/>
+                    
+                    <TextBlock Text="Data odebrania wiadomości: " Grid.Row="1" Grid.Column="0"
+                               Style="{StaticResource ProfileProperties}"/>
+                    <TextBlock Name="DateOfReading" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+                <!--#endregion-->
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Nadawca wiadomości: "
                                Style="{StaticResource ProfileProperties}"/>
@@ -110,7 +128,6 @@
                 <Button Style="{StaticResource DeleteButton}"
                          Margin="5"
                          ToolTip="Usuń wiadomość"/>
-     
             </StackPanel>
         </Grid>
     </Grid>

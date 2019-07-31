@@ -41,7 +41,7 @@ namespace SWAM
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
             Permissions = UserType.Programmer,
-            Messages = Message.AllMessages(TEMPORARY_USER_ID)
+            Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
         };
         /// <summary>
         /// Flag indication that user is logged in or not.
@@ -296,7 +296,16 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Messages button</param>
         /// <param name="e">Action clicked</param>
-        private void Messages_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.MessagesPage);
+        private void Messages_Click(object sender, RoutedEventArgs e)
+        {
+            if (this._currentPageLoaded != PagesUserControls.MessagesPage)
+                ChangeContent(PagesUserControls.MessagesPage);
+            else
+            {
+                if(_pages.TryGetValue(PagesUserControls.MessagesPage, out UserControl userControl) && userControl is MessagesPage messagePage)
+                    messagePage.RefreshMessagesList();
+            }
+        }
         #endregion
 
         #region RefreshMessagesButton
@@ -306,9 +315,8 @@ namespace SWAM
         public static void RefreshMessagesButton()
         {
             int number = Message.CountUnreadedMessages(LoggedInUser.Id);
-            currentInstance.Messages.Content = number >= 0 ? $"{number}" : "";
+            currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
         }
-
         #endregion
     }
 }

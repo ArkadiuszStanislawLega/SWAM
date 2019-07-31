@@ -38,7 +38,56 @@ namespace SWAM.Models
                 return DB_CONTEXT;
             }
         }
+        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
+      
 
+        #region AddMessage
+        /// <summary>
+        /// Add new message to database.
+        /// </summary>
+        /// <param name="message">The message we want to add</param>
+        public static void AddMessage(Message message)
+        {
+            if (message != null)
+            {
+                _context.Messages.Add(message);
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+
+        #region SetDateOfReading
+        /// <summary>
+        /// Setting date of reading of specific message to current.
+        /// </summary>
+        /// <param name="messageId"></param>
+        public static void SetDateOfReading(int messageId)
+        {
+            _context.Messages.FirstOrDefault(m => m.Id == messageId).DateOfReading = DateTime.Now;
+            _context.SaveChanges();
+        }
+        #endregion
+
+        #region SetMessageIsReaded
+        /// <summary>
+        /// Setting IsReaded flag in database to true.
+        /// </summary>
+        /// <param name="messageId">Message id from database</param>
+        public static void IsReadedToTrue(int messageId)
+        {
+            if (messageId > 0)
+            {
+                _context.Messages.FirstOrDefault(m => m.Id == messageId).IsReaded = true;
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+        #region CountUnreadedMessages
+        /// <summary>
+        /// Counting number of unreaded message of specific user id.
+        /// </summary>
+        /// <param name="userId">Id number of the user we want to check</param>
+        /// <returns>Number of specific unreaded messages. If number is below 0 user Id is incorrect.</returns>
         public static int CountUnreadedMessages(int userId)
         {
             if (userId > 0)
@@ -48,8 +97,15 @@ namespace SWAM.Models
                     .Where(m => m.Receiver.Id == userId && !m.IsReaded).ToList().Count;
             else return -1;
         }
+        #endregion
 
-        public static IList<Message> AllMessages(int userId)
+        #region AllReceivedMessages
+        /// <summary>
+        /// All received messages from database that the user has received.
+        /// </summary>
+        /// <param name="userId">Id number of the user we want to get list</param>
+        /// <returns>List with all received messages</returns>
+        public static IList<Message> AllReceivedMessages(int userId)
         {
             if (userId > 0)
                 return _context.Messages
@@ -58,14 +114,7 @@ namespace SWAM.Models
                     .Where(m => m.Receiver.Id == userId).ToList();
             else return null;
         }
+        #endregion
 
-        public static void AddMessage(Message message)
-        {
-            if (message != null)
-            {
-                _context.Messages.Add(message);
-                _context.SaveChanges();
-            }
-        }
     }
 }

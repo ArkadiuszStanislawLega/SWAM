@@ -4,8 +4,10 @@ using SWAM.Models.Messages;
 using SWAM.Windows;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace SWAM.Controls.Pages
@@ -36,8 +38,22 @@ namespace SWAM.Controls.Pages
                 this._currentMessage = message;
                 this.CurrentMessage.Text = message.ContentOfMessage;
                 this.SenderName.Text = message.Sender.Name;
-                this.DateOfSend.Text = message.PostDate.ToString();
+                this.DateOfSend.Text = $"\t{message.PostDate.ToString()}";
                 this.TitleOfMessage.Text = message.TitleOfMessage;
+
+                if(message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
+
+                if (!message.IsReaded)
+                {
+                    //set this message as "is readed"
+                    SWAM.Models.Message.IsReadedToTrue(message.Id);
+                    SWAM.Models.Message.SetDateOfReading(message.Id);
+
+                    row.IsSelected = true;
+
+                    //refresh number of unreaded messages in main window
+                    SWAM.MainWindow.RefreshMessagesButton();
+                }
             }
             else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
@@ -77,10 +93,15 @@ namespace SWAM.Controls.Pages
 
         private void BasicUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            MessagesListViewModel.Refresh(SWAM.MainWindow.LoggedInUser.Id);
+            RefreshMessagesList();
 
             //TODO: Think about it Why this don't Work in xaml
-            ColumnNamesOfDataGrid.ItemsSource = MessagesListViewModel.MessagesList;
+            MessagesList.ItemsSource = MessagesListViewModel.MessagesList;
+
+            MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
+
         }
+
+        public void RefreshMessagesList() => MessagesListViewModel.Refresh(SWAM.MainWindow.LoggedInUser.Id);
     }
 }

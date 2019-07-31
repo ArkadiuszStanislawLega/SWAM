@@ -100,11 +100,6 @@
                         <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
                         <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
                     </DataGrid.Columns>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:UserListItemInWarehouseProfile/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
                 </DataGrid>
             </Border>
             <!--#endregion-->

@@ -18,7 +18,7 @@ namespace SWAM.Models.Messages
         {
             if(this._messagesListViewModel.Count > 0) this._messagesListViewModel.Clear();
 
-            foreach (Message message in Message.AllMessages(userId))
+            foreach (Message message in Message.AllReceivedMessages(userId))
                 this._messagesListViewModel.Add(message);
         }
     }
