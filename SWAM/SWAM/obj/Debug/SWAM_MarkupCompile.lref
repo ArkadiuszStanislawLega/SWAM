@@ -1,4 +1,4 @@
-﻿G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FG:\GitRepo\SWAM\SWAM\SWAM\App.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Pages\ErrorPage.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\AddressTemplate.xaml;;
@@ -56,4 +56,6 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\ConfirmWindow.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\SendMessageWindow.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml;;
 

@@ -11,35 +11,36 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
-    <Grid Grid.Row="0" Margin="10 2 10 2" >
-        <!--#region Columns definitions-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <!--#endregion-->
-        <TextBlock Text="Adresat" 
+        <Grid Grid.Row="0" Margin="10 2 10 2" >
+            <!--#region Columns definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <TextBlock Text="Adresat" 
                        Grid.Column="0" 
                        Style="{StaticResource ProfileProperties}"
                        VerticalAlignment="Center"
                        Margin="0 0 4 0"/>
-        <Button Name="FindUser"
+            <Button Name="FindUser"
                     Click="FindUser_Click"
                     Content="Wyszukaj" 
                     Grid.Column="1" Width="100" 
                     Style="{StaticResource NavigationButton}"/>
-        <TextBlock Grid.Column="2" 
-                       Margin="4 0 0 0"
-                       VerticalAlignment="Center"
-                       Name="ReceiverName" 
-                   Text="{Binding Receiver.Name}"/>
-    </Grid>
-    <Grid Grid.Row="1" Margin="10 2 10 2">
+
+        </Grid>
+        
+        <local:SelectedUsersToSendMessageTemplate x:Name="UsersList"
+            Grid.Row="1" Margin="10 2 10 2"/>
+        
+        <Grid Grid.Row="2" Margin="10 2 10 2">
         <!--#region Columns Definitions-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -64,10 +65,10 @@
                  VerticalAlignment="Stretch"
                  AcceptsReturn="True"
                  Margin="10 2 10 2"
-                 Grid.Row="2"/>
+                 Grid.Row="3"/>
         <StackPanel Margin="10 5 10 5"
                     HorizontalAlignment="Right"
-                    Grid.Row="3" 
+                    Grid.Row="4" 
                     Orientation="Horizontal">
             <Button Content="Anuluj" Margin="0 0 1 0" Width="100" Style="{StaticResource NavigationButton}"/>
             <Button Name="SendMessage" Click="SendMessage_Click" Content="Wyślij" Width="100" Style="{StaticResource NavigationButton}"/>

@@ -79,6 +79,12 @@
     <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
       <DependentUpon>FindUserTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml.cs">
+      <DependentUpon>SelectedUsersItemListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml.cs">
+      <DependentUpon>SelectedUsersToSendMessageTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MessagesPage\SendMessageTemplate.xaml.cs">
       <DependentUpon>SendMessageTemplate.xaml</DependentUpon>
     </Compile>
@@ -126,6 +132,7 @@
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
+    <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
     <Compile Include="Windows\BookmarkIPage.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
@@ -246,6 +253,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

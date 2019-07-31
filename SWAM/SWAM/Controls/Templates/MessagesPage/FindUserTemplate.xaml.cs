@@ -19,10 +19,6 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// List with all users in database.
         /// </summary>
         public static MessagesUsersList MessagesUsersList { get; set; } = new MessagesUsersList();
-        /// <summary>
-        /// Selected user.
-        /// </summary>
-        private User _selectedUser;
         #endregion
 
         public FindUserTemplate()
@@ -42,10 +38,8 @@ namespace SWAM.Controls.Templates.MessagesPage
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is User user)
-            {
-                this.FindUserName.Text = user.Name;
-                this._selectedUser = user;
-            }
+                SelectedUsers.SelectedUsersListViewModel.AddUser(user);
+            
         }
         #endregion
         #region UserName_TextChanged
@@ -75,7 +69,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow parent)
             {
-                parent.SendMessageReplay.SetResceiver(this._selectedUser);
+                parent.SendMessageReplay.SetResceiver(SelectedUsers.SelectedUsersListViewModel);
                 parent.ChangeContent(Enumerators.BookmarkInPage.SendMessageMessagesWindow);
             }
         }

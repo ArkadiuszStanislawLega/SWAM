@@ -13,16 +13,25 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="5 5 5 1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*" /> 
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Podaj nazwę użytkownika:"
-                       Grid.Column="0"
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Podaj nazwę użytkownika:"
+                       Grid.Column="0" Grid.Row="0"
                        VerticalAlignment="Center"/>
-            <TextBox Name="FindUserName" Grid.Column="1" 
+                <TextBox Name="FindUserName"
+                      Grid.Row="0" Grid.Column="1" 
                      TextChanged="UserName_TextChanged"
                      Style="{StaticResource Default}"/>
+            </Grid>
+            <local:SelectedUsersToSendMessageTemplate
+                x:Name="SelectedUsers" Grid.Row="1"/>
         </Grid>
         <DataGrid  Grid.Row="1"
                    ItemsSource="{Binding UsersList}"
@@ -56,7 +65,11 @@
                     Grid.Row="4" 
                     Orientation="Horizontal">
             <Button Content="Anuluj" Margin="0 0 1 0" Width="100" Style="{StaticResource NavigationButton}"/>
-            <Button Name="Confirm" Click="Confirm_Click" Content="Zatwierdź" Width="100" Style="{StaticResource NavigationButton}"/>
+            <Button Name="Confirm" 
+                    Click="Confirm_Click" 
+                    Content="Zatwierdź"
+                    Width="100" 
+                    Style="{StaticResource NavigationButton}"/>
         </StackPanel>
     </Grid>
 </UserControl>
