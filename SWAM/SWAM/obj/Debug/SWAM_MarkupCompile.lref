@@ -29,6 +29,8 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Customers\Custome
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\FindUserTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml;;
+FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SendMessageTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\WarehouseTechnicalDataTemplate.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Windows\AddProductWindow.xaml;;
@@ -56,6 +58,4 @@ FG:\GitRepo\SWAM\SWAM\SWAM\Styles\TextBoxes.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Styles\ToolTips.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\ConfirmWindow.xaml;;
 FG:\GitRepo\SWAM\SWAM\SWAM\Windows\SendMessageWindow.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml;;
-FG:\GitRepo\SWAM\SWAM\SWAM\Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml;;
 

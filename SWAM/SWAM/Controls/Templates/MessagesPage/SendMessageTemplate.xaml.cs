@@ -27,7 +27,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             InitializeComponent();
 
-            UsersList.DataContext = SelectedUsersListViewModel;
+            DataContext = SelectedUsersListViewModel;
         }
 
         #region SetResceiver
@@ -40,6 +40,7 @@ namespace SWAM.Controls.Templates.MessagesPage
             if (receivers != null && receivers.UsersList.Count > 0)
             {
                 SelectedUsersListViewModel = receivers;
+                DataContext = receivers;
 
                 foreach (User user in SelectedUsersListViewModel.UsersList)
                 {
@@ -63,10 +64,17 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             this.MessageToSend.ReceiverId = message.SenderId;
             this.MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
+            this.SelectedUsersListViewModel.AddUser(message.Sender);//Meake receiver visibile in replay window.
+
+            //Block adding more users.
+            this.ChosenUserContainer.IsEnabled = false;
             this.FindUser.IsEnabled = false;
+
+            //Copy message which are replayed.
             this.Title.Text = $"Re:{message.TitleOfMessage}";
             this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
             this.Message.ScrollToHome();
+
             this._isReplayMessage = true;
         }
         #endregion

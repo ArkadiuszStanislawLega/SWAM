@@ -35,11 +35,26 @@
                     Grid.Column="1" Width="100" 
                     Style="{StaticResource NavigationButton}"/>
 
+            <ItemsControl Name="ChosenUserContainer"
+                      Margin="10 0 0 0"
+                      ItemsSource="{Binding UsersList}" 
+                      Grid.Column="2">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:SelectedUsersItemListTemplate/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Margin="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+
         </Grid>
         
-        <local:SelectedUsersToSendMessageTemplate x:Name="UsersList"
-            Grid.Row="1" Margin="10 2 10 2"/>
-        
+
+
         <Grid Grid.Row="2" Margin="10 2 10 2">
         <!--#region Columns Definitions-->
         <Grid.ColumnDefinitions>

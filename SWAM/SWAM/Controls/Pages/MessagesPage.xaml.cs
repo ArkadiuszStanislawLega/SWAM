@@ -85,6 +85,7 @@ namespace SWAM.Controls.Pages
                 SendMessageWindow sendMessageWindow = new SendMessageWindow();
                 sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
                 sendMessageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
+
                 SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
                 SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
             }
