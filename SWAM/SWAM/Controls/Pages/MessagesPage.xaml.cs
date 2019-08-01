@@ -5,6 +5,7 @@ using SWAM.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -178,7 +179,22 @@ namespace SWAM.Controls.Pages
 
         private void DeleteMessage_Click(object sender, RoutedEventArgs e)
         {
+            for (int i = 0; i < MessagesList.Items.Count; i++)
+            {
+                FrameworkElement columnFromDataGrid = MessagesList.Columns[0].GetCellContent(MessagesList.Items[i]);
+              
+                if (columnFromDataGrid is CheckBox isDeletedChecked && isDeletedChecked.IsChecked == true && MessagesList.Items[i] is Message message)
+                {
+                    SWAM.Models.Message.DeleteMessage(message.Id);
+                    RefreshMessagesList();
+                }
+            }
+        }
 
+        private void DeleteCurrentMessage_Click(object sender, RoutedEventArgs e)
+        {
+            SWAM.Models.Message.DeleteMessage(this._currentMessage.Id);
+            RefreshMessagesList();
         }
     }
 }

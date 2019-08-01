@@ -74,7 +74,8 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Width="auto"  Header="Usuń" IsReadOnly="False"/>
+                        <DataGridCheckBoxColumn 
+                            Width="auto"  Header="Usuń" IsReadOnly="False"/>
                         <DataGridTextColumn Width="auto" 
                                         Header="Data wysłania"
                                         IsReadOnly="True" 
@@ -156,7 +157,9 @@
                             Click="ReplayMessage_Click"
                          Margin="5"
                          ToolTip="Odpowiedz na wiadomość"/>
-                    <Button Style="{StaticResource DeleteButton}"
+                    <Button Name="DeleteCurrentMessage"
+                            Click="DeleteCurrentMessage_Click"
+                        Style="{StaticResource DeleteButton}"
                          Margin="5"
                          ToolTip="Usuń wiadomość"/>
                 </StackPanel>

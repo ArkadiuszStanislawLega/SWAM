@@ -41,6 +41,15 @@ namespace SWAM.Models
 
         public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
 
+        public static void DeleteMessage(int messageId)
+        {
+            if (messageId > 0)
+            {
+                _context.Messages.Remove(GetMessage(messageId));
+                _context.SaveChanges();
+            }
+        }
+
         #region AddManyMessages
         /// <summary>
         /// Adding list of messages to database.
