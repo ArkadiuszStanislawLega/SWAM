@@ -28,9 +28,11 @@
                         Margin="2"
                         ToolTip="Wiadomości wysłane"
                         Click="SendedMessages_Click"/>
-            <Button Style="{StaticResource RecivedMessages}"
-                        Margin="2"
-                        ToolTip="Wiadomości odebrane" />
+            <Button Name="ReceivedMessages"
+                    Style="{StaticResource RecivedMessages}"
+                    Margin="2"
+                    ToolTip="Wiadomości odebrane"
+                    Click="ReceivedMessages_Click"/>
             <Button Name="ReplayMessage"
                         Click="ReplayMessage_Click"
                         Style="{StaticResource ReplayMessages}"

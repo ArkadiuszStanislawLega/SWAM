@@ -17,13 +17,26 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class MessagesPage : BasicUserControl
     {
+        #region Properties
+        /// <summary>
+        /// Conatiner with messages.
+        /// </summary>
         public MessagesListViewModel MessagesListViewModel { get; set; } = new MessagesListViewModel();
-
+        /// <summary>
+        /// Contains replayed message values.
+        /// </summary>
         private Message _currentMessage;
+        /// <summary>
+        /// Flag indicating whether received messages are on.
+        /// </summary>
+        private bool _isResivedIsOpen = false;
+        #endregion
+        #region Basic Constructor
         public MessagesPage()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region Row_DoubleClick
         /// <summary>
@@ -43,7 +56,7 @@ namespace SWAM.Controls.Pages
 
                 if(message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
 
-                if (!message.IsReaded)
+                if (!this._isResivedIsOpen && !message.IsReaded)
                 {
                     //set this message as "is readed"
                     SWAM.Models.Message.IsReadedToTrue(message.Id);
@@ -92,6 +105,12 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
+        #region BasicUserControl_Loaded
+        /// <summary>
+        /// Action after this MessagesPage is loaded.
+        /// </summary>
+        /// <param name="sender">Current instance</param>
+        /// <param name="e">Loaded</param>
         private void BasicUserControl_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshMessagesList();
@@ -101,9 +120,58 @@ namespace SWAM.Controls.Pages
 
             MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
         }
+        #endregion
 
-        public void RefreshMessagesList() => MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+        #region RefreshMessagesList
+        /// <summary>
+        /// Refresh data context depends on what context is shown by user.
+        /// </summary>
+        public void RefreshMessagesList()
+        {
+            if (this._isResivedIsOpen)
+                SetReceivedContent();
+            else
+                SetSendedContent();
+        }
+        #endregion
 
-        private void SendedMessages_Click(object sender, RoutedEventArgs e) => MessagesListViewModel.RefreshSendedMessages(SWAM.MainWindow.LoggedInUser.Id);
+        #region SendedMessages_Click
+        /// <summary>
+        /// Action after click sended messages buttons.
+        /// Shows all messages which are sended by user.
+        /// </summary>
+        /// <param name="sender">Button show sended messages</param>
+        /// <param name="e">Action clicked</param>
+        private void SendedMessages_Click(object sender, RoutedEventArgs e) => SetSendedContent();
+        #endregion
+        #region ReceivedMessages_Click
+        /// <summary>
+        /// Action after click received messages buttons.
+        /// Shows all messages which are received by user.
+        /// </summary>
+        /// <param name="sender">Button show received messages</param>
+        /// <param name="e">Action clicked</param>
+        private void ReceivedMessages_Click(object sender, RoutedEventArgs e) =>  SetReceivedContent();
+        #endregion
+        #region SetReceivedContent
+        /// <summary>
+        /// Change data context to Resived messages.
+        /// </summary>
+        private void SetReceivedContent()
+        {
+            MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+            this._isResivedIsOpen = true;
+        }
+        #endregion
+        #region SetSendedContent
+        /// <summary>
+        /// Change data context to Sended messages.
+        /// </summary>
+        private void SetSendedContent()
+        {
+            MessagesListViewModel.RefreshSendedMessages(SWAM.MainWindow.LoggedInUser.Id);
+            this._isResivedIsOpen = false;
+        }
+        #endregion
     }
 }
