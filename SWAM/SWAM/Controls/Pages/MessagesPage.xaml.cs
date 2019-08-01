@@ -2,13 +2,8 @@
 using SWAM.Models;
 using SWAM.Models.Messages;
 using SWAM.Windows;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace SWAM.Controls.Pages
