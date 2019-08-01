@@ -14,11 +14,18 @@ namespace SWAM.Models.Messages
 
         public ObservableCollection<Message> MessagesList { get => this._messagesListViewModel; }
 
-        public void Refresh(int userId)
+        public void RefreshResivedMessages(int userId)
         {
             if(this._messagesListViewModel.Count > 0) this._messagesListViewModel.Clear();
 
             foreach (Message message in Message.AllReceivedMessages(userId))
+                this._messagesListViewModel.Add(message);
+        }
+        public void RefreshSendedMessages(int userId)
+        {
+            if (this._messagesListViewModel.Count > 0) this._messagesListViewModel.Clear();
+
+            foreach (Message message in Message.AllSendedMessages(userId))
                 this._messagesListViewModel.Add(message);
         }
     }

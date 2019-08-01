@@ -128,6 +128,22 @@ namespace SWAM.Models
             else return null;
         }
         #endregion
+        #region AllSendedMessages
+        /// <summary>
+        /// All sended messages from database that the user has send.
+        /// </summary>
+        /// <param name="userId>Id number of the user we want to get list</param>
+        /// <returns>List with all sended messages</returns>
+        public static IList<Message> AllSendedMessages(int userId)
+        {
+            if(userId > 0)
+                return _context.Messages
+                        .Include(m => m.Receiver)
+                        .Include(m => m.Sender)
+                        .Where(m => m.Sender.Id == userId).ToList();
+            else return null;
+        }
+        #endregion
 
     }
 }

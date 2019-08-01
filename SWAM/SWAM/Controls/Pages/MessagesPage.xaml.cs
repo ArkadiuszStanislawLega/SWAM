@@ -100,9 +100,10 @@ namespace SWAM.Controls.Pages
             MessagesList.ItemsSource = MessagesListViewModel.MessagesList;
 
             MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
-
         }
 
-        public void RefreshMessagesList() => MessagesListViewModel.Refresh(SWAM.MainWindow.LoggedInUser.Id);
+        public void RefreshMessagesList() => MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+
+        private void SendedMessages_Click(object sender, RoutedEventArgs e) => MessagesListViewModel.RefreshSendedMessages(SWAM.MainWindow.LoggedInUser.Id);
     }
 }

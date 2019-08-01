@@ -15,39 +15,45 @@
     </bpage:BasicUserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="3"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="MessagesContainer" Grid.Row="0">
-            <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource NewMessage}"
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Style="{StaticResource NewMessage}"
                         Click="NewMessage_Click"
                         Margin="2"
                         ToolTip="Nowa wiadomość" />
-                <Button Style="{StaticResource SendedMessages}"
+            <Button Name="SendedMessages"
+                        Style="{StaticResource SendedMessages}"
                         Margin="2"
-                        ToolTip="Wiadomości wysłane" />
-                <Button Style="{StaticResource RecivedMessages}"
+                        ToolTip="Wiadomości wysłane"
+                        Click="SendedMessages_Click"/>
+            <Button Style="{StaticResource RecivedMessages}"
                         Margin="2"
                         ToolTip="Wiadomości odebrane" />
-                <Button Name="ReplayMessage"
+            <Button Name="ReplayMessage"
                         Click="ReplayMessage_Click"
                         Style="{StaticResource ReplayMessages}"
                         Margin="5"
                         ToolTip="Odpowiedz na wiadomość"/>
-                <Button Style="{StaticResource DeleteMessages}"
+            <Button Style="{StaticResource DeleteMessages}"
                         Margin="2"
                         ToolTip="Usuń wiadomości"/>
-            </StackPanel>
-            <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
-                     HorizontalAlignment="Center">
+        </StackPanel>
+        <Grid Name="MainContent" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" BorderBrush="{StaticResource EnabledBrash}"
+                     HorizontalAlignment="Center" Grid.Row="0">
                 <DataGrid Name="MessagesList" ItemsSource="{Binding MessagesList}"
-                        Style="{StaticResource BasicDataGrid}"
-                      AutoGenerateColumns="False" 
-                      CanUserAddRows="False"
-                      VerticalScrollBarVisibility="Auto" 
-                      HorizontalScrollBarVisibility="Auto">
+                          Style="{StaticResource BasicDataGrid}"
+                          AutoGenerateColumns="False"  
+                          CanUserAddRows="False" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Width="auto"  Header="Usuń" IsReadOnly="False"/>
                         <DataGridTextColumn Width="auto" 
@@ -74,60 +80,60 @@
                     </DataGrid.ItemContainerStyle>
                 </DataGrid>
             </Border>
-        </StackPanel>
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
-        <Grid Grid.Row="2" Name="Message">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0"
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
+            <Grid Grid.Row="2" Name="Message">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top">
-                <!--#region Dates-->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Data wysłania wiadomości: " Grid.Row="0" Grid.Column="0"
+                    <!--#region Dates-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Data wysłania wiadomości: " Grid.Row="0" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="DateOfSend" Grid.Row="0" Grid.Column="1"/>
-                    
-                    <TextBlock Text="Data odebrania wiadomości: " Grid.Row="1" Grid.Column="0"
+                        <TextBlock Name="DateOfSend" Grid.Row="0" Grid.Column="1"/>
+
+                        <TextBlock Text="Data odebrania wiadomości: " Grid.Row="1" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="DateOfReading" Grid.Row="1" Grid.Column="1"/>
-                </Grid>
-                <!--#endregion-->
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Nadawca wiadomości: "
+                        <TextBlock Name="DateOfReading" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                    <!--#endregion-->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Nadawca wiadomości: "
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="SenderName" />
+                        <TextBlock Name="SenderName" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Tytuł: "
+                               Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Name="TitleOfMessage"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Tytuł: "
-                               Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="TitleOfMessage"/>
-                </StackPanel>
-            </StackPanel>
-            <TextBlock Name="CurrentMessage" 
+                <TextBlock Name="CurrentMessage" 
                        Grid.Row="1"
                        Margin="10"
                        HorizontalAlignment="Left"/>
-            <StackPanel Orientation="Horizontal" Margin="20"
+                <StackPanel Orientation="Horizontal" Margin="20"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top">
-                <Button Style="{StaticResource ReplyButton}"
+                    <Button Style="{StaticResource ReplyButton}"
                          Margin="5"
                          ToolTip="Odpowiedz na wiadomość"/>
-                <Button Style="{StaticResource DeleteButton}"
+                    <Button Style="{StaticResource DeleteButton}"
                          Margin="5"
                          ToolTip="Usuń wiadomość"/>
-            </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </bpage:BasicUserControl>
