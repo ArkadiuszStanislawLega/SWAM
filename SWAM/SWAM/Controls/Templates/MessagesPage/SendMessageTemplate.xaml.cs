@@ -61,7 +61,8 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="message">The message to which the answer is written</param>
         public void SetReplayMessage(Message message)
         {
-            this.MessageToSend = message;
+            this.MessageToSend.ReceiverId = message.SenderId;
+            this.MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
             this.FindUser.IsEnabled = false;
             this.Title.Text = $"Re:{message.TitleOfMessage}";
             this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
@@ -95,9 +96,7 @@ namespace SWAM.Controls.Templates.MessagesPage
             {
                 if (MessageToSend.ReceiverId != 0)
                 {
-                    MessageToSend.ContentOfMessage = this.Message.Text;
-                    MessageToSend.TitleOfMessage = this.Title.Text;
-                    MessageToSend.PostDate = DateTime.Now;
+                    SetMessageValues(MessageToSend);
 
                     SWAM.Models.Message.AddMessage(MessageToSend);
                 }
@@ -105,12 +104,8 @@ namespace SWAM.Controls.Templates.MessagesPage
             else
             {
                 foreach(Message message in this._messagesList)
-                {
-                    message.ContentOfMessage = this.Message.Text;
-                    message.TitleOfMessage = this.Title.Text;
-                    message.PostDate = DateTime.Now;
-                }
-
+                    SetMessageValues(message);
+                
                 SWAM.Models.Message.AddManyMessages(this._messagesList);
             }
 
@@ -118,6 +113,19 @@ namespace SWAM.Controls.Templates.MessagesPage
                 sendMessageWindow.Close();
 
             SWAM.MainWindow.RefreshMessagesButton();
+        }
+        #endregion
+
+        #region SetMessageValues
+        /// <summary>
+        /// Setting messages values, message content, title and post date.
+        /// </summary>
+        /// <param name="message">The message we want to supplement with the values.</param>
+        private void SetMessageValues(Message message)
+        {
+            message.ContentOfMessage = this.Message.Text;
+            message.TitleOfMessage = this.Title.Text;
+            message.PostDate = DateTime.Now;
         }
         #endregion
     }
