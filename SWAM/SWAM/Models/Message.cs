@@ -45,15 +45,56 @@ namespace SWAM.Models
 
         public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
 
-        public static void DeleteMessage(int messageId)
+        #region DeleteMessageBySender
+        /// <summary>
+        /// Change the flag _isDeletedBySender and check if the message can be removed completely from the database.
+        /// </summary>
+        /// <param name="messageId">Message id from database</param>
+        public static void DeleteMessageBySender(int messageId)
         {
             if (messageId > 0)
             {
-                _context.Messages.Remove(GetMessage(messageId));
+                _context.Messages.FirstOrDefault(m => m.Id == messageId)._isDeletedBySender = true;
                 _context.SaveChanges();
+
+                DeleteMessage(messageId);
             }
         }
+        #endregion
+        #region DeleteMessageByReceiver
+        /// <summary>
+        /// Change the flag _isDeletedByReceiver and check if the message can be removed completely from the database.
+        /// </summary>
+        /// <param name="messageId">Message id from database</param>
+        public static void DeleteMessageByReceiver(int messageId)
+        {
+            if (messageId > 0)
+            {
+                _context.Messages.FirstOrDefault(m => m.Id == messageId)._isDeletedByReceiver = true;
+                _context.SaveChanges();
 
+                DeleteMessage(messageId);
+            }
+        }
+        #endregion
+        #region DeleteMessage
+        /// <summary>
+        /// Completely deletes a message from the database.
+        /// </summary>
+        /// <param name="messageId">Message id from database</param>
+        private static void DeleteMessage(int messageId)
+        {
+            if(messageId > 0)
+            {
+                var message = _context.Messages.FirstOrDefault(m => m.Id == messageId);
+                if(message.IsDeletedByReceiver && message.IsDeletedBySender)
+                {
+                    _context.Messages.Remove(message);
+                    _context.SaveChanges();
+                }
+            }
+        }
+        #endregion
         #region AddManyMessages
         /// <summary>
         /// Adding list of messages to database.
@@ -68,6 +109,7 @@ namespace SWAM.Models
             }
         }
         #endregion
+
         #region AddMessage
         /// <summary>
         /// Add new message to database.
@@ -137,7 +179,7 @@ namespace SWAM.Models
                 return _context.Messages
                     .Include(m => m.Receiver)
                     .Include(m => m.Sender)
-                    .Where(m => m.Receiver.Id == userId).ToList();
+                    .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver).ToList();
             else return null;
         }
         #endregion
@@ -153,7 +195,7 @@ namespace SWAM.Models
                 return _context.Messages
                         .Include(m => m.Receiver)
                         .Include(m => m.Sender)
-                        .Where(m => m.Sender.Id == userId).ToList();
+                        .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();
             else return null;
         }
         #endregion

@@ -177,6 +177,13 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
+        #region DeleteMessage_Click
+        /// <summary>
+        /// Action after click delete message button.
+        /// Delete message from user e-mail.
+        /// </summary>
+        /// <param name="sender">Delete message button</param>
+        /// <param name="e">Action clicked</param>
         private void DeleteMessage_Click(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < MessagesList.Items.Count; i++)
@@ -185,16 +192,34 @@ namespace SWAM.Controls.Pages
               
                 if (columnFromDataGrid is CheckBox isDeletedChecked && isDeletedChecked.IsChecked == true && MessagesList.Items[i] is Message message)
                 {
-                    SWAM.Models.Message.DeleteMessage(message.Id);
+                    //If the user is browsing received messages...
+                    if (this._isResivedIsOpen)
+                        SWAM.Models.Message.DeleteMessageByReceiver(message.Id);
+                    else
+                        SWAM.Models.Message.DeleteMessageBySender(message.Id);
+
                     RefreshMessagesList();
                 }
             }
         }
-
+        #endregion
+        #region DeleteCurrentMessage_Click
+        /// <summary>
+        /// Action after click delete current message button.
+        /// Delete the currently viewed message.
+        /// </summary>
+        /// <param name="sender">Delete current message button</param>
+        /// <param name="e">Action clicked</param>
         private void DeleteCurrentMessage_Click(object sender, RoutedEventArgs e)
         {
-            SWAM.Models.Message.DeleteMessage(this._currentMessage.Id);
+            //If the user is browsing received messages...
+            if (this._isResivedIsOpen)
+                SWAM.Models.Message.DeleteMessageByReceiver(this._currentMessage.Id);
+            else
+                SWAM.Models.Message.DeleteMessageBySender(this._currentMessage.Id);
+
             RefreshMessagesList();
         }
+        #endregion
     }
 }
