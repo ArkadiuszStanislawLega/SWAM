@@ -36,15 +36,19 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// </summary>
         /// <param name="receiver">Recipient of the message.</param>
         public void SetResceiver(SelectedUsersListViewModel receivers)
-        { 
+        {
             if (receivers != null && receivers.UsersList.Count > 0)
             {
                 SelectedUsersListViewModel = receivers;
-                foreach(User user in SelectedUsersListViewModel.UsersList)
+
+                foreach (User user in SelectedUsersListViewModel.UsersList)
                 {
-                    this.MessageToSend.Receiver = user;
-                    this.MessageToSend.ReceiverId = user.Id;
-                    this._messagesList.Add(this.MessageToSend);
+                    this._messagesList.Add(
+                        new Message()
+                        {
+                            SenderId = SWAM.MainWindow.LoggedInUser.Id,
+                            ReceiverId = user.Id
+                        });
                 }
             }
         }
@@ -91,10 +95,10 @@ namespace SWAM.Controls.Templates.MessagesPage
             {
                 if (MessageToSend.ReceiverId != 0)
                 {
-                    MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
                     MessageToSend.ContentOfMessage = this.Message.Text;
                     MessageToSend.TitleOfMessage = this.Title.Text;
                     MessageToSend.PostDate = DateTime.Now;
+
                     SWAM.Models.Message.AddMessage(MessageToSend);
                 }
             }
@@ -102,12 +106,12 @@ namespace SWAM.Controls.Templates.MessagesPage
             {
                 foreach(Message message in this._messagesList)
                 {
-                    message.SenderId = SWAM.MainWindow.LoggedInUser.Id;
                     message.ContentOfMessage = this.Message.Text;
                     message.TitleOfMessage = this.Title.Text;
                     message.PostDate = DateTime.Now;
-                    SWAM.Models.Message.AddMessage(message);
                 }
+
+                SWAM.Models.Message.AddManyMessages(this._messagesList);
             }
 
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)

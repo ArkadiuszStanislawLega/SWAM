@@ -38,9 +38,23 @@ namespace SWAM.Models
                 return DB_CONTEXT;
             }
         }
-        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
-      
 
+        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
+
+        #region AddManyMessages
+        /// <summary>
+        /// Adding list of messages to database.
+        /// </summary>
+        /// <param name="messages">List with mesages</param>
+        public static void AddManyMessages(List<Message> messages)
+        {
+            if(messages != null)
+            {
+                _context.Messages.AddRange(messages);
+                _context.SaveChanges();
+            }
+        }
+        #endregion
         #region AddMessage
         /// <summary>
         /// Add new message to database.
@@ -67,7 +81,6 @@ namespace SWAM.Models
             _context.SaveChanges();
         }
         #endregion
-
         #region SetMessageIsReaded
         /// <summary>
         /// Setting IsReaded flag in database to true.
