@@ -43,7 +43,6 @@
             <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
                 <DataGrid Name="MessagesList" ItemsSource="{Binding MessagesList}"
-
                         Style="{StaticResource BasicDataGrid}"
                       AutoGenerateColumns="False" 
                       CanUserAddRows="False"
@@ -56,7 +55,7 @@
                                         IsReadOnly="True" 
                                         Binding="{Binding  PostDate}"/>
                         <DataGridTextColumn Width="auto"  
-                                        Header="Nazwa użytkownika"  
+                                        Header="Nadawca"  
                                         IsReadOnly="True"  
                                         Binding="{Binding  Sender.Name}"/>
                         <DataGridCheckBoxColumn Width="auto"  
@@ -69,7 +68,7 @@
                                         Binding="{Binding  TitleOfMessage}"/>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
-                        <Style TargetType="DataGridRow">
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}">
                             <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
                         </Style>
                     </DataGrid.ItemContainerStyle>

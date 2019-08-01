@@ -100,6 +100,9 @@
                         <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
                         <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
                     </DataGrid.Columns>
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
+                    </DataGrid.ItemContainerStyle>
                 </DataGrid>
             </Border>
             <!--#endregion-->

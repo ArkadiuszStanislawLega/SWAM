@@ -217,7 +217,7 @@
     </Style>
 
     <!--Style and template for the DataGridRow.-->
-    <Style TargetType="{x:Type DataGridRow}">
+    <Style TargetType="{x:Type DataGridRow}" x:Key="Basic">
         <Setter Property="Background">
             <Setter.Value>
                 <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
