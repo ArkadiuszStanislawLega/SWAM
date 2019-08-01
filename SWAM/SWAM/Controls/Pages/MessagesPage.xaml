@@ -14,40 +14,57 @@
         <local:MessagesListViewModel/>
     </bpage:BasicUserControl.DataContext>
     <Grid>
+        <!--#region Rows Definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button Style="{StaticResource NewMessage}"
-                        Click="NewMessage_Click"
+        <!--#endregion-->
+        <!--#region Top Bar-->
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" >
+                <Button Style="{StaticResource NewMessage}"
+                            Click="NewMessage_Click"
+                            Margin="2"
+                            ToolTip="Nowa wiadomość" />
+                <Button Name="SendedMessages"
+                            Style="{StaticResource SendedMessages}"
+                            Margin="2"
+                            ToolTip="Wiadomości wysłane"
+                            Click="SendedMessages_Click"/>
+                <Button Name="ReceivedMessages"
+                        Style="{StaticResource RecivedMessages}"
                         Margin="2"
-                        ToolTip="Nowa wiadomość" />
-            <Button Name="SendedMessages"
-                        Style="{StaticResource SendedMessages}"
-                        Margin="2"
-                        ToolTip="Wiadomości wysłane"
-                        Click="SendedMessages_Click"/>
-            <Button Name="ReceivedMessages"
-                    Style="{StaticResource RecivedMessages}"
-                    Margin="2"
-                    ToolTip="Wiadomości odebrane"
-                    Click="ReceivedMessages_Click"/>
-            <Button Name="ReplayMessage"
-                        Click="ReplayMessage_Click"
+                        ToolTip="Wiadomości odebrane"
+                        Click="ReceivedMessages_Click"/>
+                <Button Name="ReplayMessage"
                         Style="{StaticResource ReplayMessages}"
                         Margin="5"
-                        ToolTip="Odpowiedz na wiadomość"/>
-            <Button Style="{StaticResource DeleteMessages}"
+                        ToolTip="Odpowiedz na wiadomość"
+                        Click="ReplayMessage_Click"/>
+                <Button Name="DeleteMessage"
+                        Style="{StaticResource DeleteMessages}"
                         Margin="2"
-                        ToolTip="Usuń wiadomości"/>
-        </StackPanel>
+                        ToolTip="Usuń wiadomości"
+                        Click="DeleteMessage_Click"/>
+            </StackPanel>
+            <TextBlock Name="ContentTitle"
+                       Margin="0 0 10 0"
+                       Style="{StaticResource Title}" 
+                       HorizontalAlignment="Right"
+                       Text="Wiadomości odczytane" />
+        </Grid>
+        <!--#endregion-->
+        <!--#region Main Content-->
         <Grid Name="MainContent" Grid.Row="1">
+            <!--#region RowsDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Messages list-->
             <Border BorderThickness="1" BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center" Grid.Row="0">
                 <DataGrid Name="MessagesList" ItemsSource="{Binding MessagesList}"
@@ -82,17 +99,22 @@
                     </DataGrid.ItemContainerStyle>
                 </DataGrid>
             </Border>
+            <!--#endregion-->
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" />
+            <!--#region message Content-->
             <Grid Grid.Row="2" Name="Message">
+                <!--#region RowsDefinitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
                 <StackPanel Grid.Row="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Top">
                     <!--#region Dates-->
                     <Grid>
+                        <!--#region Columns&Rows definitions-->
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
@@ -101,6 +123,7 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
+                        <!--#endregion-->
                         <TextBlock Text="Data wysłania wiadomości: " Grid.Row="0" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Name="DateOfSend" Grid.Row="0" Grid.Column="1"/>
@@ -129,6 +152,8 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top">
                     <Button Style="{StaticResource ReplyButton}"
+                            Name="ReplayToMessage"
+                            Click="ReplayMessage_Click"
                          Margin="5"
                          ToolTip="Odpowiedz na wiadomość"/>
                     <Button Style="{StaticResource DeleteButton}"
@@ -136,6 +161,8 @@
                          ToolTip="Usuń wiadomość"/>
                 </StackPanel>
             </Grid>
+            <!--#endregion-->
         </Grid>
+        <!--#endregion-->
     </Grid>
 </bpage:BasicUserControl>

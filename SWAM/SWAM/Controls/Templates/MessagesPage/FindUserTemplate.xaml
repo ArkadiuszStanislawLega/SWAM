@@ -37,6 +37,7 @@
                    ItemsSource="{Binding UsersList}"
                    Style="{StaticResource BasicDataGrid}"
                    AutoGenerateColumns="False" 
+                   CanUserAddRows="False" 
                    VerticalScrollBarVisibility="Auto" 
                    HorizontalScrollBarVisibility="Auto"
                    Margin="5 1 5 5">
@@ -55,7 +56,7 @@
                                         Binding="{Binding Phones[0]}"/>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
-                <Style TargetType="DataGridRow">
+                <Style TargetType="DataGridRow"  BasedOn="{StaticResource Basic}">
                     <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
                 </Style>
             </DataGrid.ItemContainerStyle>

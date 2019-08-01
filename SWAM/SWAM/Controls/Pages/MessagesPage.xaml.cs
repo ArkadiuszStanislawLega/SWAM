@@ -23,13 +23,13 @@ namespace SWAM.Controls.Pages
         /// </summary>
         public MessagesListViewModel MessagesListViewModel { get; set; } = new MessagesListViewModel();
         /// <summary>
-        /// Contains replayed message values.
+        /// Contains shown message values.
         /// </summary>
         private Message _currentMessage;
         /// <summary>
         /// Flag indicating whether received messages are on.
         /// </summary>
-        private bool _isResivedIsOpen = false;
+        private bool _isResivedIsOpen = true;
         #endregion
         #region Basic Constructor
         public MessagesPage()
@@ -56,7 +56,7 @@ namespace SWAM.Controls.Pages
 
                 if(message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
 
-                if (!this._isResivedIsOpen && !message.IsReaded)
+                if (this._isResivedIsOpen && !message.IsReaded)
                 {
                     //set this message as "is readed"
                     SWAM.Models.Message.IsReadedToTrue(message.Id);
@@ -160,6 +160,7 @@ namespace SWAM.Controls.Pages
         private void SetReceivedContent()
         {
             MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+            this.ContentTitle.Text = "Wiadomości odebrane";
             this._isResivedIsOpen = true;
         }
         #endregion
@@ -170,8 +171,14 @@ namespace SWAM.Controls.Pages
         private void SetSendedContent()
         {
             MessagesListViewModel.RefreshSendedMessages(SWAM.MainWindow.LoggedInUser.Id);
+            this.ContentTitle.Text = "Wiadomości wysłane";
             this._isResivedIsOpen = false;
         }
         #endregion
+
+        private void DeleteMessage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
