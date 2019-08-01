@@ -18,6 +18,8 @@ namespace SWAM.Models
         private DateTime _postDate;
         private DateTime? _dateOfReading;
         private bool _isReaded;
+        private bool _isDeletedBySender;
+        private bool _isDeletedByReceiver;
 
         public int Id { get => _id; set => _id = value; }
         public User Sender { get => _sender; set => _sender = value; }
@@ -27,6 +29,8 @@ namespace SWAM.Models
         public DateTime PostDate { get => _postDate; set => _postDate = value; }
         public DateTime? DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
         public bool IsReaded { get => _isReaded; set => _isReaded = value; }
+        public bool IsDeletedBySender { get => _isDeletedBySender; set => _isDeletedBySender = value; }
+        public bool IsDeletedByReceiver { get => _isDeletedByReceiver; set => _isDeletedByReceiver = value; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
