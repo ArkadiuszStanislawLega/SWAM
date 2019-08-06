@@ -61,13 +61,18 @@ namespace SWAM.Models
             }
         }
 
-        public static User LoginUser(string name, string password)
+        public static User TryLogIn(string name, string password)
         {
-            var userFinded = _context.Users.FirstOrDefault(u => u.Name == name);
-            var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
-            var user = _context.Users.FirstOrDefault(u => u.Name == name && u.Password == userPassword);
-
-            return user;
+            if (_context.Users.FirstOrDefault(u => u.Name == name) is User userFinded)
+            {
+                var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
+                return _context.Users
+                    .Include(u => u.Accesess)
+                    .Include(u => u.Phones)
+                    .Include(u => u.Emails)
+                    .FirstOrDefault(u => u.Name == name && u.Password == userPassword);
+            }
+            else return null;
         }
 
         #region CreateNewUser

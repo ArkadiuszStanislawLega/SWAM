@@ -27,18 +27,25 @@ namespace SWAM.Controls.Pages
         {
             InitializeComponent();
         }
-
+        #region LoginButton_Click
+        /// <summary>
+        /// Action after click login in button.
+        /// Validaton of login and password.
+        /// </summary>
+        /// <param name="sender">Login in button</param>
+        /// <param name="e">Action clicked</param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var user = User.LoginUser(UserLogin.Text, UserPassword.Password);
+            var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
             if (user != null)
             {
                 SWAM.MainWindow.LoggedInUser = user;
                 InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
+                //TODO: Make here change main content.
             }
             else InformationToUser($"Błędny login lub hasło!", true);
         }
-
+        #endregion
         #region InformationToUser
         /// <summary>
         /// Changing content inforamtion label in main window.

@@ -75,7 +75,7 @@ namespace SWAM
             { PagesUserControls.ManageItemsPage, new ManageItemPage()},
             { PagesUserControls.ManageMagazinePage, new ManageMagazinePage() },
             { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
-            { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate(){ DataContext = LoggedInUser} },
+            { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate() },
             { PagesUserControls.MessagesPage, new MessagesPage() }
 
         };
@@ -190,8 +190,13 @@ namespace SWAM
             {
                 if (this._pages.TryGetValue(page, out UserControl pagetoAdd))
                 {
+                    if (page == PagesUserControls.LogedInUserProfile)
+                        pagetoAdd.DataContext =  MainWindow.LoggedInUser;
+                    
                     this.ContentOfWindow.Children.Add(pagetoAdd);
+                  
                     this._currentPageLoaded = page;
+                  
                 }
                 else
                     this.ContentOfWindow.Children.Add(new SWAM.Controls.Pages.ErrorPage());

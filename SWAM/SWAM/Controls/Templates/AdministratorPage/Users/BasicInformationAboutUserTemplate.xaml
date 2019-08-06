@@ -312,9 +312,6 @@
                     <TextBlock Text="Reset hasła" 
                            Grid.Column="0" Grid.Row="0"
                            Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="Password" 
-                           Grid.Column="0" Grid.Row="1"
-                           Text="{Binding Password}"/>
                     <Button Name="EditPasswordButton"
                         Grid.Column="2" 
                         Style="{StaticResource EditButton}"

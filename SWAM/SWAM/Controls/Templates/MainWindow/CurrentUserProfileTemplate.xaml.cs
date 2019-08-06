@@ -72,5 +72,6 @@ namespace SWAM.Controls.Templates.MainWindow
             else InformationToUser($"{ErrorMesages.DURING_CHANGING_STATUS_USER_ACCOUT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
+        
     }
 }
