@@ -92,6 +92,7 @@
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
@@ -136,6 +137,10 @@
     <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.cs" />
     <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.Designer.cs">
       <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.cs" />
+    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.Designer.cs">
+      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
@@ -771,6 +776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908061104193_UserAddPasswordSalt.resx">
       <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061124163_UserChangePasswordToByte.resx">
+      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -8,6 +8,7 @@ using System.Windows.Media;
 using SWAM;
 using System.Security;
 using SWAM.Exceptions;
+using SWAM.Cryptography;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -35,10 +36,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 this.ConfirmPassword.Password == this.UserPassword.Password && 
                 this.UserPermissions.SelectedValue != null)
             {
+                var hashPassword = new CryptoService();
+                var passwordSalt = CryptoService.GenerateSalt();
+
                 var user = new User()
                 {
                     Name = this.NewUserName.Text,
-                    Password = this.UserPassword.Password,
+                    Password = CryptoService.ComputeHash(this.UserPassword.Password, passwordSalt),
+                    PasswordSalt = passwordSalt,
                     DateOfCreate = DateTime.Now,
                     Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
                     StatusOfUserAccount = this.AccountStatus.IsChecked ==

@@ -10,9 +10,12 @@ namespace SWAM.Models
     {
         int _id;
         string _name;
-        string _password;
         /// <summary>
-        /// Password salt needed to create hashed password.
+        /// Password with salt and hashed.
+        /// </summary>
+        byte[] _password;
+        /// <summary>
+        /// Password salt key - genereted pseudorandom bytes.
         /// </summary>
         byte[] _passwordSalt;
         UserType _permissions;
@@ -42,7 +45,7 @@ namespace SWAM.Models
         public DateTime? ExpiryDateOfTheBlockade { get => _expiryDateOfTheBlockade; set => _expiryDateOfTheBlockade = value; }
         public DateTime? DateOfExpiryOfTheAccount { get => _dateOfExpiryOfTheAccount; set => _dateOfExpiryOfTheAccount = value; }
         public StatusOfUserAccount StatusOfUserAccount { get => _statusOfUserAccount; set => _statusOfUserAccount = value; }
-        public string Password { get => _password; set => _password = value; }
+        public byte[] Password { get => _password; set => _password = value; }
         public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
         public byte[] PasswordSalt { get => _passwordSalt; set => _passwordSalt = value; }
@@ -56,6 +59,15 @@ namespace SWAM.Models
             {
                 return DB_CONTEXT;
             }
+        }
+
+        public static User LoginUser(string name, string password)
+        {
+            var userFinded = _context.Users.FirstOrDefault(u => u.Name == name);
+            var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
+            var user = _context.Users.FirstOrDefault(u => u.Name == name && u.Password == userPassword);
+
+            return user;
         }
 
         #region CreateNewUser
@@ -99,7 +111,7 @@ namespace SWAM.Models
         /// Change user password in database.
         /// </summary>
         /// <param name="password">New password.</param>
-        public void ChangePassword(string password)
+        public void ChangePassword(byte[] password)
         {
             _context.Users.FirstOrDefault(u => u.Id == this.Id).Password = password;
             _context.SaveChanges();

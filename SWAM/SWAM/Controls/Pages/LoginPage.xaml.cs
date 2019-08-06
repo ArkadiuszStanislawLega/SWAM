@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SWAM.Enumerators;
+using SWAM.Exceptions;
+using SWAM.Models;
 
 namespace SWAM.Controls.Pages
 {
@@ -25,5 +27,39 @@ namespace SWAM.Controls.Pages
         {
             InitializeComponent();
         }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            var user = User.LoginUser(UserLogin.Text, UserPassword.Password);
+            if (user != null)
+            {
+                SWAM.MainWindow.LoggedInUser = user;
+                InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
+            }
+            else InformationToUser($"Błędny login lub hasło!", true);
+        }
+
+        #region InformationToUser
+        /// <summary>
+        /// Changing content inforamtion label in main window.
+        /// </summary>
+        protected bool InformationToUser(string message, bool warning = false)
+        {
+            try
+            {
+                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                {
+                    mainWindow.InformationForUser(message, warning);
+                    return true;
+                }
+                else throw new InformationLabelException(message);
+            }
+            catch (InformationLabelException ex)
+            {
+                ex.ShowMessage(this);
+                return false;
+            }
+        }
+        #endregion
     }
 }
