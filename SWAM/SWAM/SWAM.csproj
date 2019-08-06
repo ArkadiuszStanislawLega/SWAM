@@ -133,6 +133,10 @@
     <Compile Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.Designer.cs">
       <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.cs" />
+    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.Designer.cs">
+      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
@@ -764,6 +768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.resx">
       <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061104193_UserAddPasswordSalt.resx">
+      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

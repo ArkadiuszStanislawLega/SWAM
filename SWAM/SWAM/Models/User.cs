@@ -11,6 +11,10 @@ namespace SWAM.Models
         int _id;
         string _name;
         string _password;
+        /// <summary>
+        /// Password salt needed to create hashed password.
+        /// </summary>
+        byte[] _passwordSalt;
         UserType _permissions;
         StatusOfUserAccount _statusOfUserAccount;
         DateTime _dateOfCreate;
@@ -41,6 +45,7 @@ namespace SWAM.Models
         public string Password { get => _password; set => _password = value; }
         public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public IList<Email> Emails { get => _emails; set => _emails = value; }
+        public byte[] PasswordSalt { get => _passwordSalt; set => _passwordSalt = value; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
