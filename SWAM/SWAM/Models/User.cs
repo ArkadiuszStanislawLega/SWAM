@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SWAM.Enumerators;
 using System.Data.Entity;
+using SWAM.Exceptions;
+using System.Windows;
 
 namespace SWAM.Models
 {
@@ -61,19 +63,41 @@ namespace SWAM.Models
             }
         }
 
+        #region TryLogIn
+        /// <summary>
+        /// Looking for a specific user in the database by name. When it finds it, it checks that the hashed password matches the one in the database. 
+        /// To do this correctly, the user account must have a well-generated password salt stored in the database to perform cryptographic functions.
+        /// </summary>
+        /// <param name="name">Name of specific user.</param>
+        /// <param name="password">Password to user account.</param>
+        /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
         public static User TryLogIn(string name, string password)
         {
             if (_context.Users.FirstOrDefault(u => u.Name == name) is User userFinded)
             {
-                var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
-                return _context.Users
-                    .Include(u => u.Accesess)
-                    .Include(u => u.Phones)
-                    .Include(u => u.Emails)
-                    .FirstOrDefault(u => u.Name == name && u.Password == userPassword);
+                try
+                {
+                    if (userFinded.PasswordSalt == null)
+                        throw new PasswordSaltNullException();
+                    //Creating hashed password from user input...
+                    var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
+                    //Comparing created hashed password from input with hashed password from database.
+                    if (userFinded.Password.SequenceEqual(userPassword))
+                    {
+                        return _context.Users
+                            .Include(u => u.Accesess)
+                            .Include(u => u.Phones)
+                            .Include(u => u.Emails)
+                            .FirstOrDefault(u => u.Name == name && u.Password == userPassword);
+                    }
+                }
+                catch (PasswordSaltNullException)
+                {
+                    MessageBox.Show( $"{ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION} {ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION_TIP}", "Błąd",  MessageBoxButton.OK, MessageBoxImage.Information); }
             }
-            else return null;
+            return null;
         }
+        #endregion
 
         #region CreateNewUser
         /// <summary>

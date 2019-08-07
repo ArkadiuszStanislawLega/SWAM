@@ -94,6 +94,7 @@
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
+    <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
     <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
       <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
@@ -146,7 +147,6 @@
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
-    <Compile Include="Windows\BookmarkIPage.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>

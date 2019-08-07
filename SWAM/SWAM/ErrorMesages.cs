@@ -15,6 +15,8 @@ namespace SWAM
         public const string DATABASE_ERROR = "Wystąpił problem z bazą danych.";
         public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
 
+        public const string PASSWORD_SALT_NULL_EXCEPTION = "Password salt jest pusty, prawdopodobnie w czasie tworzenia konta wystąpił błąd przy generowaniu soli hasła.";
+        public const string PASSWORD_SALT_NULL_EXCEPTION_TIP = "Najprostszym rozwiązaniem jest edytowanie hasła w panelu administracyjnym i zmiana hasła na nowe.";
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";
@@ -22,6 +24,7 @@ namespace SWAM
         public const string DURING_EDIT_USER_ERROR = "Wystąpił błąd podczas edytowania danych użytkownika.";
         public const string DURING_DELETE_USER_ERROR = "Wystąpił błąd podczas usuwania użytkownika.";
         public const string DURING_CHANGING_USER_PROFILE_ERROR = "Wystąpił błąd przełączania profilu użytkownika.";
+        public const string DURING_EDIT_PASSWORD_ERROR = "Wystąpił błąd podczas edytowania hasła użytkownika.";
         #endregion
         #region User accesses to warehouses
         public const string REFRESH_WAREHOUSES_ACCESSES_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy dostępu do magazynów.";

@@ -68,7 +68,7 @@ namespace SWAM
         /// <summary>
         /// Container with whole pages view.
         /// </summary>
-        private Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
+        private readonly Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
         {
             { PagesUserControls.LoginPage,new LoginPage()},
             { PagesUserControls.AdministratorPage, new AdministratorPage()},
@@ -77,7 +77,6 @@ namespace SWAM
             { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
             { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate() },
             { PagesUserControls.MessagesPage, new MessagesPage() }
-
         };
         /// <summary>
         /// Container with whole priviligase of UserType.

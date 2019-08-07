@@ -16,11 +16,15 @@ namespace SWAM.Cryptography
 
         public static byte[] ComputeHash(string password, byte[] salt, int iterations = HasingIterationsCount, int hashByteSize = HashByteSize)
         {
-            using (Rfc2898DeriveBytes hashGenerator = new Rfc2898DeriveBytes(password, salt))
+            if (salt != null)
             {
-                hashGenerator.IterationCount = iterations;
-                return hashGenerator.GetBytes(hashByteSize);
+                using (Rfc2898DeriveBytes hashGenerator = new Rfc2898DeriveBytes(password, salt))
+                {
+                    hashGenerator.IterationCount = iterations;
+                    return hashGenerator.GetBytes(hashByteSize);
+                }
             }
+            else return new byte[0];
         }
 
         public static byte[] GenerateSalt(int saltByteSize = SaltByteSize)

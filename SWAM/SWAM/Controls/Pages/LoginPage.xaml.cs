@@ -37,6 +37,7 @@ namespace SWAM.Controls.Pages
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
+
             if (user != null)
             {
                 SWAM.MainWindow.LoggedInUser = user;
@@ -44,6 +45,7 @@ namespace SWAM.Controls.Pages
                 //TODO: Make here change main content.
             }
             else InformationToUser($"Błędny login lub hasło!", true);
+
         }
         #endregion
         #region InformationToUser

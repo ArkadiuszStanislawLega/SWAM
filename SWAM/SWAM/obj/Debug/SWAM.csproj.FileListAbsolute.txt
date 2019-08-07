@@ -587,3 +587,5 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SendMessageT
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.MessageModelAddedFlagsAboutDeleted.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserAddPasswordSalt.resources
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserChangePasswordToByte.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserAddPasswordSalt.resources
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.UserChangePasswordToByte.resources
