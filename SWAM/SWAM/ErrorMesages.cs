@@ -16,7 +16,7 @@ namespace SWAM
         public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
 
         public const string PASSWORD_SALT_NULL_EXCEPTION = "Password salt jest pusty, prawdopodobnie w czasie tworzenia konta wystąpił błąd przy generowaniu soli hasła.";
-        public const string PASSWORD_SALT_NULL_EXCEPTION_TIP = "Najprostszym rozwiązaniem jest edytowanie hasła w panelu administracyjnym i zmiana hasła na nowe.";
+        public const string PASSWORD_SALT_NULL_EXCEPTION_TIP = "Zgłoś się do administratora systemu hasło konta musi zostać przydzielone jeszcze raz w panelu administracyjnym.";
         #region User
         public const string REFRESH_USER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu użytkownika.";
         public const string REFRESH_USER_LIST_ERROR = "Wystąpił błąd podczas odświerzania listy użytkowników.";
