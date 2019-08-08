@@ -178,8 +178,10 @@ namespace SWAM
                 {
                     if (page == PagesUserControls.LogedInUserProfile)
                     {
-                        pagetoAdd.DataContext = null;
-                        pagetoAdd.DataContext = MainWindow.LoggedInUser;
+                        pagetoAdd = new CurrentUserProfileTemplate
+                        {
+                            DataContext = MainWindow.LoggedInUser
+                        };
                     }
 
                     this.ContentOfWindow.Children.Add(pagetoAdd);
@@ -351,6 +353,7 @@ namespace SWAM
 
             this.NavigationBar.Visibility = Visibility.Hidden;
             this.MessageAndProfileContainer.Visibility = Visibility.Collapsed;
+            InformationForUser("Wylogowano z systemu.");
         }
         #endregion
 
