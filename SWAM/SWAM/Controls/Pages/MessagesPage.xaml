@@ -47,6 +47,11 @@
                         Margin="2"
                         ToolTip="Usuń wiadomości"
                         Click="DeleteMessage_Click"/>
+                <Button Name="RefreshMessage"
+                        Margin="2"
+                        Style="{StaticResource RefreshButton}"
+                        ToolTip="Odśwież"
+                        Click="RefreshMessage_Click"/>
             </StackPanel>
             <TextBlock Name="ContentTitle"
                        Margin="0 0 10 0"
@@ -145,7 +150,12 @@
                                Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Name="SenderName" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Odbiorca wiadomości: "
+                               Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Name="Receiver" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Tytuł: "
                                Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Name="TitleOfMessage"/>

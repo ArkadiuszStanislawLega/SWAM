@@ -140,6 +140,58 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    <!--#region RefreshButton-->
+    <Style x:Key="RefreshButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border 
+                            Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <fa:ImageAwesome Icon="Refresh" Foreground="{StaticResource FontsBrash}" Width="20" Height="20"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
     <!--#region ProfileButton-->
     <Style x:Key="ProfileButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Height" Value="30"/>

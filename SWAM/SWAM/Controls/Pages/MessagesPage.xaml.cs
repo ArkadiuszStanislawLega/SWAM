@@ -47,22 +47,30 @@ namespace SWAM.Controls.Pages
                 this._currentMessage = message;
                 this.CurrentMessage.Text = message.ContentOfMessage;
                 this.SenderName.Text = message.Sender.Name;
+                this.Receiver.Text = message.Receiver.Name;
                 this.DateOfSend.Text = $"\t{message.PostDate.ToString()}";
                 this.TitleOfMessage.Text = message.TitleOfMessage;
 
-                if(message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
+                if (message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
 
-                if (this._isResivedIsOpen && !message.IsReaded)
+                if (this._isResivedIsOpen)
                 {
-                    //set this message as "is readed"
-                    SWAM.Models.Message.IsReadedToTrue(message.Id);
-                    SWAM.Models.Message.SetDateOfReading(message.Id);
+                    SetReceivedContent();
+                    if (!message.IsReaded)
+                    {
+                        //set this message as "is readed"
+                        SWAM.Models.Message.IsReadedToTrue(message.Id);
+                        SWAM.Models.Message.SetDateOfReading(message.Id);
 
-                    row.IsSelected = true;
+                        row.IsSelected = true;
 
-                    //refresh number of unreaded messages in main window
-                    SWAM.MainWindow.RefreshMessagesButton();
+                        //refresh number of unreaded messages in main window
+                        SWAM.MainWindow.RefreshMessagesButton();
+                    }
                 }
+                else
+                    SetSendedContent();
+
             }
             else InformationToUser($"{ErrorMesages.MESSAGE_READ_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
@@ -124,10 +132,8 @@ namespace SWAM.Controls.Pages
         /// </summary>
         public void RefreshMessagesList()
         {
-            if (this._isResivedIsOpen)
-                SetReceivedContent();
-            else
-                SetSendedContent();
+            if (this._isResivedIsOpen) SetReceivedContent();
+            else SetSendedContent();
         }
         #endregion
 
@@ -147,8 +153,9 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="sender">Button show received messages</param>
         /// <param name="e">Action clicked</param>
-        private void ReceivedMessages_Click(object sender, RoutedEventArgs e) =>  SetReceivedContent();
+        private void ReceivedMessages_Click(object sender, RoutedEventArgs e) => SetReceivedContent();
         #endregion
+
         #region SetReceivedContent
         /// <summary>
         /// Change data context to Resived messages.
@@ -184,7 +191,7 @@ namespace SWAM.Controls.Pages
             for (int i = 0; i < MessagesList.Items.Count; i++)
             {
                 FrameworkElement columnFromDataGrid = MessagesList.Columns[0].GetCellContent(MessagesList.Items[i]);
-              
+
                 if (columnFromDataGrid is CheckBox isDeletedChecked && isDeletedChecked.IsChecked == true && MessagesList.Items[i] is Message message)
                 {
                     //If the user is browsing received messages...
@@ -215,6 +222,16 @@ namespace SWAM.Controls.Pages
 
             RefreshMessagesList();
         }
+        #endregion
+
+        #region RefreshMessage_Click
+        /// <summary>
+        /// Action after click refresh button.
+        /// Refresh current list of messages.
+        /// </summary>
+        /// <param name="sender">Refresh button</param>
+        /// <param name="e">Action clicked</param>
+        private void RefreshMessage_Click(object sender, RoutedEventArgs e) => RefreshMessagesList();
         #endregion
     }
 }
