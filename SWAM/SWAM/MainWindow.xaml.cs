@@ -333,10 +333,13 @@ namespace SWAM
         /// </summary>
         public void LoginInMode()
         {
+            //TODO: Make this in xaml.
             this.ChangeContent(PagesUserControls.MessagesPage);
 
             this.NavigationBar.Visibility = Visibility.Visible;
             this.MessageAndProfileContainer.Visibility = Visibility.Visible;
+
+            MenuUser.IsEnabled = true;
 
             this.SwitchToLoginPage.Visibility = Visibility.Collapsed;
             this.RefreshNavigationButtons();
@@ -349,10 +352,15 @@ namespace SWAM
         /// </summary>
         public void LoginOuteMode()
         {
+            //TODO: Make this in xaml.
             ChangeContent(PagesUserControls.LoginPage);
 
             this.NavigationBar.Visibility = Visibility.Hidden;
             this.MessageAndProfileContainer.Visibility = Visibility.Collapsed;
+
+            LoggedInUser = null;
+            MenuUser.IsEnabled = false;
+
             InformationForUser("Wylogowano z systemu.");
         }
         #endregion

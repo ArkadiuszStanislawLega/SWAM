@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
+        xmlns:conv="clr-namespace:SWAM.Converters"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MinHeight="400"
@@ -15,7 +16,6 @@
         Icon="/Resorces/Pictures/icon.png"
         mc:Ignorable="d"
         Height="auto" Width="auto" >
-
     <Window.Background>
         <SolidColorBrush Opacity="0.8" Color="{StaticResource Graphite}"/>
     </Window.Background>
@@ -52,7 +52,6 @@
                     <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
                         <Menu DockPanel.Dock="Top" >
                             <MenuItem Header="_Plik">
-                                <MenuItem Header="_Wyloguj" Click="LoginOut_Click"/>
                                 <MenuItem Header="_Zapisz"/>
                                 <Separator/>
                                 <MenuItem Header="_Zamknij"/>
@@ -61,6 +60,15 @@
                                 <MenuItem Header="_Opcje"/>
                                 <MenuItem Header="_Połączenie"/>
                                 <MenuItem Header="_Magazyny" IsEnabled="False"/>
+                            </MenuItem>
+                            <MenuItem Name="MenuUser" Header="_Użytkownik" >
+                                <MenuItem Header="_Profil użytkownika" 
+                                          Click="UserProfile_Click"/>
+                                <MenuItem Header="_Wiadomości"
+                                          Click="Messages_Click"/>
+                                <Separator/>
+                                <MenuItem Header="_Wyloguj"
+                                          Click="LoginOut_Click"/>
                             </MenuItem>
                         </Menu>
                         <StackPanel></StackPanel>
