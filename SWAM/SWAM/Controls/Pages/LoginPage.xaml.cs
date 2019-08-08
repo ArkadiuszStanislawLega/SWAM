@@ -38,14 +38,19 @@ namespace SWAM.Controls.Pages
         {
             var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
 
-            if (user != null)
+            if (user != null )
             {
-                SWAM.MainWindow.LoggedInUser = user;
-                InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
-                //TODO: Make here change main content.
+                if (user.StatusOfUserAccount == StatusOfUserAccount.Active)
+                {
+                    SWAM.MainWindow.LoggedInUser = user;
+                    InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
+                    //TODO: Make here change main content.
+                }
+                else InformationToUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
             }
             else InformationToUser($"Błędny login lub hasło!", true);
 
+            UserPassword.Password = "";
         }
         #endregion
         #region InformationToUser
