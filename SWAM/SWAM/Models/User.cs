@@ -81,14 +81,18 @@ namespace SWAM.Models
                         throw new PasswordSaltNullException();
                     //Creating hashed password from user input...
                     var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
+
                     //Comparing created hashed password from input with hashed password from database.
                     if (userFinded.Password.SequenceEqual(userPassword))
                     {
-                        return _context.Users
+                        SWAM.MainWindow.LoggedInUser = null;
+                        SWAM.MainWindow.LoggedInUser = _context.Users
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.Emails)
-                            .FirstOrDefault(u => u.Name == name && u.Password == userPassword);
+                            .FirstOrDefault(u => u.Id == userFinded.Id);
+
+                        return SWAM.MainWindow.LoggedInUser;
                     }
                 }
                 catch (PasswordSaltNullException)

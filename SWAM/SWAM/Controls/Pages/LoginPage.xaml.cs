@@ -42,9 +42,9 @@ namespace SWAM.Controls.Pages
             {
                 if (user.StatusOfUserAccount == StatusOfUserAccount.Active)
                 {
-                    SWAM.MainWindow.LoggedInUser = user;
                     InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
-                    //TODO: Make here change main content.
+
+                    SWAM.MainWindow.FindParent<MainWindow>(this).LoginInMode();
                 }
                 else InformationToUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
             }

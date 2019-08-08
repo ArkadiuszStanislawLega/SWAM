@@ -126,7 +126,14 @@ namespace SWAM.Controls.Templates.MainWindow
         /// </summary>
         /// <param name="sender">Button that open a specific page</param>
         /// <param name="e">Button is loaded event</param>
-        private void Button_Loaded(object sender, RoutedEventArgs e)
+        private void Button_Loaded(object sender, RoutedEventArgs e) => CheckIsVisible();
+        #endregion
+
+        #region CheckIsVisible
+        /// <summary>
+        /// Checks if current button can be seen by the currently logged in user.
+        /// </summary>
+        public void CheckIsVisible()
         {
             bool pageCanBeOpen = false;
 
@@ -149,7 +156,7 @@ namespace SWAM.Controls.Templates.MainWindow
 
                 if (pageCanBeOpen)
                     this.Visibility = Visibility.Visible;
-               
+
                 else
                     this.Visibility = Visibility.Collapsed;
             }

@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
-using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
@@ -85,15 +79,13 @@ namespace SWAM
         {
            //Settings for administrator
            { UserType.Administrator,
-                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
-                                          /**/ PagesUserControls.AdministratorPage }},
+                new List<PagesUserControls>(){ PagesUserControls.AdministratorPage }},
            //Settings for Seller
            { UserType.Seller,
-                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
-                                          /**/ PagesUserControls.ManageMagazinePage }},
+                new List<PagesUserControls>(){ PagesUserControls.ManageMagazinePage }},
            //Setting for Waegouseman
            { UserType.Warehouseman,
-                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
+                new List<PagesUserControls>(){ 
                                           /**/ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage }},
@@ -106,13 +98,6 @@ namespace SWAM
         };
 
         public static List<SendMessageWindow> MessagesWindows = new List<SendMessageWindow>();
-        #endregion
-
-        #region Setters
-        /// <summary>
-        ///  Indicates which page is currently loaded.
-        /// </summary>
-        public PagesUserControls CurrentPageLoaded { get => this._currentPageLoaded; private set => this._currentPageLoaded = value; }
         #endregion
 
         #region BasicConstructor
@@ -185,17 +170,21 @@ namespace SWAM
             if (this.ContentOfWindow.Children.Capacity > 0 && page != this._currentPageLoaded)
                 this.ContentOfWindow.Children.RemoveAt(this.ContentOfWindow.Children.Count - 1);
 
+            //If page what we want change is not loaded..
             if (page != this._currentPageLoaded)
             {
+                //find page in dictionary
                 if (this._pages.TryGetValue(page, out UserControl pagetoAdd))
                 {
                     if (page == PagesUserControls.LogedInUserProfile)
-                        pagetoAdd.DataContext =  MainWindow.LoggedInUser;
-                    
+                    {
+                        pagetoAdd.DataContext = null;
+                        pagetoAdd.DataContext = MainWindow.LoggedInUser;
+                    }
+
                     this.ContentOfWindow.Children.Add(pagetoAdd);
                   
                     this._currentPageLoaded = page;
-                  
                 }
                 else
                     this.ContentOfWindow.Children.Add(new SWAM.Controls.Pages.ErrorPage());
@@ -215,6 +204,8 @@ namespace SWAM
             var button = sender as NavigationButtonTemplate;
             ChangeContent(button.PageToOpen);
 
+            //Mark the currently pressed navigation button as pressed and the others not pressed
+            //Its depends on current main widow content
             foreach (NavigationButtonTemplate nvb in this.NavigationBar.Children)
             {
                 if (this._currentPageLoaded == nvb.PageToOpen) nvb.IsSelected = true;
@@ -270,6 +261,7 @@ namespace SWAM
         public static void DisabledEverything() => currentInstance.EverythingInWindow.IsEnabled = true;
         #endregion
         #endregion
+
         #region SWAM_Closed
         /// <summary>
         /// Action after application is closed.
@@ -311,6 +303,14 @@ namespace SWAM
             }
         }
         #endregion
+        #region LoginOut_Click
+        /// <summary>
+        /// Action after click menu item login out.
+        /// </summary>
+        /// <param name="sender">Menu item</param>
+        /// <param name="e">Clicked</param>
+        private void LoginOut_Click(object sender, RoutedEventArgs e) => LoginOuteMode();
+        #endregion
 
         #region RefreshMessagesButton
         /// <summary>
@@ -320,6 +320,51 @@ namespace SWAM
         {
             int number = Message.CountUnreadedMessages(LoggedInUser.Id);
             currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+        }
+        #endregion
+
+        #region LoginInMode
+        /// <summary>
+        /// Change visibility of navigation bar, message and prfile container.
+        /// Refresh naviagation buttons.
+        /// Change main content - Message page.
+        /// </summary>
+        public void LoginInMode()
+        {
+            this.ChangeContent(PagesUserControls.MessagesPage);
+
+            this.NavigationBar.Visibility = Visibility.Visible;
+            this.MessageAndProfileContainer.Visibility = Visibility.Visible;
+
+            this.SwitchToLoginPage.Visibility = Visibility.Collapsed;
+            this.RefreshNavigationButtons();
+        }
+        #endregion
+        #region LoginOuteMode
+        /// <summary>
+        /// Change visibility of navigation bar, message and prfile container.
+        /// Main content - login page.
+        /// </summary>
+        public void LoginOuteMode()
+        {
+            ChangeContent(PagesUserControls.LoginPage);
+
+            this.NavigationBar.Visibility = Visibility.Hidden;
+            this.MessageAndProfileContainer.Visibility = Visibility.Collapsed;
+        }
+        #endregion
+
+        #region RefreshNavigationButtons
+        /// <summary>
+        /// Refreshing all navigation buttons. Changing visibility of the buttons depends on type of currently logged in user account.
+        /// </summary>
+        public void RefreshNavigationButtons()
+        {
+            foreach(FrameworkElement u in NavigationBar.Children)
+            {
+                if (u is NavigationButtonTemplate button)
+                    button.CheckIsVisible();   
+            }
         }
         #endregion
     }
