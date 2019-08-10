@@ -85,14 +85,11 @@ namespace SWAM.Models
                     //Comparing created hashed password from input with hashed password from database.
                     if (userFinded.Password.SequenceEqual(userPassword))
                     {
-                        SWAM.MainWindow.LoggedInUser = null;
-                        SWAM.MainWindow.LoggedInUser = _context.Users
+                        return SWAM.MainWindow.SetLoggedInUser(_context.Users
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.Emails)
-                            .FirstOrDefault(u => u.Id == userFinded.Id);
-
-                        return SWAM.MainWindow.LoggedInUser;
+                            .FirstOrDefault(u => u.Id == userFinded.Id));
                     }
                 }
                 catch (PasswordSaltNullException)

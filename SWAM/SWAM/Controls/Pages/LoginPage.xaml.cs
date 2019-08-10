@@ -26,17 +26,7 @@ namespace SWAM.Controls.Pages
         {
             var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
 
-            if (user != null )
-            {
-                if (user.StatusOfUserAccount == StatusOfUserAccount.Active)
-                {
-                    InformationToUser($"Witaj { SWAM.MainWindow.LoggedInUser.Name}!");
-
-                    SWAM.MainWindow.FindParent<MainWindow>(this).LoginInMode();
-                }
-                else InformationToUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
-            }
-            else InformationToUser($"Błędny login lub hasło!", true);
+            if (user == null ) InformationToUser($"Błędny login lub hasło!", true);
 
             UserPassword.Password = "";
         }
@@ -49,9 +39,9 @@ namespace SWAM.Controls.Pages
         {
             try
             {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                if (SWAM.MainWindow.currentInstance != null)
                 {
-                    mainWindow.InformationForUser(message, warning);
+                    SWAM.MainWindow.currentInstance.InformationForUser(message, warning);
                     return true;
                 }
                 else throw new InformationLabelException(message);

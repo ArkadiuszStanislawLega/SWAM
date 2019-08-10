@@ -24,13 +24,9 @@ namespace SWAM
 
         #region Public statics
         /// <summary>
-        /// Flag indicating whether the application is maximized.
-        /// </summary>
-        public static bool IsMaximized = false;
-        /// <summary>
         /// Current user logged in to application.
         /// </summary>
-        public static User LoggedInUser = new User
+        public static User LoggedInUser { get; private set; } = new User
         {
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
@@ -38,16 +34,38 @@ namespace SWAM
             Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
         };
         /// <summary>
-        /// Flag indication that user is logged in or not.
+        /// Visibile mode after user logged in or logged out.
         /// </summary>
-        public static bool IsLoggedIn = true;
+        public static readonly DependencyProperty LoggedInUserStatus = DependencyProperty.Register(nameof(VisibleMode), typeof(Visibility), typeof(MainWindow));
+        /// <summary>
+        /// Flag indicating whether the application is maximized.
+        /// </summary>
+        public static bool IsMaximized = false;
         /// <summary>
         /// Static instance of main window.
         /// </summary>
-        private static MainWindow currentInstance;
+        public static MainWindow currentInstance { get; private set; }
         #endregion
 
         #region Properties
+        /// <summary>
+        /// Visibile mode after user logged in or logged out.
+        /// All user controls that appear only when a user is logged in should be connected to this property.
+        /// </summary>
+        public Visibility _visibleMode;
+        /// <summary>
+        /// Visibile mode after user logged in or logged out.
+        /// All user controls that appear only when a user is logged in should be connected to this property.
+        /// </summary>
+        public Visibility VisibleMode
+        {
+            get => this._visibleMode;
+            set
+            {
+                this._visibleMode = value;
+                this.SetValue(LoggedInUserStatus, this._visibleMode);
+            }
+        }
         /// <summary>
         /// Container with whole messageBoxes.
         /// </summary>
@@ -311,7 +329,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Menu item</param>
         /// <param name="e">Clicked</param>
-        private void LoginOut_Click(object sender, RoutedEventArgs e) => LoginOuteMode();
+        private void LoginOut_Click(object sender, RoutedEventArgs e) => SetLoggedInUser(null);
         #endregion
 
         #region RefreshMessagesButton
@@ -320,48 +338,11 @@ namespace SWAM
         /// </summary>
         public static void RefreshMessagesButton()
         {
-            int number = Message.CountUnreadedMessages(LoggedInUser.Id);
-            currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
-        }
-        #endregion
-
-        #region LoginInMode
-        /// <summary>
-        /// Change visibility of navigation bar, message and prfile container.
-        /// Refresh naviagation buttons.
-        /// Change main content - Message page.
-        /// </summary>
-        public void LoginInMode()
-        {
-            //TODO: Make this in xaml.
-            this.ChangeContent(PagesUserControls.MessagesPage);
-
-            this.NavigationBar.Visibility = Visibility.Visible;
-            this.MessageAndProfileContainer.Visibility = Visibility.Visible;
-
-            MenuUser.IsEnabled = true;
-
-            this.SwitchToLoginPage.Visibility = Visibility.Collapsed;
-            this.RefreshNavigationButtons();
-        }
-        #endregion
-        #region LoginOuteMode
-        /// <summary>
-        /// Change visibility of navigation bar, message and prfile container.
-        /// Main content - login page.
-        /// </summary>
-        public void LoginOuteMode()
-        {
-            //TODO: Make this in xaml.
-            ChangeContent(PagesUserControls.LoginPage);
-
-            this.NavigationBar.Visibility = Visibility.Hidden;
-            this.MessageAndProfileContainer.Visibility = Visibility.Collapsed;
-
-            LoggedInUser = null;
-            MenuUser.IsEnabled = false;
-
-            InformationForUser("Wylogowano z systemu.");
+            if (LoggedInUser != null)
+            {
+                int number = Message.CountUnreadedMessages(LoggedInUser.Id);
+                currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+            }
         }
         #endregion
 
@@ -376,6 +357,41 @@ namespace SWAM
                 if (u is NavigationButtonTemplate button)
                     button.CheckIsVisible();   
             }
+        }
+        #endregion
+
+        #region SetLoggedInUser
+        /// <summary>
+        /// Setting LoggedInUser. 
+        /// Change visibility mode to all controls which required known is user logged in.
+        /// Informing user about status of logged account in application.
+        /// </summary>
+        /// <param name="user">New user account instance to be set as the currently logged in account.</param>
+        /// <returns>Currently logged in user instance.</returns>
+        public static User SetLoggedInUser(User user)
+        {
+            LoggedInUser = user;
+
+            if (LoggedInUser != null)
+            {
+                if (user.StatusOfUserAccount == StatusOfUserAccount.Blocked)
+                    currentInstance.InformationForUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
+                else
+                {
+                    currentInstance.VisibleMode = Visibility.Visible;
+                    currentInstance.RefreshNavigationButtons();
+                    currentInstance.ChangeContent(PagesUserControls.MessagesPage);
+                    currentInstance.InformationForUser($"Witaj w systemie {LoggedInUser.Name}.");
+                }
+            }
+            else
+            {
+                currentInstance.VisibleMode = Visibility.Collapsed;
+                currentInstance.ChangeContent(PagesUserControls.LoginPage);
+                currentInstance.InformationForUser("Wylogowano z systemu.");
+            }
+
+            return LoggedInUser;
         }
         #endregion
     }

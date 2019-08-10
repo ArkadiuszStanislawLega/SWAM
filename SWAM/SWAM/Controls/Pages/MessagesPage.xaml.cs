@@ -162,9 +162,12 @@ namespace SWAM.Controls.Pages
         /// </summary>
         private void SetReceivedContent()
         {
-            MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
-            this.ContentTitle.Text = "Wiadomości odebrane";
-            this._isResivedIsOpen = true;
+            if (SWAM.MainWindow.LoggedInUser != null)
+            {
+                MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+                this.ContentTitle.Text = "Wiadomości odebrane";
+                this._isResivedIsOpen = true;
+            }
         }
         #endregion
         #region SetSendedContent

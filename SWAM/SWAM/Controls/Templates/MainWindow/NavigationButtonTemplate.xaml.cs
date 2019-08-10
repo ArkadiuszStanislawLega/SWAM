@@ -139,20 +139,18 @@ namespace SWAM.Controls.Templates.MainWindow
 
             if (PageToOpen != PagesUserControls.EmptyPage)
             {
-                if (IsLoggedIn)
+                if (LoggedInUser != null && PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
                 {
-                    if (PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
+                    foreach (PagesUserControls puc in listWithPermissions)
                     {
-                        foreach (PagesUserControls puc in listWithPermissions)
+                        if (puc == this.PageToOpen)
                         {
-                            if (puc == this.PageToOpen)
-                            {
-                                pageCanBeOpen = true;
-                                break;
-                            }
+                            pageCanBeOpen = true;
+                            break;
                         }
                     }
                 }
+
 
                 if (pageCanBeOpen)
                     this.Visibility = Visibility.Visible;
