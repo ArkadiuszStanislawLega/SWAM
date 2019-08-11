@@ -49,9 +49,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             try
             {
-                if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
+                if (SWAM.MainWindow.currentInstance != null)
                 {
-                    mainWindow.InformationForUser(message, warning);
+                    SWAM.MainWindow.currentInstance.InformationForUser(message, warning);
                     return true;
                 }
                 else throw new InformationLabelException(message);

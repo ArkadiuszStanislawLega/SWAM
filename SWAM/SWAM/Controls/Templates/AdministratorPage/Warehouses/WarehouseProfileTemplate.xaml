@@ -95,9 +95,8 @@
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
-                        <DataGridComboBoxColumn Header="Uprawnienia" 
-                                                SelectedItemBinding="{Binding TypeOfAccess}"
-                                                ItemsSource="{Binding Source={StaticResource UserType}}"/>
+                        <DataGridTextColumn Header="Uprawnienia" 
+                                            Binding ="{Binding TypeOfAccess, Converter={conv:ENToPLUserTypeConverter}}"/>
                         <DataGridTextColumn Header="Administrator"  
                                             Binding="{Binding Administrator.Name}"/>
                         <DataGridTextColumn Header="Nazwa Magazynu"  

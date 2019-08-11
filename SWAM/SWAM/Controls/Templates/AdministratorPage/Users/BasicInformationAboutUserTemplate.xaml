@@ -206,7 +206,7 @@
                     </Grid.RowDefinitions>
                     <!--#endregion-->
                     <TextBlock Text="Uprawnienia" Grid.Column="0"
-                                            Style="{StaticResource ProfileProperties}"/>
+                               Style="{StaticResource ProfileProperties}"/>
                     <Button Name="EditPermissionsButton"
                             ToolTip="Edytuj uprawnienia."
                             Grid.Column="2" 
@@ -217,7 +217,7 @@
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
-                    <TextBlock Name="Permissions"  Grid.Row="1" Text="{Binding Permissions}"/>
+                    <TextBlock Name="Permissions"  Grid.Row="1" Text="{Binding Permissions, Converter={conv:ENToPLUserTypeConverter}}"/>
                 </Grid>
                 <Grid Name="EditPermissionsGrid" Visibility="Collapsed">
                     <!--#region Column definition-->
@@ -229,9 +229,15 @@
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <ComboBox Name="EditPermissions"
-                                          Grid.Column="0" 
-                                          IsEditable="False"   
-                                          ItemsSource="{Binding Source={StaticResource UserType}}" />
+                              Grid.Column="0" 
+                              IsEditable="False"   
+                              ItemsSource="{Binding Source={StaticResource UserType}}" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={conv:ENToPLUserTypeConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <Button Name="ConfirmEditPermission" Grid.Column="2" 
                             Style="{StaticResource ConfirmButton}"
                             Click="ConfirmEditPermission_Click"

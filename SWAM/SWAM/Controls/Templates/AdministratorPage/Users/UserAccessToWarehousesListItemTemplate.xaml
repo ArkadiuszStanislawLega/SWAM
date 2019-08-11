@@ -110,13 +110,19 @@
                             Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
                     <TextBlock Name="UserPermision" 
-                           Text="{Binding TypeOfAccess}"
+                           Text="{Binding TypeOfAccess, Converter={conv:ENToPLUserTypeConverter}}"
                            HorizontalAlignment="Right"
                            Grid.Column="2"/>
                     <ComboBox Visibility="Collapsed" 
                               Name="EditUserPermissions" 
                               Grid.Column="2"
-                              ItemsSource="{Binding Source={StaticResource UserType}}"/>
+                              ItemsSource="{Binding Source={StaticResource UserType}}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={conv:ENToPLUserTypeConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
                 <!--#endregion-->
                 <!--#region Warehouse name-->
