@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {

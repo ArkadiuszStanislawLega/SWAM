@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using SWAM.Strings;
 
 
 namespace SWAM.Controls.Templates.AdministratorPage.Warehouses

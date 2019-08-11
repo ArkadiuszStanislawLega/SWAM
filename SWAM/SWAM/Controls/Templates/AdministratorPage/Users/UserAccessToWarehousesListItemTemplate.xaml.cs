@@ -3,14 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Data.Entity;
 using SWAM.Exceptions;
-using SWAM.Enumerators;
-using SWAM.Windows;
-using System.Windows.Media.Animation;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {

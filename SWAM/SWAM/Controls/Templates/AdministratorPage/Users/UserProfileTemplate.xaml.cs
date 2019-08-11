@@ -1,10 +1,7 @@
 ﻿using SWAM.Models;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Data.Entity;
 using SWAM.Exceptions;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {

@@ -1,7 +1,6 @@
 ﻿using SWAM.Models;
-using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {

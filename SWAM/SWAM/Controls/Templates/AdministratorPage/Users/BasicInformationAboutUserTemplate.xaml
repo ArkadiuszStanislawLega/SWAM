@@ -294,9 +294,9 @@
             <StackPanel Margin="5">
                 <TextBlock Text="Status konta"
                                    Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount}"
-                                       Foreground="{Binding  ElementName=AccountStatus, Path=Text, 
-                                       Converter={StaticResource accountBlockToColorConverter}}"/>
+                <TextBlock Name="AccountStatus" Text="{Binding StatusOfUserAccount, Converter={conv:ENtoPLstatusOfUserAccountConverter}}"
+                           Foreground="{Binding  ElementName=AccountStatus, Path=Text, 
+                           Converter={StaticResource accountBlockToColorConverter}}"/>
                 <CheckBox Name="EditAccountStatus" Content="Konto aktywne" 
                                       IsEnabled="False" Visibility="Collapsed" 
                                       ToolTip="Jeżeli zaznaczony to aktywne."/>

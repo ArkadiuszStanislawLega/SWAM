@@ -5,6 +5,7 @@ using SWAM.Enumerators;
 using System.Data.Entity;
 using SWAM.Exceptions;
 using System.Windows;
+using SWAM.Strings;
 
 namespace SWAM.Models
 {

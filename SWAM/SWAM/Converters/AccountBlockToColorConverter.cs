@@ -1,8 +1,8 @@
-﻿using SWAM.Enumerators;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using SWAM.Strings;
 
 namespace SWAM.Converters
 {
@@ -18,7 +18,7 @@ namespace SWAM.Converters
 
             var valueString = (string)value;
 
-            if (valueString != "" && valueString == StatusOfUserAccount.Blocked.ToString())
+            if (valueString != "" && valueString == PLstrings.BLOCK)
                 return (Brush)Application.Current.FindResource("WarningBrash");
      
             return (Brush)Application.Current.FindResource("FontsBrash");

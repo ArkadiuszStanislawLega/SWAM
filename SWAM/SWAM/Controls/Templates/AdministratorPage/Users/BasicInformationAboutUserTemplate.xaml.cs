@@ -1,5 +1,6 @@
 ﻿using SWAM.Models;
 using System.Windows;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
 {

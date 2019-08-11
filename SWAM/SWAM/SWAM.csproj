@@ -92,6 +92,7 @@
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
+    <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
     </Compile>
@@ -398,7 +400,7 @@
     <Compile Include="Converters\DateOfExpireColorConverter.cs" />
     <Compile Include="Enumerators\BookmarkInPage.cs" />
     <Compile Include="Enumerators\StatusOfUserAccount.cs" />
-    <Compile Include="ErrorMesages.cs" />
+    <Compile Include="Strings\ErrorMesages.cs" />
     <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
     <Compile Include="Exceptions\BasicException.cs" />
     <Compile Include="Exceptions\InformationLabelException.cs" />

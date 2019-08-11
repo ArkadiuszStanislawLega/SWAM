@@ -1,25 +1,23 @@
 ﻿using SWAM.Enumerators;
+using SWAM.Strings;
 using System;
 using System.Globalization;
-using SWAM.Strings;
 
 namespace SWAM.Converters
 {
     /// <summary>
-    /// Converter english names of user type to polish names.
+    /// Converter english names of status of user account to polish names.
     /// </summary>
-    public class ENToPLUserTypeConverter : BaseValueConverter<ENToPLUserTypeConverter>
+    public class ENtoPLstatusOfUserAccountConverter : BaseValueConverter<ENtoPLstatusOfUserAccountConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is UserType user)
+            if (value is StatusOfUserAccount user)
             {
                 switch (user)
                 {
-                    case UserType.Administrator: return PLstrings.ADMINISTRATOR;
-                    case UserType.Programmer: return PLstrings.PROGRAMMER;
-                    case UserType.Seller: return PLstrings.SELLER;
-                    case UserType.Warehouseman: return PLstrings.WAREHOUSEMAN;
+                    case StatusOfUserAccount.Active: return PLstrings.ACTIVE;
+                    case StatusOfUserAccount.Blocked: return PLstrings.BLOCK;
                     default: return user.ToString();
                 }
             }
