@@ -3,27 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:System="clr-namespace:System;assembly=mscorlib"
-             xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:local="clr-namespace:SWAM"
-             xmlns:conv="clr-namespace:SWAM.Converters"
              Style="{StaticResource UsersListButtons}"
              mc:Ignorable="d" 
              Click="Button_Click"
              Tag="{Binding Id}"
              d:DesignHeight="450" d:DesignWidth="150">
-    <StackPanel Orientation="Vertical" >
-            <TextBlock Name="UserRole" 
-                       Text="{Binding Permissions, Converter={conv:ENToPLUserTypeConverter}}" 
-                       FontSize="10" 
-                       Margin="10 5 0 0"
-                       Foreground="{StaticResource DarkGraphiteBrash}"/>
-
-            <TextBlock Name="UserName" 
-                           TextAlignment="Left"
-                           Text="{Binding Name}"
-                           FontSize="16"
-                           Margin="10 0 10 0" />
-        </StackPanel>
- 
 </Button>

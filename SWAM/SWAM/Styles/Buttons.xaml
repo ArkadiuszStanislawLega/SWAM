@@ -1259,7 +1259,7 @@
                             Height="{TemplateBinding Height}"
                             Background="{TemplateBinding Background}">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Permissions}"
+                            <TextBlock Text="{Binding Permissions, Converter={conv:ENToPLUserTypeConverter}}"
                                    Foreground="{StaticResource LightGrayBrash}"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                    VerticalAlignment="{TemplateBinding VerticalAlignment}"

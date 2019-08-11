@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
-using System.Data.Entity;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using System;
     using System.ComponentModel;
     using System.Windows.Data;
     using static SWAM.MainWindow;
