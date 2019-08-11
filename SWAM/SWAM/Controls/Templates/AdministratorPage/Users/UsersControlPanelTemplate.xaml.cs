@@ -44,15 +44,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public void RefreshUsersList() => UserListViewModel.Refresh();
         #endregion
 
-        #region ShowProfile
-        /// <summary>
-        /// Showing the profile of user,
-        /// after click item from the list with users.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void ShowProfile(UsersListItemTemplate usersListItemTemplate) => ChangeContent(CreateUserProfile((int)usersListItemTemplate.Tag));
-        #endregion
         #region CreateUserProfile
         /// <summary>
         /// Made view of the user profile in right section.
@@ -116,6 +107,21 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
             else
                 UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
+        }
+        #endregion
+
+        #region Item_Click
+        /// <summary>
+        /// Action after click item from user list.
+        /// Showing profile of clicked user.
+        /// </summary>
+        /// <param name="sender">Item from the list of users in left section.</param>
+        /// <param name="e">Clicked item</param>
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+                ChangeContent(CreateUserProfile((int)button.Tag));
+            else InformationToUser(ErrorMesages.DURING_CHANGING_USER_PROFILE_ERROR);
         }
         #endregion
     }

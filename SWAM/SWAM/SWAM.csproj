@@ -199,10 +199,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -345,9 +341,6 @@
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml.cs">
       <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.xaml.cs">
-      <DependentUpon>UsersListItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml.cs">
       <DependentUpon>CreateNewWarehouseTemplate.xaml</DependentUpon>

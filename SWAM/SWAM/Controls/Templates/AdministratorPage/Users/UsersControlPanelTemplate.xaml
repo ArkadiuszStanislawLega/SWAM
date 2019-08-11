@@ -163,7 +163,9 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <temp:UsersListItemTemplate/>
+                                        <Button Tag="{Binding Id}"
+                                                Style="{StaticResource UsersListButtons}"
+                                                Click="Item_Click"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
