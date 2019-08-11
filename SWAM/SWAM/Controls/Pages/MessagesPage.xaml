@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:bpage="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:local="clr-namespace:SWAM.Models.Messages"
+             xmlns:conv="clr-namespace:SWAM.Converters"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
              Margin="5 0 5 0"
@@ -84,7 +85,7 @@
                         <DataGridTextColumn Width="auto" 
                                         Header="Data wysłania"
                                         IsReadOnly="True" 
-                                        Binding="{Binding  PostDate}"/>
+                                        Binding="{Binding  PostDate, Converter={conv:DateConverter}}"/>
                         <DataGridTextColumn Width="auto"  
                                         Header="Nadawca"  
                                         IsReadOnly="True"  

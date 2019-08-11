@@ -6,6 +6,7 @@
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:mod="clr-namespace:SWAM.Models"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
@@ -16,6 +17,7 @@
     <class:BasicUserControl.DataContext>
         <mod:Warehouse/>
     </class:BasicUserControl.DataContext>
+    <!--#region Resources-->
     <class:BasicUserControl.Resources>
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
@@ -49,6 +51,7 @@
         </Storyboard>
         <!--#endregion-->
     </class:BasicUserControl.Resources>
+    <!--#endregion-->
     <ScrollViewer
         VerticalScrollBarVisibility="Auto"
         HorizontalScrollBarVisibility="Auto">
@@ -84,21 +87,25 @@
             <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
                      HorizontalAlignment="Center">
                 <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
-                           Style="{StaticResource BasicDataGrid}"
-                      Width="708"
-                      AutoGenerateColumns="False" 
-                      IsReadOnly="True"  
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                          Style="{StaticResource BasicDataGrid}"
+                          Width="708"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"  
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
                         <DataGridComboBoxColumn Header="Uprawnienia" 
                                                 SelectedItemBinding="{Binding TypeOfAccess}"
                                                 ItemsSource="{Binding Source={StaticResource UserType}}"/>
-                        <DataGridTextColumn Header="Administrator"  Binding="{Binding Administrator.Name}"/>
-                        <DataGridTextColumn Header="Nazwa Magazynu"  Binding="{Binding Warehouse.Name}"/>
-                        <DataGridTextColumn Header="Data Nadania" Binding="{Binding DateOfGrantingAccess}"/>
-                        <DataGridTextColumn Header="Data Wygaśnięcia"  Binding="{Binding DateOfExpiredAcces}"/>
+                        <DataGridTextColumn Header="Administrator"  
+                                            Binding="{Binding Administrator.Name}"/>
+                        <DataGridTextColumn Header="Nazwa Magazynu"  
+                                            Binding="{Binding Warehouse.Name}"/>
+                        <DataGridTextColumn Header="Data Nadania" 
+                                            Binding="{Binding DateOfGrantingAccess, Converter={conv:DateConverter}}"/>
+                        <DataGridTextColumn Header="Data Wygaśnięcia"  
+                                            Binding="{Binding DateOfExpiredAcces, Converter={conv:DateConverter}}"/>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>

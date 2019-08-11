@@ -260,15 +260,17 @@
             <StackPanel Margin="5">
                 <TextBlock Text="Data założenia konta"
                                         Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="DateOfAccountCreate" Text="{Binding DateOfCreate}"/>
+                <TextBlock Name="DateOfAccountCreate" 
+                           Text="{Binding DateOfCreate, Converter={conv:DateConverter}}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Date of account expired-->
             <StackPanel Margin="5">
                 <TextBlock Text="Data wygaśnięcia konta"
                                Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="ExpireDate" Text="{Binding DateOfExpiryOfTheAccount}"
-                                       Foreground="{Binding  ElementName=ExpireDate, Path=Text, 
+                <TextBlock Name="ExpireDate" 
+                           Text="{Binding DateOfExpiryOfTheAccount, Converter={conv:DateConverter}}"
+                           Foreground="{Binding  ElementName=ExpireDate, Path=Text, 
                                        Converter={StaticResource dateOfExpireColorConverter}}"/>
             </StackPanel>
             <!--#endregion-->
@@ -279,7 +281,7 @@
                 <TextBlock Name="ShowDateOfUserBlock" 
                            Foreground="{Binding  ElementName=ShowDateOfUserBlock, Path=Text, 
                                         Converter={StaticResource dateOfExpireColorConverter}}"
-                           Text="{Binding ExpiryDateOfTheBlockade}"/>
+                           Text="{Binding ExpiryDateOfTheBlockade, Converter={conv:DateConverter}}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Account Status-->

@@ -185,7 +185,7 @@
                            Style="{StaticResource ProfileProperties}"
                            Grid.Column="0"/>
                     <TextBlock Name="DateOfGrantingAccess" 
-                           Text="{Binding DateOfGrantingAccess}"
+                           Text="{Binding DateOfGrantingAccess, Converter={conv:DateConverter}}"
                            Grid.Column="2"
                            Grid.Row="1"/>
                 </Grid>
@@ -219,7 +219,7 @@
                         </Button.Triggers>
                     </Button>
                     <TextBlock Name="DateOfAccessExpired" 
-                           Text="{Binding DateOfExpiredAcces}"
+                           Text="{Binding DateOfExpiredAcces, Converter={conv:DateConverter}}"
                            Foreground="{Binding  ElementName=DateOfAccessExpired, Path=Text, 
                                        Converter={conv:DateOfExpireColorConverter}}"
                            Grid.Row="1"

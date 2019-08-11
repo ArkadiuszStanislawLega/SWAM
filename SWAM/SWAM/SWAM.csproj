@@ -91,6 +91,7 @@
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
