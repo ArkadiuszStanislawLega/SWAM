@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 using SWAM.Enumerators;
 using SWAM.Exceptions;
 using SWAM.Models;
@@ -27,6 +29,16 @@ namespace SWAM.Controls.Pages
             var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
 
             if (user == null ) InformationToUser($"Błędny login lub hasło!", true);
+            else
+            {
+                //if logging into the system is successful, hide page animation begin and after this change content to message page
+                var story = (Storyboard)FindResource("UnloadedStory");
+                story.Completed += (seender, ee) =>
+                {
+                    SWAM.MainWindow.FindParent<MainWindow>(this).ChangeContent(PagesUserControls.MessagesPage);
+                };
+                story.Begin();
+            }
 
             UserPassword.Password = "";
         }
@@ -52,6 +64,6 @@ namespace SWAM.Controls.Pages
                 return false;
             }
         }
-        #endregion
+        #endregion  
     }
 }

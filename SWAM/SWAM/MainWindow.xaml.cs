@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
@@ -192,18 +194,18 @@ namespace SWAM
             if (page != this._currentPageLoaded)
             {
                 //find page in dictionary
-                if (this._pages.TryGetValue(page, out UserControl pagetoAdd))
+                if (this._pages.TryGetValue(page, out UserControl pageToAdd))
                 {
                     if (page == PagesUserControls.LogedInUserProfile)
                     {
-                        pagetoAdd = new CurrentUserProfileTemplate
+                        pageToAdd = new CurrentUserProfileTemplate
                         {
                             DataContext = MainWindow.LoggedInUser
                         };
                     }
 
-                    this.ContentOfWindow.Children.Add(pagetoAdd);
-                  
+                    this.ContentOfWindow.Children.Add(pageToAdd);
+
                     this._currentPageLoaded = page;
                 }
                 else
@@ -380,14 +382,12 @@ namespace SWAM
                 {
                     currentInstance.VisibleMode = Visibility.Visible;
                     currentInstance.RefreshNavigationButtons();
-                    currentInstance.ChangeContent(PagesUserControls.MessagesPage);
                     currentInstance.InformationForUser($"Witaj w systemie {LoggedInUser.Name}.");
                 }
             }
             else
             {
                 currentInstance.VisibleMode = Visibility.Collapsed;
-                currentInstance.ChangeContent(PagesUserControls.LoginPage);
                 currentInstance.InformationForUser("Wylogowano z systemu.");
             }
 
