@@ -141,8 +141,12 @@
                         Name="MessageAndProfileContainer" 
                         Grid.ColumnSpan="2">
                 <Button x:Name="Messages" Style="{StaticResource MailButton}" 
-                        Content="{Binding MessageNumber}"  Click="Messages_Click"/>
-                <Button x:Name="UserProfile" Style="{StaticResource ProfileButton}" 
+                        Content="{Binding MessageNumber}"
+                        ToolTip="Wiadomości"
+                        Click="Messages_Click"/>
+                <Button x:Name="UserProfile" 
+                        Style="{StaticResource ProfileButton}" 
+                        ToolTip="Profil użytkownika"
                         Click="UserProfile_Click"/>
             </StackPanel>
         </Grid>
