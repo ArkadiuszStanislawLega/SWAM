@@ -26,16 +26,22 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Action clicked</param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            //Try to login in.
             var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
 
-            if (user == null ) InformationToUser($"Błędny login lub hasło!", true);
+            if (user == null ) InformationToUser($"Błędny login lub hasło!", true); //If logging into the system is unsuccessful.
             else
             {
-                //if logging into the system is successful, hide page animation begin and after this change content to message page
+                //if logging into the system is successful, hide page animation begin and after this...
                 var story = (Storyboard)FindResource("UnloadedStory");
                 story.Completed += (seender, ee) =>
                 {
-                    SWAM.MainWindow.FindParent<MainWindow>(this).ChangeContent(PagesUserControls.MessagesPage);
+                    //... refresh mssages button ...
+                    SWAM.MainWindow.RefreshMessagesButton();
+
+                    //... change content to message page.
+                    if (SWAM.MainWindow.FindParent<MainWindow>(this) is SWAM.MainWindow mainWindow)
+                        mainWindow.ChangeContent(PagesUserControls.MessagesPage);
                 };
                 story.Begin();
             }
