@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,23 +16,29 @@ using System.Windows.Shapes;
 namespace SWAM.Controls.Windows
 {
     /// <summary>
-    /// Interaction logic for DeleteProductWindow.xaml
+    /// Interaction logic for AddProductWindow.xaml
     /// </summary>
-    public partial class DeleteProductWindow : Window
+    public partial class AddProductWindow : Window
     {
-        public DeleteProductWindow()
+        public AddProductWindow()
         {
             InitializeComponent();
         }
 
-        private void YesButton_Click(object sender, RoutedEventArgs e)
+        private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void NoButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

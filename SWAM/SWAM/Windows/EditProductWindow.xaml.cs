@@ -15,21 +15,26 @@ using System.Windows.Shapes;
 namespace SWAM.Controls.Windows
 {
     /// <summary>
-    /// Interaction logic for AddProductWindow.xaml
+    /// Interaction logic for EditProductWindow.xaml
     /// </summary>
-    public partial class AddProductWindow : Window
+    public partial class EditProductWindow : Window
     {
-        public AddProductWindow()
+        public EditProductWindow()
         {
             InitializeComponent();
         }
 
-        private void CreateButton_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

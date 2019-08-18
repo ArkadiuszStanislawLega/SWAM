@@ -42,6 +42,7 @@
                     Background="{StaticResource MainBarBrash}">
                 <!--#region ColumnDefinitions-->
                 <Grid.ColumnDefinitions>
+                    
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
@@ -116,10 +117,12 @@
                         HorizontalAlignment="Right">
                 <Button Name="Yes" Content="Tak" 
                         Style="{StaticResource  Button}" 
+                        Width="auto"
                         Margin="5 0 0 0"
                         Click="Yes_Click"/>
                 <Button Name="No" Content="Nie" 
                         Style="{StaticResource Button}" 
+                        Width="auto"
                         Margin="1 5 5 5"
                         Click="No_Click"/>
             </StackPanel>

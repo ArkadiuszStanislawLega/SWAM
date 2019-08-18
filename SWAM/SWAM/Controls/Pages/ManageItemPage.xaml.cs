@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SWAM.Controls.Windows;
 using SWAM.Enumerators;
+using SWAM.Windows;
 
 namespace SWAM
 {
@@ -98,15 +99,9 @@ namespace SWAM
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.Windows.OfType<DeleteProductWindow>().Any() == true)
-            {
-                MessageBox.Show("Okno jest już otworzone.", "Okno otworzone", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                DeleteProductWindow _deleteWindow = new DeleteProductWindow();
-                _deleteWindow.Show();
-            }           
+            ConfirmWindow _confirmWindow = new ConfirmWindow();
+            _confirmWindow.Show("Czy na pewno chcesz usunąć produkt? (decyzja jest nieodwracalna)", out bool isConfirmed,
+            "Potwierdź dokonanie zmiany");
         }
        
     }
