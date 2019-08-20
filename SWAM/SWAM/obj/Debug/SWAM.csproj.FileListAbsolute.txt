@@ -458,9 +458,6 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SelectedUser
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SendMessageTemplate.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.g.cs
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.g.cs
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.g.cs
@@ -509,9 +506,6 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SelectedUser
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\MessagesPage\SendMessageTemplate.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\WarehouseTechnicalDataTemplate.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
-G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\MainWindow.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Pages\AdministratorPage.baml
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.baml
@@ -616,3 +610,7 @@ E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.g.cs
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.g.cs
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.baml
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.g.cs
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.baml
+G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.baml

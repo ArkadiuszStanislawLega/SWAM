@@ -56,7 +56,8 @@
         <!--#endregion-->
         <TextBlock  Name="Title" Text="Logowanie do systemu" 
                     HorizontalAlignment="Center"
-                    FontSize="25"
+                    FontSize="30"
+                    Margin="0 0 0 40"
                     Grid.Row="0"/>
         <StackPanel HorizontalAlignment="Center" Grid.Row="1"  Width="200">
             <TextBox Name="UserLogin" 

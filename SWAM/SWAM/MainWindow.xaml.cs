@@ -389,6 +389,7 @@ namespace SWAM
             {
                 currentInstance.VisibleMode = Visibility.Collapsed;
                 currentInstance.InformationForUser("Wylogowano z systemu.");
+                currentInstance.ChangeContent(PagesUserControls.LoginPage);
             }
 
             return LoggedInUser;
