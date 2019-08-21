@@ -95,24 +95,26 @@
                             Margin="3"
                             Name="ConfirmNewEmail" 
                             Click="ConfirmNewEmail_Click"
-                            Style="{StaticResource SaveButton}" 
+                            Style="{StaticResource EditButtonStyle}" 
                             ToolTip="Dodaj email">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource HideAddNewEmailAddressStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <Button Name="CancelCreateNewEmail" 
                             Grid.Column="2"
                             Click="CancelCreateNewEmail_Click"
-                            Style="{StaticResource EscapeButton}" 
+                            Style="{StaticResource EditButtonStyle}" 
                             ToolTip="Anuluj dodawanie newego adresu email">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource HideAddNewEmailAddressStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#region List of emails-->

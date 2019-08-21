@@ -7,6 +7,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:conv="clr-namespace:SWAM.Converters"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              x:Name="WarehouseAccessContent"
              Tag="{Binding Id}"
              Margin="0 1 0 1"
@@ -213,7 +214,7 @@
                                 Style="{StaticResource ProfileProperties}"
                                Grid.Column="0"/>
                     <Button Name="ShowCallendar"
-                            Style="{StaticResource CallendarButton}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             HorizontalAlignment="Left"
                             Grid.Column="0" Grid.Row="1"
                             Margin="10"
@@ -223,6 +224,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource ShowCallendarStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Calendar" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <TextBlock Name="DateOfAccessExpired" 
                            Text="{Binding DateOfExpiredAcces, Converter={conv:DateConverter}}"
@@ -279,10 +281,12 @@
             <Button Name="DeleteCurrentAccess" 
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Style="{StaticResource DeleteButton}"
+                    Style="{StaticResource BasicFunctionalButtons}"
                     Click="Delete_Click"
                     Margin="5"
-                    ToolTip="Usuń uprawenienie"/>
+                    ToolTip="Usuń uprawenienie">
+                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
             <Button Name="ConfirmAddAccess"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
@@ -302,9 +306,11 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Margin="5"
-                Style="{StaticResource EscapeButton}"
+                Style="{StaticResource BasicFunctionalButtons}"
                 ToolTip="Anuluj tworzenie nowego uprawnienia"
-                Click="CancelCreateNewAccess_Click"/>
+                Click="CancelCreateNewAccess_Click">
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
         </Grid>
     </Border>
     <!--#region On loaded animation-->

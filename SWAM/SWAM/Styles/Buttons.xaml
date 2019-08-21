@@ -11,15 +11,74 @@
     </Style>
 
     <!--#region BasicFunctionalButtons-->
+    <!-- All buttons in message page have this style-->
     <Style x:Key="BasicFunctionalButtons" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-        <Setter Property="Height" Value="16"/>
-        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Width" Value="24" />
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="ToolTipService.InitialShowDelay" Value="1000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Content"
+                                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource LightBlue}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0"
+                                                     To="0.3"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal" >
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Content"
+                                               Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" >
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
+                                        </ColorAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Border"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     From="0.3"
+                                                     To="0"
+                                                     Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"/>
+                        <Label Name="Content" Content="{TemplateBinding Content}" Margin="-2" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region EditButtonStyle-->
+    <Style x:Key="EditButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource BasicFunctionalButtons}">
+        <Setter Property="Height" Value="19"/>
+        <Setter Property="Width" Value="19"/>
     </Style>
     <!--#endregion-->
     <!--#region ButtonBaseStyle-->
@@ -72,7 +131,6 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region MainWindow-->
     <!--#region MessageButton-->
     <Style x:Key="MailButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Height" Value="30"/>
@@ -134,58 +192,6 @@
                                            Foreground="{StaticResource FontsBrash}"/>
                             </Border>
                         </Grid>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region RefreshButton-->
-    <Style x:Key="RefreshButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="Width" Value="30"/>
-        <Setter Property="Margin" Value="2" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border 
-                            Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="Refresh" Foreground="{StaticResource FontsBrash}" Width="20" Height="20"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -343,473 +349,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    <!--#endregion-->
     
-    <!--#region Messages-->
-    <!--#region ReplayMessages-->
-    <Style x:Key="ReplayMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="MailReply" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region DeleteMessages-->
-    <Style x:Key="DeleteMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region RecivedMessages-->
-    <Style x:Key="RecivedMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="EnvelopeOpen" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region SendedMessages-->
-    <Style x:Key="SendedMessages" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="Envelope" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region NewMessage-->
-    <Style x:Key="NewMessage" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Height" Value="25"/>
-        <Setter Property="Width" Value="25"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="MouseOver">
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="{StaticResource WhiteCream}" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0"
-                                                     To="0.3"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal" >
-                                    <Storyboard>
-                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
-                                               Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" >
-                                            <EasingColorKeyFrame KeyTime="0:0:0.3"  Value="Transparent" />
-                                        </ColorAnimationUsingKeyFrames>
-                                        <DoubleAnimation Storyboard.TargetName="Border"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     From="0.3"
-                                                     To="0"
-                                                     Duration="0:0:0.3"/>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <Border Name="Border"
-                            Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5"/>
-                        <fa:ImageAwesome Icon="Send" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#endregion-->
-
-    <!--#region ReplyButton-->
-    <Style x:Key="ReplyButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="MailReply" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-
-    <!--#region EditButton-->
-    <Style x:Key="EditButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style> 
-    <!--#endregion-->
-    <!--#region ConfirmButton-->
-    <Style x:Key="ConfirmButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region DeleteButton-->
-    <Style x:Key="DeleteButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region CallendarButton-->
-    <Style x:Key="CallendarButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Calendar" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region SaveButton-->
-    <Style x:Key="SaveButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region EscapeButton-->
-    <Style x:Key="EscapeButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BlueBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background"  Value="Transparent" />
-                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-
     <!--#region AdditionSign Buttons-->
     <Style x:Key="AdditionSign" TargetType="Button" >
         <Setter Property="Width" Value="20"/>

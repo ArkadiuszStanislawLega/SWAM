@@ -7,6 +7,7 @@
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:conv="clr-namespace:SWAM.Converters" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="250">
     <!--#region Resources-->
@@ -139,14 +140,15 @@
                                        Grid.Column="0" Grid.Row="1"/>
                     <Button Name="EditNameOfUserButton"
                             Click="EditNameOfUserButton_Click"
-                        Grid.Column="2" Grid.Row="0"
-                        Style="{StaticResource EditButton}"
-                        ToolTip="Zmień nazwę użytkownika.">
+                            Grid.Column="2" Grid.Row="0"
+                            Style="{StaticResource BasicFunctionalButtons}"
+                            ToolTip="Zmień nazwę użytkownika.">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource ShowEditNameStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#endregion-->
@@ -166,7 +168,7 @@
                          Text=""/>
                     <Button Name="ConfirmChangeName"
                             Grid.Column="2" 
-                            Style="{StaticResource ConfirmButton}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             ToolTip="Zaakcpetuj zmianę nazwy"
                             Click="ConfirmChangeName_Click" >
                         <Button.Triggers>
@@ -174,11 +176,12 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditNameStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                       <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <Button Name="CancelChangeName"
                             Grid.Column="3" 
                             Margin="8 0 0 0"
-                            Style="{StaticResource EscapeButton}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             Click="CancelChangeName_Click"
                             ToolTip="Anuluj zmianę nazwy" >
                         <Button.Triggers>
@@ -197,8 +200,8 @@
                     <!--#region Column definition-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="103*"/>
+                        <ColumnDefinition Width="24*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -210,12 +213,13 @@
                     <Button Name="EditPermissionsButton"
                             ToolTip="Edytuj uprawnienia."
                             Grid.Column="2" 
-                            Style="{StaticResource EditButton}">
+                            Style="{StaticResource BasicFunctionalButtons}">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource ShowEditPermissionsStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <TextBlock Name="Permissions"  Grid.Row="1" Text="{Binding Permissions, Converter={conv:ENToPLUserTypeConverter}}"/>
                 </Grid>
@@ -239,7 +243,7 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <Button Name="ConfirmEditPermission" Grid.Column="2" 
-                            Style="{StaticResource ConfirmButton}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             Click="ConfirmEditPermission_Click"
                             ToolTip="Zaakceptuj zmianę uprawnień.">
                         <Button.Triggers>
@@ -247,9 +251,10 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditPermissionsStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <Button Name="CancelEditPermission" Grid.Column="3" 
-                            Style="{StaticResource EscapeButton}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             Click="CancelEditPermission_Click"
                             Margin="8 0 0 0"
                             ToolTip="Anuluj zmianę uprawnień">
@@ -258,6 +263,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditPermissionsStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -322,13 +328,14 @@
                            Style="{StaticResource ProfileProperties}"/>
                     <Button Name="EditPasswordButton"
                         Grid.Column="2" 
-                        Style="{StaticResource EditButton}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         ToolTip="Zmień hasło.">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource ShowEditPasswordStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#endregion-->
@@ -358,7 +365,7 @@
 
                     <Button Name="ConfirmEditPasswordButton" 
                         Grid.Row="1" Grid.Column="2"
-                        Style="{StaticResource ConfirmButton}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         Click="ConfirmEditPasswordButton_Click"
                         ToolTip="Zatwierdź zmiane hasła">
                         <Button.Triggers>
@@ -366,11 +373,12 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditPasswordStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <Button Name="CancelEditPasswordButton" 
                         Grid.Row="1" Grid.Column="3"
                         Margin="8 0 0 0"
-                        Style="{StaticResource EscapeButton}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         Click="CancelEditPasswordButton_Click"
                         ToolTip="Anuluj zmiane hasła">
                         <Button.Triggers>
@@ -378,6 +386,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditPasswordStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#endregion-->

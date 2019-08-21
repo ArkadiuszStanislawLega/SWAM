@@ -6,6 +6,7 @@
              xmlns:bpage="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:local="clr-namespace:SWAM.Models.Messages"
              xmlns:conv="clr-namespace:SWAM.Converters"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
              Margin="5 0 5 0"
@@ -43,35 +44,55 @@
         <!--#region Top Bar-->
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal" >
-                <Button Style="{StaticResource NewMessage}"
-                            Click="NewMessage_Click"
-                            Margin="2"
-                            ToolTip="Nowa wiadomość" />
+                <Button Name="NewMessage"
+                        Style="{StaticResource BasicFunctionalButtons}"
+                        Click="NewMessage_Click"
+                        Margin="2"
+                        ToolTip="Nowa wiadomość" >
+                    <fa:ImageAwesome Icon="Send" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
                 <Button Name="SendedMessages"
-                            Style="{StaticResource SendedMessages}"
+                            Style="{StaticResource BasicFunctionalButtons}"
                             Margin="2"
                             ToolTip="Wiadomości wysłane"
-                            Click="SendedMessages_Click"/>
+                            Click="SendedMessages_Click">
+                    <fa:ImageAwesome Icon="Envelope" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
                 <Button Name="ReceivedMessages"
-                        Style="{StaticResource RecivedMessages}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         Margin="2"
                         ToolTip="Wiadomości odebrane"
-                        Click="ReceivedMessages_Click"/>
+                        Click="ReceivedMessages_Click">
+                    <fa:ImageAwesome Icon="EnvelopeOpen" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
                 <Button Name="ReplayMessage"
-                        Style="{StaticResource ReplayMessages}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         Margin="5"
                         ToolTip="Odpowiedz na wiadomość"
-                        Click="ReplayMessage_Click"/>
+                        Click="ReplayMessage_Click">
+                    <fa:ImageAwesome Icon="MailReply" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
                 <Button Name="DeleteMessage"
-                        Style="{StaticResource DeleteMessages}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         Margin="2"
                         ToolTip="Usuń wiadomości"
-                        Click="DeleteMessage_Click"/>
+                        Click="DeleteMessage_Click">
+                    <fa:ImageAwesome Icon="Trash" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
+
                 <Button Name="RefreshMessage"
                         Margin="2"
-                        Style="{StaticResource RefreshButton}"
+                        Style="{StaticResource BasicFunctionalButtons}"
                         ToolTip="Odśwież"
-                        Click="RefreshMessage_Click"/>
+                        Click="RefreshMessage_Click">
+                    <fa:ImageAwesome Icon="Refresh" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                </Button>
             </StackPanel>
             <TextBlock Name="ContentTitle"
                        Margin="0 0 10 0"
@@ -192,16 +213,26 @@
                 <StackPanel Orientation="Horizontal" Margin="20"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Top">
-                    <Button Style="{StaticResource ReplyButton}"
+                    <Button Style="{StaticResource BasicFunctionalButtons}"
+                            Height="30"
+                            Width="30"
                             Name="ReplayToMessage"
                             Click="ReplayMessage_Click"
-                         Margin="5"
-                         ToolTip="Odpowiedz na wiadomość"/>
+                            Margin="2"
+                            ToolTip="Odpowiedz na wiadomość">
+                        <fa:ImageAwesome Icon="MailReply" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                    </Button>
                     <Button Name="DeleteCurrentMessage"
                             Click="DeleteCurrentMessage_Click"
-                        Style="{StaticResource DeleteButton}"
-                         Margin="5"
-                         ToolTip="Usuń wiadomość"/>
+                            Height="30"
+                            Width="30"
+                            Style="{StaticResource BasicFunctionalButtons}"
+                            Margin="2"
+                            ToolTip="Usuń wiadomość">
+                        <fa:ImageAwesome Icon="Trash" 
+                                     Foreground="{StaticResource FontsBrash}"/>
+                    </Button>
                 </StackPanel>
                 <!--#endregion-->
             </Grid>

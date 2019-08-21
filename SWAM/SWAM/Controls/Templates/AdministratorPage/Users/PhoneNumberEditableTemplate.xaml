@@ -104,8 +104,9 @@
         <StackPanel Orientation="Horizontal" 
                     Grid.Column="3" 
                     HorizontalAlignment="Right">
+            
             <Button Name="Edit"
-                    Style="{StaticResource EditButton}"
+                    Style="{StaticResource EditButtonStyle}"
                     Margin="1"
                     Click="Edit_Click"
                     ToolTip="Edytuj numer telefonu">
@@ -114,10 +115,12 @@
                         <BeginStoryboard Storyboard="{StaticResource ShowEditPhoneFieldStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
             </Button>
+            
             <Button Name="Confirm" 
                     Click="Confirm_Click" 
-                    Style="{StaticResource SaveButton}"
+                    Style="{StaticResource EditButtonStyle}"
                     Visibility="Collapsed"
                     Margin="1"
                     ToolTip="Zatwierdź zmiany">
@@ -126,22 +129,27 @@
                         <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
             </Button>
+            
             <Button Name="Delete" 
                 Click="Delete_Click"
-                Style="{StaticResource DeleteButton}"
+                Style="{StaticResource EditButtonStyle}"
                 Margin="1"
-                ToolTip="Usuń numer telefonu"/>
-            <Button Name="Cancel" Style="{StaticResource EscapeButton}" Visibility="Collapsed" 
+                ToolTip="Usuń numer telefonu">
+                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+            
+            <Button Name="Cancel" Style="{StaticResource EditButtonStyle}" Visibility="Collapsed" 
                     Click="Cancel_Click" Foreground="Red">
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
                         <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
             </Button>
-
-
+            
         </StackPanel>
         <!--#endregion-->
     </Grid>

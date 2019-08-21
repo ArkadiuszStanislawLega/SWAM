@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Margin="10 1 10 1"
              mc:Ignorable="d" 
              Width="330"
@@ -101,24 +102,26 @@
                             Margin="3"
                             Grid.Column="3"
                             Click="ConfirmNewPhone_Click" 
-                            Style="{StaticResource SaveButton}" 
+                            Style="{StaticResource EditButtonStyle}" 
                             ToolTip="Zapisz kontakt">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource HideAddNewPhoneStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                     <Button Name="CancelCreateNewPhone"
                             Click="CancelCreateNewPhone_Click"
                             Tag="Anuluj dodawanie nowego kontakut"
                             Grid.Column="4"
-                            Style="{StaticResource EscapeButton}">
+                            Style="{StaticResource EditButtonStyle}">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
                                 <BeginStoryboard Storyboard="{StaticResource HideAddNewPhoneStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#endregion-->

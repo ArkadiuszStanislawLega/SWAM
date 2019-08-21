@@ -35,6 +35,37 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
+        #region SetDabuleClickedMessageContent
+        /// <summary>
+        /// Show values of message in message section.
+        /// </summary>
+        /// <param name="message">The message we want to display.</param>
+        private void SetDabuleClickedMessageContent(Message message)
+        {
+            if (message != null)
+            {
+                this._currentMessage = message;
+                this.CurrentMessage.Text = message.ContentOfMessage;
+                this.SenderName.Text = message.Sender.Name;
+                this.Receiver.Text = message.Receiver.Name;
+                this.DateOfSend.Text = $"\t{message.PostDate.ToString()}";
+                this.TitleOfMessage.Text = message.TitleOfMessage;
+
+                if (message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
+            }
+            else
+            {
+                this._currentMessage = null;
+                this.CurrentMessage.Text = "";
+                this.SenderName.Text = "";
+                this.Receiver.Text = "";
+                this.DateOfSend.Text = "";
+                this.TitleOfMessage.Text = "";
+                this.DateOfReading.Text = "";
+            }
+        }
+        #endregion
+
         #region Row_DoubleClick
         /// <summary>
         /// Action after double click a row in data grid with messages.
@@ -45,14 +76,7 @@ namespace SWAM.Controls.Pages
         {
             if (sender is DataGridRow row && row.Item is Message message)
             {
-                this._currentMessage = message;
-                this.CurrentMessage.Text = message.ContentOfMessage;
-                this.SenderName.Text = message.Sender.Name;
-                this.Receiver.Text = message.Receiver.Name;
-                this.DateOfSend.Text = $"\t{message.PostDate.ToString()}";
-                this.TitleOfMessage.Text = message.TitleOfMessage;
-
-                if (message.DateOfReading != null) this.DateOfReading.Text = $"\t{message.DateOfReading.ToString()}";
+                SetDabuleClickedMessageContent(message);
 
                 if (this._isResivedIsOpen)
                 {
@@ -219,12 +243,16 @@ namespace SWAM.Controls.Pages
         private void DeleteCurrentMessage_Click(object sender, RoutedEventArgs e)
         {
             //If the user is browsing received messages...
-            if (this._isResivedIsOpen)
-                SWAM.Models.Message.DeleteMessageByReceiver(this._currentMessage.Id);
-            else
-                SWAM.Models.Message.DeleteMessageBySender(this._currentMessage.Id);
+            if (this._currentMessage != null)
+            {
+                if (this._isResivedIsOpen)
+                    SWAM.Models.Message.DeleteMessageByReceiver(this._currentMessage.Id);
+                else
+                    SWAM.Models.Message.DeleteMessageBySender(this._currentMessage.Id);
 
-            RefreshMessagesList();
+                SetDabuleClickedMessageContent(null);
+                RefreshMessagesList();
+            }
         }
         #endregion
 

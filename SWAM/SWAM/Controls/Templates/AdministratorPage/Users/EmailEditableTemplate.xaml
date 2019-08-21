@@ -78,7 +78,7 @@
                      Orientation="Horizontal"
                      Margin="1 0 0 0">
             <Button Name="Edit" 
-                    Style="{StaticResource EditButton}"
+                    Style="{StaticResource EditButtonStyle}"
                     Margin="1"
                     Click="Edit_Click"
                     ToolTip="Edytuj adres email">
@@ -87,10 +87,11 @@
                         <BeginStoryboard Storyboard="{StaticResource ShowEditFieldsStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
             </Button>
             <Button Name="Confirm" 
                 Click="Confirm_Click" 
-                Style="{StaticResource SaveButton}"
+                Style="{StaticResource EditButtonStyle}"
                 Visibility="Collapsed"
                 Margin="1"
                 ToolTip="Zapisz zmiany">
@@ -99,16 +100,19 @@
                         <BeginStoryboard Storyboard="{StaticResource HideEditFieldsStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
             </Button>
             <Button Name="Delete" 
                     Click="Delete_Click"
-                    Style="{StaticResource DeleteButton}"
+                    Style="{StaticResource EditButtonStyle}"
                     Margin="1"
-                    ToolTip="Usuń adres email"/>
+                    ToolTip="Usuń adres email">
+                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
             <Button Name="Cancel" 
                     Click="Cancel_Click"
                     Visibility="Collapsed"
-                    Style="{StaticResource EscapeButton}"
+                    Style="{StaticResource EditButtonStyle}"
                     Margin="1"
                     ToolTip="Anuluj edytowanie adresu email">
                 <Button.Triggers>
@@ -116,6 +120,7 @@
                         <BeginStoryboard Storyboard="{StaticResource HideEditFieldsStory}"/>
                     </EventTrigger>
                 </Button.Triggers>
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
             </Button>
         </StackPanel>
         <!--#endregion-->
