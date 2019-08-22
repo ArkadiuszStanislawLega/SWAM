@@ -4,12 +4,6 @@
                     xmlns:conv="clr-namespace:SWAM.Converters">
     <conv:TextToVisibilityConverter x:Key="textToVisibilityConverter" />
     
-    <Style x:Key="ButtonTop" TargetType="Button">
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-    </Style>
-
     <!--#region BasicFunctionalButtons-->
     <!-- All buttons in message page have this style-->
     <Style x:Key="BasicFunctionalButtons" TargetType="Button">
@@ -131,7 +125,7 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region MessageButton-->
+    <!--#region MailButton-->
     <Style x:Key="MailButton" TargetType="Button" BasedOn="{StaticResource BasicFunctionalButtons}">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="30"/>
@@ -250,6 +244,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    
     <!--#region FAMaxymizeButton-->
     <!-- To properly work of fanAwesome Buttons you should make run the following command in the Package Manager Console:
             PM> Install-Package FontAwesome.WPF -->
@@ -446,6 +441,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    
     <!--#region FaNoBcgrEnbleForeground-->
     <!-- Font awesome with transparent bacground and enabled-colour foregoround
          and autoriverse animation when maouse is over. -->
@@ -478,114 +474,6 @@
                                                             Storyboard.TargetProperty="Margin"
                                                             From="0 0 0 0" To="0 0 15 0"
                                                             Duration="0:0:0.2"
-                                                            RepeatBehavior="Forever"
-                                                            AutoReverse="True"
-                                                            FillBehavior="HoldEnd"/>
-                        </Storyboard>
-                    </ControlTemplate.Resources>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ArrowStory}" x:Name="ArrowStory"/>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <RemoveStoryboard BeginStoryboardName="ArrowStory"/>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource BlueBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region ArrowBackButton -->
-    <Style x:Key="ArrowBackButton" TargetType="Button" >
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource EnabledBrash}"/>
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Width" Value="30" />
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}">
-                        <fa:ImageAwesome Icon="ArrowRight"  
-                                         Margin="-1" 
-                                         x:Name="ContentIcon"
-                                         Width="16"
-                                         Height="16" 
-                                         HorizontalAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         Foreground="{TemplateBinding Foreground}"/>
-                    </Border>
-                    <ControlTemplate.Resources>
-                        <Storyboard x:Key="ArrowStory">
-                            <ThicknessAnimation Storyboard.TargetName="ContentIcon"
-                                                            Storyboard.TargetProperty="Margin"
-                                                            From="0 0 0 0" To="0 0 15 0"
-                                                            Duration="0:0:0.4"
-                                                            RepeatBehavior="Forever"
-                                                            AutoReverse="True"
-                                                            FillBehavior="HoldEnd"/>
-                        </Storyboard>
-                    </ControlTemplate.Resources>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Trigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource ArrowStory}" x:Name="ArrowStory"/>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <RemoveStoryboard BeginStoryboardName="ArrowStory"/>
-                            </Trigger.ExitActions>
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource BlueBrash}"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <!--#endregion-->
-    <!--#region ArrowUpHide -->
-    <Style x:Key="ArrowUpHide" TargetType="Button" >
-        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
-        <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
-        <Setter Property="Foreground" Value="{StaticResource DarkGraphiteBrash}"/>
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Width" Value="30" />
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
-                            Height="{TemplateBinding Height}"
-                            Background="{TemplateBinding Background}">
-                        <fa:ImageAwesome Icon="ArrowUp"  
-                                         Margin="-1" 
-                                         x:Name="ContentIcon"
-                                         Width="15"
-                                         Height="15" 
-                                         HorizontalAlignment="Center"
-                                         VerticalAlignment="Center"
-                                         Foreground="{TemplateBinding Foreground}"/>
-                    </Border>
-                    <ControlTemplate.Resources>
-                        <Storyboard x:Key="ArrowStory">
-                            <ThicknessAnimation Storyboard.TargetName="ContentIcon"
-                                                            Storyboard.TargetProperty="Margin"
-                                                            From="0 5 0 0" To="0 -10 0  0"
-                                                            Duration="0:0:0.3"
                                                             RepeatBehavior="Forever"
                                                             AutoReverse="True"
                                                             FillBehavior="HoldEnd"/>
@@ -698,7 +586,116 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
+    <!--#region ArrowBackButton -->
+    <Style x:Key="ArrowBackButton" TargetType="Button" >
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource EnabledBrash}"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="30" />
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}">
+                        <fa:ImageAwesome Icon="ArrowRight"  
+                                         Margin="-1" 
+                                         x:Name="ContentIcon"
+                                         Width="16"
+                                         Height="16" 
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ArrowStory">
+                            <ThicknessAnimation Storyboard.TargetName="ContentIcon"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            From="0 0 0 0" To="0 0 15 0"
+                                                            Duration="0:0:0.4"
+                                                            RepeatBehavior="Forever"
+                                                            AutoReverse="True"
+                                                            FillBehavior="HoldEnd"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ArrowStory}" x:Name="ArrowStory"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="ArrowStory"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BlueBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    <!--#region ArrowUpHide -->
+    <Style x:Key="ArrowUpHide" TargetType="Button" >
+        <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
+        <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkGraphiteBrash}"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="30" />
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}">
+                        <fa:ImageAwesome Icon="ArrowUp"  
+                                         Margin="-1" 
+                                         x:Name="ContentIcon"
+                                         Width="15"
+                                         Height="15" 
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"
+                                         Foreground="{TemplateBinding Foreground}"/>
+                    </Border>
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="ArrowStory">
+                            <ThicknessAnimation Storyboard.TargetName="ContentIcon"
+                                                            Storyboard.TargetProperty="Margin"
+                                                            From="0 5 0 0" To="0 -10 0  0"
+                                                            Duration="0:0:0.3"
+                                                            RepeatBehavior="Forever"
+                                                            AutoReverse="True"
+                                                            FillBehavior="HoldEnd"/>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource ArrowStory}" x:Name="ArrowStory"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <RemoveStoryboard BeginStoryboardName="ArrowStory"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{StaticResource EnabledBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource BlueBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+ 
     <!--#region ConfirmAddNewWarehouseAccess-->
     <Style x:Key="ConfirmAddNewWarehouseAccess" TargetType="Button" >
         <Setter Property="Width" Value="auto"/>
