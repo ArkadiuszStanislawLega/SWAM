@@ -130,10 +130,10 @@
                                         Header="Nadawca"  
                                         IsReadOnly="True"  
                                         Binding="{Binding  Sender.Name}"/>
-                        <DataGridCheckBoxColumn Width="auto"  
-                                            Header="Odczytana" 
-                                            IsReadOnly="True"   
-                                            Binding="{Binding  IsReaded}"/>
+                        <DataGridTextColumn Width="auto" 
+                                        Header="Data odczytania"
+                                        IsReadOnly="True" 
+                                        Binding="{Binding DateOfReading, Converter={conv:DateConverter}}"/>
                         <DataGridTextColumn Width="*"  
                                         Header="Tytuł" 
                                         IsReadOnly="True"   
