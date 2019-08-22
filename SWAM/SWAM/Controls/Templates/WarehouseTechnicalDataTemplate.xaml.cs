@@ -2,8 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Text.RegularExpressions;
-using SWAM.Exceptions;
-using SWAM.Controls.Templates.AdministratorPage;
 
 namespace SWAM.Controls.Templates
 {

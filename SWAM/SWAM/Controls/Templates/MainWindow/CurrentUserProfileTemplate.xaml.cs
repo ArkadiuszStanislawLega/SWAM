@@ -1,9 +1,4 @@
-﻿using SWAM.Models;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Data.Entity;
+﻿using System.Windows;
 using SWAM.Exceptions;
 using SWAM.Controls.Templates.AdministratorPage;
 
