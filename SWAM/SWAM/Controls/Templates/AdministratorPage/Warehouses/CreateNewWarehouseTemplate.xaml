@@ -134,12 +134,15 @@
                             </StackPanel>
                         </TextBlock.ToolTip>
                     </TextBlock>
-                    <TextBlock   Grid.Column="2"
-                                Style="{StaticResource ProfileProperties}">
-                         <Run>m</Run>
-                         <Run Typography.Variants="Superscript">2</Run>
-                         <Run></Run>
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                        <TextBlock Grid.Column="2"
+                           Style="{StaticResource ProfileProperties}"
+                           Text="m"/>
+                        <TextBlock  Foreground="{StaticResource GrayBrash}">
+                    <Run Typography.Variants="Superscript"  
+                         FontSize="10">2</Run>
+                        </TextBlock>
+                    </StackPanel>
                 </Grid>
                 <TextBox Name="pSurfaceAreaNetto" 
                          TextAlignment="Right"
@@ -173,12 +176,15 @@
                             </StackPanel>
                         </TextBlock.ToolTip>
                     </TextBlock>
-                    <TextBlock   Grid.Column="2"
-                                Style="{StaticResource ProfileProperties}">
-                              <Run>m</Run>
-                              <Run Typography.Variants="Superscript">2</Run>
-                              <Run></Run>
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                        <TextBlock Grid.Column="2"
+                           Style="{StaticResource ProfileProperties}"
+                           Text="m"/>
+                        <TextBlock  Foreground="{StaticResource GrayBrash}">
+                    <Run Typography.Variants="Superscript"  
+                         FontSize="10">2</Run>
+                        </TextBlock>
+                    </StackPanel>
                 </Grid>
                 <TextBox Name="pSurfaceAreaBrutton" TextAlignment="Right"
                          TextChanged="TextChanged"/>
