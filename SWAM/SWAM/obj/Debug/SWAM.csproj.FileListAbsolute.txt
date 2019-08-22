@@ -20,7 +20,6 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\P
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.g.cs
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.g.cs
@@ -57,7 +56,6 @@ F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\P
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UserProfileTemplate.baml
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Users\UsersListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.baml
@@ -376,12 +374,6 @@ E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.exe
 E:\VS\Source\Repos\SWAM\SWAM\SWAM\obj\Debug\SWAM.pdb
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.g.cs
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.g.cs
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.g.cs
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\AddProductWindow.baml
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\DeleteProductWindow.baml
-F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Controls\Windows\EditProductWindow.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.g.cs
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\ConfirmWindow.baml
 F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.Migrations.accessToWarehouseHaveRequiredWarehouse.resources
@@ -614,3 +606,7 @@ G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.GenerateResource.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CoreCompileInputs.cache
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csproj.CopyComplete
 G:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\SWAM.csprojAssemblyReference.cache
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.g.cs
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\AddProductWindow.baml
+F:\GitRepo\SWAM\SWAM\SWAM\obj\Debug\Windows\EditProductWindow.baml

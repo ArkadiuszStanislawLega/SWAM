@@ -65,5 +65,20 @@ namespace SWAM.Controls.Templates
             else return false;
         }
         #endregion
+
+        #region ClearControls
+        /// <summary>
+        /// Clear all TextBlocks.
+        /// </summary>
+        public void ClearControls()
+        {
+            this.pHeight.Text = "";
+            this.pWidth.Text = "";
+            this.pLength.Text = "";
+            this.pSurfaceAreaNetto.Text = "";
+            this.pSurfaceAreaBrutton.Text = "";
+            this.pAcceptableWeight.Text = "";
+        }
+        #endregion  
     }
 }

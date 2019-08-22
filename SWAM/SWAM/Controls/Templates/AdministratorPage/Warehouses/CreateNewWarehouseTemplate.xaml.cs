@@ -30,6 +30,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         {
             bool isWarehouseCreated = false; //Flag indicating whether a new warehouse was created
 
+            //TODO: Try - catch
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var newAddress = this.Address.GetAddress();//Take address from view 
@@ -99,6 +100,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                     {
                         this.WarehouseName.Text = "";
                         this.Address.ClearEditValues();
+                        this.ClearTechnicalDataControls();
                     }
                 }
                 else BadValueMessage("Adres");
@@ -136,5 +138,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             else InformationToUser("");
         }
         #endregion
+        #region ClearControls
+        /// <summary>
+        /// Clear all TextBlocks.
+        /// </summary>
+        public void ClearTechnicalDataControls()
+        {
+            this.pHeight.Text = "";
+            this.pWidth.Text = "";
+            this.pLength.Text = "";
+            this.pSurfaceAreaNetto.Text = "";
+            this.pSurfaceAreaBrutton.Text = "";
+            this.pAcceptableWeight.Text = "";
+        }
+        #endregion  
     }
 }
