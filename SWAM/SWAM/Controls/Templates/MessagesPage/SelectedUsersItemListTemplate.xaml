@@ -20,9 +20,9 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Click="DeleteUser_Click" 
-                    Height="10" Width="10"
+                    Height="15" Width="15"
                     Style="{StaticResource BasicFunctionalButtons}">
-                <fa:ImageAwesome Icon="Trash" />
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource WhiteCreamBrash}" />
             </Button>
         </Grid>
     </Border>
