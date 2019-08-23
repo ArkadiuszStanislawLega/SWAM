@@ -8,9 +8,16 @@ using System.Windows.Controls;
 
 namespace SWAM.Exceptions
 {
+    /// <summary>
+    /// The basic class that inherits from Exceptions is compatible with the application GUI.
+    /// </summary>
     public abstract class BasicException : Exception
     {
         public BasicException(string message) : base (message) { }
+        /// <summary>
+        /// Displays information for the user.
+        /// </summary>
+        /// <param name="content">FrameworkElement during which an exception occurred.</param>
         public void ShowMessage(FrameworkElement content)
         {
             if(!InformationToUser(content))
@@ -19,8 +26,10 @@ namespace SWAM.Exceptions
 
         #region InformationToUser
         /// <summary>
-        /// Changing content inforamtion label in main window.
+        /// Changing content information label in main window.
         /// </summary>
+        /// <param name="content">FrameworkElement during which an exception occurred.</param>
+        /// <returns>False - when the parent was not found, true - if the parent was found and the information was displayed. </returns>
         private bool InformationToUser(FrameworkElement content)
         {
             try

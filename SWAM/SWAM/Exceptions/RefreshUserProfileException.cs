@@ -8,6 +8,9 @@ using SWAM.Strings;
 
 namespace SWAM.Exceptions
 {
+    /// <summary>
+    /// This exception may occur if an unexpected error occurs while refreshing the user's profile.
+    /// </summary>
     public class RefreshUserProfileException : BasicException
     {
         public RefreshUserProfileException(string message = "") :
