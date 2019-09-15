@@ -7,38 +7,56 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="180">
+    <UserControl.Resources>
+        <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
+        
+        <!--#region Customer search box-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Name="FindUserOrCreate" >
             <TextBox Tag="Wyszukaj klienta" 
-                             FontSize="14" Width="140" Height="30"
-                             HorizontalAlignment="Left"
-                             Margin="0 0 0 0"
+                             FontSize="14" Width="150" Height="30"
+                             HorizontalAlignment="Center"
+                             Margin="0"
                              Style="{StaticResource UserLogin}"
-                             />
+                             Name="txtFilter"
+                             TextChanged="txtFilter_TextChanged"/>
             <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
-                <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}"
-                                      Height="20" Width="20"/>
+                <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
             </Button>
         </StackPanel>
-        <!--#region Customer's list-->
-        <Grid Grid.Row="1" VerticalAlignment="Top">
-            <ScrollViewer Name="ScrollOfUserList">
-                <ItemsControl Name="CustomersList">
-                    <ItemsControl.ItemTemplate>
-
-                        <DataTemplate>
-
-                            <Grid>
-
-                            </Grid>
-
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <!--#endregion-->
+        
+        <!--#region Customer list-->
+        <Grid Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden">
+                <ListView MaxHeight="300" Name="lvUsers" Background="{StaticResource MainBarBrash}" Foreground="White" BorderThickness="0">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
+                            <GridViewColumn Header="Name" Width="170">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} {1}">
+                                                    <Binding Path="Name" />
+                                                    <Binding Path="Surname" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </ScrollViewer>
         </Grid>
         <!--#endregion-->
