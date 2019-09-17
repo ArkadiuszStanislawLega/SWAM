@@ -1,20 +1,11 @@
 ﻿using SWAM.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 {
@@ -23,46 +14,64 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
     /// </summary>
     public partial class CustomerListFromDbTemplate : UserControl
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
-        private List<Customer> _customers = new List<Customer>();
+        #region Properties
+        ApplicationDbContext _context = new ApplicationDbContext();
+        /// <summary>
+        /// List containing all customers from database
+        /// </summary>
+        List<Customer> _customers = new List<Customer>();
+        #endregion
 
+        #region Basic Constructor
         public CustomerListFromDbTemplate()
         {
             InitializeComponent();
+
+            // Get customers from database and assign result to customer list
             _customers = GetCustomersFromDb();
 
-            lvUsers.ItemsSource = _customers;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvUsers.ItemsSource);
-            view.Filter = UserFilter;
-            
+            // bind items source with customer list
+            customersListView.ItemsSource = _customers;
+
+            // obtain a reference to the CollectionView instance
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(customersListView.ItemsSource);
+            // assign a delegate to the Filter property
+            view.Filter = CustomerFilter;
+
         }
+        #endregion
 
-        private List<Customer> GetCustomersFromDb() { return _context.Customers.ToList(); }
+        #region GetCustomersFromDb
+        private List<Customer> GetCustomersFromDb() { return _context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList(); }
+        #endregion
 
-        private void CreateCustomersData()
+        #region CustomerFilter
+        /// <summary>
+        /// Check if customer's full name contains searching text
+        /// </summary>
+        /// <param name="item">customer object</param>
+        /// <returns>True if does</returns>
+        private bool CustomerFilter(object item)
         {
-            var customerList = GetCustomersFromDb();
-
-            foreach (var customer in customerList)
+            if (item is Customer customer)
             {
-                _customers.Add(customer);
-            }
-        }
-
-        private bool UserFilter(object item)
-        {
-            Customer customer = item as Customer;
-            if (customer != null)
-            {
-                string CombinedName = customer.Name + " " + customer.Surname;
-                return (CombinedName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                string fullName = customer.Name + " " + customer.Surname;
+                return (fullName.IndexOf(customerFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             return false;
         }
+        #endregion
 
-        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        #region CustomerFilter_TextChanged
+        /// <summary>
+        /// Recreate customers list view when text changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomerFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(lvUsers.ItemsSource).Refresh();
+            CollectionViewSource.GetDefaultView(customersListView.ItemsSource).Refresh();
         }
+        #endregion
     }
 }

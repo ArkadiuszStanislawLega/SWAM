@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="180">
+             d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -18,32 +18,32 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!--#region Customer search box-->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Name="FindUserOrCreate" >
             <TextBox Tag="Wyszukaj klienta" 
-                             FontSize="14" Width="150" Height="30"
+                             FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Center"
                              Margin="0"
                              Style="{StaticResource UserLogin}"
-                             Name="txtFilter"
-                             TextChanged="txtFilter_TextChanged"/>
+                             Name="customerFilter"
+                             TextChanged="CustomerFilter_TextChanged"/>
             <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
                 <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
             </Button>
         </StackPanel>
         <!--#endregion-->
-        
+
         <!--#region Customer list-->
-        <Grid Grid.Row="1"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-                <ListView MaxHeight="300" Name="lvUsers" Background="{StaticResource MainBarBrash}" Foreground="White" BorderThickness="0">
+                <ListView MaxHeight="300" Name="customersListView" Background="{StaticResource MainBarBrash}" Foreground="White" BorderThickness="0">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                            <GridViewColumn Header="Name" Width="170">
+                            <GridViewColumn Width="180">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock>
+                                        <TextBlock Margin="30 5 0 5">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0} {1}">
                                                     <Binding Path="Name" />

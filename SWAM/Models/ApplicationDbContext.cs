@@ -29,7 +29,7 @@ namespace SWAM
         public DbSet<WarehouseOrderPosition> WarehouseOrderPositions { get; set; }
 
         public ApplicationDbContext()
-            : base("name=DefaultConnection")
+            : base("DefaultConnection")
         {
         }
 
