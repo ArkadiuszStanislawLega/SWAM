@@ -10,6 +10,7 @@ namespace SWAM.Models
     {
         int _id;
         string _addressEmail;
+        Customer _customer;
 
         [Required]
         [ForeignKey("User")]
@@ -18,7 +19,7 @@ namespace SWAM.Models
 
         public int Id { get => _id; set => _id = value; }
         public string AddressEmail { get => _addressEmail; set => _addressEmail = value; }
-
+        public Customer Customer { get => _customer; set => _customer = value; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

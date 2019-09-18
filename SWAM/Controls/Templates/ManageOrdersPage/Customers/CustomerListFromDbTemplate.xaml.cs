@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 {
@@ -26,18 +26,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         public CustomerListFromDbTemplate()
         {
             InitializeComponent();
-
-            // Get customers from database and assign result to customer list
-            _customers = GetCustomersFromDb();
-
-            // bind items source with customer list
-            customersListView.ItemsSource = _customers;
-
-            // obtain a reference to the CollectionView instance
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(customersListView.ItemsSource);
-            // assign a delegate to the Filter property
-            view.Filter = CustomerFilter;
-
         }
         #endregion
 
@@ -71,6 +59,28 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         private void CustomerFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(customersListView.ItemsSource).Refresh();
+        }
+        #endregion
+
+        #region CustomersListViewItem_PreviewMouseLeftButtonUp
+        /// <summary>
+        /// Fill parent (CreateNewCustomerOrderTemplate) control DataContext with clicked customer data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomersListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as ListView).SelectedItem;
+            if ((sender as ListView).SelectedItem is Customer customer)
+            {
+                if (customer == null)
+                    return;
+
+                if (SWAM.MainWindow.FindParent<CreateNewCustomerOrderTemplate>(this) is CreateNewCustomerOrderTemplate parent)
+                {
+                    parent.DataContext = customer;
+                }
+            }
         }
         #endregion
     }

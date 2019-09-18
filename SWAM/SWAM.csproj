@@ -161,6 +161,7 @@
     <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.Designer.cs">
       <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />

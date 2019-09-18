@@ -31,8 +31,15 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <!--#endregion-->
-            <temp:CustomerDetailsFormTemplate Grid.Column="0"/>
-            <address:AddressOrderFormTemplate Grid.Column="1"/>
+            <Grid x:Name="ContainerFoCustomerProfile" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <temp:CustomerDetailsFormTemplate Grid.Column="0"/>
+                <address:AddressOrderFormTemplate Grid.Column="1"/>
+            </Grid>
             <temp:CustomerListFromDbTemplate  Grid.Column="2"/>
         </Grid>
 

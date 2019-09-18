@@ -11,19 +11,19 @@ namespace SWAM.Models
         int _id;
         string _name;
         string _surname;
-        IList<Phone> _phones;
-        IList<Email> _emails;
+        List<Email> _emails;
+        List<Phone> _phones;
         Address _residentAddress;
         Address _deliveryAddress;
         IList<CustomerOrder> _customerOrders;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
-        public IList<Phone> Phones { get => _phones; set => _phones = value; }
         public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
         public Address DeliveryAddress { get => _deliveryAddress; set => _deliveryAddress = value; }
         public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
         public string Surname { get => _surname; set => _surname = value; }
-        public IList<Email> Emails { get => _emails; set => _emails = value; }
+        public List<Email> Emails { get => _emails; set => _emails = value; }
+        public List<Phone> Phones { get => _phones; set => _phones = value; }
     }
 }

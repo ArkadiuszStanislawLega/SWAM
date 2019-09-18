@@ -94,6 +94,15 @@ namespace SWAM
                   .HasForeignKey(w => w.WarehouseId)
                   .WillCascadeOnDelete(false);
 
+            //modelBuilder.Entity<Customer>()
+            //    .HasRequired(c => c.Phone)
+            //    .WithRequiredPrincipal(p => p.Customer)
+            //    .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<Customer>()
+            //   .HasRequired(c => c.Email)
+            //   .WithRequiredPrincipal(p => p.Customer)
+            //   .WillCascadeOnDelete(false);
         }
     }
 }

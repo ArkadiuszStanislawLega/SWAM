@@ -13,6 +13,7 @@ namespace SWAM.Models
         int _id;
         string _note;
         string _phoneNumber;
+        Customer _customer;
 
         [Required]
         [ForeignKey("User")]
@@ -22,6 +23,7 @@ namespace SWAM.Models
         public int Id { get => _id; set => _id = value; }
         public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
         public string Note { get => _note; set => _note = value; }
+        public Customer Customer { get => _customer; set => _customer = value; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
@@ -34,6 +36,7 @@ namespace SWAM.Models
             }
 
         }
+
         #region GetUserPhones
         /// <summary>
         /// Make list of specific user phone numbers.
