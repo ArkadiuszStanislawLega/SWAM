@@ -16,10 +16,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
     {
         #region Properties
         ApplicationDbContext _context = new ApplicationDbContext();
-        /// <summary>
-        /// List containing all customers from database
-        /// </summary>
-        List<Customer> _customers = new List<Customer>();
         #endregion
 
         #region Basic Constructor
@@ -29,8 +25,19 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         }
         #endregion
 
-        #region GetCustomersFromDb
-        private List<Customer> GetCustomersFromDb() { return _context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList(); }
+        #region Window_Loaded
+        /// <summary>
+        /// Provide initial configuration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // obtain a reference to the CollectionView instance
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(customersListView.ItemsSource);
+            // assign a delegate to the Filter property
+            view.Filter = CustomerFilter;
+        }
         #endregion
 
         #region CustomerFilter
