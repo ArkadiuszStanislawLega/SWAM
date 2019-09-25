@@ -23,7 +23,7 @@
                 Text="Utwórz nowe zamówienie dla klienta" 
                 Style="{StaticResource Title}"/>
 
-        <Grid  Grid.Row="1" HorizontalAlignment="Center">
+        <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center">
             <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -54,10 +54,13 @@
             </Grid>
             <temp:CustomerListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>
         </Grid>
-        <Button Name="Products"
+        <Grid x:Name="productElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+        </Grid>
+        <Button x:Name="switchContentButton"
                 Content="Produkty"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
+                Click="SwitchContentButton_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
     </Grid>
 </UserControl>
