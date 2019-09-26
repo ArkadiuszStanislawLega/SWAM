@@ -15,8 +15,13 @@
     <!--#endregion-->
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Source={StaticResource Products}}" LoadingRow="NumberRowIteration" AutoGenerateColumns="False" Grid.Column="1" Grid.Row="1"
-                      CanUserAddRows="False" SelectionMode="Single" >
+        <DataGrid Grid.Column="1" Grid.Row="1"
+                  ItemsSource="{Binding Source={StaticResource Products}}" 
+                  LoadingRow="NumberRowIteration"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
