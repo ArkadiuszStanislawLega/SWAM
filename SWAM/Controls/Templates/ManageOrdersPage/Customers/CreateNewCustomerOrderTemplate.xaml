@@ -6,8 +6,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:fa="http://schemas.fontawesome.io/icons/"
       xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
-      xmlns:temp="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
-      xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+      xmlns:customersControls="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
+      xmlns:manageOrdersControls="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
       mc:Ignorable="d" 
       Height="auto"
       Width="auto"
@@ -48,13 +48,19 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <temp:CustomerDetailsFormTemplate Grid.Column="0"/>
-                    <address:AddressOrderFormTemplate Grid.Column="1"/>
+                    <customersControls:CustomerDetailsFormTemplate Grid.Column="0"/>
+                    <manageOrdersControls:AddressOrderFormTemplate Grid.Column="1"/>
                 </Grid>
             </Grid>
-            <temp:CustomerListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>
+            <customersControls:CustomerListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>
         </Grid>
         <Grid x:Name="productElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <manageOrdersControls:ProductsListFromDbTemplate/>
+            </Grid>
         </Grid>
         <Button x:Name="switchContentButton"
                 Content="Produkty"

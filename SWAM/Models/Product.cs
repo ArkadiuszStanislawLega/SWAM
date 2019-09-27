@@ -15,6 +15,7 @@ namespace SWAM.Models
         long _width;
         long _height;
         decimal _price;
+        IList<State> _states;
         IList<WarehouseOrderPosition> _warehouseOrderPositions;
         IList<CustomerOrderPosition> _customerOrderPositions;
         ApplicationDbContext _context = new ApplicationDbContext();
@@ -26,8 +27,10 @@ namespace SWAM.Models
         public long Width { get => _width; set => _width = value; }
         public long Height { get => _height; set => _height = value; }
         public decimal Price { get => _price; set => _price = value; }
+        public IList<State> States { get => _states; set => _states = value; }
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
+
         public List<Product> GetProducts() { return _context.Products.ToList(); }
     }
 }

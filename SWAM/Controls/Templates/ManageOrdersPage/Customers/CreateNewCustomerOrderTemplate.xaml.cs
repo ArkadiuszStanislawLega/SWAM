@@ -19,11 +19,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             {
                 customerElementsContainer.Visibility = Visibility.Hidden;
                 productElementsContainer.Visibility = Visibility.Visible;
+                switchContentButton.Content = "Klient";
             }
             else
             {
                 customerElementsContainer.Visibility = Visibility.Visible;
                 productElementsContainer.Visibility = Visibility.Hidden;
+                switchContentButton.Content = "Produkty";
             }
         }
     }
