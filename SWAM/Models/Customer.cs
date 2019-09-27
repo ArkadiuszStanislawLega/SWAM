@@ -15,20 +15,11 @@ namespace SWAM.Models
         /// </summary>
         public EmailAddress EmailAddress { get; set; }
         /// <summary>
-        /// Customer's residence address, for issuing a possible invoice.
-        /// </summary>
-        public PersonAddresses ResidentAddress { get; set; }
-        /// <summary>
-        /// Delivery address of purchased materials.
-        /// </summary>
-        public PersonAddresses DeliveryAddress { get; set; }
-        /// <summary>
         /// All orders made by the customer.
         /// </summary>
         public IList<CustomerOrder> CustomerOrders { get; set; }
         /// <summary>
         /// All customer phone numbers.
         /// </summary>
-        public IList<Phone> Phones { get; set; }
     }
 }

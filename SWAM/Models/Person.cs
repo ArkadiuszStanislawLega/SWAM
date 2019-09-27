@@ -14,5 +14,8 @@
         /// First name of the person.
         /// </summary>
         public string Name { get; set; }
+
+        public Address Address { get; set; }
+        public Phone Phone { get; set; }
     }
 }

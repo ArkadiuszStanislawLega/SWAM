@@ -122,12 +122,27 @@
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
+    <Compile Include="Migrations\201909271547575_InitialModel.cs" />
+    <Compile Include="Migrations\201909271547575_InitialModel.Designer.cs">
+      <DependentUpon>201909271547575_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs" />
+    <Compile Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.Designer.cs">
+      <DependentUpon>201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs" />
+    <Compile Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.Designer.cs">
+      <DependentUpon>201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs" />
+    <Compile Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.Designer.cs">
+      <DependentUpon>201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
-    <Compile Include="Models\PersonAddresses.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\WarehouseAddress.cs" />
     <Compile Include="Strings\PLStrings.cs" />
@@ -543,6 +558,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201909271547575_InitialModel.resx">
+      <DependentUpon>201909271547575_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.resx">
+      <DependentUpon>201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.resx">
+      <DependentUpon>201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.resx">
+      <DependentUpon>201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

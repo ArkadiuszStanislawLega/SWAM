@@ -9,6 +9,7 @@ namespace SWAM
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<Address> Adresses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -17,6 +18,14 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Person>()
+                .HasRequired(p => p.Phone)
+                .WithRequiredPrincipal(p => p.Person);
+
+            modelBuilder.Entity<Person>()
+                .HasRequired(p => p.Address)
+                .WithRequiredPrincipal(a => a.Person);
+
             modelBuilder.Configurations.Add(new CourierConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new EmailAddressConfiguration());

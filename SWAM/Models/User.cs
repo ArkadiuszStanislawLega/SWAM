@@ -50,11 +50,9 @@ namespace SWAM.Models
         /// <summary>
         /// All user phone numbers.
         /// </summary>
-        public IList<Phone> Phones { get; set; }
         /// <summary>
         /// All user emails.
         /// </summary>
-        public IList<EmailAddress> EmailAddresses { get; set; }
         /// <summary>
         /// Messages sent by the user.
         /// </summary>

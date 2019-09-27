@@ -1,4 +1,6 @@
-﻿namespace SWAM
+﻿using SWAM.Models;
+
+namespace SWAM
 {
     /// <summary>
     /// The basic class model in the database representing the address.
@@ -15,5 +17,6 @@
         public string HouseNumber { get; set; }
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
+        public Person Person { get; set; }
     }
 }

@@ -9,13 +9,13 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Users");
 
-            HasMany(user => user.Phones)
-                    .WithRequired(phone => (User)phone.Person)
-                    .HasForeignKey(phone => phone.Person);
+            //HasMany(user => user.Phones)
+            //        .WithRequired(phone => (User)phone.Person)
+            //        .HasForeignKey(phone => phone.Person);
 
-            HasMany(user => user.EmailAddresses)
-            .WithRequired(email => (User)email.Person)
-            .WillCascadeOnDelete(false);
+            //HasMany(user => user.EmailAddresses)
+            //.WithRequired(email => (User)email.Person)
+            //.WillCascadeOnDelete(false);
         }
     }
 }

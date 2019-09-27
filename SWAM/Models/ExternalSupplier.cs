@@ -12,13 +12,5 @@ namespace SWAM.Models
         /// Tax Identification Number.
         /// </summary>
         public string Tin { get; set; }
-        /// <summary>
-        /// External supplier's office address.
-        /// </summary>
-        public Address Address { get; set; }
-        /// <summary>
-        /// External supplier's phone numbers.
-        /// </summary>
-        public IList<Phone> Phones { get; set; } 
     }
 }

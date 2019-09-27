@@ -9,9 +9,9 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("ExternalSuppliers");
 
-            HasMany(user => user.Phones)
-                    .WithRequired(phone => (ExternalSupplier)phone.Person)
-                    .HasForeignKey(phone => phone.Person);
+            //HasMany(user => user.Phones)
+            //        .WithRequired(phone => (ExternalSupplier)phone.Person)
+            //        .HasForeignKey(phone => phone.Person);
         }
     }
 }

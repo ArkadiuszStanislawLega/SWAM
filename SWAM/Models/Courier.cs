@@ -11,8 +11,6 @@ namespace SWAM.Models
         /// Tax Identification Number
         /// </summary>
         public string Tin { get; set; }
-        public PersonAddresses CourierAddress { get; set; }
-        public Phone Phone { get; set; }
         public IList<CustomerOrder> CustomerOrders { get; set; }
     }
 }
