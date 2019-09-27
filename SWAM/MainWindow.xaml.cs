@@ -100,7 +100,8 @@ namespace SWAM
                 new List<PagesUserControls>(){ PagesUserControls.AdministratorPage }},
            //Settings for Seller
            { UserType.Seller,
-                new List<PagesUserControls>(){ PagesUserControls.ManageMagazinePage }},
+                new List<PagesUserControls>(){ PagesUserControls.ManageMagazinePage,
+                                               PagesUserControls.ManageOrdersPage }},
            //Setting for Waegouseman
            { UserType.Warehouseman,
                 new List<PagesUserControls>(){ 
