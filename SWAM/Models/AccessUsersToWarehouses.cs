@@ -53,6 +53,11 @@ namespace SWAM.Models
         /// <returns>List with user accesses to warehouses</returns>
         public static IEnumerable<AccessUsersToWarehouses> GetUserAccesses(int userId) => context().AccessUsersToWarehouses.ToList().Where(u => u.UserId == userId);
         #endregion
+
+        #region
+        public static AccessUsersToWarehouses GetUserAccess(int userId) => context().AccessUsersToWarehouses.SingleOrDefault(u => u.Id == userId);
+        #endregion
+
         #region RemoveAccess
         /// <summary>
         /// Remove specific access from database.
