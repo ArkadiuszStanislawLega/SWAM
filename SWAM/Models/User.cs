@@ -13,7 +13,6 @@ namespace SWAM.Models
     /// <summary>
     /// The basic class model in the database representing the application user.
     /// </summary>
-    [Table("Users")]
     public class User : Person
     {
         /// <summary>
@@ -60,6 +59,8 @@ namespace SWAM.Models
         /// Messages sent by the user.
         /// </summary>
         public IList<Message> Messages { get; set; }
+
+        public Person Parent { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

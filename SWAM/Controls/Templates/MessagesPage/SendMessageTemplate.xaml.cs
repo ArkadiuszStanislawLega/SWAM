@@ -37,21 +37,22 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="receiver">Recipient of the message.</param>
         public void SetResceiver(SelectedUsersListViewModel receivers)
         {
-            if (receivers != null && receivers.UsersList.Count > 0)
-            {
-                SelectedUsersListViewModel = receivers;
-                DataContext = receivers;
+            //if (receivers != null && receivers.UsersList.Count > 0)
+            //{
+            //    SelectedUsersListViewModel = receivers;
+            //    DataContext = receivers;
 
-                foreach (User user in SelectedUsersListViewModel.UsersList)
-                {
-                    this._messagesList.Add(
-                        new Message()
-                        {
-                            SenderId = SWAM.MainWindow.LoggedInUser.Id,
-                            ReceiverId = user.Id
-                        });
-                }
-            }
+            //    foreach (User user in SelectedUsersListViewModel.UsersList)
+            //    {
+            //        this._messagesList.Add(
+            //            new Message()
+            //            {
+            //                SenderId = SWAM.MainWindow.LoggedInUser.Id,
+            //                ReceiverId = user.Id
+            //            });
+            //    }
+            //}
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -62,20 +63,21 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="message">The message to which the answer is written</param>
         public void SetReplayMessage(Message message)
         {
-            this.MessageToSend.ReceiverId = message.SenderId;
-            this.MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
-            this.SelectedUsersListViewModel.AddUser(message.Sender);//Meake receiver visibile in replay window.
+            //this.MessageToSend.ReceiverId = message.SenderId;
+            //this.MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
+            //this.SelectedUsersListViewModel.AddUser(message.Sender);//Meake receiver visibile in replay window.
 
-            //Block adding more users.
-            this.ChosenUserContainer.IsEnabled = false;
-            this.FindUser.IsEnabled = false;
+            ////Block adding more users.
+            //this.ChosenUserContainer.IsEnabled = false;
+            //this.FindUser.IsEnabled = false;
 
-            //Copy message which are replayed.
-            this.Title.Text = $"Re:{message.TitleOfMessage}";
-            this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
-            this.Message.ScrollToHome();
+            ////Copy message which are replayed.
+            //this.Title.Text = $"Re:{message.TitleOfMessage}";
+            //this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
+            //this.Message.ScrollToHome();
 
-            this._isReplayMessage = true;
+            //this._isReplayMessage = true;
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -100,27 +102,28 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="e">Action clicked.</param>
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (this._isReplayMessage)
-            {
-                if (MessageToSend.ReceiverId != 0)
-                {
-                    SetMessageValues(MessageToSend);
+            //if (this._isReplayMessage)
+            //{
+            //    if (MessageToSend.ReceiverId != 0)
+            //    {
+            //        SetMessageValues(MessageToSend);
 
-                    SWAM.Models.Message.AddMessage(MessageToSend);
-                }
-            }
-            else
-            {
-                foreach(Message message in this._messagesList)
-                    SetMessageValues(message);
-                
-                SWAM.Models.Message.AddManyMessages(this._messagesList);
-            }
+            //        SWAM.Models.Message.AddMessage(MessageToSend);
+            //    }
+            //}
+            //else
+            //{
+            //    foreach(Message message in this._messagesList)
+            //        SetMessageValues(message);
 
-            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
-                sendMessageWindow.Close();
+            //    SWAM.Models.Message.AddManyMessages(this._messagesList);
+            //}
 
-            SWAM.MainWindow.RefreshMessagesButton();
+            //if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+            //    sendMessageWindow.Close();
+
+            //SWAM.MainWindow.RefreshMessagesButton();
+            throw new NotImplementedException();
         }
         #endregion
 

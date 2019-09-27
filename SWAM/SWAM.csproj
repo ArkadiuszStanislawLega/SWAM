@@ -111,6 +111,12 @@
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
+    <Compile Include="EntityConfiguration\CourierConfiguration.cs" />
+    <Compile Include="EntityConfiguration\CustomerConfiguration.cs" />
+    <Compile Include="EntityConfiguration\EmailAddressConfiguration.cs" />
+    <Compile Include="EntityConfiguration\ExternalSupplierConfiguration.cs" />
+    <Compile Include="EntityConfiguration\PhoneConfiguration.cs" />
+    <Compile Include="EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />

@@ -44,7 +44,7 @@ namespace SWAM.Models
         /// <summary>
         /// Warehouse address.
         /// </summary>
-        public Address Address { get; set; }
+        public WarehouseOrder WarehouseAddress { get; set; }
         /// <summary>
         /// All permissions granted to users for this storage.
         /// </summary>

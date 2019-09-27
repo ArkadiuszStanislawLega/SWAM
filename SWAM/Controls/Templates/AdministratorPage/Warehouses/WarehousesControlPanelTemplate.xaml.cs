@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Data.Entity;
 using SWAM.Controls.Templates.AdministratorPage;
 using System.ComponentModel;
+using System;
 
 namespace SWAM.Templates.AdministratorPage
 {
@@ -59,10 +60,11 @@ namespace SWAM.Templates.AdministratorPage
         /// <return>Chosen warehouse profile.</return>
         private WarehouseProfileTemplate CreateWarehouseProfile(int warehouseIndexInWaregohouseList)
         {
-            var context = new ApplicationDbContext();
-            return new WarehouseProfileTemplate() {
-                DataContext = context.Warehouses.Include(a => a.Address).FirstOrDefault(w => w.Id == warehouseIndexInWaregohouseList)
-            };
+            throw new NotImplementedException();
+            //var context = new ApplicationDbContext();
+            //return new WarehouseProfileTemplate() {
+            //    DataContext = context.Warehouses.Include(a => a.Address).FirstOrDefault(w => w.Id == warehouseIndexInWaregohouseList)
+            //};
         }
         #endregion
 

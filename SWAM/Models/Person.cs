@@ -9,7 +9,7 @@
         /// <summary>
         /// The id number of the person in the database.
         /// </summary>
-        public int PersonId { get; set; }
+        public int Id { get; set; }
         /// <summary>
         /// First name of the person.
         /// </summary>

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using System.Data.Entity;
+using System;
 
 namespace SWAM.Models.AdministratorPage
 {
@@ -34,30 +35,31 @@ namespace SWAM.Models.AdministratorPage
 
         public void Refresh()
         {
-            this._warehousesListViewModel.Clear();
+            //this._warehousesListViewModel.Clear();
 
-            IList<Warehouse> dbWarehouses;
-            using (ApplicationDbContext application = new ApplicationDbContext())
-            {
-                dbWarehouses = application.Warehouses
-                    .Include(a => a.Address)
-                    .Include(co => co.CustomerOrders)
-                    .Include(u => u.Accesses)
-                    .ToList();
+            //IList<Warehouse> dbWarehouses;
+            //using (ApplicationDbContext application = new ApplicationDbContext())
+            //{
+            //    dbWarehouses = application.Warehouses
+            //        .Include(a => a.Address)
+            //        .Include(co => co.CustomerOrders)
+            //        .Include(u => u.Accesses)
+            //        .ToList();
 
-                //TODO: Make this more pro!!
-                foreach(Warehouse w  in dbWarehouses)
-                {
-                    foreach(AccessUsersToWarehouses a in w.Accesses)
-                    {
-                        a.User = User.GetUser(a.UserId);
-                        a.Administrator = User.GetUser(a.AdministratorId);
-                    }
-                }
-            };
+            //    //TODO: Make this more pro!!
+            //    foreach(Warehouse w  in dbWarehouses)
+            //    {
+            //        foreach(AccessUsersToWarehouses a in w.Accesses)
+            //        {
+            //            a.User = User.GetUser(a.UserId);
+            //            a.Administrator = User.GetUser(a.AdministratorId);
+            //        }
+            //    }
+            //};
 
-            foreach (Warehouse u in dbWarehouses)
-                this._warehousesListViewModel.Add(u);
+            //foreach (Warehouse u in dbWarehouses)
+            //    this._warehousesListViewModel.Add(u);
+            throw new NotImplementedException();
         }
 
         public void RemoveAll()

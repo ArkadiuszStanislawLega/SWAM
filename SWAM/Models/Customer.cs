@@ -1,12 +1,9 @@
-﻿
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
 
 namespace SWAM.Models
 {   /// <summary>
     /// The basic model of the class in the database representing the courier  <see cref="Person"/>.
     /// </summary>
-    [Table("Customers")]
     public class Customer : Person
     {
         /// <summary>
@@ -20,11 +17,11 @@ namespace SWAM.Models
         /// <summary>
         /// Customer's residence address, for issuing a possible invoice.
         /// </summary>
-        public Address ResidentAddress { get; set; }
+        public PersonAddresses ResidentAddress { get; set; }
         /// <summary>
         /// Delivery address of purchased materials.
         /// </summary>
-        public Address DeliveryAddress { get; set; }
+        public PersonAddresses DeliveryAddress { get; set; }
         /// <summary>
         /// All orders made by the customer.
         /// </summary>

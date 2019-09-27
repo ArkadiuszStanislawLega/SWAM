@@ -3,11 +3,12 @@ using System.Windows.Controls;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
 using SWAM.Strings;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using System.ComponentModel;
-    using System.Windows.Data;
+ 
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy UsersControlPanel.xaml

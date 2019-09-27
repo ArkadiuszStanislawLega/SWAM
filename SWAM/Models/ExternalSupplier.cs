@@ -20,8 +20,6 @@ namespace SWAM.Models
         /// <summary>
         /// External supplier's phone numbers.
         /// </summary>
-        public IList<Phone> Phone { get; set; }
-
-        
+        public IList<Phone> Phones { get; set; } 
     }
 }

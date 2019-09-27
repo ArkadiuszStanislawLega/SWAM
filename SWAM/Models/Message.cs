@@ -45,8 +45,13 @@ namespace SWAM.Models
         /// If true - receiver does not see this message in his receive e-mail box.
         /// </summary>
         public bool IsDeletedByReceiver { get; set; }
-
+        /// <summary>
+        /// The user who sent the message.
+        /// </summary>
         public User Sender { get; set; }
+        /// <summary>
+        /// The user who is the recipient of the message.
+        /// </summary>
         public User Receiver { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
