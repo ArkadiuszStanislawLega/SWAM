@@ -1,40 +1,44 @@
 ﻿using SWAM.Enumerators;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// User access to specific warehouses with specific type of permissions.
+    /// </summary>
     public class AccessUsersToWarehouses
     {
-        int _id;
-        UserType _typeOfAccess;
-        DateTime _dateOfGrantingAccess;
-        DateTime? _dateOfExpiredAccess;
-
-        [Required]
-        [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(Warehouse))]
-        public int WarehouseId { get; set; }
-
-        [Required]
-        [ForeignKey(nameof(Administrator))]
-        public int AdministratorId { get; set; }
-
+        /// <summary>
+        /// Number Id of access in database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Type of access in warehouse.
+        /// </summary>
+        public UserType TypeOfAccess { get; set; }
+        /// <summary>
+        /// Date of granted access.
+        /// </summary>
+        public DateTime DateOfGrantingAccess { get; set; }
+        /// <summary>
+        /// Date of expiring access.
+        /// </summary>
+        public DateTime? DateOfExpiredAcces { get; set; }
+        /// <summary>
+        /// User who is granted the rights.
+        /// </summary>
         public virtual User User { get; set; }
+        /// <summary>
+        /// The warehouse where permissions are granted.
+        /// </summary>
         public virtual Warehouse Warehouse { get; set; }
+        /// <summary>
+        /// User who granted the permissions.
+        /// </summary>
         public virtual User Administrator { get; set; }
 
-        public int Id { get => _id; set => _id = value; }
-        public UserType TypeOfAccess { get => _typeOfAccess; set => _typeOfAccess = value; }
-        public DateTime DateOfGrantingAccess { get => _dateOfGrantingAccess; set => _dateOfGrantingAccess = value; }
-        public DateTime? DateOfExpiredAcces { get => _dateOfExpiredAccess; set => _dateOfExpiredAccess = value; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
@@ -51,7 +55,11 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId">User id</param>
         /// <returns>List with user accesses to warehouses</returns>
-        public static IEnumerable<AccessUsersToWarehouses> GetUserAccesses(int userId) => context().AccessUsersToWarehouses.ToList().Where(u => u.UserId == userId);
+        public static IEnumerable<AccessUsersToWarehouses> GetUserAccesses(int userId)
+        {
+            throw new NotImplementedException();
+            //context().AccessUsersToWarehouses.ToList().Where(u => u.UserId == userId);
+        }
         #endregion
         #region RemoveAccess
         /// <summary>
@@ -61,6 +69,8 @@ namespace SWAM.Models
         /// <returns>True - access has been removed, false - access Id is lower than 0.</returns>
         public static bool RemoveAccess(int accessId)
         {
+            throw new NotImplementedException();
+            /*
             if (accessId > 0 )
             {
                 var removeAccss = context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
@@ -72,7 +82,7 @@ namespace SWAM.Models
                 }
                 else return false;
             }
-            else return false;
+            else return false;*/
         }
         #endregion
         #region AddNewAccess
@@ -83,13 +93,14 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-            if (accessUsersToWarehouses != null)
-            {
-                context().AccessUsersToWarehouses.Add(accessUsersToWarehouses);
-                context().SaveChanges();
-                return true;
-            }
-            else return false;
+            throw new NotImplementedException();
+            //if (accessUsersToWarehouses != null)
+            //{
+            //    context().AccessUsersToWarehouses.Add(accessUsersToWarehouses);
+            //    context().SaveChanges();
+            //    return true;
+            //}
+            //else return false;
         }
         #endregion
 
@@ -100,8 +111,9 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
         {
-            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
-            context().SaveChanges();
+            throw new NotImplementedException();
+            //context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
+            //context().SaveChanges();
         }
         #endregion
         #region EditTypeOfAccess
@@ -111,8 +123,9 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditTypeOfAccess(UserType userType)
         {
-            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
-            context().SaveChanges();
+            throw new NotImplementedException();
+            //context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
+            //context().SaveChanges();
         }
         #endregion
     }

@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace SWAM.Models.ManageOrdersPage
 {
@@ -39,15 +40,16 @@ namespace SWAM.Models.ManageOrdersPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var customersList = context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList();
+                throw new NotImplementedException();
+                //var customersList = context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList();
 
-                if (customersList != null && _customersList.Count > 0)
-                    _customersList.Clear();
+                //if (customersList != null && _customersList.Count > 0)
+                //    _customersList.Clear();
 
-                foreach (var customer in customersList)
-                {
-                    _customersList.Add(customer);
-                }
+                //foreach (var customer in customersList)
+                //{
+                //    _customersList.Add(customer);
+                //}
             }
         }
         #endregion

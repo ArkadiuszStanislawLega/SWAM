@@ -22,9 +22,10 @@ namespace SWAM.Models.Messages
             IList<User> dbUsers;
             using (ApplicationDbContext application = new ApplicationDbContext())
             {
-                dbUsers = application.Users
-                    .Include(u => u.Phones)
-                    .ToList();
+                throw new NotImplementedException();
+                //dbUsers = application.Users
+                //    .Include(u => u.Phones)
+                //    .ToList();
             };
 
             foreach (User u in dbUsers)

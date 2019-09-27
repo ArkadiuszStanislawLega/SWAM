@@ -1,45 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SWAM.Enumerators;
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// The basic model of the class in the database representing the <see cref="Customer"/>'s order.
+    /// </summary>
     public class CustomerOrder
-    {
-        int _id;
+    { 
+        /// <summary>
+        /// Customer order numer Id in database.
+        /// </summary>
+        public int Id { get; set; }
         /// <summary>
         /// Indicates if order has been paid
         /// </summary>
-        bool _isPaid;
+        public bool IsPaid { get; set; }
         /// <summary>
         /// Date when order was made
         /// </summary>
-        DateTime _orderDate;
+        public DateTime OrderDate { get; set; }
         /// <summary>
         /// Date when products were delivered to customer
         /// </summary>
-        DateTime? _deliveryDate;
-        Warehouse _warehouse;
-        Customer _customer;
-        Courier _courier;
-        IList<CustomerOrderPosition> _customerOrderPositions;
-        CustomerOrderStatus _customerOrderStatus;
-        ShipmentType _ShipmentType;
-        PaymentType _paymentType;
-
-        public int Id { get => _id; set => _id = value; }
-        public bool IsPaid { get => _isPaid; set => _isPaid = value; }
-        public DateTime OrderDate { get => _orderDate; set => _orderDate = value; }
-        public DateTime? DeliveryDate { get => _deliveryDate; set => _deliveryDate = value; }
-        public Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
-        public Customer Customer { get => _customer; set => _customer = value; }
-        public Courier Courier { get => _courier; set => _courier = value; }
-        public CustomerOrderStatus CustomerOrderStatus { get => _customerOrderStatus; set => _customerOrderStatus = value; }
-        public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
-        public ShipmentType ShipmentType { get => _ShipmentType; set => _ShipmentType = value; }
-        public PaymentType PaymentType { get => _paymentType; set => _paymentType = value; }
+        public DateTime? DeliveryDate { get; set; }
+        /// <summary>
+        /// The warehouse from which the product was released.
+        /// </summary>
+        public Warehouse Warehouse { get; set; }
+        /// <summary>
+        /// The customer who made the purchase.
+        /// </summary>
+        public Customer Customer { get; set; }
+        /// <summary>
+        /// The courier who is responsible for delivering the product.
+        /// </summary>
+        public Courier Courier { get; set; }
+        /// <summary>
+        /// Status of the order to the customer.
+        /// </summary>
+        public CustomerOrderStatus CustomerOrderStatus { get; set; }
+        /// <summary>
+        /// The type of delivery of the product to the customer.
+        /// </summary>
+        public ShipmentType ShipmentType { get; set; }
+        /// <summary>
+        /// Payment type chosen by the customer.
+        /// </summary>
+        public PaymentType PaymentType { get; set; }
+        public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
     }
 }

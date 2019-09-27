@@ -1,26 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SWAM.Enumerators;
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// The basic model of the class in the database representing the order of <see cref="Product"/>s to the <see cref="SWAM.Models.Warehouse"/>.
+    /// </summary>
     public class WarehouseOrder
     {
-        int _id;
-        WarehouseOrderStatus _warehouseOrderStatus;
-        DateTime _orderDate;
-        DateTime? _deliveryDate;
-        Warehouse _warehouse;
-        ExternalSupplier _externalSupplayer;
-
-        public int Id { get => _id; set => _id = value; }
-        public DateTime OrderDate { get => _orderDate; set => _orderDate = value; }
-        public DateTime? DeliveryDate { get => _deliveryDate; set => _deliveryDate = value; }
-        public Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
-        public ExternalSupplier ExternalSupplayer { get => _externalSupplayer; set => _externalSupplayer = value; }
-        public WarehouseOrderStatus WarehouseOrderStatus { get => _warehouseOrderStatus; set => _warehouseOrderStatus = value; }
+        /// <summary>
+        /// Warehouse order identification number in the database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Date of the order.
+        /// </summary>
+        public DateTime OrderDate { get; set; }
+        /// <summary>
+        /// Date of delivery of products from the order to the warehouse.
+        /// </summary>
+        public DateTime? DeliveryDate { get; set; }
+        /// <summary>
+        /// The warehouse to which the products were ordered.
+        /// </summary>
+        public Warehouse Warehouse { get; set; }
+        /// <summary>
+        /// An external supplier who delivers products from the order.
+        /// </summary>
+        public ExternalSupplier ExternalSupplayer { get; set; }
+        /// <summary>
+        /// Current order status.
+        /// </summary>
+        public WarehouseOrderStatus WarehouseOrderStatus { get; set; }
     }
 }

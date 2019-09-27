@@ -1,29 +1,37 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWAM.Models
-{
-    public class Customer
+{   /// <summary>
+    /// The basic model of the class in the database representing the courier  <see cref="Person"/>.
+    /// </summary>
+    [Table("Customers")]
+    public class Customer : Person
     {
-        int _id;
-        string _name;
-        string _surname;
-        List<Email> _emails;
-        List<Phone> _phones;
-        Address _residentAddress;
-        Address _deliveryAddress;
-        IList<CustomerOrder> _customerOrders;
-
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public Address ResidentAddress { get => _residentAddress; set => _residentAddress = value; }
-        public Address DeliveryAddress { get => _deliveryAddress; set => _deliveryAddress = value; }
-        public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
-        public string Surname { get => _surname; set => _surname = value; }
-        public List<Email> Emails { get => _emails; set => _emails = value; }
-        public List<Phone> Phones { get => _phones; set => _phones = value; }
+        /// <summary>
+        /// Customer surname.
+        /// </summary>
+        public string Surname { get; set; }
+        /// <summary>
+        /// Customer's email address for contact.
+        /// </summary>
+        public EmailAddress EmailAddress { get; set; }
+        /// <summary>
+        /// Customer's residence address, for issuing a possible invoice.
+        /// </summary>
+        public Address ResidentAddress { get; set; }
+        /// <summary>
+        /// Delivery address of purchased materials.
+        /// </summary>
+        public Address DeliveryAddress { get; set; }
+        /// <summary>
+        /// All orders made by the customer.
+        /// </summary>
+        public IList<CustomerOrder> CustomerOrders { get; set; }
+        /// <summary>
+        /// All customer phone numbers.
+        /// </summary>
+        public IList<Phone> Phones { get; set; }
     }
 }

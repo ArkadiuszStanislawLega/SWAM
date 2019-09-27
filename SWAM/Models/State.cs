@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace SWAM.Models
 {
-   public class State
+    /// <summary>
+    /// The basic class model representing the current status of products in the warehouse.
+    /// </summary>
+    public class State
     {
         int _id;
         /// <summary>

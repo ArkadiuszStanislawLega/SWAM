@@ -25,15 +25,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var email = new Email()
+                var email = new EmailAddress()
                 {
                     AddressEmail = this.NewEmail.Text,
-                    UserId = user.Id
+                    Person = user
                 };
 
                 if (email != null)
                 {
-                    Email.AddEmail(email);
+                    EmailAddress.AddEmail(email);
                     RefreshEmailsList();
                     InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
                 }
@@ -50,7 +50,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var userEmails = Email.GetUserEmails(user.Id);
+                var userEmails = EmailAddress.GetUserEmails(user.Id);
                 try
                 {
                     if (userEmails != null) Emails.ItemsSource = userEmails;

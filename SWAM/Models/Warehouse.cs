@@ -1,43 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// The basic class model in the database representing the warehouse.
+    /// </summary>
     public class Warehouse
     {
-        int _id;
-        string _name;
-        long _height;
-        long _width;
-        long _length;
-        long _surfaceAreaNetto;
-        long _surfaceAreaBrutton;
-        long _acceptableWeight;
-        IList<AccessUsersToWarehouses> _accesses;
-        IList<CustomerOrder> _customerOrders;
+        /// <summary>
+        /// Identification number in the database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Warehouse name.
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Warehouse height.
+        /// </summary>
+        public long Height { get; set; }
+        /// <summary>
+        /// Warehouse width.
+        /// </summary>
+        public long Width { get; set; }
+        /// <summary>
+        /// Warehouse lenght.
+        /// </summary>
+        public long Length { get; set; }
+        /// <summary>
+        /// Net area available in the warehouse.
+        /// </summary>
+        public long SurfaceAreaNetto { get; set; }
+        /// <summary>
+        /// Gross area available in the warehouse.
+        /// </summary>
+        public long SurfaceAreaBrutton { get; set; }
+        /// <summary>
+        /// Maximum total weight of products in the warehouse.
+        /// </summary>
+        public long AcceptableWeight { get; set; }
+        /// <summary>
+        /// Warehouse address.
+        /// </summary>
+        public Address Address { get; set; }
+        /// <summary>
+        /// All permissions granted to users for this storage.
+        /// </summary>
+        public IList<AccessUsersToWarehouses> Accesses { get; set; }
+        /// <summary>
+        /// All customer orders associated with this warehouse.
+        /// </summary>
+        public IList<CustomerOrder> CustomerOrders { get; set; }
+        /// <summary>
+        /// All order requirements for this warehouse.
+        /// </summary>
+        public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
-        [Required]
-        [ForeignKey("Address")]
-        public int _addressId { get; set; }
-        public virtual Address Address { get; set; }
-
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public long Height { get => _height; set => _height = value; }
-        public long Width { get => _width; set => _width = value; }
-        public long Length { get => _length; set => _length = value; }
-        public long SurfaceAreaNetto { get => _surfaceAreaNetto; set => _surfaceAreaNetto = value; }
-        public long SurfaceAreaBrutton { get => _surfaceAreaBrutton; set => _surfaceAreaBrutton = value; }
-        public long AcceptableWeight { get => _acceptableWeight; set => _acceptableWeight = value; }
-        public int AddressId { get => _addressId; set => _addressId = value; }
-        public IList<AccessUsersToWarehouses> Accesses { get => _accesses; set => _accesses = value; }
-        public IList<CustomerOrder> CustomerOrders { get => _customerOrders; set => _customerOrders = value; }
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
         private static ApplicationDbContext _context

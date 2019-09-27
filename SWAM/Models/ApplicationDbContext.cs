@@ -1,32 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using SWAM.Models;
-using SWAM.Enumerators;
 
 namespace SWAM
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Courier> Couriers { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<CustomerOrder> CustomerOrders { get; set; }
-        public DbSet<CustomerOrderPosition> CustomerOrderPositions { get; set; }
-        public DbSet<Email> Emails { get; set; }
-        public DbSet<ExternalSupplier> ExternalSupplayers { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Phone> Phones { get; set; }
+        public DbSet<Person> People { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<State> States { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
-        public DbSet<WarehouseOrder> WarehouseOrders { get; set; }
-        public DbSet<WarehouseOrderPosition> WarehouseOrderPositions { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -36,15 +18,40 @@ namespace SWAM
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Courier>().ToTable("Couriers");
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Customer>().ToTable("Customers");
+            modelBuilder.Entity<ExternalSupplier>().ToTable("ExternalSuppliers");
+            #region Person
+
+            #endregion
+            #region EmailAddress
+            /*
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.EmailAddresses)
+                .WithRequired(u => (User)u.Person)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Customer>()
+                 .HasMany(e => e.EmailAddresses)
+                 .WithRequired(u => (Customer)u.Person)
+                 .WillCascadeOnDelete(false);
+
+            
+            modelBuilder.Entity<EmailAddress>()
+                .HasRequired(c => (User)c.Person);
+                /*
+            modelBuilder.Entity<EmailAddress>()
+                          .HasRequired(c => (Customer)c.Person)
+                          .WithMany(c => c.EmailAddresses); */
+            #endregion
+            /*
             modelBuilder.Entity<Phone>()
                 .HasRequired(c => c.User)
                 .WithMany(c => c.Phones)
                 .HasForeignKey(u => u.UserId);
 
-            modelBuilder.Entity<Email>()
-                .HasRequired(c => c.User)
-                .WithMany(c => c.Emails)
-                .HasForeignKey(u => u.UserId);
 
             modelBuilder.Entity<Warehouse>()
                 .HasRequired(a => a.Address);
@@ -92,7 +99,7 @@ namespace SWAM
                   .HasRequired(w => w.Warehouse)
                   .WithMany()
                   .HasForeignKey(w => w.WarehouseId)
-                  .WillCascadeOnDelete(false);
+                  .WillCascadeOnDelete(false);*/
 
             //modelBuilder.Entity<Customer>()
             //    .HasRequired(c => c.Phone)

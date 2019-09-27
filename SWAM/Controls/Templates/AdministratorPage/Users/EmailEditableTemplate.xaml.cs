@@ -29,13 +29,13 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             //Make sure that datacontext is email
-            if (DataContext is Email email)
+            if (DataContext is EmailAddress email)
             {
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)
                 {
                     //Take email from database to show user how this email look in database.
-                    if (SWAM.Models.Email.GetEmailById(email.Id) is Email dbEmail)
+                    if (SWAM.Models.EmailAddress.GetEmailById(email.Id) is EmailAddress dbEmail)
                     {
                         //Show confirmation window about changes.
                         this._confirmWindow.Show($"Czy jesteś pewien że chcesz nadpisać {dbEmail.AddressEmail} i zastąpić go {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
@@ -43,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         if (isConfirmed)
                         {
                             //Update email in database and inform user about it.
-                            if (email.UpdateEmail(EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                            if (email.UpdateEmail(EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.Person.Name}.");
                             else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                         }
                         else
@@ -65,7 +65,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             //Make sure that datacontext is email
-            if (DataContext is Email email)
+            if (DataContext is EmailAddress email)
             {
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)

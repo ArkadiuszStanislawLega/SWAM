@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SWAM.Models
+﻿namespace SWAM.Models
 {
     /// <summary>
-    /// Stores exact products of customer's order
+    /// The basic class model in the database representing the <see cref="CustomerOrder"/> item.
     /// </summary>
     public class CustomerOrderPosition
     {
-        int _id;
-        decimal _price;
-        uint quantity;
-        Product _product;
-        CustomerOrder _customerOrder;
-
-        public int Id { get => _id; set => _id = value; }
-        public decimal Price { get => _price; set => _price = value; }
-        public uint Quantity { get => quantity; set => quantity = value; }
-        public Product Product { get => _product; set => _product = value; }
-        public CustomerOrder CustomerOrder { get => _customerOrder; set => _customerOrder = value; }
+        /// <summary>
+        /// Customer order postion number Id in database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Product this item applies to.
+        /// </summary>
+        public Product Product { get; set; }
+        /// <summary>
+        /// The quantity of product contained in the item.
+        /// </summary>
+        public uint Quantity { get; set; }
+        /// <summary>
+        /// The price for the product applies to this item.
+        /// </summary>
+        public decimal Price { get; set; }
+        /// <summary>
+        /// Order number to which this item applies.
+        /// </summary>
+        public CustomerOrder CustomerOrder { get; set; }
     }
 }

@@ -113,59 +113,14 @@
     <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
-    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
-      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907070918593_FixError.cs" />
-    <Compile Include="Migrations\201907070918593_FixError.Designer.cs">
-      <DependentUpon>201907070918593_FixError.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.cs" />
-    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.Designer.cs">
-      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221133526_AddMessageModel.cs" />
-    <Compile Include="Migrations\201907221133526_AddMessageModel.Designer.cs">
-      <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.cs" />
-    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.Designer.cs">
-      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.cs" />
-    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.Designer.cs">
-      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.cs" />
-    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.Designer.cs">
-      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.cs" />
-    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.Designer.cs">
-      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.cs" />
-    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.Designer.cs">
-      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.cs" />
-    <Compile Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.Designer.cs">
-      <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.cs" />
-    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.Designer.cs">
-      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.cs" />
-    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.Designer.cs">
-      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
+    <Compile Include="Models\PersonAddresses.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\WarehouseAddress.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
@@ -422,106 +377,10 @@
     <Compile Include="Exceptions\RefreshUserPhonesListException.cs" />
     <Compile Include="Exceptions\RefreshUserProfileException.cs" />
     <Compile Include="Exceptions\RefreshWarehousessAccessesListExeption.cs" />
-    <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
-    <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
-      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905261209433_AddPropertiesToUserAccount.cs" />
-    <Compile Include="Migrations\201905261209433_AddPropertiesToUserAccount.Designer.cs">
-      <DependentUpon>201905261209433_AddPropertiesToUserAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905261230279_UpgdateDataUserAccount.cs" />
-    <Compile Include="Migrations\201905261230279_UpgdateDataUserAccount.Designer.cs">
-      <DependentUpon>201905261230279_UpgdateDataUserAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.cs" />
-    <Compile Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.Designer.cs">
-      <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.cs" />
-    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.Designer.cs">
-      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.cs" />
-    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.Designer.cs">
-      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.cs" />
-    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.Designer.cs">
-      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.cs" />
-    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.Designer.cs">
-      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.cs" />
-    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.Designer.cs">
-      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.cs" />
-    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.Designer.cs">
-      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.cs" />
-    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.Designer.cs">
-      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.cs" />
-    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.Designer.cs">
-      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906031126566_UpdateEmailTable.cs" />
-    <Compile Include="Migrations\201906031126566_UpdateEmailTable.Designer.cs">
-      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.cs" />
-    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.Designer.cs">
-      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.cs" />
-    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.Designer.cs">
-      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs" />
-    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.Designer.cs">
-      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs" />
-    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.Designer.cs">
-      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906091702478_ModelUpdate.cs" />
-    <Compile Include="Migrations\201906091702478_ModelUpdate.Designer.cs">
-      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101410351_UserOneToManyPhones.cs" />
-    <Compile Include="Migrations\201906101410351_UserOneToManyPhones.Designer.cs">
-      <DependentUpon>201906101410351_UserOneToManyPhones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101439394_UserOneToManyEmails.cs" />
-    <Compile Include="Migrations\201906101439394_UserOneToManyEmails.Designer.cs">
-      <DependentUpon>201906101439394_UserOneToManyEmails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101521062_ManyToManyUsersAccesses.cs" />
-    <Compile Include="Migrations\201906101521062_ManyToManyUsersAccesses.Designer.cs">
-      <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101801341_WarehouseModelReview.cs" />
-    <Compile Include="Migrations\201906101801341_WarehouseModelReview.Designer.cs">
-      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs" />
-    <Compile Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.Designer.cs">
-      <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.cs" />
-    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.Designer.cs">
-      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccessUsersToWarehouses.cs" />
     <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
     <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
-    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
@@ -647,10 +506,6 @@
     <Compile Include="Controls\Pages\ManageOrdersPage.xaml.cs">
       <DependentUpon>ManageOrdersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905142200380_InitialModel.cs" />
-    <Compile Include="Migrations\201905142200380_InitialModel.Designer.cs">
-      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -679,117 +534,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905142200380_InitialModel.resx">
-      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161620557_AddUsersTable.resx">
-      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261209433_AddPropertiesToUserAccount.resx">
-      <DependentUpon>201905261209433_AddPropertiesToUserAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261230279_UpgdateDataUserAccount.resx">
-      <DependentUpon>201905261230279_UpgdateDataUserAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.resx">
-      <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905300749450_AddEmailAndPhoneTables.resx">
-      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905300757275_UpdateModelsContactsToPhone.resx">
-      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.resx">
-      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.resx">
-      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311706344_UpdatePhoneFromCharToString.resx">
-      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311711280_UpdatePhoneAddNote.resx">
-      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.resx">
-      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.resx">
-      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906031126566_UpdateEmailTable.resx">
-      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906051331159_UpdateWarehouseAddressId.resx">
-      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.resx">
-      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.resx">
-      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.resx">
-      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906091702478_ModelUpdate.resx">
-      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101410351_UserOneToManyPhones.resx">
-      <DependentUpon>201906101410351_UserOneToManyPhones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101439394_UserOneToManyEmails.resx">
-      <DependentUpon>201906101439394_UserOneToManyEmails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101521062_ManyToManyUsersAccesses.resx">
-      <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101801341_WarehouseModelReview.resx">
-      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.resx">
-      <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.resx">
-      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907061652217_WarehousesModelUpdate.resx">
-      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907070918593_FixError.resx">
-      <DependentUpon>201907070918593_FixError.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907141735338_WarehouseAddPropertyLength.resx">
-      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221133526_AddMessageModel.resx">
-      <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221214065_UpdateMessageModelAddTitle.resx">
-      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.resx">
-      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.resx">
-      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.resx">
-      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.resx">
-      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.resx">
-      <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908061104193_UserAddPasswordSalt.resx">
-      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908061124163_UserChangePasswordToByte.resx">
-      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
