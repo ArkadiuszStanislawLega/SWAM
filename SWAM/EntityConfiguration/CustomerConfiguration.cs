@@ -7,7 +7,7 @@ namespace SWAM.EntityConfiguration
     {
         public CustomerConfiguration()
         {
-
+            ToTable("Customers");
         }
     }
 }

@@ -7,6 +7,8 @@ namespace SWAM.EntityConfiguration
     {
         public ExternalSupplierConfiguration()
         {
+            ToTable("ExternalSuppliers");
+
             HasMany(user => user.Phones)
             .WithRequired(phone => (ExternalSupplier)phone.Person);
         }

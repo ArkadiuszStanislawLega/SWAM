@@ -7,6 +7,8 @@ namespace SWAM.EntityConfiguration
     {
         public CourierConfiguration()
         {
+            ToTable("Couriers");
+
             HasOptional(courier => courier.Phone);
         }
     }

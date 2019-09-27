@@ -17,11 +17,6 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<Courier>().ToTable("Couriers");
-            modelBuilder.Entity<Customer>().ToTable("Customers");
-            modelBuilder.Entity<ExternalSupplier>().ToTable("ExternalSuppliers");
-
             modelBuilder.Configurations.Add(new CourierConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new EmailAddressConfiguration());

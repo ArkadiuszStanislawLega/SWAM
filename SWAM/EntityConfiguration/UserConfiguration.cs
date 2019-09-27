@@ -7,6 +7,8 @@ namespace SWAM.EntityConfiguration
     {
         public UserConfiguration()
         {
+            ToTable("Users");
+
             HasMany(user => user.Phones)
             .WithRequired(phone => (User)phone.Person);
 
