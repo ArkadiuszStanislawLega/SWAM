@@ -55,6 +55,11 @@ namespace SWAM.Models
         #endregion
 
         #region
+        /// <summary>
+        /// Get object with specific user accesses to warehouses from database. 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static AccessUsersToWarehouses GetUserAccess(int userId) => context().AccessUsersToWarehouses.SingleOrDefault(u => u.Id == userId);
         #endregion
 

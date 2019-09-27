@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,14 @@ namespace SWAM.Models
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
 
-        public List<Product> GetProducts() { return _context.Products.ToList(); }
+        public List<Product> GetProducts()
+        {
+            return _context.Products.ToList();
+        }
+
+        public List<Product> GetProductsFromWarehouse(int warehouseId)
+        {
+            return _context.States.Include(s => s.Product).Include(s =>s.Warehouse).Where(p => p.WarehouseId == warehouseId).Select(s =>s.Product).ToList();
+        }
     }
 }
