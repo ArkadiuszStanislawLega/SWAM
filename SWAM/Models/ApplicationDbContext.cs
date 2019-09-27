@@ -6,9 +6,9 @@ namespace SWAM
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Person> People { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Warehouse> Warehouses { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -23,6 +23,8 @@ namespace SWAM
             modelBuilder.Configurations.Add(new ExternalSupplierConfiguration());
             modelBuilder.Configurations.Add(new PhoneConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

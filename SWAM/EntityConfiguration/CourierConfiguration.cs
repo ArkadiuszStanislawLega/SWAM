@@ -9,7 +9,9 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Couriers");
 
-            HasOptional(courier => courier.Phone);
+            //HasOptional(courier => courier.Phone)
+            //    .WithRequired(phone => (Courier)phone.Person)
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

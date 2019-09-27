@@ -8,6 +8,10 @@ namespace SWAM.EntityConfiguration
         public CustomerConfiguration()
         {
             ToTable("Customers");
+
+            HasMany(user => user.Phones)
+                    .WithRequired(phone => (Customer)phone.Person)
+                    .HasForeignKey(phone => phone.Person);
         }
     }
 }

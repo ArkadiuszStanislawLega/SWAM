@@ -60,8 +60,6 @@ namespace SWAM.Models
         /// </summary>
         public IList<Message> Messages { get; set; }
 
-        public Person Parent { get; set; }
-
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
         private static ApplicationDbContext _context

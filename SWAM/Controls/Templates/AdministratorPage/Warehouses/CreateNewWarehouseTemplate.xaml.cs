@@ -28,7 +28,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         /// <param name="e">Event button is clicked</param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            bool isWarehouseCreated = false; //Flag indicating whether a new warehouse was created
+            //bool isWarehouseCreated = false; //Flag indicating whether a new warehouse was created
 
             //TODO: Try - catch
             //using (ApplicationDbContext context = new ApplicationDbContext())

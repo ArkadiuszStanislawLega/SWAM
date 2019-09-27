@@ -8,8 +8,7 @@ namespace SWAM.EntityConfiguration
     {
         public PhoneConfiguration()
         {
-
-            HasRequired(phone => (User)phone.Person);
+            
         }
     }
 }
