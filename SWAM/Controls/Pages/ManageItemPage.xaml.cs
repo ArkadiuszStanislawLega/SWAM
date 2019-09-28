@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SWAM.Controls.Windows;
-using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.ProductPage;
-using SWAM.Windows;
 
 namespace SWAM
 {
@@ -25,7 +12,7 @@ namespace SWAM
     /// </summary>
     public partial class ManageItemPage : UserControl
     {
-        enum Operation { edit, add };
+        enum Operation { none, edit, add };
 
         Operation _currentOperation;
         private long _weight;
@@ -55,29 +42,28 @@ namespace SWAM
             if(this._productList.Products.Count > 0)
                 this.ProductProfile.DataContext = this._productList.Products[0];
         }
-
-        private void ProductsList_MouseDown(object sender, MouseButtonEventArgs e)
-            => this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-
         #endregion
+        private void ProductsList_MouseDown(object sender, MouseButtonEventArgs e)
+        { 
+            this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
+            this.EditedName.Visibility = Visibility.Visible;
+            this._currentOperation = Operation.none;
+        }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             this._currentOperation = Operation.edit;
-            this.tboxName.Visibility = Visibility.Collapsed;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            this.tboxName.Visibility = Visibility.Visible;
-
             if (ValidationTextBoxes())
             {
                 if (this._currentOperation == Operation.add)
                 {
                     context.Products.Add(new Models.Product()
                     {
-                        Name = this.tbName.Text,
+                        Name = this.EditedName.Text,
                         Weigth = this._weight,
                         Length = this._lenght,
                         Width = this._width,
@@ -86,12 +72,12 @@ namespace SWAM
                     });
                     context.SaveChanges();
                 }
-                else
+                else if(this._currentOperation == Operation.edit)
                 {
                     if (ProductProfile.DataContext is Product product)
                     {
                         var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-                        dbproduct.Name = this.tbName.Text;
+                        dbproduct.Name = this.EditedName.Text;
                         dbproduct.Weigth = this._weight;
                         dbproduct.Length = this._lenght;
                         dbproduct.Width = this._width;
@@ -100,22 +86,21 @@ namespace SWAM
                         context.SaveChanges();
                     }
                 }
+                this._productList.Refresh();
             }
-
-            this._productList.Refresh();
         }
 
         private bool ValidationTextBoxes()
         {
-            if (long.TryParse(this.tbWeight.Text, out this._weight) && this._weight > 0)
+            if (long.TryParse(this.EditedWeight.Text, out this._weight) && this._weight > 0)
             {
-                if (long.TryParse(this.tbLenght.Text, out this._lenght) && this._lenght > 0)
+                if (long.TryParse(this.EditedLenght.Text, out this._lenght) && this._lenght > 0)
                 {
-                    if (long.TryParse(this.tbWidth.Text, out this._width) && this._width > 0)
+                    if (long.TryParse(this.EditedWidth.Text, out this._width) && this._width > 0)
                     {
-                        if (long.TryParse(this.tbHeight.Text, out this._height) && this._height > 0)
+                        if (long.TryParse(this.EditedHeight.Text, out this._height) && this._height > 0)
                         {
-                            if (decimal.TryParse(this.tbPrice.Text, out this._price) && this._price > 0)
+                            if (decimal.TryParse(this.EditedPrice.Text, out this._price) && this._price > 0)
                             {
                                 return true;
                             }
@@ -129,14 +114,13 @@ namespace SWAM
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             this._currentOperation = Operation.add;
-            this.tboxName.Visibility = Visibility.Collapsed;
 
-            this.tbName.Text = string.Empty;
-            this.tbLenght.Text = string.Empty;
-            this.tbHeight.Text = string.Empty;
-            this.tbWidth.Text = string.Empty;
-            this.tbWeight.Text = string.Empty;
-            this.tbPrice.Text = string.Empty;
+            this.EditedName.Text = string.Empty;
+            this.EditedLenght.Text = string.Empty;
+            this.EditedHeight.Text = string.Empty;
+            this.EditedWidth.Text = string.Empty;
+            this.EditedWeight.Text = string.Empty;
+            this.EditedPrice.Text = string.Empty;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -151,9 +135,7 @@ namespace SWAM
             }
         }
 
-        private void NumberRowIteration(object sender, DataGridRowEventArgs e)
-        {
-            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
-        }
+        private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+    
     }
 }

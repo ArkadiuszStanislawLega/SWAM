@@ -9,102 +9,182 @@
       VerticalAlignment="Stretch"
       Background="{StaticResource BackgroundOfPagesBrash}"
       d:DesignHeight="450" d:DesignWidth="800">
+    <!--#region Reosurces-->
     <UserControl.Resources>
+        <!--#region ProducutsButton-->
+        <Style x:Key="ProducutsButton" TargetType="Button" BasedOn="{StaticResource NavigationButton}">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <!--#endregion-->
+        <!--#region ProductTextBox-->
         <Style x:Key="ProductTextBox" TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=tbName}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=EditedName}"/>
+            <Setter Property="Opacity" Value="{Binding Opacity, ElementName=EditedName}" />
+            <Setter Property="FontSize" Value="14"/>
         </Style>
+        <!--#endregion-->
+        <!--#region ProductLabel-->
         <Style x:Key="ProductLabel" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=tboxName}"/>
+            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=LabelName}"/>
+            <Setter Property="Opacity" Value="{Binding Opacity, ElementName=LabelName}" />
         </Style>
+        <!--#endregion-->
+        <!--#region ShowEditStory-->
+        <Storyboard x:Key="ShowEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditedName"
+                             Duration="0:0:0.4" 
+                             From="0" To="1"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideEditStory-->
+        <Storyboard x:Key="HideEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditedName"
+                             Duration="0:0:0.4" 
+                             From="1" To="0"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
+    <!--#endregion-->
     <Grid>
+        <!--#region RowsDefinitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--#endregion-->
         <TextBlock Name="Title" 
                    Text="Manager produktów" 
                    Margin="10 0 0 0"
                    Style="{StaticResource Title}"
                    HorizontalAlignment="Left"/>
         <Grid Grid.Row="1">
+            <!--#region Column definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            <!--#endregion-->
             <Grid Grid.Column="0" Name="ProductProfile" >
+                <!--#region Column definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-
+                <!--#endregion-->
+                <!--#region Properites-->
                 <StackPanel Grid.Column="0" Margin="10">
+                    <!--#region Name-->
                     <TextBlock Text="Nazwa:"  Style="{StaticResource ProfileProperties}"/>
-                    <Label Name="tboxName" 
-                       Content="{Binding Name}"/>
-                    <TextBox  Name="tbName"
-                          Text="{Binding Name}" 
-                          Visibility="{Binding Visibility,
-                                        ElementName=tboxName,
+                    <Label Name="LabelName" Content="{Binding Name}" Visibility="Visible" HorizontalAlignment="Right"/>
+                    <TextBox  Name="EditedName" Text="{Binding Name}" 
+                              FontSize="14"
+                              HorizontalAlignment="Stretch"
+                              HorizontalContentAlignment="Right"
+                              Visibility="{Binding Visibility,
+                                        ElementName=LabelName,
                                         Converter={conv:VisibilityReverseConverter}}"/>
+                    <!--#endregion-->
+                    <!--#region Width-->
                     <Grid>
                         <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
                     <Label Content="{Binding Width}"  Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Width}" Name="tbWidth" Style="{StaticResource ProductTextBox}"/>
+                    <TextBox Text="{Binding Width}" Name="EditedWidth" Style="{StaticResource ProductTextBox}"/>
+                    <!--#endregion-->
+                    <!--#region Length-->
                     <Grid>
                         <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
                     <Label Content="{Binding Length}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Name="tbLenght" Text="{Binding Length}" Style="{StaticResource ProductTextBox}"/>
-
+                    <TextBox Name="EditedLenght" Text="{Binding Length}" Style="{StaticResource ProductTextBox}"/>
+                    <!--#endregion-->
+                    <!--#region Height-->
                     <Grid>
                         <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
                     <Label Content="{Binding Height}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Name="tbHeight" Text="{Binding Height}" Style="{StaticResource ProductTextBox}" />
-
+                    <TextBox Name="EditedHeight" Text="{Binding Height}" Style="{StaticResource ProductTextBox}" />
+                    <!--#endregion-->
+                    <!--#region Weigth-->
                     <Grid>
                         <TextBlock Text="Waga" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="g" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
                     <Label Content="{Binding Weigth}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Weigth}" Name="tbWeight" Style="{StaticResource ProductTextBox}"/>
-
+                    <TextBox Text="{Binding Weigth}" Name="EditedWeight" Style="{StaticResource ProductTextBox}"/>
+                    <!--#endregion-->
+                    <!--#region Price-->
                     <Grid>
                         <TextBlock Text="Cena sprzedaży" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="zł" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
                     <Label Content="{Binding Price}"  Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Price}" Name="tbPrice" Style="{StaticResource ProductTextBox}" />
+                    <TextBox Text="{Binding Price}" Name="EditedPrice" Style="{StaticResource ProductTextBox}" />
+                    <!--#endregion-->
                 </StackPanel>
-
+                <!--#endregion-->
+                <!--#region Buttons-->
                 <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10 0 0 0">
-                    <Button Name="AddButton" Margin="10" 
-                        Content="Dodaj nowy produkt" Click="AddButton_Click" 
-                        Width="50" Style="{StaticResource NavigationButton}"/>
-                    <Button Name="EditButton"
-                        Margin="10" Content="Edytuj" 
-                        Width="50" Click="EditButton_Click" 
-                        Style="{StaticResource NavigationButton}"/>
-                    <Button Name="DeleteButton" 
-                        Click="DeleteButton_Click"
-                        Margin="10" Content="Usuń" 
-                        Width="50"  
-                        Style="{StaticResource NavigationButton}"/>
-                    <Button Name="SaveButton" Margin="10" 
-                        Content="Zapisz" Width="50" 
-                        Click="SaveButton_Click" 
-                        Style="{StaticResource NavigationButton}"/>
+                    <Button Name="AddButton" Content="Dodaj" Click="AddButton_Click" 
+                            Style="{StaticResource ProducutsButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ShowEditStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    
+                    <Button Name="EditButton"   Content="Edytuj"  Click="EditButton_Click"
+                            Style="{StaticResource ProducutsButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ShowEditStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    
+                    <Button Name="DeleteButton" Content="Usuń" Click="DeleteButton_Click" 
+                            Style="{StaticResource ProducutsButton}"/>
+                    
+                    <Button Name="SaveButton" Content="Zapisz"  Click="SaveButton_Click" 
+                            Style="{StaticResource ProducutsButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </StackPanel>
+                <!--#endregion-->
             </Grid>
-
+            <!--#region ProductsList-->
             <DataGrid Name="ProductsList" Grid.Column="1"
                       HorizontalAlignment="Left"
                       ItemsSource="{Binding Products}" 
@@ -121,6 +201,7 @@
                     <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Price}"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <!--#endregion-->
         </Grid>
     </Grid>
 </UserControl>
