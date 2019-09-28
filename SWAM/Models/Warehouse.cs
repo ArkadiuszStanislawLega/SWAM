@@ -44,7 +44,7 @@ namespace SWAM.Models
         /// <summary>
         /// Warehouse address.
         /// </summary>
-        public WarehouseOrder WarehouseAddress { get; set; }
+        public WarehouseAddress WarehouseAddress { get; set; }
         /// <summary>
         /// All permissions granted to users for this storage.
         /// </summary>
@@ -87,7 +87,6 @@ namespace SWAM.Models
             else return false;
         }
         #endregion
-
 
         #region GetAllWharehousesFromDb
         /// <summary>

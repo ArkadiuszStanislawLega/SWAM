@@ -18,8 +18,7 @@ namespace SWAM.Models
         /// All orders made by the customer.
         /// </summary>
         public IList<CustomerOrder> CustomerOrders { get; set; }
-        /// <summary>
-        /// All customer phone numbers.
-        /// </summary>
+        public CustomerDeliveryAddress CustomerDeliveryAddress { get; set; }
+
     }
 }
