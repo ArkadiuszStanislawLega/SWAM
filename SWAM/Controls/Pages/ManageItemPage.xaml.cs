@@ -28,11 +28,12 @@ namespace SWAM
         enum Operation { edit, add };
 
         Operation _currentOperation;
+        private long _weight;
         private long _lenght;
+        private long _width;
         private long _height;
         private decimal _price;
-        private long _width;
-        private long _weight;
+      
         private ProductListViewModel _productList = new ProductListViewModel();
         private ApplicationDbContext _context = new ApplicationDbContext();
         public ApplicationDbContext context
@@ -77,10 +78,11 @@ namespace SWAM
                     context.Products.Add(new Models.Product()
                     {
                         Name = this.tbName.Text,
-                        Weigth = this._lenght,
+                        Weigth = this._weight,
+                        Length = this._lenght,
+                        Width = this._width,
                         Height = this._height,
-                        Price = this._price,
-                        Width = this._width
+                        Price = this._price
                     });
                     context.SaveChanges();
                 }
@@ -89,31 +91,31 @@ namespace SWAM
                     if (ProductProfile.DataContext is Product product)
                     {
                         var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-                        dbproduct.Length = this._lenght;
                         dbproduct.Name = this.tbName.Text;
-                        dbproduct.Price = this._price;
-                        dbproduct.Width = this._width;
                         dbproduct.Weigth = this._weight;
-
+                        dbproduct.Length = this._lenght;
+                        dbproduct.Width = this._width;
+                        dbproduct.Height = this._height;
+                        dbproduct.Price = this._price;
                         context.SaveChanges();
                     }
                 }
             }
 
             this._productList.Refresh();
-        } 
+        }
 
         private bool ValidationTextBoxes()
         {
-            if (long.TryParse(this.tbLenght.Text, out this._lenght) && this._lenght > 0)
+            if (long.TryParse(this.tbWeight.Text, out this._weight) && this._weight > 0)
             {
-                if (long.TryParse(this.tbHeight.Text, out this._height) && this._height > 0)
+                if (long.TryParse(this.tbLenght.Text, out this._lenght) && this._lenght > 0)
                 {
-                    if (decimal.TryParse(this.tbPrice.Text, out this._price) && this._price > 0)
+                    if (long.TryParse(this.tbWidth.Text, out this._width) && this._width > 0)
                     {
-                        if (long.TryParse(this.tbWidth.Text, out this._width) && this._width > 0)
+                        if (long.TryParse(this.tbHeight.Text, out this._height) && this._height > 0)
                         {
-                            if (long.TryParse(this.tbWeight.Text, out this._weight) && this._weight > 0)
+                            if (decimal.TryParse(this.tbPrice.Text, out this._price) && this._price > 0)
                             {
                                 return true;
                             }

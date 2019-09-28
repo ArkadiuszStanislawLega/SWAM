@@ -9,109 +9,107 @@
       VerticalAlignment="Stretch"
       Background="{StaticResource BackgroundOfPagesBrash}"
       d:DesignHeight="450" d:DesignWidth="800">
-
+    <UserControl.Resources>
+        <Style x:Key="ProductTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=tbName}"/>
+        </Style>
+        <Style x:Key="ProductLabel" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=tboxName}"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Name="Title" Text="Manager produktów"
-                   Grid.Row="0" HorizontalAlignment="Center"
-                   FontSize="25" Margin="5"/>
-
-        <Grid Grid.Row="1" Grid.Column="0" Name="ProductProfile">
+        <TextBlock Name="Title" 
+                   Text="Manager produktów" 
+                   Margin="10 0 0 0"
+                   Style="{StaticResource Title}"
+                   HorizontalAlignment="Left"/>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="10,5,0,0">
-                <TextBlock Text="Nazwa:" Margin="0, 0, 0, 9" />
-                <TextBlock Text="Szerokość [cm]:" Margin="0, 0, 0, 7"/>
-                <TextBlock Text="Długość [cm]:" Margin="0, 0, 0, 7"/>
-                <TextBlock Text="Wysokość [cm]:" Margin="0, 0, 0, 7"/>
-                <TextBlock Text="Waga [kg]:" Margin="0, 0, 0, 7"/>
-                <TextBlock Text="Cena sprzedaży [zł]:" />
-            </StackPanel>
+            <Grid Grid.Column="0" Name="ProductProfile" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" Margin="10,7,0,0">
-                <Label Name="tboxName"
-                       Width="150" Margin="0, 0, 0, 8" 
+                <StackPanel Grid.Column="0" Margin="10">
+                    <TextBlock Text="Nazwa:"  Style="{StaticResource ProfileProperties}"/>
+                    <Label Name="tboxName" 
                        Content="{Binding Name}"/>
-                <TextBox  Name="tbName" Width="200"
+                    <TextBox  Name="tbName"
                           Text="{Binding Name}" 
                           Visibility="{Binding Visibility,
                                         ElementName=tboxName,
                                         Converter={conv:VisibilityReverseConverter}}"/>
+                    <Grid>
+                        <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Width}"  Style="{StaticResource ProductLabel}"/>
+                    <TextBox Text="{Binding Width}" Name="tbWidth" Style="{StaticResource ProductTextBox}"/>
+                    <Grid>
+                        <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Length}" Style="{StaticResource ProductLabel}"/>
+                    <TextBox Name="tbLenght" Text="{Binding Length}" Style="{StaticResource ProductTextBox}"/>
 
-                <Label Width="150" Margin="0, 0, 0, 8" 
-                       Content="{Binding Width}"  
-                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
-                <TextBox Text="{Binding Width}" Name="tbWidth"
-                       Visibility="{Binding Visibility, ElementName=tbName}"/>
+                    <Grid>
+                        <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Height}" Style="{StaticResource ProductLabel}"/>
+                    <TextBox Name="tbHeight" Text="{Binding Height}" Style="{StaticResource ProductTextBox}" />
 
-                <Label Width="150" Margin="0, 0, 0, 8"
-                       Content="{Binding Length}"
-                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
-                <TextBox Text="{Binding Length}" Name="tbLenght"
-                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+                    <Grid>
+                        <TextBlock Text="Waga" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="g" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Weigth}" Style="{StaticResource ProductLabel}"/>
+                    <TextBox Text="{Binding Weigth}" Name="tbWeight" Style="{StaticResource ProductTextBox}"/>
 
-                <Label Width="150" Margin="0, 0, 0, 8" 
-                       Content="{Binding Height}"
-                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
-                <TextBox Text="{Binding Height}" Name="tbHeight"
-                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+                    <Grid>
+                        <TextBlock Text="Cena sprzedaży" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="zł" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Price}"  Style="{StaticResource ProductLabel}"/>
+                    <TextBox Text="{Binding Price}" Name="tbPrice" Style="{StaticResource ProductTextBox}" />
+                </StackPanel>
 
-                <Label Width="150"  Margin="0, 0, 0, 8" 
-                       Content="{Binding Weigth}"
-                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
-                <TextBox Text="{Binding Weigth}" Name="tbWeight"
-                         Visibility="{Binding Visibility, ElementName=tbName}"/>
-
-                <Label Width="150"  Margin="0, 0, 0, 8" 
-                       Content="{Binding Price}"
-                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
-                <TextBox Text="{Binding Price}" Name="tbPrice"
-                         Visibility="{Binding Visibility, ElementName=tbName}"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10 0 0 0">
-                <Button Name="AddButton" Margin="10" 
+                <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10 0 0 0">
+                    <Button Name="AddButton" Margin="10" 
                         Content="Dodaj nowy produkt" Click="AddButton_Click" 
                         Width="50" Style="{StaticResource NavigationButton}"/>
-                <Button Name="EditButton"
+                    <Button Name="EditButton"
                         Margin="10" Content="Edytuj" 
                         Width="50" Click="EditButton_Click" 
                         Style="{StaticResource NavigationButton}"/>
-                <Button Name="DeleteButton" 
+                    <Button Name="DeleteButton" 
                         Click="DeleteButton_Click"
                         Margin="10" Content="Usuń" 
                         Width="50"  
                         Style="{StaticResource NavigationButton}"/>
-                <Button Name="SaveButton" Margin="10" 
+                    <Button Name="SaveButton" Margin="10" 
                         Content="Zapisz" Width="50" 
                         Click="SaveButton_Click" 
                         Style="{StaticResource NavigationButton}"/>
-            </StackPanel>
-        </Grid>
+                </StackPanel>
+            </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <DataGrid Name="ProductsList"
+            <DataGrid Name="ProductsList" Grid.Column="1"
+                      HorizontalAlignment="Left"
                       ItemsSource="{Binding Products}" 
                       AutoGenerateColumns="False" 
                       LoadingRow="NumberRowIteration"
-                      Grid.Column="0"
                       CanUserAddRows="False" SelectionMode="Single" 
                       IsReadOnly="True" Style="{StaticResource BasicDataGrid}">
                 <DataGrid.Columns>
