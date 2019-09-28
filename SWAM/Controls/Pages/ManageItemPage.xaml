@@ -145,8 +145,8 @@
                         <TextBlock Text="Cena sprzedaży" Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="zł" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
                     </Grid>
-                    <Label Content="{Binding Price}"  Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Price}" Name="EditedPrice" Style="{StaticResource ProductTextBox}" />
+                    <Label Content="{Binding Price, Converter={conv:DecimalToIntegerConverter}}"  Style="{StaticResource ProductLabel}"/>
+                    <TextBox Text="{Binding Price, Converter={conv:DecimalToIntegerConverter}}" Name="EditedPrice" Style="{StaticResource ProductTextBox}" />
                     <!--#endregion-->
                 </StackPanel>
                 <!--#endregion-->
