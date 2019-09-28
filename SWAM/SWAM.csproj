@@ -110,6 +110,7 @@
     <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Converters\VisibilityReverseConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
+    <Compile Include="Models\ProductPage\ProductListViewModel.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>

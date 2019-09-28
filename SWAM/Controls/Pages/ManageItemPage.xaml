@@ -2,7 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+      xmlns:conv="clr-namespace:SWAM.Converters"
       mc:Ignorable="d" 
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch"
@@ -14,33 +15,114 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <TextBlock Name="Title" Text="Manager produktów" Grid.Row="0" HorizontalAlignment="Center" FontSize="25" Margin="5"/>
+        <TextBlock Name="Title" Text="Manager produktów"
+                   Grid.Row="0" HorizontalAlignment="Center"
+                   FontSize="25" Margin="5"/>
 
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>                
-                <ColumnDefinition Width="auto"/>                
+        <Grid Grid.Row="1" Grid.Column="0" Name="ProductProfile">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" Grid.Column="0"
-                      CanUserAddRows="False" SelectionMode="Single" IsReadOnly="True" Style="{StaticResource BasicDataGrid}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id produktu" Binding="{Binding Id_product}"/>
-                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
-                    <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
-                    <DataGridTextColumn Header="Waga" Binding="{Binding Weight}"/>
-                    <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Selling_price}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <StackPanel Grid.Column="0" Margin="10,5,0,0">
+                <TextBlock Text="Nazwa:" Margin="0, 0, 0, 9" />
+                <TextBlock Text="Szerokość [cm]:" Margin="0, 0, 0, 7"/>
+                <TextBlock Text="Długość [cm]:" Margin="0, 0, 0, 7"/>
+                <TextBlock Text="Wysokość [cm]:" Margin="0, 0, 0, 7"/>
+                <TextBlock Text="Waga [kg]:" Margin="0, 0, 0, 7"/>
+                <TextBlock Text="Cena sprzedaży [zł]:" />
+            </StackPanel>
 
-            <StackPanel Orientation="Vertical" Grid.Column="1" Margin="10 0 0 0">
-                <Button Name="AddButton" Margin="10" Content="Dodaj" Width="50" Click="AddButton_Click" Style="{StaticResource NavigationButton}"/>
-                <Button Name="EditButton" Margin="10" Content="Edytuj" Width="50" Click="EditButton_Click" Style="{StaticResource NavigationButton}"/>
-                <Button Name="DeleteButton" Margin="10" Content="Usuń" Width="50" Click="DeleteButton_Click" Style="{StaticResource NavigationButton}"/>
+            <StackPanel Grid.Column="1" Margin="10,7,0,0">
+                <Label Name="tboxName"
+                       Width="150" Margin="0, 0, 0, 8" 
+                       Content="{Binding Name}"/>
+                <TextBox  Name="tbName" Width="200"
+                          Text="{Binding Name}" 
+                          Visibility="{Binding Visibility,
+                                        ElementName=tboxName,
+                                        Converter={conv:VisibilityReverseConverter}}"/>
+
+                <Label Width="150" Margin="0, 0, 0, 8" 
+                       Content="{Binding Width}"  
+                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
+                <TextBox Text="{Binding Width}" Name="tbWidth"
+                       Visibility="{Binding Visibility, ElementName=tbName}"/>
+
+                <Label Width="150" Margin="0, 0, 0, 8"
+                       Content="{Binding Length}"
+                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
+                <TextBox Text="{Binding Length}" Name="tbLenght"
+                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+
+                <Label Width="150" Margin="0, 0, 0, 8" 
+                       Content="{Binding Height}"
+                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
+                <TextBox Text="{Binding Height}" Name="tbHeight"
+                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+
+                <Label Width="150"  Margin="0, 0, 0, 8" 
+                       Content="{Binding Weigth}"
+                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
+                <TextBox Text="{Binding Weigth}" Name="tbWeight"
+                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+
+                <Label Width="150"  Margin="0, 0, 0, 8" 
+                       Content="{Binding Price}"
+                       Visibility="{Binding Visibility, ElementName=tboxName}"/>
+                <TextBox Text="{Binding Price}" Name="tbPrice"
+                         Visibility="{Binding Visibility, ElementName=tbName}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10 0 0 0">
+                <Button Name="AddButton" Margin="10" 
+                        Content="Dodaj nowy produkt" Click="AddButton_Click" 
+                        Width="50" Style="{StaticResource NavigationButton}"/>
+                <Button Name="EditButton"
+                        Margin="10" Content="Edytuj" 
+                        Width="50" Click="EditButton_Click" 
+                        Style="{StaticResource NavigationButton}"/>
+                <Button Name="DeleteButton" 
+                        Click="DeleteButton_Click"
+                        Margin="10" Content="Usuń" 
+                        Width="50"  
+                        Style="{StaticResource NavigationButton}"/>
+                <Button Name="SaveButton" Margin="10" 
+                        Content="Zapisz" Width="50" 
+                        Click="SaveButton_Click" 
+                        Style="{StaticResource NavigationButton}"/>
             </StackPanel>
         </Grid>
 
+        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Name="ProductsList"
+                      ItemsSource="{Binding Products}" 
+                      AutoGenerateColumns="False" 
+                      LoadingRow="NumberRowIteration"
+                      Grid.Column="0"
+                      CanUserAddRows="False" SelectionMode="Single" 
+                      IsReadOnly="True" Style="{StaticResource BasicDataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
+                    <DataGridTextColumn Header="Wysokość" Binding="{Binding Height}"/>
+                    <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
+                    <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
+                    <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Price}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

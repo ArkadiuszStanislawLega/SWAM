@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SWAM.Controls.Windows;
 using SWAM.Enumerators;
+using SWAM.Models;
+using SWAM.Models.ProductPage;
 using SWAM.Windows;
 
 namespace SWAM
@@ -23,86 +25,133 @@ namespace SWAM
     /// </summary>
     public partial class ManageItemPage : UserControl
     {
-        #region BasicConstructor
-        public ManageItemPage() 
+        enum Operation { edit, add };
+
+        Operation _currentOperation;
+        private long _lenght;
+        private long _height;
+        private decimal _price;
+        private long _width;
+        private long _weight;
+        private ProductListViewModel _productList = new ProductListViewModel();
+        private ApplicationDbContext _context = new ApplicationDbContext();
+        public ApplicationDbContext context
         {
-            InitializeComponent();
-            DataContext = this;
-            
-        }
-
-        #endregion
-        public class Item
-        {
-            public int Id_product { get; set; }
-            public string Name { get; set; }
-            public double Width { get; set; }
-            public double Length { get; set; }
-            public double Weight { get; set; }
-            public double Selling_price { get; set; }
-
-
-            public Item(int id_product, string name, double width, double length, double weight, double selling_price)
+            get
             {
-                Id_product = id_product;
-                Name = name;
-                Width = width;
-                Length = length;
-                Weight = weight;
-                Selling_price = selling_price;
+                //TODO: Try catch block
+                return this._context;
             }
         }
 
-        private List<Item> items = new List<Item>
+        #region BasicConstructor
+        public ManageItemPage()
         {
-            new Item(1, "Cegła", 10, 2, 0.2, 2.5),            
-            new Item(2, "Taczka", 60, 100, 6, 60),
-            new Item(3, "Piasek", 15, 80, 15, 10),
-            new Item(3, "Piasek", 15, 80, 15, 10),
-            new Item(4, "Deska", 20, 60, 0.5, 5),
-            new Item(5, "Kostka brukowa", 10, 10, 0.33, 2),
-            new Item(6, "Taczka", 70, 110, 6.5, 70),
-            new Item(7, "Wiadro", 30, 40, 1.5, 15),
-        };
+            InitializeComponent();
+            DataContext = this._productList;
+            this.ProductsList.MouseDown += ProductsList_MouseDown;
 
-        public List<Item> Items
+            if(this._productList.Products.Count > 0)
+                this.ProductProfile.DataContext = this._productList.Products[0];
+        }
+
+        private void ProductsList_MouseDown(object sender, MouseButtonEventArgs e)
+            => this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
+
+        #endregion
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            get { return items; }
-            set { items = value; }
+            this._currentOperation = Operation.edit;
+            this.tboxName.Visibility = Visibility.Collapsed;
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.tboxName.Visibility = Visibility.Visible;
+
+            if (ValidationTextBoxes())
+            {
+                if (this._currentOperation == Operation.add)
+                {
+                    context.Products.Add(new Models.Product()
+                    {
+                        Name = this.tbName.Text,
+                        Weigth = this._lenght,
+                        Height = this._height,
+                        Price = this._price,
+                        Width = this._width
+                    });
+                    context.SaveChanges();
+                }
+                else
+                {
+                    if (ProductProfile.DataContext is Product product)
+                    {
+                        var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
+                        dbproduct.Length = this._lenght;
+                        dbproduct.Name = this.tbName.Text;
+                        dbproduct.Price = this._price;
+                        dbproduct.Width = this._width;
+                        dbproduct.Weigth = this._weight;
+
+                        context.SaveChanges();
+                    }
+                }
+            }
+
+            this._productList.Refresh();
+        } 
+
+        private bool ValidationTextBoxes()
+        {
+            if (long.TryParse(this.tbLenght.Text, out this._lenght) && this._lenght > 0)
+            {
+                if (long.TryParse(this.tbHeight.Text, out this._height) && this._height > 0)
+                {
+                    if (decimal.TryParse(this.tbPrice.Text, out this._price) && this._price > 0)
+                    {
+                        if (long.TryParse(this.tbWidth.Text, out this._width) && this._width > 0)
+                        {
+                            if (long.TryParse(this.tbWeight.Text, out this._weight) && this._weight > 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.Windows.OfType<AddProductWindow>().Any()==true)
-            {
-                MessageBox.Show("Okno jest już otworzone.", "Okno otworzone", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                AddProductWindow _addWindow = new AddProductWindow();
-                _addWindow.Show();
-            }
-         }
+            this._currentOperation = Operation.add;
+            this.tboxName.Visibility = Visibility.Collapsed;
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.Windows.OfType<EditProductWindow>().Any() == true)
-            {
-                MessageBox.Show("Okno jest już otworzone.", "Okno otworzone", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            else
-            {
-                EditProductWindow _editWindow = new EditProductWindow();
-                _editWindow.Show();
-            }                      
+            this.tbName.Text = string.Empty;
+            this.tbLenght.Text = string.Empty;
+            this.tbHeight.Text = string.Empty;
+            this.tbWidth.Text = string.Empty;
+            this.tbWeight.Text = string.Empty;
+            this.tbPrice.Text = string.Empty;
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            ConfirmWindow _confirmWindow = new ConfirmWindow();
-            _confirmWindow.Show("Czy na pewno chcesz usunąć produkt? (decyzja jest nieodwracalna)", out bool isConfirmed,
-            "Potwierdź dokonanie zmiany");
+            if (ProductProfile.DataContext is Product product)
+            {
+                var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
+                context.Products.Remove(dbproduct);
+                context.SaveChanges();
+
+                this._productList.Refresh();
+            }
         }
-       
+
+        private void NumberRowIteration(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        }
     }
 }
