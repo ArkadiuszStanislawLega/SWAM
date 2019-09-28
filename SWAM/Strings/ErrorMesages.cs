@@ -36,6 +36,11 @@
         public const string DURING_ADD_PHONE_ERROR = "Wystąpił błąd podczas dodawania nowego numeru telefonu.";
         public const string DURING_EDIT_PHONE_ERROR = "Wystąpił błąd podczas edytowania numeru telefonu.";
         #endregion
+        #region Products
+        public const string DURING_DELETE_PRODUCT_ERROR = "Wystąpił błąd podczas usuwania produktu.";
+        public const string DURING_ADD_PRODUCT_ERROR = "Wystąpił błąd podczas dodawania produktu.";
+        public const string DURING_EDIT_PRODUCT_ERROR = "Wystąpił błąd podczas edytowania produktu.";
+        #endregion
         #region Warehouse
         public const string REFRESH_WAREHOUSES_LIST_ERROR = "W czasie odświerzania listy magazynów.";
         public const string DURGIN_DELETE_WAREHOUSE_ERROR = "Wystąpił błąd podczas usuwania magazynu.";

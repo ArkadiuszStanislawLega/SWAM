@@ -6,6 +6,7 @@ using System.Windows.Media.Animation;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
 using SWAM.Models.ProductPage;
+using SWAM.Strings;
 
 namespace SWAM
 {
@@ -140,7 +141,7 @@ namespace SWAM
                             context.SaveChanges();
                         }
                     }
-                
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
                 }
                 this._productList.Refresh();
             }
@@ -186,6 +187,7 @@ namespace SWAM
                     this._productList.Refresh();
                 }
             }
+            else InformationToUser($"{ErrorMesages.DURING_DELETE_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
 
