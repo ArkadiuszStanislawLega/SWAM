@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="SWAM.ManageItemPage"
+﻿<basic:BasicUserControl x:Class="SWAM.ManageItemPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+      xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
       xmlns:conv="clr-namespace:SWAM.Converters"
       mc:Ignorable="d" 
       HorizontalAlignment="Stretch"
@@ -191,7 +192,8 @@
                       AutoGenerateColumns="False" 
                       LoadingRow="NumberRowIteration"
                       CanUserAddRows="False" SelectionMode="Single" 
-                      IsReadOnly="True" Style="{StaticResource BasicDataGrid}">
+                      IsReadOnly="True" Style="{StaticResource BasicDataGrid}"
+                      MouseLeftButtonDown="ProductsList_LeftMouseButtonDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
@@ -204,4 +206,4 @@
             <!--#endregion-->
         </Grid>
     </Grid>
-</UserControl>
+</basic:BasicUserControl>
