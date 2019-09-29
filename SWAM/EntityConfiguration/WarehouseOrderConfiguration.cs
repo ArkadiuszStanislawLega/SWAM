@@ -1,5 +1,4 @@
-﻿
-using SWAM.Models.Warehouse;
+﻿using SWAM.Models.Warehouse;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
@@ -11,8 +10,7 @@ namespace SWAM.EntityConfiguration
             HasRequired(w => w.ExternalSupplayer);
             HasRequired(w => w.Warehouse);
 
-            HasMany(w => w.OrderPositions)
-                 .WithRequired(w => w.WarehouseOrder);
+            HasMany(w => w.OrderPositions);
         }
     }
 }

@@ -124,12 +124,9 @@
     <Compile Include="EntityConfiguration\PhoneConfiguration.cs" />
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="EntityConfiguration\WarehouseConfiguration.cs" />
+    <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201909290901236_initial.cs" />
-    <Compile Include="Migrations\201909290901236_initial.Designer.cs">
-      <DependentUpon>201909290901236_initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
@@ -558,18 +555,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201909271547575_InitialModel.resx">
-      <DependentUpon>201909271547575_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.resx">
-      <DependentUpon>201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.resx">
-      <DependentUpon>201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.resx">
-      <DependentUpon>201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
