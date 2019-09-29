@@ -10,12 +10,17 @@ namespace SWAM.EntityConfiguration
             ToTable("Users");
 
             HasMany(u => u.Phones)
-                    .WithRequired(u => u.User);
+                .WithRequired(u => u.User);
 
             HasMany(u => u.EmailAddresses)
                 .WithRequired(u => u.User);
 
-            HasMany(u => u.Messages);
+            HasMany(u => u.Messages)
+                .WithRequired(m => m.Receiver);
+
+            HasMany(u => u.Messages)
+               .WithRequired(m => m.Sender);
+
             HasMany(u => u.Accesess);
         }
     }

@@ -8,7 +8,10 @@ namespace SWAM.EntityConfiguration
         public AccessesConfiguration()
         {
             HasRequired(a => a.Administrator);
-            HasRequired(a => a.User);
+
+            HasRequired(a => a.User)
+                .WithMany(u=>u.Accesess);
+
             HasRequired(a => a.Warehouse);
         }
     }
