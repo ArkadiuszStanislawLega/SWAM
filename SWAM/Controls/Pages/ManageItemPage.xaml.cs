@@ -113,7 +113,7 @@ namespace SWAM
             {
                 if (this._currentOperation == Operation.add)
                 {
-                    context.Products.Add(new Models.Product()
+                    Product.AddNewProduct(new Models.Product()
                     {
                         Name = this.EditedName.Text,
                         Weigth = this._weight,
@@ -121,8 +121,7 @@ namespace SWAM
                         Width = this._width,
                         Height = this._height,
                         Price = this._price
-                    });
-                    context.SaveChanges();
+                    });                    
                 }
                 else if(this._currentOperation == Operation.edit)
                 {
@@ -131,14 +130,7 @@ namespace SWAM
                         this._confirmWindow.Show($"Potwierdź edycję produktu {this.EditedName.Text}?", out bool isConfirmed, $"Edytuj {this.EditedName.Text}");
                         if (isConfirmed)
                         {
-                            var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-                            dbproduct.Name = this.EditedName.Text;
-                            dbproduct.Weigth = this._weight;
-                            dbproduct.Length = this._lenght;
-                            dbproduct.Width = this._width;
-                            dbproduct.Height = this._height;
-                            dbproduct.Price = this._price;
-                            context.SaveChanges();
+							Product.EditProduct(product);                            
                         }
                     }
                     else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
@@ -180,11 +172,8 @@ namespace SWAM
                 this._confirmWindow.Show($"Czy jesteś pewien że chcesz usunąć {product.Name}?", out bool isConfirmed, $"Usuń {product.Name}");
                 if (isConfirmed)
                 {
-                    var dbproduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-                    context.Products.Remove(dbproduct);
-                    context.SaveChanges();
-
-                    this._productList.Refresh();
+					Product.DeleteProduct(product);	
+					this._productList.Refresh();
                 }
             }
             else InformationToUser($"{ErrorMesages.DURING_DELETE_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
