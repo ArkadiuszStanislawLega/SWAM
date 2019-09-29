@@ -121,6 +121,7 @@ namespace SWAM
         #region BasicConstructor
         public MainWindow()
         {
+
             InitializeComponent();
 
             ChangeContent(PagesUserControls.LoginPage);
