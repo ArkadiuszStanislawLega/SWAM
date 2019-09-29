@@ -20,10 +20,6 @@ namespace SWAM.Models
         /// Note to email address.
         /// </summary>
         public string Note { get; set; }
-        /// <summary>
-        /// The person to whom the email address belongs.
-        /// </summary>
-        public virtual Person Person { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

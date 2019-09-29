@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using SWAM.Enumerators;
 
-namespace SWAM.Models
+namespace SWAM.Models.Warehouse
 {
     /// <summary>
     /// The basic model of the class in the database representing the order of <see cref="Product"/>s to the <see cref="SWAM.Models.Warehouse"/>.
@@ -32,5 +33,9 @@ namespace SWAM.Models
         /// Current order status.
         /// </summary>
         public WarehouseOrderStatus WarehouseOrderStatus { get; set; }
+        /// <summary>
+        /// All items with products from the order.
+        /// </summary>
+        public IList<WarehouseOrderPosition> OrderPositions { get; set; }
     }
 }

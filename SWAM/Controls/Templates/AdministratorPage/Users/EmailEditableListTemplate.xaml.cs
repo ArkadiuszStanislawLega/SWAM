@@ -1,7 +1,9 @@
 ﻿using SWAM.Exceptions;
 using SWAM.Models;
+using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
+using System;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -23,23 +25,24 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void ConfirmNewEmail_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is User user)
-            {
-                var email = new EmailAddress()
-                {
-                    AddressEmail = this.NewEmail.Text,
-                    Person = user
-                };
+            throw new NotImplementedException();
+            //if (DataContext is User user)
+            //{
+            //    var email = new EmailAddress()
+            //    {
+            //        AddressEmail = this.NewEmail.Text,
+            //        Person = user
+            //    };
 
-                if (email != null)
-                {
-                    EmailAddress.AddEmail(email);
-                    RefreshEmailsList();
-                    InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
-                }
-                else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
-            }
-            else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress email.");
+            //    if (email != null)
+            //    {
+            //        EmailAddress.AddEmail(email);
+            //        RefreshEmailsList();
+            //        InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
+            //    }
+            //    else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
+            //}
+            //else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress email.");
         }
         #endregion
         #region RefreshPhoneList

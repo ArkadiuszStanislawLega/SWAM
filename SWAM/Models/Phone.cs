@@ -21,10 +21,6 @@ namespace SWAM.Models
         /// Note regarding the telephone number.
         /// </summary>
         public string Note { get; set; }
-        /// <summary>
-        /// The person to whom this phone number belongs.
-        /// </summary>
-        public Person Person { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

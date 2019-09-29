@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.Customer;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
@@ -9,9 +9,19 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Customers");
 
-            //HasMany(user => user.Phones)
-            //        .WithRequired(phone => (Customer)phone.Person)
-            //        .HasForeignKey(phone => phone.Person);
+            HasRequired(c => c.ResidentalAddress)
+                .WithRequiredPrincipal(c => c.Customer);
+
+            HasOptional(c => c.DeliveryAddress)
+                .WithOptionalPrincipal(c => c.Customer);
+
+            HasRequired(c => c.Phone)
+                .WithRequiredPrincipal(c => c.Customer);
+
+            HasOptional(c => c.EmailAddress)
+                .WithOptionalPrincipal(e => e.Customer);
+
+            HasMany(c => c.Orders);
         }
     }
 }

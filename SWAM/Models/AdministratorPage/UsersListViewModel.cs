@@ -15,15 +15,15 @@ namespace SWAM.Models.AdministratorPage
     /// </summary>
     public class UsersListViewModel : UserControl
     {
-        private ObservableCollection<User> _usersListViewModel = new ObservableCollection<User>();
+        private ObservableCollection<User.User> _usersListViewModel = new ObservableCollection<User.User>();
 
-        public ObservableCollection<User> UsersList { get => this._usersListViewModel; }
+        public ObservableCollection<User.User> UsersList { get => this._usersListViewModel; }
 
         public void Refresh()
         {
             this._usersListViewModel.Clear();
 
-            IList<User> dbUsers;
+            IList<User.User> dbUsers;
             using (ApplicationDbContext application = new ApplicationDbContext())
             {
                 throw new NotImplementedException();

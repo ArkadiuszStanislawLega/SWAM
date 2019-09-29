@@ -6,7 +6,7 @@ using System.Windows.Media;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
-using SWAM.Models;
+using SWAM.Models.User;
 using SWAM.Windows;
 
 namespace SWAM
@@ -31,7 +31,7 @@ namespace SWAM
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
             Permissions = UserType.Programmer,
-            Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
+            //Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
         };
         /// <summary>
         /// Visibile mode after user logged in or logged out.
@@ -338,11 +338,12 @@ namespace SWAM
         /// </summary>
         public static void RefreshMessagesButton()
         {
-            if (LoggedInUser != null)
-            {
-                int number = Message.CountUnreadedMessages(LoggedInUser.Id);
-                currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
-            }
+            throw new NotImplementedException();
+            //if (LoggedInUser != null)
+            //{
+            //    int number = Message.CountUnreadedMessages(LoggedInUser.Id);
+            //    currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+            //}
         }
         #endregion
 

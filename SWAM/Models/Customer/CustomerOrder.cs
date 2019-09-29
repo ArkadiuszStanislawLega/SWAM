@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SWAM.Enumerators;
 
-namespace SWAM.Models
+namespace SWAM.Models.Customer
 {
     /// <summary>
     /// The basic model of the class in the database representing the <see cref="Customer"/>'s order.
@@ -28,7 +28,11 @@ namespace SWAM.Models
         /// <summary>
         /// The warehouse from which the product was released.
         /// </summary>
-        public Warehouse Warehouse { get; set; }
+        public Warehouse.Warehouse Warehouse { get; set; }
+        /// <summary>
+        /// The employee who is responsible for the order.
+        /// </summary>
+        public User.User User { get; set; }
         /// <summary>
         /// The customer who made the purchase.
         /// </summary>
@@ -36,7 +40,7 @@ namespace SWAM.Models
         /// <summary>
         /// The courier who is responsible for delivering the product.
         /// </summary>
-        public Courier Courier { get; set; }
+        public Courier.Courier Courier { get; set; }
         /// <summary>
         /// Status of the order to the customer.
         /// </summary>

@@ -17,6 +17,5 @@ namespace SWAM
         public string HouseNumber { get; set; }
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
-        public Person Person { get; set; }
     }
 }

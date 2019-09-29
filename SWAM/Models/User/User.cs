@@ -8,7 +8,7 @@ using SWAM.Strings;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SWAM.Models
+namespace SWAM.Models.User
 {
     /// <summary>
     /// The basic class model in the database representing the application user.
@@ -57,6 +57,14 @@ namespace SWAM.Models
         /// Messages sent by the user.
         /// </summary>
         public IList<Message> Messages { get; set; }
+        /// <summary>
+        /// List with email addresses.
+        /// </summary>
+        public IList<UserEmailAddress> EmailAddresses { get; set; }
+        /// <summary>
+        /// List of users phones.
+        /// </summary>
+        public IList<UserPhone> Phones { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

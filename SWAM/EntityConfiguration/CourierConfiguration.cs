@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.Courier;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
@@ -9,9 +9,10 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Couriers");
 
-            //HasOptional(courier => courier.Phone)
-            //    .WithRequired(phone => (Courier)phone.Person)
-            //    .WillCascadeOnDelete(false);
+            HasRequired(c => c.Phone)
+                .WithRequiredDependent(p => p.Courier);
+
+            HasMany(c => c.CustomerOrders);
         }
     }
 }

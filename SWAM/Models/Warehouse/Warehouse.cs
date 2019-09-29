@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using SWAM.Models.Customer;
+using System.Collections.Generic;
 using System.Linq;
 
 
-namespace SWAM.Models
+namespace SWAM.Models.Warehouse
 {
     /// <summary>
     /// The basic class model in the database representing the warehouse.
@@ -44,7 +45,7 @@ namespace SWAM.Models
         /// <summary>
         /// Warehouse address.
         /// </summary>
-        public WarehouseOrder WarehouseAddress { get; set; }
+        public WarehouseAddress WarehouseAddress { get; set; }
         /// <summary>
         /// All permissions granted to users for this storage.
         /// </summary>
@@ -69,7 +70,6 @@ namespace SWAM.Models
             }
         }
 
-
         #region Remove
         /// <summary>
         /// Remove user from database.
@@ -87,8 +87,6 @@ namespace SWAM.Models
             else return false;
         }
         #endregion
-
-
         #region GetAllWharehousesFromDb
         /// <summary>
         /// Get list of all Warehouses from database

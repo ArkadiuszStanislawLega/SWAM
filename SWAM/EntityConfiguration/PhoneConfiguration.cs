@@ -8,7 +8,7 @@ namespace SWAM.EntityConfiguration
     {
         public PhoneConfiguration()
         {
-            
+            ToTable("Phones");
         }
     }
 }

@@ -3,7 +3,7 @@ using SWAM.Models.AdministratorPage;
 using SWAM.Templates.AdministratorPage;
 using System.Windows;
 using SWAM.Strings;
-
+using SWAM.Models.Warehouse;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
 {

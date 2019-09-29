@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using SWAM.Enumerators;
 using SWAM.Exceptions;
-using SWAM.Models;
+using SWAM.Models.User;
 
 namespace SWAM.Controls.Pages
 {

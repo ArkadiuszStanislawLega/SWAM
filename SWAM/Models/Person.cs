@@ -1,4 +1,6 @@
-﻿namespace SWAM.Models
+﻿using System.Collections.Generic;
+
+namespace SWAM.Models
 {
     /// <summary>
     /// The basic model of the class in the database representing the person.
@@ -14,8 +16,5 @@
         /// First name of the person.
         /// </summary>
         public string Name { get; set; }
-
-        public Address Address { get; set; }
-        public Phone Phone { get; set; }
     }
 }

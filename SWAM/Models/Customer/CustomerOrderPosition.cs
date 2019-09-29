@@ -1,4 +1,4 @@
-﻿namespace SWAM.Models
+﻿namespace SWAM.Models.Customer
 {
     /// <summary>
     /// The basic class model in the database representing the <see cref="CustomerOrder"/> item.

@@ -114,37 +114,37 @@
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
+    <Compile Include="EntityConfiguration\AccessesConfiguration.cs" />
     <Compile Include="EntityConfiguration\CourierConfiguration.cs" />
     <Compile Include="EntityConfiguration\CustomerConfiguration.cs" />
+    <Compile Include="EntityConfiguration\CustomerOrderConfiguration.cs" />
     <Compile Include="EntityConfiguration\EmailAddressConfiguration.cs" />
     <Compile Include="EntityConfiguration\ExternalSupplierConfiguration.cs" />
+    <Compile Include="EntityConfiguration\MessageConfiguration.cs" />
     <Compile Include="EntityConfiguration\PhoneConfiguration.cs" />
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
+    <Compile Include="EntityConfiguration\WarehouseConfiguration.cs" />
+    <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201909271547575_InitialModel.cs" />
-    <Compile Include="Migrations\201909271547575_InitialModel.Designer.cs">
-      <DependentUpon>201909271547575_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201909290901236_initial.cs" />
+    <Compile Include="Migrations\201909290901236_initial.Designer.cs">
+      <DependentUpon>201909290901236_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs" />
-    <Compile Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.Designer.cs">
-      <DependentUpon>201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs" />
-    <Compile Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.Designer.cs">
-      <DependentUpon>201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs" />
-    <Compile Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.Designer.cs">
-      <DependentUpon>201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Courier\CourierPhone.cs" />
+    <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
+    <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
+    <Compile Include="Models\Customer\CustomerPhone.cs" />
     <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Customer\CustomerDeliveryAddress.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\WarehouseAddress.cs" />
+    <Compile Include="Models\User\UserEmailAddress.cs" />
+    <Compile Include="Models\User\UserPhone.cs" />
+    <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
@@ -406,7 +406,7 @@
     <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
     <Compile Include="Models\EmailAddress.cs" />
     <Compile Include="Models\Phone.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\User\User.cs" />
     <Compile Include="Enumerators\CustomerOrderStatus.cs" />
     <Compile Include="Enumerators\PaymentType.cs" />
     <Compile Include="Enumerators\PagesUserControls.cs" />
@@ -533,18 +533,18 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Courier.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerOrder.cs" />
-    <Compile Include="Models\CustomerOrderPosition.cs" />
+    <Compile Include="Models\Courier\Courier.cs" />
+    <Compile Include="Models\Customer\Customer.cs" />
+    <Compile Include="Models\Customer\CustomerOrder.cs" />
+    <Compile Include="Models\Customer\CustomerOrderPosition.cs" />
     <Compile Include="Models\ExternalSupplier.cs" />
     <Compile Include="Enumerators\ShipmentType.cs" />
     <Compile Include="Models\State.cs" />
-    <Compile Include="Models\WarehouseOrder.cs" />
-    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Models\Warehouse\WarehouseOrder.cs" />
+    <Compile Include="Models\Warehouse\Warehouse.cs" />
     <Compile Include="Enumerators\WarehouseOrderStatus.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\WarehouseOrderPosition.cs" />
+    <Compile Include="Models\Warehouse\WarehouseOrderPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -558,17 +558,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201909271547575_InitialModel.resx">
-      <DependentUpon>201909271547575_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.resx">
-      <DependentUpon>201909271552547_AddOneToOneRelationshipBetweenPersonsAndPeople.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.resx">
-      <DependentUpon>201909271617118_DropAllNavigationPropertiesFromPeopleChildTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.resx">
-      <DependentUpon>201909271630174_AddOneToOneRelationshipBetweenAdressessAndPeople.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909290901236_initial.resx">
+      <DependentUpon>201909290901236_initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

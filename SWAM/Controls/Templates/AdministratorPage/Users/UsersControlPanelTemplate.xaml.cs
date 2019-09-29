@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using SWAM.Models;
+using SWAM.Models.User;
 using SWAM.Models.AdministratorPage;
 using SWAM.Strings;
 using System.ComponentModel;

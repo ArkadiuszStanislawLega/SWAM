@@ -9,6 +9,7 @@ using System.Data.Entity;
 using SWAM.Controls.Templates.AdministratorPage;
 using System.ComponentModel;
 using System;
+using SWAM.Models.Warehouse;
 
 namespace SWAM.Templates.AdministratorPage
 {

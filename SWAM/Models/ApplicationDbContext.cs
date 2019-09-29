@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using SWAM.EntityConfiguration;
 using SWAM.Models;
+using SWAM.Models.Warehouse;
 
 namespace SWAM
 {
@@ -18,20 +19,17 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Person>()
-                .HasRequired(p => p.Phone)
-                .WithRequiredPrincipal(p => p.Person);
-
-            modelBuilder.Entity<Person>()
-                .HasRequired(p => p.Address)
-                .WithRequiredPrincipal(a => a.Person);
-
+            modelBuilder.Configurations.Add(new AccessesConfiguration());
             modelBuilder.Configurations.Add(new CourierConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
+            modelBuilder.Configurations.Add(new CustomerOrderConfiguration());
             modelBuilder.Configurations.Add(new EmailAddressConfiguration());
             modelBuilder.Configurations.Add(new ExternalSupplierConfiguration());
+            modelBuilder.Configurations.Add(new MessageConfiguration());
             modelBuilder.Configurations.Add(new PhoneConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new WarehouseConfiguration());
+            modelBuilder.Configurations.Add(new WarehouseOrderConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

@@ -9,18 +9,18 @@ namespace SWAM.Models.AdministratorPage
 {
     public class WarehousesListViewModel : UserControl
     {
-        private ObservableCollection<Warehouse> _warehousesListViewModel = new ObservableCollection<Warehouse>();
+        private ObservableCollection<Warehouse.Warehouse> _warehousesListViewModel = new ObservableCollection<Warehouse.Warehouse>();
 
-        public ObservableCollection<Warehouse> WarehousesList { get => this._warehousesListViewModel; }
+        public ObservableCollection<Warehouse.Warehouse> WarehousesList { get => this._warehousesListViewModel; }
 
         public int Size => this._warehousesListViewModel.Count;
 
-        public void AddWarehouse(Warehouse warehouse)
+        public void AddWarehouse(Warehouse.Warehouse warehouse)
         {
             bool idIsInWarehousesListViewModel = false;
             if (this._warehousesListViewModel != null && this._warehousesListViewModel.Count > 0)
             {
-                foreach (Warehouse w in this._warehousesListViewModel)
+                foreach (Warehouse.Warehouse w in this._warehousesListViewModel)
                 {
                     if (warehouse.Id == w.Id)
                     {

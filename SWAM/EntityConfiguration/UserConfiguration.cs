@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.User;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
@@ -9,13 +9,14 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Users");
 
-            //HasMany(user => user.Phones)
-            //        .WithRequired(phone => (User)phone.Person)
-            //        .HasForeignKey(phone => phone.Person);
+            HasMany(u => u.Phones)
+                    .WithRequired(u => u.User);
 
-            //HasMany(user => user.EmailAddresses)
-            //.WithRequired(email => (User)email.Person)
-            //.WillCascadeOnDelete(false);
+            HasMany(u => u.EmailAddresses)
+                .WithRequired(u => u.User);
+
+            HasMany(u => u.Messages);
+            HasMany(u => u.Accesess);
         }
     }
 }

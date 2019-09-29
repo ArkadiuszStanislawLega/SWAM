@@ -1,5 +1,5 @@
 ﻿
-namespace SWAM.Models
+namespace SWAM.Models.Warehouse
 {
     /// <summary>
     /// The basic class model in the database representing a single item from the product order to the warehouse.

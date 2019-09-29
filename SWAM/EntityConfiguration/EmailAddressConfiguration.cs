@@ -7,9 +7,9 @@ namespace SWAM.EntityConfiguration
     {
         public EmailAddressConfiguration()
         {
-            HasRequired(email => email.Person)
-            .WithMany()
-            .WillCascadeOnDelete(false);
+            ToTable("EmailAddresses");
+
+
         }
     }
 }

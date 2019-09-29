@@ -29,16 +29,15 @@ namespace SWAM.Models
         /// <summary>
         /// User who is granted the rights.
         /// </summary>
-        public virtual User User { get; set; }
-        /// <summary>
-        /// The warehouse where permissions are granted.
-        /// </summary>
-        public virtual Warehouse Warehouse { get; set; }
+        public virtual User.User User { get; set; }
         /// <summary>
         /// User who granted the permissions.
         /// </summary>
-        public virtual User Administrator { get; set; }
-
+        public virtual User.User Administrator { get; set; }
+        /// <summary>
+        /// The warehouse where permissions are granted.
+        /// </summary>
+        public virtual Warehouse.Warehouse Warehouse { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

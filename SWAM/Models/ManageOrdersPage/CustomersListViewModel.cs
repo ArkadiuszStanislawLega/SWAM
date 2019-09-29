@@ -15,11 +15,11 @@ namespace SWAM.Models.ManageOrdersPage
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        private static readonly ObservableCollection<Customer> _customersList = new ObservableCollection<Customer>();
+        private static readonly ObservableCollection<Customer.Customer> _customersList = new ObservableCollection<Customer.Customer>();
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        public static ObservableCollection<Customer> CustomersList => _customersList;
+        public static ObservableCollection<Customer.Customer> CustomersList => _customersList;
         #endregion
 
         #region SingletonePattern

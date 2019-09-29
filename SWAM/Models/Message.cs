@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -14,7 +12,6 @@ namespace SWAM.Models
         /// Current message Id in database.
         /// </summary>
         public int Id { get; set; }
-
         /// <summary>
         /// Main content of current message.
         /// </summary>
@@ -48,11 +45,11 @@ namespace SWAM.Models
         /// <summary>
         /// The user who sent the message.
         /// </summary>
-        public User Sender { get; set; }
+        public User.User Sender { get; set; }
         /// <summary>
         /// The user who is the recipient of the message.
         /// </summary>
-        public User Receiver { get; set; }
+        public User.User Receiver { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 

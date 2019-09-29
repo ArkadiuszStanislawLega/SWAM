@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SWAM.Models
+namespace SWAM.Models.Customer
 {   /// <summary>
     /// The basic model of the class in the database representing the courier  <see cref="Person"/>.
     /// </summary>
@@ -11,15 +11,24 @@ namespace SWAM.Models
         /// </summary>
         public string Surname { get; set; }
         /// <summary>
+        /// customer phone number.
+        /// </summary>
+        public CustomerPhone Phone { get; set; }
+        /// <summary>
         /// Customer's email address for contact.
         /// </summary>
-        public EmailAddress EmailAddress { get; set; }
+        public CustomerEmailAddress EmailAddress { get; set; }
         /// <summary>
         /// All orders made by the customer.
         /// </summary>
-        public IList<CustomerOrder> CustomerOrders { get; set; }
+        public IList<CustomerOrder> Orders { get; set; }
         /// <summary>
-        /// All customer phone numbers.
+        /// Customer delivery address.
         /// </summary>
+        public CustomerDeliveryAddress DeliveryAddress { get; set; }
+        /// <summary>
+        /// Customer residental address.
+        /// </summary>
+        public CusomterResidentalAddress ResidentalAddress { get; set; }
     }
 }

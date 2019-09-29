@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
 
@@ -67,18 +67,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshPhoneList()
         {
-            try
-            {
-                if (DataContext is User user)
-                {
-                    var phonesList = Phone.GetUserPhones(user.Id);
-                    if (phonesList != null)
-                        PhoneNumbers.ItemsSource = phonesList;
-                    else throw new RefreshUserPhonesListException();
-                }
-                else throw new RefreshUserPhonesListException();
-            }
-            catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    if (DataContext is User user)
+            //    {
+            //        var phonesList = Phone.GetUserPhones(user.Id);
+            //        if (phonesList != null)
+            //            PhoneNumbers.ItemsSource = phonesList;
+            //        else throw new RefreshUserPhonesListException();
+            //    }
+            //    else throw new RefreshUserPhonesListException();
+            //}
+            //catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
         }
         #endregion
         #region CancelCreateNewPhone_Click
