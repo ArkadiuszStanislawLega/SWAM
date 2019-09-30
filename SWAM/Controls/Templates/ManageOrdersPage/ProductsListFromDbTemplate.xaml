@@ -6,17 +6,9 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
              xmlns:product="clr-namespace:SWAM.Models"
              mc:Ignorable="d">
-    <!--#region Resources to access GetProducts method in Product class-->
-    <UserControl.Resources>
-        <ObjectDataProvider x:Key="Products"
-         ObjectType="{x:Type product:Product}"
-         MethodName="GetProducts"/>
-    </UserControl.Resources>
-    <!--#endregion-->
-
     <Grid>
         <DataGrid Grid.Column="1" Grid.Row="1"
-                  ItemsSource="{Binding Source={StaticResource Products}}" 
+                  ItemsSource="{Binding GetProductListFromUserWarehouse}" 
                   LoadingRow="NumberRowIteration"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
