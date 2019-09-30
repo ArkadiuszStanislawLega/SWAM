@@ -1,4 +1,5 @@
 ﻿using SWAM.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
@@ -18,13 +19,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
         private List<Product> GetProductListFromUserWarehouse()
         {
-            var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
-            if (accessUsersToWarehouses != null)
-            {
-                var product = new Product();
-                return product.GetProductsFromWarehouse(accessUsersToWarehouses.UserId);
-            }
-            return null;
+            throw new NotImplementedException();
+            //var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
+            //if (accessUsersToWarehouses != null)
+            //{
+            //    var product = new Product();
+            //    return product.GetProductsFromWarehouse(accessUsersToWarehouses.UserId);
+            //}
+            //return null;
         }
 
         private void NumberRowIteration(object sender, DataGridRowEventArgs e)

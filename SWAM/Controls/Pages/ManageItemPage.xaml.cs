@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
-using SWAM.Models.ProductPage;
+using SWAM.Models.ProductListViewModel;
 using SWAM.Strings;
 
 namespace SWAM

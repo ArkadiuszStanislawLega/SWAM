@@ -51,5 +51,55 @@ namespace SWAM.Models
         /// </summary>
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
         public List<Product> GetProducts() { throw new NotImplementedException(); /* return _context.Products.ToList();*/ }
+
+        private static readonly ApplicationDbContext _context = new ApplicationDbContext();
+
+        private static ApplicationDbContext context
+        {
+            get
+            {
+                return _context;
+            }
+        }
+
+        public static void AddNewProduct(Product product)
+        {
+            if(product != null)
+            {
+                context.Products.Add(product);
+            }
+        }
+
+        public static void EditProduct(Product product)
+        {
+            if(product != null)
+            {
+                var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
+
+                dbProduct.Name = product.Name;
+                dbProduct.Weigth = product.Weigth;
+                dbProduct.Length = product.Length;
+                dbProduct.Width = product.Width;
+                dbProduct.Height = product.Height;
+                dbProduct.Price = product.Price;
+
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteProduct(Product product)
+        {
+            if(product != null)
+            {
+                context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
+                context.SaveChanges();
+            }
+        }
+
+        public static IList<Product> AllProducts() =>  context.Products.ToList();
+        
+
+
+
     }
 }

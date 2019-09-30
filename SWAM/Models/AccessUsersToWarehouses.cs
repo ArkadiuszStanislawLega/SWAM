@@ -56,8 +56,10 @@ namespace SWAM.Models
         /// <returns>List with user accesses to warehouses</returns>
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
-            var user = context().People.OfType<User.User>().FirstOrDefault(u => u.Id == userId);
-            return user.Accesess;
+            if (userId > 0)
+                return context().People.OfType<User.User>().FirstOrDefault(u => u.Id == userId).Accesess;
+            else
+                return null;
         }
         #endregion
 

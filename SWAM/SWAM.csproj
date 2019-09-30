@@ -133,6 +133,10 @@
     <Compile Include="Migrations\201909301024482_Initial.Designer.cs">
       <DependentUpon>201909301024482_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909301216009_UpdateModels.cs" />
+    <Compile Include="Migrations\201909301216009_UpdateModels.Designer.cs">
+      <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
@@ -145,6 +149,7 @@
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
     <Compile Include="Models\PeopleAddress.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\ProductListViewModel\ProductListViewModel.cs" />
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
@@ -564,11 +569,8 @@
     <EmbeddedResource Include="Migrations\201909301024482_Initial.resx">
       <DependentUpon>201909301024482_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909261818315_AddQuantityToStatesTable.resx">
-      <DependentUpon>201909261818315_AddQuantityToStatesTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909261825138_AddProductToStatesTable.resx">
-      <DependentUpon>201909261825138_AddProductToStatesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909301216009_UpdateModels.resx">
+      <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
