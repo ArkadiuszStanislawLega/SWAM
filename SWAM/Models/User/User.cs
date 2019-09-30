@@ -47,12 +47,6 @@ namespace SWAM.Models.User
         /// </summary>
         public IList<AccessUsersToWarehouses> Accesess { get; set; }
         /// <summary>
-        /// All user phone numbers.
-        /// </summary>
-        /// <summary>
-        /// All user emails.
-        /// </summary>
-        /// <summary>
         /// Messages sent by the user.
         /// </summary>
         public IList<Message> Messages { get; set; }
@@ -217,5 +211,8 @@ namespace SWAM.Models.User
             _context.SaveChanges();
         }
         #endregion  
+
+
+        public static IList<User> AllUsersList() => _context.People.OfType<User>().ToList();
     }
 }

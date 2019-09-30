@@ -37,19 +37,18 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void UserAccessToWarehousesListItemTemplate_Loaded(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    if (this.DataContext is AccessUsersToWarehouses access)
-            //    {
-            //        //TODO: Try - catch
-            //        var context = new ApplicationDbContext();
-            //        this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
-            //    }
-            //    else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/ }
-            //    else throw new RefreshWarehousessAccessesListExeption();
-            //}
-            //catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
-            throw new NotImplementedException();
+            try
+            {
+                if (this.DataContext is AccessUsersToWarehouses access)
+                {
+                    //TODO: Try - catch
+                    var context = new ApplicationDbContext();
+                    this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
+                }
+                else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/ }
+                else throw new RefreshWarehousessAccessesListExeption();
+            }
+            catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
         }
         #endregion  
         #region CreateNewAccessMode

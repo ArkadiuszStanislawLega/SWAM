@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:users="clr-namespace:SWAM.Models.AdministratorPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
@@ -161,7 +162,9 @@
                             Opacity="0.4"/>
                     <ScrollViewer Name="ScrollOfUserList" 
                                   VerticalScrollBarVisibility="Auto">
-                        <ItemsControl Name="UsersList" ItemsSource="{Binding UsersList}">
+                        <ItemsControl Name="UsersList" 
+                                      DataContext="{x:Static users:UsersListViewModel.Instance}"
+                                      ItemsSource="{Binding UsersList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
