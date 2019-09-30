@@ -1,5 +1,5 @@
 ﻿using SWAM.Exceptions;
-using SWAM.Models;
+using SWAM.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

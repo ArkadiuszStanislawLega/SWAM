@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// The basic class model in the database representing the telephone number.
+    /// </summary>
     public class Phone
     {
-        int _id;
-        string _note;
-        string _phoneNumber;
-        Customer _customer;
-
-        [Required]
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
-
-        public int Id { get => _id; set => _id = value; }
-        public string PhoneNumber { get => _phoneNumber; set => _phoneNumber = value; }
-        public string Note { get => _note; set => _note = value; }
-        public Customer Customer { get => _customer; set => _customer = value; }
+        /// <summary>
+        /// Identification number from the phone number database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// Phone number.
+        /// </summary>
+        public string PhoneNumber { get; set; }
+        /// <summary>
+        /// Note regarding the telephone number.
+        /// </summary>
+        public string Note { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
@@ -43,7 +40,11 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId">User id</param>
         /// <returns>List with phones of user.</returns>
-        public static IEnumerable<Phone> GetUserPhones(int userId) => _context.Phones.ToList().Where(u => u.UserId == userId);
+        public static IEnumerable<Phone> GetUserPhones(int userId)
+        {
+            throw new NotImplementedException();
+            //return _context.Phones.ToList().Where(u => u.UserId == userId);
+        }
         #endregion
         #region GetPhoneById
         /// <summary>
@@ -51,7 +52,11 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="phoneId">Phone id in database.</param>
         /// <returns>Phone from database.</returns>
-        public static Phone GetPhoneById(int phoneId) => _context.Phones.FirstOrDefault(p => p.Id == phoneId);
+        public static Phone GetPhoneById(int phoneId)
+        {
+            throw new NotImplementedException();
+            //_context.Phones.FirstOrDefault(p => p.Id == phoneId);
+        }
         #endregion
 
         #region AddNewPhone
@@ -61,11 +66,12 @@ namespace SWAM.Models
         /// <param name="phone"></param>
         public static void AddNewPhone(Phone phone)
         {
-            if (phone != null)
-            {
-                _context.Phones.Add(phone);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
+            //if (phone != null)
+            //{
+            //    _context.Phones.Add(phone);
+            //    _context.SaveChanges();
+            //}
         }
         #endregion
 
@@ -76,8 +82,9 @@ namespace SWAM.Models
         /// <param name="newPhoneNumber">New phone/edited number.</param>
         public void UpdateNumber(string newPhoneNumber)
         {
-            _context.Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
-            _context.SaveChanges();
+            throw new NotImplementedException();
+            //_context.Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
+            //_context.SaveChanges();
         }
         #endregion
         #region UpdateNote
@@ -87,8 +94,9 @@ namespace SWAM.Models
         /// <param name="newNote">New/edited note of phone number.</param>
         public void UpdateNote(string newNote)
         {
-            _context.Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
-            _context.SaveChanges();
+            throw new NotImplementedException();
+            //_context.Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
+            //_context.SaveChanges();
         }
         #endregion
         #region Delete
@@ -97,15 +105,16 @@ namespace SWAM.Models
         /// </summary>
         public void Delete()
         {
-            var phone = _context.Phones.FirstOrDefault(p => p.Id == this.Id);
-            if (phone != null)
-            {
-                _context.Phones.Remove(phone);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
+            //var phone = _context.Phones.FirstOrDefault(p => p.Id == this.Id);
+            //if (phone != null)
+            //{
+            //    _context.Phones.Remove(phone);
+            //    _context.SaveChanges();
+            //}
         }
         #endregion
 
-        public override string ToString() => $"{this._note} - {this._phoneNumber}";
+        public override string ToString() { throw new NotImplementedException(); }
     }
 }

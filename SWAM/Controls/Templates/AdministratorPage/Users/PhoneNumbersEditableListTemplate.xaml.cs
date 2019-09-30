@@ -1,10 +1,11 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
     using SWAM.Exceptions;
+    using System;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
@@ -24,26 +25,28 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is User user)
-            {
-                var phone = new Phone()
-                {
-                    PhoneNumber = this.NewPhone.Text,
-                    Note = this.NewPhoneNote.Text,
-                    UserId = user.Id
-                };
+            //if (DataContext is User user)
+            //{
+            //    var phone = new Phone()
+            //    {
+            //        PhoneNumber = this.NewPhone.Text,
+            //        Note = this.NewPhoneNote.Text,
+            //        UserId = user.Id
+            //    };
 
-                if (phone != null)
-                {
-                    Phone.AddNewPhone(phone);
-                    InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
+            //    if (phone != null)
+            //    {
+            //        Phone.AddNewPhone(phone);
+            //        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
-                    RefreshPhoneList();
-                    ClearEditableFieldsAfterAddNewPhone();
-                }
-                else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
-            }
-            else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
+            //        RefreshPhoneList();
+            //        ClearEditableFieldsAfterAddNewPhone();
+            //    }
+            //    else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
+            //}
+            //else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
+
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -64,18 +67,19 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshPhoneList()
         {
-            try
-            {
-                if (DataContext is User user)
-                {
-                    var phonesList = Phone.GetUserPhones(user.Id);
-                    if (phonesList != null)
-                        PhoneNumbers.ItemsSource = phonesList;
-                    else throw new RefreshUserPhonesListException();
-                }
-                else throw new RefreshUserPhonesListException();
-            }
-            catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
+            throw new NotImplementedException();
+            //try
+            //{
+            //    if (DataContext is User user)
+            //    {
+            //        var phonesList = Phone.GetUserPhones(user.Id);
+            //        if (phonesList != null)
+            //            PhoneNumbers.ItemsSource = phonesList;
+            //        else throw new RefreshUserPhonesListException();
+            //    }
+            //    else throw new RefreshUserPhonesListException();
+            //}
+            //catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
         }
         #endregion
         #region CancelCreateNewPhone_Click

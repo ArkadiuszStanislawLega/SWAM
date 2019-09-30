@@ -84,8 +84,11 @@ namespace SWAM.Controls.Pages
                     if (!message.IsReaded)
                     {
                         //set this message as "is readed"
-                        SWAM.Models.Message.IsReadedToTrue(message.Id);
-                        SWAM.Models.Message.SetDateOfReading(message.Id);
+                        if (!SWAM.Models.Message.IsReadedToTrue(message))
+                            InformationToUser("Wystąpił problem z zaznaczeniem wiadomości jako odczytane.", true);
+
+                        if(!SWAM.Models.Message.SetDateOfReading(message))
+                            InformationToUser("Wystąpił problem z nadaniem daty odczytania wiadomości.", true);
 
                         row.IsSelected = true;
 
@@ -224,9 +227,9 @@ namespace SWAM.Controls.Pages
                 {
                     //If the user is browsing received messages...
                     if (this._isResivedIsOpen)
-                        SWAM.Models.Message.DeleteMessageByReceiver(message.Id);
+                        SWAM.Models.Message.DeleteMessageByReceiver(message);
                     else
-                        SWAM.Models.Message.DeleteMessageBySender(message.Id);
+                        SWAM.Models.Message.DeleteMessageBySender(message);
 
                     RefreshMessagesList();
                 }
@@ -246,9 +249,9 @@ namespace SWAM.Controls.Pages
             if (this._currentMessage != null)
             {
                 if (this._isResivedIsOpen)
-                    SWAM.Models.Message.DeleteMessageByReceiver(this._currentMessage.Id);
+                    SWAM.Models.Message.DeleteMessageByReceiver(this._currentMessage);
                 else
-                    SWAM.Models.Message.DeleteMessageBySender(this._currentMessage.Id);
+                    SWAM.Models.Message.DeleteMessageBySender(this._currentMessage);
 
                 SetDabuleClickedMessageContent(null);
                 RefreshMessagesList();

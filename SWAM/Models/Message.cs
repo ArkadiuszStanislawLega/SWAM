@@ -1,93 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.Entity;
 
 namespace SWAM.Models
 {
+    /// <summary>
+    /// The basic class model in the database representing the message sent between two <see cref="User"/>s of this application.
+    /// </summary>
     public class Message
     {
         /// <summary>
         /// Current message Id in database.
         /// </summary>
-        private int _id;
-        /// <summary>
-        /// Title of current message.
-        /// </summary>
-        private string _titleOfMessage;
+        public int Id { get; set; }
         /// <summary>
         /// Main content of current message.
         /// </summary>
-        private string _contentOfMessage;
+        public string ContentOfMessage { get; set; }
+        /// <summary>
+        /// Title of current message.
+        /// </summary>
+        public string TitleOfMessage { get; set; }
         /// <summary>
         /// Date of posting by sender current message.
         /// </summary>
-        private DateTime _postDate;
+        public DateTime PostDate { get; set; }
         /// <summary>
         /// Date of reading by receiver current message.
         /// </summary>
-        private DateTime? _dateOfReading;
+        public DateTime? DateOfReading { get; set; }
         /// <summary>
         /// Flag indicating current message is readed.
         /// </summary>
-        private bool _isReaded;
+        public bool IsReaded { get; set; }
         /// <summary>
         /// Flag indicating current message is deleted by sender.
         /// If true - sender does not see this message in his send e-mail box.
         /// </summary>
-        private bool _isDeletedBySender;
+        public bool IsDeletedBySender { get; set; }
         /// <summary>
         /// Flag indicating current message is deleted by receiver.
         /// If true - receiver does not see this message in his receive e-mail box.
         /// </summary>
-        private bool _isDeletedByReceiver;
+        public bool IsDeletedByReceiver { get; set; }
         /// <summary>
-        /// Current message Id in database.
+        /// The user who sent the message.
         /// </summary>
-        public int Id { get => _id; set => _id = value; }
-
+        public User.User Sender { get; set; }
         /// <summary>
-        /// Main content of current message.
+        /// The user who is the recipient of the message.
         /// </summary>
-        public string ContentOfMessage { get => _contentOfMessage; set => _contentOfMessage = value; }
-        /// <summary>
-        /// Title of current message.
-        /// </summary>
-        public string TitleOfMessage { get => _titleOfMessage; set => _titleOfMessage = value; }
-        /// <summary>
-        /// Date of posting by sender current message.
-        /// </summary>
-        public DateTime PostDate { get => _postDate; set => _postDate = value; }
-        /// <summary>
-        /// Date of reading by receiver current message.
-        /// </summary>
-        public DateTime? DateOfReading { get => _dateOfReading; set => _dateOfReading = value; }
-        /// <summary>
-        /// Flag indicating current message is readed.
-        /// </summary>
-        public bool IsReaded { get => _isReaded; set => _isReaded = value; }
-        /// <summary>
-        /// Flag indicating current message is deleted by sender.
-        /// If true - sender does not see this message in his send e-mail box.
-        /// </summary>
-        public bool IsDeletedBySender { get => _isDeletedBySender; set => _isDeletedBySender = value; }
-        /// <summary>
-        /// Flag indicating current message is deleted by receiver.
-        /// If true - receiver does not see this message in his receive e-mail box.
-        /// </summary>
-        public bool IsDeletedByReceiver { get => _isDeletedByReceiver; set => _isDeletedByReceiver = value; }
-        /// <summary>
-        /// User - sender id in database.
-        /// </summary>
-        public int SenderId { get; set; }
-        /// <summary>
-        /// User - receiver id in database.
-        /// </summary>
-        public int ReceiverId { get; set; }
-        private User _sender;
-        private User _receiver;
-        public User Sender { get => _sender; set => _sender = value; }
-        public User Receiver { get => _receiver; set => _receiver = value; }
+        public User.User Receiver { get; set; }
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
@@ -100,21 +63,34 @@ namespace SWAM.Models
             }
         }
 
-        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
+        public static Message GetMessage(int messageId)
+        {
+            throw new NotImplementedException();
+           //return _context.Messages.FirstOrDefault(m => m.Id == messageId);
+        }
 
         #region DeleteMessageBySender
         /// <summary>
         /// Change the flag _isDeletedBySender and check if the message can be removed completely from the database.
         /// </summary>
-        /// <param name="messageId">Message id from database</param>
-        public static void DeleteMessageBySender(int messageId)
+        /// <param name="message">Message id from database</param>
+        public static void DeleteMessageBySender(Message message)
         {
-            if (messageId > 0)
+            if (message != null)
             {
-                _context.Messages.FirstOrDefault(m => m.Id == messageId)._isDeletedBySender = true;
-                _context.SaveChanges();
+                _context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == message.Sender.Id)
+                    .Messages.Single(m => m.Id == message.Id)
+                    .IsDeletedBySender = true;
 
-                DeleteMessage(messageId);
+                if (_context.SaveChanges() == 1)
+                {
+                    message.IsDeletedBySender = true;
+
+                    if (message.IsDeletedBySender && message.IsDeletedByReceiver)
+                        DeleteMessage(message);
+                }
             }
         }
         #endregion
@@ -123,14 +99,23 @@ namespace SWAM.Models
         /// Change the flag _isDeletedByReceiver and check if the message can be removed completely from the database.
         /// </summary>
         /// <param name="messageId">Message id from database</param>
-        public static void DeleteMessageByReceiver(int messageId)
+        public static void DeleteMessageByReceiver(Message message)
         {
-            if (messageId > 0)
+            if (message != null)
             {
-                _context.Messages.FirstOrDefault(m => m.Id == messageId)._isDeletedByReceiver = true;
-                _context.SaveChanges();
+                _context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == message.Sender.Id)
+                    .Messages.Single(m => m.Id == message.Id)
+                    .IsDeletedByReceiver = true;
 
-                DeleteMessage(messageId);
+                if (_context.SaveChanges() == 1)
+                {
+                    message.IsDeletedBySender = true;
+
+                    if (message.IsDeletedBySender && message.IsDeletedByReceiver)
+                        DeleteMessage(message);
+                }
             }
         }
         #endregion
@@ -138,17 +123,17 @@ namespace SWAM.Models
         /// <summary>
         /// Completely deletes a message from the database.
         /// </summary>
-        /// <param name="messageId">Message id from database</param>
-        private static void DeleteMessage(int messageId)
+        /// <param name="message">Message id from database</param>
+        private static void DeleteMessage(Message message)
         {
-            if(messageId > 0)
+            if (message != null && message.Sender.Id > 0)
             {
-                var message = _context.Messages.FirstOrDefault(m => m.Id == messageId);
-                if(message.IsDeletedByReceiver && message.IsDeletedBySender)
-                {
-                    _context.Messages.Remove(message);
-                    _context.SaveChanges();
-                }
+                _context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == message.Sender.Id)
+                    .Messages.Remove(message);
+
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -159,11 +144,12 @@ namespace SWAM.Models
         /// <param name="messages">List with mesages</param>
         public static void AddManyMessages(List<Message> messages)
         {
-            if(messages != null)
-            {
-                _context.Messages.AddRange(messages);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
+            //if(messages != null)
+            //{
+            //    _context.Messages.AddRange(messages);
+            //    _context.SaveChanges();
+            //}
         }
         #endregion
 
@@ -174,11 +160,12 @@ namespace SWAM.Models
         /// <param name="message">The message we want to add</param>
         public static void AddMessage(Message message)
         {
-            if (message != null)
-            {
-                _context.Messages.Add(message);
-                _context.SaveChanges();
-            }
+            throw new NotImplementedException();
+            //if (message != null)
+            //{
+            //    _context.Messages.Add(message);
+            //    _context.SaveChanges();
+            //}
         }
         #endregion
 
@@ -187,10 +174,21 @@ namespace SWAM.Models
         /// Setting date of reading of specific message to current.
         /// </summary>
         /// <param name="messageId"></param>
-        public static void SetDateOfReading(int messageId)
+        /// <returns>True if the property DateOfReading has been changed to current date and time correctly in the database.</returns>
+        public static bool SetDateOfReading(Message message)
         {
-            _context.Messages.FirstOrDefault(m => m.Id == messageId).DateOfReading = DateTime.Now;
-            _context.SaveChanges();
+            if (message != null)
+            {
+                _context.People
+                     .OfType<User.User>()
+                     .FirstOrDefault(u => u.Id == message.Sender.Id)
+                     .Messages.Single(m => m.Id == message.Id)
+                     .DateOfReading = DateTime.Now;
+                if (_context.SaveChanges() == 1)
+                    return true;
+            }
+
+            return false;
         }
         #endregion
         #region SetMessageIsReaded
@@ -198,29 +196,43 @@ namespace SWAM.Models
         /// Setting IsReaded flag in database to true.
         /// </summary>
         /// <param name="messageId">Message id from database</param>
-        public static void IsReadedToTrue(int messageId)
+        /// <returns>True if the property IsReaded has been changed to true correctly in the database.</returns>
+        public static bool IsReadedToTrue(Message message)
         {
-            if (messageId > 0)
+            if (message != null)
             {
-                _context.Messages.FirstOrDefault(m => m.Id == messageId).IsReaded = true;
-                _context.SaveChanges();
+                _context.People
+                 .OfType<User.User>()
+                 .FirstOrDefault(u => u.Id == message.Sender.Id)
+                 .Messages.Single(m => m.Id == message.Id)
+                 .IsReaded = true;
+
+                if (_context.SaveChanges() == 1)
+                    return true;
             }
+
+            return false;
         }
         #endregion
         #region CountUnreadedMessages
         /// <summary>
         /// Counting number of unreaded message of specific user id.
         /// </summary>
-        /// <param name="userId">Id number of the user we want to check</param>
+        /// <param name="user">User we want to check</param>
         /// <returns>Number of specific unreaded messages. If number is below 0 user Id is incorrect.</returns>
-        public static int CountUnreadedMessages(int userId)
+        public static int CountUnreadedMessages(User.User user)
         {
-            if (userId > 0)
-                return _context.Messages
-                    .Include(m => m.Receiver)
-                    .Include(m => m.Sender)
-                    .Where(m => m.Receiver.Id == userId && !m.IsReaded).ToList().Count;
-            else return -1;
+            if (user != null)
+            {
+                var dbUser = _context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == user.Id);
+
+                if (dbUser != null)
+                    return dbUser.Messages.Where(m => m.Receiver.Id == user.Id && !m.IsReaded).ToList().Count;
+            }
+             
+            return -1;
         }
         #endregion
 
@@ -232,12 +244,13 @@ namespace SWAM.Models
         /// <returns>List with all received messages</returns>
         public static IList<Message> AllReceivedMessages(int userId)
         {
-            if (userId > 0)
-                return _context.Messages
-                    .Include(m => m.Receiver)
-                    .Include(m => m.Sender)
-                    .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver).ToList();
-            else return null;
+            throw new NotImplementedException();
+            //if (userId > 0)
+            //    return _context.Messages
+            //        .Include(m => m.Receiver)
+            //        .Include(m => m.Sender)
+            //        .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver).ToList();
+            //else return null;
         }
         #endregion
         #region AllSendedMessages
@@ -248,12 +261,13 @@ namespace SWAM.Models
         /// <returns>List with all sended messages</returns>
         public static IList<Message> AllSendedMessages(int userId)
         {
-            if(userId > 0)
-                return _context.Messages
-                        .Include(m => m.Receiver)
-                        .Include(m => m.Sender)
-                        .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();
-            else return null;
+            throw new NotImplementedException();
+            //if(userId > 0)
+            //    return _context.Messages
+            //            .Include(m => m.Receiver)
+            //            .Include(m => m.Sender)
+            //            .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();
+            //else return null;
         }
         #endregion
 

@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.User;
 using SWAM.Models.Messages;
 using SWAM.Windows;
 using System.ComponentModel;

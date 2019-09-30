@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWAM.Models
 {
-    public class ExternalSupplier
+    /// <summary>
+    /// The basic model of the class in the database representing the external supplier to the warehouses.
+    /// </summary>
+    public class ExternalSupplier : Person
     {
-        int _id;
-        string _name;
         /// <summary>
-        /// Tax Identification Number
+        /// Tax Identification Number.
         /// </summary>
-        string _tin;
-        Address _address;
-        IList<Phone> _phones;
-
-        public int Id { get => _id; set => _id = value; }
-        public string Name { get => _name; set => _name = value; }
-        public Address Address { get => _address; set => _address = value; }
-        public IList<Phone> Phone { get => _phones; set => _phones = value; }
-        public string Tin { get => _tin; set => _tin = value; }
+        public string Tin { get; set; }
     }
 }

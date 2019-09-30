@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.User;
 using System.Windows;
 using SWAM.Exceptions;
 using SWAM.Strings;

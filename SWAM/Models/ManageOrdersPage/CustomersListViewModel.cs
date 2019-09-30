@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace SWAM.Models.ManageOrdersPage
 {
@@ -14,11 +15,11 @@ namespace SWAM.Models.ManageOrdersPage
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        private static readonly ObservableCollection<Customer> _customersList = new ObservableCollection<Customer>();
+        private static readonly ObservableCollection<Customer.Customer> _customersList = new ObservableCollection<Customer.Customer>();
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        public static ObservableCollection<Customer> CustomersList => _customersList;
+        public static ObservableCollection<Customer.Customer> CustomersList => _customersList;
         #endregion
 
         #region SingletonePattern
@@ -39,7 +40,9 @@ namespace SWAM.Models.ManageOrdersPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var customersList = context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList();
+                var customersList = context.People.OfType<Customer.Customer>()
+                    .Include(c => c.ResidentalAddress)
+                    .Include(c => c.Phone).ToList();
 
                 if (customersList != null && _customersList.Count > 0)
                     _customersList.Clear();

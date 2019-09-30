@@ -1,0 +1,844 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0F56D3C8-E692-4513-B25A-C41FF4105420}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SWAM</RootNamespace>
+    <AssemblyName>SWAM</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
+      <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MainWindow\MessageListItemTemplate.xaml.cs">
+      <DependentUpon>MessageListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\MessagesPage.xaml.cs">
+      <DependentUpon>MessagesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
+      <DependentUpon>FindUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml.cs">
+      <DependentUpon>SelectedUsersItemListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml.cs">
+      <DependentUpon>SelectedUsersToSendMessageTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MessagesPage\SendMessageTemplate.xaml.cs">
+      <DependentUpon>SendMessageTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
+      <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DateConverter.cs" />
+    <Compile Include="Converters\DecimalToIntegerConverter.cs" />
+    <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
+    <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
+    <Compile Include="Converters\TextToVisibilityConverter.cs" />
+    <Compile Include="Converters\VisibilityReverseConverter.cs" />
+    <Compile Include="Cryptography\CryptoService.cs" />
+    <Compile Include="Enumerators\WindowType.cs" />
+    <Compile Include="Exceptions\PasswordSaltNullException.cs" />
+    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.cs" />
+    <Compile Include="Migrations\201907061652217_WarehousesModelUpdate.Designer.cs">
+      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907070918593_FixError.cs" />
+    <Compile Include="Migrations\201907070918593_FixError.Designer.cs">
+      <DependentUpon>201907070918593_FixError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.cs" />
+    <Compile Include="Migrations\201907141735338_WarehouseAddPropertyLength.Designer.cs">
+      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221133526_AddMessageModel.cs" />
+    <Compile Include="Migrations\201907221133526_AddMessageModel.Designer.cs">
+      <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.cs" />
+    <Compile Include="Migrations\201907221214065_UpdateMessageModelAddTitle.Designer.cs">
+      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.cs" />
+    <Compile Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.Designer.cs">
+      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.cs" />
+    <Compile Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.Designer.cs">
+      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.cs" />
+    <Compile Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.Designer.cs">
+      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.cs" />
+    <Compile Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.Designer.cs">
+      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.cs" />
+    <Compile Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.Designer.cs">
+      <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.cs" />
+    <Compile Include="Migrations\201908061104193_UserAddPasswordSalt.Designer.cs">
+      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.cs" />
+    <Compile Include="Migrations\201908061124163_UserChangePasswordToByte.Designer.cs">
+      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261818315_AddQuantityToStatesTable.cs" />
+    <Compile Include="Migrations\201909261818315_AddQuantityToStatesTable.Designer.cs">
+      <DependentUpon>201909261818315_AddQuantityToStatesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261825138_AddProductToStatesTable.cs" />
+    <Compile Include="Migrations\201909261825138_AddProductToStatesTable.Designer.cs">
+      <DependentUpon>201909261825138_AddProductToStatesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Messages\MessagesListViewModel.cs" />
+    <Compile Include="Models\Messages\MessagesUsersList.cs" />
+    <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
+    <Compile Include="Models\ProductPage\ProductListViewModel.cs" />
+    <Compile Include="Strings\PLStrings.cs" />
+    <Compile Include="Windows\ConfirmWindow.xaml.cs">
+      <DependentUpon>ConfirmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SendMessageWindow.xaml.cs">
+      <DependentUpon>SendMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\Pages\ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AddressTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CalendarWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MainWindow\MessageListItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\MessagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\SelectedUsersItemListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\SelectedUsersToSendMessageTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\MessagesPage\SendMessageTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListViews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddProductWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EditProductWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AtachedProperties\BasedAttachedProperty.cs" />
+    <Compile Include="AtachedProperties\PasswordAttachedProperty.cs" />
+    <Compile Include="Commands\AdministratorPage\UserProfileCommands.cs" />
+    <Compile Include="Controls\Pages\ErrorPage.xaml.cs">
+      <DependentUpon>ErrorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AddressTemplate.xaml.cs">
+      <DependentUpon>AddressTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\BasicUserControl.cs" />
+    <Compile Include="Controls\Templates\AdministratorPage\Users\BasicInformationAboutUserTemplate.xaml.cs">
+      <DependentUpon>BasicInformationAboutUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserBlockDate.cs" />
+    <Compile Include="Controls\Templates\AdministratorPage\Users\ChangeUserExpiredDate.cs" />
+    <Compile Include="Controls\Templates\AdministratorPage\Users\CreateNewUserTemplate.xaml.cs">
+      <DependentUpon>CreateNewUserTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\EmailEditableListTemplate.xaml.cs">
+      <DependentUpon>EmailEditableListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\EmailEditableTemplate.xaml.cs">
+      <DependentUpon>EmailEditableTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\PhoneNumberEditableTemplate.xaml.cs">
+      <DependentUpon>PhoneNumberEditableTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\PhoneNumbersEditableListTemplate.xaml.cs">
+      <DependentUpon>PhoneNumbersEditableListTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesEditableListTemplates.xaml.cs">
+      <DependentUpon>UserAccessToWarehousesEditableListTemplates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserAccessToWarehousesListItemTemplate.xaml.cs">
+      <DependentUpon>UserAccessToWarehousesListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UserProfileTemplate.xaml.cs">
+      <DependentUpon>UserProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\CreateNewWarehouseTemplate.xaml.cs">
+      <DependentUpon>CreateNewWarehouseTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseListItemTemplate.xaml.cs">
+      <DependentUpon>WarehouseListItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehouseProfileTemplate.xaml.cs">
+      <DependentUpon>WarehouseProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\CalendarWithButton.xaml.cs">
+      <DependentUpon>CalendarWithButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
+      <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml.cs">
+      <DependentUpon>AddressOrderFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml.cs">
+      <DependentUpon>CreateNewCustomerOrderTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml.cs">
+      <DependentUpon>CustomerDetailsFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml.cs">
+      <DependentUpon>CustomerListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml.cs">
+      <DependentUpon>CustomerOrdersNavigationTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
+      <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml.cs">
+      <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
+      <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddProductWindow.xaml.cs">
+      <DependentUpon>AddProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditProductWindow.xaml.cs">
+      <DependentUpon>EditProductWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\AccountBlockToColorConverter.cs" />
+    <Compile Include="Converters\AccountBlockToTextConverter.cs" />
+    <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="Converters\ReversBooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\DateOfExpireColorConverter.cs" />
+    <Compile Include="Enumerators\BookmarkInPage.cs" />
+    <Compile Include="Enumerators\StatusOfUserAccount.cs" />
+    <Compile Include="Strings\ErrorMesages.cs" />
+    <Compile Include="Events\NavigationButton\ButtonSelectedEvent.cs" />
+    <Compile Include="Exceptions\BasicException.cs" />
+    <Compile Include="Exceptions\InformationLabelException.cs" />
+    <Compile Include="Exceptions\RefreshUserEmailListException.cs" />
+    <Compile Include="Exceptions\RefreshUserListException.cs" />
+    <Compile Include="Exceptions\RefreshUserPhonesListException.cs" />
+    <Compile Include="Exceptions\RefreshUserProfileException.cs" />
+    <Compile Include="Exceptions\RefreshWarehousessAccessesListExeption.cs" />
+    <Compile Include="Migrations\201905161620557_AddUsersTable.cs" />
+    <Compile Include="Migrations\201905161620557_AddUsersTable.Designer.cs">
+      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261209433_AddPropertiesToUserAccount.cs" />
+    <Compile Include="Migrations\201905261209433_AddPropertiesToUserAccount.Designer.cs">
+      <DependentUpon>201905261209433_AddPropertiesToUserAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261230279_UpgdateDataUserAccount.cs" />
+    <Compile Include="Migrations\201905261230279_UpgdateDataUserAccount.Designer.cs">
+      <DependentUpon>201905261230279_UpgdateDataUserAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.cs" />
+    <Compile Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.Designer.cs">
+      <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.cs" />
+    <Compile Include="Migrations\201905300749450_AddEmailAndPhoneTables.Designer.cs">
+      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.cs" />
+    <Compile Include="Migrations\201905300757275_UpdateModelsContactsToPhone.Designer.cs">
+      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.cs" />
+    <Compile Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.Designer.cs">
+      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.cs" />
+    <Compile Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.Designer.cs">
+      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.cs" />
+    <Compile Include="Migrations\201905311706344_UpdatePhoneFromCharToString.Designer.cs">
+      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.cs" />
+    <Compile Include="Migrations\201905311711280_UpdatePhoneAddNote.Designer.cs">
+      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.cs" />
+    <Compile Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.Designer.cs">
+      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.cs" />
+    <Compile Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.Designer.cs">
+      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031126566_UpdateEmailTable.cs" />
+    <Compile Include="Migrations\201906031126566_UpdateEmailTable.Designer.cs">
+      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.cs" />
+    <Compile Include="Migrations\201906051331159_UpdateWarehouseAddressId.Designer.cs">
+      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.cs" />
+    <Compile Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.Designer.cs">
+      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs" />
+    <Compile Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.Designer.cs">
+      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs" />
+    <Compile Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.Designer.cs">
+      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906091702478_ModelUpdate.cs" />
+    <Compile Include="Migrations\201906091702478_ModelUpdate.Designer.cs">
+      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101410351_UserOneToManyPhones.cs" />
+    <Compile Include="Migrations\201906101410351_UserOneToManyPhones.Designer.cs">
+      <DependentUpon>201906101410351_UserOneToManyPhones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101439394_UserOneToManyEmails.cs" />
+    <Compile Include="Migrations\201906101439394_UserOneToManyEmails.Designer.cs">
+      <DependentUpon>201906101439394_UserOneToManyEmails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101521062_ManyToManyUsersAccesses.cs" />
+    <Compile Include="Migrations\201906101521062_ManyToManyUsersAccesses.Designer.cs">
+      <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101801341_WarehouseModelReview.cs" />
+    <Compile Include="Migrations\201906101801341_WarehouseModelReview.Designer.cs">
+      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs" />
+    <Compile Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.Designer.cs">
+      <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.cs" />
+    <Compile Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.Designer.cs">
+      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccessUsersToWarehouses.cs" />
+    <Compile Include="Models\AdministratorPage\UsersListViewModel.cs" />
+    <Compile Include="Models\AdministratorPage\WarehousesListViewModel.cs" />
+    <Compile Include="Models\Email.cs" />
+    <Compile Include="Models\Phone.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Enumerators\CustomerOrderStatus.cs" />
+    <Compile Include="Enumerators\PaymentType.cs" />
+    <Compile Include="Enumerators\PagesUserControls.cs" />
+    <Compile Include="Enumerators\UserType.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Controls\Pages\AdministratorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\ManageItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\ManageMagazinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\ManageOrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Callendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ComboBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\DataGrides.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Fonts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Labels.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\MenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\PasswordBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBlocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ToolTips.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ConfirmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SendMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\Pages\AdministratorPage.xaml.cs">
+      <DependentUpon>AdministratorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Users\UsersControlPanelTemplate.xaml.cs">
+      <DependentUpon>UsersControlPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\AdministratorPage\Warehouses\WarehousesControlPanelTemplate.xaml.cs">
+      <DependentUpon>WarehousesControlPanelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\ManageItemPage.xaml.cs">
+      <DependentUpon>ManageItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\ManageMagazinePage.xaml.cs">
+      <DependentUpon>ManageMagazinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Pages\ManageOrdersPage.xaml.cs">
+      <DependentUpon>ManageOrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905142200380_InitialModel.cs" />
+    <Compile Include="Migrations\201905142200380_InitialModel.Designer.cs">
+      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Courier.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerOrder.cs" />
+    <Compile Include="Models\CustomerOrderPosition.cs" />
+    <Compile Include="Models\ExternalSupplier.cs" />
+    <Compile Include="Enumerators\ShipmentType.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Models\WarehouseOrder.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="Enumerators\WarehouseOrderStatus.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\WarehouseOrderPosition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Migrations\201905142200380_InitialModel.resx">
+      <DependentUpon>201905142200380_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161620557_AddUsersTable.resx">
+      <DependentUpon>201905161620557_AddUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261209433_AddPropertiesToUserAccount.resx">
+      <DependentUpon>201905261209433_AddPropertiesToUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261230279_UpgdateDataUserAccount.resx">
+      <DependentUpon>201905261230279_UpgdateDataUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261246167_AddContactsAndAddressPropertiesToUser.resx">
+      <DependentUpon>201905261246167_AddContactsAndAddressPropertiesToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300749450_AddEmailAndPhoneTables.resx">
+      <DependentUpon>201905300749450_AddEmailAndPhoneTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300757275_UpdateModelsContactsToPhone.resx">
+      <DependentUpon>201905300757275_UpdateModelsContactsToPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300803200_UpdateWarehousesChangeContatctsToUsers.resx">
+      <DependentUpon>201905300803200_UpdateWarehousesChangeContatctsToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300807356_AddEmailsToUserAndCustomer.resx">
+      <DependentUpon>201905300807356_AddEmailsToUserAndCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311706344_UpdatePhoneFromCharToString.resx">
+      <DependentUpon>201905311706344_UpdatePhoneFromCharToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311711280_UpdatePhoneAddNote.resx">
+      <DependentUpon>201905311711280_UpdatePhoneAddNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021719097_UpdatePhoneUserToIntIdUser.resx">
+      <DependentUpon>201906021719097_UpdatePhoneUserToIntIdUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031054235_AddNewTableAccessUsersToWarehouses.resx">
+      <DependentUpon>201906031054235_AddNewTableAccessUsersToWarehouses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031126566_UpdateEmailTable.resx">
+      <DependentUpon>201906031126566_UpdateEmailTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051331159_UpdateWarehouseAddressId.resx">
+      <DependentUpon>201906051331159_UpdateWarehouseAddressId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906051340270_UpdateNameOfTableToCorrect.resx">
+      <DependentUpon>201906051340270_UpdateNameOfTableToCorrect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.resx">
+      <DependentUpon>201906061203391_UpdataAccessUserToWarehousessTableAddNewProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061212263_UpdataAccessUserToWarehousessCorrectNames.resx">
+      <DependentUpon>201906061212263_UpdataAccessUserToWarehousessCorrectNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091702478_ModelUpdate.resx">
+      <DependentUpon>201906091702478_ModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101410351_UserOneToManyPhones.resx">
+      <DependentUpon>201906101410351_UserOneToManyPhones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101439394_UserOneToManyEmails.resx">
+      <DependentUpon>201906101439394_UserOneToManyEmails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101521062_ManyToManyUsersAccesses.resx">
+      <DependentUpon>201906101521062_ManyToManyUsersAccesses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101801341_WarehouseModelReview.resx">
+      <DependentUpon>201906101801341_WarehouseModelReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.resx">
+      <DependentUpon>201906131838143_AccessUserTowarehousesDebugAdministratorIdProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906290607086_accessToWarehouseHaveRequiredWarehouse.resx">
+      <DependentUpon>201906290607086_accessToWarehouseHaveRequiredWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907061652217_WarehousesModelUpdate.resx">
+      <DependentUpon>201907061652217_WarehousesModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907070918593_FixError.resx">
+      <DependentUpon>201907070918593_FixError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907141735338_WarehouseAddPropertyLength.resx">
+      <DependentUpon>201907141735338_WarehouseAddPropertyLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221133526_AddMessageModel.resx">
+      <DependentUpon>201907221133526_AddMessageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221214065_UpdateMessageModelAddTitle.resx">
+      <DependentUpon>201907221214065_UpdateMessageModelAddTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221539432_UpdateMessagesPropertyIsReaded.resx">
+      <DependentUpon>201907221539432_UpdateMessagesPropertyIsReaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231841553_UpdateMessagesDateOfReadingNullable.resx">
+      <DependentUpon>201907231841553_UpdateMessagesDateOfReadingNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231854358_UpdateMessagesDatesAreDateTime2Type.resx">
+      <DependentUpon>201907231854358_UpdateMessagesDatesAreDateTime2Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907261255123_deleteDataTime2FromMessageModel.resx">
+      <DependentUpon>201907261255123_deleteDataTime2FromMessageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908011455380_MessageModelAddedFlagsAboutDeleted.resx">
+      <DependentUpon>201908011455380_MessageModelAddedFlagsAboutDeleted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061104193_UserAddPasswordSalt.resx">
+      <DependentUpon>201908061104193_UserAddPasswordSalt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908061124163_UserChangePasswordToByte.resx">
+      <DependentUpon>201908061124163_UserChangePasswordToByte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261818315_AddQuantityToStatesTable.resx">
+      <DependentUpon>201909261818315_AddQuantityToStatesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261825138_AddProductToStatesTable.resx">
+      <DependentUpon>201909261825138_AddProductToStatesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resorces\Pictures\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReleaseNotes.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

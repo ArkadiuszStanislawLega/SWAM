@@ -1,14 +1,7 @@
-﻿using SWAM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using SWAM;
-using System.Security;
-using SWAM.Exceptions;
+﻿using SWAM.Models.User;
 using SWAM.Cryptography;
+using System;
+using System.Windows;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {

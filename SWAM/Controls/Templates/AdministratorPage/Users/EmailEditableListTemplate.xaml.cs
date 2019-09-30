@@ -1,7 +1,9 @@
 ﻿using SWAM.Exceptions;
 using SWAM.Models;
+using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
+using System;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -25,15 +27,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var email = new Email()
+                var email = new UserEmailAddress()
                 {
-                    AddressEmail = this.NewEmail.Text,
-                    UserId = user.Id
+                    AddressEmail = this.NewEmail.Text
+                    //TODO: Add edit note
                 };
 
                 if (email != null)
                 {
-                    Email.AddEmail(email);
+                    EmailAddress.AddUserAddressEmail(user, email);
                     RefreshEmailsList();
                     InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
                 }
@@ -50,7 +52,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var userEmails = Email.GetUserEmails(user.Id);
+                var userEmails = EmailAddress.GetUserEmails(user.Id);
                 try
                 {
                     if (userEmails != null) Emails.ItemsSource = userEmails;

@@ -7,6 +7,7 @@ using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
+using SWAM.Models.User;
 using SWAM.Windows;
 
 namespace SWAM
@@ -31,7 +32,7 @@ namespace SWAM
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
             Permissions = UserType.Programmer,
-            Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
+            //Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
         };
         /// <summary>
         /// Visibile mode after user logged in or logged out.
@@ -122,6 +123,7 @@ namespace SWAM
         #region BasicConstructor
         public MainWindow()
         {
+
             InitializeComponent();
 
             ChangeContent(PagesUserControls.LoginPage);
@@ -341,7 +343,7 @@ namespace SWAM
         {
             if (LoggedInUser != null)
             {
-                int number = Message.CountUnreadedMessages(LoggedInUser.Id);
+                int number = Message.CountUnreadedMessages(LoggedInUser);
                 currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
             }
         }

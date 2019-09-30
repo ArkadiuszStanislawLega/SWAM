@@ -8,7 +8,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:mod="clr-namespace:SWAM.Models"
+             xmlns:mod="clr-namespace:SWAM.Models.Warehouse"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              MinHeight="200"
              mc:Ignorable="d" 

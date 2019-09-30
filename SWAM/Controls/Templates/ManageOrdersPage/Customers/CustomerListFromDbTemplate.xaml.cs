@@ -1,4 +1,5 @@
 ﻿using SWAM.Models;
+using SWAM.Models.Customer;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
