@@ -15,13 +15,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class UsersControlPanelTemplate : BasicUserControl
     {
-        #region Properties
-        /// <summary>
-        /// View model of item in users list.
-        /// </summary>
-        public static UsersListViewModel UserListViewModel { get; set; } = new UsersListViewModel();
-        #endregion
-
         #region Basic Constructor
         public UsersControlPanelTemplate()
         {
@@ -34,8 +27,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             RefreshUsersList();
             //Make filtr in user list ascending.
             UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
-            //Take userlist from database.
-            DataContext = UserListViewModel;
         }
         #endregion
 
@@ -43,7 +34,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <summary>
         /// Refreshing view model of users list.
         /// </summary>
-        public void RefreshUsersList() => UserListViewModel.Refresh();
+        public void RefreshUsersList() => UsersListViewModel.Instance.Refresh();
         #endregion
 
         #region CreateUserProfile
@@ -85,7 +76,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(UserListViewModel.UsersList);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(UsersListViewModel.Instance);
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
