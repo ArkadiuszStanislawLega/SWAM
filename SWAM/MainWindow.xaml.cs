@@ -6,6 +6,7 @@ using System.Windows.Media;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
+using SWAM.Models;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -339,12 +340,11 @@ namespace SWAM
         /// </summary>
         public static void RefreshMessagesButton()
         {
-            throw new NotImplementedException();
-            //if (LoggedInUser != null)
-            //{
-            //    int number = Message.CountUnreadedMessages(LoggedInUser.Id);
-            //    currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
-            //}
+            if (LoggedInUser != null)
+            {
+                int number = Message.CountUnreadedMessages(LoggedInUser);
+                currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+            }
         }
         #endregion
 

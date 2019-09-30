@@ -54,10 +54,10 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId">User id</param>
         /// <returns>List with user accesses to warehouses</returns>
-        public static IEnumerable<AccessUsersToWarehouses> GetUserAccesses(int userId)
+        public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
-            throw new NotImplementedException();
-            //context().AccessUsersToWarehouses.ToList().Where(u => u.UserId == userId);
+            var user = context().People.OfType<User.User>().FirstOrDefault(u => u.Id == userId);
+            return user.Accesess;
         }
         #endregion
         #region RemoveAccess
@@ -68,9 +68,7 @@ namespace SWAM.Models
         /// <returns>True - access has been removed, false - access Id is lower than 0.</returns>
         public static bool RemoveAccess(int accessId)
         {
-            throw new NotImplementedException();
-            /*
-            if (accessId > 0 )
+            if (accessId > 0)
             {
                 var removeAccss = context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
                 if (removeAccss != null)
@@ -81,7 +79,7 @@ namespace SWAM.Models
                 }
                 else return false;
             }
-            else return false;*/
+            else return false;
         }
         #endregion
         #region AddNewAccess
@@ -92,14 +90,15 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-            throw new NotImplementedException();
-            //if (accessUsersToWarehouses != null)
-            //{
-            //    context().AccessUsersToWarehouses.Add(accessUsersToWarehouses);
-            //    context().SaveChanges();
-            //    return true;
-            //}
-            //else return false;
+
+            if (accessUsersToWarehouses != null)
+            {
+                context().AccessUsersToWarehouses.Add(accessUsersToWarehouses);
+                if(context().SaveChanges() == 1)
+                    return true;
+            }
+
+            return false;
         }
         #endregion
 
@@ -109,10 +108,9 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
-        {
-            throw new NotImplementedException();
-            //context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
-            //context().SaveChanges();
+        { 
+            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
+            context().SaveChanges();
         }
         #endregion
         #region EditTypeOfAccess
@@ -122,9 +120,8 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditTypeOfAccess(UserType userType)
         {
-            throw new NotImplementedException();
-            //context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
-            //context().SaveChanges();
+            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
+            context().SaveChanges();
         }
         #endregion
     }

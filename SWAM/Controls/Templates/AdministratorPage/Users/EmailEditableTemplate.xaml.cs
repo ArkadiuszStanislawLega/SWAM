@@ -5,6 +5,7 @@ using SWAM.Strings;
 namespace SWAM.Controls.Templates.AdministratorPage
 {
     using SWAM.Exceptions;
+    using SWAM.Models.User;
     using System;
     using static SWAM.MainWindow;
     /// <summary>
@@ -67,20 +68,20 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             //Make sure that datacontext is email
-            if (DataContext is EmailAddress email)
+            if (DataContext is UserEmailAddress userEmailAddress)
             {
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)
                 {
                     //Show confirmation window about changes.
-                    this._confirmWindow.Show($"Czy na pewno chcesz usunąc adres email {email.AddressEmail}?", out bool isConfirmed, "Potwierdź usunięcie adresu email");
+                    this._confirmWindow.Show($"Czy na pewno chcesz usunąc adres email {userEmailAddress.AddressEmail}?", out bool isConfirmed, "Potwierdź usunięcie adresu email");
                     //If user confirmed in dialog window changes...
                     if (isConfirmed)
                     {
                         //Delete email in database and inform user about it.
-                        if (email.Delete())
+                        if (userEmailAddress.Delete())
                         {
-                            InformationToUser($"Usunięto adress email {email.AddressEmail}.");
+                            InformationToUser($"Usunięto adress email {userEmailAddress.AddressEmail}.");
                             try
                             {
                                 //Try refresh list with emails in user profile.

@@ -6,7 +6,6 @@ using SWAM.Exceptions;
 using System.Windows;
 using SWAM.Strings;
 using System.Data.Entity;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWAM.Models.User
 {
@@ -87,33 +86,32 @@ namespace SWAM.Models.User
         /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
         public static User TryLogIn(string name, string password)
         {
-            throw new NotImplementedException();
+            if (_context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
+            {
+                try
+                {
+                    if (userFinded.PasswordSalt == null)
+                        throw new PasswordSaltNullException();
+                    //Creating hashed password from user input...
+                    var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
 
-            //if (_context.Users.FirstOrDefault(u => u.Name == name) is User userFinded)
-            //{
-            //    try
-            //    {
-            //        if (userFinded.PasswordSalt == null)
-            //            throw new PasswordSaltNullException();
-            //        //Creating hashed password from user input...
-            //        var userPassword = Cryptography.CryptoService.ComputeHash(password, userFinded.PasswordSalt);
-
-            //        //Comparing created hashed password from input with hashed password from database.
-            //         if (userFinded.Password.SequenceEqual(userPassword))
-            //         {
-            //             return SWAM.MainWindow.SetLoggedInUser(_context.Users
-            //                 .Include(u => u.Accesess)
-            //                 .Include(u => u.Phones)
-            //                 .Include(u => u.EmailAddresses)
-            //                 .FirstOrDefault(u => u.Id == userFinded.Id));
-            //         }
-            //        throw new NotImplementedException();
-            //    }
-            //    catch (PasswordSaltNullException)
-            //    {
-            //        MessageBox.Show( $"{ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION} {ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION_TIP}", "Błąd",  MessageBoxButton.OK, MessageBoxImage.Information); }
-            //}
-            //return null;
+                    //Comparing created hashed password from input with hashed password from database.
+                    if (userFinded.Password.SequenceEqual(userPassword))
+                    {
+                        return SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
+                            .Include(u => u.Accesess)
+                            .Include(u => u.Phones)
+                            .Include(u => u.EmailAddresses)
+                            .FirstOrDefault(u => u.Id == userFinded.Id));
+                    }
+                    throw new NotImplementedException();
+                }
+                catch (PasswordSaltNullException)
+                {
+                    MessageBox.Show($"{ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION} {ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION_TIP}", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            return null;
         }
         #endregion
 
@@ -126,9 +124,8 @@ namespace SWAM.Models.User
         {
             if (user != null)
             {
-                throw new NotImplementedException();
-                //_context.Users.Add(user);
-                //_context.SaveChanges();
+                _context.People.Add(user);
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -139,9 +136,8 @@ namespace SWAM.Models.User
         /// <param name="name">New name of user.</param>
         public void ChangeName(string name)
         {
-            throw new NotImplementedException();
-            //_context.Users.FirstOrDefault(u => u.Id == this.Id).Name = name;
-            //_context.SaveChanges();
+            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Name = name;
+            _context.SaveChanges();
         }
         #endregion
         #region ChangePermissions
@@ -151,9 +147,8 @@ namespace SWAM.Models.User
         /// <param name="userType">New perminssion.</param>
         public void ChangePermissions(UserType userType)
         {
-            throw new NotImplementedException();
-            //_context.Users.FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
-            //_context.SaveChanges();
+            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
+            _context.SaveChanges();
         }
         #endregion
         #region ChangePassword
@@ -163,9 +158,8 @@ namespace SWAM.Models.User
         /// <param name="password">New password.</param>
         public void ChangePassword(byte[] password)
         {
-            throw new NotImplementedException();
-            //_context.Users.FirstOrDefault(u => u.Id == this.Id).Password = password;
-            //_context.SaveChanges();
+            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Password = password;
+            _context.SaveChanges();
         }
         #endregion
         #region GetUser
@@ -176,12 +170,12 @@ namespace SWAM.Models.User
         /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
         public static User GetUser(int userID)
         {
-            throw new NotImplementedException();
-            //User user = _context.Users.Find(userID);
-            //       // .Include(a => a.Accesess)
-            //      //  .Include(e => e.EmailAddresses)
-            //      //  .Include(p => p.Phones);
-            //return user;
+
+            //User user = _context.People.OfType<User>().FirstOrDefault(u => u.Id == userID);
+                                     //.Include(a => a.Accesess)
+                                     //.Include(e => e.EmailAddresses)
+                                     //.Include(p => p.Phones);
+            return _context.People.OfType<User>().FirstOrDefault(u => u.Id == userID);
         }
         #endregion
         #region ChangeExpiryDateOfTheBlockade
@@ -193,9 +187,8 @@ namespace SWAM.Models.User
         {
             if (dateTime != null)
             {
-                throw new NotImplementedException();
-                //_context.Users.FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
-                //_context.SaveChanges();
+                _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -208,9 +201,8 @@ namespace SWAM.Models.User
         {
             if (dateTime != null)
             {
-                throw new NotImplementedException();
-                //_context.Users.FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
-                //_context.SaveChanges();
+                _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
+                _context.SaveChanges();
             }
         }
         #endregion
@@ -221,9 +213,8 @@ namespace SWAM.Models.User
         /// <param name="statusOfUserAccount">New status of account.</param>
         public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
         {
-            throw new NotImplementedException();
-            //_context.Users.FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
-            //_context.SaveChanges();
+            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            _context.SaveChanges();
         }
         #endregion  
     }

@@ -11,6 +11,7 @@ namespace SWAM
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Address> Adresses { get; set; }
+        public virtual DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")

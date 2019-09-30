@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Data.Entity;
+using System.Linq;
+using SWAM.Models.User;
 
 namespace SWAM.Models
 {
@@ -23,7 +26,7 @@ namespace SWAM.Models
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
-        private static ApplicationDbContext _context 
+        protected static ApplicationDbContext _context 
         {
             get
             {
@@ -39,10 +42,8 @@ namespace SWAM.Models
         /// <param name="id">User id from database.</param>
         /// <returns>List with email addresses.</returns>
         public static IEnumerable<EmailAddress> GetUserEmails(int id)
-        {
-            throw new NotImplementedException();
-            //return _context.Emails.ToList().Where(u => u.Person.PersonId == id);
-        }
+            =>  _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == id).EmailAddresses;
+        
         #endregion
         #region GetEmailById
         /// <summary>
@@ -50,11 +51,10 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="emailId">Email id number in database</param>
         /// <returns>Email with given id number</returns>
-        public static EmailAddress GetEmailById(int emailId)
-        {
-            throw new NotImplementedException();
-            //return _context.Emails.FirstOrDefault(e => e.Id == emailId);
-        }
+        //public static EmailAddress GetEmailById(int emailId)
+        //{
+        //    return _context.Emails.FirstOrDefault(e => e.Id == emailId);
+        //}
         #endregion
 
         #region AddEmail
@@ -62,53 +62,34 @@ namespace SWAM.Models
         /// Add new email to database.
         /// </summary>
         /// <param name="email">New addres email.</param>
-        public static void AddEmail(EmailAddress email)
+        public static void AddUserAddressEmail(User.User user, UserEmailAddress email)
         {
-            throw new NotImplementedException();
-            //if (email != null)
-            //{
-            //    //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            //    _context.Emails.Add(email);
-            //    _context.SaveChanges();
-            //}
+            if (email != null && user != null)
+            {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
+                _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == user.Id).EmailAddresses.Add(email);
+                _context.SaveChanges();
+            }
         }
         #endregion
-        #region UpdateEmail
-        /// <summary>
-        /// Update in databse current address email.
-        /// </summary>
-        /// <param name="newEmail">New email address.</param>
-        public bool UpdateEmail(string newEmail)
-        {
-            throw new NotImplementedException();
-            //var currentEmail = _context.Emails.SingleOrDefault(e => e.Id == this.Id);
-            //if (currentEmail != null)
-            //{
-            //    //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            //    currentEmail.AddressEmail = newEmail;
-            //    _context.SaveChanges();
-            //    return true;
-            //}
-            //else return false;
-        }
-        #endregion
-        #region Delete
-        /// <summary>
-        /// Delete current email from database.
-        /// </summary>
-        public bool Delete()
-        {
-            throw new NotImplementedException();
-            //var currentEmail = _context.Emails.Where(p => p.Id == this.Id).First();
-            //if (currentEmail != null)
-            //{
-            //    //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            //    _context.Emails.Remove(currentEmail);
-            //    _context.SaveChanges();
-            //    return true;
-            //}
-            //else return false;
-        }
-        #endregion
+        //#region UpdateEmail
+        ///// <summary>
+        ///// Update in databse current address email.
+        ///// </summary>
+        ///// <param name="newEmail">New email address.</param>
+        //public bool UpdateEmail(string newEmail)
+        //{
+        //    var currentEmail = _context.Emails.SingleOrDefault(e => e.Id == this.Id);
+        //    if (currentEmail != null)
+        //    {
+        //        //TODO: try - catch block is needed ... when excetion will be catch than send false.
+        //        currentEmail.AddressEmail = newEmail;
+        //        _context.SaveChanges();
+        //        return true;
+        //    }
+        //    else return false;
+        //}
+        //#endregion
+
     }
 }

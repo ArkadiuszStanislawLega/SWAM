@@ -40,16 +40,17 @@ namespace SWAM.Models.ManageOrdersPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                throw new NotImplementedException();
-                //var customersList = context.Customers.Include(c => c.ResidentAddress).Include(c => c.Phones).ToList();
+                var customersList = context.People.OfType<Customer.Customer>()
+                    .Include(c => c.ResidentalAddress)
+                    .Include(c => c.Phone).ToList();
 
-                //if (customersList != null && _customersList.Count > 0)
-                //    _customersList.Clear();
+                if (customersList != null && _customersList.Count > 0)
+                    _customersList.Clear();
 
-                //foreach (var customer in customersList)
-                //{
-                //    _customersList.Add(customer);
-                //}
+                foreach (var customer in customersList)
+                {
+                    _customersList.Add(customer);
+                }
             }
         }
         #endregion
