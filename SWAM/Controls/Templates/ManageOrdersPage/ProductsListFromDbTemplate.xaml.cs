@@ -19,14 +19,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
         private List<Product> GetProductListFromUserWarehouse()
         {
-            throw new NotImplementedException();
-            //var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
-            //if (accessUsersToWarehouses != null)
-            //{
-            //    var product = new Product();
-            //    return product.GetProductsFromWarehouse(accessUsersToWarehouses.UserId);
-            //}
-            //return null;
+            var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
+            if (accessUsersToWarehouses != null)
+            {
+                return Product.GetProductsFromWarehouse(accessUsersToWarehouses.User.Id);
+            }
+            return null;
         }
 
         private void NumberRowIteration(object sender, DataGridRowEventArgs e)

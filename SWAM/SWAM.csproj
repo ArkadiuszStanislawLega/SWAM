@@ -137,6 +137,10 @@
     <Compile Include="Migrations\201909301216009_UpdateModels.Designer.cs">
       <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs" />
+    <Compile Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.Designer.cs">
+      <DependentUpon>201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
@@ -571,6 +575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909301216009_UpdateModels.resx">
       <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.resx">
+      <DependentUpon>201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

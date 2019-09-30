@@ -7,11 +7,12 @@ namespace SWAM
 {
     public class ApplicationDbContext : DbContext
     {
-        public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<Address> Adresses { get; set; }
-        public virtual DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<Address> Adresses { get; set; }
+        public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
+        public DbSet<State> States { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")

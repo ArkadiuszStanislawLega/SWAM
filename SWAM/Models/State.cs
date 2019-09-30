@@ -31,8 +31,11 @@ namespace SWAM.Models
         /// </summary>
         public int Booked { get; set; }
         public int Quantity { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+        public int WarehouseId { get; set; }
+        public Warehouse.Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
-        public Warehouse.Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
     }
 }

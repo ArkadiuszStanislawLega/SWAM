@@ -43,6 +43,10 @@ namespace SWAM.Models
         /// </summary>
         public decimal Price { get; set; }
         /// <summary>
+        /// Products in state
+        /// </summary>
+        public IList<State> States { get; set; }
+        /// <summary>
         /// Items in warehouse orders where the product is used.
         /// </summary>
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get; set; }
@@ -64,7 +68,7 @@ namespace SWAM.Models
 
         public static void AddNewProduct(Product product)
         {
-            if(product != null)
+            if (product != null)
             {
                 context.Products.Add(product);
             }
@@ -72,7 +76,7 @@ namespace SWAM.Models
 
         public static void EditProduct(Product product)
         {
-            if(product != null)
+            if (product != null)
             {
                 var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
 
@@ -89,17 +93,15 @@ namespace SWAM.Models
 
         public static void DeleteProduct(Product product)
         {
-            if(product != null)
+            if (product != null)
             {
                 context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
                 context.SaveChanges();
             }
         }
 
-        public static IList<Product> AllProducts() =>  context.Products.ToList();
-        
+        public static List<Product> AllProducts() => context.Products.ToList();
 
-
-
+        public static List<Product> GetProductsFromWarehouse(int warehouseId) => context.States.Include(s => s.Product).Include(s => s.Warehouse).Where(p => p.WarehouseId == warehouseId).Select(s => s.Product).ToList();
     }
 }
