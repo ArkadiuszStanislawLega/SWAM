@@ -78,7 +78,7 @@
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
                 <temp:AddressTemplate x:Name="Address"
-                               DataContext="{Binding Address}" 
+                               DataContext="{Binding WarehouseAddress}" 
                                Grid.Column="0"/>
                 <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
              Grid.Column="1"/>
