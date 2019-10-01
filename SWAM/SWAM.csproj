@@ -130,9 +130,9 @@
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201910011536054_InitialModel.cs" />
-    <Compile Include="Migrations\201910011536054_InitialModel.Designer.cs">
-      <DependentUpon>201910011536054_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201910011620414_InitialModel.cs" />
+    <Compile Include="Migrations\201910011620414_InitialModel.Designer.cs">
+      <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
@@ -144,7 +144,6 @@
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
-    <Compile Include="Models\PeopleAddress.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\ProductListViewModel\ProductListViewModel.cs" />
     <Compile Include="Models\User\UserEmailAddress.cs" />
@@ -563,8 +562,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910011536054_InitialModel.resx">
-      <DependentUpon>201910011536054_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910011620414_InitialModel.resx">
+      <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

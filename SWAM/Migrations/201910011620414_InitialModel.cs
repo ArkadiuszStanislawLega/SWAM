@@ -131,12 +131,8 @@ namespace SWAM.Migrations
                         HouseNumber = c.String(),
                         ApartmentNumber = c.String(),
                         PostCode = c.String(),
-                        Discriminator = c.String(maxLength: 128),
-                        Person_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.People", t => t.Person_Id)
-                .Index(t => t.Person_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.CustomerOrderPositions",
@@ -388,7 +384,6 @@ namespace SWAM.Migrations
             DropForeignKey("dbo.ExternalSuppliers", "Id", "dbo.People");
             DropForeignKey("dbo.Customers", "Id", "dbo.People");
             DropForeignKey("dbo.Couriers", "Id", "dbo.CouriersPhones");
-            DropForeignKey("dbo.Addresses", "Person_Id", "dbo.People");
             DropForeignKey("dbo.AccessUsersToWarehouses", "Warehouse_Id", "dbo.Warehouses");
             DropForeignKey("dbo.WarehouseOrders", "Warehouse_Id", "dbo.Warehouses");
             DropForeignKey("dbo.Warehouses", "Id", "dbo.WarehouseAddress");
@@ -435,7 +430,6 @@ namespace SWAM.Migrations
             DropIndex("dbo.CustomerOrderPositions", new[] { "State_Id" });
             DropIndex("dbo.CustomerOrderPositions", new[] { "Product_Id" });
             DropIndex("dbo.CustomerOrderPositions", new[] { "CustomerOrder_Id" });
-            DropIndex("dbo.Addresses", new[] { "Person_Id" });
             DropIndex("dbo.CustomerOrders", new[] { "Warehouse_Id" });
             DropIndex("dbo.CustomerOrders", new[] { "User_Id" });
             DropIndex("dbo.CustomerOrders", new[] { "Customer_Id" });
