@@ -29,6 +29,7 @@ namespace SWAM
             modelBuilder.Configurations.Add(new ExternalSupplierConfiguration());
             modelBuilder.Configurations.Add(new MessageConfiguration());
             modelBuilder.Configurations.Add(new PhoneConfiguration());
+            modelBuilder.Configurations.Add(new PersonConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
             modelBuilder.Configurations.Add(new WarehouseConfiguration());
             modelBuilder.Configurations.Add(new WarehouseOrderConfiguration());

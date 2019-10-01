@@ -7,11 +7,11 @@ namespace SWAM.Models.Customer
     public class Customer : Person
     {
         /// <summary>
-        /// Customer surname.
+        /// customer's lastname
         /// </summary>
         public string Surname { get; set; }
         /// <summary>
-        /// customer phone number.
+        /// customer's phone number.
         /// </summary>
         public CustomerPhone Phone { get; set; }
         /// <summary>

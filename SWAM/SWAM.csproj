@@ -123,23 +123,16 @@
     <Compile Include="EntityConfiguration\EmailAddressConfiguration.cs" />
     <Compile Include="EntityConfiguration\ExternalSupplierConfiguration.cs" />
     <Compile Include="EntityConfiguration\MessageConfiguration.cs" />
+    <Compile Include="EntityConfiguration\PersonConfiguration.cs" />
     <Compile Include="EntityConfiguration\PhoneConfiguration.cs" />
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="EntityConfiguration\WarehouseConfiguration.cs" />
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201909301024482_Initial.cs" />
-    <Compile Include="Migrations\201909301024482_Initial.Designer.cs">
-      <DependentUpon>201909301024482_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909301216009_UpdateModels.cs" />
-    <Compile Include="Migrations\201909301216009_UpdateModels.Designer.cs">
-      <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs" />
-    <Compile Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.Designer.cs">
-      <DependentUpon>201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs</DependentUpon>
+    <Compile Include="Migrations\201910011536054_InitialModel.cs" />
+    <Compile Include="Migrations\201910011536054_InitialModel.Designer.cs">
+      <DependentUpon>201910011536054_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
@@ -570,14 +563,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201909301024482_Initial.resx">
-      <DependentUpon>201909301024482_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909301216009_UpdateModels.resx">
-      <DependentUpon>201909301216009_UpdateModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.resx">
-      <DependentUpon>201909301722589_AddOneToManyRelationshipBetweenProductsAndStates.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910011536054_InitialModel.resx">
+      <DependentUpon>201910011536054_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3,7 +3,7 @@ namespace SWAM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialModel : DbMigration
     {
         public override void Up()
         {
@@ -31,7 +31,7 @@ namespace SWAM.Migrations
                 "dbo.People",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
@@ -171,6 +171,23 @@ namespace SWAM.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.States",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Available = c.Int(nullable: false),
+                        Booked = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        ProductId = c.Int(nullable: false),
+                        WarehouseId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .ForeignKey("dbo.Warehouses", t => t.WarehouseId, cascadeDelete: true)
+                .Index(t => t.ProductId)
+                .Index(t => t.WarehouseId);
+            
+            CreateTable(
                 "dbo.WarehouseOrderPositions",
                 c => new
                     {
@@ -187,19 +204,6 @@ namespace SWAM.Migrations
                 .Index(t => t.Product_Id)
                 .Index(t => t.State_Id)
                 .Index(t => t.WarehouseOrder_Id);
-            
-            CreateTable(
-                "dbo.States",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Available = c.Int(nullable: false),
-                        Booked = c.Int(nullable: false),
-                        Warehouse_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Warehouses", t => t.Warehouse_Id)
-                .Index(t => t.Warehouse_Id);
             
             CreateTable(
                 "dbo.WarehouseOrders",
@@ -393,9 +397,10 @@ namespace SWAM.Migrations
             DropForeignKey("dbo.WarehouseOrderPositions", "WarehouseOrder_Id", "dbo.WarehouseOrders");
             DropForeignKey("dbo.WarehouseOrders", "ExternalSupplayer_Id", "dbo.ExternalSuppliers");
             DropForeignKey("dbo.WarehouseOrderPositions", "State_Id", "dbo.States");
-            DropForeignKey("dbo.States", "Warehouse_Id", "dbo.Warehouses");
-            DropForeignKey("dbo.CustomerOrderPositions", "State_Id", "dbo.States");
             DropForeignKey("dbo.WarehouseOrderPositions", "Product_Id", "dbo.Products");
+            DropForeignKey("dbo.States", "WarehouseId", "dbo.Warehouses");
+            DropForeignKey("dbo.States", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.CustomerOrderPositions", "State_Id", "dbo.States");
             DropForeignKey("dbo.CustomerOrderPositions", "Product_Id", "dbo.Products");
             DropForeignKey("dbo.CustomerOrderPositions", "CustomerOrder_Id", "dbo.CustomerOrders");
             DropForeignKey("dbo.CustomerOrders", "Customer_Id", "dbo.Customers");
@@ -422,10 +427,11 @@ namespace SWAM.Migrations
             DropIndex("dbo.Couriers", new[] { "Id" });
             DropIndex("dbo.WarehouseOrders", new[] { "Warehouse_Id" });
             DropIndex("dbo.WarehouseOrders", new[] { "ExternalSupplayer_Id" });
-            DropIndex("dbo.States", new[] { "Warehouse_Id" });
             DropIndex("dbo.WarehouseOrderPositions", new[] { "WarehouseOrder_Id" });
             DropIndex("dbo.WarehouseOrderPositions", new[] { "State_Id" });
             DropIndex("dbo.WarehouseOrderPositions", new[] { "Product_Id" });
+            DropIndex("dbo.States", new[] { "WarehouseId" });
+            DropIndex("dbo.States", new[] { "ProductId" });
             DropIndex("dbo.CustomerOrderPositions", new[] { "State_Id" });
             DropIndex("dbo.CustomerOrderPositions", new[] { "Product_Id" });
             DropIndex("dbo.CustomerOrderPositions", new[] { "CustomerOrder_Id" });
@@ -453,8 +459,8 @@ namespace SWAM.Migrations
             DropTable("dbo.Customers");
             DropTable("dbo.Couriers");
             DropTable("dbo.WarehouseOrders");
-            DropTable("dbo.States");
             DropTable("dbo.WarehouseOrderPositions");
+            DropTable("dbo.States");
             DropTable("dbo.Products");
             DropTable("dbo.CustomerOrderPositions");
             DropTable("dbo.Addresses");
