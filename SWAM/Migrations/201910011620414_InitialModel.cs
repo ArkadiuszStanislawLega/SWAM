@@ -81,7 +81,7 @@ namespace SWAM.Migrations
                 "dbo.Warehouses",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Height = c.Long(nullable: false),
                         Width = c.Long(nullable: false),
@@ -124,7 +124,7 @@ namespace SWAM.Migrations
                 "dbo.Addresses",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Country = c.String(),
                         City = c.String(),
                         Street = c.String(),
