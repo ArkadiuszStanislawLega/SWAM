@@ -10,6 +10,7 @@ namespace SWAM
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<WarehouseAddress> WarehouseAddresses { get; set; }
         public DbSet<Address> Adresses { get; set; }
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<State> States { get; set; }

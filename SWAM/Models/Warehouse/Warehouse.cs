@@ -42,6 +42,7 @@ namespace SWAM.Models.Warehouse
         /// Maximum total weight of products in the warehouse.
         /// </summary>
         public long AcceptableWeight { get; set; }
+        public int WarehouseAddressId { get; set; }
         /// <summary>
         /// Warehouse address.
         /// </summary>

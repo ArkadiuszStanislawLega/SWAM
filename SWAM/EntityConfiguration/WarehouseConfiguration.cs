@@ -13,8 +13,8 @@ namespace SWAM.EntityConfiguration
             Property(p => p.Id)
                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
-            HasRequired(w => w.WarehouseAddress)
-                .WithRequiredDependent(a => a.Warehouse);
+            HasOptional(w => w.WarehouseAddress)
+                .WithOptionalPrincipal(a => a.Warehouse);
 
             HasMany(w => w.Accesses);
             HasMany(w => w.CustomerOrders);
