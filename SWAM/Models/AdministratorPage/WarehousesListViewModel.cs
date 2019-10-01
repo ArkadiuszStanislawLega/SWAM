@@ -9,11 +9,16 @@ namespace SWAM.Models.AdministratorPage
 {
     public class WarehousesListViewModel : UserControl
     {
-        private ObservableCollection<Warehouse.Warehouse> _warehousesListViewModel = new ObservableCollection<Warehouse.Warehouse>();
+        private readonly ObservableCollection<Warehouse.Warehouse> _warehousesListViewModel = new ObservableCollection<Warehouse.Warehouse>();
 
         public ObservableCollection<Warehouse.Warehouse> WarehousesList { get => this._warehousesListViewModel; }
 
-        public int Size => this._warehousesListViewModel.Count;
+        #region Singletone Pattern
+        static WarehousesListViewModel() => _instance.Refresh();
+
+        private static readonly WarehousesListViewModel _instance = new WarehousesListViewModel();
+        public static WarehousesListViewModel Instance => _instance;
+        #endregion 
 
         public void AddWarehouse(Warehouse.Warehouse warehouse)
         {
@@ -35,31 +40,30 @@ namespace SWAM.Models.AdministratorPage
 
         public void Refresh()
         {
-            //this._warehousesListViewModel.Clear();
+            this._warehousesListViewModel.Clear();
 
-            //IList<Warehouse> dbWarehouses;
-            //using (ApplicationDbContext application = new ApplicationDbContext())
-            //{
-            //    dbWarehouses = application.Warehouses
-            //        .Include(a => a.Address)
-            //        .Include(co => co.CustomerOrders)
-            //        .Include(u => u.Accesses)
-            //        .ToList();
+            IList<Warehouse.Warehouse> dbWarehouses;
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                dbWarehouses = context.Warehouses
+                    .Include(a => a.WarehouseAddress)
+                    .Include(co => co.CustomerOrders)
+                    .Include(u => u.Accesses)
+                    .ToList();
 
-            //    //TODO: Make this more pro!!
-            //    foreach(Warehouse w  in dbWarehouses)
-            //    {
-            //        foreach(AccessUsersToWarehouses a in w.Accesses)
-            //        {
-            //            a.User = User.GetUser(a.UserId);
-            //            a.Administrator = User.GetUser(a.AdministratorId);
-            //        }
-            //    }
-            //};
+                //TODO: Make this more pro!!
+                foreach (Warehouse.Warehouse w in dbWarehouses)
+                {
+                    foreach (AccessUsersToWarehouses a in w.Accesses)
+                    {
+                        a.User = User.User.GetUser(a.User.Id);
+                        a.Administrator = User.User.GetUser(a.Administrator.Id);
+                    }
+                }
+            };
 
-            //foreach (Warehouse u in dbWarehouses)
-            //    this._warehousesListViewModel.Add(u);
-            throw new NotImplementedException();
+            foreach (Warehouse.Warehouse u in dbWarehouses)
+                this._warehousesListViewModel.Add(u);
         }
 
         public void RemoveAll()
@@ -67,4 +71,5 @@ namespace SWAM.Models.AdministratorPage
             _warehousesListViewModel.Clear();
         }
     }
+
 }
