@@ -70,7 +70,7 @@ namespace SWAM
         {
             InitializeComponent();
             DataContext = this._productList;
-
+			_productList.Refresh();
             if(this._productList.Products.Count > 0)
                 this.ProductProfile.DataContext = this._productList.Products[0];
         }
@@ -149,8 +149,8 @@ namespace SWAM
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             this._currentOperation = Operation.add;
-
-            this.EditedName.Text = string.Empty;
+			this.ProductProfile.DataContext = null;
+			this.EditedName.Text = string.Empty;
             this.EditedLenght.Text = string.Empty;
             this.EditedHeight.Text = string.Empty;
             this.EditedWidth.Text = string.Empty;
