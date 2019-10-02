@@ -94,6 +94,9 @@
     <Compile Include="Controls\Pages\MessagesPage.xaml.cs">
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml.cs">
+      <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
       <DependentUpon>FindUserTemplate.xaml</DependentUpon>
     </Compile>
@@ -262,6 +265,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
