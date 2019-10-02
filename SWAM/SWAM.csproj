@@ -135,13 +135,9 @@
     <Compile Include="Migrations\201910011620414_InitialModel.Designer.cs">
       <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910011657027_AddCompositeKeyToWarehouseAddress.cs" />
-    <Compile Include="Migrations\201910011657027_AddCompositeKeyToWarehouseAddress.Designer.cs">
-      <DependentUpon>201910011657027_AddCompositeKeyToWarehouseAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910011712481_UpdateWarehouseAddressOptional.cs" />
-    <Compile Include="Migrations\201910011712481_UpdateWarehouseAddressOptional.Designer.cs">
-      <DependentUpon>201910011712481_UpdateWarehouseAddressOptional.cs</DependentUpon>
+    <Compile Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.cs" />
+    <Compile Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.Designer.cs">
+      <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
@@ -574,11 +570,8 @@
     <EmbeddedResource Include="Migrations\201910011620414_InitialModel.resx">
       <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910011657027_AddCompositeKeyToWarehouseAddress.resx">
-      <DependentUpon>201910011657027_AddCompositeKeyToWarehouseAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910011712481_UpdateWarehouseAddressOptional.resx">
-      <DependentUpon>201910011712481_UpdateWarehouseAddressOptional.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.resx">
+      <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using SWAM.EntityConfiguration;
 using SWAM.Models;
 using SWAM.Models.Warehouse;
@@ -18,6 +19,7 @@ namespace SWAM
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

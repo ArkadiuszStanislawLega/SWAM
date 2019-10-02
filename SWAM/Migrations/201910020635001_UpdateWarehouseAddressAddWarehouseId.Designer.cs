@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateWarehouseAddressOptional : IMigrationMetadata
+    public sealed partial class UpdateWarehouseAddressAddWarehouseId : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateWarehouseAddressOptional));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateWarehouseAddressAddWarehouseId));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910011712481_UpdateWarehouseAddressOptional"; }
+            get { return "201910020635001_UpdateWarehouseAddressAddWarehouseId"; }
         }
         
         string IMigrationMetadata.Source

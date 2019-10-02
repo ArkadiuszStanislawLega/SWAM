@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddCompositeKeyToWarehouseAddress : IMigrationMetadata
+    public sealed partial class UpdateWarehouseModelCompositeKey : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCompositeKeyToWarehouseAddress));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateWarehouseModelCompositeKey));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910011657027_AddCompositeKeyToWarehouseAddress"; }
+            get { return "201910021511520_UpdateWarehouseModelCompositeKey"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,8 +1,9 @@
 namespace SWAM.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddCompositeKeyToWarehouseAddress : DbMigration
+    public partial class UpdateWarehouseAddressAddWarehouseId : DbMigration
     {
         public override void Up()
         {
