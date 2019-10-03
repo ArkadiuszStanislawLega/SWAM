@@ -209,6 +209,25 @@ namespace SWAM.Models.User
             _context.SaveChanges();
         }
         #endregion
+
+        #region AddEmail
+        /// <summary>
+        /// Add new email to database.
+        /// </summary>
+        /// <param name="email">New addres email.</param>
+        public void AddUserAddressEmail(UserEmailAddress email)
+        {
+            if (email != null)
+            {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
+                _context.People.OfType<User>()
+                    .Include(u => u.EmailAddresses)
+                    .FirstOrDefault(u => u.Id == this.Id)
+                    .EmailAddresses.Add(email);
+                _context.SaveChanges();
+            }
+        }
+        #endregion
         #region ChangeEmailAddress
         /// <summary>
         /// Change specific email address of user to new one.
@@ -246,7 +265,21 @@ namespace SWAM.Models.User
             .First(u => u.Id == this.Id)
             .EmailAddresses.First(e => e.Id == emailAddressId);
         #endregion
-
+        #region GetUserEmails
+        /// <summary>
+        /// Make list with email addresses of specific user.
+        /// </summary>
+        /// <param name="id">User id from database.</param>
+        /// <returns>List with email addresses.</returns>
+        public IList<UserEmailAddress> GetUserEmails()
+        {
+            User user = _context.People
+                        .OfType<User>()
+                        .Include(u => u.EmailAddresses)
+                        .First(u => u.Id == this.Id);
+            return user.EmailAddresses;
+        }
+        #endregion
 
         #region AllUsersList
         /// <summary>

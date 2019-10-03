@@ -15,12 +15,14 @@ namespace SWAM.Models.User
         public bool Delete()
         {
             //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            _context.People.OfType<User>().FirstOrDefault(u => u.Id == User.Id).EmailAddresses.Remove(this);
+            var emailAddresses = _context.EmailAddresses.First(e => e.Id == this.Id);
 
-            if (_context.SaveChanges() == 1)
+            _context.EmailAddresses.Remove(emailAddresses);
+
+            if (_context.SaveChanges() == 2)
                 return true;
-            else
-                return false;
+
+            return false;
         }
         #endregion
     }

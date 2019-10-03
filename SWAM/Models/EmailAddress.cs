@@ -34,33 +34,5 @@ namespace SWAM.Models
                 return DB_CONTEXT;
             }
         }
-
-        #region GetUserEmails
-        /// <summary>
-        /// Make list with email addresses of specific user.
-        /// </summary>
-        /// <param name="id">User id from database.</param>
-        /// <returns>List with email addresses.</returns>
-        public static IEnumerable<EmailAddress> GetUserEmails(int id)
-            =>  _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == id).EmailAddresses;
-
-        #endregion
-
-        #region AddEmail
-        /// <summary>
-        /// Add new email to database.
-        /// </summary>
-        /// <param name="email">New addres email.</param>
-        public static void AddUserAddressEmail(User.User user, UserEmailAddress email)
-        {
-            if (email != null && user != null)
-            {
-                //TODO: try - catch block is needed ... when excetion will be catch than send false.
-                _context.People.OfType<User.User>().Include(u => u.EmailAddresses).FirstOrDefault(u => u.Id == user.Id).EmailAddresses.Add(email);
-                _context.SaveChanges();
-            }
-        }
-        #endregion
-
     }
 }

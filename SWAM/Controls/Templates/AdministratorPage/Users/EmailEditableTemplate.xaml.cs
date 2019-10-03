@@ -41,8 +41,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     if (isConfirmed)
                     {
                         //Update email in database and inform user about it.
-                        if (email.User.ChangeEmailAddress(email, EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
-                        else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                        if (email.User.ChangeEmailAddress(email, EditEmail.Text))
+                            InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                        else
+                            InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                     }
                     else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
                 }
@@ -78,8 +80,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
                             {
                                 //Try refresh list with emails in user profile.
                                 var emailList = FindParent<EmailEditableListTemplate>(this);
-                                if (emailList != null) emailList.RefreshEmailsList();
-                                else throw new RefreshUserEmailListException();
+                                if (emailList != null)
+                                    emailList.RefreshEmailsList();
+                                else
+                                    throw new RefreshUserEmailListException();
                             }
                             catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); };
                         }
