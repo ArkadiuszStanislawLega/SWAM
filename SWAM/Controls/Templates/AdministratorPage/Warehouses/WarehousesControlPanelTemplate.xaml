@@ -6,6 +6,7 @@
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
+             xmlns:lvm="clr-namespace:SWAM.Models.AdministratorPage"
              mc:Ignorable="d" 
              VerticalContentAlignment="Top"
              VerticalAlignment="Stretch"
@@ -139,6 +140,7 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Name="WarehouseListScroll">
                         <ItemsControl Name="WarehousesList"  
                                       HorizontalAlignment="Left"
+                                      DataContext="{x:Static lvm:WarehousesListViewModel.Instance}"
                                       ItemsSource="{Binding WarehousesList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
