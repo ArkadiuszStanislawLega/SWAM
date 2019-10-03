@@ -108,8 +108,17 @@ namespace SWAM.Models
             if (accessUsersToWarehouses != null)
             {
                 var user = context.People.OfType<User.User>().FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
-                user.Accesess.Add(accessUsersToWarehouses);
-                if(context.SaveChanges() == 1)
+                if (user.Accesess != null)
+                    user.Accesess.Add(accessUsersToWarehouses);            
+                else
+                {
+                    user.Accesess = new List<AccessUsersToWarehouses>
+                    {
+                        accessUsersToWarehouses
+                    };
+                }
+
+                if (context.SaveChanges() == 1)
                     return true;
             }
 
