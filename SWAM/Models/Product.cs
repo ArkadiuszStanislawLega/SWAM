@@ -71,7 +71,8 @@ namespace SWAM.Models
             if (product != null)
             {
                 context.Products.Add(product);
-            }
+				context.SaveChanges();
+			}
         }
 
         public static void EditProduct(Product product)
@@ -86,7 +87,6 @@ namespace SWAM.Models
                 dbProduct.Width = product.Width;
                 dbProduct.Height = product.Height;
                 dbProduct.Price = product.Price;
-
                 context.SaveChanges();
             }
         }
