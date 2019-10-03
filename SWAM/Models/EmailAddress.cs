@@ -43,18 +43,7 @@ namespace SWAM.Models
         /// <returns>List with email addresses.</returns>
         public static IEnumerable<EmailAddress> GetUserEmails(int id)
             =>  _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == id).EmailAddresses;
-        
-        #endregion
-        #region GetEmailById
-        /// <summary>
-        /// Getting from database email with specific number id from database.
-        /// </summary>
-        /// <param name="emailId">Email id number in database</param>
-        /// <returns>Email with given id number</returns>
-        //public static EmailAddress GetEmailById(int emailId)
-        //{
-        //    return _context.Emails.FirstOrDefault(e => e.Id == emailId);
-        //}
+
         #endregion
 
         #region AddEmail
@@ -67,29 +56,11 @@ namespace SWAM.Models
             if (email != null && user != null)
             {
                 //TODO: try - catch block is needed ... when excetion will be catch than send false.
-                _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == user.Id).EmailAddresses.Add(email);
+                _context.People.OfType<User.User>().Include(u => u.EmailAddresses).FirstOrDefault(u => u.Id == user.Id).EmailAddresses.Add(email);
                 _context.SaveChanges();
             }
         }
         #endregion
-        //#region UpdateEmail
-        ///// <summary>
-        ///// Update in databse current address email.
-        ///// </summary>
-        ///// <param name="newEmail">New email address.</param>
-        //public bool UpdateEmail(string newEmail)
-        //{
-        //    var currentEmail = _context.Emails.SingleOrDefault(e => e.Id == this.Id);
-        //    if (currentEmail != null)
-        //    {
-        //        //TODO: try - catch block is needed ... when excetion will be catch than send false.
-        //        currentEmail.AddressEmail = newEmail;
-        //        _context.SaveChanges();
-        //        return true;
-        //    }
-        //    else return false;
-        //}
-        //#endregion
 
     }
 }

@@ -8,8 +8,6 @@ namespace SWAM.EntityConfiguration
         public EmailAddressConfiguration()
         {
             ToTable("EmailAddresses");
-
-
         }
     }
 }

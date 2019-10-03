@@ -1,12 +1,11 @@
 ﻿using SWAM.Models;
 using System.Windows;
 using SWAM.Strings;
+using SWAM.Exceptions;
+using SWAM.Models.User;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using SWAM.Exceptions;
-    using SWAM.Models.User;
-    using System;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy EmailEditableTemplate.xaml
@@ -30,33 +29,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-            ////Make sure that datacontext is email
-            //if (DataContext is EmailAddress email)
-            //{
-            //    //Make sure confirm window is not null and is ready to show message for user.
-            //    if (this._confirmWindow != null)
-            //    {
-            //        //Take email from database to show user how this email look in database.
-            //        if (SWAM.Models.EmailAddress.GetEmailById(email.Id) is EmailAddress dbEmail)
-            //        {
-            //            //Show confirmation window about changes.
-            //            this._confirmWindow.Show($"Czy jesteś pewien że chcesz nadpisać {dbEmail.AddressEmail} i zastąpić go {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
-            //            //If user confirmed in dialog window changes...
-            //            if (isConfirmed)
-            //            {
-            //                //Update email in database and inform user about it.
-            //                if (email.UpdateEmail(EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.Person.Name}.");
-            //                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
-            //            }
-            //            else
-            //                DataContext = dbEmail;
-            //        }
-            //        else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
-            //    }
-            //    else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
-            //}
-            //else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+            //Make sure that datacontext is email
+            if (DataContext is UserEmailAddress email)
+            {
+                //Make sure confirm window is not null and is ready to show message for user.
+                if (this._confirmWindow != null)
+                {
+                    //Show confirmation window about changes.
+                    this._confirmWindow.Show($"Potwierdź zmianę adresu email na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                    //If user confirmed in dialog window changes...
+                    if (isConfirmed)
+                    {
+                        //Update email in database and inform user about it.
+                        if (email.User.ChangeEmailAddress(email, EditEmail.Text)) InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                        else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                    }
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
+                }
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CONFIRMATION_WINDOW_ERROR}", true);
+            }
+            else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region Delete_Click
