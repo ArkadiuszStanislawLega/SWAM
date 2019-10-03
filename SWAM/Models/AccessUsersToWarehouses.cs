@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -41,11 +42,13 @@ namespace SWAM.Models
 
         private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
-        private static ApplicationDbContext context()
+        private static ApplicationDbContext context
         {
             //TODO: Make all exceptions
-
-            return DB_CONTEXT;
+            get
+            {
+                return DB_CONTEXT;
+            }
 
         }
         #region GetUserAccesses
@@ -57,7 +60,7 @@ namespace SWAM.Models
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
             if (userId > 0)
-                return context().People.OfType<User.User>().FirstOrDefault(u => u.Id == userId).Accesess;
+                return context.People.OfType<User.User>().FirstOrDefault(u => u.Id == userId).Accesess;
             else
                 return null;
         }
@@ -69,7 +72,7 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public static AccessUsersToWarehouses GetUserAccess(int userId) => context().AccessUsersToWarehouses.SingleOrDefault(u => u.Id == userId);
+        public static AccessUsersToWarehouses GetUserAccess(int userId) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.Id == userId);
         #endregion
 
         #region RemoveAccess
@@ -82,11 +85,11 @@ namespace SWAM.Models
         {
             if (accessId > 0)
             {
-                var removeAccss = context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
+                var removeAccss = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
                 if (removeAccss != null)
                 {
-                    context().AccessUsersToWarehouses.Remove(removeAccss);
-                    context().SaveChanges();
+                    context.AccessUsersToWarehouses.Remove(removeAccss);
+                    context.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -102,11 +105,11 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-
             if (accessUsersToWarehouses != null)
             {
-                context().AccessUsersToWarehouses.Add(accessUsersToWarehouses);
-                if(context().SaveChanges() == 1)
+                var user = context.People.OfType<User.User>().FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
+                user.Accesess.Add(accessUsersToWarehouses);
+                if(context.SaveChanges() == 1)
                     return true;
             }
 
@@ -121,8 +124,8 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
         { 
-            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
-            context().SaveChanges();
+            context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
+            context.SaveChanges();
         }
         #endregion
         #region EditTypeOfAccess
@@ -132,8 +135,8 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditTypeOfAccess(UserType userType)
         {
-            context().AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
-            context().SaveChanges();
+            context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
+            context.SaveChanges();
         }
         #endregion
     }

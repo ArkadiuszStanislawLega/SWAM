@@ -78,31 +78,31 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void ConfirmAddAccess_Click(object sender, RoutedEventArgs e)
         {
-            //if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user && this.EditWarehouse.SelectedValue is Warehouse warehouse)
-            //{
-            //    var accessType = (Enumerators.UserType)this.EditUserPermissions.SelectedValue;
+            if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user && this.EditWarehouse.SelectedValue is Warehouse warehouse)
+            {
+                var accessType = (Enumerators.UserType)this.EditUserPermissions.SelectedValue;
 
-            //    if (AccessUsersToWarehouses.AddNewAccess(new AccessUsersToWarehouses()
-            //    {
-            //        UserId = user.Id,
-            //        AdministratorId = SWAM.MainWindow.LoggedInUser.Id,
-            //        TypeOfAccess = accessType,
-            //        WarehouseId = warehouse.Id,
-            //        DateOfGrantingAccess = DateTime.Now,
-            //        DateOfExpiredAcces = this.Calendar.SelectedDate
-            //    }))
-            //    {
-            //        InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
+                if (AccessUsersToWarehouses.AddNewAccess(new AccessUsersToWarehouses()
+                {
+                    User = user,
+                    Administrator = SWAM.MainWindow.LoggedInUser,
+                    TypeOfAccess = accessType,
+                    Warehouse = warehouse,
+                    DateOfGrantingAccess = DateTime.Now,
+                    DateOfExpiredAcces = this.Calendar.SelectedDate
+                }))
+                {
+                    InformationToUser($"Dodano nowe uprawnienia {accessType.ToString()} użytkownikowi {user.Name} do magazynu {warehouse.Name}.");
 
-            //        this.EditWarehouse.SelectedValue = null;
-            //        this.EditUserPermissions.SelectedValue = null;
-            //        this.Calendar.SelectedDate = null;
+                    this.EditWarehouse.SelectedValue = null;
+                    this.EditUserPermissions.SelectedValue = null;
+                    this.Calendar.SelectedDate = null;
 
-            //        RefreshParent();
-            //    }
-            //    else InformationToUser($"{ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
-            //}
-            //else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
+                    RefreshParent();
+                }
+                else InformationToUser($"{ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+            }
+            else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
             throw new NotImplementedException();
         }
         #endregion

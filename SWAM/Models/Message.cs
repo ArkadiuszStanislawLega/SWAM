@@ -228,7 +228,7 @@ namespace SWAM.Models
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == user.Id);
 
-                if (dbUser != null)
+                if (dbUser != null && dbUser.Messages != null)
                     return dbUser.Messages.Where(m => m.Receiver.Id == user.Id && !m.IsReaded).ToList().Count;
             }
              
