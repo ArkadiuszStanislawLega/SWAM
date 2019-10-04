@@ -18,8 +18,8 @@ namespace SWAM.EntityConfiguration
             HasRequired(c => c.Phone)
                 .WithRequiredPrincipal(c => c.Customer);
 
-            HasOptional(c => c.EmailAddress)
-                .WithOptionalPrincipal(e => e.Customer);
+            HasRequired(c => c.EmailAddress)
+                .WithRequiredPrincipal(e => e.Customer);
 
             HasMany(c => c.Orders);
         }

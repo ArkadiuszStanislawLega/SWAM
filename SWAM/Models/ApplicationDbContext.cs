@@ -2,6 +2,7 @@
 using System.Data.Entity.Migrations;
 using SWAM.EntityConfiguration;
 using SWAM.Models;
+using SWAM.Models.User;
 using SWAM.Models.Warehouse;
 
 namespace SWAM
@@ -13,6 +14,7 @@ namespace SWAM
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<WarehouseAddress> WarehouseAddresses { get; set; }
         public DbSet<Address> Adresses { get; set; }
+        public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<State> States { get; set; }
 

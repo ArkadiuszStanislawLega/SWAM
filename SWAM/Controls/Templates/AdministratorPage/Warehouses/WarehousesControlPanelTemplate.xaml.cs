@@ -10,6 +10,7 @@ using SWAM.Controls.Templates.AdministratorPage;
 using System.ComponentModel;
 using System;
 using SWAM.Models.Warehouse;
+using SWAM.Models.AdministratorPage;
 
 namespace SWAM.Templates.AdministratorPage
 {
@@ -20,8 +21,6 @@ namespace SWAM.Templates.AdministratorPage
     {
         public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
 
-        private Models.AdministratorPage.WarehousesListViewModel warhousesListViewModel { get; set; } = new Models.AdministratorPage.WarehousesListViewModel();
-
         public WarehousesControlPanelTemplate()
         {
             InitializeComponent();
@@ -30,11 +29,9 @@ namespace SWAM.Templates.AdministratorPage
         private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshList();
-
-            DataContext = warhousesListViewModel;
         }
 
-        public void RefreshList() => warhousesListViewModel.Refresh();
+        public void RefreshList() => WarehousesListViewModel.Instance.Refresh();
 
         #region ShowPrfile
         /// <summary>
@@ -88,7 +85,7 @@ namespace SWAM.Templates.AdministratorPage
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(warhousesListViewModel.WarehousesList);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(WarehousesListViewModel.Instance.WarehousesList);
             filter.Filter = warehouse =>
             {
                 Warehouse allWarehousesWhose = warehouse as Warehouse;

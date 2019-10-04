@@ -40,14 +40,16 @@ namespace SWAM.Models.ManageOrdersPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var customersList = context.People.OfType<Customer.Customer>()
+                var customers = context.People.OfType<Customer.Customer>()
                     .Include(c => c.ResidentalAddress)
-                    .Include(c => c.Phone).ToList();
+                    .Include(c => c.Phone)
+                    .Include(c => c.EmailAddress)
+                    .ToList();
 
-                if (customersList != null && _customersList.Count > 0)
+                if (customers != null && _customersList.Count > 0)
                     _customersList.Clear();
 
-                foreach (var customer in customersList)
+                foreach (var customer in customers)
                 {
                     _customersList.Add(customer);
                 }

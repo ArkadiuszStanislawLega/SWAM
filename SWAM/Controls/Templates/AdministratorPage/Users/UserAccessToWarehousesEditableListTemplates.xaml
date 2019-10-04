@@ -81,12 +81,13 @@
                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
             </Border.Background>
             <StackPanel>
-                <local:UserAccessToWarehousesListItemTemplate x:Name="AddNewAccess" Visibility="Collapsed"/>
+                <local:UserAccessToWarehousesListItemTemplate 
+                    x:Name="AddNewAccess" Visibility="Collapsed"/>
                 <!--#region List of user accesses-->
                 <ScrollViewer Name="ListScroll" 
                               VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Hidden">
-                    <ItemsControl  ItemsSource="{Binding UserListOfAccess}" Name="List">
+                    <ItemsControl  ItemsSource="{Binding Accesess}" Name="List">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

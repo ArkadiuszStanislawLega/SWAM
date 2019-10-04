@@ -3,7 +3,8 @@ using SWAM.Models;
 using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
-using System;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -35,7 +36,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 if (email != null)
                 {
-                    EmailAddress.AddUserAddressEmail(user, email);
+                    user.AddUserAddressEmail(email);
                     RefreshEmailsList();
                     InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
                 }
@@ -52,11 +53,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var userEmails = EmailAddress.GetUserEmails(user.Id);
                 try
                 {
-                    if (userEmails != null) Emails.ItemsSource = userEmails;
-                    else throw new RefreshUserEmailListException();
+                    //TODO: Try - catch block
+                    using(ApplicationDbContext context = new ApplicationDbContext())
+                    {
+                        var dbuser = context.People.OfType<User>().Include(u => u.EmailAddresses).First(u => u.Id == user.Id);
+                        DataContext = dbuser;
+                        Emails.ItemsSource = dbuser.EmailAddresses;
+                    }    
                 }
                 catch (RefreshUserEmailListException ex) { ex.ShowMessage(this); }
             }

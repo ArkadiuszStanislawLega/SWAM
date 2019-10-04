@@ -69,7 +69,6 @@ namespace SWAM.Models.User
                 return DB_CONTEXT;
             }
         }
-
         #region TryLogIn
         /// <summary>
         /// Looking for a specific user in the database by name. When it finds it, it checks that the hashed password matches the one in the database. 
@@ -162,15 +161,14 @@ namespace SWAM.Models.User
         /// </summary>
         /// <param name="userID">User number id in database.</param>
         /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
-        public static User GetUser(int userID)
-        {
-
-            //User user = _context.People.OfType<User>().FirstOrDefault(u => u.Id == userID);
-                                     //.Include(a => a.Accesess)
-                                     //.Include(e => e.EmailAddresses)
-                                     //.Include(p => p.Phones);
-            return _context.People.OfType<User>().FirstOrDefault(u => u.Id == userID);
-        }
+        public static User GetUser(int userID) 
+            => 
+                    _context.People.OfType<User>()
+                        .Include(u => u.Accesess)
+                        .Include(u => u.EmailAddresses)
+                        .Include(u => u.Phones)
+                        .First(u => u.Id == userID);
+        
         #endregion
         #region ChangeExpiryDateOfTheBlockade
         /// <summary>
@@ -210,9 +208,90 @@ namespace SWAM.Models.User
             _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
             _context.SaveChanges();
         }
-        #endregion  
+        #endregion
 
+        #region AddEmail
+        /// <summary>
+        /// Add new email to database.
+        /// </summary>
+        /// <param name="email">New addres email.</param>
+        public void AddUserAddressEmail(UserEmailAddress email)
+        {
+            if (email != null)
+            {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
+                _context.People.OfType<User>()
+                    .Include(u => u.EmailAddresses)
+                    .FirstOrDefault(u => u.Id == this.Id)
+                    .EmailAddresses.Add(email);
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+        #region ChangeEmailAddress
+        /// <summary>
+        /// Change specific email address of user to new one.
+        /// </summary>
+        /// <param name="editedEmailAddress">Edited email addres.</param>
+        /// <param name="emailAddress">New email address.</param>
+        /// <returns>True if the email address could be changed.</returns>
+        public bool ChangeEmailAddress (UserEmailAddress editedEmailAddress, string emailAddress) 
+        {
+            if (editedEmailAddress != null)
+            {
+                User dbEmailOwner = _context.People.OfType<User>().First(u => u.Id == editedEmailAddress.User.Id);
+                if (dbEmailOwner != null)
+                {
+                    if (dbEmailOwner.EmailAddresses != null)
+                    {
+                        dbEmailOwner.EmailAddresses.First(e => e.Id == editedEmailAddress.Id).AddressEmail = emailAddress;
+                        if (_context.SaveChanges() == 1)
+                            return true;
+                    }
+                }
+            }
 
-        public static IList<User> AllUsersList() => _context.People.OfType<User>().ToList();
+            return false;
+        }
+        #endregion
+        #region GetSpecificEmailAddress
+        /// <summary>
+        /// Retrieves the user's email address from the database after the address Id number.
+        /// </summary>
+        /// <param name="emailAddressId">Id Email Address.</param>
+        /// <returns>Specific user email address from database.</returns>
+        public UserEmailAddress GetSpecificEmailAddress(int emailAddressId) => _context.People.OfType<User>()
+            .Include(u => u.EmailAddresses)
+            .First(u => u.Id == this.Id)
+            .EmailAddresses.First(e => e.Id == emailAddressId);
+        #endregion
+        #region GetUserEmails
+        /// <summary>
+        /// Make list with email addresses of specific user.
+        /// </summary>
+        /// <param name="id">User id from database.</param>
+        /// <returns>List with email addresses.</returns>
+        public IList<UserEmailAddress> GetUserEmails()
+        {
+            User user = _context.People
+                        .OfType<User>()
+                        .Include(u => u.EmailAddresses)
+                        .First(u => u.Id == this.Id);
+            return user.EmailAddresses;
+        }
+        #endregion
+
+        #region AllUsersList
+        /// <summary>
+        /// Gets the complete list of users from the database.
+        /// </summary>
+        /// <returns>Full list of users from the database.</returns>
+        public static IList<User> AllUsersList() => _context
+            .People.OfType<User>()
+            .Include(u => u.Phones)
+            .Include(u => u.Accesess)
+            .Include(u => u.EmailAddresses)
+            .ToList();
+        #endregion
     }
 }
