@@ -43,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 {
                     //TODO: Try - catch
                     var context = new ApplicationDbContext();
-                    this.Calendar.SelectedDate = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;
+                    this.Calendar.SelectedDate = access.DateOfExpiredAcces; /*context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;*/
                 }
                 else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/ }
                 else throw new RefreshWarehousessAccessesListExeption();
@@ -103,7 +103,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 else InformationToUser($"{ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
             else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
-            throw new NotImplementedException();
         }
         #endregion
         #region RefreshParent
@@ -164,29 +163,28 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void ConfirmExpiredDate_Click(object sender, RoutedEventArgs e)
         {
-            //if (this.Calendar.SelectedDate != null && this.DataContext is AccessUsersToWarehouses access)
-            //{
-            //    //Try - catch
-            //    using (ApplicationDbContext context = new ApplicationDbContext())
-            //    {
-            //        access.EditExpiredAccess(this.Calendar.SelectedDate);
+            if (this.Calendar.SelectedDate != null && this.DataContext is AccessUsersToWarehouses access)
+            {
+                //Try - catch
+                using (ApplicationDbContext context = new ApplicationDbContext())
+                {
+                    access.EditExpiredAccess(this.Calendar.SelectedDate);
 
-            //        var newAccess = context.AccessUsersToWarehouses
-            //            .Include(u => u.User)
-            //            .Include(w => w.Warehouse)
-            //            .FirstOrDefault(a => a.Id == access.Id);
+                    var newAccess = context.AccessUsersToWarehouses
+                        .Include(u => u.User)
+                        .Include(w => w.Warehouse)
+                        .FirstOrDefault(a => a.Id == access.Id);
 
-            //        if (newAccess != null)
-            //        {
-            //            DataContext = newAccess;
-            //            InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
-            //        }
-            //        else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
-            //    }
-            //}
-            //else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
-            //else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR}  {ErrorMesages.DATACONTEXT_ERROR}", true);
-            throw new NotImplementedException();
+                    if (newAccess != null)
+                    {
+                        DataContext = newAccess;
+                        InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
+                    }
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                }
+            }
+            else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
+            else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR}  {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region CancelCreateNewAccess_Click

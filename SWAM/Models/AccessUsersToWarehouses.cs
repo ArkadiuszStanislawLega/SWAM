@@ -40,16 +40,16 @@ namespace SWAM.Models
         /// </summary>
         public virtual Warehouse.Warehouse Warehouse { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext context
         {
             //TODO: Make all exceptions
             get
             {
-                return DB_CONTEXT;
+                return dbContext;
             }
-
+            set => dbContext = value;
         }
         #region GetUserAccesses
         /// <summary>
@@ -59,8 +59,14 @@ namespace SWAM.Models
         /// <returns>List with user accesses to warehouses</returns>
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
+            context = new ApplicationDbContext();
+
             if (userId > 0)
-                return context.People.OfType<User.User>().FirstOrDefault(u => u.Id == userId).Accesess;
+                return context.People
+                    .OfType<User.User>()
+                    .Include(u => u.Accesess)
+                    .FirstOrDefault(u => u.Id == userId)
+                    .Accesess;
             else
                 return null;
         }
@@ -105,26 +111,52 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-            if (accessUsersToWarehouses != null)
+            context = new ApplicationDbContext();
+
+            if (accessUsersToWarehouses != null 
+                && accessUsersToWarehouses.User.Id > 0 
+                && accessUsersToWarehouses.Administrator.Id > 0
+                && accessUsersToWarehouses.Warehouse.Id > 0)
             {
-                var user = context.People.OfType<User.User>().FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
+                var user = context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
+
+                var administrator = context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == accessUsersToWarehouses.Administrator.Id);
+
+                var warehouse = context.Warehouses
+                    .FirstOrDefault(w => w.Id == accessUsersToWarehouses.Warehouse.Id);
+
+                AccessUsersToWarehouses access = new AccessUsersToWarehouses()
+                {
+                    TypeOfAccess = accessUsersToWarehouses.TypeOfAccess,
+                    Administrator = administrator,
+                    User = user,
+                    Warehouse = warehouse,
+                    DateOfGrantingAccess = DateTime.Now
+                };
+
                 if (user.Accesess != null)
-                    user.Accesess.Add(accessUsersToWarehouses);            
+                    user.Accesess.Add(access);            
                 else
                 {
                     user.Accesess = new List<AccessUsersToWarehouses>
                     {
-                        accessUsersToWarehouses
+                        access
                     };
                 }
 
-                if (context.SaveChanges() == 1)
+                if (context.SaveChanges() == 4)
                     return true;
             }
 
             return false;
         }
         #endregion
+
+
 
         #region EditExpiredAccess
         /// <summary>
@@ -133,7 +165,10 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
         { 
-            context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
+            context.AccessUsersToWarehouses
+                .FirstOrDefault(a => a.Id == this.Id)
+                .DateOfExpiredAcces = dateTime;
+
             context.SaveChanges();
         }
         #endregion
