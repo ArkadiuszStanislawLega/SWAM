@@ -40,14 +40,18 @@ namespace SWAM.Models
         /// </summary>
         public virtual Warehouse.Warehouse Warehouse { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext context
         {
             //TODO: Make all exceptions
             get
             {
-                return DB_CONTEXT;
+                return dbContext;
+            }
+            set
+            {
+                dbContext = value;
             }
 
         }
@@ -60,7 +64,11 @@ namespace SWAM.Models
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
             if (userId > 0)
-                return context.People.OfType<User.User>().FirstOrDefault(u => u.Id == userId).Accesess;
+                return context.People
+                    .OfType<User.User>()
+                    .Include(u => u.Accesess)
+                    .FirstOrDefault(u => u.Id == userId)
+                    .Accesess;
             else
                 return null;
         }
@@ -105,6 +113,8 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
+            context = new ApplicationDbContext();
+
             if (accessUsersToWarehouses != null 
                 && accessUsersToWarehouses.User.Id > 0 
                 && accessUsersToWarehouses.Administrator.Id > 0
