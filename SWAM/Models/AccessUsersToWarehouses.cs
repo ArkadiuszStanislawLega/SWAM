@@ -105,20 +105,42 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-            if (accessUsersToWarehouses != null)
+            if (accessUsersToWarehouses != null 
+                && accessUsersToWarehouses.User.Id > 0 
+                && accessUsersToWarehouses.Administrator.Id > 0
+                && accessUsersToWarehouses.Warehouse.Id > 0)
             {
-                var user = context.People.OfType<User.User>().FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
+                var user = context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
+
+                var administrator = context.People
+                    .OfType<User.User>()
+                    .FirstOrDefault(u => u.Id == accessUsersToWarehouses.Administrator.Id);
+
+                var warehouse = context.Warehouses
+                    .FirstOrDefault(w => w.Id == accessUsersToWarehouses.Warehouse.Id);
+
+                AccessUsersToWarehouses access = new AccessUsersToWarehouses()
+                {
+                    TypeOfAccess = accessUsersToWarehouses.TypeOfAccess,
+                    Administrator = administrator,
+                    User = user,
+                    Warehouse = warehouse,
+                    DateOfGrantingAccess = DateTime.Now
+                };
+
                 if (user.Accesess != null)
-                    user.Accesess.Add(accessUsersToWarehouses);            
+                    user.Accesess.Add(access);            
                 else
                 {
                     user.Accesess = new List<AccessUsersToWarehouses>
                     {
-                        accessUsersToWarehouses
+                        access
                     };
                 }
 
-                if (context.SaveChanges() == 1)
+                if (context.SaveChanges() == 4)
                     return true;
             }
 

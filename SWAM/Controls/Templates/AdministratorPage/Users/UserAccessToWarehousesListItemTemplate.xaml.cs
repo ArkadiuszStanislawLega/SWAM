@@ -103,7 +103,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                 else InformationToUser($"{ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
             else InformationToUser(ErrorMesages.DURING_ADD_ACCESS_TO_WAREHOUSE_ERROR, true);
-            throw new NotImplementedException();
         }
         #endregion
         #region RefreshParent
