@@ -6,6 +6,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SWAM.Models
 {
@@ -92,12 +93,9 @@ namespace SWAM.Models
         }
 
         public static void DeleteProduct(Product product)
-        {
-            if (product != null)
-            {
-                context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
-                context.SaveChanges();
-            }
+		{   
+				context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
+				context.SaveChanges();
         }
 
         public static List<Product> AllProducts() => context.Products.ToList();

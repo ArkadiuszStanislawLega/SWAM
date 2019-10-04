@@ -192,8 +192,8 @@
                       AutoGenerateColumns="False" 
                       LoadingRow="NumberRowIteration"
                       CanUserAddRows="False" SelectionMode="Single" 
-                      IsReadOnly="True" Style="{StaticResource BasicDataGrid}"
-                      MouseLeftButtonDown="ProductsList_LeftMouseButtonDown">
+                      IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
+                      MouseLeftButtonUp="ProductsList_LeftMouseButtonDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>

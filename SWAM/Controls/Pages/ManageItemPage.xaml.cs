@@ -91,14 +91,23 @@ namespace SWAM
             }
             this._currentOperation = Operation.none;
         }
-        #endregion
-        #region EditButton_Click
-        /// <summary>
-        /// Action after click Edit button.
-        /// </summary>
-        /// <param name="sender">Edit button.</param>
-        /// <param name="e">Click action.</param>
-        private void EditButton_Click(object sender, RoutedEventArgs e) => this._currentOperation = Operation.edit;
+		#endregion
+		#region EditButton_Click
+		/// <summary>
+		/// Action after click Edit button.
+		/// </summary>
+		/// <param name="sender">Edit button.</param>
+		/// <param name="e">Click action.</param>
+		private void EditButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ProductProfile.DataContext is Product product)
+			{
+				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)
+				{
+					this._currentOperation = Operation.edit;
+				}				
+			}
+		}
         #endregion
         #region SaveButton_Click
         /// <summary>
@@ -132,7 +141,16 @@ namespace SWAM
                         {
 							Product.EditProduct(product);                            
                         }
-                    }
+						else
+						{
+							product.Name = context.Products.FirstOrDefault(p => p.Id == product.Id).Name;
+							product.Weigth = context.Products.FirstOrDefault(p => p.Id == product.Id).Weigth;
+							product.Length = context.Products.FirstOrDefault(p => p.Id == product.Id).Length;
+							product.Width = context.Products.FirstOrDefault(p => p.Id == product.Id).Width;
+							product.Height = context.Products.FirstOrDefault(p => p.Id == product.Id).Height;
+							product.Price = context.Products.FirstOrDefault(p => p.Id == product.Id).Price;
+						}
+					}
                     else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
                 }
                 this._productList.Refresh();
@@ -157,26 +175,29 @@ namespace SWAM
             this.EditedWeight.Text = string.Empty;
             this.EditedPrice.Text = string.Empty;
         }
-        #endregion
-        #region DeleteButton_Click
-        /// <summary>
-        /// Action after click delete product.
-        /// Removes the specified product from the database.
-        /// </summary>
-        /// <param name="sender">Button delete product.</param>
-        /// <param name="e">Event click delete button.</param>
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
+		#endregion
+		#region DeleteButton_Click
+		/// <summary>
+		/// Action after click delete product.
+		/// Removes the specified product from the database.
+		/// </summary>
+		/// <param name="sender">Button delete product.</param>
+		/// <param name="e">Event click delete button.</param>
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{					
             if (ProductProfile.DataContext is Product product)
             {
-                this._confirmWindow.Show($"Czy jesteś pewien że chcesz usunąć {product.Name}?", out bool isConfirmed, $"Usuń {product.Name}");
-                if (isConfirmed)
-                {
-					Product.DeleteProduct(product);	
-					this._productList.Refresh();
-                }
+				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)
+				{
+					this._confirmWindow.Show($"Czy jesteś pewien że chcesz usunąć {product.Name}?", out bool isConfirmed, $"Usuń {product.Name}");
+					if (isConfirmed)
+					{
+						Product.DeleteProduct(product);
+						this._productList.Refresh();
+					}
+				}								
             }
-            else InformationToUser($"{ErrorMesages.DURING_DELETE_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+			else InformationToUser($"{ErrorMesages.DURING_DELETE_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
 
