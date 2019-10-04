@@ -9,30 +9,30 @@
     <StackPanel >
         <StackPanel Margin="10">
             <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Country" Width="250"/>
+            <TextBox Name="Country" Width="250" Text="{Binding ResidentalAddress.Country}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10 10 0 10">
                 <TextBlock Text="Kod pocztowy" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="PostCode"/>
+                <TextBox Name="PostCode" Text="{Binding ResidentalAddress.PostCode}"/>
             </StackPanel>
             <StackPanel Margin="20 10 0 10">
                 <TextBlock Text="Miasto" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="City" Width="140"/>
+                <TextBox Name="City" Width="140" Text="{Binding ResidentalAddress.City}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10">
             <TextBlock Text="Ulica" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Street" Width="250"/>
+            <TextBox Name="Street" Width="250" Text="{Binding ResidentalAddress.Street}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10">
                 <TextBlock Text="Nr budynku" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="HouseNumber" Width="80"/>
+                <TextBox HorizontalAlignment="Left" Name="HouseNumber" Width="80" Text="{Binding ResidentalAddress.HouseNumber}"/>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Nr lokalu" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="ApartmentNumber" Width="80"/>
+                <TextBox HorizontalAlignment="Left" Name="ApartmentNumber" Width="80" Text="{Binding ResidentalAddress.ApartmentNumber}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
