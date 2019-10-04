@@ -142,6 +142,14 @@
     <Compile Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.Designer.cs">
       <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs" />
+    <Compile Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.Designer.cs">
+      <DependentUpon>201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs" />
+    <Compile Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.Designer.cs">
+      <DependentUpon>201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
@@ -579,6 +587,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.resx">
       <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.resx">
+      <DependentUpon>201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.resx">
+      <DependentUpon>201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
