@@ -49,11 +49,7 @@ namespace SWAM.Models
             {
                 return dbContext;
             }
-            set
-            {
-                dbContext = value;
-            }
-
+            set => dbContext = value;
         }
         #region GetUserAccesses
         /// <summary>
@@ -63,6 +59,8 @@ namespace SWAM.Models
         /// <returns>List with user accesses to warehouses</returns>
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
+            context = new ApplicationDbContext();
+
             if (userId > 0)
                 return context.People
                     .OfType<User.User>()
@@ -158,6 +156,8 @@ namespace SWAM.Models
         }
         #endregion
 
+
+
         #region EditExpiredAccess
         /// <summary>
         /// Edit date of expired user access in database.
@@ -165,7 +165,10 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
         { 
-            context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).DateOfExpiredAcces = dateTime;
+            context.AccessUsersToWarehouses
+                .FirstOrDefault(a => a.Id == this.Id)
+                .DateOfExpiredAcces = dateTime;
+
             context.SaveChanges();
         }
         #endregion
