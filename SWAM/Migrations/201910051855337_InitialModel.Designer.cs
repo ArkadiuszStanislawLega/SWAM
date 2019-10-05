@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DropRelationshipBetweenEmailsAndCustomers : IMigrationMetadata
+    public sealed partial class InitialModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DropRelationshipBetweenEmailsAndCustomers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910041827063_DropRelationshipBetweenEmailsAndCustomers"; }
+            get { return "201910051855337_InitialModel"; }
         }
         
         string IMigrationMetadata.Source
