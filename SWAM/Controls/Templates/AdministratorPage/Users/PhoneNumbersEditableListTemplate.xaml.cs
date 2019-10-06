@@ -27,16 +27,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             //if (DataContext is User user)
             //{
-            //    var phone = new Phone()
+            //    var phone = new UserPhone()
             //    {
             //        PhoneNumber = this.NewPhone.Text,
             //        Note = this.NewPhoneNote.Text,
-            //        UserId = user.Id
+            //        User = user
             //    };
 
             //    if (phone != null)
             //    {
-            //        Phone.AddNewPhone(phone);
+            //        UserPhone.AddNewPhone(phone);
             //        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
             //        RefreshPhoneList();
@@ -46,7 +46,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             //}
             //else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
 
-            throw new NotImplementedException();
         }
         #endregion
 

@@ -134,9 +134,9 @@
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201910051855337_InitialModel.cs" />
-    <Compile Include="Migrations\201910051855337_InitialModel.Designer.cs">
-      <DependentUpon>201910051855337_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201910060606253_Initial.cs" />
+    <Compile Include="Migrations\201910060606253_Initial.Designer.cs">
+      <DependentUpon>201910060606253_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
@@ -570,8 +570,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910051855337_InitialModel.resx">
-      <DependentUpon>201910051855337_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910060606253_Initial.resx">
+      <DependentUpon>201910060606253_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

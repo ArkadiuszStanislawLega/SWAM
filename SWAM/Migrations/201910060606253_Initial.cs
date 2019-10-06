@@ -3,7 +3,7 @@ namespace SWAM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialModel : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -40,7 +40,7 @@ namespace SWAM.Migrations
                 "dbo.EmailAddresses",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         AddressEmail = c.String(),
                         Note = c.String(),
                     })

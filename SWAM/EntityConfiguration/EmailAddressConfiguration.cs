@@ -1,4 +1,5 @@
 ﻿using SWAM.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
@@ -8,6 +9,9 @@ namespace SWAM.EntityConfiguration
         public EmailAddressConfiguration()
         {
             ToTable("EmailAddresses");
+
+            Property(p => p.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }
