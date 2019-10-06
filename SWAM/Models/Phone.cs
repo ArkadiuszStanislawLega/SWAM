@@ -59,30 +59,7 @@ namespace SWAM.Models
         }
         #endregion
 
-        #region UpdateNumber
-        /// <summary>
-        /// Update current phone number.
-        /// </summary>
-        /// <param name="newPhoneNumber">New phone/edited number.</param>
-        public void UpdateNumber(string newPhoneNumber)
-        {
-            throw new NotImplementedException();
-            //_context.Phones.FirstOrDefault(p => p.Id == this.Id).PhoneNumber = newPhoneNumber;
-            //_context.SaveChanges();
-        }
-        #endregion
-        #region UpdateNote
-        /// <summary>
-        /// Update in database note of current phone number.
-        /// </summary>
-        /// <param name="newNote">New/edited note of phone number.</param>
-        public void UpdateNote(string newNote)
-        {
-            throw new NotImplementedException();
-            //_context.Phones.SingleOrDefault(p => p.Id == this._id).Note = newNote;
-            //_context.SaveChanges();
-        }
-        #endregion
+
         #region Delete
         /// <summary>
         /// Delete from database current number.

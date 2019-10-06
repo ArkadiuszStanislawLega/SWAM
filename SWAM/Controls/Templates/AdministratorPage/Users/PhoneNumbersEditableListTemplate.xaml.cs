@@ -1,12 +1,11 @@
 ﻿using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
+using SWAM.Exceptions;
+
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using SWAM.Exceptions;
-    using System;
-    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
     /// </summary>
@@ -86,11 +85,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e)
-        {
-            this.NewPhone.Text = "";
-            this.NewPhoneNote.Text = "";
-        }
+        private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e) => ClearEditableFieldsAfterAddNewPhone();
         #endregion
     }
 }

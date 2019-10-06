@@ -6,6 +6,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 {
     using SWAM.Exceptions;
     using SWAM.Models;
+    using SWAM.Models.User;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumberEditableTemplate.xaml
@@ -37,11 +38,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Phone phone)
+            if (DataContext is UserPhone phone)
             {
-                phone.UpdateNumber(EditPhoneNumber.Text);
-                phone.UpdateNote(EditNote.Text);
-
+                phone.User.UpdatePhoneNumber(phone, EditPhoneNumber.Text);
+                phone.User.UpdatePhoneNote(phone, EditNote.Text);
+                 
                 InformationToUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
             }
             else InformationToUser(ErrorMesages.DURING_EDIT_PHONE_ERROR, true);

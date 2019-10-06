@@ -263,6 +263,44 @@ namespace SWAM.Models.User
                         .First(u => u.Id == this.Id).Phones;
         }
         #endregion
+        #region UpdatePhoneNumber
+        /// <summary>
+        /// Update current phone number.
+        /// </summary>
+        /// <param name="newPhoneNumber">New phone/edited number.</param>
+        public void UpdatePhoneNumber(UserPhone userPhone, string newPhoneNumber)
+        {
+            if (userPhone != null)
+            {
+                _context.People
+                            .OfType<User>()
+                            .Include(u => u.Phones)
+                            .First(u => u.Id == this.Id)
+                            .Phones.First(p => p.Id == userPhone.Id)
+                            .PhoneNumber = newPhoneNumber;
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+        #region UpdatePhoneNote
+        /// <summary>
+        /// Update in database note of current phone number.
+        /// </summary>
+        /// <param name="newNote">New/edited note of phone number.</param>
+        public void UpdatePhoneNote(UserPhone userPhone, string newNote)
+        {
+            if (userPhone != null)
+            {
+                _context.People
+                         .OfType<User>()
+                         .Include(u => u.Phones)
+                         .First(u => u.Id == this.Id)
+                         .Phones.First(p => p.Id == userPhone.Id)
+                         .PhoneNumber = newNote;
+                _context.SaveChanges();
+            }
+        }
+        #endregion
         #region ChangeEmailAddress
         /// <summary>
         /// Change specific email address of user to new one.
