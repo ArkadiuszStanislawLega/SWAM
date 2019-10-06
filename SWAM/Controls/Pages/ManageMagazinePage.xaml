@@ -1,14 +1,235 @@
-﻿<UserControl x:Class="SWAM.Controls.Pages.ManageMagazinePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SWAM"
-      xmlns:page="clr-namespace:SWAM.Controls.Pages"
-      mc:Ignorable="d" 
-      Background="{StaticResource BackgroundOfPagesBrash}">
+﻿<basic:BasicUserControl x:Class="SWAM.Controls.Pages.ManageMagazinePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:conv="clr-namespace:SWAM.Converters"
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="{StaticResource BackgroundOfPagesBrash}"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <!--#region ProducutsButton-->
+        <Style x:Key="ProducutsButton"
+               TargetType="Button"
+               BasedOn="{StaticResource NavigationButton}">
+            <Setter Property="Width"
+                    Value="50" />
+            <Setter Property="Margin"
+                    Value="10" />
+        </Style>
+        <!--#endregion-->
+        <!--#region ProductTextBox-->
+        <Style x:Key="ProductTextBox"
+               TargetType="TextBox">
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Right" />
+            <Setter Property="Visibility"
+                    Value="{Binding Visibility, ElementName=EditedName}" />
+            <Setter Property="Opacity"
+                    Value="{Binding Opacity, ElementName=EditedName}" />
+            <Setter Property="FontSize"
+                    Value="14" />
+        </Style>
+        <!--#endregion-->
+        <!--#region ProductLabel-->
+        <Style x:Key="ProductLabel"
+               TargetType="Label">
+            <Setter Property="HorizontalAlignment"
+                    Value="Right" />
+            <Setter Property="Visibility"
+                    Value="{Binding Visibility, ElementName=LabelName}" />
+            <Setter Property="Opacity"
+                    Value="{Binding Opacity, ElementName=LabelName}" />
+        </Style>
+        <!--#endregion-->
+        <!--#region ShowEditStory-->
+        <Storyboard x:Key="ShowEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditedName"
+                             Duration="0:0:0.4"
+                             From="0"
+                             To="1" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0"
+                                        Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
 
-    <StackPanel>
-        <TextBlock Name="Title" Text="ManageMagazinePage" HorizontalAlignment="Center"/>
-    </StackPanel>
-</UserControl>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0"
+                                        Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideEditStory-->
+        <Storyboard x:Key="HideEditStory">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="EditedName"
+                             Duration="0:0:0.4"
+                             From="1"
+                             To="0" />
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                        Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
+                                        Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+    </UserControl.Resources>
+
+    <Grid>
+        <!--#region RowsDefinitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        
+        <TextBlock Name="Title"
+                   Text="Stany Magazynowe"
+                   Margin="10 0 0 0"
+                   Style="{StaticResource Title}"
+                   HorizontalAlignment="Left" />
+        
+        <Grid Grid.Row="1">
+            <!--#region Column definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+
+            <Grid Grid.Column="0" Name="StateProfile">
+                <!--#region Column definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+                
+                <!--#region Properites-->
+                <StackPanel Grid.Column="0" Margin="10">
+
+                    <!--#region ProductId-->
+                    <Grid>
+                        <TextBlock Text="Id produktu" Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}" />
+                    </Grid>
+                    <Label Content="{Binding Width}" Style="{StaticResource ProductLabel}" />
+                    <!--#endregion-->
+
+                    <!--#region ProductName-->
+                    <Grid>
+                        <TextBlock Text="Nazwa produktu" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                    </Grid>
+                    <Label Content="{Binding Width}"  Style="{StaticResource ProductLabel}"/>                    
+                    <!--#endregion-->
+
+                    <!--#region WarehouseId-->
+                    <Grid>
+                        <TextBlock Text="Id magazynu" Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}" />
+                    </Grid>
+                    <Label Content="{Binding Width}" Style="{StaticResource ProductLabel}" />
+                    <!--#endregion-->
+
+                    <!--#region Qty-->
+                    <Grid>
+                        <TextBlock Text="Ilość całkowita" Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}" />
+                    </Grid>
+                    <Label Content="{Binding Width}"
+                           Style="{StaticResource ProductLabel}" />
+                    <!--#endregion-->
+
+                    <!--#region AvailableQty-->
+                    <Grid>
+                        <TextBlock Text="Dostępne" Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}" />
+                    </Grid>
+                    <Label Content="{Binding Width}" Style="{StaticResource ProductLabel}" />
+                    <!--#endregion-->
+
+                    <!--#region BookedQty-->
+                    <Grid>
+                        <TextBlock Text="Zarezerwowane" Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}" />
+                    </Grid>
+                    <Label Content="{Binding Width}" Style="{StaticResource ProductLabel}" />
+                    <!--#endregion-->
+
+                </StackPanel>
+                <!--#endregion-->
+                
+                <!--#region Buttons-->
+                <StackPanel Orientation="Vertical"
+                            Grid.Column="2"
+                            Margin="10 0 0 0">
+                    
+                    <Button Name="EditButton"
+                            Content="Edytuj"
+                            Click="Edit_Button_Click"
+                            Style="{StaticResource ProducutsButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ShowEditStory}" />
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <Button Name="SaveButton"
+                            Content="Zapisz"
+                            Click="Save_Button_Click"
+                            Style="{StaticResource ProducutsButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ShowEditStory}" />
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#region ProductsList-->
+            <DataGrid Name="StatesList"
+                      Grid.Column="1"
+                      HorizontalAlignment="Left"
+                      ItemsSource="{Binding States}"
+                      AutoGenerateColumns="False"
+                     
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      IsReadOnly="True"
+                      Style="{StaticResource BasicDataGrid}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id produktu" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Width}" />
+                    <DataGridTextColumn Header="Id Magazynu" Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Cena" Binding="{Binding Height}" />                    
+                    <DataGridTextColumn Header="Ilość" Binding="{Binding Weigth}" />                 
+                    <DataGridTextColumn Header="Dostępne" Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Price}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
+
+
+</basic:BasicUserControl>

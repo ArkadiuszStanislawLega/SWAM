@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
 
 namespace SWAM.Controls.Pages
@@ -19,11 +20,20 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageMagazinePage.xaml
     /// </summary>
-    public partial class ManageMagazinePage : UserControl
-    {
+    public partial class ManageMagazinePage : BasicUserControl
+	{
         public ManageMagazinePage()
         {
             InitializeComponent();
         }
-    }
+
+
+		private void Edit_Button_Click(object sender, RoutedEventArgs e)
+		{
+		}
+
+		private void Save_Button_Click(object sender, RoutedEventArgs e)
+		{
+		}
+	}
 }
