@@ -256,11 +256,11 @@ namespace SWAM.Models.User
         /// <returns>List with phones.</returns>
         public IList<UserPhone> GetUserPhones()
         {
-            User user = _context.People
+            _context = new ApplicationDbContext();
+            return _context.People
                         .OfType<User>()
                         .Include(u => u.Phones)
-                        .First(u => u.Id == this.Id);
-            return user.Phones;
+                        .First(u => u.Id == this.Id).Phones;
         }
         #endregion
         #region ChangeEmailAddress
