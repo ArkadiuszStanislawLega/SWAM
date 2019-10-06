@@ -35,8 +35,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)
                 {
+                    var dbEmail = email.User.GetSpecificEmailAddress(email.Id);
+
                     //Show confirmation window about changes.
-                    this._confirmWindow.Show($"Potwierdź zmianę adresu email na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                    this._confirmWindow.Show($"Potwierdź zmianę adresu email {dbEmail.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+
                     //If user confirmed in dialog window changes...
                     if (isConfirmed)
                     {
@@ -46,7 +49,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         else
                             InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                     }
-                    else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
+                    else
+                        this.DataContext = dbEmail;
+                    
                 }
                 else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CONFIRMATION_WINDOW_ERROR}", true);
             }

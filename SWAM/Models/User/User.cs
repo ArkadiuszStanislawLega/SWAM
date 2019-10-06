@@ -59,15 +59,16 @@ namespace SWAM.Models.User
         /// </summary>
         public IList<UserPhone> Phones { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext _context
         {
             //TODO: Make all exceptions
             get
             {
-                return DB_CONTEXT;
+                return dbContext;
             }
+            set => dbContext = value;
         }
         #region TryLogIn
         /// <summary>
@@ -260,10 +261,14 @@ namespace SWAM.Models.User
         /// </summary>
         /// <param name="emailAddressId">Id Email Address.</param>
         /// <returns>Specific user email address from database.</returns>
-        public UserEmailAddress GetSpecificEmailAddress(int emailAddressId) => _context.People.OfType<User>()
-            .Include(u => u.EmailAddresses)
-            .First(u => u.Id == this.Id)
-            .EmailAddresses.First(e => e.Id == emailAddressId);
+        public UserEmailAddress GetSpecificEmailAddress(int emailAddressId)
+        {
+            _context = new ApplicationDbContext();
+            return _context.People.OfType<User>()
+               .Include(u => u.EmailAddresses)
+               .First(u => u.Id == this.Id)
+               .EmailAddresses.First(e => e.Id == emailAddressId);
+        }
         #endregion
         #region GetUserEmails
         /// <summary>
