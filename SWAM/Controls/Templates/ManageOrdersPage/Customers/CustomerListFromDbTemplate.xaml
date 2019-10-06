@@ -42,7 +42,7 @@
                 <ListView MaxHeight="300" Name="customersListView" 
                           PreviewMouseLeftButtonUp="CustomersListViewItem_PreviewMouseLeftButtonUp" 
                           Background="{StaticResource MainBarBrash}" 
-                          Foreground="White" BorderThickness="0"  
+                          Foreground="White" BorderThickness="0" 
                           DataContext="{x:Static context:CustomersListViewModel.Instance}"
                           ItemsSource="{Binding CustomersList}">
                     <ListView.View>
