@@ -1,12 +1,11 @@
 ﻿using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
+using SWAM.Exceptions;
+
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using SWAM.Exceptions;
-    using System;
-    using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumbersEditableListTemplate.xaml
     /// </summary>
@@ -25,28 +24,27 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
-            //if (DataContext is User user)
-            //{
-            //    var phone = new Phone()
-            //    {
-            //        PhoneNumber = this.NewPhone.Text,
-            //        Note = this.NewPhoneNote.Text,
-            //        UserId = user.Id
-            //    };
+            if (DataContext is User user)
+            {
+                var phone = new UserPhone()
+                {
+                    PhoneNumber = this.NewPhone.Text,
+                    Note = this.NewPhoneNote.Text,
+                    User = user
+                };
 
-            //    if (phone != null)
-            //    {
-            //        Phone.AddNewPhone(phone);
-            //        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
+                if (phone != null)
+                {
+                    user.AddNewPhone(phone);
+                    InformationToUser($"dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
-            //        RefreshPhoneList();
-            //        ClearEditableFieldsAfterAddNewPhone();
-            //    }
-            //    else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
-            //}
-            //else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
+                    RefreshPhoneList();
+                    ClearEditableFieldsAfterAddNewPhone();
+                }
+                else InformationToUser($"nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
+            }
+            else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
 
-            throw new NotImplementedException();
         }
         #endregion
 
@@ -67,19 +65,18 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshPhoneList()
         {
-            throw new NotImplementedException();
-            //try
-            //{
-            //    if (DataContext is User user)
-            //    {
-            //        var phonesList = Phone.GetUserPhones(user.Id);
-            //        if (phonesList != null)
-            //            PhoneNumbers.ItemsSource = phonesList;
-            //        else throw new RefreshUserPhonesListException();
-            //    }
-            //    else throw new RefreshUserPhonesListException();
-            //}
-            //catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
+            try
+            {
+                if (DataContext is User user)
+                {
+                    var phonesList = user.GetUserPhones();
+                    if (phonesList != null)
+                        PhoneNumbers.ItemsSource = phonesList;
+                    else throw new RefreshUserPhonesListException();
+                }
+                else throw new RefreshUserPhonesListException();
+            }
+            catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
         }
         #endregion
         #region CancelCreateNewPhone_Click
@@ -88,11 +85,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e)
-        {
-            this.NewPhone.Text = "";
-            this.NewPhoneNote.Text = "";
-        }
+        private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e) => ClearEditableFieldsAfterAddNewPhone();
         #endregion
     }
 }

@@ -134,21 +134,9 @@
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201910011620414_InitialModel.cs" />
-    <Compile Include="Migrations\201910011620414_InitialModel.Designer.cs">
-      <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.cs" />
-    <Compile Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.Designer.cs">
-      <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs" />
-    <Compile Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.Designer.cs">
-      <DependentUpon>201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs" />
-    <Compile Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.Designer.cs">
-      <DependentUpon>201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
+    <Compile Include="Migrations\201910060606253_Initial.cs" />
+    <Compile Include="Migrations\201910060606253_Initial.Designer.cs">
+      <DependentUpon>201910060606253_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
@@ -582,17 +570,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910011620414_InitialModel.resx">
-      <DependentUpon>201910011620414_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910021511520_UpdateWarehouseModelCompositeKey.resx">
-      <DependentUpon>201910021511520_UpdateWarehouseModelCompositeKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910041827063_DropRelationshipBetweenEmailsAndCustomers.resx">
-      <DependentUpon>201910041827063_DropRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.resx">
-      <DependentUpon>201910041828347_AddOneToOneRelationshipBetweenEmailsAndCustomers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910060606253_Initial.resx">
+      <DependentUpon>201910060606253_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
