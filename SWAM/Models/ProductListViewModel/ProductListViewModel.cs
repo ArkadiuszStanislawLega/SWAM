@@ -27,5 +27,12 @@ namespace SWAM.Models.ProductListViewModel
                 }
             }
         }
-    }
+
+		public Product LastProduct()
+		{
+			Refresh();
+			return products.Last<Product>();			
+		}
+
+	}
 }

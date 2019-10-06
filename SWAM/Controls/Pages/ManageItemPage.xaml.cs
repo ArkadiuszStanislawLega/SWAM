@@ -71,7 +71,9 @@ namespace SWAM
             InitializeComponent();
             DataContext = this._productList;
 			_productList.Refresh();
-            if(this._productList.Products.Count > 0)
+			SaveButton.IsEnabled = false;
+
+			if (this._productList.Products.Count > 0)
                 this.ProductProfile.DataContext = this._productList.Products[0];
         }
         #endregion
@@ -84,7 +86,9 @@ namespace SWAM
         private void ProductsList_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-            if (this.EditedName.Visibility == Visibility.Visible)
+			EditButton.IsEnabled = true;
+			SaveButton.IsEnabled = false;
+			if (this.EditedName.Visibility == Visibility.Visible)
             {
                 Storyboard hideStory = (Storyboard)this.FindResource("HideEditStory");
                 hideStory.Begin();
@@ -99,12 +103,13 @@ namespace SWAM
 		/// <param name="sender">Edit button.</param>
 		/// <param name="e">Click action.</param>
 		private void EditButton_Click(object sender, RoutedEventArgs e)
-		{
-			if (ProductProfile.DataContext is Product product)
-			{
-				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)
-				{
+		{		
+			if (ProductProfile.DataContext is Product product)		
+			{				
+				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)			
+				{					
 					this._currentOperation = Operation.edit;
+					SaveButton.IsEnabled = true;
 				}				
 			}
 		}
@@ -130,8 +135,9 @@ namespace SWAM
                         Width = this._width,
                         Height = this._height,
                         Price = this._price
-                    });                    
-                }
+                    });
+					this.ProductProfile.DataContext = this._productList.LastProduct();
+				}
                 else if(this._currentOperation == Operation.edit)
                 {
                     if (ProductProfile.DataContext is Product product)
@@ -141,20 +147,24 @@ namespace SWAM
                         {
 							Product.EditProduct(product);                            
                         }
+
 						else
 						{
-							product.Name = context.Products.FirstOrDefault(p => p.Id == product.Id).Name;
-							product.Weigth = context.Products.FirstOrDefault(p => p.Id == product.Id).Weigth;
-							product.Length = context.Products.FirstOrDefault(p => p.Id == product.Id).Length;
-							product.Width = context.Products.FirstOrDefault(p => p.Id == product.Id).Width;
-							product.Height = context.Products.FirstOrDefault(p => p.Id == product.Id).Height;
-							product.Price = context.Products.FirstOrDefault(p => p.Id == product.Id).Price;
-						}
+							_context = new ApplicationDbContext();
+							var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
+							product.Name = dbProduct.Name;
+							product.Weigth = dbProduct.Weigth;
+							product.Length = dbProduct.Length;
+							product.Width = dbProduct.Width;
+							product.Height = dbProduct.Height;
+							product.Price = dbProduct.Price;							
+						}						
 					}
-                    else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+					else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
                 }
                 this._productList.Refresh();
-            }
+				this._currentOperation = Operation.none;
+			}			
         }
         #endregion
         #region AddButton_Click
@@ -167,14 +177,9 @@ namespace SWAM
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             this._currentOperation = Operation.add;
-			this.ProductProfile.DataContext = null;
-			this.EditedName.Text = string.Empty;
-            this.EditedLenght.Text = string.Empty;
-            this.EditedHeight.Text = string.Empty;
-            this.EditedWidth.Text = string.Empty;
-            this.EditedWeight.Text = string.Empty;
-            this.EditedPrice.Text = string.Empty;
-        }
+			ClearData();
+			SaveButton.IsEnabled = true;
+		}
 		#endregion
 		#region DeleteButton_Click
 		/// <summary>
@@ -194,6 +199,8 @@ namespace SWAM
 					{
 						Product.DeleteProduct(product);
 						this._productList.Refresh();
+						ClearData();
+						EditButton.IsEnabled = false;
 					}
 				}								
             }
@@ -226,9 +233,23 @@ namespace SWAM
             }
             return false;
         }
-        #endregion
+		#endregion
 
-        private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+		#region ClearData
+
+		private void ClearData()
+		{
+			this.ProductProfile.DataContext = null;
+			this.EditedName.Text = string.Empty;
+			this.EditedLenght.Text = string.Empty;
+			this.EditedHeight.Text = string.Empty;
+			this.EditedWidth.Text = string.Empty;
+			this.EditedWeight.Text = string.Empty;
+			this.EditedPrice.Text = string.Empty;
+		}
+		#endregion
+
+		private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
     
     }
 }
