@@ -229,6 +229,40 @@ namespace SWAM.Models.User
             }
         }
         #endregion
+
+        #region AddNewPhone
+        /// <summary>
+        /// Adding new Phone to database.
+        /// </summary>
+        /// <param name="phone"></param>
+        public void AddNewPhone(UserPhone phone)
+        {
+            if (phone != null)
+            {
+                //TODO: try - catch block is needed ... when excetion will be catch than send false.
+                _context.People.OfType<User>()
+                    .Include(u => u.EmailAddresses)
+                    .FirstOrDefault(u => u.Id == this.Id)
+                    .Phones.Add(phone);
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+        #region GetUserEmails
+        /// <summary>
+        /// Make list with phones of specific user.
+        /// </summary>
+        /// <param name="id">User id from database.</param>
+        /// <returns>List with phones.</returns>
+        public IList<UserPhone> GetUserPhones()
+        {
+            User user = _context.People
+                        .OfType<User>()
+                        .Include(u => u.Phones)
+                        .First(u => u.Id == this.Id);
+            return user.Phones;
+        }
+        #endregion
         #region ChangeEmailAddress
         /// <summary>
         /// Change specific email address of user to new one.

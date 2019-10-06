@@ -25,26 +25,26 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void ConfirmNewPhone_Click(object sender, RoutedEventArgs e)
         {
-            //if (DataContext is User user)
-            //{
-            //    var phone = new UserPhone()
-            //    {
-            //        PhoneNumber = this.NewPhone.Text,
-            //        Note = this.NewPhoneNote.Text,
-            //        User = user
-            //    };
+            if (DataContext is User user)
+            {
+                var phone = new UserPhone()
+                {
+                    PhoneNumber = this.NewPhone.Text,
+                    Note = this.NewPhoneNote.Text,
+                    User = user
+                };
 
-            //    if (phone != null)
-            //    {
-            //        UserPhone.AddNewPhone(phone);
-            //        InformationToUser($"Dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
+                if (phone != null)
+                {
+                    user.AddNewPhone(phone);
+                    InformationToUser($"dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
-            //        RefreshPhoneList();
-            //        ClearEditableFieldsAfterAddNewPhone();
-            //    }
-            //    else InformationToUser($"Nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
-            //}
-            //else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
+                    RefreshPhoneList();
+                    ClearEditableFieldsAfterAddNewPhone();
+                }
+                else InformationToUser($"nie udało się dodać nowego numeru telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.", true);
+            }
+            else InformationToUser($"{ErrorMesages.DURING_ADD_PHONE_ERROR}", true);
 
         }
         #endregion
@@ -66,19 +66,18 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         public void RefreshPhoneList()
         {
-            throw new NotImplementedException();
-            //try
-            //{
-            //    if (DataContext is User user)
-            //    {
-            //        var phonesList = Phone.GetUserPhones(user.Id);
-            //        if (phonesList != null)
-            //            PhoneNumbers.ItemsSource = phonesList;
-            //        else throw new RefreshUserPhonesListException();
-            //    }
-            //    else throw new RefreshUserPhonesListException();
-            //}
-            //catch (RefreshUserPhonesListException ex ) { ex.ShowMessage(this); }
+            try
+            {
+                if (DataContext is User user)
+                {
+                    var phonesList = user.GetUserPhones();
+                    if (phonesList != null)
+                        PhoneNumbers.ItemsSource = phonesList;
+                    else throw new RefreshUserPhonesListException();
+                }
+                else throw new RefreshUserPhonesListException();
+            }
+            catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
         }
         #endregion
         #region CancelCreateNewPhone_Click

@@ -59,22 +59,6 @@ namespace SWAM.Models
         }
         #endregion
 
-        #region AddNewPhone
-        /// <summary>
-        /// Adding new Phone to database.
-        /// </summary>
-        /// <param name="phone"></param>
-        public static void AddNewPhone(Phone phone)
-        {
-            throw new NotImplementedException();
-            //if (phone != null)
-            //{
-            //    _context.Phones.Add(phone);
-            //    _context.SaveChanges();
-            //}
-        }
-        #endregion
-
         #region UpdateNumber
         /// <summary>
         /// Update current phone number.
