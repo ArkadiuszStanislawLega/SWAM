@@ -62,18 +62,21 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     this._confirmWindow.Show($"Czy na pewno chcesz usunąc numer telefonu {phone.ToString()}?", out bool isConfirmed, "Potwierdź usunięcie kontaktu");
                     if (isConfirmed)
                     {
-                        phone.User.DeletePhone(phone);
-                        InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
-
-                        //Refresh phones list.
-                        try
+                        if (phone.User.DeletePhone(phone))
                         {
-                            var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
-                            if (phoneList != null)
-                                phoneList.RefreshPhoneList();
-                            else throw new RefreshUserPhonesListException();
+                            InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
+
+                            //Refresh phones list.
+                            try
+                            {
+                                var phoneList = FindParent<PhoneNumbersEditableListTemplate>(this);
+                                if (phoneList != null)
+                                    phoneList.RefreshPhoneList();
+                                else throw new RefreshUserPhonesListException();
+                            }
+                            catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
                         }
-                        catch (RefreshUserPhonesListException ex) { ex.ShowMessage(this); }
+                        else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                     }
                 }
                 else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);

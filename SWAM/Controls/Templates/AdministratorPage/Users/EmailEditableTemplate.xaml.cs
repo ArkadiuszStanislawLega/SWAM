@@ -35,7 +35,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)
                 {
-                    var dbEmail = email.User.GetSpecificEmailAddress(email.Id);
+                    var dbEmail = email.User.GetEmailAddress(email.Id);
 
                     //Show confirmation window about changes.
                     this._confirmWindow.Show($"Potwierdź zmianę adresu email {dbEmail.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");

@@ -254,30 +254,15 @@ namespace SWAM.Models.User
                         PhoneNumber = phone.PhoneNumber,
                         Note = phone.Note
                     };
-   
+
                     user.Phones.Add(userPhone);
-                 
+
                     if (_context.SaveChanges() == 2)
                         return true;
                 }
             }
 
             return false;
-        }
-        #endregion
-        #region GetUserEmails
-        /// <summary>
-        /// Make list with phones of specific user.
-        /// </summary>
-        /// <param name="id">User id from database.</param>
-        /// <returns>List with phones.</returns>
-        public IList<UserPhone> GetUserPhones()
-        {
-            _context = new ApplicationDbContext();
-            return _context.People
-                        .OfType<User>()
-                        .Include(u => u.Phones)
-                        .First(u => u.Id == this.Id).Phones;
         }
         #endregion
         #region UpdatePhoneNumber
@@ -322,6 +307,8 @@ namespace SWAM.Models.User
         /// <summary>
         /// Delete from database current number.
         /// </summary>
+        /// <param name="userPhone">Phone to remove.</param>
+        /// <returns>True if phone is correctly removed from database.</returns>
         public bool DeletePhone(UserPhone userPhone)
         {
             if (userPhone != null)
@@ -333,7 +320,8 @@ namespace SWAM.Models.User
                 if (phones != null)
                 {
                     _context.Phones.Remove(phones);
-                    //Two rows are affected.
+                    //Two rows are affected in database.
+                    //One in Phone table and one in UserPhone table.
                     if (_context.SaveChanges() == 2)
                         return true;
                 }
@@ -342,6 +330,22 @@ namespace SWAM.Models.User
             return false;
         }
         #endregion
+        #region GetUserPhones
+        /// <summary>
+        /// Make list with phones of specific user.
+        /// </summary>
+        /// <param name="id">User id from database.</param>
+        /// <returns>List with phones.</returns>
+        public IList<UserPhone> GetUserPhones()
+        {
+            _context = new ApplicationDbContext();
+            return _context.People
+                        .OfType<User>()
+                        .Include(u => u.Phones)
+                        .First(u => u.Id == this.Id).Phones;
+        }
+        #endregion
+
         #region ChangeEmailAddress
         /// <summary>
         /// Change specific email address of user to new one.
@@ -368,13 +372,13 @@ namespace SWAM.Models.User
             return false;
         }
         #endregion
-        #region GetSpecificEmailAddress
+        #region GetEmailAddress
         /// <summary>
         /// Retrieves the user's email address from the database after the address Id number.
         /// </summary>
         /// <param name="emailAddressId">Id Email Address.</param>
         /// <returns>Specific user email address from database.</returns>
-        public UserEmailAddress GetSpecificEmailAddress(int emailAddressId)
+        public UserEmailAddress GetEmailAddress(int emailAddressId)
         {
             _context = new ApplicationDbContext();
             return _context.People.OfType<User>()
