@@ -31,5 +31,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
+
+        private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("adsa");
+        }
     }
 }

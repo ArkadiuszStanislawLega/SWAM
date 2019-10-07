@@ -21,6 +21,15 @@
                 <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
                 <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                <DataGridTemplateColumn Header="Dodaj do koszyka">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="+" Click="AddToShoppingCart_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
