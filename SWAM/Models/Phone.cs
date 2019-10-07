@@ -59,23 +59,6 @@ namespace SWAM.Models
         }
         #endregion
 
-
-        #region Delete
-        /// <summary>
-        /// Delete from database current number.
-        /// </summary>
-        public void Delete()
-        {
-            throw new NotImplementedException();
-            //var phone = _context.Phones.FirstOrDefault(p => p.Id == this.Id);
-            //if (phone != null)
-            //{
-            //    _context.Phones.Remove(phone);
-            //    _context.SaveChanges();
-            //}
-        }
-        #endregion
-
-        public override string ToString() { throw new NotImplementedException(); }
+        public override string ToString() => $"{this.Note} - {this.PhoneNumber}";
     }
 }

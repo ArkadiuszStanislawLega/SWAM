@@ -1,12 +1,11 @@
 ﻿using System.Windows;
 using SWAM.Strings;
+using SWAM.Exceptions;
+using SWAM.Models.User;
 
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
-    using SWAM.Exceptions;
-    using SWAM.Models;
-    using SWAM.Models.User;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy PhoneNumberEditableTemplate.xaml
@@ -56,14 +55,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Phone phone)
+            if (DataContext is UserPhone phone)
             {
                 if (this._confirmWindow != null)
                 {
                     this._confirmWindow.Show($"Czy na pewno chcesz usunąc numer telefonu {phone.ToString()}?", out bool isConfirmed, "Potwierdź usunięcie kontaktu");
                     if (isConfirmed)
                     {
-                        phone.Delete();
+                        phone.User.Delete(phone);
                         InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 
                         //Refresh phones list.

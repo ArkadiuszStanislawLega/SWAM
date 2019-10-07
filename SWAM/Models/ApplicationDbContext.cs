@@ -26,6 +26,7 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+           
             modelBuilder.Configurations.Add(new AccessesConfiguration());
             modelBuilder.Configurations.Add(new AddressConfiguration());
             modelBuilder.Configurations.Add(new CourierConfiguration());

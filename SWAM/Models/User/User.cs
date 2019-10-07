@@ -234,18 +234,35 @@ namespace SWAM.Models.User
         /// <summary>
         /// Adding new Phone to database.
         /// </summary>
-        /// <param name="phone"></param>
-        public void AddNewPhone(UserPhone phone)
+        /// <param name="phone">New added phone.</param>
+        public bool AddNewPhone(UserPhone phone)
         {
+            //TODO: try - catch block is needed ... when excetion will be catch than send false.
             if (phone != null)
             {
-                //TODO: try - catch block is needed ... when excetion will be catch than send false.
-                _context.People.OfType<User>()
-                    .Include(u => u.EmailAddresses)
-                    .FirstOrDefault(u => u.Id == this.Id)
-                    .Phones.Add(phone);
-                _context.SaveChanges();
+                _context = new ApplicationDbContext();
+
+                var user = _context.People.OfType<User>()
+                    .Include(u => u.Phones)
+                    .FirstOrDefault(u => u.Id == this.Id);
+
+                if (user != null)
+                {
+                    var userPhone = new UserPhone()
+                    {
+                        User = user,
+                        PhoneNumber = phone.PhoneNumber,
+                        Note = phone.Note
+                    };
+   
+                    user.Phones.Add(userPhone);
+                 
+                    if (_context.SaveChanges() == 2)
+                        return true;
+                }
             }
+
+            return false;
         }
         #endregion
         #region GetUserEmails
@@ -299,6 +316,35 @@ namespace SWAM.Models.User
                          .PhoneNumber = newNote;
                 _context.SaveChanges();
             }
+        }
+        #endregion
+        #region Delete
+        /// <summary>
+        /// Delete from database current number.
+        /// </summary>
+        public bool Delete(UserPhone userPhone)
+        {
+            _context = new ApplicationDbContext();
+
+            var user = _context.People
+                .OfType<User>()
+                .Include(u => u.Phones)
+                .FirstOrDefault(p => p.Id == this.Id);
+
+            if (user != null)
+            {
+                for (int i = 0; i < user.Phones.Count; i++)
+                {
+                    if (user.Phones[i].Id == userPhone.Id)
+                        user.Phones.RemoveAt(i);
+                }
+
+                int value = _context.SaveChanges();
+                if (value == 2)
+                    return true;
+            }
+
+            return false;
         }
         #endregion
         #region ChangeEmailAddress
