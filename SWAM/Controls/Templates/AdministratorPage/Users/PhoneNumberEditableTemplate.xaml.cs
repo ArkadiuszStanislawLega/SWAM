@@ -40,16 +40,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (DataContext is UserPhone phone)
             {
                 //Get phone number from database before edit.
-                if (phone.User.GetUserPhone(phone.Id) is UserPhone phoneNumberBeforeEdited)
+                if (phone.Get(phone) is UserPhone phoneNumberBeforeEdited)
                 { 
                     this._confirmWindow.Show($"Czy jesteś pewien że chcesz zmienić numer telefonu {phoneNumberBeforeEdited.ToString()} na {this.EditNote.Text} - {this.EditPhoneNumber.Text}?",
                         out bool isEditConfirmed, $"Potwierdź edycję numeru telefonu {phone.User.Name}");
                     //if the user has confirmed editing the telephone number
                     if (isEditConfirmed)
                     {
-                        if (phone.User.UpdatePhoneNumber(phoneNumberBeforeEdited, this.EditPhoneNumber.Text))
+                        if (phone.UpdateNumber(phoneNumberBeforeEdited, this.EditPhoneNumber.Text))
                         {
-                            if (phone.User.UpdatePhoneNote(phoneNumberBeforeEdited, this.EditNote.Text))
+                            if (phone.UpdateNote(phoneNumberBeforeEdited, this.EditNote.Text))
                                 InformationToUser($"Numer telefonu {phoneNumberBeforeEdited.ToString()} edytowano na {this.EditNote.Text} - {this.EditPhoneNumber.Text}.");
 
                             else
@@ -80,7 +80,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     this._confirmWindow.Show($"Czy na pewno chcesz usunąc numer telefonu {phone.ToString()}?", out bool isConfirmed, "Potwierdź usunięcie kontaktu");
                     if (isConfirmed)
                     {
-                        if (phone.User.DeletePhone(phone))
+                        if (phone.Delete(phone))
                         {
                             InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 

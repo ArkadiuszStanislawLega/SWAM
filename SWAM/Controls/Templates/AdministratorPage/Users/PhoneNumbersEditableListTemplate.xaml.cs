@@ -35,7 +35,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 if (phone != null)
                 {
-                    user.AddNewPhone(phone);
+                    user.AddPhone(phone);
                     InformationToUser($"dodano nowy numer telefonu {phone.PhoneNumber} użytkownikowi {user.Name}.");
 
                     RefreshPhoneList();
@@ -69,7 +69,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 if (DataContext is User user)
                 {
-                    var phonesList = user.GetUserPhones();
+                    var phonesList = user.GetPhones();
                     if (phonesList != null)
                         PhoneNumbers.ItemsSource = phonesList;
                     else throw new RefreshUserPhonesListException();

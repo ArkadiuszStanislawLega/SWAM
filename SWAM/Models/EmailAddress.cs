@@ -24,15 +24,16 @@ namespace SWAM.Models
         /// </summary>
         public string Note { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         protected static ApplicationDbContext _context 
         {
             get
             {
                 //TODO: Make all exceptions
-                return DB_CONTEXT;
+                return dbContext;
             }
+            set => dbContext = value;
         }
     }
 }

@@ -30,27 +30,27 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
             //Make sure that datacontext is email
-            if (DataContext is UserEmailAddress email)
+            if (DataContext is UserEmailAddress emailAddress)
             {
                 //Make sure confirm window is not null and is ready to show message for user.
                 if (this._confirmWindow != null)
                 {
-                    var dbEmail = email.User.GetEmailAddress(email.Id);
+                    var emailAddressBeforeEdited = emailAddress.Get(emailAddress.Id);
 
                     //Show confirmation window about changes.
-                    this._confirmWindow.Show($"Potwierdź zmianę adresu email {dbEmail.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                    this._confirmWindow.Show($"Potwierdź zmianę adresu email {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
 
                     //If user confirmed in dialog window changes...
                     if (isConfirmed)
                     {
                         //Update email in database and inform user about it.
-                        if (email.User.ChangeEmailAddress(email, EditEmail.Text))
-                            InformationToUser($"Edytowano adress email {email.AddressEmail} użytkownikowi {email.User.Name}.");
+                        if (emailAddress.Update(EditEmail.Text))
+                            InformationToUser($"Edytowano adress email {emailAddress.AddressEmail} użytkownikowi {emailAddress.User.Name}.");
                         else
                             InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                     }
                     else
-                        this.DataContext = dbEmail;
+                        this.DataContext = emailAddressBeforeEdited;
                     
                 }
                 else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CONFIRMATION_WINDOW_ERROR}", true);

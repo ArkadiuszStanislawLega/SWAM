@@ -37,7 +37,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
                 if (email != null)
                 {
-                    user.AddUserAddressEmail(email);
+                    user.AddAddressEmail(email);
                     this.NewEmail.Text = string.Empty;
 
                     RefreshEmailsList();
@@ -56,7 +56,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                if (user.GetUserEmails() is List<UserEmailAddress> list)
+                if (user.GetEmailsAddresses() is List<UserEmailAddress> list)
                     Emails.ItemsSource = list;
                 else
                     InformationToUser($"{ErrorMesages.REFRESH_EMAILS_LIST_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
