@@ -395,11 +395,11 @@ namespace SWAM.Models.User
         /// <returns>List with email addresses.</returns>
         public IList<UserEmailAddress> GetUserEmails()
         {
-            User user = _context.People
+            _context = new ApplicationDbContext();
+            return  _context.People
                         .OfType<User>()
                         .Include(u => u.EmailAddresses)
-                        .First(u => u.Id == this.Id);
-            return user.EmailAddresses;
+                        .First(u => u.Id == this.Id).EmailAddresses;
         }
         #endregion
 
