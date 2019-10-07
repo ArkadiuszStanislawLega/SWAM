@@ -7,9 +7,15 @@
              Width="auto"
              MinHeight="300"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Products"
+         ObjectType="{x:Type local:ProductsListFromDbTemplate}"
+         MethodName="GetProductListFromUserWarehouse"/>
+    </UserControl.Resources>
+
     <Grid>
         <DataGrid Grid.Column="1" Grid.Row="1"
-                  ItemsSource="{Binding GetProductListFromUserWarehouse}" 
+                  Name="Products"
                   LoadingRow="NumberRowIteration"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"

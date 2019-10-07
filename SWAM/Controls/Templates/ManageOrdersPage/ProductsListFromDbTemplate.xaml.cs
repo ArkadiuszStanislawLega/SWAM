@@ -15,6 +15,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         public ProductsListFromDbTemplate()
         {
             InitializeComponent();
+            Products.ItemsSource = GetProductListFromUserWarehouse();
         }
 
         private List<Product> GetProductListFromUserWarehouse()
@@ -22,7 +23,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
             if (accessUsersToWarehouses != null)
             {
-                return Product.GetProductsFromWarehouse(accessUsersToWarehouses.User.Id);
+                return Product.GetProductsFromWarehouse(accessUsersToWarehouses.Warehouse.Id);
             }
             return null;
         }
@@ -34,7 +35,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
         private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("adsa");
+
         }
     }
 }
