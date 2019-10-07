@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -32,17 +33,17 @@ namespace SWAM.Models
         /// <summary>
         /// Flag indicating current message is readed.
         /// </summary>
-        public bool IsReaded { get; set; }
+        public bool IsReaded { get; set; } = false;
         /// <summary>
         /// Flag indicating current message is deleted by sender.
         /// If true - sender does not see this message in his send e-mail box.
         /// </summary>
-        public bool IsDeletedBySender { get; set; }
+        public bool IsDeletedBySender { get; set; } = false;
         /// <summary>
         /// Flag indicating current message is deleted by receiver.
         /// If true - receiver does not see this message in his receive e-mail box.
         /// </summary>
-        public bool IsDeletedByReceiver { get; set; }
+        public bool IsDeletedByReceiver { get; set; } = false;
         /// <summary>
         /// The user who sent the message.
         /// </summary>
@@ -52,22 +53,20 @@ namespace SWAM.Models
         /// </summary>
         public User.User Receiver { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext _context
         {
             //TODO: Make all exceptions
             get
             {
-                return DB_CONTEXT;
+                return dbContext;
             }
+            set => dbContext = value;
         }
 
-        public static Message GetMessage(int messageId)
-        {
-            throw new NotImplementedException();
-           //return _context.Messages.FirstOrDefault(m => m.Id == messageId);
-        }
+        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
+        
 
         #region DeleteMessageBySender
         /// <summary>
@@ -144,12 +143,33 @@ namespace SWAM.Models
         /// <param name="messages">List with mesages</param>
         public static void AddManyMessages(List<Message> messages)
         {
-            throw new NotImplementedException();
-            //if(messages != null)
-            //{
-            //    _context.Messages.AddRange(messages);
-            //    _context.SaveChanges();
-            //}
+            if (messages != null)
+            {
+                _context = new ApplicationDbContext();
+                foreach (var message in messages)
+                {
+                    var sender = _context.People
+                        .OfType<User.User>()
+                        .FirstOrDefault(u => u.Id == message.Sender.Id);
+
+                    var receiver = _context.People
+                        .OfType<User.User>()
+                        .FirstOrDefault(u => u.Id == message.Receiver.Id);
+
+                    if (receiver != null & sender != null)
+                    {
+                        _context.Messages.Add(new Message()
+                        {
+                            Sender = sender,
+                            Receiver = receiver,
+                            TitleOfMessage = message.TitleOfMessage,
+                            ContentOfMessage = message.ContentOfMessage,
+                            PostDate = DateTime.Now
+                        });
+                    }
+                }
+                _context.SaveChanges();
+            }
         }
         #endregion
 
@@ -160,12 +180,29 @@ namespace SWAM.Models
         /// <param name="message">The message we want to add</param>
         public static void AddMessage(Message message)
         {
-            throw new NotImplementedException();
-            //if (message != null)
-            //{
-            //    _context.Messages.Add(message);
-            //    _context.SaveChanges();
-            //}
+            if (message != null)
+            {
+                _context = new ApplicationDbContext();
+                var sender = _context.People
+                                     .OfType<User.User>()
+                                     .FirstOrDefault(u => u.Id == message.Sender.Id);
+
+                var receiver = _context.People
+                                       .OfType<User.User>()
+                                       .FirstOrDefault(u => u.Id == message.Receiver.Id);
+                if (receiver != null & sender != null)
+                {
+                    _context.Messages.Add(new Message()
+                    {
+                        Sender = sender,
+                        Receiver = receiver,
+                        TitleOfMessage = message.TitleOfMessage,
+                        ContentOfMessage = message.ContentOfMessage,
+                        PostDate = DateTime.Now
+                    });
+                    _context.SaveChanges();
+                }
+            }
         }
         #endregion
 
@@ -179,11 +216,7 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context.People
-                     .OfType<User.User>()
-                     .FirstOrDefault(u => u.Id == message.Sender.Id)
-                     .Messages.Single(m => m.Id == message.Id)
-                     .DateOfReading = DateTime.Now;
+                _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == message.Sender.Id).Messages.Single(m => m.Id == message.Id).DateOfReading = DateTime.Now;
                 if (_context.SaveChanges() == 1)
                     return true;
             }
@@ -244,13 +277,11 @@ namespace SWAM.Models
         /// <returns>List with all received messages</returns>
         public static IList<Message> AllReceivedMessages(int userId)
         {
-            throw new NotImplementedException();
-            //if (userId > 0)
-            //    return _context.Messages
-            //        .Include(m => m.Receiver)
-            //        .Include(m => m.Sender)
-            //        .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver).ToList();
-            //else return null;
+            if (userId > 0)
+                return _context.Messages
+                    .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver)
+                    .ToList();
+            else return null;
         }
         #endregion
         #region AllSendedMessages
@@ -261,13 +292,12 @@ namespace SWAM.Models
         /// <returns>List with all sended messages</returns>
         public static IList<Message> AllSendedMessages(int userId)
         {
-            throw new NotImplementedException();
-            //if(userId > 0)
-            //    return _context.Messages
-            //            .Include(m => m.Receiver)
-            //            .Include(m => m.Sender)
-            //            .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();
-            //else return null;
+            if (userId > 0)
+                return _context.Messages
+                        .Include(m => m.Receiver)
+                        .Include(m => m.Sender)
+                        .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();
+            else return null;
         }
         #endregion
 

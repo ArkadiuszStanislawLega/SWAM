@@ -12,6 +12,7 @@ namespace SWAM
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<Address> Adresses { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -27,7 +28,6 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           
             modelBuilder.Configurations.Add(new AccessesConfiguration());
             modelBuilder.Configurations.Add(new AddressConfiguration());
             modelBuilder.Configurations.Add(new CourierConfiguration());
