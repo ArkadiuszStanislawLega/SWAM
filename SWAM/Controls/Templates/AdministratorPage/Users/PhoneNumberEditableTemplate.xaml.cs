@@ -39,10 +39,28 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is UserPhone phone)
             {
-                phone.User.UpdatePhoneNumber(phone, EditPhoneNumber.Text);
-                phone.User.UpdatePhoneNote(phone, EditNote.Text);
-                 
-                InformationToUser($"Edytowano numer telefonu {EditNote.Text} - {EditPhoneNumber.Text}.");
+                //Get phone number from database before edit.
+                if (phone.User.GetUserPhone(phone.Id) is UserPhone phoneNumberBeforeEdited)
+                { 
+                    this._confirmWindow.Show($"Czy jesteś pewien że chcesz zmienić numer telefonu {phoneNumberBeforeEdited.ToString()} na {this.EditNote.Text} - {this.EditPhoneNumber.Text}?",
+                        out bool isEditConfirmed, $"Potwierdź edycję numeru telefonu {phone.User.Name}");
+                    //if the user has confirmed editing the telephone number
+                    if (isEditConfirmed)
+                    {
+                        if (phone.User.UpdatePhoneNumber(phoneNumberBeforeEdited, this.EditPhoneNumber.Text))
+                        {
+                            if (phone.User.UpdatePhoneNote(phoneNumberBeforeEdited, this.EditNote.Text))
+                                InformationToUser($"Numer telefonu {phoneNumberBeforeEdited.ToString()} edytowano na {this.EditNote.Text} - {this.EditPhoneNumber.Text}.");
+
+                            else
+                                InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} W czasie zmiany notatki telefonu. {ErrorMesages.DATABASE_ERROR}", true);
+                        }
+                        else
+                            InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} W czasie zmiany numeru telefonu. {ErrorMesages.DATABASE_ERROR}", true);
+                    }
+                }
+                else
+                    InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
             else InformationToUser(ErrorMesages.DURING_EDIT_PHONE_ERROR, true);
         }

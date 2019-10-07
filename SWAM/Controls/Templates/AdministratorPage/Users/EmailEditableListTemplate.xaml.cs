@@ -71,7 +71,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CancelCreateNewEmail_Click(object sender, RoutedEventArgs e) => this.NewEmail.Text = "";
+        private void CancelCreateNewEmail_Click(object sender, RoutedEventArgs e) => this.NewEmail.Text = string.Empty;
         #endregion
     }
 }

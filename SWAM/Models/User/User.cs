@@ -270,18 +270,25 @@ namespace SWAM.Models.User
         /// Update current phone number.
         /// </summary>
         /// <param name="newPhoneNumber">New phone/edited number.</param>
-        public void UpdatePhoneNumber(UserPhone userPhone, string newPhoneNumber)
+        /// <returns>True if update of phone number is corectly edited.</returns>
+        public bool UpdatePhoneNumber(UserPhone userPhone, string newPhoneNumber)
         {
             if (userPhone != null)
             {
+                if (userPhone.PhoneNumber == newPhoneNumber)
+                    return true;
+
                 _context.People
                             .OfType<User>()
                             .Include(u => u.Phones)
                             .First(u => u.Id == this.Id)
                             .Phones.First(p => p.Id == userPhone.Id)
                             .PhoneNumber = newPhoneNumber;
-                _context.SaveChanges();
+                if (_context.SaveChanges() == 1)
+                    return true;
             }
+
+            return false;
         }
         #endregion
         #region UpdatePhoneNote
@@ -289,18 +296,25 @@ namespace SWAM.Models.User
         /// Update in database note of current phone number.
         /// </summary>
         /// <param name="newNote">New/edited note of phone number.</param>
-        public void UpdatePhoneNote(UserPhone userPhone, string newNote)
+        /// <returns>True if update of phone number is corectly edited.</returns>
+        public bool UpdatePhoneNote(UserPhone userPhone, string newNote)
         {
             if (userPhone != null)
             {
+                if (userPhone.Note == newNote)
+                    return true;
+
                 _context.People
                          .OfType<User>()
                          .Include(u => u.Phones)
                          .First(u => u.Id == this.Id)
                          .Phones.First(p => p.Id == userPhone.Id)
-                         .PhoneNumber = newNote;
-                _context.SaveChanges();
+                         .Note = newNote;
+                if (_context.SaveChanges() == 1)
+                    return true;
             }
+
+            return false;
         }
         #endregion
         #region DeletePhone
@@ -330,6 +344,23 @@ namespace SWAM.Models.User
             return false;
         }
         #endregion
+        #region GetUserPhone
+        /// <summary>
+        /// Retrieves the phone number from the database.
+        /// </summary>
+        /// <param name="phoneId">User phone Id from database.</param>
+        /// <returns>Specific user phone.</returns>
+        public UserPhone GetUserPhone(int phoneId)
+        {
+            _context = new ApplicationDbContext();
+            return _context.People
+                .OfType<User>()
+                .Include(u => u.Phones)
+                .FirstOrDefault(u => u.Id == this.Id)
+                .Phones
+                .FirstOrDefault(u => u.Id == phoneId);
+        }
+        #endregion  
         #region GetUserPhones
         /// <summary>
         /// Make list with phones of specific user.
