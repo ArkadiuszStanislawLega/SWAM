@@ -62,7 +62,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     this._confirmWindow.Show($"Czy na pewno chcesz usunąc numer telefonu {phone.ToString()}?", out bool isConfirmed, "Potwierdź usunięcie kontaktu");
                     if (isConfirmed)
                     {
-                        phone.User.Delete(phone);
+                        phone.User.DeletePhone(phone);
                         InformationToUser($"Usunięto numer telefonu {phone.Note} - {phone.PhoneNumber}.");
 
                         //Refresh phones list.

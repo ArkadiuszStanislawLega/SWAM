@@ -318,30 +318,25 @@ namespace SWAM.Models.User
             }
         }
         #endregion
-        #region Delete
+        #region DeletePhone
         /// <summary>
         /// Delete from database current number.
         /// </summary>
-        public bool Delete(UserPhone userPhone)
+        public bool DeletePhone(UserPhone userPhone)
         {
-            _context = new ApplicationDbContext();
-
-            var user = _context.People
-                .OfType<User>()
-                .Include(u => u.Phones)
-                .FirstOrDefault(p => p.Id == this.Id);
-
-            if (user != null)
+            if (userPhone != null)
             {
-                for (int i = 0; i < user.Phones.Count; i++)
-                {
-                    if (user.Phones[i].Id == userPhone.Id)
-                        user.Phones.RemoveAt(i);
-                }
+                _context = new ApplicationDbContext();
 
-                int value = _context.SaveChanges();
-                if (value == 2)
-                    return true;
+                var phones = _context.Phones.FirstOrDefault(u => u.Id == userPhone.Id);
+
+                if (phones != null)
+                {
+                    _context.Phones.Remove(phones);
+                    //Two rows are affected.
+                    if (_context.SaveChanges() == 2)
+                        return true;
+                }
             }
 
             return false;
