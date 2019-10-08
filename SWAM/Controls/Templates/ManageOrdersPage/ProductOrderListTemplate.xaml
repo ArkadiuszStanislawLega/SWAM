@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+             xmlns:prodLVM="clr-namespace:SWAM.Models.ManageOrdersPage"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
@@ -38,6 +39,8 @@
         <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Hidden">
                 <ListView MaxHeight="300" Name="productsListView" 
+                          DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
+                          ItemsSource="{Binding Products}"
                           Background="{StaticResource MainBarBrash}" 
                           Foreground="White" BorderThickness="0">
                     <ListView.View>

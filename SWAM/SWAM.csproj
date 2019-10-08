@@ -143,6 +143,7 @@
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
     <Compile Include="Models\Customer\CustomerPhone.cs" />
     <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
+    <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Customer\CustomerDeliveryAddress.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />

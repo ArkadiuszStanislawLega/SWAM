@@ -4,22 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+             xmlns:prodLVM="clr-namespace:SWAM.Models.ManageOrdersPage"
              Width="auto"
              MinHeight="300"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <ObjectDataProvider x:Key="Products"
-         ObjectType="{x:Type local:ProductsListFromDbTemplate}"
-         MethodName="GetProductListFromUserWarehouse"/>
-    </UserControl.Resources>
-
-    <Grid>
+    <StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="1"
                   Name="Products"
                   LoadingRow="NumberRowIteration"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
                   SelectionMode="Single"
+                  DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
+                  ItemsSource="{Binding Products}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
@@ -38,5 +36,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </StackPanel>
 </UserControl>
