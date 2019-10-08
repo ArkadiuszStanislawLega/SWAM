@@ -104,10 +104,10 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Event click button</param>
         private void NewMessage_Click(object sender, RoutedEventArgs e)
         {
-            SendMessageWindow sendMessageWindow = new SendMessageWindow();
-            sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
-            SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
-            SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
+            if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
+            {
+                sendMessageWindow.Show();
+            }
         }
         #endregion
         #region ReplayMessage_Click
@@ -120,12 +120,12 @@ namespace SWAM.Controls.Pages
         {
             if (this._currentMessage != null)
             {
-                SendMessageWindow sendMessageWindow = new SendMessageWindow();
-                sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
-                sendMessageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
-
-                SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
-                SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
+                if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
+                    sendMessageWindow is SendMessageWindow messageWindow)
+                {
+                    messageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
+                    messageWindow.Show();
+                }
             }
         }
         #endregion

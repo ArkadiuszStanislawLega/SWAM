@@ -19,16 +19,12 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// </summary>
         public Message MessageToSend = new Message();
 
-        public SelectedUsersListViewModel SelectedUsersListViewModel { get; set; } = new SelectedUsersListViewModel();
-
         private List<Message> _messagesList = new List<Message>();
 
         bool _isReplayMessage = false;
         public SendMessageTemplate()
         {
             InitializeComponent();
-
-            DataContext = SelectedUsersListViewModel;
         }
 
         #region SetResceiver
@@ -36,22 +32,16 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// Sets the user who is the recipient of the message.
         /// </summary>
         /// <param name="receiver">Recipient of the message.</param>
-        public void SetResceiver(SelectedUsersListViewModel receivers)
+        public void SetResceiver()
         {
-            if (receivers != null && receivers.UsersList.Count > 0)
+            foreach (User user in SelectedUsersListViewModel.Instance.UsersList)
             {
-                SelectedUsersListViewModel = receivers;
-                DataContext = receivers;
-
-                foreach (User user in SelectedUsersListViewModel.UsersList)
-                {
-                    this._messagesList.Add(
-                        new Message()
-                        {
-                            Sender = SWAM.MainWindow.LoggedInUser,
-                            Receiver =  user
-                        });
-                }
+                this._messagesList.Add(
+                    new Message()
+                    {
+                        Sender = SWAM.MainWindow.LoggedInUser,
+                        Receiver = user
+                    });
             }
         }
         #endregion
@@ -65,7 +55,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             this.MessageToSend.Receiver = message.Sender;
             this.MessageToSend.Sender = SWAM.MainWindow.LoggedInUser;
-            this.SelectedUsersListViewModel.AddUser(message.Sender);//Meake receiver visibile in replay window.
+            SelectedUsersListViewModel.Instance.AddUser(message.Sender);//Meake receiver visibile in replay window.
 
             //Block adding more users.
             this.ChosenUserContainer.IsEnabled = false;
@@ -119,7 +109,7 @@ namespace SWAM.Controls.Templates.MessagesPage
             }
 
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
-                sendMessageWindow.Close();
+                sendMessageWindow.Hide();
 
             SWAM.MainWindow.RefreshMessagesButton();
         }
@@ -137,5 +127,14 @@ namespace SWAM.Controls.Templates.MessagesPage
             message.PostDate = DateTime.Now;
         }
         #endregion
+
+        private void CancelSending_Click(object sender, RoutedEventArgs e)
+        {
+            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+            {
+                sendMessageWindow.RefreshContents();
+                sendMessageWindow.Hide();
+            }
+        }
     }
 }

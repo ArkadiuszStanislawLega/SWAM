@@ -26,7 +26,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is User user)
-                SelectedUsers.SelectedUsersListViewModel.AddUser(user);
+                SelectedUsersListViewModel.Instance.AddUser(user);
             
         }
         #endregion
@@ -57,10 +57,19 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow parent)
             {
-                parent.SendMessageReplay.SetResceiver(SelectedUsers.SelectedUsersListViewModel);
+                parent.SendMessageReplay.SetResceiver();
                 parent.ChangeContent(Enumerators.BookmarkInPage.SendMessageMessagesWindow);
             }
         }
         #endregion
+
+        private void CancelSendMessage_Click(object sender, RoutedEventArgs e)
+        {
+            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+            {
+                sendMessageWindow.RefreshContents();
+                sendMessageWindow.Hide();
+            }
+        }
     }
 }

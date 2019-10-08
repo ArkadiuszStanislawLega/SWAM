@@ -9,7 +9,6 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Closed="Window_Closed"
         Title="SWAM - Wysyłanie wiadomości" Height="450" Width="800">
     <Window.Effect>
         <DropShadowEffect BlurRadius="15" Direction="-90" 

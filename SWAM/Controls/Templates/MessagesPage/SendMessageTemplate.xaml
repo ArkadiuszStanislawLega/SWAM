@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.MessagesPage"
+             xmlns:userLVM="clr-namespace:SWAM.Models.Messages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -36,9 +37,10 @@
                     Style="{StaticResource NavigationButton}"/>
 
             <ItemsControl Name="ChosenUserContainer"
-                      Margin="10 0 0 0"
-                      ItemsSource="{Binding UsersList}" 
-                      Grid.Column="2">
+                        Margin="10 0 0 0"
+                        DataContext="{x:Static userLVM:SelectedUsersListViewModel.Instance}"
+                        ItemsSource="{Binding UsersList}" 
+                        Grid.Column="2">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <local:SelectedUsersItemListTemplate/>
@@ -52,9 +54,7 @@
             </ItemsControl>
 
         </Grid>
-        
-
-
+       
         <Grid Grid.Row="2" Margin="10 2 10 2">
         <!--#region Columns Definitions-->
         <Grid.ColumnDefinitions>
@@ -85,7 +85,12 @@
                     HorizontalAlignment="Right"
                     Grid.Row="4" 
                     Orientation="Horizontal">
-            <Button Content="Anuluj" Margin="0 0 1 0" Width="100" Style="{StaticResource NavigationButton}"/>
+            <Button Name="CancelSending" 
+                    Content="Anuluj" 
+                    Margin="0 0 1 0" 
+                    Width="100" 
+                    Click="CancelSending_Click" 
+                    Style="{StaticResource NavigationButton}"/>
             <Button Name="SendMessage" Click="SendMessage_Click" Content="Wyślij" Width="100" Style="{StaticResource NavigationButton}"/>
         </StackPanel>
     </Grid>

@@ -9,6 +9,13 @@ namespace SWAM.Models.Messages
 
         public ObservableCollection<User.User> UsersList { get => this._usersListViewModel; }
 
+        #region Singletone Pattern
+        static SelectedUsersListViewModel() { }
+
+        private static readonly SelectedUsersListViewModel _instance = new SelectedUsersListViewModel();
+        public static SelectedUsersListViewModel Instance => _instance;
+        #endregion
+
         public void AddUser(User.User user)
         {
             bool isAlreadySuchUser = false;

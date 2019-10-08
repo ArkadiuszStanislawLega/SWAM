@@ -20,7 +20,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// Confirm window instance.
         /// </summary>
         /// <returns>Confirm window.</returns>
-        protected ConfirmWindow _confirmWindow { get => this._mainWindow.MessageBoxes.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
+        protected ConfirmWindow _confirmWindow { get => this._mainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
 
         #region InformationToUser
         /// <summary>

@@ -70,9 +70,10 @@ namespace SWAM
         /// <summary>
         /// Container with whole messageBoxes.
         /// </summary>
-        public Dictionary<WindowType, Window> MessageBoxes = new Dictionary<WindowType, Window>()
+        public Dictionary<WindowType, Window> Windows = new Dictionary<WindowType, Window>()
         {
-            { WindowType.Question, new ConfirmWindow()}
+            { WindowType.Question, new ConfirmWindow()},
+            { WindowType.SendMessage, new SendMessageWindow()}
         };
         /// <summary>
         /// Indicates which page is currently loaded.
@@ -116,8 +117,6 @@ namespace SWAM
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage }},
         };
-
-        public static List<SendMessageWindow> MessagesWindows = new List<SendMessageWindow>();
         #endregion
 
         #region BasicConstructor
@@ -294,10 +293,8 @@ namespace SWAM
         private void SWAM_Closed(object sender, EventArgs e)
         {
             //close all opened Windows
-            foreach (KeyValuePair<WindowType, Window> entry in MessageBoxes)
+            foreach (KeyValuePair<WindowType, Window> entry in Windows)
                 entry.Value.Close();
-            foreach (SendMessageWindow messagesPageTemplate in MessagesWindows)
-                messagesPageTemplate.Close();
         }
         #endregion
 
