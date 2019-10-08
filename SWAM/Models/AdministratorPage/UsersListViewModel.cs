@@ -10,7 +10,6 @@ namespace SWAM.Models.AdministratorPage
     public class UsersListViewModel : UserControl
     {
         private readonly static ObservableCollection<User.User> _usersList = new ObservableCollection<User.User>();
-
         public static ObservableCollection<User.User> UsersList => _usersList;
 
         #region Singletone Pattern
@@ -18,9 +17,12 @@ namespace SWAM.Models.AdministratorPage
 
         private static readonly UsersListViewModel _instance = new UsersListViewModel();
         public static UsersListViewModel Instance => _instance;
-        #endregion  
-
         public UsersListViewModel() => Refresh();
+        #endregion
+        #region Refresh
+        /// <summary>
+        /// Refreshes the list of users and retrieves them from the database.
+        /// </summary>
         public void Refresh()
         {
             if(_usersList.Count > 0)
@@ -34,5 +36,6 @@ namespace SWAM.Models.AdministratorPage
                     _usersList.Add(u);
             }
         }
+        #endregion
     }
 }

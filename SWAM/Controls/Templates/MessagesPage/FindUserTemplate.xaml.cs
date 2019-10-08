@@ -16,7 +16,6 @@ namespace SWAM.Controls.Templates.MessagesPage
     {
         public FindUserTemplate() => InitializeComponent();
         
-
         #region Row_DoubleClick
         /// <summary>
         /// Action after double click row in user list.
@@ -62,7 +61,13 @@ namespace SWAM.Controls.Templates.MessagesPage
             }
         }
         #endregion
-
+        #region CancelSendMessage_Click
+        /// <summary>
+        /// Action after click cancel send message button.
+        /// Refresh parent window, to clear state and hide them.
+        /// </summary>
+        /// <param name="sender">Cancel send message button.</param>
+        /// <param name="e">Event click.</param>
         private void CancelSendMessage_Click(object sender, RoutedEventArgs e)
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
@@ -71,5 +76,6 @@ namespace SWAM.Controls.Templates.MessagesPage
                 sendMessageWindow.Hide();
             }
         }
+        #endregion
     }
 }

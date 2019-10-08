@@ -14,19 +14,22 @@ namespace SWAM.Controls.Templates.MessagesPage
     /// </summary>
     public partial class SendMessageTemplate : UserControl
     {
+        #region Properties
         /// <summary>
         /// Typed message
         /// </summary>
         public Message MessageToSend = new Message();
-
+        /// <summary>
+        /// List with messages that will be sent.
+        /// </summary>
         private List<Message> _messagesList = new List<Message>();
-
+        /// <summary>
+        /// Flag indicating whether the window is in reply mode.
+        /// </summary>
         bool _isReplayMessage = false;
-        public SendMessageTemplate()
-        {
-            InitializeComponent();
-        }
-
+        #endregion
+        public SendMessageTemplate() => InitializeComponent();
+        
         #region SetResceiver
         /// <summary>
         /// Sets the user who is the recipient of the message.
@@ -127,7 +130,13 @@ namespace SWAM.Controls.Templates.MessagesPage
             message.PostDate = DateTime.Now;
         }
         #endregion
-
+        #region CancelSending_Click
+        /// <summary>
+        /// Action after click cancel send message button.
+        /// Refresh parent window, to clear state and hide them.
+        /// </summary>
+        /// <param name="sender">Cancel send message button.</param>
+        /// <param name="e">Event click.</param>
         private void CancelSending_Click(object sender, RoutedEventArgs e)
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
@@ -136,5 +145,6 @@ namespace SWAM.Controls.Templates.MessagesPage
                 sendMessageWindow.Hide();
             }
         }
+        #endregion
     }
 }
