@@ -14,20 +14,8 @@ namespace SWAM.Controls.Templates.MessagesPage
     /// </summary>
     public partial class FindUserTemplate : UserControl
     {
-        #region Properties
-        /// <summary>
-        /// List with all users in database.
-        /// </summary>
-        public static MessagesUsersList MessagesUsersList { get; set; } = new MessagesUsersList();
-        #endregion
-
-        public FindUserTemplate()
-        {
-            InitializeComponent();
-
-            DataContext = MessagesUsersList;
-            MessagesUsersList.Refresh();
-        }
+        public FindUserTemplate() => InitializeComponent();
+        
 
         #region Row_DoubleClick
         /// <summary>
@@ -51,7 +39,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         private void UserName_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.UsersList);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.Instance);
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
