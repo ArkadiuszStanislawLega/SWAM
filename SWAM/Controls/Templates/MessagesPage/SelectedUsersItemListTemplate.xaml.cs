@@ -1,4 +1,5 @@
-﻿using SWAM.Models.User;
+﻿using SWAM.Models.Messages;
+using SWAM.Models.User;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,13 +16,6 @@ namespace SWAM.Controls.Templates.MessagesPage
             InitializeComponent();
         }
 
-        private void DeleteUser_Click(object sender, RoutedEventArgs e)
-        {
-            if (SWAM.MainWindow.FindParent<SelectedUsersToSendMessageTemplate>(this) is SelectedUsersToSendMessageTemplate parent)
-                parent.SelectedUsersListViewModel.RemoveUser(new User() { Id = (int)this.Tag });
-
-            else if (SWAM.MainWindow.FindParent<SendMessageTemplate>(this) is SendMessageTemplate sendMessageTemplate)
-                sendMessageTemplate.SelectedUsersListViewModel.RemoveUser(new User() { Id = (int)this.Tag });
-        }
+        private void DeleteUser_Click(object sender, RoutedEventArgs e) => SelectedUsersListViewModel.Instance.RemoveUser(new User() { Id = (int)this.Tag });
     }
 }

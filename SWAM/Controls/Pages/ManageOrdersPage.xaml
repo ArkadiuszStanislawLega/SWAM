@@ -30,8 +30,8 @@
                     Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <StackPanel Orientation="Vertical" Name="MainContent"          >
-      
+        <StackPanel Orientation="Vertical" Name="MainContent" >
+
         </StackPanel>
     </StackPanel>
 </UserControl>

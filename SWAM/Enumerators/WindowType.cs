@@ -11,6 +11,10 @@ namespace SWAM.Enumerators
         /// <summary>
         /// Messagebox with question.
         /// </summary>
-        Question
+        Question,
+        /// <summary>
+        /// Send message window.
+        /// </summary>
+        SendMessage,
     }
 }

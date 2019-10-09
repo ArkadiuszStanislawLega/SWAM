@@ -14,21 +14,8 @@ namespace SWAM.Controls.Templates.MessagesPage
     /// </summary>
     public partial class FindUserTemplate : UserControl
     {
-        #region Properties
-        /// <summary>
-        /// List with all users in database.
-        /// </summary>
-        public static MessagesUsersList MessagesUsersList { get; set; } = new MessagesUsersList();
-        #endregion
-
-        public FindUserTemplate()
-        {
-            InitializeComponent();
-
-            DataContext = MessagesUsersList;
-            MessagesUsersList.Refresh();
-        }
-
+        public FindUserTemplate() => InitializeComponent();
+        
         #region Row_DoubleClick
         /// <summary>
         /// Action after double click row in user list.
@@ -38,7 +25,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (sender is DataGridRow row && row.Item is User user)
-                SelectedUsers.SelectedUsersListViewModel.AddUser(user);
+                SelectedUsersListViewModel.Instance.AddUser(user);
             
         }
         #endregion
@@ -51,7 +38,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         private void UserName_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.UsersList);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.Instance);
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
@@ -69,8 +56,24 @@ namespace SWAM.Controls.Templates.MessagesPage
         {
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow parent)
             {
-                parent.SendMessageReplay.SetResceiver(SelectedUsers.SelectedUsersListViewModel);
+                parent.SendMessageReplay.SetResceiver();
                 parent.ChangeContent(Enumerators.BookmarkInPage.SendMessageMessagesWindow);
+            }
+        }
+        #endregion
+        #region CancelSendMessage_Click
+        /// <summary>
+        /// Action after click cancel send message button.
+        /// Refresh parent window, to clear state and hide them.
+        /// </summary>
+        /// <param name="sender">Cancel send message button.</param>
+        /// <param name="e">Event click.</param>
+        private void CancelSendMessage_Click(object sender, RoutedEventArgs e)
+        {
+            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+            {
+                sendMessageWindow.RefreshContents();
+                sendMessageWindow.Hide();
             }
         }
         #endregion

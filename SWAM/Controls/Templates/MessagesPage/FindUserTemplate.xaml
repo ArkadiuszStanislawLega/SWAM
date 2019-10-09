@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.MessagesPage"
+             xmlns:userLVM="clr-namespace:SWAM.Models.AdministratorPage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -30,10 +31,10 @@
                      TextChanged="UserName_TextChanged"
                      Style="{StaticResource Default}"/>
             </Grid>
-            <local:SelectedUsersToSendMessageTemplate
-                x:Name="SelectedUsers" Grid.Row="1"/>
+            <local:SelectedUsersToSendMessageTemplate x:Name="SelectedUsers" Grid.Row="1"/>
         </Grid>
         <DataGrid  Grid.Row="1"
+                   DataContext="{x:Static userLVM:UsersListViewModel.Instance}"
                    ItemsSource="{Binding UsersList}"
                    Style="{StaticResource BasicDataGrid}"
                    AutoGenerateColumns="False" 
@@ -65,7 +66,12 @@
                     HorizontalAlignment="Right"
                     Grid.Row="4" 
                     Orientation="Horizontal">
-            <Button Content="Anuluj" Margin="0 0 1 0" Width="100" Style="{StaticResource NavigationButton}"/>
+            <Button Name="CancelSendMessage"
+                    Content="Anuluj" 
+                    Margin="0 0 1 0" 
+                    Width="100" 
+                    Click="CancelSendMessage_Click"
+                    Style="{StaticResource NavigationButton}"/>
             <Button Name="Confirm" 
                     Click="Confirm_Click" 
                     Content="Zatwierdź"

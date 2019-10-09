@@ -155,9 +155,6 @@ namespace SWAM.Models
             return false;
         }
         #endregion
-
-
-
         #region EditExpiredAccess
         /// <summary>
         /// Edit date of expired user access in database.

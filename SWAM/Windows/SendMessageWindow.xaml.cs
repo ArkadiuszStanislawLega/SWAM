@@ -1,6 +1,6 @@
 ﻿using SWAM.Controls.Templates.MessagesPage;
 using SWAM.Enumerators;
-using System;
+using SWAM.Models.Messages;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +26,7 @@ namespace SWAM.Windows
             {BookmarkInPage.FindUserMessagesWindow, new FindUserTemplate() }
         };
         #endregion
-
+        
         public SendMessageWindow()
         {
             InitializeComponent();
@@ -40,7 +40,10 @@ namespace SWAM.Windows
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Exit_Click(object sender, RoutedEventArgs e) => this.Close();
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            if(IsActive) this.Hide();
+        }
         #endregion
         #region Maximize_Click
         /// <summary>
@@ -77,20 +80,19 @@ namespace SWAM.Windows
             this.WindowState = WindowState.Minimized;
         }
         #endregion
-
-        #region Window_Closed
+        #region RefreshContents
         /// <summary>
-        /// Action after this windows is closed.
-        /// Removing window from the list with all opened windows.
+        /// Refresh saved instance in main window.
+        /// Required wan user click cancel send message.
         /// </summary>
-        /// <param name="sender">This window.</param>
-        /// <param name="e">Event windows is closed.</param>
-        private void Window_Closed(object sender, EventArgs e)
+        public void RefreshContents()
         {
-            if (SWAM.MainWindow.MessagesWindows.Count > 0) SWAM.MainWindow.MessagesWindows.RemoveAt((int)this.Tag);
+            SWAM.MainWindow.currentInstance.Windows.Remove(WindowType.SendMessage);
+            SWAM.MainWindow.currentInstance.Windows.Add(WindowType.SendMessage, new SendMessageWindow());
+
+            SelectedUsersListViewModel.Instance.UsersList.Clear();
         }
         #endregion
-
         #region ChangeContent
         /// <summary>
         /// Changing main content of this window.
@@ -109,7 +111,6 @@ namespace SWAM.Windows
                 this.Content.Children.Add(userControl);
         }
         #endregion
-
         #region SendMessageReplay
         /// <summary>
         /// Template in which user is answering for a message

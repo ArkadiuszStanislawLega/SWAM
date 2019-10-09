@@ -4,16 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+             xmlns:prodLVM="clr-namespace:SWAM.Models.ManageOrdersPage"
              Width="auto"
              MinHeight="300"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
-    <Grid>
+    <StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="1"
-                  ItemsSource="{Binding GetProductListFromUserWarehouse}" 
+                  Name="Products"
                   LoadingRow="NumberRowIteration"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
                   SelectionMode="Single"
+                  DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
+                  ItemsSource="{Binding Products}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
@@ -21,7 +25,16 @@
                 <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
                 <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                <DataGridTemplateColumn Header="Dodaj do koszyka">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Content="+" Click="AddToShoppingCart_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </StackPanel>
 </UserControl>

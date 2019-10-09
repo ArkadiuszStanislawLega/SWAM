@@ -1,5 +1,6 @@
 ﻿using SWAM.Models;
 using SWAM.Models.Messages;
+using SWAM.Models.User;
 using SWAM.Windows;
 using System;
 using System.Collections.Generic;
@@ -13,46 +14,38 @@ namespace SWAM.Controls.Templates.MessagesPage
     /// </summary>
     public partial class SendMessageTemplate : UserControl
     {
+        #region Properties
         /// <summary>
         /// Typed message
         /// </summary>
         public Message MessageToSend = new Message();
-
-        public SelectedUsersListViewModel SelectedUsersListViewModel { get; set; } = new SelectedUsersListViewModel();
-
+        /// <summary>
+        /// List with messages that will be sent.
+        /// </summary>
         private List<Message> _messagesList = new List<Message>();
-
+        /// <summary>
+        /// Flag indicating whether the window is in reply mode.
+        /// </summary>
         bool _isReplayMessage = false;
-        public SendMessageTemplate()
-        {
-            InitializeComponent();
-
-            DataContext = SelectedUsersListViewModel;
-        }
-
+        #endregion
+        public SendMessageTemplate() => InitializeComponent();
+        
         #region SetResceiver
         /// <summary>
         /// Sets the user who is the recipient of the message.
         /// </summary>
         /// <param name="receiver">Recipient of the message.</param>
-        public void SetResceiver(SelectedUsersListViewModel receivers)
+        public void SetResceiver()
         {
-            //if (receivers != null && receivers.UsersList.Count > 0)
-            //{
-            //    SelectedUsersListViewModel = receivers;
-            //    DataContext = receivers;
-
-            //    foreach (User user in SelectedUsersListViewModel.UsersList)
-            //    {
-            //        this._messagesList.Add(
-            //            new Message()
-            //            {
-            //                SenderId = SWAM.MainWindow.LoggedInUser.Id,
-            //                ReceiverId = user.Id
-            //            });
-            //    }
-            //}
-            throw new NotImplementedException();
+            foreach (User user in SelectedUsersListViewModel.Instance.UsersList)
+            {
+                this._messagesList.Add(
+                    new Message()
+                    {
+                        Sender = SWAM.MainWindow.LoggedInUser,
+                        Receiver = user
+                    });
+            }
         }
         #endregion
 
@@ -63,21 +56,20 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="message">The message to which the answer is written</param>
         public void SetReplayMessage(Message message)
         {
-            //this.MessageToSend.ReceiverId = message.SenderId;
-            //this.MessageToSend.SenderId = SWAM.MainWindow.LoggedInUser.Id;
-            //this.SelectedUsersListViewModel.AddUser(message.Sender);//Meake receiver visibile in replay window.
+            this.MessageToSend.Receiver = message.Sender;
+            this.MessageToSend.Sender = SWAM.MainWindow.LoggedInUser;
+            SelectedUsersListViewModel.Instance.AddUser(message.Sender);//Meake receiver visibile in replay window.
 
-            ////Block adding more users.
-            //this.ChosenUserContainer.IsEnabled = false;
-            //this.FindUser.IsEnabled = false;
+            //Block adding more users.
+            this.ChosenUserContainer.IsEnabled = false;
+            this.FindUser.IsEnabled = false;
 
-            ////Copy message which are replayed.
-            //this.Title.Text = $"Re:{message.TitleOfMessage}";
-            //this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
-            //this.Message.ScrollToHome();
+            //Copy message which are replayed.
+            this.Title.Text = $"Re:{message.TitleOfMessage}";
+            this.Message.Text = $"\n\n--- Odpowiedź na wiadomość: ---\n{message.ContentOfMessage}\n--- Koniec wiadomości ---";
+            this.Message.ScrollToHome();
 
-            //this._isReplayMessage = true;
-            throw new NotImplementedException();
+            this._isReplayMessage = true;
         }
         #endregion
 
@@ -102,28 +94,27 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="e">Action clicked.</param>
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            //if (this._isReplayMessage)
-            //{
-            //    if (MessageToSend.ReceiverId != 0)
-            //    {
-            //        SetMessageValues(MessageToSend);
+            if (this._isReplayMessage)
+            {
+                if (MessageToSend.Receiver != null)
+                {
+                    SetMessageValues(MessageToSend);
 
-            //        SWAM.Models.Message.AddMessage(MessageToSend);
-            //    }
-            //}
-            //else
-            //{
-            //    foreach(Message message in this._messagesList)
-            //        SetMessageValues(message);
+                    SWAM.Models.Message.AddMessage(MessageToSend);
+                }
+            }
+            else
+            {
+                foreach (Message message in this._messagesList)
+                    SetMessageValues(message);
 
-            //    SWAM.Models.Message.AddManyMessages(this._messagesList);
-            //}
+                SWAM.Models.Message.AddManyMessages(this._messagesList);
+            }
 
-            //if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
-            //    sendMessageWindow.Close();
+            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+                sendMessageWindow.Hide();
 
-            //SWAM.MainWindow.RefreshMessagesButton();
-            throw new NotImplementedException();
+            SWAM.MainWindow.RefreshMessagesButton();
         }
         #endregion
 
@@ -137,6 +128,22 @@ namespace SWAM.Controls.Templates.MessagesPage
             message.ContentOfMessage = this.Message.Text;
             message.TitleOfMessage = this.Title.Text;
             message.PostDate = DateTime.Now;
+        }
+        #endregion
+        #region CancelSending_Click
+        /// <summary>
+        /// Action after click cancel send message button.
+        /// Refresh parent window, to clear state and hide them.
+        /// </summary>
+        /// <param name="sender">Cancel send message button.</param>
+        /// <param name="e">Event click.</param>
+        private void CancelSending_Click(object sender, RoutedEventArgs e)
+        {
+            if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
+            {
+                sendMessageWindow.RefreshContents();
+                sendMessageWindow.Hide();
+            }
         }
         #endregion
     }

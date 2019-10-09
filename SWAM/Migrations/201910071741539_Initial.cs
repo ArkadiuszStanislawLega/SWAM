@@ -58,7 +58,7 @@ namespace SWAM.Migrations
                         IsReaded = c.Boolean(nullable: false),
                         IsDeletedBySender = c.Boolean(nullable: false),
                         IsDeletedByReceiver = c.Boolean(nullable: false),
-                        Receiver_Id = c.Int(nullable: false),
+                        Receiver_Id = c.Int(),
                         Sender_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

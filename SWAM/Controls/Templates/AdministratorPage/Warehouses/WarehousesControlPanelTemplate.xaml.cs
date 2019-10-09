@@ -21,16 +21,10 @@ namespace SWAM.Templates.AdministratorPage
     {
         public readonly BookmarkInPage BookmarkAdministratorPage = BookmarkInPage.WarehousesControlPanel;
 
-        public WarehousesControlPanelTemplate()
-        {
-            InitializeComponent();
-        }
+        public WarehousesControlPanelTemplate() => InitializeComponent();
 
-        private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e)
-        {
-            RefreshList();
-        }
-
+        private void WarehousesControlPanelTemplate_Loaded(object sender, RoutedEventArgs e) => RefreshList();
+        
         public void RefreshList() => WarehousesListViewModel.Instance.Refresh();
 
         #region ShowPrfile

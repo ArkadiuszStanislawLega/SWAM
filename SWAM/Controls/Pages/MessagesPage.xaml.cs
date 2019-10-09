@@ -16,10 +16,6 @@ namespace SWAM.Controls.Pages
     {
         #region Properties
         /// <summary>
-        /// Conatiner with messages.
-        /// </summary>
-        public MessagesListViewModel MessagesListViewModel { get; set; } = new MessagesListViewModel();
-        /// <summary>
         /// Contains shown message values.
         /// </summary>
         private Message _currentMessage;
@@ -29,10 +25,7 @@ namespace SWAM.Controls.Pages
         private bool _isResivedIsOpen = true;
         #endregion
         #region Basic Constructor
-        public MessagesPage()
-        {
-            InitializeComponent();
-        }
+        public MessagesPage() => InitializeComponent();
         #endregion
 
         #region SetDabuleClickedMessageContent
@@ -111,10 +104,10 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Event click button</param>
         private void NewMessage_Click(object sender, RoutedEventArgs e)
         {
-            SendMessageWindow sendMessageWindow = new SendMessageWindow();
-            sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
-            SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
-            SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
+            if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
+            {
+                sendMessageWindow.Show();
+            }
         }
         #endregion
         #region ReplayMessage_Click
@@ -127,12 +120,12 @@ namespace SWAM.Controls.Pages
         {
             if (this._currentMessage != null)
             {
-                SendMessageWindow sendMessageWindow = new SendMessageWindow();
-                sendMessageWindow.Tag = SWAM.MainWindow.MessagesWindows.Count;
-                sendMessageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
-
-                SWAM.MainWindow.MessagesWindows.Add(sendMessageWindow);
-                SWAM.MainWindow.MessagesWindows[(int)sendMessageWindow.Tag].Show();
+                if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
+                    sendMessageWindow is SendMessageWindow messageWindow)
+                {
+                    messageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
+                    messageWindow.Show();
+                }
             }
         }
         #endregion
@@ -148,7 +141,7 @@ namespace SWAM.Controls.Pages
             RefreshMessagesList();
 
             //TODO: Think about it Why this don't Work in xaml
-            MessagesList.ItemsSource = MessagesListViewModel.MessagesList;
+            MessagesList.ItemsSource = MessagesListViewModel.Instance.MessagesList;
 
             MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
         }
@@ -192,7 +185,7 @@ namespace SWAM.Controls.Pages
         {
             if (SWAM.MainWindow.LoggedInUser != null)
             {
-                MessagesListViewModel.RefreshResivedMessages(SWAM.MainWindow.LoggedInUser.Id);
+                MessagesListViewModel.Instance.RefreshResivedMessages();
                 this.ContentTitle.Text = "Wiadomości odebrane";
                 this._isResivedIsOpen = true;
             }
@@ -204,7 +197,7 @@ namespace SWAM.Controls.Pages
         /// </summary>
         private void SetSendedContent()
         {
-            MessagesListViewModel.RefreshSendedMessages(SWAM.MainWindow.LoggedInUser.Id);
+            MessagesListViewModel.Instance.RefreshSendedMessages();
             this.ContentTitle.Text = "Wiadomości wysłane";
             this._isResivedIsOpen = false;
         }

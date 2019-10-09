@@ -1,6 +1,5 @@
 ﻿using SWAM.Models;
-using System;
-using System.Collections;
+using SWAM.Models.ManageOrdersPage;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,19 +16,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             InitializeComponent();
         }
 
-        private List<Product> GetProductListFromUserWarehouse()
-        {
-            var accessUsersToWarehouses = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id);
-            if (accessUsersToWarehouses != null)
-            {
-                return Product.GetProductsFromWarehouse(accessUsersToWarehouses.User.Id);
-            }
-            return null;
-        }
-
         private void NumberRowIteration(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
+
+        private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) => UserDependsAccessProductListViewModel.Instance.Refresh();
+        
     }
 }

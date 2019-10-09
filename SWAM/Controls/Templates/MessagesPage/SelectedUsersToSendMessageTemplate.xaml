@@ -4,11 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.MessagesPage"
+             xmlns:usersLVM="clr-namespace:SWAM.Models.Messages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <local:SelectedUsersItemListTemplate/>
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -18,6 +16,7 @@
                        Grid.Column="0" VerticalAlignment="Center"/>
         <ItemsControl Name="ChosenUserContainer"
                       Margin="10 0 0 0"
+                      DataContext="{x:Static usersLVM:SelectedUsersListViewModel.Instance}"
                       ItemsSource="{Binding UsersList}" 
                     Grid.Column="1">
             <ItemsControl.ItemTemplate>

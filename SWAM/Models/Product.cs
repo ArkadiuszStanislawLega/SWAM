@@ -100,6 +100,11 @@ namespace SWAM.Models
 
         public static List<Product> AllProducts() => context.Products.ToList();
 
-        public static List<Product> GetProductsFromWarehouse(int warehouseId) => context.States.Include(s => s.Product).Include(s => s.Warehouse).Where(p => p.WarehouseId == warehouseId).Select(s => s.Product).ToList();
+        public static List<Product> GetProductsFromWarehouse(int warehouseId) 
+            => context.States
+                    .Include(s => s.Product)
+                    .Include(s => s.Warehouse)
+                    .Where(p => p.WarehouseId == warehouseId)
+                    .Select(s => s.Product).ToList();
     }
 }

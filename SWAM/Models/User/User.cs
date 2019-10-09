@@ -70,6 +70,8 @@ namespace SWAM.Models.User
             }
             set => dbContext = value;
         }
+
+
         #region TryLogIn
         /// <summary>
         /// Looking for a specific user in the database by name. When it finds it, it checks that the hashed password matches the one in the database. 
@@ -211,12 +213,61 @@ namespace SWAM.Models.User
         }
         #endregion
 
-        #region AddEmail
+        #region AddPhone
+        /// <summary>
+        /// Adding new Phone to database.
+        /// </summary>
+        /// <param name="userPhone">New added phone.</param>
+        public bool AddPhone(UserPhone userPhone)
+        {
+            if (userPhone != null)
+            {
+                _context = new ApplicationDbContext();
+
+                var user = _context.People.OfType<User>()
+                    .Include(u => u.Phones)
+                    .FirstOrDefault(u => u.Id == this.Id);
+
+                if (user != null)
+                {
+                    var dbUserPhone = new UserPhone()
+                    {
+                        User = user,
+                        PhoneNumber = userPhone.PhoneNumber,
+                        Note = userPhone.Note
+                    };
+
+                    user.Phones.Add(dbUserPhone);
+
+                    if (_context.SaveChanges() == 2)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+        #endregion
+        #region GetPhones
+        /// <summary>
+        /// Make list with phones of specific user.
+        /// </summary>
+        /// <returns>List with phones.</returns>
+        public IList<UserPhone> GetPhones()
+        {
+            _context = new ApplicationDbContext();
+            return _context.People
+                        .OfType<User>()
+                        .Include(u => u.Phones)
+                        .First(u => u.Id == this.Id).Phones;
+        }
+        #endregion
+
+        #region AddAddressEmail
         /// <summary>
         /// Add new email to database.
         /// </summary>
         /// <param name="email">New addres email.</param>
-        public void AddUserAddressEmail(UserEmailAddress email)
+        public void AddAddressEmail(UserEmailAddress email)
         {
             if (email != null)
             {
@@ -229,178 +280,19 @@ namespace SWAM.Models.User
             }
         }
         #endregion
-
-        #region AddNewPhone
-        /// <summary>
-        /// Adding new Phone to database.
-        /// </summary>
-        /// <param name="phone">New added phone.</param>
-        public bool AddNewPhone(UserPhone phone)
-        {
-            //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            if (phone != null)
-            {
-                _context = new ApplicationDbContext();
-
-                var user = _context.People.OfType<User>()
-                    .Include(u => u.Phones)
-                    .FirstOrDefault(u => u.Id == this.Id);
-
-                if (user != null)
-                {
-                    var userPhone = new UserPhone()
-                    {
-                        User = user,
-                        PhoneNumber = phone.PhoneNumber,
-                        Note = phone.Note
-                    };
-   
-                    user.Phones.Add(userPhone);
-                 
-                    if (_context.SaveChanges() == 2)
-                        return true;
-                }
-            }
-
-            return false;
-        }
-        #endregion
-        #region GetUserEmails
-        /// <summary>
-        /// Make list with phones of specific user.
-        /// </summary>
-        /// <param name="id">User id from database.</param>
-        /// <returns>List with phones.</returns>
-        public IList<UserPhone> GetUserPhones()
-        {
-            _context = new ApplicationDbContext();
-            return _context.People
-                        .OfType<User>()
-                        .Include(u => u.Phones)
-                        .First(u => u.Id == this.Id).Phones;
-        }
-        #endregion
-        #region UpdatePhoneNumber
-        /// <summary>
-        /// Update current phone number.
-        /// </summary>
-        /// <param name="newPhoneNumber">New phone/edited number.</param>
-        public void UpdatePhoneNumber(UserPhone userPhone, string newPhoneNumber)
-        {
-            if (userPhone != null)
-            {
-                _context.People
-                            .OfType<User>()
-                            .Include(u => u.Phones)
-                            .First(u => u.Id == this.Id)
-                            .Phones.First(p => p.Id == userPhone.Id)
-                            .PhoneNumber = newPhoneNumber;
-                _context.SaveChanges();
-            }
-        }
-        #endregion
-        #region UpdatePhoneNote
-        /// <summary>
-        /// Update in database note of current phone number.
-        /// </summary>
-        /// <param name="newNote">New/edited note of phone number.</param>
-        public void UpdatePhoneNote(UserPhone userPhone, string newNote)
-        {
-            if (userPhone != null)
-            {
-                _context.People
-                         .OfType<User>()
-                         .Include(u => u.Phones)
-                         .First(u => u.Id == this.Id)
-                         .Phones.First(p => p.Id == userPhone.Id)
-                         .PhoneNumber = newNote;
-                _context.SaveChanges();
-            }
-        }
-        #endregion
-        #region Delete
-        /// <summary>
-        /// Delete from database current number.
-        /// </summary>
-        public bool Delete(UserPhone userPhone)
-        {
-            _context = new ApplicationDbContext();
-
-            var user = _context.People
-                .OfType<User>()
-                .Include(u => u.Phones)
-                .FirstOrDefault(p => p.Id == this.Id);
-
-            if (user != null)
-            {
-                for (int i = 0; i < user.Phones.Count; i++)
-                {
-                    if (user.Phones[i].Id == userPhone.Id)
-                        user.Phones.RemoveAt(i);
-                }
-
-                int value = _context.SaveChanges();
-                if (value == 2)
-                    return true;
-            }
-
-            return false;
-        }
-        #endregion
-        #region ChangeEmailAddress
-        /// <summary>
-        /// Change specific email address of user to new one.
-        /// </summary>
-        /// <param name="editedEmailAddress">Edited email addres.</param>
-        /// <param name="emailAddress">New email address.</param>
-        /// <returns>True if the email address could be changed.</returns>
-        public bool ChangeEmailAddress (UserEmailAddress editedEmailAddress, string emailAddress) 
-        {
-            if (editedEmailAddress != null)
-            {
-                User dbEmailOwner = _context.People.OfType<User>().First(u => u.Id == editedEmailAddress.User.Id);
-                if (dbEmailOwner != null)
-                {
-                    if (dbEmailOwner.EmailAddresses != null)
-                    {
-                        dbEmailOwner.EmailAddresses.First(e => e.Id == editedEmailAddress.Id).AddressEmail = emailAddress;
-                        if (_context.SaveChanges() == 1)
-                            return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-        #endregion
-        #region GetSpecificEmailAddress
-        /// <summary>
-        /// Retrieves the user's email address from the database after the address Id number.
-        /// </summary>
-        /// <param name="emailAddressId">Id Email Address.</param>
-        /// <returns>Specific user email address from database.</returns>
-        public UserEmailAddress GetSpecificEmailAddress(int emailAddressId)
-        {
-            _context = new ApplicationDbContext();
-            return _context.People.OfType<User>()
-               .Include(u => u.EmailAddresses)
-               .First(u => u.Id == this.Id)
-               .EmailAddresses.First(e => e.Id == emailAddressId);
-        }
-        #endregion
-        #region GetUserEmails
+        #region GetEmailsAddresses
         /// <summary>
         /// Make list with email addresses of specific user.
         /// </summary>
         /// <param name="id">User id from database.</param>
         /// <returns>List with email addresses.</returns>
-        public IList<UserEmailAddress> GetUserEmails()
+        public IList<UserEmailAddress> GetEmailsAddresses()
         {
-            User user = _context.People
+            _context = new ApplicationDbContext();
+            return  _context.People
                         .OfType<User>()
                         .Include(u => u.EmailAddresses)
-                        .First(u => u.Id == this.Id);
-            return user.EmailAddresses;
+                        .First(u => u.Id == this.Id).EmailAddresses;
         }
         #endregion
 
