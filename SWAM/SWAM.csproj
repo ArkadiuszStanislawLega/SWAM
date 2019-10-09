@@ -149,6 +149,7 @@
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\MagazineListViewModel\MagazineListViewModel.cs" />
     <Compile Include="Models\ProductListViewModel\ProductListViewModel.cs" />
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />

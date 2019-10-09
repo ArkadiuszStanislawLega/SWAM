@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWAM.Models;
 
 namespace SWAM.Models
 {
@@ -18,8 +19,7 @@ namespace SWAM.Models
         /// Product quantity avaiable to sale
         /// </summary>
         int _available;
-       
-        
+         
         Warehouse.Warehouse _warehouse;
         IList<CustomerOrderPosition> _customerOrderPositions;
         IList<WarehouseOrderPosition> _warehouseOrderPositions;
@@ -37,5 +37,32 @@ namespace SWAM.Models
         public Warehouse.Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
         public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
+
+        //---------------
+
+        private static readonly ApplicationDbContext _context = new ApplicationDbContext();
+
+        private static ApplicationDbContext context
+        {
+            get
+            {
+                return _context;
+            }
+        }
+        public static void EditState(State state)
+        {
+            if (state != null)
+            {
+                var dbState = context.States.FirstOrDefault(p => p.Id == state.Id);
+
+                dbState.Quantity = state.Quantity;
+                dbState.Available = state.Quantity - dbState.Booked;
+
+                context.SaveChanges();
+            }
+        }
+        public static List<State> AllStates() => context.States.Include("Product").Include("Warehouse").ToList();
+
     }
 }
+
