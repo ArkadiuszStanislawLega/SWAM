@@ -20,6 +20,8 @@ namespace SWAM.Converters
                     case UserType.Programmer: return PLstrings.PROGRAMMER;
                     case UserType.Seller: return PLstrings.SELLER;
                     case UserType.Warehouseman: return PLstrings.WAREHOUSEMAN;
+                    case UserType.Owner: return PLstrings.OWNER;
+                    case UserType.Menager: return PLstrings.MENAGER;
                     default: return user.ToString();
                 }
             }

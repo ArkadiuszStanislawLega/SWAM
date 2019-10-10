@@ -36,6 +36,14 @@ namespace SWAM.Enumerators
         /// </summary>
         Seller,
         /// <summary>
+        /// The user who creates orders for the warehouse. 
+        /// </summary>
+        Menager,
+        /// <summary>
+        /// The user who is the owner of the application.
+        /// </summary>
+        Owner,
+        /// <summary>
         /// Option for debug whole pages.
         /// Have permission to whole pages in appliaction.
         /// </summary>

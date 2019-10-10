@@ -14,6 +14,8 @@
         public const string WAREHOUSEMAN = "magazynier";
         public const string SELLER = "sprzedawca";
         public const string PROGRAMMER = "programista";
+        public const string OWNER = "właściciel";
+        public const string MENAGER = "kierownik";
         #endregion
     }
 }
