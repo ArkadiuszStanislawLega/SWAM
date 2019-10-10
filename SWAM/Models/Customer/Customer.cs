@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SWAM.Models.Customer
 {   /// <summary>
@@ -30,5 +31,27 @@ namespace SWAM.Models.Customer
         /// Customer residental address.
         /// </summary>
         public CusomterResidentalAddress ResidentalAddress { get; set; }
+        private static ApplicationDbContext context = new ApplicationDbContext();
+
+        #region Get
+        /// <summary>
+        /// Returns the client from the database by id number.
+        /// </summary>
+        /// <param name="Id">Client id from database.</param>
+        /// <returns>Client from database.</returns>
+        public static Customer Get(int Id)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion  
+
+        public static void Add(Customer customer)
+        {
+            if (customer != null)
+            {
+                context.Customers.Add(customer);
+                context.SaveChanges();
+            }
+        }
     }
 }

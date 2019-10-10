@@ -1,4 +1,5 @@
 ﻿using SWAM.Models.Customer;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration

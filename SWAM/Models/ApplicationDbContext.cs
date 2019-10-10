@@ -2,6 +2,7 @@
 using System.Data.Entity.Migrations;
 using SWAM.EntityConfiguration;
 using SWAM.Models;
+using SWAM.Models.Customer;
 using SWAM.Models.User;
 using SWAM.Models.Warehouse;
 
@@ -11,6 +12,7 @@ namespace SWAM
     {
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<Address> Adresses { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }
@@ -28,6 +30,10 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CusomterResidentalAddress>()
+                .HasRequired(c => c.Customer)
+                .WithRequiredDependent(c => c.ResidentalAddress);
+
             modelBuilder.Configurations.Add(new AccessesConfiguration());
             modelBuilder.Configurations.Add(new AddressConfiguration());
             modelBuilder.Configurations.Add(new CourierConfiguration());

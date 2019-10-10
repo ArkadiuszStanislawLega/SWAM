@@ -1,12 +1,183 @@
-﻿<UserControl x:Class="SWAM.Controls.Pages.ManageCustomersPage"
+﻿<basic:BasicUserControl x:Class="SWAM.Controls.Pages.ManageCustomersPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Pages"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:customer="clr-namespace:SWAM.Models.Customer"
+             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
+             Background="{StaticResource BackgroundOfPagesBrash}"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             Padding="10"
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--#region Resources-->
+    <UserControl.Resources>
+        <!--#region ShowFiltersContainer-->
+        <Storyboard x:Key="ShowFiltersContainer">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="FiltersContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                Storyboard.TargetName="FiltersContainer"
+                                Duration="0:0:0.5"
+                                From="0"
+                                To="110"
+                                DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteBooleanKeyFrame Value="False" KeyTime="0:0:0" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideFiltersContainer-->
+        <Storyboard x:Key="HideFiltersContainer">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="FiltersContainer"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0"
+                             Duration="0:0:0.5"/>
+            <DoubleAnimation Storyboard.TargetProperty="Height"
+                                Storyboard.TargetName="FiltersContainer"
+                                Duration="0:0:0.5"
+                                From="110"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
+                                            Storyboard.TargetProperty="IsEnabled">
+                <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
+            </BooleanAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+    </UserControl.Resources>
+    <!--#endregion-->
     <Grid>
+        <!--#region Column Definition-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+        <!--#region Left section-->
+        <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+            <!--#region RowsDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Find User-->
+            <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
+                <TextBox Name="FindCustomer"
+                             Tag="Wyszukaj klienta" 
+                             FontSize="14" Width="170" Height="30"
+                             HorizontalAlignment="Left"
+                             Margin="0 0 0 0"
+                             Style="{StaticResource UserLogin}"
+                             TextChanged="TextBox_TextChanged"/>
+                <Button Name="FiltersButton"
+                            Width="15" Height="30" 
+                            Style="{StaticResource FaLightGrayBackground}"
+                            ToolTip="Ustawienia filtrów listy">
+                    <fa:ImageAwesome Icon="Filter" 
+                                         Foreground="{StaticResource FontsBrash}"/>
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Width="15" 
+                            Height="30"
+                            Click="AddNewUser_Click" 
+                            Style="{StaticResource FaLightGrayBackground}">
+                    <fa:ImageAwesome Icon="Plus" 
+                                         Foreground="{StaticResource FontsBrash}"
+                                         ToolTip="Dodaj nowego klienta."/>
+                </Button>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Filter Container-->
+            <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Opacity="0.4"
+                            Background="{StaticResource LightGrayBrash}"/>
+                <Border BorderThickness="0 0 1 1"
+                            Opacity="0.4"
+                            BorderBrush="{StaticResource LightGrayBrash}"/>
+                <StackPanel Margin="5" Grid.Row="0">
+                    <TextBlock Text="Filtruj według:"/>
+                    <RadioButton Name="FiltrByName"
+                                 Content="Nazwy klienta" 
+                                 IsChecked="True" 
+                                 Margin="5 0 0 0"
+                                 GroupName="Filter"/>
+                    <RadioButton Name="FiltrByUserType"
+                                 Content="Rodzaju uprawnienia" 
+                                 Margin="5 0 0 0"
+                                 GroupName="Filter"/>
+                    <CheckBox Name="SortAscending"
+                            Content="Rosnąco" 
+                            IsChecked="True" 
+                            Margin="0 5 0 0"
+                            Click="SortAscending_Click"/>
+                </StackPanel>
+                <Button Grid.Row="1" 
+                            Height="25" 
+                            Width="200" 
+                            Style="{StaticResource ArrowUpHide}"   >
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+            </Grid>
+            <!--#endregion-->
+            <!--#region List with users-->
+            <Grid Grid.Row="2" 
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+                <Border BorderThickness="0 0 1 1" 
+                            BorderBrush="{StaticResource LightGrayBrash}"
+                            Opacity="0.4"/>
+                <ScrollViewer Name="ScrollOfUserList" 
+                                  VerticalScrollBarVisibility="Auto">
+                    <ItemsControl Name="UsersList" 
+                                      DataContext="{x:Static customer:CustomersListViewModel.Instance}"
+                                      ItemsSource="{Binding CustomersList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Button Tag="{Binding Id}"
+                                                Style="{StaticResource UsersListButtons}"
+                                                Click="Item_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+        <Grid Grid.Column="1" Name="MainContent">
             
+        </Grid>
     </Grid>
-</UserControl>
+</basic:BasicUserControl>

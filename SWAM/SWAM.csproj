@@ -88,6 +88,12 @@
     <Compile Include="Controls\Pages\ManageCustomersPage.xaml.cs">
       <DependentUpon>ManageCustomersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\CustomerPage\CreateNewCustomerTemplate.xaml.cs">
+      <DependentUpon>CreateNewCustomerTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\CustomerPage\CustomerProfileTemplate.xaml.cs">
+      <DependentUpon>CustomerProfileTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -145,7 +151,7 @@
     <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerEmailAddress.cs" />
     <Compile Include="Models\Customer\CustomerPhone.cs" />
-    <Compile Include="Models\ManageOrdersPage\CustomersListViewModel.cs" />
+    <Compile Include="Models\Customer\CustomersListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Customer\CustomerDeliveryAddress.cs" />
@@ -226,6 +232,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CalendarWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CustomerPage\CreateNewCustomerTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CustomerPage\CustomerProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -615,5 +629,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

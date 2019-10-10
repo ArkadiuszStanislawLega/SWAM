@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System;
 
-namespace SWAM.Models.ManageOrdersPage
+namespace SWAM.Models.Customer
 {
     /// <summary>
     /// Singleton customers list view model, holds all customers from database.
@@ -15,11 +15,11 @@ namespace SWAM.Models.ManageOrdersPage
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        private static readonly ObservableCollection<Customer.Customer> _customersList = new ObservableCollection<Customer.Customer>();
+        private static readonly ObservableCollection<Customer> _customersList = new ObservableCollection<Customer>();
         /// <summary>
         /// Customers list view model, holds all customers from database.
         /// </summary>
-        public static ObservableCollection<Customer.Customer> CustomersList => _customersList;
+        public static ObservableCollection<Customer> CustomersList => _customersList;
         #endregion
 
         #region SingletonePattern
@@ -40,7 +40,7 @@ namespace SWAM.Models.ManageOrdersPage
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var customers = context.People.OfType<Customer.Customer>()
+                var customers = context.People.OfType<Customer>()
                     .Include(c => c.ResidentalAddress)
                     .Include(c => c.Phone)
                     .Include(c => c.EmailAddress)

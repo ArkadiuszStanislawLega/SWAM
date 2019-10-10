@@ -73,8 +73,7 @@
             </Grid.ColumnDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <Grid  Name="LeftSection" Margin="5" 
-                   Grid.Row="0" Grid.Column="0">
+            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
                 <!--#region RowsDefinitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
