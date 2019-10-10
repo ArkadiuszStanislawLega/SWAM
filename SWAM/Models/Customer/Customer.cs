@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Data.Entity;
 
 namespace SWAM.Models.Customer
 {   /// <summary>
@@ -49,7 +51,7 @@ namespace SWAM.Models.Customer
         {
             if (customer != null)
             {
-                context.Customers.Add(customer);
+                context.People.Add(customer);
                 context.SaveChanges();
             }
         }

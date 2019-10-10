@@ -26,7 +26,7 @@ namespace SWAM.Models.Customer
         /// <summary>
         /// Constructor.
         /// </summary>
-        static CustomersListViewModel() => _instance.RefreshList();
+        static CustomersListViewModel() => _instance.Refresh();
 
         private static readonly CustomersListViewModel _instance = new CustomersListViewModel();
         public static CustomersListViewModel Instance => _instance;
@@ -36,7 +36,7 @@ namespace SWAM.Models.Customer
         /// <summary>
         /// Refreshes the list with data from the database.
         /// </summary>
-        public void RefreshList()
+        public void Refresh()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
