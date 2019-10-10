@@ -85,6 +85,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Pages\ManageCustomersPage.xaml.cs">
+      <DependentUpon>ManageCustomersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <DependentUpon>SendMessageWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\Pages\ErrorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Pages\ManageCustomersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

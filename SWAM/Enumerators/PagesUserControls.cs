@@ -34,6 +34,10 @@
         /// <summary>
         /// The page where user can check his emails.
         /// </summary>
-        MessagesPage
+        MessagesPage,
+        /// <summary>
+        /// A page where you can manage your customer database.
+        /// </summary>
+        ManageCustomersPage
     }
 }
