@@ -50,5 +50,8 @@
         #region Message
         public const string MESSAGE_READ_ERROR = "Wystąpił błąd wczytywania wiadomości.";
         #endregion
+        #region Customer
+        public const string REFRESH_CUSTOMER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu klienta.";
+        #endregion
     }
 }

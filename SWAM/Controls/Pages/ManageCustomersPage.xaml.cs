@@ -49,10 +49,10 @@ namespace SWAM.Controls.Pages
         {
             //filter is required observable collection.
             ICollectionView filter = CollectionViewSource.GetDefaultView(CustomersListViewModel.Instance);
-            filter.Filter = user =>
+            filter.Filter = customer =>
             {
-                Customer allUsersWhose = user as Customer;
-                return this.FiltrByName.IsChecked == true ? allUsersWhose.Name.Contains(FindCustomer.Text) : allUsersWhose.Surname.Contains(FindCustomer.Text);
+                Customer allCustomersWhose = customer as Customer;
+                return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCustomer.Text) : allCustomersWhose.Surname.Contains(this.FindCustomer.Text);
             };
         }
 
@@ -72,7 +72,7 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
                 ChangeContent(CreateCustomerProfile((Customer)button.DataContext));
-            else InformationToUser(ErrorMesages.DURING_CHANGING_USER_PROFILE_ERROR);
+            else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
     }
 }

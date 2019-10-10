@@ -189,6 +189,7 @@
                                 <BeginStoryboard Storyboard="{StaticResource HideEditNameStory}"/>
                             </EventTrigger>
                         </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </Grid>
                 <!--#endregion-->
