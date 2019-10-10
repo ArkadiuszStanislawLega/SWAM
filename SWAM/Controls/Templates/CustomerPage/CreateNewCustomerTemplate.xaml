@@ -7,25 +7,32 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Width="200">
-                <TextBlock Text="Imię"/>
-                <TextBox Name="CustomerName"/>
-                <TextBlock Text="Nazwisko"/>
-                <TextBox Name="CustomerSurname"/>
-                <TextBlock Text="Numer telefonu"/>
-                <TextBox Name="CustomerPhone"/>
-                <TextBlock Text="Adres e-mail"/>
-                <TextBox Name="CustomerEmailAddress"/>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
+                    <TextBox Name="CustomerName"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Nazwisko" Style="{StaticResource ProfileProperties}"/>
+                    <TextBox Name="CustomerSurname"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
+                    <TextBox Name="CustomerPhone"/>
+                </StackPanel>
+                <StackPanel Margin="5">
+                    <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>
+                    <TextBox Name="CustomerEmailAddress"/>
+                </StackPanel>
             </StackPanel>
 
-            <temp:AddressTemplate Grid.Column="1"
-            x:Name="ResidentalAddress"/>
+            <temp:AddressTemplate Grid.Column="1" x:Name="ResidentalAddress"/>
 
         </Grid>
         <Button Name="AddNewClient"

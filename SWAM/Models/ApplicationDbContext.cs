@@ -13,6 +13,8 @@ namespace SWAM
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<Address> Adresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerPhone> CustomersPhones { get; set; }
+        public DbSet<CustomerEmailAddress> CustomerEmailAddresses { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }

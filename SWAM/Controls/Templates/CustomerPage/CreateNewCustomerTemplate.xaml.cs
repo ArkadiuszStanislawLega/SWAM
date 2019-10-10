@@ -35,6 +35,18 @@ namespace SWAM.Controls.Templates.CustomerPage
                 Surname = CustomerSurname.Text
             };
             Customer.Add(customer);
+            SWAM.Models.Customer.CustomerPhone phone = new CustomerPhone()
+            {
+                Customer = customer,
+                PhoneNumber = CustomerPhone.Text
+            };
+            //phone.Add();
+            SWAM.Models.Customer.CustomerEmailAddress adressEmail = new CustomerEmailAddress()
+            {
+                Customer = customer,
+                AddressEmail = CustomerEmailAddress.Text
+            };
+            adressEmail.Add();
             CustomersListViewModel.Instance.Refresh();
         }
     }
