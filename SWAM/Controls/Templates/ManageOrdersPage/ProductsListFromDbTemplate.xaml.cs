@@ -23,7 +23,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
         private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
         {
-
+ 
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) => UserDependsAccessProductListViewModel.Instance.Refresh();
