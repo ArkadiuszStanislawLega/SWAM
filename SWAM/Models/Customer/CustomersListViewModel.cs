@@ -38,6 +38,7 @@ namespace SWAM.Models.Customer
         /// </summary>
         public void Refresh()
         {
+            //TODO: Change this, remove to the customer class.
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var customers = context.People.OfType<Customer>()

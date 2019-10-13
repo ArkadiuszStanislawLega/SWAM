@@ -72,7 +72,10 @@ namespace SWAM.Controls.Pages
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
+            {
+                CustomerOrdersListViewModel.Instance.Refresh((Customer)button.DataContext);
                 ChangeContent(CreateCustomerProfile((Customer)button.DataContext));
+            }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
     }

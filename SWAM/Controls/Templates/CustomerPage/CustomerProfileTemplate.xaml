@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
+             xmlns:lvm="clr-namespace:SWAM.Models.Customer"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -124,6 +125,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--#endregion-->
+        <!--#region Left section-->
         <StackPanel Grid.Column="0" Width="300" Margin="10">
             <!--#region Customer Name-->
             <StackPanel Margin="5">
@@ -433,9 +435,11 @@
             </StackPanel>
             <!--#endregion-->
         </StackPanel>
+        <!--#endregion-->
+        <!--#region Right Section-->
         <StackPanel Grid.Column="1" Margin="5">
+            <!--#region Residental Address-->
             <StackPanel Margin="5">
-                <!--#region Title-->
                 <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
                     <Border.Background>
                         <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
@@ -467,8 +471,9 @@
                     <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
                 </Border>
             </StackPanel>
+            <!--#endregion-->
+            <!--#region Delivery Address-->
             <StackPanel Margin="5">
-                <!--#region Title-->
                 <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
                     <Border.Background>
                         <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
@@ -500,9 +505,22 @@
                     <temp:AddressTemplate x:Name="DeliveryAddress" DataContext="{Binding DeliveryAddress}"/>
                 </Border>
             </StackPanel>
+            <!--#endregion-->
         </StackPanel>
+        <!--#endregion-->
+        <StackPanel Grid.Column="2">
         <TextBlock Text="Dostawy klienta" 
-                   Margin="5" Grid.Column="2"
+                   Margin="5" 
                    Style="{StaticResource TitleOfLists}" />
+            <ItemsControl
+                DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}"
+                ItemsSource="{Binding Orders}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ShipmentType}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </UserControl>

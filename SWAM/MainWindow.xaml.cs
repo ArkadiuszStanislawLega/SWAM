@@ -91,7 +91,9 @@ namespace SWAM
             { PagesUserControls.ManageOrdersPage, new ManageOrdersPage() },
             { PagesUserControls.LogedInUserProfile, new CurrentUserProfileTemplate() },
             { PagesUserControls.MessagesPage, new MessagesPage() },
-            { PagesUserControls.ManageCustomersPage, new ManageCustomersPage() }
+            { PagesUserControls.ManageCustomersPage, new ManageCustomersPage() },
+            { PagesUserControls.ManageCouriersPage, new ManageCouriersPage() },
+            { PagesUserControls.ManageExternalSuppliersPage, new ManageExternalSuppliersPage() }
         };
         /// <summary>
         /// Container with whole priviligase of UserType.
@@ -115,19 +117,25 @@ namespace SWAM
                 new List<PagesUserControls>(){ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage,
-                                          /**/ PagesUserControls.ManageCustomersPage }},
+                                          /**/ PagesUserControls.ManageCustomersPage,
+                                          /**/ PagesUserControls.ManageCouriersPage,
+                                          /**/ PagesUserControls.ManageExternalSuppliersPage}},
             { UserType.Owner,
                 new List<PagesUserControls>(){ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage,
-                                          /**/ PagesUserControls.ManageCustomersPage }},
+                                          /**/ PagesUserControls.ManageCustomersPage,
+                                          /**/ PagesUserControls.ManageCouriersPage,
+                                          /**/ PagesUserControls.ManageExternalSuppliersPage}},
             { UserType.Programmer,
                 new List<PagesUserControls>(){ PagesUserControls.LoginPage,
                                           /**/ PagesUserControls.AdministratorPage,
                                           /**/ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage,
-                                          /**/ PagesUserControls.ManageCustomersPage }},
+                                          /**/ PagesUserControls.ManageCustomersPage,
+                                          /**/ PagesUserControls.ManageCouriersPage,
+                                          /**/ PagesUserControls.ManageExternalSuppliersPage}},
         };
         #endregion
 

@@ -38,6 +38,14 @@
         /// <summary>
         /// A page where you can manage your customer database.
         /// </summary>
-        ManageCustomersPage
+        ManageCustomersPage,
+        /// <summary>
+        /// A page where you can manage your couriers database.
+        /// </summary>
+        ManageCouriersPage,
+        /// <summary>
+        /// A page where you can manage your external suppliers database.
+        /// </summary>
+        ManageExternalSuppliersPage
     }
 }

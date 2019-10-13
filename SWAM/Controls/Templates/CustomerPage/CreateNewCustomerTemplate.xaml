@@ -71,8 +71,8 @@
                 Click="AddNewCustomer_Click"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
+                Style="{StaticResource NavigationButton}"
                 Width="100" 
-                Height="20"
                 Content="Dodaj klienta"/>
     </Grid>
 </UserControl>
