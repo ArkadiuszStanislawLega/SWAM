@@ -13,20 +13,49 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             InitializeComponent();
             ResidentalAddress.ShowEditControls();
+            DeliveryAddress.ShowEditControls();
         }
 
         private void AddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            Customer customer = new Customer()
+            var deliveryAddress = DeliveryAddress.GetCustomerDeliveryAddress();
+            if (deliveryAddress != null)
             {
-                Name = CustomerName.Text,
-                Surname = CustomerSurname.Text,
-                EmailAddress = CustomerEmailAddress.Text,
-                Phone = CustomerPhone.Text,
-                ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress()
-            };
-            Customer.Add(customer);
+                Customer customer = new Customer()
+                {
+                    Name = CustomerName.Text,
+                    Surname = CustomerSurname.Text,
+                    EmailAddress = CustomerEmailAddress.Text,
+                    Phone = CustomerPhone.Text,
+                    ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress(),
+                    DeliveryAddress = deliveryAddress
+                };
+                Customer.Add(customer);
+            }
+            else
+            {
+                Customer customer = new Customer()
+                {
+                    Name = CustomerName.Text,
+                    Surname = CustomerSurname.Text,
+                    EmailAddress = CustomerEmailAddress.Text,
+                    Phone = CustomerPhone.Text,
+                    ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress()
+                };
+                Customer.Add(customer);
+            }
+
             CustomersListViewModel.Instance.Refresh();
+            ClearTextBoxes();
+        }
+
+        private void ClearTextBoxes()
+        {
+            CustomerName.Text = string.Empty;
+            CustomerSurname.Text = string.Empty;
+            CustomerEmailAddress.Text = string.Empty;
+            CustomerPhone.Text = string.Empty;
+            ResidentalAddress.ClearEditValues();
         }
     }
 }

@@ -84,6 +84,23 @@ namespace SWAM.Controls.Templates
             else return null;
         }
 
+        public CustomerDeliveryAddress GetCustomerDeliveryAddress()
+        {
+            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
+            {
+                return new CustomerDeliveryAddress()
+                {
+                    Country = this.EditCountry.Text,
+                    PostCode = this.EditPostCode.Text,
+                    City = this.EditCity.Text,
+                    Street = this.EditStreet.Text,
+                    HouseNumber = this.EditHouseNumber.Text,
+                    ApartmentNumber = this.EditApartmentNumber.Text,
+                };
+            }
+            else return null;
+        }
+
 
         public WarehouseAddress GetWarehouseAddress()
         {

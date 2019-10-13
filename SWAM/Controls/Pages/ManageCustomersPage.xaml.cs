@@ -17,6 +17,7 @@ namespace SWAM.Controls.Pages
         public ManageCustomersPage()
         {
             InitializeComponent();
+            ChangeContent(new CreateNewCustomerTemplate());
         }
 
         #region ChangeContent

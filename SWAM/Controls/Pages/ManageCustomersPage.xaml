@@ -176,7 +176,9 @@
             <!--#endregion-->
         </Grid>
         <!--#endregion-->
-        <Grid Grid.Column="1" Name="MainContent">
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Stretch"
+              Name="MainContent">
             
         </Grid>
     </Grid>

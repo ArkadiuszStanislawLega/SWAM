@@ -6,35 +6,67 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Stretch"  
+          VerticalAlignment="Stretch">
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Width="200">
-                <StackPanel Margin="5">
-                    <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
-                    <TextBox Name="CustomerName"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Nazwisko" Style="{StaticResource ProfileProperties}"/>
-                    <TextBox Name="CustomerSurname"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
-                    <TextBox Name="CustomerPhone"/>
-                </StackPanel>
-                <StackPanel Margin="5">
-                    <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>
-                    <TextBox Name="CustomerEmailAddress"/>
-                </StackPanel>
-            </StackPanel>
+            <!--#region RowsDefinitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
 
-            <temp:AddressTemplate Grid.Column="1" x:Name="ResidentalAddress"/>
+            <TextBlock Grid.Row="0" HorizontalAlignment="Left"
+                   Text="Zarządzanie klientami" Style="{StaticResource Title}"/>
 
+            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel  Grid.Column="0" Width="200">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="CustomerName"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Nazwisko" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="CustomerSurname"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="CustomerPhone"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="CustomerEmailAddress"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border CornerRadius="0 0 10 10" Padding="3" Margin="0 5 1 5">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="Adres zamieszkania" Style="{StaticResource TitleOfLists}"/>
+                            <temp:AddressTemplate x:Name="ResidentalAddress"/>
+                        </StackPanel>
+                    </Border>
+                    <Border CornerRadius="0 0 10 10" Padding="3" Margin="1 5 5 5">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <StackPanel>
+                            <TextBlock Text="Adres dostawy" Style="{StaticResource TitleOfLists}"/>
+                            <temp:AddressTemplate x:Name="DeliveryAddress"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
         </Grid>
+
         <Button Name="AddNewClient"
                 Click="AddNewCustomer_Click"
                 HorizontalAlignment="Right"
