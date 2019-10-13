@@ -3,8 +3,7 @@
 namespace SWAM.Models.Customer
 {
     [Table("CustomersDeliveryAddresses")]
-    public class CustomerDeliveryAddress : Address
+    public class CustomerDeliveryAddress : CustomerAddress
     {
-        public Customer Customer { get; set; }
     }
 }

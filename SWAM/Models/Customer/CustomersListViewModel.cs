@@ -42,8 +42,6 @@ namespace SWAM.Models.Customer
             {
                 var customers = context.People.OfType<Customer>()
                     .Include(c => c.ResidentalAddress)
-                    .Include(c => c.Phone)
-                    .Include(c => c.EmailAddress)
                     .ToList();
 
                 if (customers != null && _customersList.Count > 0)

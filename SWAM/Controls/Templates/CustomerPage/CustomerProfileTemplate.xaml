@@ -296,7 +296,7 @@
                     <TextBlock Text="Numer kontaktowy" 
                                        Grid.Column="0"
                                        Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="CustomerPhone" Text="{Binding Phone.PhoneNumber}"
+                    <TextBlock Name="CustomerPhone" Text="{Binding Phone}"
                                        Grid.Column="0" Grid.Row="1"/>
                     <Button Name="EditCustomerPhoneButton"
                             Click="EditCustomerPhoneButton_Click"
@@ -373,7 +373,7 @@
                     <TextBlock Text="Adres e-mail" 
                                        Grid.Column="0"
                                        Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Name="CustomerEmailAddress" Text="{Binding Email.AddressEmail}"
+                    <TextBlock Name="CustomerEmailAddress" Text="{Binding EmailAddress}"
                                        Grid.Column="0" Grid.Row="1"/>
                     <Button Name="EditCustomerEmailAddress"
                             Click="EditCustomerEmailAddress_Click"

@@ -16,11 +16,11 @@ namespace SWAM.Models.Customer
         /// <summary>
         /// customer's phone number.
         /// </summary>
-        public CustomerPhone Phone { get; set; }
+        public string Phone { get; set; }
         /// <summary>
         /// Customer's email address for contact.
         /// </summary>
-        public CustomerEmailAddress EmailAddress { get; set; }
+        public string EmailAddress { get; set; }
         /// <summary>
         /// All orders made by the customer.
         /// </summary>
@@ -33,6 +33,7 @@ namespace SWAM.Models.Customer
         /// Customer residental address.
         /// </summary>
         public CusomterResidentalAddress ResidentalAddress { get; set; }
+
         private static ApplicationDbContext context = new ApplicationDbContext();
 
         #region Get

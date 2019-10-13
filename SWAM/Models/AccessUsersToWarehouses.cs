@@ -60,15 +60,22 @@ namespace SWAM.Models
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
             context = new ApplicationDbContext();
-
-            if (userId > 0)
-                return context.People
-                    .OfType<User.User>()
-                    .Include(u => u.Accesess)
-                    .FirstOrDefault(u => u.Id == userId)
-                    .Accesess;
-            else
-                return null;
+            try
+            {
+                if (userId > 0)
+                    return context.People
+                        .OfType<User.User>()
+                        .Include(u => u.Accesess)
+                        .FirstOrDefault(u => u.Id == userId)
+                        .Accesess;
+                else
+                    return null;
+            }
+            //When the table of accesses in database is empty.
+            catch (NullReferenceException) 
+            { 
+                return null; 
+            } 
         }
         #endregion
 
