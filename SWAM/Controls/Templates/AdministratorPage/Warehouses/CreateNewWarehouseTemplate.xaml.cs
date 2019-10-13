@@ -34,7 +34,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             //TODO: Try - catch
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var newAddress = this.Address.GetWarehouseAddress();//Take address from view 
+                var newAddress = this.Address.GetAddress<WarehouseAddress>();//Take address from view 
                 if (newAddress != null)
                 {
                     context.Adresses.Add(newAddress);

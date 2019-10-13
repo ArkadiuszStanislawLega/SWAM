@@ -24,10 +24,10 @@ namespace SWAM.Controls.Templates.CustomerPage
                 Surname = CustomerSurname.Text,
                 EmailAddress = CustomerEmailAddress.Text,
                 Phone = CustomerPhone.Text,
-                ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress()
+                ResidentalAddress = ResidentalAddress.GetAddress<CustomerResidentalAddress>()
             };
 
-            var deliveryAddress = DeliveryAddress.GetCustomerDeliveryAddress();
+            var deliveryAddress = DeliveryAddress.GetAddress<CustomerDeliveryAddress>();
             if (deliveryAddress != null)
                 customer.DeliveryAddress = deliveryAddress;
    
@@ -37,6 +37,10 @@ namespace SWAM.Controls.Templates.CustomerPage
             ClearTextBoxes();
         }
 
+        #region ClearTextBoxes
+        /// <summary>
+        /// Make all TextBoxes field text clear.
+        /// </summary>
         private void ClearTextBoxes()
         {
             CustomerName.Text = string.Empty;
@@ -44,6 +48,8 @@ namespace SWAM.Controls.Templates.CustomerPage
             CustomerEmailAddress.Text = string.Empty;
             CustomerPhone.Text = string.Empty;
             ResidentalAddress.ClearEditValues();
+            DeliveryAddress.ClearEditValues();
         }
+        #endregion
     }
 }

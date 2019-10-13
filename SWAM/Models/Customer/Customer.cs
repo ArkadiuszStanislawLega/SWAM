@@ -32,7 +32,7 @@ namespace SWAM.Models.Customer
         /// <summary>
         /// Customer residental address.
         /// </summary>
-        public CusomterResidentalAddress ResidentalAddress { get; set; }
+        public CustomerResidentalAddress ResidentalAddress { get; set; }
 
         private static ApplicationDbContext context = new ApplicationDbContext();
 

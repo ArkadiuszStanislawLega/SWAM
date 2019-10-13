@@ -1,23 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+using SWAM.Models.Customer;
+using SWAM.Models.Warehouse;
+using System.Windows.Media.Animation;
+using System;
 
 namespace SWAM.Controls.Templates
 {
-    using SWAM.Models.Customer;
-    using SWAM.Models.Warehouse;
-    using System.Windows.Media.Animation;
     using static SWAM.MainWindow;
     /// <summary>
     /// Logika interakcji dla klasy Address.xaml
@@ -38,21 +26,28 @@ namespace SWAM.Controls.Templates
         /// Starting storyboard after which the data is in the read only mode.
         /// </summary>
         public void HideEditControls() => BeginStoryboard(FindResource("HideEditStory") as Storyboard);
-
-
+        #region ClearEditValues
+        /// <summary>
+        /// Make all TextBoxes field text clear.
+        /// </summary>
         public void ClearEditValues()
         {
-            this.EditApartmentNumber.Text = "";
-            this.EditCity.Text = "";
-            this.EditCountry.Text = "";
-            this.EditHouseNumber.Text = "";
-            this.EditPostCode.Text = "";
-            this.EditStreet.Text = "";
+            this.EditApartmentNumber.Text = string.Empty;
+            this.EditCity.Text = string.Empty;
+            this.EditCountry.Text = string.Empty;
+            this.EditHouseNumber.Text = string.Empty;
+            this.EditPostCode.Text = string.Empty;
+            this.EditStreet.Text = string.Empty;
         }
+        #endregion
 
         public Address GetAddress()
         {
-            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
+            if (this.EditCountry.Text != string.Empty && 
+                this.EditPostCode.Text != string.Empty && 
+                this.EditCity.Text != string.Empty && 
+                this.EditStreet.Text != string.Empty && 
+                this.EditHouseNumber.Text != string.Empty)
             {
                 return new Address()
                 {
@@ -67,58 +62,66 @@ namespace SWAM.Controls.Templates
             else return null;
         }
 
-        public CusomterResidentalAddress GetCustomerResidenAddress()
+        #region GetAddress - generic
+        /// <summary>
+        /// Retrieves the entered data and returns as the type of class that was entered as generic.
+        /// </summary>
+        /// <typeparam name="T">The type of class to be returned.</typeparam>
+        /// <returns>Address which has been entered into the form.</returns>
+        public T GetAddress<T>() where T: class, new()
         {
-            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
+            if (this.EditCountry.Text != string.Empty && 
+                this.EditPostCode.Text != string.Empty && 
+                this.EditCity.Text != string.Empty && 
+                this.EditStreet.Text != string.Empty && 
+                this.EditHouseNumber.Text != string.Empty)
             {
-                return new CusomterResidentalAddress()
+                if (typeof(T) == typeof(WarehouseAddress))
                 {
-                    Country = this.EditCountry.Text,
-                    PostCode = this.EditPostCode.Text,
-                    City = this.EditCity.Text,
-                    Street = this.EditStreet.Text,
-                    HouseNumber = this.EditHouseNumber.Text,
-                    ApartmentNumber = this.EditApartmentNumber.Text,
-                };
-            }
-            else return null;
-        }
+                    var warehouseAddress = new WarehouseAddress()
+                    {
+                        Country = this.EditCountry.Text,
+                        PostCode = this.EditPostCode.Text,
+                        City = this.EditCity.Text,
+                        Street = this.EditStreet.Text,
+                        HouseNumber = this.EditHouseNumber.Text,
+                        ApartmentNumber = this.EditApartmentNumber.Text,
+                    };
 
-        public CustomerDeliveryAddress GetCustomerDeliveryAddress()
-        {
-            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
-            {
-                return new CustomerDeliveryAddress()
+                    return (T)Convert.ChangeType(warehouseAddress, typeof(T));
+                }
+                else if (typeof(T) == typeof(CustomerDeliveryAddress))
                 {
-                    Country = this.EditCountry.Text,
-                    PostCode = this.EditPostCode.Text,
-                    City = this.EditCity.Text,
-                    Street = this.EditStreet.Text,
-                    HouseNumber = this.EditHouseNumber.Text,
-                    ApartmentNumber = this.EditApartmentNumber.Text,
-                };
-            }
-            else return null;
-        }
+                    var customerDeliveryAddress = new CustomerDeliveryAddress()
+                    {
+                        Country = this.EditCountry.Text,
+                        PostCode = this.EditPostCode.Text,
+                        City = this.EditCity.Text,
+                        Street = this.EditStreet.Text,
+                        HouseNumber = this.EditHouseNumber.Text,
+                        ApartmentNumber = this.EditApartmentNumber.Text,
+                    };
 
-
-        public WarehouseAddress GetWarehouseAddress()
-        {
-            if (this.EditCountry.Text != "" && this.EditPostCode.Text != "" && this.EditCity.Text != "" && this.EditStreet.Text != "" && this.EditHouseNumber.Text != "")
-            {
-                return new WarehouseAddress()
+                    return (T)Convert.ChangeType(customerDeliveryAddress, typeof(T));
+                }
+                else if (typeof(T) == typeof(CustomerResidentalAddress))
                 {
-                    Country = this.EditCountry.Text,
-                    PostCode = this.EditPostCode.Text,
-                    City = this.EditCity.Text,
-                    Street = this.EditStreet.Text,
-                    HouseNumber = this.EditHouseNumber.Text,
-                    ApartmentNumber = this.EditApartmentNumber.Text,
-                };
+                    var cusomterResidentalAddress = new CustomerResidentalAddress()
+                    {
+                        Country = this.EditCountry.Text,
+                        PostCode = this.EditPostCode.Text,
+                        City = this.EditCity.Text,
+                        Street = this.EditStreet.Text,
+                        HouseNumber = this.EditHouseNumber.Text,
+                        ApartmentNumber = this.EditApartmentNumber.Text,
+                    };
+
+                    return (T)Convert.ChangeType(cusomterResidentalAddress, typeof(T));
+                }
             }
-            else return null;
+
+            return null;
         }
-
-
+        #endregion
     }
 }

@@ -147,8 +147,12 @@
     <Compile Include="Migrations\201910130914526_Initial.Designer.cs">
       <DependentUpon>201910130914526_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910131627020_RenameCustomerResidentalAddress.cs" />
+    <Compile Include="Migrations\201910131627020_RenameCustomerResidentalAddress.Designer.cs">
+      <DependentUpon>201910131627020_RenameCustomerResidentalAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
-    <Compile Include="Models\Customer\CusomterResidentalAddress.cs" />
+    <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerAddress.cs" />
     <Compile Include="Models\Customer\CustomersListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
@@ -594,6 +598,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201910130914526_Initial.resx">
       <DependentUpon>201910130914526_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910131627020_RenameCustomerResidentalAddress.resx">
+      <DependentUpon>201910131627020_RenameCustomerResidentalAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

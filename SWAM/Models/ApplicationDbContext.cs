@@ -32,7 +32,7 @@ namespace SWAM
                 .HasRequired(c => c.Customer)
                 .WithRequiredDependent(c => c.DeliveryAddress);
 
-            modelBuilder.Entity<CusomterResidentalAddress>()
+            modelBuilder.Entity<CustomerResidentalAddress>()
               .HasRequired(c => c.Customer)
               .WithRequiredDependent(c => c.ResidentalAddress);
 
