@@ -18,32 +18,20 @@ namespace SWAM.Controls.Templates.CustomerPage
 
         private void AddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
+            Customer customer = new Customer()
+            {
+                Name = CustomerName.Text,
+                Surname = CustomerSurname.Text,
+                EmailAddress = CustomerEmailAddress.Text,
+                Phone = CustomerPhone.Text,
+                ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress()
+            };
+
             var deliveryAddress = DeliveryAddress.GetCustomerDeliveryAddress();
             if (deliveryAddress != null)
-            {
-                Customer customer = new Customer()
-                {
-                    Name = CustomerName.Text,
-                    Surname = CustomerSurname.Text,
-                    EmailAddress = CustomerEmailAddress.Text,
-                    Phone = CustomerPhone.Text,
-                    ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress(),
-                    DeliveryAddress = deliveryAddress
-                };
-                Customer.Add(customer);
-            }
-            else
-            {
-                Customer customer = new Customer()
-                {
-                    Name = CustomerName.Text,
-                    Surname = CustomerSurname.Text,
-                    EmailAddress = CustomerEmailAddress.Text,
-                    Phone = CustomerPhone.Text,
-                    ResidentalAddress = ResidentalAddress.GetCustomerResidenAddress()
-                };
-                Customer.Add(customer);
-            }
+                customer.DeliveryAddress = deliveryAddress;
+   
+            Customer.Add(customer);
 
             CustomersListViewModel.Instance.Refresh();
             ClearTextBoxes();
