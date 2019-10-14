@@ -24,21 +24,21 @@ namespace SWAM.Models.Customer
         {
             if (customer != null)
             {
-                using (ApplicationDbContext context = new ApplicationDbContext())
-                {
-                    var customers = context.People
-                        .OfType<Customer>()
-                        .Include(c => c.Orders)
-                        .FirstOrDefault(c => c.Id == customer.Id);
+                //using (ApplicationDbContext context = new ApplicationDbContext())
+                //{
+                //    var customers = context.People
+                //        .OfType<Customer>()
+                //        .Include(c => c.Orders)
+                //        .FirstOrDefault(c => c.Id == customer.Id);
 
-                    if (customers != null && _orders.Count > 0)
-                        _orders.Clear();
+                //    if (customers != null && _orders.Count > 0)
+                //        _orders.Clear();
 
-                    foreach (var order in customers.Orders)
-                    {
-                        _orders.Add(order);
-                    }
-                }
+                //    foreach (var order in customers.Orders)
+                //    {
+                //        _orders.Add(order);
+                //    }
+                //}
             }
         }
     }

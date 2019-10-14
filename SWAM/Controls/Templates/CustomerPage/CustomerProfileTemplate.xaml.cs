@@ -10,24 +10,13 @@ namespace SWAM.Controls.Templates.CustomerPage
         public CustomerProfileTemplate()
         {
             InitializeComponent();
+
+            this.Name.ConfirmChangeName.Click += ConfirmChangeName_Click;
+            this.Surname.ConfirmChangeSurname.Click += ConfirmChangeSurname_Click;
+            this.Phone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
+            this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
-
-        private void EditCustomerNameButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         private void ConfirmChangeName_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelChangeName_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditCustomerSurnameButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
@@ -37,27 +26,7 @@ namespace SWAM.Controls.Templates.CustomerPage
 
         }
 
-        private void CancelChangeSurname_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditCustomerPhoneButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
         private void ConfirmChangePhone_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void CancelChangePhone_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditCustomerEmailAddress_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
         }
@@ -67,10 +36,6 @@ namespace SWAM.Controls.Templates.CustomerPage
 
         }
 
-        private void CancelChangeEmailAddress_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
 
         private void ChangeDeliveryAddress_Click(object sender, System.Windows.RoutedEventArgs e) => DeliveryAddress.ShowEditControls();
 

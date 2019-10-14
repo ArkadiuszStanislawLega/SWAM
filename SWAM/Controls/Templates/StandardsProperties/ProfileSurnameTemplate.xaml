@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="SWAM.Controls.Templates.StandardsProperties.ProfileSurnameTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--#region HideEditSurnameStory-->
+        <Storyboard x:Key="HideEditSurnameStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditSurnameGrid"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="EditSurnameGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0"
+                             Duration="0:0:0.3"/>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region ShowEditNameStory-->
+        <Storyboard x:Key="ShowEditSurnameStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditSurnameGrid"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="EditSurnameGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.3"/>
+        </Storyboard>
+        <!--#endregion-->
+    </UserControl.Resources>
+    <!--#region Customer Surname-->
+    <StackPanel Margin="5">
+        <!--#region Customer Surname-->
+        <Grid>
+            <!--#region Columnd & rows definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <TextBlock Text="Nazwisko" Grid.Column="0"
+                                       Style="{StaticResource ProfileProperties}"/>
+            <TextBlock Name="Surname" Text="{Binding Surname}"
+                                       Grid.Column="0" Grid.Row="1"/>
+            <Button Name="EditSurnameButton"
+                            Grid.Column="2" Grid.Row="0"
+                            Style="{StaticResource BasicFunctionalButtons}"
+                            ToolTip="Zmień nazwisko.">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource ShowEditSurnameStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+        </Grid>
+        <!--#endregion-->
+        <!--#region Edit Customer surname-->
+        <Grid Grid.Row="1" Name="EditSurnameGrid" Visibility="Collapsed">
+            <!--#region Column definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <TextBox Name="EditSurname" 
+                         Grid.Column="0"
+                         Width="120"
+                         Text=""/>
+            <Button Name="ConfirmChangeSurname"
+                            Grid.Column="2" 
+                            Style="{StaticResource BasicFunctionalButtons}"
+                            ToolTip="Zaakcpetuj zmianę nazwiska." >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditSurnameStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+            <Button Name="CancelChangeSurname"
+                            Grid.Column="3" 
+                            Margin="8 0 0 0"
+                            Style="{StaticResource BasicFunctionalButtons}"
+                            Click="CancelChangeSurname_Click"
+                            ToolTip="Anuluj zmianę nazwiska." >
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditSurnameStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+        </Grid>
+        <!--#endregion-->
+    </StackPanel>
+    <!--#endregion-->
+</UserControl>
