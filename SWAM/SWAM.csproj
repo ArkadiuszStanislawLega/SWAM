@@ -180,6 +180,7 @@
       <DependentUpon>201910141602119_UpdateCourierColumnPhone.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
+    <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomerAddress.cs" />

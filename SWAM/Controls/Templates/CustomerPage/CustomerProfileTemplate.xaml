@@ -107,7 +107,11 @@
                 ItemsSource="{Binding Orders}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding ShipmentType}"/>
+                        <StackPanel Orientation="Vertical" Background="{StaticResource GraphiteBrash}" Margin="1">
+                            <TextBlock Text="{Binding PaymentType}"/>
+                            <TextBlock Text="{Binding CustomerOrderStatus}"/>
+                            <TextBlock Text="{Binding ShipmentType}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

@@ -6,6 +6,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:SWAM.Controls.Pages"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:lvm="clr-namespace:SWAM.Models.Courier"
              mc:Ignorable="d" 
              Background="{StaticResource BackgroundOfPagesBrash}"
              VerticalAlignment="Stretch"
@@ -157,7 +158,8 @@
                 <ScrollViewer Name="ScrollOfCouriersList" 
                                   VerticalScrollBarVisibility="Auto">
                     <ItemsControl Name="CouriersList" 
-                                      ItemsSource="{Binding CustomersList}">
+                                  DataContext="{x:Static lvm:CouriersListViewModel.Instance}"
+                                  ItemsSource="{Binding CouriersList}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

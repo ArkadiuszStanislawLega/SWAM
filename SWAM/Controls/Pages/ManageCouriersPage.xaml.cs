@@ -1,9 +1,12 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.CouriersPage;
+using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Strings;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SWAM.Controls.Pages
 {
@@ -29,7 +32,7 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="customer">Index number of CouriersListItemTemplate in the couriers list.</param>
         /// <return>Chosen courier profile.</return>
-        private CourierProfileTemplate CreateCourierProfile(Customer customer)
+        private CourierProfileTemplate CreateCourierProfile(Courier customer)
             => new CourierProfileTemplate() { DataContext = customer };
         #endregion
 
@@ -37,7 +40,7 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
             {
-                ChangeContent(CreateCourierProfile((Customer)button.DataContext));
+                ChangeContent(CreateCourierProfile((Courier)button.DataContext));
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
@@ -58,14 +61,13 @@ namespace SWAM.Controls.Pages
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO: Create this couriers list view model
             //filter is required observable collection.
-            //ICollectionView filter = CollectionViewSource.GetDefaultView(CustomersListViewModel.Instance);
-            //filter.Filter = customer =>
-            //{
-            //    Customer allCustomersWhose = customer as Customer;
-            //    return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCustomer.Text) : allCustomersWhose.Surname.Contains(this.FindCustomer.Text);
-            //};
+            ICollectionView filter = CollectionViewSource.GetDefaultView(CouriersListViewModel.Instance);
+            filter.Filter = customer =>
+            {
+                Customer allCustomersWhose = customer as Customer;
+                return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCourier.Text) : allCustomersWhose.Surname.Contains(this.FindCourier.Text);
+            };
         }
 
         private void SortAscending_Click(object sender, RoutedEventArgs e)

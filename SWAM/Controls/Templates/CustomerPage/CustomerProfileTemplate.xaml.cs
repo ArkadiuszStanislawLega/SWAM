@@ -40,5 +40,10 @@ namespace SWAM.Controls.Templates.CustomerPage
         private void ChangeDeliveryAddress_Click(object sender, System.Windows.RoutedEventArgs e) => DeliveryAddress.ShowEditControls();
 
         private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => ResidentalAddress.ShowEditControls();
+
+        private void StackPanel_ManipulationInertiaStarting(object sender, System.Windows.Input.ManipulationInertiaStartingEventArgs e)
+        {
+
+        }
     }
 }
