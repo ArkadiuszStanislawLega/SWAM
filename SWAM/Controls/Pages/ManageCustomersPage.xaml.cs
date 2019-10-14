@@ -34,7 +34,7 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
-        #region CreateUserProfile
+        #region CreateCustomerProfile
         /// <summary>
         /// Made view of the user profile in right section.
         /// </summary>

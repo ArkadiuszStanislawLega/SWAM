@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using SWAM.EntityConfiguration;
 using SWAM.Models;
+using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Models.Warehouse;
 
@@ -11,6 +12,7 @@ namespace SWAM
         public DbSet<AccessUsersToWarehouses> AccessUsersToWarehouses { get; set; }
         public DbSet<Address> Adresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Courier> Couriers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }

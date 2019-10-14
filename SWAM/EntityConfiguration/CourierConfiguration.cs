@@ -9,8 +9,8 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Couriers");
 
-            HasRequired(c => c.Phone)
-                .WithRequiredDependent(p => p.Courier);
+            //HasRequired(c => c.Phone)
+            //    .WithRequiredDependent(p => p.Courier);
 
             HasMany(c => c.CustomerOrders);
         }
