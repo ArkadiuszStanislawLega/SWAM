@@ -1,9 +1,6 @@
 ﻿using SWAM.Models;
 using SWAM.Models.Customer;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -34,6 +31,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Customer list refresh after each page load
+            CustomersListViewModel.Instance.Refresh();
             // obtain a reference to the CollectionView instance
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(customersListView.ItemsSource);
             // assign a delegate to the Filter property
