@@ -12,14 +12,7 @@ namespace SWAM.Models.Customer
     public class CustomersListViewModel : UserControl
     {
         #region Properties
-        /// <summary>
-        /// Customers list view model, holds all customers from database.
-        /// </summary>
-        private static readonly ObservableCollection<Customer> _customersList = new ObservableCollection<Customer>();
-        /// <summary>
-        /// Customers list view model, holds all customers from database.
-        /// </summary>
-        public static ObservableCollection<Customer> CustomersList => _customersList;
+        public ObservableCollection<Customer> CustomersList { get; private set; } = new ObservableCollection<Customer>();
         #endregion
 
         #region SingletonePattern
@@ -46,13 +39,7 @@ namespace SWAM.Models.Customer
                     .Include(c => c.DeliveryAddress)
                     .ToList();
 
-                if (customers != null && _customersList.Count > 0)
-                    _customersList.Clear();
-
-                foreach (var customer in customers)
-                {
-                    _customersList.Add(customer);
-                }
+                CustomersList = new ObservableCollection<Customer>(customers);
             }
         }
         #endregion
