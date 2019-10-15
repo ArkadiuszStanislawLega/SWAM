@@ -204,6 +204,7 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\MagazineListViewModel\MagazineListViewModel.cs" />
     <Compile Include="Models\ProductListViewModel\ProductListViewModel.cs" />
+    <Compile Include="Models\ProductOrderList\ProductOrderListViewModel.cs" />
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
