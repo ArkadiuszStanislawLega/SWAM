@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.CustomerPage.CustomerProfileTemplate"
+﻿<basic:BasicUserControl x:Class="SWAM.Controls.Templates.CustomerPage.CustomerProfileTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,9 +8,10 @@
              xmlns:lvm="clr-namespace:SWAM.Models.Customer"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:prop="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
+             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid HorizontalAlignment="Center">
+    <Grid HorizontalAlignment="Left">
         <!--#region  ColumnDefinition-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -19,98 +20,102 @@
         </Grid.ColumnDefinitions>
         <!--#endregion-->
         <!--#region Left section-->
-        <StackPanel Grid.Column="0" Width="300" Margin="10">
-            <prop:ProfileNameTemplate x:Name="Name"/>
-            <prop:ProfileSurnameTemplate x:Name="Surname"/>
-            <prop:ProfilePhoneTemplate x:Name="Phone"/>
-            <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
-        </StackPanel>
-        <!--#endregion-->
-        <!--#region Right Section-->
-        <StackPanel Grid.Column="1" Margin="5">
-            <!--#region Residental Address-->
-            <StackPanel Margin="5">
-                <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
-                    <Border.Background>
-                        <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
-                    </Border.Background>
-                    <Grid>
-                        <!--#region Columns definitions-->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <!--#endregion-->
-                        <TextBlock Text="Adres zamieszkania"
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Grid.Column="0" Width="300" Margin="10">
+                <prop:ProfileNameTemplate x:Name="Name"/>
+                <prop:ProfileSurnameTemplate x:Name="Surname"/>
+                <prop:ProfilePhoneTemplate x:Name="Phone"/>
+                <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                <!--#region Residental Address-->
+                <StackPanel Margin="5">
+                    <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <Grid>
+                            <!--#region Columns definitions-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <!--#endregion-->
+                            <TextBlock Text="Adres zamieszkania"
                                    Style="{StaticResource TitleOfLists}"
                                    Grid.Column="0"/>
-                        <Button Name="ChangeResidentalAddress" 
+                            <Button Name="ChangeResidentalAddress" 
                                 Grid.Column="2"
                                 Click="ChangeResidentalAddress_Click"
                                 Style="{StaticResource AdditionSign}" 
                                 Margin="20 0 0 0" Height="20" Width="20"
                                 ToolTip="Zmień adres zamieszkania.">
-                        </Button>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="0 0 10 10" Padding="3">
-                    <Border.Background>
-                        <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                    </Border.Background>
-                    <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
-                </Border>
-            </StackPanel>
-            <!--#endregion-->
-            <!--#region Delivery Address-->
-            <StackPanel Margin="5">
-                <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
-                    <Border.Background>
-                        <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
-                    </Border.Background>
-                    <Grid>
-                        <!--#region Columns definitions-->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        <!--#endregion-->
-                        <TextBlock Text="Adres dostawy"
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="0 0 10 10" Padding="3">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
+                    </Border>
+                </StackPanel>
+                <!--#endregion-->
+                <!--#region Delivery Address-->
+                <StackPanel Margin="5">
+                    <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <Grid>
+                            <!--#region Columns definitions-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <!--#endregion-->
+                            <TextBlock Text="Adres dostawy"
                                    Style="{StaticResource TitleOfLists}"
                                    Grid.Column="0"/>
-                        <Button Name="ChangeDeliveryAddress" 
+                            <Button Name="ChangeDeliveryAddress" 
                                 Grid.Column="2"
                                 Click="ChangeDeliveryAddress_Click"
                                 Style="{StaticResource AdditionSign}" 
                                 Margin="20 0 0 0" Height="20" Width="20"
                                 ToolTip="Zmień adres dostawy.">
-                        </Button>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="0 0 10 10" Padding="3">
-                    <Border.Background>
-                        <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                    </Border.Background>
-                    <temp:AddressTemplate x:Name="DeliveryAddress" DataContext="{Binding DeliveryAddress}"/>
-                </Border>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="0 0 10 10" Padding="3">
+                        <Border.Background>
+                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+                        </Border.Background>
+                        <temp:AddressTemplate x:Name="DeliveryAddress" DataContext="{Binding DeliveryAddress}"/>
+                    </Border>
+                </StackPanel>
+                <!--#endregion-->
             </StackPanel>
-            <!--#endregion-->
-        </StackPanel>
+        </ScrollViewer>
         <!--#endregion-->
-        <StackPanel Grid.Column="2">
-            <TextBlock Text="Dostawy klienta" 
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto" 
+                      Grid.Column="1" 
+                      MinWidth="490">
+            <StackPanel >
+                <TextBlock Text="Dostawy klienta" 
                    Margin="5" 
                    Style="{StaticResource TitleOfLists}" />
-            <ItemsControl
-                DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}"
-                ItemsSource="{Binding Orders}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:CustomerOrderItemListViewTemplate/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
+
+                <ItemsControl DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}"  
+                          ItemsSource="{Binding Orders}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomerOrderItemSmallListViewTemplate/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
-</UserControl>
+</basic:BasicUserControl>

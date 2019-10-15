@@ -5,74 +5,90 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
              mc:Ignorable="d" 
+             Margin="1"
+             Name="Profile"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Storyboard x:Key="HideProfileStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="Profile"
+                                        Duration="0:0:0.3"
+                                        From="0 0 0 0" To="-100 0 0 0"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                Storyboard.TargetName="Profile"
+                                      Duration="0:0:0.3" 
+                                      From="1" To="0"/>
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:0" 
+                                           Storyboard.TargetName="Profile" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
     <Grid>
-        <Border Background="{StaticResource GraphiteBrash}" 
-                CornerRadius="10" Padding="10">
+        <Border CornerRadius="10" Padding="10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Grid.Column="0" >
-                        <TextBlock Text="Numer zamówienia" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock 
-                               Text="{Binding Id}" />
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="0">
+                   
+                    <StackPanel Grid.Row="0" Grid.Column="0">
                         <TextBlock Text="Data złożenia zamówienia" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding OrderDate}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="1">
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="2">
                         <TextBlock Text="Data dostarczenia zamówienia" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding DeliveryDate}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="0">
+                    
+                    <StackPanel Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="Przyjmujący zamówienie" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding User.Name}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="1">
+                    
+                    <StackPanel Grid.Row="1" Grid.Column="2">
                         <TextBlock Text="Kurier" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding Courier.Name}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="0">
+                    
+                    <StackPanel Grid.Row="2" Grid.Column="0">
                         <TextBlock Text="Nazwa magazynu" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding Warehouse.Name}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="0" Grid.Column="1">
-                        <TextBlock Text="Status Zamówienia" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding CustomerOrderStatus}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="3" Grid.Column="1">
+                   
+                    <StackPanel Grid.Row="2" Grid.Column="2">
                         <TextBlock Text="Rodzaj dostawy" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding ShipmentType}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="0">
+                    
+                    <StackPanel Grid.Row="3" Grid.Column="0">
                         <TextBlock Text="Opłacone" 
                                     Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding IsPaid}"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="1" >
+                    
+                    <StackPanel Grid.Row="3" Grid.Column="2" >
                         <TextBlock Text="Rodzaj zapłaty" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding PaymentType}"/>
@@ -87,5 +103,15 @@
                 </ItemsControl>
             </Grid>
         </Border>
+        <Button Style="{StaticResource ArrowForwardButton}" 
+                Margin="20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <BeginStoryboard Storyboard="{StaticResource HideProfileStory}"/>
+                </EventTrigger>
+            </Button.Triggers>
+        </Button>
     </Grid>
 </UserControl>
