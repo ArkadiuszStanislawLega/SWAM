@@ -100,57 +100,62 @@
         </ContentControl>
         <!--#endregion-->
         <!--#region NavigationBar -->
-        <Grid Grid.Row="2"  Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}">
+        <Grid Grid.Row="2" 
+              Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="121*"/>
-                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" 
-                    Name="NavigationBar"  Height="30"
-                    Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
-                    VerticalAlignment="Bottom"
-                    Margin="5,0,264,0" >
-                <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
+            <ScrollViewer Grid.Column="0" 
+                          Height="30"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Disabled"
+                          Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
+                          VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal"  Name="NavigationBar">
+                    <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
                                           PageToOpen="AdministratorPage" 
                                           x:Name="SwitchToAdministratorPage"
                                           Click="NaviagionBar_Click"/>
 
-                <nav:NavigationButtonTemplate Content="Strona Logowania" 
+                    <nav:NavigationButtonTemplate Content="Strona Logowania" 
                                           PageToOpen="LoginPage" 
                                           x:Name="SwitchToLoginPage"
                                           Click="NaviagionBar_Click" />
 
-                <nav:NavigationButtonTemplate Content="Produkty" 
+                    <nav:NavigationButtonTemplate Content="Produkty" 
                                           PageToOpen="ManageItemsPage"
                                           x:Name="SwitchToManageItemPage"
                                           Click="NaviagionBar_Click" />
 
-                <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
+                    <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
                                           PageToOpen="ManageMagazinePage"
                                           x:Name="SwitchToManageMagazinePage"
                                           Click="NaviagionBar_Click" />
 
-                <nav:NavigationButtonTemplate Content="Zamówienia" 
+                    <nav:NavigationButtonTemplate Content="Zamówienia" 
                                           PageToOpen="ManageOrdersPage" 
                                           x:Name="SwitchToManageOrderPage" 
                                           Click="NaviagionBar_Click" />
 
-                <nav:NavigationButtonTemplate Content="Klienci" 
+                    <nav:NavigationButtonTemplate Content="Klienci" 
                                           PageToOpen="ManageCustomersPage" 
                                           x:Name="SwitchToManageClientsPage" 
                                           Click="NaviagionBar_Click" />
-                
-                <nav:NavigationButtonTemplate Content="Kurierzy" 
+
+                    <nav:NavigationButtonTemplate Content="Kurierzy" 
                                           PageToOpen="ManageCouriersPage" 
                                           x:Name="SwitchToManageCouriersPage" 
                                           Click="NaviagionBar_Click" />
-                
-                <nav:NavigationButtonTemplate Content="Dostawcy zewnętrzni" 
+
+                    <nav:NavigationButtonTemplate Content="Dostawcy zewnętrzni" 
                                           PageToOpen="ManageExternalSuppliersPage" 
                                           x:Name="SwitchToManageExternalSuppliersPage" 
                                           Click="NaviagionBar_Click" />
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
                         Orientation="Horizontal"
                         Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
                         Name="MessageAndProfileContainer" 
