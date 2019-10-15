@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="SWAM.Controls.Templates.CustomerPage.CustomerOrderItemListViewTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Border Background="{StaticResource GraphiteBrash}" 
+                CornerRadius="10" Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" >
+                        <TextBlock Text="Numer zamówienia" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock 
+                               Text="{Binding Id}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Text="Data złożenia zamówienia" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding OrderDate}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <TextBlock Text="Data dostarczenia zamówienia" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding DeliveryDate}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock Text="Przyjmujący zamówienie" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding User.Name}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1">
+                        <TextBlock Text="Kurier" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding Courier.Name}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0">
+                        <TextBlock Text="Nazwa magazynu" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding Warehouse.Name}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1">
+                        <TextBlock Text="Status Zamówienia" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding CustomerOrderStatus}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1">
+                        <TextBlock Text="Rodzaj dostawy" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding ShipmentType}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="0">
+                        <TextBlock Text="Opłacone" 
+                                    Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding IsPaid}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Grid.Column="1" >
+                        <TextBlock Text="Rodzaj zapłaty" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding PaymentType}"/>
+                    </StackPanel>
+                </Grid>
+                <ItemsControl ItemsSource="{Binding CustomerOrderPositions}" Grid.Row="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:CustomerProductFromOrderTemplate/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

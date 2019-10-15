@@ -26,18 +26,23 @@ namespace SWAM.Models.Customer
             {
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    var customers = context.People
-                        .OfType<Customer>()
-                        .Include(c => c.Orders)
-                        .FirstOrDefault(c => c.Id == customer.Id);
+                    var orders = context.CustomerOrders
+                        .Include(c => c.Courier)
+                        .Include(c => c.User)
+                        .Include(c => c.Warehouse)
+                        .Include(c => c.CustomerOrderPositions) 
+                        .Where(c => c.Customer.Id == customer.Id)
+                        .ToList();
 
-                    if (customers != null && _orders.Count > 0)
-                        _orders.Clear();
-
-                    foreach (var order in customers.Orders)
+                    foreach( var order in orders)
                     {
-                        _orders.Add(order);
+                        foreach (var position in order.CustomerOrderPositions)
+                        {
+                            position.Product = context.Products.FirstOrDefault(p => p.Id == position.ProductId);
+                        }
                     }
+
+                    _orders = new ObservableCollection<CustomerOrder>(orders);
                 }
             }
         }

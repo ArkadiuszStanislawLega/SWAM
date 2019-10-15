@@ -103,6 +103,12 @@
     <Compile Include="Controls\Templates\CustomerPage\CreateNewCustomerTemplate.xaml.cs">
       <DependentUpon>CreateNewCustomerTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\CustomerPage\CustomerOrderItemListViewTemplate.xaml.cs">
+      <DependentUpon>CustomerOrderItemListViewTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\CustomerPage\CustomerProductFromOrderTemplate.xaml.cs">
+      <DependentUpon>CustomerProductFromOrderTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\CustomerPage\CustomerProfileTemplate.xaml.cs">
       <DependentUpon>CustomerProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -178,6 +184,10 @@
     <Compile Include="Migrations\201910141602119_UpdateCourierColumnPhone.cs" />
     <Compile Include="Migrations\201910141602119_UpdateCourierColumnPhone.Designer.cs">
       <DependentUpon>201910141602119_UpdateCourierColumnPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs" />
+    <Compile Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.Designer.cs">
+      <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -285,6 +295,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CustomerPage\CreateNewCustomerTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CustomerPage\CustomerOrderItemListViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CustomerPage\CustomerProductFromOrderTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -666,6 +684,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910141602119_UpdateCourierColumnPhone.resx">
       <DependentUpon>201910141602119_UpdateCourierColumnPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.resx">
+      <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

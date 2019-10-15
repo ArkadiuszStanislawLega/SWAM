@@ -10,6 +10,10 @@
         /// </summary>
         public int Id { get; set; }
         /// <summary>
+        /// Product Id from database.
+        /// </summary>
+        public int ProductId { get; set; }
+        /// <summary>
         /// Product this item applies to.
         /// </summary>
         public Product Product { get; set; }
