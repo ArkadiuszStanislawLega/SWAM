@@ -106,6 +106,9 @@
     <Compile Include="Controls\Templates\CustomerPage\CustomerOrderItemListViewTemplate.xaml.cs">
       <DependentUpon>CustomerOrderItemListViewTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\CustomerPage\CustomerOrderItemSmallListViewTemplate.xaml.cs">
+      <DependentUpon>CustomerOrderItemSmallListViewTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\CustomerPage\CustomerProductFromOrderTemplate.xaml.cs">
       <DependentUpon>CustomerProductFromOrderTemplate.xaml</DependentUpon>
     </Compile>
@@ -299,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CustomerPage\CustomerOrderItemListViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CustomerPage\CustomerOrderItemSmallListViewTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

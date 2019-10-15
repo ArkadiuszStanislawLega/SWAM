@@ -1,11 +1,15 @@
-﻿using System.Windows.Controls;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Models.Customer;
+using SWAM.Strings;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.CustomerPage
 {
     /// <summary>
     /// Logika interakcji dla klasy CustomerProfile.xaml
     /// </summary>
-    public partial class CustomerProfileTemplate : UserControl
+    public partial class CustomerProfileTemplate : BasicUserControl
     {
         public CustomerProfileTemplate()
         {
