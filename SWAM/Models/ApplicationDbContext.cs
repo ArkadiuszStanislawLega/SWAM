@@ -13,6 +13,7 @@ namespace SWAM
         public DbSet<Address> Adresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerOrder> CustomerOrders { get; set; }
+        public DbSet<CustomerOrderPosition> CustomerOrderPositions { get; set; }
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<Message> Messages { get; set; }

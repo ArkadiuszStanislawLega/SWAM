@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <customersControls:CustomerDetailsFormTemplate Grid.Column="0"/>
+                    <customersControls:CustomerDetailsFormTemplate Grid.Column="0" x:Name="customerProfile"/>
                     <manageOrdersControls:AddressOrderFormTemplate Grid.Column="1"/>
                 </Grid>
             </Grid>

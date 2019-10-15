@@ -1,12 +1,12 @@
-﻿using System.Collections.ObjectModel;
-
+﻿using SWAM.Models.Customer;
+using System.Collections.ObjectModel;
 
 namespace SWAM.Models.ProductOrderList
 {
     public class ProductOrderListViewModel
     {
-        private readonly ObservableCollection<Product> _products = new ObservableCollection<Product>();
-        public ObservableCollection<Product> Products => this._products;
+        private readonly ObservableCollection<CustomerOrderPosition> _customerOrderPositions = new ObservableCollection<CustomerOrderPosition>();
+        public ObservableCollection<CustomerOrderPosition> CustomerOrderPositions => this._customerOrderPositions;
 
         #region Singletone Pattern
 
@@ -14,15 +14,15 @@ namespace SWAM.Models.ProductOrderList
         public static ProductOrderListViewModel Instance => _instance;
         #endregion 
 
-        public void Add(Product product)
+        public void Add(CustomerOrderPosition customerOrderPosition)
         {
-            _products.Add(product);
+            _customerOrderPositions.Add(customerOrderPosition);
         }
 
         public void Clear()
         {
-            if (_products.Count > 0)
-                _products.Clear();
+            if (_customerOrderPositions.Count > 0)
+                _customerOrderPositions.Clear();
         }
     }
 }

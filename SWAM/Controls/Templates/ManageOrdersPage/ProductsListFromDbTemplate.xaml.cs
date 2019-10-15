@@ -1,4 +1,5 @@
 ﻿using SWAM.Models;
+using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using System.Collections.Generic;
@@ -27,7 +28,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             if (!(((FrameworkElement)sender).DataContext is Product product))
                 return;
 
-            ProductOrderListViewModel.Instance.Add(product);
+            var customerOrderPosition = new CustomerOrderPosition
+            {
+                Product = product,
+                Price = product.Price
+            };
+
+            ProductOrderListViewModel.Instance.Add(customerOrderPosition);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) => UserDependsAccessProductListViewModel.Instance.Refresh();
