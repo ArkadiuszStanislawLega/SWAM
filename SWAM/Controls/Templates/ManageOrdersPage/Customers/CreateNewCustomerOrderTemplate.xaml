@@ -84,11 +84,25 @@
             </Grid>
         </Grid>
         <!--#endregion-->
-        <Button x:Name="switchContentButton"
+        <Grid HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="switchContentButton"
                 Content="Produkty"
                 VerticalAlignment="Top"
-                HorizontalAlignment="Right"
                 Click="SwitchContentButton_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
+            
+            <Button x:Name="CreateCustomerOrder"
+                Grid.Column="1"
+                Content="Stwórz"
+                VerticalAlignment="Top"
+                Click="CreateCustomerOrder_Click"
+                Style="{StaticResource UserProfilebuttons}"/>
+        </Grid>
+        
     </Grid>
 </UserControl>

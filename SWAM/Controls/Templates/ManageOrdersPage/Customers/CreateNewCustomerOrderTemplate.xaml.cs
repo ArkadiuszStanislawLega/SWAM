@@ -28,5 +28,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 switchContentButton.Content = "Produkty";
             }
         }
+
+        private void CreateCustomerOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
