@@ -85,7 +85,7 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public static AccessUsersToWarehouses GetUserAccess(int userId) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.Id == userId);
+        public static AccessUsersToWarehouses GetUserAccess(int userId) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.User.Id == userId);
         #endregion
 
         #region RemoveAccess
