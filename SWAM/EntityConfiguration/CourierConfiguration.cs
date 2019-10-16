@@ -9,10 +9,9 @@ namespace SWAM.EntityConfiguration
         {
             ToTable("Couriers");
 
-            //HasRequired(c => c.Phone)
-            //    .WithRequiredDependent(p => p.Courier);
-
-            HasMany(c => c.CustomerOrders);
+            HasMany(c => c.CustomerOrders)
+            .WithOptional(c => c.Courier)
+            .HasForeignKey(c => c.CourierId);
         }
     }
 }

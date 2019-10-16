@@ -192,6 +192,10 @@
     <Compile Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.Designer.cs">
       <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs" />
+    <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.Designer.cs">
+      <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
@@ -695,6 +699,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.resx">
       <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.resx">
+      <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

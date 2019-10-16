@@ -17,7 +17,11 @@ namespace SWAM.EntityConfiguration
                 .WithOptionalPrincipal(a => a.Warehouse);
 
             HasMany(w => w.Accesses);
-            HasMany(w => w.CustomerOrders);
+
+            HasMany(w => w.CustomerOrders)
+            .WithRequired(c => c.Warehouse)
+            .HasForeignKey(c => c.WarehouseId);
+
             HasMany(w => w.WarehouseOrders);
         }
     }

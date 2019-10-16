@@ -8,7 +8,7 @@ namespace SWAM.Models.Customer
     /// The basic model of the class in the database representing the <see cref="Customer"/>'s order.
     /// </summary>
     public class CustomerOrder
-    { 
+    {
         /// <summary>
         /// Customer order numer Id in database.
         /// </summary>
@@ -30,17 +30,33 @@ namespace SWAM.Models.Customer
         /// </summary>
         public Warehouse.Warehouse Warehouse { get; set; }
         /// <summary>
+        /// Foreign key property
+        /// </summary>
+        public int WarehouseId { get; set; }
+        /// <summary>
         /// The employee who is responsible for the order.
         /// </summary>
         public User.User User { get; set; }
+        /// <summary>
+        /// Foreign key property
+        /// </summary>
+        public int UserId { get; set; }
         /// <summary>
         /// The customer who made the purchase.
         /// </summary>
         public Customer Customer { get; set; }
         /// <summary>
+        /// Foreign key property
+        /// </summary>
+        public int CustomerId { get; set; }
+        /// <summary>
         /// The courier who is responsible for delivering the product.
         /// </summary>
         public Courier.Courier Courier { get; set; }
+        /// <summary>
+        /// Foreign key property
+        /// </summary>
+        public int? CourierId { get; set; }
         /// <summary>
         /// Status of the order to the customer.
         /// </summary>

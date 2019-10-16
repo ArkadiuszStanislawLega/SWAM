@@ -53,10 +53,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 CustomerOrderStatus = CustomerOrderStatus.InProcess,
                 ShipmentType = ShipmentType.Reception,
                 PaymentType = PaymentType.Postpaid,
-                User = employee,
-                Customer = customer,
-                Courier = new Models.Courier.Courier(),
-                Warehouse = employeeWarehouse,
+                UserId = employee.Id,
+                CustomerId = customer.Id,
+                WarehouseId = employeeWarehouse.Id,
                 CustomerOrderPositions = orderedProducts
             };
 
