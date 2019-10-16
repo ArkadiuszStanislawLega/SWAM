@@ -72,20 +72,30 @@ namespace SWAM.Models
                     return null;
             }
             //When the table of accesses in database is empty.
-            catch (NullReferenceException) 
-            { 
-                return null; 
-            } 
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
         #endregion
 
-        #region
+        #region GetUserAccess(userId)
         /// <summary>
         /// Get object with specific user accesses to warehouses from database. 
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         public static AccessUsersToWarehouses GetUserAccess(int userId) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.User.Id == userId);
+        #endregion
+
+        #region GetUserAccess(userId, context)
+        /// <summary>
+        /// Get object with specific user accesses to warehouses from database.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static AccessUsersToWarehouses GetUserAccess(int userId, ApplicationDbContext context) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.User.Id == userId);
         #endregion
 
         #region RemoveAccess
@@ -120,8 +130,8 @@ namespace SWAM.Models
         {
             context = new ApplicationDbContext();
 
-            if (accessUsersToWarehouses != null 
-                && accessUsersToWarehouses.User.Id > 0 
+            if (accessUsersToWarehouses != null
+                && accessUsersToWarehouses.User.Id > 0
                 && accessUsersToWarehouses.Administrator.Id > 0
                 && accessUsersToWarehouses.Warehouse.Id > 0)
             {
@@ -146,7 +156,7 @@ namespace SWAM.Models
                 };
 
                 if (user.Accesess != null)
-                    user.Accesess.Add(access);            
+                    user.Accesess.Add(access);
                 else
                 {
                     user.Accesess = new List<AccessUsersToWarehouses>
@@ -168,7 +178,7 @@ namespace SWAM.Models
         /// </summary>
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
-        { 
+        {
             context.AccessUsersToWarehouses
                 .FirstOrDefault(a => a.Id == this.Id)
                 .DateOfExpiredAcces = dateTime;

@@ -44,7 +44,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var customer = customerProfile.DataContext as Customer;
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
-            var employeeWarehouse = context.AccessUsersToWarehouses.SingleOrDefault(p => p.Id == employee.Id).Warehouse;
+            var employeeWarehouse = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id, context).Warehouse;
 
             var customerOrder = new CustomerOrder
             {
