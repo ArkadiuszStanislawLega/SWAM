@@ -17,11 +17,36 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <!-- Title -->
+
+        <!--#region Title-->
         <TextBlock 
                 Grid.Row="0"
                 Text="Utwórz nowe zamówienie dla klienta" 
                 Style="{StaticResource Title}"/>
+        <!--#endregion-->
+        
+        <!--#region Buttons-->
+        <Grid Grid.Row="0" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="switchContentButton"
+                Content="Produkty"
+                VerticalAlignment="Top"
+                Click="SwitchContentButton_Click"
+                Style="{StaticResource UserProfilebuttons}"/>
+
+            <Button x:Name="CreateCustomerOrder"
+                Grid.Column="1"
+                Content="Stwórz"
+                VerticalAlignment="Top"
+                Click="CreateCustomerOrder_Click"
+                Style="{StaticResource UserProfilebuttons}"/>
+        </Grid>
+        <!--#endregion-->
+        
         <!--#region customerElementsContainer-->
         <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
             <!--#region RowsDefinitions-->
@@ -84,25 +109,39 @@
             </Grid>
         </Grid>
         <!--#endregion-->
-        <Grid HorizontalAlignment="Right">
+
+        <!--#region courierElementsContainer-->
+        <Grid x:Name="courierElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+            <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            
-            <Button x:Name="switchContentButton"
-                Content="Produkty"
-                VerticalAlignment="Top"
-                Click="SwitchContentButton_Click"
-                Style="{StaticResource UserProfilebuttons}"/>
-            
-            <Button x:Name="CreateCustomerOrder"
-                Grid.Column="1"
-                Content="Stwórz"
-                VerticalAlignment="Top"
-                Click="CreateCustomerOrder_Click"
-                Style="{StaticResource UserProfilebuttons}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0">
+                    <TextBlock FontSize="20" Text="Dane kuriera" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
+                </Grid>
+                <Grid x:Name="ContainerFoCourierProfile" Grid.Column="0" Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <manageOrdersControls:CourierDetailsFormTemplate Grid.Column="0" x:Name="courierProfile"/>
+                    <manageOrdersControls:CourierListFromDbTemplate Grid.Column="1"/>
+                </Grid>
+            </Grid>
         </Grid>
+        <!--#endregion-->
         
     </Grid>
 </UserControl>

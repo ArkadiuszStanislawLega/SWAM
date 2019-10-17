@@ -47,7 +47,7 @@
                           ItemsSource="{Binding CouriersList}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                            <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Courier.Name}" />
+                            <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
