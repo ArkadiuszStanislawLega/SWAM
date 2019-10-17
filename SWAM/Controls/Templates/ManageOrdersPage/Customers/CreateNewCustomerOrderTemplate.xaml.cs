@@ -17,28 +17,102 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
     /// </summary>
     public partial class CreateNewCustomerOrderTemplate : UserControl
     {
+        #region Properties
+        // Current visible page
+        CustomerOrderVisiblePage visiblePage = CustomerOrderVisiblePage.CustomerPage;
+        // Pages with its grid containers elements
+        Dictionary<CustomerOrderVisiblePage, Grid> pages;
+        #endregion
+
+        #region Constructor
         public CreateNewCustomerOrderTemplate()
         {
             InitializeComponent();
-        }
 
-        private void SwitchContentButton_Click(object sender, RoutedEventArgs e)
+            // Seed dictionary
+            pages = new Dictionary<CustomerOrderVisiblePage, Grid>()
+            {
+                { CustomerOrderVisiblePage.CustomerPage, customerElementsContainer},
+                { CustomerOrderVisiblePage.ProductPage, productElementsContainer},
+                { CustomerOrderVisiblePage.CourierPage, courierElementsContainer}
+            };
+        }
+        #endregion
+
+        #region SwitchContentPreviousButton_Click
+        /// <summary>
+        /// Switches to previous tab 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SwitchContentPreviousButton_Click(object sender, RoutedEventArgs e)
         {
-            if (customerElementsContainer.Visibility == Visibility.Visible)
+            // Check if current page is first
+            if (visiblePage == CustomerOrderVisiblePage.CustomerPage)
+                return;
+
+            // Check if current page is last 
+            if (pages.Last().Key == visiblePage)
+                switchContentNextButton.Content = "Następny";
+
+            // Decrease visibile page element
+            visiblePage--;
+
+            // Switch pages visibility
+            SwitchPagesVisibility();
+        }
+        #endregion
+
+        #region SwitchContentNextButton_Click
+        /// <summary>
+        /// Switches to next tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SwitchContentNextButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if current page is last
+            if (pages.Last().Key == visiblePage)
             {
-                customerElementsContainer.Visibility = Visibility.Hidden;
-                productElementsContainer.Visibility = Visibility.Visible;
-                switchContentButton.Content = "Klient";
+                // Submit form
+                CreateCustomerOrder();
+                return;
             }
-            else
+
+            // Check if current page is second last 
+            if (pages.Count - 2 == (int)visiblePage)
+                switchContentNextButton.Content = "Zatwierdź";
+
+            // Increase visibile page element
+            visiblePage++;
+
+            // Switch pages visibility
+            SwitchPagesVisibility();
+        }
+        #endregion
+
+        #region SwitchPagesVisibility
+        private void SwitchPagesVisibility()
+        {
+            foreach (var page in pages)
             {
-                customerElementsContainer.Visibility = Visibility.Visible;
-                productElementsContainer.Visibility = Visibility.Hidden;
-                switchContentButton.Content = "Produkty";
+                if (page.Key != visiblePage)
+                {
+                    page.Value.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    page.Value.Visibility = Visibility.Visible;
+                }
             }
         }
+        #endregion
 
-        private void CreateCustomerOrder_Click(object sender, RoutedEventArgs e)
+        #region CreateCustomerOrder
+        /// <summary>
+        /// Gets form values and creates customer order
+        /// </summary>
+        private void CreateCustomerOrder()
         {
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;
@@ -64,5 +138,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
         }
+        #endregion
     }
 }

@@ -32,17 +32,17 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="switchContentButton"
-                Content="Produkty"
+            <Button x:Name="switchContentPreviousButton"
                 VerticalAlignment="Top"
-                Click="SwitchContentButton_Click"
+                Content="Poprzedni"
+                Click="SwitchContentPreviousButton_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
 
-            <Button x:Name="CreateCustomerOrder"
+            <Button x:Name="switchContentNextButton"
                 Grid.Column="1"
-                Content="Stwórz"
                 VerticalAlignment="Top"
-                Click="CreateCustomerOrder_Click"
+                Content="Nastepny"
+                Click="SwitchContentNextButton_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
         </Grid>
         <!--#endregion-->
