@@ -46,6 +46,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id, context).Warehouse;
 
+            orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
+
             var customerOrder = new CustomerOrder
             {
                 IsPaid = false,

@@ -31,6 +31,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             var customerOrderPosition = new CustomerOrderPosition
             {
                 Product = product,
+                ProductId = product.Id,
                 Price = product.Price
             };
 

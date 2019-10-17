@@ -124,6 +124,9 @@
     <Compile Include="Controls\Pages\MessagesPage.xaml.cs">
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml.cs">
+      <DependentUpon>CourierDetailsFormTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,7 @@
     <Compile Include="EntityConfiguration\CourierConfiguration.cs" />
     <Compile Include="EntityConfiguration\CustomerConfiguration.cs" />
     <Compile Include="EntityConfiguration\CustomerOrderConfiguration.cs" />
+    <Compile Include="EntityConfiguration\CustomerOrderPositionConfiguration.cs" />
     <Compile Include="EntityConfiguration\EmailAddressConfiguration.cs" />
     <Compile Include="EntityConfiguration\ExternalSupplierConfiguration.cs" />
     <Compile Include="EntityConfiguration\MessageConfiguration.cs" />
@@ -195,6 +199,10 @@
     <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs" />
     <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.Designer.cs">
       <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171130400_AddEmailToCouriersTable.cs" />
+    <Compile Include="Migrations\201910171130400_AddEmailToCouriersTable.Designer.cs">
+      <DependentUpon>201910171130400_AddEmailToCouriersTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -339,6 +347,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -702,6 +714,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.resx">
       <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171130400_AddEmailToCouriersTable.resx">
+      <DependentUpon>201910171130400_AddEmailToCouriersTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -45,6 +45,7 @@ namespace SWAM
             modelBuilder.Configurations.Add(new CourierConfiguration());
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new CustomerOrderConfiguration());
+            modelBuilder.Configurations.Add(new CustomerOrderPositionConfiguration());
             modelBuilder.Configurations.Add(new EmailAddressConfiguration());
             modelBuilder.Configurations.Add(new ExternalSupplierConfiguration());
             modelBuilder.Configurations.Add(new MessageConfiguration());

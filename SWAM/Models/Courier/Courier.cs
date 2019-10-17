@@ -20,5 +20,6 @@ namespace SWAM.Models.Courier
         /// Phone number to courier.
         /// </summary>
         public string Phone { get; set; }
+        public string Email { get; set; }
     }
 }
