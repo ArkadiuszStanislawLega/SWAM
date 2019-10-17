@@ -127,6 +127,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml.cs">
       <DependentUpon>CourierDetailsFormTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml.cs">
+      <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
@@ -351,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

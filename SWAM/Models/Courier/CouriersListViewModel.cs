@@ -10,11 +10,11 @@ namespace SWAM.Models.Courier
         /// <summary>
         /// Customers list view model, holds all couriers from database.
         /// </summary>
-        private static readonly ObservableCollection<Courier> _couriersList = new ObservableCollection<Courier>();
+        private readonly ObservableCollection<Courier> _couriersList = new ObservableCollection<Courier>();
         /// <summary>
         /// Customers list view model, holds all couriers from database.
         /// </summary>
-        public static ObservableCollection<Courier> CouriersList => _couriersList;
+        public ObservableCollection<Courier> CouriersList => _couriersList;
         #endregion
 
         #region SingletonePattern
