@@ -41,7 +41,7 @@
             <Button x:Name="switchContentNextButton"
                 Grid.Column="1"
                 VerticalAlignment="Top"
-                Content="Nastepny"
+                Content="Następny"
                 Click="SwitchContentNextButton_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
         </Grid>
@@ -67,7 +67,7 @@
                 <Grid Grid.Column="0" Grid.Row="0">
                     <TextBlock FontSize="20" Text="Dane klienta" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
                 </Grid>
-                <Grid x:Name="ContainerFoCustomerProfile" Grid.Column="0" Grid.Row="1">
+                <Grid Grid.Column="0" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
@@ -126,18 +126,22 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Column="0" Grid.Row="0">
+                <Grid Grid.Column="0" Grid.Row="0" Margin="0 0 0 10">
                     <TextBlock FontSize="20" Text="Dane kuriera" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
                 </Grid>
-                <Grid x:Name="ContainerFoCourierProfile" Grid.Column="0" Grid.Row="1">
+                <Grid Grid.Column="0" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-
+                    
                     <manageOrdersControls:CourierDetailsFormTemplate Grid.Column="0" x:Name="courierProfile"/>
                     <manageOrdersControls:CourierListFromDbTemplate Grid.Column="1"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <CheckBox Name="isPersonalCollected" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
                 </Grid>
             </Grid>
         </Grid>
