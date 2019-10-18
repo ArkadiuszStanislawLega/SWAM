@@ -26,6 +26,10 @@
         #region ShipmentType
         public const string SHIPMENT = "kurier";
         public const string RECEPTION = "odbiór osobisty";
-        #endregion  
+        #endregion
+        #region PaymentType
+        public const string PREPAID = "przedpłata";
+        public const string POSTPAID = "płatne przy odbiorze";
+        #endregion
     }
 }

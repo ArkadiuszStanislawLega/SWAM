@@ -9,16 +9,16 @@ namespace SWAM.Converters
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is CustomerOrderStatus user)
+            if (value is CustomerOrderStatus customerOrderStatus)
             {
-                switch (user)
+                switch (customerOrderStatus)
                 {
                     case CustomerOrderStatus.Delivered: return PLstrings.DELIVERED;
                     case CustomerOrderStatus.InDelivery: return PLstrings.IN_DELIVERY;
                     case CustomerOrderStatus.InProcess: return PLstrings.IN_PROCESS;
                     case CustomerOrderStatus.WaitingForPayment: return PLstrings.WAITING_FOR_PAYMENT;
 
-                    default: return user.ToString();
+                    default: return customerOrderStatus.ToString();
                 }
             }
             else return value.ToString();

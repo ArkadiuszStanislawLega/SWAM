@@ -1,23 +1,22 @@
-﻿
-using SWAM.Enumerators;
+﻿using SWAM.Enumerators;
 using SWAM.Strings;
 using System;
 using System.Globalization;
 
 namespace SWAM.Converters
 {
-    public class ENtoPLshipmentTypeConverter : BaseValueConverter<ENtoPLshipmentTypeConverter>
+    public class ENtoPLpaymentType : BaseValueConverter<ENtoPLpaymentType>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is ShipmentType shipmnetType)
+            if (value is PaymentType paymentType)
             {
-                switch (shipmnetType)
+                switch (paymentType)
                 {
-                    case ShipmentType.Reception: return PLstrings.RECEPTION;
-                    case ShipmentType.Shipment: return PLstrings.SHIPMENT;
+                    case PaymentType.Prepaid: return PLstrings.PREPAID;
+                    case PaymentType.Postpaid: return PLstrings.POSTPAID;
                    
-                    default: return shipmnetType.ToString();
+                    default: return paymentType.ToString();
                 }
             }
             else return value.ToString();

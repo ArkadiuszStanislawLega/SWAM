@@ -101,7 +101,7 @@
                     <StackPanel Grid.Row="3" Grid.Column="2" >
                         <TextBlock Text="Rodzaj zapłaty" 
                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding PaymentType}"/>
+                        <TextBlock Text="{Binding PaymentType, Converter={conv:ENtoPLpaymentType}}"/>
                     </StackPanel>
                     <!--#endregion-->
                 </Grid>
