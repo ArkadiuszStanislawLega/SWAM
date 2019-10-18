@@ -6,9 +6,33 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Orientation="Horizontal">
+    <!--<StackPanel Orientation="Horizontal">
         <TextBlock Text="{Binding Product.Name}" Margin="1"/>
         <TextBlock Text="{Binding Quantity}" Margin="1"/>
         <TextBlock Text="{Binding Price}" Margin="1"/>
-    </StackPanel>
+    </StackPanel>-->
+
+    <DataGrid Name="UserList" ItemsSource="{Binding Orders}"  
+                          Style="{StaticResource BasicDataGrid}"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"  
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  Product.Name}"/>
+            <DataGridTextColumn Header="Uprawnienia" 
+                                            Binding ="{Binding Quantity}"/>
+            <DataGridTextColumn Header="Administrator"  
+                                            Binding="{Binding Price}"/>
+            <!--<DataGridTextColumn Header="Nazwa Magazynu"  
+                                            Binding="{Binding Warehouse.Name}"/>
+            <DataGridTextColumn Header="Data Nadania" 
+                                            Binding="{Binding DateOfGrantingAccess}"/>
+            <DataGridTextColumn Header="Data Wygaśnięcia"  
+                                            Binding="{Binding DateOfExpiredAcces}"/>-->
+        </DataGrid.Columns>
+        <DataGrid.ItemContainerStyle>
+            <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
+        </DataGrid.ItemContainerStyle>
+    </DataGrid>
 </UserControl>

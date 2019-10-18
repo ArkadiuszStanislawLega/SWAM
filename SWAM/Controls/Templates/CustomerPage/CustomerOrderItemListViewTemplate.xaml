@@ -9,6 +9,7 @@
              Name="Profile"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <!--#region HideProfileStory-->
         <Storyboard x:Key="HideProfileStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                 Storyboard.TargetName="Profile"
@@ -25,18 +26,22 @@
                 <DiscreteObjectKeyFrame KeyTime="00:00:0.3" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
     <Grid>
         <Border CornerRadius="10" Padding="10">
             <Grid>
+                <!--#region Rows definitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
                 <Grid>
+                    <!--#region Columns and Rows definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -45,7 +50,8 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                   
+                   <!--#endregion-->
+                    <!--#region 1st row-->
                     <StackPanel Grid.Row="0" Grid.Column="0">
                         <TextBlock Text="Data złożenia zamówienia" 
                                    Style="{StaticResource ProfileProperties}"/>
@@ -57,7 +63,8 @@
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding DeliveryDate}"/>
                     </StackPanel>
-                    
+                    <!--#endregion-->
+                    <!--#region 2nd row-->
                     <StackPanel Grid.Row="1" Grid.Column="0">
                         <TextBlock Text="Przyjmujący zamówienie" 
                                    Style="{StaticResource ProfileProperties}"/>
@@ -69,7 +76,8 @@
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding Courier.Name}"/>
                     </StackPanel>
-                    
+                    <!--#endregion-->
+                    <!--#region 3th row-->
                     <StackPanel Grid.Row="2" Grid.Column="0">
                         <TextBlock Text="Nazwa magazynu" 
                                    Style="{StaticResource ProfileProperties}"/>
@@ -81,7 +89,8 @@
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding ShipmentType}"/>
                     </StackPanel>
-                    
+                    <!--#endregion-->
+                    <!--#region 4th row-->
                     <StackPanel Grid.Row="3" Grid.Column="0">
                         <TextBlock Text="Opłacone" 
                                     Style="{StaticResource ProfileProperties}"/>
@@ -93,14 +102,25 @@
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding PaymentType}"/>
                     </StackPanel>
+                    <!--#endregion-->
                 </Grid>
-                <ItemsControl ItemsSource="{Binding CustomerOrderPositions}" Grid.Row="1">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:CustomerProductFromOrderTemplate/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <DataGrid Grid.Row="1"
+                          ItemsSource="{Binding CustomerOrderPositions}"  
+                          Style="{StaticResource BasicDataGrid}"
+                          HorizontalAlignment="Stretch"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"  
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
+                        <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
+                        <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
+                    </DataGrid.ItemContainerStyle>
+                </DataGrid>
             </Grid>
         </Border>
         <Button Style="{StaticResource ArrowForwardButton}" 
