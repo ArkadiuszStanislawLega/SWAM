@@ -160,6 +160,7 @@
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolToPLstringConerter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DecimalToIntegerConverter.cs" />
     <Compile Include="Converters\ENtoPLcustomerOrderStatus.cs" />

@@ -93,9 +93,9 @@
                     <!--#endregion-->
                     <!--#region 4th row-->
                     <StackPanel Grid.Row="3" Grid.Column="0">
-                        <TextBlock Text="Opłacone" 
+                        <TextBlock Text="Status zapłaty" 
                                     Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding IsPaid}"/>
+                        <TextBlock Text="{Binding IsPaid, Converter={conv:BoolToPLstringConerter}}"/>
                     </StackPanel>
                     
                     <StackPanel Grid.Row="3" Grid.Column="2" >
