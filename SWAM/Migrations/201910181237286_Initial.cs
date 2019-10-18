@@ -141,6 +141,7 @@ namespace SWAM.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ProductId = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CustomerOrder_Id = c.Int(),
                         State_Id = c.Int(),

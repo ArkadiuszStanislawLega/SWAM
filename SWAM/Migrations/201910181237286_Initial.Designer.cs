@@ -13,7 +13,7 @@ namespace SWAM.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201910181216261_Initial"; }
+            get { return "201910181237286_Initial"; }
         }
         
         string IMigrationMetadata.Source
