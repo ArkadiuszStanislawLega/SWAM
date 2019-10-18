@@ -162,6 +162,7 @@
     </Compile>
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DecimalToIntegerConverter.cs" />
+    <Compile Include="Converters\ENtoPLcustomerOrderStatus.cs" />
     <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />

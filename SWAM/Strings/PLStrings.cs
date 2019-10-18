@@ -17,5 +17,11 @@
         public const string OWNER = "właściciel";
         public const string MENAGER = "kierownik";
         #endregion
+        #region Customer order status
+        public const string DELIVERED = "dostarczono";
+        public const string IN_DELIVERY = "w dostawie";
+        public const string WAITING_FOR_PAYMENT = "oczekiwanie na zapłate";
+        public const string IN_PROCESS = "w przygotowaniu";
+        #endregion  
     }
 }
