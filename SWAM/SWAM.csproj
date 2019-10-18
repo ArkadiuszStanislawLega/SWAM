@@ -188,39 +188,18 @@
     <Compile Include="Enumerators\CustomerOrderVisiblePage.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
-    <Compile Include="Migrations\201910130914526_Initial.cs" />
-    <Compile Include="Migrations\201910130914526_Initial.Designer.cs">
-      <DependentUpon>201910130914526_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910131627020_RenameCustomerResidentalAddress.cs" />
-    <Compile Include="Migrations\201910131627020_RenameCustomerResidentalAddress.Designer.cs">
-      <DependentUpon>201910131627020_RenameCustomerResidentalAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910141602119_UpdateCourierColumnPhone.cs" />
-    <Compile Include="Migrations\201910141602119_UpdateCourierColumnPhone.Designer.cs">
-      <DependentUpon>201910141602119_UpdateCourierColumnPhone.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs" />
-    <Compile Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.Designer.cs">
-      <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs" />
-    <Compile Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.Designer.cs">
-      <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910171130400_AddEmailToCouriersTable.cs" />
-    <Compile Include="Migrations\201910171130400_AddEmailToCouriersTable.Designer.cs">
-      <DependentUpon>201910171130400_AddEmailToCouriersTable.cs</DependentUpon>
+    <Compile Include="Migrations\201910181216261_Initial.cs" />
+    <Compile Include="Migrations\201910181216261_Initial.Designer.cs">
+      <DependentUpon>201910181216261_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
+    <Compile Include="Models\Customer\CustomerOrderDeliveryAddress.cs" />
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
-    <Compile Include="Models\Customer\CustomerAddress.cs" />
     <Compile Include="Models\Customer\CustomersListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\Customer\CustomerDeliveryAddress.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
@@ -712,23 +691,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910130914526_Initial.resx">
-      <DependentUpon>201910130914526_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910131627020_RenameCustomerResidentalAddress.resx">
-      <DependentUpon>201910131627020_RenameCustomerResidentalAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910141602119_UpdateCourierColumnPhone.resx">
-      <DependentUpon>201910141602119_UpdateCourierColumnPhone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910151107347_AddColumnProductIdInCustomerOrerPostionTable.resx">
-      <DependentUpon>201910151107347_AddColumnProductIdInCustomerOrerPostionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.resx">
-      <DependentUpon>201910161707111_AddForeignKeyPropertiesToCustomerOrdersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910171130400_AddEmailToCouriersTable.resx">
-      <DependentUpon>201910171130400_AddEmailToCouriersTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910181216261_Initial.resx">
+      <DependentUpon>201910181216261_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

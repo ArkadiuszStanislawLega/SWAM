@@ -20,7 +20,7 @@
         /// <summary>
         /// The quantity of product contained in the item.
         /// </summary>
-        public uint Quantity { get; set; }
+        public int Quantity { get; set; }
         /// <summary>
         /// The price for the product applies to this item.
         /// </summary>

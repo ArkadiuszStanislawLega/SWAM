@@ -10,6 +10,9 @@ namespace SWAM.EntityConfiguration
             HasRequired(c => c.User);
             HasRequired(c => c.Warehouse);
             HasOptional(c => c.Courier);
+
+            HasOptional(c => c.DeliveryAddress)
+                .WithOptionalPrincipal(c => c.CustomerOrder);
         }
     }
 }

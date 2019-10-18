@@ -30,6 +30,7 @@ namespace SWAM.Models.Customer
                         .Include(c => c.Courier)
                         .Include(c => c.Warehouse)
                         .Include(c => c.CustomerOrderPositions) 
+                        .Include(c => c.DeliveryAddress)
                         .Where(c => c.Customer.Id == customer.Id)
                         .ToList();
 

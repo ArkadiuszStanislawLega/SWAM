@@ -26,11 +26,6 @@ namespace SWAM.Controls.Templates.CustomerPage
                 Phone = CustomerPhone.Text,
                 ResidentalAddress = ResidentalAddress.GetAddress<CustomerResidentalAddress>()
             };
-
-            var deliveryAddress = DeliveryAddress.GetAddress<CustomerDeliveryAddress>();
-            if (deliveryAddress != null)
-                customer.DeliveryAddress = deliveryAddress;
-   
             Customer.Add(customer);
 
             CustomersListViewModel.Instance.Refresh();

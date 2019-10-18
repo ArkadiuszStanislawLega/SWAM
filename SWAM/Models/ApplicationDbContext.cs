@@ -32,10 +32,6 @@ namespace SWAM
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<CustomerDeliveryAddress>()
-                .HasRequired(c => c.Customer)
-                .WithRequiredDependent(c => c.DeliveryAddress);
-
             modelBuilder.Entity<CustomerResidentalAddress>()
               .HasRequired(c => c.Customer)
               .WithRequiredDependent(c => c.ResidentalAddress);

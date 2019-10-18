@@ -69,6 +69,10 @@ namespace SWAM.Models.Customer
         /// Payment type chosen by the customer.
         /// </summary>
         public PaymentType PaymentType { get; set; }
+        /// <summary>
+        /// Address to which the goods will be delivered to the customer.
+        /// </summary>
+        public CustomerOrderDeliveryAddress DeliveryAddress { get; set; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
     }
 }

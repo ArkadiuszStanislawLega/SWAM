@@ -10,7 +10,6 @@ namespace SWAM.EntityConfiguration
             ToTable("Customers");
 
             HasRequired(c => c.ResidentalAddress);
-            HasOptional(c => c.DeliveryAddress);
 
             HasMany(c => c.Orders);
         }

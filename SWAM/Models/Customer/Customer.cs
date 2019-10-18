@@ -24,10 +24,6 @@ namespace SWAM.Models.Customer
         /// </summary>
         public IList<CustomerOrder> Orders { get; set; }
         /// <summary>
-        /// Customer delivery address.
-        /// </summary>
-        public CustomerDeliveryAddress DeliveryAddress { get; set; }
-        /// <summary>
         /// Customer residental address.
         /// </summary>
         public CustomerResidentalAddress ResidentalAddress { get; set; }

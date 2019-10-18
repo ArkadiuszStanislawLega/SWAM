@@ -90,9 +90,9 @@ namespace SWAM.Controls.Templates
 
                     return (T)Convert.ChangeType(warehouseAddress, typeof(T));
                 }
-                else if (typeof(T) == typeof(CustomerDeliveryAddress))
+                else if (typeof(T) == typeof(CustomerOrderDeliveryAddress))
                 {
-                    var customerDeliveryAddress = new CustomerDeliveryAddress()
+                    var customerDeliveryAddress = new CustomerOrderDeliveryAddress()
                     {
                         Country = this.EditCountry.Text,
                         PostCode = this.EditPostCode.Text,
