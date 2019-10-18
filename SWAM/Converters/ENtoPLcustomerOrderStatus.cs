@@ -5,6 +5,9 @@ using System.Globalization;
 
 namespace SWAM.Converters
 {
+    /// <summary>
+    /// Translate customer order status to Polish.
+    /// </summary>
     public class ENtoPLcustomerOrderStatus : BaseValueConverter<ENtoPLcustomerOrderStatus>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)

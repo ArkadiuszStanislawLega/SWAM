@@ -1,11 +1,13 @@
-﻿
-using SWAM.Enumerators;
+﻿using SWAM.Enumerators;
 using SWAM.Strings;
 using System;
 using System.Globalization;
 
 namespace SWAM.Converters
 {
+    /// <summary>
+    /// Translate Shipment types to Polish.
+    /// </summary>
     public class ENtoPLshipmentTypeConverter : BaseValueConverter<ENtoPLshipmentTypeConverter>
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
