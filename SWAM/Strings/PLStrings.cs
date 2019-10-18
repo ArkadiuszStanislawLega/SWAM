@@ -22,6 +22,10 @@
         public const string IN_DELIVERY = "w dostawie";
         public const string WAITING_FOR_PAYMENT = "oczekiwanie na zapłate";
         public const string IN_PROCESS = "w przygotowaniu";
+        #endregion
+        #region ShipmentType
+        public const string SHIPMENT = "kurier";
+        public const string RECEPTION = "odbiór osobisty";
         #endregion  
     }
 }
