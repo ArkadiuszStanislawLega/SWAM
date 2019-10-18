@@ -63,7 +63,7 @@
             </Grid>
             <Border.Triggers>
                 <EventTrigger RoutedEvent="Border.MouseLeftButtonDown">
-                    <BeginStoryboard Storyboard="{StaticResource ShowProfileStor}"/>
+                    <BeginStoryboard Storyboard="{StaticResource ShowProfileStory}"/>
                 </EventTrigger>
             </Border.Triggers>
         </Border>
