@@ -61,40 +61,6 @@
                     </Border>
                 </StackPanel>
                 <!--#endregion-->
-                <!--#region Delivery Address-->
-                <StackPanel Margin="5">
-                    <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <Grid>
-                            <!--#region Columns definitions-->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <!--#endregion-->
-                            <TextBlock Text="Adres dostawy"
-                                   Style="{StaticResource TitleOfLists}"
-                                   Grid.Column="0"/>
-                            <Button Name="ChangeDeliveryAddress" 
-                                Grid.Column="2"
-                                Click="ChangeDeliveryAddress_Click"
-                                Style="{StaticResource AdditionSign}" 
-                                Margin="20 0 0 0" Height="20" Width="20"
-                                ToolTip="Zmień adres dostawy.">
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <Border CornerRadius="0 0 10 10" Padding="3">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <temp:AddressTemplate x:Name="DeliveryAddress" DataContext="{Binding DeliveryAddress}"/>
-                    </Border>
-                </StackPanel>
-                <!--#endregion-->
             </StackPanel>
         </ScrollViewer>
         <!--#endregion-->
