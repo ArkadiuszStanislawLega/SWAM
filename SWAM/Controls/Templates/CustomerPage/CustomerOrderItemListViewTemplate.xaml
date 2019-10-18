@@ -67,15 +67,60 @@
                     <!--#endregion-->
                     <!--#region 2nd row-->
                     <StackPanel Grid.Row="1" Grid.Column="0">
-                        <TextBlock Text="Przyjmujący zamówienie" 
+                        <TextBlock Name="OrderTaker"
+                                    Text="Przyjmujący zamówienie" 
                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding User.Name}"/>
+                        <TextBlock Text="{Binding User.Name}">
+                            <TextBlock.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding User.Name}" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}">
+                                    </TextBlock>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding User.Phones}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Note}" Grid.Column="0"
+                                                               HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="-" Grid.Column="1"/>
+                                                    <TextBlock Text="{Binding PhoneNumber}" 
+                                                               HorizontalAlignment="Right"
+                                                               Grid.Column="2"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="1" Grid.Column="2">
                         <TextBlock Text="Kurier" 
                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding Courier.Name}"/>
+
+                        <TextBlock Text="{Binding Courier.Name}">
+                            <TextBlock.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Numer telefonu:" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Courier.Phone}"/>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
                     </StackPanel>
                     <!--#endregion-->
                     <!--#region 3th row-->
@@ -105,7 +150,7 @@
                     </StackPanel>
                     <!--#endregion-->
                 </Grid>
-                <DataGrid Grid.Row="1"
+                <DataGrid Grid.Row="1" Margin="5"
                           ItemsSource="{Binding CustomerOrderPositions}"  
                           Style="{StaticResource BasicDataGrid}"
                           HorizontalAlignment="Stretch"
@@ -125,7 +170,7 @@
             </Grid>
         </Border>
         <Button Style="{StaticResource ArrowForwardButton}" 
-                Margin="20"
+                Margin="5"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom">
             <Button.Triggers>

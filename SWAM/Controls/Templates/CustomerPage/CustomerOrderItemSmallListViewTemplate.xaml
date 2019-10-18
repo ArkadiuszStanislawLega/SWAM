@@ -45,20 +45,11 @@
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
                 <!--#endregion-->
-                <TextBlock Text="{Binding Id}" 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" 
-                            Style="{StaticResource Title}"/>
-                <TextBlock Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}" 
-                            Grid.Column="0" 
-                            Grid.Row="1"
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Bottom"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Id}" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
+                    <TextBlock Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}"/>
+                </StackPanel>
 
                 <local:CustomerOrderItemListViewTemplate x:Name="Profile" Grid.Column="2" Visibility="Collapsed"/>
             </Grid>

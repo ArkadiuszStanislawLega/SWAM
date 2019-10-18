@@ -28,7 +28,6 @@ namespace SWAM.Models.Customer
                 {
                     var orders = context.CustomerOrders
                         .Include(c => c.Courier)
-                        .Include(c => c.User)
                         .Include(c => c.Warehouse)
                         .Include(c => c.CustomerOrderPositions) 
                         .Where(c => c.Customer.Id == customer.Id)
@@ -36,6 +35,11 @@ namespace SWAM.Models.Customer
 
                     foreach( var order in orders)
                     {
+                        order.User = context.People
+                            .OfType<User.User>()
+                            .Include(u => u.Phones)
+                            .FirstOrDefault(u => u.Id == order.UserId);
+
                         foreach (var position in order.CustomerOrderPositions)
                         {
                             position.Product = context.Products.FirstOrDefault(p => p.Id == position.ProductId);
