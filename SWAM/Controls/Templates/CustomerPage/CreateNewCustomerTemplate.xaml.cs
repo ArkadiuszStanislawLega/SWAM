@@ -13,7 +13,6 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             InitializeComponent();
             ResidentalAddress.ShowEditControls();
-            DeliveryAddress.ShowEditControls();
         }
 
         private void AddNewCustomer_Click(object sender, RoutedEventArgs e)
@@ -43,7 +42,6 @@ namespace SWAM.Controls.Templates.CustomerPage
             CustomerEmailAddress.Text = string.Empty;
             CustomerPhone.Text = string.Empty;
             ResidentalAddress.ClearEditValues();
-            DeliveryAddress.ClearEditValues();
         }
         #endregion
     }

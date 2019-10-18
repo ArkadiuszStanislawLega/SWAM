@@ -44,25 +44,9 @@
                         <TextBox Name="CustomerEmailAddress"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Border CornerRadius="0 0 10 10" Padding="3" Margin="0 5 1 5">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Adres zamieszkania" Style="{StaticResource TitleOfLists}"/>
-                            <temp:AddressTemplate x:Name="ResidentalAddress"/>
-                        </StackPanel>
-                    </Border>
-                    <Border CornerRadius="0 0 10 10" Padding="3" Margin="1 5 5 5">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <StackPanel>
-                            <TextBlock Text="Adres dostawy" Style="{StaticResource TitleOfLists}"/>
-                            <temp:AddressTemplate x:Name="DeliveryAddress"/>
-                        </StackPanel>
-                    </Border>
+                <StackPanel Margin="5"  Grid.Column="1">
+                    <TextBlock Text="Adres zamieszkania" Style="{StaticResource TitleOfLists}"/>
+                    <temp:AddressTemplate x:Name="ResidentalAddress"/>
                 </StackPanel>
             </Grid>
         </Grid>
