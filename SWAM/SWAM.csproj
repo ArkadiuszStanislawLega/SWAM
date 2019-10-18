@@ -161,6 +161,7 @@
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToPLstringConerter.cs" />
+    <Compile Include="Converters\CustomerOrderStatusToColourConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DecimalToIntegerConverter.cs" />
     <Compile Include="Converters\ENtoPLcustomerOrderStatus.cs" />
