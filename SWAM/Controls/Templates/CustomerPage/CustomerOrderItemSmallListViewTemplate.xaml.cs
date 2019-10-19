@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
 namespace SWAM.Controls.Templates.CustomerPage
@@ -25,6 +26,11 @@ namespace SWAM.Controls.Templates.CustomerPage
                 this.BeginStoryboard((Storyboard)this.FindResource("ShowProfileStory"));
                 this.IsOpen = true;
             }
+        }
+
+        public void ShowProfile()
+        {
+            Button_Click(this, new RoutedEventArgs());
         }
     }
 }

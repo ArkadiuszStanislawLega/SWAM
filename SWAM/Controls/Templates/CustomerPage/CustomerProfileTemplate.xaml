@@ -96,7 +96,7 @@
                 <TextBlock Text="Dostawy klienta" Margin="5" Grid.Column="0" Style="{StaticResource TitleOfLists}" />
                 <!--#region Filters bar-->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-                    <TextBox Name="OrderNumberInput" Width="200"/>
+                    <TextBox Name="OrderNumberInput" Width="200" TextChanged="TextBox_TextChanged"/>
                     <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
                     <ComboBox Margin="5" Name="SortBy"   
                               ItemsSource="{Binding Source={StaticResource CustomerOrdersListSortingType}}">
@@ -106,11 +106,12 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <StackPanel>
-                        <CheckBox Name="AscendingSorting" Content="Malejąco" Click="SortAscending_Click" />
-                        <CheckBox Name="ExpandEverything"  Content="Rozwiń wszystko" />
-                    </StackPanel>
-                    <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5" Click="ConfirmSortButton_Click">
+                    <CheckBox Name="AscendingSorting" 
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="Malejąco" 
+                              Click="SortAscending_Click" />
+                        <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5" Click="ConfirmSortButton_Click">
                         <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </StackPanel>
