@@ -1,5 +1,4 @@
-﻿using SWAM.Controls.Pages;
-using SWAM.Controls.Templates.AdministratorPage;
+﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
 using System.Collections.Generic;
@@ -7,6 +6,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media.Animation;
 
 namespace SWAM.Controls.Templates.CustomerPage
 {
@@ -38,12 +38,14 @@ namespace SWAM.Controls.Templates.CustomerPage
             { CustomerOrdersListSortingType.OrderStatus, nameof(_sampleCustomerOrder.CustomerOrderStatus) } 
         };
         #endregion
+        #region Basic constructor
         public CustomerProfileTemplate()
         {
             InitializeComponent();
 
             SetButtonsEvents();
         }
+        #endregion
 
         #region SetButtonsEvents
         /// <summary>
@@ -129,8 +131,35 @@ namespace SWAM.Controls.Templates.CustomerPage
             }
         }
         #endregion
-        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => ResidentalAddress.ShowEditControls();
+        #region ConfirmEditResidentalAddress_Click
+        /// <summary>
+        /// Action after click confirm change residental address button.
+        /// Change residental address of specific customer in database.
+        /// </summary>
+        /// <param name="sender">Confirm change residental address button.</param>
+        /// <param name="e">Click confirm change residental address button</param>
+        private void ConfirmEditResidentalAddress_Click(object sender, RoutedEventArgs e)
+        {
+            this.BeginStoryboard((Storyboard)this.FindResource("HideConfrimResidentalAddressButton"));
+            this.ResidentalAddress.HideEditControls();
 
+            if (DataContext is Customer customer)
+            {
+                customer.ResidentalAddress.Edit(this.ResidentalAddress.GetAddress<CustomerResidentalAddress>());
+                DataContext = Customer.Get(customer.Id);
+                CustomersListViewModel.Instance.Refresh();
+            }
+        }
+        #endregion
+        #region ChangeResidentalAddress_Click
+        /// <summary>
+        /// Action after click change residental address button.
+        /// Change residental address tempalate to edit mode.
+        /// </summary>
+        /// <param name="sender">Button change residental address button.</param>
+        /// <param name="e">Event click change residental address button.</param>
+        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => this.ResidentalAddress.ShowEditControls();
+        #endregion
 
         #region SortAscending_Click
         /// <summary>
@@ -150,7 +179,6 @@ namespace SWAM.Controls.Templates.CustomerPage
                 this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
         }
         #endregion
-
         #region TextBox_TextChanged
         /// <summary>
         /// Filtering list depends on text typed in TextBox named FindUser.
@@ -180,8 +208,13 @@ namespace SWAM.Controls.Templates.CustomerPage
             }
         }
         #endregion
-
         #region ConfirmSortButton_Click
+        /// <summary>
+        /// Action after clicked confirm sort button.
+        /// Sorts the list of customer orders depending on the settings entered by the user.
+        /// </summary>
+        /// <param name="sender">Confrim sort button.</param>
+        /// <param name="e">Event clicked confrim sort button.</param>
         private void ConfirmSortButton_Click(object sender, RoutedEventArgs e)
         {
             if (this._propertiesByWhichSortingCanTakePlace.TryGetValue((CustomerOrdersListSortingType)this.SortBy.SelectedValue, out this._propertyByWitchIsSort))
@@ -190,5 +223,7 @@ namespace SWAM.Controls.Templates.CustomerPage
             }
         }
         #endregion
+
+ 
     }
 }

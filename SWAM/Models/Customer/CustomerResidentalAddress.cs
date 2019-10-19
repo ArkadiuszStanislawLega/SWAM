@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Models.Customer
 {
@@ -16,5 +18,29 @@ namespace SWAM.Models.Customer
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
         public Customer Customer { get; set; }
+
+        private ApplicationDbContext _context = new ApplicationDbContext();
+        private ApplicationDbContext context
+        {
+            //TODO: Try catch block.
+            get => this._context;
+            set => this._context = value;
+        }
+        public void Edit(CustomerResidentalAddress editedCustomerAddress)
+        {
+            if (editedCustomerAddress != null)
+            {
+                context = new ApplicationDbContext();
+                var customerAddress = context.CustomerResidentalAddresses.FirstOrDefault(c => c.Id == this.Id);
+                customerAddress.Country = editedCustomerAddress.Country;
+                customerAddress.PostCode = editedCustomerAddress.PostCode;
+                customerAddress.City = editedCustomerAddress.City;
+                customerAddress.Street = editedCustomerAddress.Street;
+                customerAddress.HouseNumber = editedCustomerAddress.HouseNumber;
+                customerAddress.ApartmentNumber = editedCustomerAddress.ApartmentNumber;
+                context.SaveChanges();
+            }
+        }
     }
+
 }

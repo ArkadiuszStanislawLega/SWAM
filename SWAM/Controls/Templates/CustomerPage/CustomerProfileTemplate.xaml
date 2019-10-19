@@ -23,7 +23,22 @@
                 <x:Type TypeName="enum:CustomerOrdersListSortingType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <Storyboard x:Key="ShowConfrimResidentalAddressButton">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                           Storyboard.TargetName="ConfirmEditResidentalAddress" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="HideConfrimResidentalAddressButton">
+            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
+                                           Storyboard.TargetName="ConfirmEditResidentalAddress"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
+
     <!--#endregion-->
     <!--#region OnLoadedStory-->
     <Grid HorizontalAlignment="Left">
@@ -64,6 +79,11 @@
                                 Style="{StaticResource AdditionSign}" 
                                 Margin="20 0 0 0" Height="20" Width="20"
                                 ToolTip="Zmień adres zamieszkania.">
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource ShowConfrimResidentalAddressButton}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
                             </Button>
                         </Grid>
                     </Border>
@@ -71,7 +91,20 @@
                         <Border.Background>
                             <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
                         </Border.Background>
-                        <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
+                        <Grid>
+                            <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
+                            <Button Name="ConfirmEditResidentalAddress" 
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Grid.Column="2"
+                                    Click="ConfirmEditResidentalAddress_Click"
+                                    Visibility="Collapsed"
+                                    Style="{StaticResource BasicFunctionalButtons}" 
+                                    Margin="10" Height="20" Width="20"
+                                    ToolTip="Zmień adres zamieszkania.">
+                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
+                            </Button>
+                        </Grid>
                     </Border>
                 </StackPanel>
                 <!--#endregion-->
