@@ -587,8 +587,6 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
-
     <!--#region ArrowForwardButton -->
     <Style x:Key="ArrowForwardButton" TargetType="Button" >
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
@@ -643,7 +641,6 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
     <!--#region ArrowBackButton -->
     <Style x:Key="ArrowBackButton" TargetType="Button" >
         <Setter Property="FontFamily" Value="{StaticResource BasicFont}"/>
