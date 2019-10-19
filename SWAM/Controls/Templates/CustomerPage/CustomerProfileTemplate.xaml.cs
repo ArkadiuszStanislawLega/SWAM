@@ -222,8 +222,6 @@ namespace SWAM.Controls.Templates.CustomerPage
                 SortAscending_Click(sender, e);
             }
         }
-        #endregion
-
- 
+        #endregion 
     }
 }

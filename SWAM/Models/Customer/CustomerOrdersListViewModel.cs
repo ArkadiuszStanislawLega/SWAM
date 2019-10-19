@@ -7,7 +7,7 @@ namespace SWAM.Models.Customer
 {
     public class CustomerOrdersListViewModel : UserControl
     {
-        private static ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
+        private readonly static  ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
         public static ObservableCollection<CustomerOrder> Orders => _orders;
 
         #region SingletonePattern
@@ -18,12 +18,16 @@ namespace SWAM.Models.Customer
 
         private static readonly CustomerOrdersListViewModel _instance = new CustomerOrdersListViewModel();
         public static CustomerOrdersListViewModel Instance => _instance;
+        public CustomerOrdersListViewModel() { }
         #endregion
 
         public void Refresh(Customer customer)
         {
             if (customer != null)
             {
+                if (_orders.Count > 0)
+                    _orders.Clear();
+
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     var orders = context.CustomerOrders
@@ -45,9 +49,9 @@ namespace SWAM.Models.Customer
                         {
                             position.Product = context.Products.FirstOrDefault(p => p.Id == position.ProductId);
                         }
-                    }
 
-                    _orders = new ObservableCollection<CustomerOrder>(orders);
+                        _orders.Add(order);
+                    }
                 }
             }
         }

@@ -14,6 +14,5 @@ namespace SWAM.Controls.Templates.StandardsProperties
             InitializeComponent();
         }
         private void CancelChangeName_Click(object sender, RoutedEventArgs e) => this.EditName.Text = string.Empty;
-        
     }
 }

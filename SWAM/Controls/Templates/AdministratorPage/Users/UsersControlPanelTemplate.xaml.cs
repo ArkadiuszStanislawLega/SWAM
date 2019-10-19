@@ -80,7 +80,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
-                return this.FiltrByName.IsChecked == true ? allUsersWhose.Name.Contains(this.FindUser.Text) : allUsersWhose.Permissions.ToString().Contains(FindUser.Text);
+                return this.FiltrByName.IsChecked == true ? allUsersWhose.Name.Contains(this.FindUser.Text) : allUsersWhose.Permissions.ToString().Contains(this.FindUser.Text);
             };
         }
         #endregion
