@@ -164,6 +164,7 @@
     <Compile Include="Converters\CustomerOrderStatusToColourConverter.cs" />
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Converters\DecimalToIntegerConverter.cs" />
+    <Compile Include="Converters\ENtoPLcustomerOrderListSortingTypeConverter.cs" />
     <Compile Include="Converters\ENtoPLcustomerOrderStatus.cs" />
     <Compile Include="Converters\ENtoPLpaymentType.cs" />
     <Compile Include="Converters\ENtoPLshipmentTypeConverter.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="EntityConfiguration\WarehouseConfiguration.cs" />
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
+    <Compile Include="Enumerators\CustomerOrdersListSortingType.cs" />
     <Compile Include="Enumerators\CustomerOrderVisiblePage.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />

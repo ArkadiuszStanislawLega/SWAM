@@ -4,14 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CustomerPage"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:conv="clr-namespace:SWAM.Converters" 
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:lvm="clr-namespace:SWAM.Models.Customer"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:prop="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="943">
-    <Grid HorizontalAlignment="Left" MinWidth="943">
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <!--#region Resources-->
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="CustomerOrdersListSortingType"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:CustomerOrdersListSortingType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <!--#endregion-->
+    <!--#region OnLoadedStory-->
+    <Grid HorizontalAlignment="Left">
         <!--#region  ColumnDefinition-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -65,39 +80,49 @@
         <!--#endregion-->
         <!--#region Right section-->
         <Grid  Grid.Column="1" >
+            <!--#region Rows definitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!--#endregion-->
             <Grid>
+                <!--#region Rows definitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                <!--#endregion-->
                 <TextBlock Text="Dostawy klienta" Margin="5" Grid.Column="0" Style="{StaticResource TitleOfLists}" />
-
+                <!--#region Filters bar-->
                 <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
                     <TextBox Name="OrderNumberInput" Width="200"/>
                     <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
-                    <ComboBox Margin="5" Name="SortBy">
-                        <ComboBoxItem Content="Daty"/>
-                        <ComboBoxItem Content="Stanu zamówienia"/>
-                        <ComboBoxItem Content="Numeru zamówienia"/>
+                    <ComboBox Margin="5" Name="SortBy"   
+                              ItemsSource="{Binding Source={StaticResource CustomerOrdersListSortingType}}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={conv:ENtoPLcustomerOrderListSortingTypeConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
                     </ComboBox>
                     <StackPanel>
-                        <CheckBox Name="AscendingSorting" Content="Malejąco" />
+                        <CheckBox Name="AscendingSorting" Content="Malejąco" Click="SortAscending_Click" />
                         <CheckBox Name="ExpandEverything"  Content="Rozwiń wszystko" />
                     </StackPanel>
-                    <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5">
+                    <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5" Click="ConfirmSortButton_Click">
                         <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
                     </Button>
                 </StackPanel>
+                <!--#endregion-->
             </Grid>
+            <!--#region Orders list-->
             <ScrollViewer Grid.Row="1"
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto" 
                           MinWidth="490">
-                <ItemsControl DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}" 
+                <ItemsControl Name="OrdersList"
+                              DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}" 
                               ItemsSource="{Binding Orders}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -111,6 +136,7 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
+            <!--#endregion-->
         </Grid>
         <!--#endregion-->
     </Grid>

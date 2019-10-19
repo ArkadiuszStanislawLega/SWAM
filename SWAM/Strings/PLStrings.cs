@@ -31,5 +31,10 @@
         public const string PREPAID = "przedpłata";
         public const string POSTPAID = "płatne przy odbiorze";
         #endregion
+        #region CustomerOrdersListSortingType
+        public const string ID = "numeru";
+        public const string ORDER_DATE = "daty złożenia";
+        public const string ORDER_STATUS = "statusu";
+        #endregion
     }
 }
