@@ -57,6 +57,13 @@ namespace SWAM.Controls.Templates.CustomerPage
             this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
         #endregion
+        #region ConfirmChangeName_Click
+        /// <summary>
+        /// Action after click confirm change name button.
+        /// Change name of specific customer in database.
+        /// </summary>
+        /// <param name="sender">Confirm change name button.</param>
+        /// <param name="e">Click confirm change name button</param>
         private void ConfirmChangeName_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if(DataContext is Customer customer)
@@ -67,21 +74,61 @@ namespace SWAM.Controls.Templates.CustomerPage
                 CustomersListViewModel.Instance.Refresh();
             }
         }
-
+        #endregion
+        #region ConfirmChangeSurname_Click
+        /// <summary>
+        /// Action after click confirm change surname button.
+        /// Change surname of specific customer in database.
+        /// </summary>
+        /// <param name="sender">Confirm change surname button.</param>
+        /// <param name="e">Click confirm change surname button</param>
         private void ConfirmChangeSurname_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if (DataContext is Customer customer)
+            {
+                customer.Surname = Surname.EditSurname.Text;
+                customer.Edit(customer);
+                DataContext = Customer.Get(customer.Id);
+                CustomersListViewModel.Instance.Refresh();
+            }
         }
-
+        #endregion
+        #region ConfirmChangePhone_Click
+        /// <summary>
+        /// Action after click confirm change phone button.
+        /// Change phone of specific customer in database.
+        /// </summary>
+        /// <param name="sender">Confirm change phone button.</param>
+        /// <param name="e">Click confirm change phone button</param>
         private void ConfirmChangePhone_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if (DataContext is Customer customer)
+            {
+                customer.Phone = Phone.EditPhone.Text;
+                customer.Edit(customer);
+                DataContext = Customer.Get(customer.Id);
+                CustomersListViewModel.Instance.Refresh();
+            }
         }
-
+        #endregion
+        #region ConfirmChangeEmailAddress_Click
+        /// <summary>
+        /// Action after click confirm change email address button.
+        /// Change email address of specific customer in database.
+        /// </summary>
+        /// <param name="sender">Confirm change email address button.</param>
+        /// <param name="e">Click confirm change email address button</param>
         private void ConfirmChangeEmailAddress_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if (DataContext is Customer customer)
+            {
+                customer.EmailAddress = EmailAddress.EditEmailAddress.Text;
+                customer.Edit(customer);
+                DataContext = Customer.Get(customer.Id);
+                CustomersListViewModel.Instance.Refresh();
+            }
         }
+        #endregion
         private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => ResidentalAddress.ShowEditControls();
 
 

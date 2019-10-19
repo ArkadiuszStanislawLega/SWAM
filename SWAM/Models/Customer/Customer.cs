@@ -70,8 +70,8 @@ namespace SWAM.Models.Customer
             {
                 var customer = Get(editedCustomer.Id);
                 customer.Name = editedCustomer.Name;
-                customer.Phone = editedCustomer.Phone;
                 customer.Surname = editedCustomer.Surname;
+                customer.Phone = editedCustomer.Phone;
                 customer.EmailAddress = editedCustomer.EmailAddress;
                 context.SaveChanges();
             }
