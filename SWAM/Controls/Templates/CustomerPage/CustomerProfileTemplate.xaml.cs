@@ -1,4 +1,5 @@
-﻿using SWAM.Controls.Templates.AdministratorPage;
+﻿using SWAM.Controls.Pages;
+using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
 using System.Collections.Generic;
@@ -6,7 +7,6 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace SWAM.Controls.Templates.CustomerPage
 {
@@ -59,7 +59,13 @@ namespace SWAM.Controls.Templates.CustomerPage
         #endregion
         private void ConfirmChangeName_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if(DataContext is Customer customer)
+            {
+                customer.Name = Name.EditName.Text;
+                customer.Edit(customer);
+                DataContext = Customer.Get(customer.Id);
+                CustomersListViewModel.Instance.Refresh();
+            }
         }
 
         private void ConfirmChangeSurname_Click(object sender, System.Windows.RoutedEventArgs e)

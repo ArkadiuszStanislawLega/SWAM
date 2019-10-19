@@ -156,9 +156,9 @@
                 <Border BorderThickness="0 0 1 1" 
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
-                <ScrollViewer Name="ScrollOfUserList" 
+                <ScrollViewer Name="ScrollOfCustomerList" 
                                   VerticalScrollBarVisibility="Auto">
-                    <ItemsControl Name="UsersList" 
+                    <ItemsControl Name="CustomersListView" 
                                       DataContext="{x:Static customer:CustomersListViewModel.Instance}"
                                       ItemsSource="{Binding CustomersList}">
                         <ItemsControl.ItemTemplate>

@@ -27,10 +27,5 @@ namespace SWAM.Controls.Templates.CustomerPage
                 this.IsOpen = true;
             }
         }
-
-        public void ShowProfile()
-        {
-            Button_Click(this, new RoutedEventArgs());
-        }
     }
 }

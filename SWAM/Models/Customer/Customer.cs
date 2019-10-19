@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Models.Customer
 {   /// <summary>
@@ -38,10 +40,15 @@ namespace SWAM.Models.Customer
         /// <returns>Client from database.</returns>
         public static Customer Get(int Id)
         {
-            throw new NotImplementedException();
+            context = new ApplicationDbContext();
+            return context.People.OfType<Customer>().Include(c => c.ResidentalAddress).FirstOrDefault(c => c.Id == Id);
         }
-        #endregion  
-
+        #endregion
+        #region Add
+        /// <summary>
+        /// Add new customer to database.
+        /// </summary>
+        /// <param name="customer">New customer.</param>
         public static void Add(Customer customer)
         {
             if (customer != null)
@@ -50,5 +57,25 @@ namespace SWAM.Models.Customer
                 context.SaveChanges();
             }
         }
+        #endregion
+        #region Edit
+        /// <summary>
+        /// Edit basic properties of customer. 
+        /// Without Residental address.
+        /// </summary>
+        /// <param name="editedCustomer">Edited customer.</param>
+        public void Edit(Customer editedCustomer)
+        {
+            if (editedCustomer != null)
+            {
+                var customer = Get(editedCustomer.Id);
+                customer.Name = editedCustomer.Name;
+                customer.Phone = editedCustomer.Phone;
+                customer.Surname = editedCustomer.Surname;
+                customer.EmailAddress = editedCustomer.EmailAddress;
+                context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }

@@ -19,7 +19,6 @@ namespace SWAM.Controls.Pages
             InitializeComponent();
             ChangeContent(new CreateNewCustomerTemplate());
         }
-
         #region ChangeContent
         /// <summary>
         /// Changing content for the new one in right section of this user control.
@@ -60,13 +59,13 @@ namespace SWAM.Controls.Pages
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting
-            if (UsersList.Items.SortDescriptions.Count > 0)
-                UsersList.Items.SortDescriptions.RemoveAt(UsersList.Items.SortDescriptions.Count - 1);
+            if (this.CustomersListView.Items.SortDescriptions.Count > 0)
+                this.CustomersListView.Items.SortDescriptions.RemoveAt(this.CustomersListView.Items.SortDescriptions.Count - 1);
 
             if (SortAscending.IsChecked == true)
-                UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
+                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
             else
-                UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
+                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
         }
 
         private void Item_Click(object sender, RoutedEventArgs e)
