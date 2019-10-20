@@ -32,15 +32,14 @@ namespace SWAM.Models.User
         /// <summary>
         /// Retrieves the user's email address from the database after the address Id number.
         /// </summary>
-        /// <param name="emailAddressId">Id Email Address.</param>
         /// <returns>Specific user email address from database.</returns>
-        public UserEmailAddress Get(int emailAddressId)
+        public UserEmailAddress Get()
         {
             _context = new ApplicationDbContext();
             return _context.People.OfType<User>()
                .Include(u => u.EmailAddresses)
                .First(u => u.Id == this.User.Id)
-               .EmailAddresses.First(e => e.Id == emailAddressId);
+               .EmailAddresses.First(e => e.Id == this.Id);
         }
         #endregion
         #region Update

@@ -29,23 +29,30 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                var email = new UserEmailAddress()
+                if (EmailAddress.IsValidEmail(this.NewEmail.Text))
                 {
-                    AddressEmail = this.NewEmail.Text
-                    //TODO: Add edit note
-                };
+                    var email = new UserEmailAddress()
+                    {
+                        AddressEmail = this.NewEmail.Text
+                        //TODO: Add edit note
+                    };
 
-                if (email != null)
-                {
-                    user.AddAddressEmail(email);
-                    this.NewEmail.Text = string.Empty;
+                    if (email != null)
+                    {
 
-                    RefreshEmailsList();
-                    InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
+                        user.AddAddressEmail(email);
+                        this.NewEmail.Text = string.Empty;
+
+                        RefreshEmailsList();
+                        InformationToUser($"Dodano nowy adress email {email.AddressEmail} użytkownikowi {user.Name}.");
+                    }
+                    else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
                 }
-                else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu email.");
+                else InformationToUser($"Adres {this.NewEmail.Text} jest błędny.", true);
             }
             else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress email.");
+
+            this.NewEmail.Text = string.Empty;
         }
         #endregion
         #region RefreshPhoneList

@@ -21,6 +21,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             InitializeComponent();
         }
 
+
+
         #region Confirm_Click
         /// <summary>
         /// Action after click Confirm button after edit email.
@@ -29,31 +31,45 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {
+
             //Make sure that datacontext is email
             if (DataContext is UserEmailAddress emailAddress)
             {
-                //Make sure confirm window is not null and is ready to show message for user.
-                if (this._confirmWindow != null)
+                if (EmailAddress.IsValidEmail(this.EditEmail.Text))
                 {
-                    var emailAddressBeforeEdited = emailAddress.Get(emailAddress.Id);
-
-                    //Show confirmation window about changes.
-                    this._confirmWindow.Show($"Potwierdź zmianę adresu email {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
-
-                    //If user confirmed in dialog window changes...
-                    if (isConfirmed)
+                    //Make sure confirm window is not null and is ready to show message for user.
+                    if (this._confirmWindow != null)
                     {
-                        //Update email in database and inform user about it.
-                        if (emailAddress.Update(EditEmail.Text))
-                            InformationToUser($"Edytowano adress email {emailAddress.AddressEmail} użytkownikowi {emailAddress.User.Name}.");
+                        var emailAddressBeforeEdited = emailAddress.Get();
+
+                        //Show confirmation window about changes.
+                        this._confirmWindow.Show($"Potwierdź zmianę adresu email {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+
+                        //If user confirmed in dialog window changes...
+                        if (isConfirmed)
+                        {
+                            //Update email in database and inform user about it.
+                            if (emailAddress.Update(EditEmail.Text))
+                            {
+                                InformationToUser($"Edytowano adress email {emailAddress.AddressEmail} użytkownikowi {emailAddress.User.Name}.");
+                                this.Email.Text = emailAddress.Get().AddressEmail;
+                            }
+                            else
+                                InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                        }
                         else
-                            InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                            this.DataContext = emailAddressBeforeEdited;
+
                     }
-                    else
-                        this.DataContext = emailAddressBeforeEdited;
-                    
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CONFIRMATION_WINDOW_ERROR}", true);
                 }
-                else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.CONFIRMATION_WINDOW_ERROR}", true);
+                else
+                {
+                    InformationToUser($"Adres {this.EditEmail.Text} jest błędny.", true);
+                    var email = emailAddress.Get().AddressEmail;
+                    this.EditEmail.Text = email;
+                    this.Email.Text = email;
+                }
             }
             else InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
