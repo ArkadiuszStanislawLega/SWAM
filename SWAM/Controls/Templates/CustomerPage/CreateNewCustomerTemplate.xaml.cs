@@ -1,4 +1,6 @@
-﻿using SWAM.Models.Customer;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Models;
+using SWAM.Models.Customer;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,28 +9,32 @@ namespace SWAM.Controls.Templates.CustomerPage
     /// <summary>
     /// Logika interakcji dla klasy CreateNewCustomerTemplate.xaml
     /// </summary>
-    public partial class CreateNewCustomerTemplate : UserControl
+    public partial class CreateNewCustomerTemplate : BasicUserControl
     {
         public CreateNewCustomerTemplate()
         {
             InitializeComponent();
-            ResidentalAddress.ShowEditControls();
+            this.ResidentalAddress.ShowEditControls();
         }
 
         private void AddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            Customer customer = new Customer()
+            if (EmailAddress.IsValidEmail(this.CustomerEmailAddress.Text))
             {
-                Name = CustomerName.Text,
-                Surname = CustomerSurname.Text,
-                EmailAddress = CustomerEmailAddress.Text,
-                Phone = CustomerPhone.Text,
-                ResidentalAddress = ResidentalAddress.GetAddress<CustomerResidentalAddress>()
-            };
-            Customer.Add(customer);
+                Customer customer = new Customer()
+                {
+                    Name = this.CustomerName.Text,
+                    Surname = this.CustomerSurname.Text,
+                    EmailAddress = this.CustomerEmailAddress.Text,
+                    Phone = this.CustomerPhone.Text,
+                    ResidentalAddress = this.ResidentalAddress.GetAddress<CustomerResidentalAddress>()
+                };
+                Customer.Add(customer);
 
-            CustomersListViewModel.Instance.Refresh();
-            ClearTextBoxes();
+                CustomersListViewModel.Instance.Refresh();
+                ClearTextBoxes();
+            }
+            else InformationToUser($"Adres email {this.CustomerEmailAddress.Text} jest błędny.");
         }
 
         #region ClearTextBoxes
@@ -37,11 +43,11 @@ namespace SWAM.Controls.Templates.CustomerPage
         /// </summary>
         private void ClearTextBoxes()
         {
-            CustomerName.Text = string.Empty;
-            CustomerSurname.Text = string.Empty;
-            CustomerEmailAddress.Text = string.Empty;
-            CustomerPhone.Text = string.Empty;
-            ResidentalAddress.ClearEditValues();
+            this.CustomerName.Text = string.Empty;
+            this.CustomerSurname.Text = string.Empty;
+            this.CustomerEmailAddress.Text = string.Empty;
+            this.CustomerPhone.Text = string.Empty;
+            this.ResidentalAddress.ClearEditValues();
         }
         #endregion
     }

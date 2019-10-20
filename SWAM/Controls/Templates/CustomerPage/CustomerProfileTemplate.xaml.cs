@@ -124,10 +124,15 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if (DataContext is Customer customer)
             {
-                customer.EmailAddress = EmailAddress.EditEmailAddress.Text;
-                customer.Edit(customer);
-                DataContext = Customer.Get(customer.Id);
-                CustomersListViewModel.Instance.Refresh();
+                if (Models.EmailAddress.IsValidEmail(this.EmailAddress.EditEmailAddress.Text))
+                {
+                    customer.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
+                    customer.Edit(customer);
+                    DataContext = Customer.Get(customer.Id);
+                    CustomersListViewModel.Instance.Refresh();
+                }
+                else
+                    InformationToUser($"Adres e-email {this.EmailAddress.EditEmailAddress.Text} jest błędny.", true);
             }
         }
         #endregion

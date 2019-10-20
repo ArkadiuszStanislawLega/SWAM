@@ -43,7 +43,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         var emailAddressBeforeEdited = emailAddress.Get();
 
                         //Show confirmation window about changes.
-                        this._confirmWindow.Show($"Potwierdź zmianę adresu email {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                        this._confirmWindow.Show($"Potwierdź zmianę adresu e-mail {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
 
                         //If user confirmed in dialog window changes...
                         if (isConfirmed)
@@ -51,7 +51,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                             //Update email in database and inform user about it.
                             if (emailAddress.Update(EditEmail.Text))
                             {
-                                InformationToUser($"Edytowano adress email {emailAddress.AddressEmail} użytkownikowi {emailAddress.User.Name}.");
+                                InformationToUser($"Edytowano adress e-mail {emailAddress.AddressEmail} użytkownikowi {emailAddress.User.Name}.");
                                 this.Email.Text = emailAddress.Get().AddressEmail;
                             }
                             else
