@@ -72,25 +72,30 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         private void ConfirmEditPasswordButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
+            if (User.IsValidPassword(this.EditPassword.Password))
             {
-                //In exceptional cases or older created accounts situations password salt can be null.
-                //So when password salt is null, we need to create new one.
-                if (user.PasswordSalt == null)
-                    user.PasswordSalt = Cryptography.CryptoService.GenerateSalt(); 
-
-                var newPassword = Cryptography.CryptoService.ComputeHash(this.EditConfirmPassword.Password, user.PasswordSalt);
-
-                if (newPassword != new byte[0])
+                if (this.EditPassword.Password == this.EditConfirmPassword.Password && DataContext is User user)
                 {
-                    user.ChangePassword(newPassword);
-                    InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
+                    //In exceptional cases or older created accounts situations password salt can be null.
+                    //So when password salt is null, we need to create new one.
+                    if (user.PasswordSalt == null)
+                        user.PasswordSalt = Cryptography.CryptoService.GenerateSalt();
+
+                    var newPassword = Cryptography.CryptoService.ComputeHash(this.EditConfirmPassword.Password, user.PasswordSalt);
+
+                    if (newPassword != new byte[0])
+                    {
+                        user.ChangePassword(newPassword);
+                        InformationToUser($"Hasło użytkownika {user.Name} zostało zmienione.");
+                    }
+                    else
+                        //This error may appear if the account password salt was generated incorrectly when creating the account.
+                        InformationToUser($"{ErrorMesages.DURING_EDIT_PASSWORD_ERROR}");
                 }
-                else
-                    //This error may appear if the account password salt was generated incorrectly when creating the account.
-                    InformationToUser($"{ErrorMesages.DURING_EDIT_PASSWORD_ERROR}");
+                else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
             }
-            else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
+            else
+                InformationToUser(ErrorMesages.PASSWORD_REQUIREMENT_ERROR, true);
         }
         #endregion
 

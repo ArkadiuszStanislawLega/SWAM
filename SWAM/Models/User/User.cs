@@ -6,6 +6,7 @@ using SWAM.Exceptions;
 using System.Windows;
 using SWAM.Strings;
 using System.Data.Entity;
+using System.Text.RegularExpressions;
 
 namespace SWAM.Models.User
 {
@@ -69,6 +70,20 @@ namespace SWAM.Models.User
                 return dbContext;
             }
             set => dbContext = value;
+        }
+
+        public static bool IsValidPassword(string pasword)
+        {
+            var input = pasword;
+
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+
+            if (hasNumber.IsMatch(input) && hasUpperChar.IsMatch(input) && hasMinimum8Chars.IsMatch(input))
+                return true;
+            else
+                return false;
         }
 
 

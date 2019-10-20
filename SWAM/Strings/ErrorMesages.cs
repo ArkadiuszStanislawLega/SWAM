@@ -9,6 +9,7 @@
         public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
         public const string CONFIRMATION_WINDOW_ERROR = "Wystąpił problem z oknem potwierdzenia.";
 
+        public const string PASSWORD_REQUIREMENT_ERROR = "Hasło nie spełnia wymagań. Musi posiadać 8 znaków, conajmniej jeden z wielkiej litery oraz conajmniej jedną cyfrę.";
         public const string PASSWORD_SALT_NULL_EXCEPTION = "Password salt jest pusty, prawdopodobnie w czasie tworzenia konta wystąpił błąd przy generowaniu soli hasła.";
         public const string PASSWORD_SALT_NULL_EXCEPTION_TIP = "Zgłoś się do administratora systemu hasło konta musi zostać przydzielone jeszcze raz w panelu administracyjnym.";
         #region User
