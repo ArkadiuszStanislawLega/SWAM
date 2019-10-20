@@ -23,16 +23,16 @@
                 <x:Type TypeName="enum:CustomerOrdersListSortingType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-        <Storyboard x:Key="ShowConfrimResidentalAddressButton">
+        <Storyboard x:Key="ShowResidentalAddressButtonsContainer">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
-                                           Storyboard.TargetName="ConfirmEditResidentalAddress" 
+                                           Storyboard.TargetName="ResidentalAddressButtonsContainer" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-        <Storyboard x:Key="HideConfrimResidentalAddressButton">
+        <Storyboard x:Key="HideResidentalAddressButtonsContainer">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
-                                           Storyboard.TargetName="ConfirmEditResidentalAddress"
+                                           Storyboard.TargetName="ResidentalAddressButtonsContainer"
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -81,7 +81,7 @@
                                 ToolTip="Zmień adres zamieszkania.">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard Storyboard="{StaticResource ShowConfrimResidentalAddressButton}"/>
+                                        <BeginStoryboard Storyboard="{StaticResource ShowResidentalAddressButtonsContainer}"/>
                                     </EventTrigger>
                                 </Button.Triggers>
                             </Button>
@@ -93,17 +93,39 @@
                         </Border.Background>
                         <Grid>
                             <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
-                            <Button Name="ConfirmEditResidentalAddress" 
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Grid.Column="2"
-                                    Click="ConfirmEditResidentalAddress_Click"
-                                    Visibility="Collapsed"
-                                    Style="{StaticResource BasicFunctionalButtons}" 
-                                    Margin="10" Height="20" Width="20"
-                                    ToolTip="Zmień adres zamieszkania.">
-                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
-                            </Button>
+                            <!--#region Edit Residental Address Button container-->
+                            <StackPanel Name="ResidentalAddressButtonsContainer"
+                                        Orientation="Horizontal" 
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Margin="10"
+                                        Visibility="Collapsed">
+                                <Button Name="ConfirmEditResidentalAddress" 
+                                        Click="ConfirmEditResidentalAddress_Click"
+                                        Style="{StaticResource BasicFunctionalButtons}" 
+                                        Height="20" Width="20"
+                                        ToolTip="Zatwierdź zmianę adresu zamieszkania.">
+                                    <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                                <Button Name="CancelEditResidentalAddress" 
+                                        Click="CancelEditResidentalAddress_Click"
+                                        Style="{StaticResource BasicFunctionalButtons}" 
+                                        Height="20" Width="20"
+                                        ToolTip="Anuluj zmianę adresu zamieszkania.">
+                                    <fa:ImageAwesome Icon="Remove" Foreground="{StaticResource FontsBrash}" />
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </StackPanel>
+                            <!--#endregion-->
                         </Grid>
                     </Border>
                 </StackPanel>

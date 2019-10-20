@@ -145,7 +145,6 @@ namespace SWAM.Controls.Templates.CustomerPage
         /// <param name="e">Click confirm change residental address button</param>
         private void ConfirmEditResidentalAddress_Click(object sender, RoutedEventArgs e)
         {
-            this.BeginStoryboard((Storyboard)this.FindResource("HideConfrimResidentalAddressButton"));
             this.ResidentalAddress.HideEditControls();
 
             if (DataContext is Customer customer)
@@ -153,6 +152,22 @@ namespace SWAM.Controls.Templates.CustomerPage
                 customer.ResidentalAddress.Edit(this.ResidentalAddress.GetAddress<CustomerResidentalAddress>());
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
+            }
+        }
+        #endregion
+        #region CancelEditResidentalAddress_Click
+        /// <summary>
+        /// Action after click cancel edit residental address button.
+        /// </summary>
+        /// <param name="sender">Cancel edit residental address button.</param>
+        /// <param name="e">Cancel edit residental address button</param>
+        private void CancelEditResidentalAddress_Click(object sender, RoutedEventArgs e)
+        {
+            this.ResidentalAddress.HideEditControls();
+
+            if (DataContext is Customer customer)
+            {
+                this.DataContext = Customer.Get(customer.Id);
             }
         }
         #endregion
@@ -227,6 +242,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 SortAscending_Click(sender, e);
             }
         }
-        #endregion 
+        #endregion
+
+   
     }
 }

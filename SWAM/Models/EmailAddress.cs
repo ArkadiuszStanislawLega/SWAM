@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Data.Entity;
-using System.Linq;
-using SWAM.Models.User;
-
+﻿
 namespace SWAM.Models
 {
     /// <summary>
