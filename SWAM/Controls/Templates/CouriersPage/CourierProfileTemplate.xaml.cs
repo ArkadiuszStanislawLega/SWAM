@@ -1,4 +1,5 @@
-﻿using SWAM.Enumerators;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Enumerators;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SWAM.Controls.Templates.CouriersPage
     /// <summary>
     /// Logika interakcji dla klasy CourierProfileTemplate.xaml
     /// </summary>
-    public partial class CourierProfileTemplate : UserControl
+    public partial class CourierProfileTemplate : BasicUserControl
     {
         #region Properties
         /// <summary>
@@ -102,13 +103,17 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// <param name="e">Click confirm change e-mail address button</param>
         private void ConfirmChangeEmailAddress_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Courier courier)
+            if (Models.EmailAddress.IsValidEmail(this.EmailAddress.EditEmailAddress.Text))
             {
-                courier.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
-                courier.Edit(courier);
-                DataContext = Courier.Get(courier.Id);
-                CouriersListViewModel.Instance.Refresh();
-            } 
+                if (DataContext is Courier courier)
+                {
+                    courier.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
+                    courier.Edit(courier);
+                    DataContext = Courier.Get(courier.Id);
+                    CouriersListViewModel.Instance.Refresh();
+                }
+            }
+            else InformationToUser($"Adres e-mail {this.EmailAddress.EditEmailAddress.Text} jest nieprawidłowy.", true);
         }
         #endregion
 
