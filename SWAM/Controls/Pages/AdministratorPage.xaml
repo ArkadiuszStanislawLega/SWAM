@@ -37,7 +37,7 @@
                                           Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <Grid  Name="MainContent" Grid.Row="1" >
+        <Grid  Name="MainContent" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
             <temp:UsersControlPanelTemplate />
         </Grid>
     </Grid>

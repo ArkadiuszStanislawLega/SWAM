@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:userTemp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Users"
              xmlns:conv="clr-namespace:SWAM.Converters" 
-                                     xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
@@ -18,27 +17,25 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Name="MainContent"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
+        <Grid Name="MainContent">
             <!--#region RowDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--#endregion-->
-            <TextBlock Grid.Row="0" Name="Title"
-               Style="{StaticResource Title}"
-               Text="Profil użytkownika:"/>
+            <TextBlock Grid.Row="0" Name="Title" 
+                       Margin="5 0 0 0"
+                       Style="{StaticResource Title}"
+                       Text="Profil użytkownika:"/>
             <!--#region User Profile-->
             <ScrollViewer  Grid.Row="1" 
                            VerticalScrollBarVisibility="Auto"
                            HorizontalScrollBarVisibility="Disabled">
                 <Grid>
                     <Grid>
-                        <ScrollViewer 
-                                VerticalScrollBarVisibility="Disabled"
-                               HorizontalScrollBarVisibility="Auto">
+                        <ScrollViewer VerticalScrollBarVisibility="Disabled"
+                                      HorizontalScrollBarVisibility="Auto">
                             <Grid  HorizontalAlignment="Center" VerticalAlignment="Top">
                                 <!--#region Column Definitions-->
                                 <Grid.ColumnDefinitions>

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Models;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.CouriersPage
@@ -6,7 +8,7 @@ namespace SWAM.Controls.Templates.CouriersPage
     /// <summary>
     /// Logika interakcji dla klasy CreateNewCourierTemplate.xaml
     /// </summary>
-    public partial class CreateNewCourierTemplate : UserControl
+    public partial class CreateNewCourierTemplate : BasicUserControl
     {
         public CreateNewCourierTemplate()
         {
@@ -15,15 +17,20 @@ namespace SWAM.Controls.Templates.CouriersPage
 
         private void AddNewCourier_Click(object sender, RoutedEventArgs e)
         {
-            using(ApplicationDbContext context = new ApplicationDbContext())
+            if (EmailAddress.IsValidEmail(this.CourierEmailAddress.Text))
             {
-                context.Couriers.Add(new Models.Courier.Courier()
+                using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    Name = this.CourierName.Text,
-                    Phone = this.CourierPhone.Text
-                });
-                context.SaveChanges();
+                    context.Couriers.Add(new Models.Courier.Courier()
+                    {
+                        Name = this.CourierName.Text,
+                        Phone = this.CourierPhone.Text,
+                        Email = this.CourierEmailAddress.Text
+                    });
+                    context.SaveChanges();
+                }
             }
+            else InformationToUser($"Adres e-mail {this.CourierEmailAddress.Text} jest nieprawidłowy.");
         }
     }
 }

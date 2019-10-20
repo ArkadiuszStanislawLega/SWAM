@@ -7,6 +7,8 @@
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:conv="clr-namespace:SWAM.Converters"  
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
@@ -23,8 +25,7 @@
     </UserControl.Resources>
     <!--#endregion-->
     <Grid>
-        <Grid HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch">
+        <Grid>
             <!--#region RowsDefinitions-->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -32,14 +33,13 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
             <!-- Title -->
-            <TextBlock 
+            <TextBlock Margin="5 0 0 0"
                 Grid.Row="0"
                 Text="Utwórz użytkownika" 
                 Style="{StaticResource Title}"/>
 
             <Grid HorizontalAlignment="Center" 
                   VerticalAlignment="Center"
-                  
                   Grid.Row="1">
                 <!--#region Columns&Rows definitions-->
                 <Grid.ColumnDefinitions>
@@ -101,6 +101,6 @@
                 Content="Utwórz" Click="Comfirm_Click"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
-                Style="{StaticResource UserProfilebuttons}"/>
+                Style="{StaticResource CreatePeople}"/>
     </Grid>
 </local:BasicUserControl>

@@ -7,10 +7,10 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
-             HorizontalAlignment="Stretch"
+             HorizontalAlignment="Stretch"  
+             VerticalAlignment="Stretch"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid HorizontalAlignment="Stretch"  
-          VerticalAlignment="Stretch">
+    <Grid>
         <Grid>
             <!--#region RowsDefinitions-->
             <Grid.RowDefinitions>
@@ -18,11 +18,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--#endregion-->
-
-            <TextBlock Grid.Row="0" HorizontalAlignment="Left"
-                   Text="Zarządzanie klientami" Style="{StaticResource Title}"/>
-
-            <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="0" 
+                       HorizontalAlignment="Left" 
+                       Margin="5 0 0 0"
+                       Text="Utwórz klienta" 
+                       Style="{StaticResource Title}"/>
+            <Grid Grid.Row="1" HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
@@ -52,12 +54,11 @@
             </Grid>
         </Grid>
 
-        <Button Name="AddNewClient"
-                Click="AddNewCustomer_Click"
+        <Button Name="Comfirm"
+                    Background="{StaticResource GraphiteBrash}"
+                Content="Utwórz" Click="AddNewCustomer_Click"
+                VerticalAlignment="Top"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Style="{StaticResource NavigationButton}"
-                Width="100" 
-                Content="Dodaj klienta"/>
+                Style="{StaticResource CreatePeople}"/>
     </Grid>
 </basic:BasicUserControl>

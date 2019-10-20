@@ -832,6 +832,49 @@
         </Setter>
     </Style>
     <!--#endregion-->
+
+    <!--#region CreatePeople-->
+    <Style x:Key="CreatePeople" TargetType="Button" >
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 0 1 0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border"
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource GraphiteBrash}"
+                            Padding="5"
+                            CornerRadius="0 0 10 10">
+                        <TextBlock Text="{TemplateBinding Content}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource BlueBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource GraphiteBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="Border" Value="{StaticResource BackgroundOfPagesBrash}"/>
+                            <Setter Property="Foreground" Value="{StaticResource TopGrayBrash}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
     <!--#region UsersListButtons Buttons-->
     <Style x:Key="UsersListButtons" TargetType="{x:Type Button}"   BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="183"/>

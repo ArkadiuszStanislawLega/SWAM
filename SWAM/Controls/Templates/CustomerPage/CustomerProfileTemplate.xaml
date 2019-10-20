@@ -23,6 +23,7 @@
                 <x:Type TypeName="enum:CustomerOrdersListSortingType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <!--#region ShowResidentalAddressButtonsContainer-->
         <Storyboard x:Key="ShowResidentalAddressButtonsContainer">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
                                            Storyboard.TargetName="ResidentalAddressButtonsContainer" 
@@ -30,6 +31,8 @@
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <!--#endregion-->
+        <!--#region HideResidentalAddressButtonsContainer-->
         <Storyboard x:Key="HideResidentalAddressButtonsContainer">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
                                            Storyboard.TargetName="ResidentalAddressButtonsContainer"
@@ -37,163 +40,171 @@
                 <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-    </UserControl.Resources>
-
-    <!--#endregion-->
-    <!--#region OnLoadedStory-->
-    <Grid HorizontalAlignment="Left">
-        <!--#region  ColumnDefinition-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
         <!--#endregion-->
-        <!--#region Left section-->
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+    </UserControl.Resources>
+    <!--#endregion-->
+    <Grid>
+        <!--#region Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <TextBlock Margin="5 0 0 0" Text="Profil klienta:" Style="{StaticResource Title}"/>
+        <Grid HorizontalAlignment="Left" Grid.Row="1">
+            <!--#region  ColumnDefinition-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <!--#region Left section-->
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
-            <StackPanel Grid.Column="0" Width="300" Margin="10">
-                <prop:ProfileNameTemplate x:Name="Name"/>
-                <prop:ProfileSurnameTemplate x:Name="Surname"/>
-                <prop:ProfilePhoneTemplate x:Name="Phone"/>
-                <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
-                <!--#region Residental Address-->
-                <StackPanel Margin="5">
-                    <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <Grid>
-                            <!--#region Columns definitions-->
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <!--#endregion-->
-                            <TextBlock Text="Adres zamieszkania"
+                <StackPanel Grid.Column="0" Width="300" Margin="10">
+                    <prop:ProfileNameTemplate x:Name="Name"/>
+                    <prop:ProfileSurnameTemplate x:Name="Surname"/>
+                    <prop:ProfilePhoneTemplate x:Name="Phone"/>
+                    <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                    <!--#region Residental Address-->
+                    <StackPanel Margin="5">
+                        <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
+                            <Border.Background>
+                                <SolidColorBrush Opacity="0.8" Color="{StaticResource LightGray}"/>
+                            </Border.Background>
+                            <Grid>
+                                <!--#region Columns definitions-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <!--#endregion-->
+                                <TextBlock Text="Adres zamieszkania"
                                    Style="{StaticResource TitleOfLists}"
                                    Grid.Column="0"/>
-                            <Button Name="ChangeResidentalAddress" 
+                                <Button Name="ChangeResidentalAddress" 
                                 Grid.Column="2"
                                 Click="ChangeResidentalAddress_Click"
                                 Style="{StaticResource AdditionSign}" 
                                 Margin="20 0 0 0" Height="20" Width="20"
                                 ToolTip="Zmień adres zamieszkania.">
-                                <Button.Triggers>
-                                    <EventTrigger RoutedEvent="Button.Click">
-                                        <BeginStoryboard Storyboard="{StaticResource ShowResidentalAddressButtonsContainer}"/>
-                                    </EventTrigger>
-                                </Button.Triggers>
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <Border CornerRadius="0 0 10 10" Padding="3">
-                        <Border.Background>
-                            <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
-                        </Border.Background>
-                        <Grid>
-                            <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
-                            <!--#region Edit Residental Address Button container-->
-                            <StackPanel Name="ResidentalAddressButtonsContainer"
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard Storyboard="{StaticResource ShowResidentalAddressButtonsContainer}"/>
+                                        </EventTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border CornerRadius="0 0 10 10" Padding="3">
+                            <Border.Background>
+                                <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
+                            </Border.Background>
+                            <Grid>
+                                <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
+                                <!--#region Edit Residental Address Button container-->
+                                <StackPanel Name="ResidentalAddressButtonsContainer"
                                         Orientation="Horizontal" 
                                         HorizontalAlignment="Right"
                                         VerticalAlignment="Bottom"
                                         Margin="10"
                                         Visibility="Collapsed">
-                                <Button Name="ConfirmEditResidentalAddress" 
+                                    <Button Name="ConfirmEditResidentalAddress" 
                                         Click="ConfirmEditResidentalAddress_Click"
                                         Style="{StaticResource BasicFunctionalButtons}" 
                                         Height="20" Width="20"
                                         ToolTip="Zatwierdź zmianę adresu zamieszkania.">
-                                    <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
-                                    <Button.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
-                                        </EventTrigger>
-                                    </Button.Triggers>
-                                </Button>
-                                <Button Name="CancelEditResidentalAddress" 
+                                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
+                                        <Button.Triggers>
+                                            <EventTrigger RoutedEvent="Button.Click">
+                                                <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
+                                            </EventTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                    <Button Name="CancelEditResidentalAddress" 
                                         Click="CancelEditResidentalAddress_Click"
                                         Style="{StaticResource BasicFunctionalButtons}" 
                                         Height="20" Width="20"
                                         ToolTip="Anuluj zmianę adresu zamieszkania.">
-                                    <fa:ImageAwesome Icon="Remove" Foreground="{StaticResource FontsBrash}" />
-                                    <Button.Triggers>
-                                        <EventTrigger RoutedEvent="Button.Click">
-                                            <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
-                                        </EventTrigger>
-                                    </Button.Triggers>
-                                </Button>
-                            </StackPanel>
-                            <!--#endregion-->
-                        </Grid>
-                    </Border>
+                                        <fa:ImageAwesome Icon="Remove" Foreground="{StaticResource FontsBrash}" />
+                                        <Button.Triggers>
+                                            <EventTrigger RoutedEvent="Button.Click">
+                                                <BeginStoryboard Storyboard="{StaticResource HideResidentalAddressButtonsContainer}"/>
+                                            </EventTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </StackPanel>
+                                <!--#endregion-->
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    <!--#endregion-->
                 </StackPanel>
-                <!--#endregion-->
-            </StackPanel>
-        </ScrollViewer>
-        <!--#endregion-->
-        <!--#region Right section-->
-        <Grid  Grid.Column="1" >
-            <!--#region Rows definitions-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            </ScrollViewer>
             <!--#endregion-->
-            <Grid>
+            <!--#region Right section-->
+            <Grid  Grid.Column="1" >
                 <!--#region Rows definitions-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!--#endregion-->
-                <TextBlock Text="Dostawy klienta" Margin="5" Grid.Column="0" Style="{StaticResource TitleOfLists}" />
-                <!--#region Filters bar-->
-                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-                    <TextBox Name="OrderNumberInput" Width="200" TextChanged="TextBox_TextChanged"/>
-                    <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
-                    <ComboBox Margin="5" Name="SortBy"   
+                <Grid>
+                    <!--#region Rows definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <TextBlock Text="Dostawy klienta" Margin="5" Grid.Column="0" Style="{StaticResource TitleOfLists}" />
+                    <!--#region Filters bar-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+                        <TextBox Name="OrderNumberInput" Width="200" TextChanged="TextBox_TextChanged"/>
+                        <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
+                        <ComboBox Margin="5" Name="SortBy"   
                               ItemsSource="{Binding Source={StaticResource CustomerOrdersListSortingType}}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={conv:ENtoPLcustomerOrderListSortingTypeConverter}}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <CheckBox Name="AscendingSorting" 
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={conv:ENtoPLcustomerOrderListSortingTypeConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox Name="AscendingSorting" 
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
                               Content="Malejąco" 
                               Click="SortAscending_Click" />
                         <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5" Click="ConfirmSortButton_Click">
-                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
-                </StackPanel>
-                <!--#endregion-->
-            </Grid>
-            <!--#region Orders list-->
-            <ScrollViewer Grid.Row="1"
+                            <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+                </Grid>
+                <!--#region Orders list-->
+                <ScrollViewer Grid.Row="1"
                           HorizontalScrollBarVisibility="Auto" 
                           VerticalScrollBarVisibility="Auto" 
                           MinWidth="490">
-                <ItemsControl Name="OrdersList"
+                    <ItemsControl Name="OrdersList"
                               DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}" 
                               ItemsSource="{Binding Orders}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <local:CustomerOrderItemSmallListViewTemplate/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </ScrollViewer>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:CustomerOrderItemSmallListViewTemplate/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+                <!--#endregion-->
+            </Grid>
             <!--#endregion-->
         </Grid>
-        <!--#endregion-->
     </Grid>
 </basic:BasicUserControl>

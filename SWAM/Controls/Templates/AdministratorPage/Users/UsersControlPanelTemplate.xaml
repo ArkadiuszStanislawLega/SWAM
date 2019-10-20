@@ -10,7 +10,6 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Background="{StaticResource BackgroundOfPagesBrash}"
              mc:Ignorable="d" 
-             VerticalContentAlignment="Top"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Loaded="UsersControlPanelTemplate_Loaded"
@@ -64,7 +63,7 @@
     </UserControl.Resources>
     <!--#endregion-->
     <Border BorderBrush="{StaticResource GraphiteBrash}" 
-            BorderThickness="2" Name="CurrentView">
+            BorderThickness="1" Name="CurrentView">
         <Grid>
             <!--#region Rows&Column Definitions-->
             <Grid.ColumnDefinitions>
@@ -73,117 +72,118 @@
             </Grid.ColumnDefinitions>
             <!--#endregion-->
             <!--#region Left section-->
-            <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
-                <!--#region RowsDefinitions-->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!--#endregion-->
-                <!--#region Find User-->
-                <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
-                    <TextBox Name="FindUser"
+            <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="1" >
+                <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+                    <!--#region RowsDefinitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <!--#region Find User-->
+                    <StackPanel Orientation="Horizontal" Name="FindUserOrCreate" Grid.Row="0">
+                        <TextBox Name="FindUser"
                              Tag="Wyszukaj użytkownika" 
                              FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Left"
                              Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              TextChanged="TextBox_TextChanged"/>
-                    <Button Name="FiltersButton"
+                        <Button Name="FiltersButton"
                             Width="15" Height="30" 
                             Style="{StaticResource FaLightGrayBackground}"
                             ToolTip="Ustawienia filtrów listy">
-                        <fa:ImageAwesome Icon="Filter" 
+                            <fa:ImageAwesome Icon="Filter" 
                                          Foreground="{StaticResource FontsBrash}"/>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Width="15" 
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Width="15" 
                             Height="30"
                             Click="AddNewUser_Click" 
                             Style="{StaticResource FaLightGrayBackground}">
-                        <fa:ImageAwesome Icon="Plus" 
+                            <fa:ImageAwesome Icon="Plus" 
                                          Foreground="{StaticResource FontsBrash}"
                                          ToolTip="Dodaj nowego użytkownika."/>
-                    </Button>
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region Filter Container-->
-                <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Border Opacity="0.4"
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Filter Container-->
+                    <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Opacity="0.4"
                             Background="{StaticResource LightGrayBrash}"/>
-                    <Border BorderThickness="0 0 1 1"
+                        <Border BorderThickness="0 0 1 1"
                             Opacity="0.4"
                             BorderBrush="{StaticResource LightGrayBrash}"/>
-                    <StackPanel Margin="5" Grid.Row="0">
-                        <TextBlock Text="Filtruj według:"/>
-                        <RadioButton Name="FiltrByName"
+                        <StackPanel Margin="5" Grid.Row="0">
+                            <TextBlock Text="Filtruj według:"/>
+                            <RadioButton Name="FiltrByName"
                                  Content="Nazwy użytkownika" 
                                  IsChecked="True" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
-                        <RadioButton Name="FiltrByUserType"
+                            <RadioButton Name="FiltrByUserType"
                                  Content="Rodzaju uprawnienia" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
-                        <CheckBox Name="SortAscending"
+                            <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
                             Margin="0 5 0 0"
                             Click="SortAscending_Click"/>
-                    </StackPanel>
-                    <Button Grid.Row="1" 
+                        </StackPanel>
+                        <Button Grid.Row="1" 
                             Height="25" 
                             Width="200" 
                             Style="{StaticResource ArrowUpHide}"   >
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                </Grid>
-                <!--#endregion-->
-                <!--#region List with users-->
-                <Grid Grid.Row="2" 
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Top"> 
-                    <Border BorderThickness="0 0 1 1" 
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+                    <!--#region List with users-->
+                    <Grid Grid.Row="2" 
+                          HorizontalAlignment="Left"
+                          VerticalAlignment="Top">
+                        <Border BorderThickness="0 0 1 1" 
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
-                    <ScrollViewer Name="ScrollOfUserList" 
+                        <ScrollViewer Name="ScrollOfUserList" 
                                   VerticalScrollBarVisibility="Auto">
-                        <ItemsControl Name="UsersList" 
+                            <ItemsControl Name="UsersList" 
                                       DataContext="{x:Static users:UsersListViewModel.Instance}"
                                       ItemsSource="{Binding UsersList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Button Tag="{Binding Id}"
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Button Tag="{Binding Id}"
                                                 Style="{StaticResource UsersListButtons}"
                                                 Click="Item_Click"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                    <!--#endregion-->
                 </Grid>
-                <!--#endregion-->
-            </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Right section-->
-            <Grid  Name="RightSection" Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <Grid  Name="RightSection" Grid.Column="1" 
+                   VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch">
                 <temp:CreateNewUserTemplate Grid.Row="0"/>
             </Grid>
             <!--#endregion-->
