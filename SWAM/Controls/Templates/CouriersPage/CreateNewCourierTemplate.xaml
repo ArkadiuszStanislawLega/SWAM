@@ -31,10 +31,6 @@
                         <TextBox Name="CourierName"/>
                     </StackPanel>
                     <StackPanel Margin="5">
-                        <TextBlock Text="Nazwisko" Style="{StaticResource ProfileProperties}"/>
-                        <TextBox Name="CourierSurname"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
                         <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
                         <TextBox Name="CourierPhone"/>
                     </StackPanel>

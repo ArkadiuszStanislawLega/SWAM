@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201910181237286_Initial.Designer.cs">
       <DependentUpon>201910181237286_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs" />
+    <Compile Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.Designer.cs">
+      <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -711,6 +715,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201910181237286_Initial.resx">
       <DependentUpon>201910181237286_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.resx">
+      <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

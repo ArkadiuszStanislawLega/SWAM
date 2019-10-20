@@ -25,7 +25,7 @@ namespace SWAM.Controls.Templates.CouriersPage
                     {
                         Name = this.CourierName.Text,
                         Phone = this.CourierPhone.Text,
-                        Email = this.CourierEmailAddress.Text
+                        EmailAddress = this.CourierEmailAddress.Text
                     });
                     context.SaveChanges();
                 }

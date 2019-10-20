@@ -29,7 +29,7 @@ namespace SWAM.Models.Customer
         /// Customer residental address.
         /// </summary>
         public CustomerResidentalAddress ResidentalAddress { get; set; }
-
+        //TODO:Try catch block.
         private static ApplicationDbContext context = new ApplicationDbContext();
 
         #region Get

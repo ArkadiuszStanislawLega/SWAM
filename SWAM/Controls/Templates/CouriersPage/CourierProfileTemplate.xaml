@@ -41,9 +41,8 @@
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top">
                 <prop:ProfileNameTemplate x:Name="Name"/>
-                <prop:ProfileSurnameTemplate x:Name="Surname"/>
                 <prop:ProfilePhoneTemplate x:Name="Phone"/>
-                <prop:ProfileEmailAddressTemplate x:Name="Email"/>
+                <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Right section-->

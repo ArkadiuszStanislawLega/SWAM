@@ -38,11 +38,79 @@ namespace SWAM.Controls.Templates.CouriersPage
         };
         #endregion
 
+        #region Basic constructor
         public CourierProfileTemplate()
         {
             InitializeComponent();
+            SetButtonsEvents();
         }
+        #endregion
 
+        #region SetButtonsEvents
+        /// <summary>
+        /// Sets all edit buttons to press triggers.
+        /// </summary>
+        private void SetButtonsEvents()
+        {
+            this.Name.ConfirmChangeName.Click += ConfirmChangeName_Click;
+            this.Phone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
+            this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
+        }
+        #endregion
+        #region ConfirmChangeName_Click
+        /// <summary>
+        /// Action after click confirm change name button.
+        /// Change name of specific courier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change name button.</param>
+        /// <param name="e">Click confirm change name button</param>
+        private void ConfirmChangeName_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Courier courier)
+            {
+                courier.Name = this.Name.EditName.Text;
+                courier.Edit(courier);
+                DataContext = Courier.Get(courier.Id);
+                CouriersListViewModel.Instance.Refresh();
+            }
+        }
+        #endregion
+        #region ConfirmChangePhone_Click
+        /// <summary>
+        /// Action after click confirm change phone button.
+        /// Change phone of specific courier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change phone button.</param>
+        /// <param name="e">Click confirm change phone button</param>
+        private void ConfirmChangePhone_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Courier courier)
+            {
+                courier.Phone = this.Phone.EditPhone.Text;
+                courier.Edit(courier);
+                DataContext = Courier.Get(courier.Id);
+                CouriersListViewModel.Instance.Refresh();
+            }
+        }
+        #endregion
+        #region ConfirmChangeEmailAddress_Click
+        /// <summary>
+        /// Action after click confirm change e-mail address button.
+        /// Change e-mail address of specific courier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change e-mail address button.</param>
+        /// <param name="e">Click confirm change e-mail address button</param>
+        private void ConfirmChangeEmailAddress_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is Courier courier)
+            {
+                courier.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
+                courier.Edit(courier);
+                DataContext = Courier.Get(courier.Id);
+                CouriersListViewModel.Instance.Refresh();
+            } 
+        }
+        #endregion
 
         #region SortAscending_Click
         /// <summary>
