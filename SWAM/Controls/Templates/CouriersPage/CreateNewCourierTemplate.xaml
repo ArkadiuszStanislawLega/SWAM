@@ -17,9 +17,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--#endregion-->
-
             <TextBlock Grid.Row="0" HorizontalAlignment="Left" Margin="5 0 0 0"
-                        Text="Zarządzanie kurierami" Style="{StaticResource Title}"/>
+                        Text="Utwórz kuriera" Style="{StaticResource Title}"/>
 
             <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>

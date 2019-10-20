@@ -3,13 +3,111 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CouriersPage"
              xmlns:prop="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
+             xmlns:conv="clr-namespace:SWAM.Converters"
+             xmlns:lvm="clr-namespace:SWAM.Models.Courier"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <prop:ProfileNameTemplate x:Name="Name"/>
-        <prop:ProfileSurnameTemplate x:Name="Surname"/>
-        <prop:ProfilePhoneTemplate x:Name="Phone"/>
-    </StackPanel>
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="CustomerOrdersListSortingType"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:CustomerOrdersListSortingType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid>
+        <!--#region Row definitions-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--#endregion-->
+        <TextBlock Margin="5 0 0 0" Text="Profil kuriera:" Style="{StaticResource Title}" />
+        <Grid Grid.Row="1">
+            <!--#region Columns deifintions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
+            <!--#region Left section-->
+            <StackPanel Grid.Row="0"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top">
+                <prop:ProfileNameTemplate x:Name="Name"/>
+                <prop:ProfileSurnameTemplate x:Name="Surname"/>
+                <prop:ProfilePhoneTemplate x:Name="Phone"/>
+                <prop:ProfileEmailAddressTemplate x:Name="Email"/>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Right section-->
+            <Grid  Grid.Column="1" >
+                <!--#region Rows definitions-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                <Grid>
+                    <!--#region Rows definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <TextBlock Text="Dostawy klienta" Margin="5" Grid.Column="0" Style="{StaticResource TitleOfLists}" />
+                    <!--#region Filters bar-->
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+                        <TextBox Name="OrderNumberInput" Width="200" TextChanged="TextBox_TextChanged"/>
+                        <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
+                        <ComboBox Margin="5" Name="SortBy"   
+                              ItemsSource="{Binding Source={StaticResource CustomerOrdersListSortingType}}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={conv:ENtoPLcustomerOrderListSortingTypeConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <CheckBox Name="AscendingSorting" 
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="Malejąco" 
+                              Click="SortAscending_Click" />
+                        <Button Style="{StaticResource BasicFunctionalButtons}" Margin="5" Click="ConfirmSortButton_Click">
+                            <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                        </Button>
+                    </StackPanel>
+                    <!--#endregion-->
+                </Grid>
+                <!--#region Orders list-->
+                <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Auto" 
+                          MinWidth="490">
+                    <ItemsControl Name="OrdersList"
+                              DataContext="{x:Static lvm:CourierOrdersListViewModel.Instance}" 
+                              ItemsSource="{Binding Orders}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:CourierOrderItemSmallListViewTemplate/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+    </Grid>
 </UserControl>

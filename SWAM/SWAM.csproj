@@ -94,6 +94,12 @@
     <Compile Include="Controls\Pages\ManageExternalSuppliersPage.xaml.cs">
       <DependentUpon>ManageExternalSuppliersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\CouriersPage\CourierORderItemListViewTemplate.xaml.cs">
+      <DependentUpon>CourierORderItemListViewTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\CouriersPage\CourierOrderItemSmallListViewTemplate.xaml.cs">
+      <DependentUpon>CourierOrderItemSmallListViewTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\CouriersPage\CourierProfileTemplate.xaml.cs">
       <DependentUpon>CourierProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -197,6 +203,7 @@
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
+    <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerOrderDeliveryAddress.cs" />
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
@@ -289,6 +296,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CalendarWithButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CouriersPage\CourierORderItemListViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\CouriersPage\CourierOrderItemSmallListViewTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

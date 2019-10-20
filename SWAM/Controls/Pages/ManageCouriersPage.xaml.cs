@@ -21,10 +21,8 @@ namespace SWAM.Controls.Pages
             ChangeContent(new CreateNewCourierTemplate());
         }
 
-        private void AddNewCourier_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        private void AddNewCourier_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewCourierTemplate());
+        
 
         #region CreateCourierProfile
         /// <summary>
@@ -40,7 +38,12 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
             {
-                ChangeContent(CreateCourierProfile((Courier)button.DataContext));
+                if ((Courier)button.DataContext is Courier courier)
+                {
+                    CourierOrdersListViewModel.Instance.Refresh(courier);
+                    ChangeContent(CreateCourierProfile((Courier)button.DataContext));
+                }
+                else InformationToUser($"{ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}");
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
