@@ -5,6 +5,7 @@ using SWAM.Models.AdministratorPage;
 using SWAM.Strings;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Media.Animation;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -117,5 +118,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             else InformationToUser(ErrorMesages.DURING_CHANGING_USER_PROFILE_ERROR);
         }
         #endregion
+
+        private void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
