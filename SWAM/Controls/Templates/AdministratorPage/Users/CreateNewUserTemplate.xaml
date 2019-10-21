@@ -22,7 +22,40 @@
                 <x:Type TypeName="enum:UserType"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="MainContent"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="MainContent"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region UnloadedStory-->
+        <Storyboard x:Key="UnloadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="MainContent"
+                                Duration="0:0:0.6"
+                                To="0 0 400 0"
+                                SpeedRatio="2"
+                                From="0"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="MainContent"
+                             Duration="0:0:0.3" 
+                             From="1" To="0"/>
+        </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
     <!--#endregion-->
     <Grid>
         <Grid>
@@ -40,7 +73,8 @@
 
             <Grid HorizontalAlignment="Center" 
                   VerticalAlignment="Center"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  Name="MainContent">
                 <!--#region Columns&Rows definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
