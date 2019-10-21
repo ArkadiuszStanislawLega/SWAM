@@ -38,7 +38,6 @@ namespace SWAM.Models.Courier
             return context.People.OfType<Courier>().Include(c => c.CustomerOrders).FirstOrDefault(c => c.Id == Id);
         }
         #endregion
-
         #region Edit
         /// <summary>
         /// Edit basic properties of courier. 

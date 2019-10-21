@@ -4,16 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace SWAM.Models
 {
     /// <summary>
     /// The basic model of the class in the database representing products in <see cref="Warehouse"/>, <see cref="WarehouseOrder"/> and <see cref="CustomerOrder"/>.
     /// </summary>
-    public class Product
+    public class Product : IComparable
     {
         /// <summary>
         /// Identification number from the product database.
@@ -106,5 +103,34 @@ namespace SWAM.Models
                     .Include(s => s.Warehouse)
                     .Where(p => p.WarehouseId == warehouseId)
                     .Select(s => s.Product).ToList();
+
+        public static Product Get(int Id)
+        {
+            return context.Products.FirstOrDefault(p => p.Id == Id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>1 - prodducts are same, 0 products are different, -1 - error</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj != null && obj is Product compareProduct)
+            {
+                if (this.Id == compareProduct.Id &&
+                    this.Height == compareProduct.Height &&
+                    this.Name == compareProduct.Name &&
+                    this.Length == compareProduct.Length &&
+                    this.Width == compareProduct.Width &&
+                    this.Weigth == compareProduct.Weigth &&
+                    this.Price == compareProduct.Price &&
+                    Get(Id) == this) { return 1; }
+                else 
+                { return 0; }
+            }
+            else
+                return -1;
+        }
     }
 }
