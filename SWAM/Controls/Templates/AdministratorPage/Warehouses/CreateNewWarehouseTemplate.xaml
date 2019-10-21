@@ -12,20 +12,22 @@
         <!--#region Rows deifnitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--#endregion-->
         <Button Name="Comfirm"
-                Content="Utwórz" Click="Confirm_Click"
+                Content="Utwórz" 
+                Click="Confirm_Click"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
-                Style="{StaticResource UserProfilebuttons}"/>
+                Style="{StaticResource CreatePeople}"/>
         <TextBlock 
                 HorizontalAlignment="Left"
                 Grid.Row="0"
+                Margin="5 0 0 0"
                 Text="Utwórz magazyn" 
                 Style="{StaticResource Title}"/>
-        <Grid  HorizontalAlignment="Center" Grid.Row="1">
+        <Grid  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
             <!--#region Column deifnitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>

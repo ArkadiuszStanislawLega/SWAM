@@ -65,7 +65,7 @@
     <Border BorderBrush="{StaticResource GraphiteBrash}" 
             BorderThickness="1" Name="CurrentView">
         <Grid>
-            <!--#region Rows&Column Definitions-->
+            <!--#region Column Definitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -87,7 +87,6 @@
                              Tag="Wyszukaj użytkownika" 
                              FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Left"
-                             Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              TextChanged="TextBox_TextChanged"/>
                         <Button Name="FiltersButton"

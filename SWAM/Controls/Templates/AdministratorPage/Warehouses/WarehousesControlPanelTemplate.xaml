@@ -8,7 +8,6 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              xmlns:lvm="clr-namespace:SWAM.Models.AdministratorPage"
              mc:Ignorable="d" 
-             VerticalContentAlignment="Top"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              Loaded="WarehousesControlPanelTemplate_Loaded"
@@ -59,108 +58,124 @@
         </Storyboard>
         <!--#endregion-->
     </class:BasicUserControl.Resources>
-    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="2" Name="CurrentView">
-        <DockPanel  >
+    <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="1" Name="CurrentView">
+        <Grid>
+            <!--#region Column Definitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--#endregion-->
             <!--#region Left section-->
-            <StackPanel  Name="LeftSection" Margin="5" Grid.Column="0">
-                <StackPanel Orientation="Horizontal" Name="FindWarehouseOrCreate" Grid.Row="0">
-                    <TextBox Name="FindWarehouse"
+            <Border BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="1" >
+                <Grid  Name="LeftSection" Margin="5" Grid.Column="0">
+                    <!--#region RowsDefinitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion -->
+                    <StackPanel Orientation="Horizontal" Name="FindWarehouseOrCreate" Grid.Row="0">
+                        <TextBox Name="FindWarehouse"
                              TextChanged="TextBox_TextChanged"
                              Tag="Wyszukaj magazyn" 
                              FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Left"
-                             Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"/>
-                    <Button Name="FiltersButton"
+                        <Button Name="FiltersButton"
                             Width="15" Height="30" 
                             Style="{StaticResource FaLightGrayBackground}"
                             ToolTip="Ustawienia filtrów listy">
-                        <fa:ImageAwesome Icon="Filter" 
+                            <fa:ImageAwesome Icon="Filter" 
                                          Foreground="{StaticResource FontsBrash}"/>
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Width="15" 
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource ShowFiltersContainer}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Width="15" 
                             Height="30"
                             Click="AddNewWarehouse_Click" 
                             Style="{StaticResource FaLightGrayBackground}"
                             ToolTip="Dodaj nowy magazyn">
-                        <fa:ImageAwesome Icon="Plus" 
+                            <fa:ImageAwesome Icon="Plus" 
                                          Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-                </StackPanel>
-                <!--#region Filter Container-->
-                <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <Border Opacity="0.4"
+                        </Button>
+                    </StackPanel>
+                    <!--#region Filter Container-->
+                    <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Border Opacity="0.4"
                             Background="{StaticResource LightGrayBrash}"/>
-                    <Border BorderThickness="0 0 1 1"
+                        <Border BorderThickness="0 0 1 1"
                             Opacity="0.4"
                             BorderBrush="{StaticResource LightGrayBrash}"/>
-                    <StackPanel Margin="5" Grid.Row="0">
-                        <TextBlock Text="Filtruj według:"/>
-                        <RadioButton Name="FiltrByName"
+                        <StackPanel Margin="5" Grid.Row="0">
+                            <TextBlock Text="Filtruj według:"/>
+                            <RadioButton Name="FiltrByName"
                                  Content="Nazwy magazynu" 
                                  IsChecked="True" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
-                        <RadioButton Name="FiltrBySomethingElse"
+                            <RadioButton Name="FiltrBySomethingElse"
                                  Content="Jakiś inny filtr" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
-                        <CheckBox Name="SortAscending"
+                            <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
                             Margin="0 5 0 0"
                             Click="SortAscending_Click"/>
-                    </StackPanel>
-                    <Button Grid.Row="1" 
+                        </StackPanel>
+                        <Button Grid.Row="1" 
                             Height="25" 
                             Width="200" 
                             Style="{StaticResource ArrowUpHide}"   >
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                </Grid>
-                <!--#endregion-->
-                <!--#region List with warehouses-->
-                <Grid Grid.Row="1">
-                    <Border BorderThickness="0 0 1 1" 
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideFiltersContainer}"/>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+                    <!--#region List with warehouses-->
+                    <Grid Grid.Row="2" 
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+                        <Border BorderThickness="0 0 1 1" 
                             BorderBrush="{StaticResource LightGrayBrash}"
                             Opacity="0.4"/>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Name="WarehouseListScroll">
-                        <ItemsControl Name="WarehousesList"  
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Name="WarehouseListScroll">
+                            <ItemsControl Name="WarehousesList"  
                                       HorizontalAlignment="Left"
                                       DataContext="{x:Static lvm:WarehousesListViewModel.Instance}"
                                       ItemsSource="{Binding WarehousesList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <temp:WarehouseListItemTemplate/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <temp:WarehouseListItemTemplate/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                    <!--#endregion-->
                 </Grid>
-                <!--#endregion-->
-            </StackPanel>
+            </Border>
             <!--#endregion-->
             <!--#region Right section-->
-            <Grid  Name="RightSection" Margin="5" Grid.Column="1" 
+            <Grid  Name="RightSection" Grid.Column="1" 
                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" />
             </Grid>
             <!--#endregion-->
-        </DockPanel>
+        </Grid>
     </Border>
 </class:BasicUserControl>
