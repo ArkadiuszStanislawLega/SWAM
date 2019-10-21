@@ -1,5 +1,6 @@
 ﻿using SWAM.Enumerators;
 using SWAM.Models;
+using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.User;
@@ -105,6 +106,22 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 {
                     page.Value.Visibility = Visibility.Visible;
                 }
+            }
+        }
+        #endregion
+
+        #region IsPersonalCollected_Click
+        /// <summary>
+        /// Clears courier's form data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsPersonalCollected_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPersonalCollected.IsChecked.GetValueOrDefault())
+            {
+                DataContext = null;
+                courierListProfile.couriersListView.UnselectAll(); 
             }
         }
         #endregion

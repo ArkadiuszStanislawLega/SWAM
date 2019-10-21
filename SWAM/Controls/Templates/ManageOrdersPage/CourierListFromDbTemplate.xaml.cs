@@ -1,19 +1,9 @@
 ﻿using SWAM.Controls.Templates.ManageOrdersPage.Customers;
 using SWAM.Models.Courier;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {
@@ -86,7 +76,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         /// <param name="e"></param>
         private void CourierListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
         {
-            var item = (sender as ListView).SelectedItem;
             if ((sender as ListView).SelectedItem is Courier courier)
             {
                 if (courier == null)

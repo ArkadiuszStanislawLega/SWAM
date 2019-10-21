@@ -138,10 +138,10 @@
                     </Grid.ColumnDefinitions>
                     
                     <manageOrdersControls:CourierDetailsFormTemplate Grid.Column="0" x:Name="courierProfile"/>
-                    <manageOrdersControls:CourierListFromDbTemplate Grid.Column="1"/>
+                    <manageOrdersControls:CourierListFromDbTemplate Grid.Column="1" x:Name="courierListProfile"/>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <CheckBox Name="isPersonalCollected" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
+                    <CheckBox Name="isPersonalCollected" Click="IsPersonalCollected_Click" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
                 </Grid>
             </Grid>
         </Grid>
