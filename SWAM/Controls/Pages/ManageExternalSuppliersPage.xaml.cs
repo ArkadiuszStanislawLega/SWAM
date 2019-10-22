@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,31 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageExternalSuppliersPage.xaml
     /// </summary>
-    public partial class ManageExternalSuppliersPage : UserControl
+    public partial class ManageExternalSuppliersPage : BasicUserControl
     {
         public ManageExternalSuppliersPage()
         {
             InitializeComponent();
+        }
+
+        private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void SortAscending_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

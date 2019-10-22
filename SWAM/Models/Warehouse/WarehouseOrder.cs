@@ -28,7 +28,7 @@ namespace SWAM.Models.Warehouse
         /// <summary>
         /// An external supplier who delivers products from the order.
         /// </summary>
-        public ExternalSupplier ExternalSupplayer { get; set; }
+        public ExternalSupplier.ExternalSupplier ExternalSupplayer { get; set; }
         /// <summary>
         /// Current order status.
         /// </summary>

@@ -212,6 +212,7 @@
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomersListViewModel.cs" />
+    <Compile Include="Models\ExternalSupplier\ExternalSupplierListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
@@ -692,7 +693,7 @@
     <Compile Include="Models\Customer\Customer.cs" />
     <Compile Include="Models\Customer\CustomerOrder.cs" />
     <Compile Include="Models\Customer\CustomerOrderPosition.cs" />
-    <Compile Include="Models\ExternalSupplier.cs" />
+    <Compile Include="Models\ExternalSupplier\ExternalSupplier.cs" />
     <Compile Include="Enumerators\ShipmentType.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrder.cs" />

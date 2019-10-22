@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SWAM.Models
+﻿
+namespace SWAM.Models.ExternalSupplier
 {
     /// <summary>
     /// The basic model of the class in the database representing the external supplier to the warehouses.

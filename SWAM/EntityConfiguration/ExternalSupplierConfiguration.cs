@@ -1,4 +1,4 @@
-﻿using SWAM.Models;
+﻿using SWAM.Models.ExternalSupplier;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SWAM.EntityConfiguration
