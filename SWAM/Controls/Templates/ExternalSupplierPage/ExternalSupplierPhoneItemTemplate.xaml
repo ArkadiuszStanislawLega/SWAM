@@ -1,0 +1,176 @@
+﻿<local:BasicUserControl x:Class="SWAM.Controls.Templates.ExternalSupplierPage.ExternalSupplierPhoneItemTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <local:BasicUserControl.Resources>
+        <!--#region ShowEditPhoneFieldStory-->
+        <Storyboard x:Key="ShowEditPhoneFieldStory">
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Confirm"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Cancel"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="EditNote"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="EditPhoneNumber"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="PhoneNumber"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Note"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideEditPhoneFieldStory-->
+        <Storyboard x:Key="HideEditPhoneFieldStory">
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Confirm"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Cancel"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="EditNote"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="EditPhoneNumber"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="PhoneNumber"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames  Storyboard.TargetName="Note"
+                                        Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+    </local:BasicUserControl.Resources>
+    <!--#region On loaded animation-->
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                     Duration="0:0:0.7" 
+                                     From="0" To="20"
+                                     DecelerationRatio="1"
+                                     />
+                    <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:0.7"
+                                        From="0" To="1"
+                                        DecelerationRatio="1"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <!--#endregion-->
+    <Grid>
+        <!--#region ColumnDefinitions-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <!--#endregion-->
+        <!--#region Note-->
+        <TextBlock Name="Note"  
+                   Grid.Column="0"  
+                   Width="100"
+                   Text="{Binding Note}"
+                   TextAlignment="Left"/>
+        <TextBox Name="EditNote"  
+                 Grid.Column="0"  
+                 Text="{Binding Note}"
+                 TextAlignment="Left"
+                 Visibility="Collapsed"/>
+        <TextBlock Grid.Column="1" Text="-"/>
+        <!--#endregion-->
+        <!--#region Number-->
+        <TextBlock Name="PhoneNumber"  
+                   Grid.Column="2" 
+                   Margin="0 0 5 0" 
+                   Width="100"
+                   TextAlignment="Right"
+                   Text="{Binding PhoneNumber}"/>
+        <TextBox Name="EditPhoneNumber"  
+                 Grid.Column="2" 
+                 TextAlignment="Right"
+                 Text="{Binding PhoneNumber}"
+                 Visibility="Collapsed" Margin="0 0 5 0"/>
+        <!--#endregion-->
+        <!--#region Buttons-->
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Column="3" 
+                    HorizontalAlignment="Right">
+
+            <Button Name="Edit"
+                    Style="{StaticResource EditButtonStyle}"
+                    Margin="1"
+                    Click="Edit_Click"
+                    ToolTip="Edytuj numer telefonu">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource ShowEditPhoneFieldStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+
+            <Button Name="Confirm" 
+                    Click="Confirm_Click" 
+                    Style="{StaticResource EditButtonStyle}"
+                    Visibility="Collapsed"
+                    Margin="1"
+                    ToolTip="Zatwierdź zmiany">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+
+            <Button Name="Delete" 
+                Click="Delete_Click"
+                Style="{StaticResource EditButtonStyle}"
+                Margin="1"
+                ToolTip="Usuń numer telefonu">
+                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+
+            <Button Name="Cancel" Style="{StaticResource EditButtonStyle}" Visibility="Collapsed" 
+                    Click="Cancel_Click" Foreground="Red">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideEditPhoneFieldStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+            </Button>
+
+        </StackPanel>
+        <!--#endregion-->
+    </Grid>
+</local:BasicUserControl>

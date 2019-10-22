@@ -3,6 +3,7 @@ using SWAM.Models.Customer;
 using SWAM.Models.Warehouse;
 using System.Windows.Media.Animation;
 using System;
+using SWAM.Models.ExternalSupplier;
 
 namespace SWAM.Controls.Templates
 {
@@ -117,6 +118,20 @@ namespace SWAM.Controls.Templates
                     };
 
                     return (T)Convert.ChangeType(cusomterResidentalAddress, typeof(T));
+                }
+                else if(typeof(T) == typeof(ExternalSupplierAddress))
+                {
+                    var externalSupplierAddress = new ExternalSupplierAddress()
+                    {
+                        Country = this.EditCountry.Text,
+                        PostCode = this.EditPostCode.Text,
+                        City = this.EditCity.Text,
+                        Street = this.EditStreet.Text,
+                        HouseNumber = this.EditHouseNumber.Text,
+                        ApartmentNumber = this.EditApartmentNumber.Text,
+                    };
+
+                    return (T)Convert.ChangeType(externalSupplierAddress, typeof(T));
                 }
             }
 

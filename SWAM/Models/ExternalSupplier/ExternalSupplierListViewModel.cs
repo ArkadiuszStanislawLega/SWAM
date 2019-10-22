@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Data.Entity;
 using System.Windows.Controls;
 
 namespace SWAM.Models.ExternalSupplier
@@ -36,6 +37,8 @@ namespace SWAM.Models.ExternalSupplier
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var externalSuppliers = context.People.OfType<ExternalSupplier>()
+                    .Include(e => e.Phones)
+                    .Include(e => e.Address)
                     .ToList();
 
                 if (externalSuppliers != null && _externalSuppliers.Count > 0)

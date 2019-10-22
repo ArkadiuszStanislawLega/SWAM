@@ -63,8 +63,8 @@
                       VerticalScrollBarVisibility="Auto">
                 <StackPanel Grid.Column="0" Width="300" Margin="10">
                     <prop:ProfileNameTemplate x:Name="Name"/>
-                    <prop:ProfilePhoneTemplate x:Name="Phone"/>
                     <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                    <local:ExternalSuppliersEditableListTableTemplate />
                     <!--#region Residental Address-->
                     <StackPanel Margin="5">
                         <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
@@ -101,7 +101,7 @@
                                 <SolidColorBrush Opacity="0.1" Color="{StaticResource LightGray}"/>
                             </Border.Background>
                             <Grid>
-                                <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding ResidentalAddress}"/>
+                                <temp:AddressTemplate x:Name="ResidentalAddress" DataContext="{Binding Address}"/>
                                 <!--#region Edit Residental Address Button container-->
                                 <StackPanel Name="ResidentalAddressButtonsContainer"
                                         Orientation="Horizontal" 

@@ -1,0 +1,152 @@
+﻿<basic:BasicUserControl x:Class="SWAM.Controls.Templates.ExternalSupplierPage.ExternalSuppliersEditableListTableTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.ExternalSupplierPage"
+             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             HorizontalAlignment="Stretch"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <basic:BasicUserControl.Resources>
+        <!--#region ShowAddNewPhoneStory-->
+        <Storyboard x:Key="ShowAddNewPhoneStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewPhoneContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region HideAddNewPhoneStory-->
+        <Storyboard  x:Key="HideAddNewPhoneStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AddNewPhoneContainer"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <!--#endregion-->
+        <!--#region OnLoadedStory-->
+        <Storyboard x:Key="OnLoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                        Duration="0:0:1"
+                                        From=" 0 0 0 -100" To="1"
+                                        DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                      Duration="0:0:1" 
+                                      From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+    </basic:BasicUserControl.Resources>
+    <!--#region On loaded animation-->
+    <basic:BasicUserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource OnLoadedStory}"/>
+        </EventTrigger>
+    </basic:BasicUserControl.Triggers>
+    <!--#endregion-->
+    <StackPanel Margin="5">
+        <!--#region Title-->
+        <Border CornerRadius="10 10 0 0" Padding="5 5 5 0">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.7"/>
+            </Border.Background>
+            <Grid>
+                <!--#region Columns definitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <!--#endregion-->
+                <TextBlock Text="Numery kontaktowe"
+                           Style="{StaticResource TitleOfLists}"
+                           Grid.Column="0"/>
+                <!--#region Button add new phone-->
+                <Button Name="AddNewPhone"
+                        Style="{StaticResource AdditionSign}" 
+                        Margin="20 0 0 0"  Grid.Column="2"
+                        ToolTip="Dodaj nowy numer telefonu.">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard Storyboard="{StaticResource ShowAddNewPhoneStory}"/>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
+                <!--#endregion-->
+            </Grid>
+        </Border>
+        <!--#endregion-->
+        <Border CornerRadius="0 0 10 10"
+                Padding="3">
+            <Border.Background>
+                <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.1"/>
+            </Border.Background>
+            <StackPanel HorizontalAlignment="Center">
+                <!--#region Add new phone type section-->
+                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed">
+                    <!--#region Columns definitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#endregion-->
+                    <TextBox Name="NewPhoneNote"  
+                             Grid.Column="0"
+                             Width="100"
+                             Tag="Nazwa kontaktu" 
+                             Style="{StaticResource UserLogin}"/>
+                    <Label Grid.Column="1" Content="-"/>
+                    <TextBox Name="NewPhone" 
+                             Width="100"
+                             Grid.Column="2"
+                             Tag="Numer telefonu" 
+                             Style="{StaticResource UserLogin}"/>
+                    <Button Name="ConfirmNewPhone" 
+                            Margin="3"
+                            Grid.Column="3"
+                            Click="ConfirmNewPhone_Click" 
+                            Style="{StaticResource EditButtonStyle}" 
+                            ToolTip="Zapisz kontakt">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideAddNewPhoneStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
+                    </Button>
+                    <Button Name="CancelCreateNewPhone"
+                            Click="CancelCreateNewPhone_Click"
+                            Tag="Anuluj dodawanie nowego kontakut"
+                            Grid.Column="4"
+                            Style="{StaticResource EditButtonStyle}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource HideAddNewPhoneStory}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+                    </Button>
+                </Grid>
+                <!--#endregion-->
+                <!--#region phone list-->
+                <StackPanel Margin="0 5 0 0 ">
+                    <ItemsControl  ItemsSource="{Binding Phones}" Name="PhoneNumbers">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <local:ExternalSupplierPhoneItemTemplate/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+                <!--#endregion-->
+            </StackPanel>
+        </Border>
+    </StackPanel>
+
+</basic:BasicUserControl>

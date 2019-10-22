@@ -13,13 +13,15 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         public CreateNewExternalSupplierTemplate()
         {
             InitializeComponent();
+            this.ResidentalAddress.ShowEditControls();
         }
 
         private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
         {
             var external = new ExternalSupplier()
             {
-                Name = this.ExternalSupplierName.Text
+                Name = this.ExternalSupplierName.Text,
+                Address = this.ResidentalAddress.GetAddress<ExternalSupplierAddress>()
             };
 
             ExternalSupplier.Add(external);

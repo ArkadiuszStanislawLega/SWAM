@@ -19,6 +19,7 @@ namespace SWAM
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<ExternalSupplier> ExternalSuppliers { get; set; }
+        public DbSet<ExternalSupplierPhone> ExternalSupplierPhones { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Person> People { get; set; }
@@ -38,6 +39,9 @@ namespace SWAM
             modelBuilder.Entity<CustomerResidentalAddress>()
               .HasRequired(c => c.Customer)
               .WithRequiredDependent(c => c.ResidentalAddress);
+
+            modelBuilder.Entity<ExternalSupplierPhone>()
+                .HasRequired(e => e.ExternalSupplier);
 
             modelBuilder.Configurations.Add(new AccessesConfiguration());
             modelBuilder.Configurations.Add(new AddressConfiguration());

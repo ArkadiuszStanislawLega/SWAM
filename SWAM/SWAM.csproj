@@ -124,8 +124,14 @@
     <Compile Include="Controls\Templates\ExternalSupplierPage\CreateNewExternalSupplierTemplate.xaml.cs">
       <DependentUpon>CreateNewExternalSupplierTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierPhoneItemTemplate.xaml.cs">
+      <DependentUpon>ExternalSupplierPhoneItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierProfileTemplate.xaml.cs">
       <DependentUpon>ExternalSupplierProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditableListTableTemplate.xaml.cs">
+      <DependentUpon>ExternalSuppliersEditableListTableTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
@@ -203,6 +209,7 @@
     <Compile Include="Enumerators\CustomerOrderVisiblePage.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
+    <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
     <Compile Include="Migrations\201910181237286_Initial.cs" />
     <Compile Include="Migrations\201910181237286_Initial.Designer.cs">
       <DependentUpon>201910181237286_Initial.cs</DependentUpon>
@@ -211,6 +218,10 @@
     <Compile Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.Designer.cs">
       <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.cs" />
+    <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.Designer.cs">
+      <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -218,9 +229,11 @@
     <Compile Include="Models\Customer\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomersListViewModel.cs" />
+    <Compile Include="Models\ExternalSupplier\ExternalSupplierAddress.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\ExternalSupplier\ExternalSupplierPhone.cs" />
     <Compile Include="Models\Messages\MessagesListViewModel.cs" />
     <Compile Include="Models\Messages\MessagesUsersList.cs" />
     <Compile Include="Models\Messages\SelectedUsersListViewModel.cs" />
@@ -350,7 +363,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierPhoneItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditableListTableTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -733,6 +754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.resx">
       <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.resx">
+      <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

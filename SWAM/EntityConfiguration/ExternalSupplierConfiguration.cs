@@ -8,10 +8,11 @@ namespace SWAM.EntityConfiguration
         public ExternalSupplierConfiguration()
         {
             ToTable("ExternalSuppliers");
+            HasRequired(e => e.Address)
+                .WithRequiredPrincipal(e => e.ExternalSupplier);
 
-            //HasMany(user => user.Phones)
-            //        .WithRequired(phone => (ExternalSupplier)phone.Person)
-            //        .HasForeignKey(phone => phone.Person);
+            HasMany(e => e.Phones);
+            HasMany(e => e.WarehouseOrders);
         }
     }
 }
