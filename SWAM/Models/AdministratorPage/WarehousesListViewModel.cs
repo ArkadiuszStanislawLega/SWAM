@@ -53,10 +53,14 @@ namespace SWAM.Models.AdministratorPage
                 //TODO: Make this more pro!!
                 foreach (Warehouse.Warehouse w in dbWarehouses)
                 {
-                    foreach (AccessUsersToWarehouses a in w.Accesses)
+                    for (int i = 0; i < w.Accesses.Count; i++)
                     {
-                        a.User = User.User.GetUser(a.User.Id);
-                        a.Administrator = User.User.GetUser(a.Administrator.Id);
+                        int id = w.Accesses[i].Id;
+                        w.Accesses[i] = context.AccessUsersToWarehouses
+                          .Include(au => au.User)
+                          .Include(au => au.Administrator)
+                          .Include(au => au.Warehouse)
+                          .FirstOrDefault(au => au.Id == id);
                     }
                 }
             };
