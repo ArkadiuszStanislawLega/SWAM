@@ -1,7 +1,7 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
+using SWAM.Models.Courier;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.CouriersPage
 {
@@ -28,6 +28,10 @@ namespace SWAM.Controls.Templates.CouriersPage
                         EmailAddress = this.CourierEmailAddress.Text
                     });
                     context.SaveChanges();
+
+                    InformationToUser($"Dodano nowego kuriera {this.CourierName.Text}.");
+
+                    CouriersListViewModel.Instance.Refresh();
                 }
             }
             else InformationToUser($"Adres e-mail {this.CourierEmailAddress.Text} jest nieprawidłowy.");

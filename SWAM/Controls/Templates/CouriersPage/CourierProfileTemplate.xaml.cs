@@ -73,6 +73,8 @@ namespace SWAM.Controls.Templates.CouriersPage
                 courier.Edit(courier);
                 DataContext = Courier.Get(courier.Id);
                 CouriersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano nazwę kuriera {courier.Name}.");
             }
         }
         #endregion
@@ -91,6 +93,8 @@ namespace SWAM.Controls.Templates.CouriersPage
                 courier.Edit(courier);
                 DataContext = Courier.Get(courier.Id);
                 CouriersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano numer telefonu kontaktowego kuriera {courier.Name}.");
             }
         }
         #endregion
@@ -111,6 +115,9 @@ namespace SWAM.Controls.Templates.CouriersPage
                     courier.Edit(courier);
                     DataContext = Courier.Get(courier.Id);
                     CouriersListViewModel.Instance.Refresh();
+
+
+                    InformationToUser($"Zaktualizowano adres e-mail kuriera {courier.Name}.");
                 }
             }
             else InformationToUser($"Adres e-mail {this.EmailAddress.EditEmailAddress.Text} jest nieprawidłowy.", true);

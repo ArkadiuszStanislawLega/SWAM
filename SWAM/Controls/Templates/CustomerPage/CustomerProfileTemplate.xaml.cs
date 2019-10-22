@@ -73,6 +73,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano imię klienta {customer.Name} {customer.Surname}.");
             }
         }
         #endregion
@@ -91,6 +93,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano nazwisko klienta {customer.Name} {customer.Surname}.");
             }
         }
         #endregion
@@ -109,6 +113,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano numer kontaktowy klienta {customer.Name} {customer.Surname}.");
             }
         }
         #endregion
@@ -129,6 +135,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                     customer.Edit(customer);
                     DataContext = Customer.Get(customer.Id);
                     CustomersListViewModel.Instance.Refresh();
+
+                    InformationToUser($"Zaktualizowano adres e-mail klienta {customer.Name} {customer.Surname}.");
                 }
                 else
                     InformationToUser($"Adres e-email {this.EmailAddress.EditEmailAddress.Text} jest błędny.", true);
@@ -151,6 +159,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 customer.ResidentalAddress.Edit(this.ResidentalAddress.GetAddress<CustomerResidentalAddress>());
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
+
+                InformationToUser($"Zaktualizowano adres zamieszkania klienta {customer.Name} {customer.Surname}.");
             }
         }
         #endregion
@@ -242,7 +252,5 @@ namespace SWAM.Controls.Templates.CustomerPage
             }
         }
         #endregion
-
-   
     }
 }

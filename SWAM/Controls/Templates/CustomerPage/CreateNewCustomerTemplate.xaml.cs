@@ -31,6 +31,8 @@ namespace SWAM.Controls.Templates.CustomerPage
                 };
                 Customer.Add(customer);
 
+                InformationToUser($"Dodano nowego klienta - {this.CustomerName.Name}");
+
                 CustomersListViewModel.Instance.Refresh();
                 ClearTextBoxes();
             }
