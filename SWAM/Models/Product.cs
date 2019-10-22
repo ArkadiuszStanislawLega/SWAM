@@ -69,8 +69,8 @@ namespace SWAM.Models
             if (product != null)
             {
                 context.Products.Add(product);
-				context.SaveChanges();
-			}
+                context.SaveChanges();
+            }
         }
 
         public static void EditProduct(Product product)
@@ -90,19 +90,18 @@ namespace SWAM.Models
         }
 
         public static void DeleteProduct(Product product)
-		{   
-				context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
-				context.SaveChanges();
+        {
+            context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
+            context.SaveChanges();
         }
 
         public static List<Product> AllProducts() => context.Products.ToList();
 
-        public static List<Product> GetProductsFromWarehouse(int warehouseId) 
+        public static List<State> GetProductsFromWarehouse(int warehouseId)
             => context.States
                     .Include(s => s.Product)
                     .Include(s => s.Warehouse)
-                    .Where(p => p.WarehouseId == warehouseId)
-                    .Select(s => s.Product).ToList();
+                    .Where(s => s.WarehouseId == warehouseId).ToList();
 
         public static Product Get(int Id)
         {
@@ -126,7 +125,7 @@ namespace SWAM.Models
                     this.Weigth == compareProduct.Weigth &&
                     this.Price == compareProduct.Price &&
                     Get(Id) == this) { return 1; }
-                else 
+                else
                 { return 0; }
             }
             else

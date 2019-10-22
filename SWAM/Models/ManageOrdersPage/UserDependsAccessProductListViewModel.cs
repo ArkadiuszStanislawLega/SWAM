@@ -6,8 +6,8 @@ namespace SWAM.Models.ManageOrdersPage
 {
     public class UserDependsAccessProductListViewModel : UserControl
     {
-        private readonly ObservableCollection<Product> _products = new ObservableCollection<Product>();
-        public ObservableCollection<Product> Products => this._products;
+        private readonly ObservableCollection<State> _states = new ObservableCollection<State>();
+        public ObservableCollection<State> States => this._states;
         /// <summary>
         /// A list with ID numbers of warehouses that have already been checked when adding products to the collection.
         /// </summary>
@@ -28,8 +28,8 @@ namespace SWAM.Models.ManageOrdersPage
 
             if (accessUsersToWarehouses != null)
             {
-                if (_products.Count > 0)
-                    _products.Clear();
+                if (_states.Count > 0)
+                    _states.Clear();
 
                 //I check all warehouses to which the logged in user has rights in terms of products.
                 foreach (var item in accessUsersToWarehouses)
@@ -38,17 +38,17 @@ namespace SWAM.Models.ManageOrdersPage
                     if (!IsWarehouseProductsAreChecked(item.Warehouse.Id))
                     {
                         //I am downloading warehouse products from the database...
-                        var list = Product.GetProductsFromWarehouse(item.Warehouse.Id);
+                        var states = Product.GetProductsFromWarehouse(item.Warehouse.Id);
 
                         //Adds the Warehouse ID to the list of checked warehouses...
                         this._warehousesIds.Add(item.Warehouse.Id);
 
                         //I browse the list of products from the warehouse to find one that is not yet in the collection.
-                        foreach (var product in list)
+                        foreach (var state in states)
                         {
-                            if (!IsProductInList(product))
+                            if (!IsProductInList(state.Product))
                             {
-                                _products.Add(product);
+                                _states.Add(state);
                             }
                         }
                     }
@@ -81,7 +81,7 @@ namespace SWAM.Models.ManageOrdersPage
         /// <returns>True if product is in the collection.</returns>
         private bool IsProductInList(Product product)
         {
-            foreach (var item in _products)
+            foreach (var item in _states)
             {
                 if (product.CompareTo(item) == 1 )
                     return true;

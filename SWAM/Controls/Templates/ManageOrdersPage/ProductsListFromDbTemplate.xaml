@@ -17,14 +17,15 @@
                   CanUserAddRows="False"
                   SelectionMode="Single"
                   DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
-                  ItemsSource="{Binding Products}"
+                  ItemsSource="{Binding States}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
-                <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
-                <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Product.Name}"/>
+                <DataGridTextColumn Header="Szerokość" Binding="{Binding Product.Width}"/>
+                <DataGridTextColumn Header="Długość" Binding="{Binding Product.Length}"/>
+                <DataGridTextColumn Header="Waga" Binding="{Binding Product.Weigth}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Product.Price}"/>
+                <DataGridTextColumn Header="Dostępna ilość" Binding="{Binding Available}"/>
                 <DataGridTemplateColumn Header="Dodaj do koszyka">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

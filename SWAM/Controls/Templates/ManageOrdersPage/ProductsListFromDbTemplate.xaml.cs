@@ -25,14 +25,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
         private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
         {
-            if (!(((FrameworkElement)sender).DataContext is Product product))
+            if (!(((FrameworkElement)sender).DataContext is State state))
                 return;
 
             var customerOrderPosition = new CustomerOrderPosition
             {
-                Product = product,
-                ProductId = product.Id,
-                Price = product.Price
+                Product = state.Product,
+                ProductId = state.Id,
+                Price = state.Product.Price
             };
 
             ProductOrderListViewModel.Instance.Add(customerOrderPosition);
