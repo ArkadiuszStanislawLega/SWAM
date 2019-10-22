@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CouriersPage"
              xmlns:conv="clr-namespace:SWAM.Converters"
              mc:Ignorable="d" 
+             Name="Profile"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--#region HideProfileStory-->
