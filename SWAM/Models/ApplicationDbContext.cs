@@ -3,6 +3,7 @@ using SWAM.EntityConfiguration;
 using SWAM.Models;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
+using SWAM.Models.ExternalSupplier;
 using SWAM.Models.Warehouse;
 
 namespace SWAM
@@ -17,6 +18,7 @@ namespace SWAM
         public DbSet<CustomerOrderPosition> CustomerOrderPositions { get; set; }
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
+        public DbSet<ExternalSupplier> ExternalSuppliers { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Person> People { get; set; }

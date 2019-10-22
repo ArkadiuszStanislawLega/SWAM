@@ -54,5 +54,8 @@
         #region Customer
         public const string REFRESH_CUSTOMER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu klienta.";
         #endregion
+        #region Customer
+        public const string REFRESH_EXTERNAL_SUPPLIER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu zewnętrznego dostawcy.";
+        #endregion
     }
 }

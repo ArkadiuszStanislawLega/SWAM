@@ -121,6 +121,12 @@
     <Compile Include="Controls\Templates\CustomerPage\CustomerProfileTemplate.xaml.cs">
       <DependentUpon>CustomerProfileTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\CreateNewExternalSupplierTemplate.xaml.cs">
+      <DependentUpon>CreateNewExternalSupplierTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierProfileTemplate.xaml.cs">
+      <DependentUpon>ExternalSupplierProfileTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
     </Compile>
@@ -337,6 +343,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\CustomerPage\CustomerProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\CreateNewExternalSupplierTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

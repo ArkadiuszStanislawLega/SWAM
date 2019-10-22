@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Pages"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates.ExternalSupplierPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:ext="clr-namespace:SWAM.Models.ExternalSupplier"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
@@ -179,7 +180,9 @@
                 </Grid>
             </Border>
             <!--#endregion-->
-            <Grid Grid.Column="1" Name="MainContent"/>
+            <Grid Grid.Column="1" Name="MainContent">
+                <temp:CreateNewExternalSupplierTemplate/>
+            </Grid>
         </Grid>
     </Border>
 </basic:BasicUserControl>

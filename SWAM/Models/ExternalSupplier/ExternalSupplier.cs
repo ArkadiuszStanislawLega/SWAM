@@ -10,5 +10,18 @@ namespace SWAM.Models.ExternalSupplier
         /// Tax Identification Number.
         /// </summary>
         public string Tin { get; set; }
+
+
+        private static ApplicationDbContext context = new ApplicationDbContext();
+
+        public static void Add(ExternalSupplier externalSupplier)
+        {
+            if (externalSupplier != null)
+            {
+                context.ExternalSuppliers.Add(externalSupplier);
+                context.SaveChanges();
+            }
+
+        }
     }
 }
