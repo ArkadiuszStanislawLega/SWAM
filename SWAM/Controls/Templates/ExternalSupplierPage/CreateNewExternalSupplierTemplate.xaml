@@ -23,10 +23,12 @@
                        Style="{StaticResource Title}"/>
             <Grid Grid.Row="1" HorizontalAlignment="Center"
                   VerticalAlignment="Center">
+                <!--#region Column definitions-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                <!--#endregion-->
                 <StackPanel  Grid.Column="0" Width="200">
                     <StackPanel Margin="5">
                         <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
@@ -37,12 +39,12 @@
                         <TextBox Name="ExternalSupplierPhone"/>
                     </StackPanel>
                     <StackPanel Margin="5">
-                        <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>
-                        <TextBox Name="CExternalSupplierEmailAddress"/>
+                        <TextBlock Text="TIN" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="ExternalSupplierTIN"/>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="5"  Grid.Column="1">
-                    <TextBlock Text="Adres zamieszkania" Style="{StaticResource TitleOfLists}"/>
+                    <TextBlock Text="Adres dostawcy" Style="{StaticResource TitleOfLists}"/>
                     <temp:AddressTemplate x:Name="ResidentalAddress"/>
                 </StackPanel>
             </Grid>
@@ -55,4 +57,4 @@
                 HorizontalAlignment="Right"
                 Style="{StaticResource CreatePeople}"/>
     </Grid>
-    </basic:BasicUserControl>
+</basic:BasicUserControl>

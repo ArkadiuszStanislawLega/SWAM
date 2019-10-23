@@ -21,11 +21,11 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             var external = new ExternalSupplier()
             {
                 Name = this.ExternalSupplierName.Text,
+                Tin = this.ExternalSupplierTIN.Text,
                 Address = this.ResidentalAddress.GetAddress<ExternalSupplierAddress>()
             };
 
             ExternalSupplier.Add(external);
-
             ExternalSupplierListViewModel.Instance.Refresh();
         }
     }

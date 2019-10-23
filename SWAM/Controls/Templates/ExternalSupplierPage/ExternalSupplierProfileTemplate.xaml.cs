@@ -10,6 +10,19 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         public ExternalSupplierProfileTemplate()
         {
             InitializeComponent();
+
+            this.ProperName.ConfirmChangeProperName.Click += ConfirmChangeProperName_Click;
+            this.Tin.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
+        }
+
+        private void ConfirmChangeTIN_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void ConfirmChangeProperName_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         private void SortAscending_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -29,7 +42,8 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
 
         private void CancelEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            this.ResidentalAddress.HideEditControls();
+            this.ResidentalAddress.ClearEditValues();
         }
 
         private void ConfirmEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -37,9 +51,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
 
         }
 
-        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
+        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => this.ResidentalAddress.ShowEditControls();
+        
     }
 }

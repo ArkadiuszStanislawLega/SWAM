@@ -62,8 +62,8 @@
             <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
                 <StackPanel Grid.Column="0" Width="300" Margin="10">
-                    <prop:ProfileNameTemplate x:Name="Name"/>
-                    <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                    <prop:ProfileProperNameTemplate x:Name="ProperName"/>
+                    <prop:ProfileTINtemplate x:Name="Tin"/>
                     <local:ExternalSuppliersEditableListTableTemplate />
                     <!--#region Residental Address-->
                     <StackPanel Margin="5">
@@ -79,7 +79,7 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <!--#endregion-->
-                                <TextBlock Text="Adres zamieszkania"
+                                <TextBlock Text="Adres dostawcy"
                                    Style="{StaticResource TitleOfLists}"
                                    Grid.Column="0"/>
                                 <Button Name="ChangeResidentalAddress" 

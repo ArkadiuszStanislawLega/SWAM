@@ -172,8 +172,14 @@
     <Compile Include="Controls\Templates\StandardsProperties\ProfilePhoneTemplate.xaml.cs">
       <DependentUpon>ProfilePhoneTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\StandardsProperties\ProfileProperNameTemplate.xaml.cs">
+      <DependentUpon>ProfileProperNameTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\StandardsProperties\ProfileSurnameTemplate.xaml.cs">
       <DependentUpon>ProfileSurnameTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\StandardsProperties\ProfileTINtemplate.xaml.cs">
+      <DependentUpon>ProfileTINtemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\WarehouseTechnicalDataTemplate.xaml.cs">
       <DependentUpon>WarehouseTechnicalDataTemplate.xaml</DependentUpon>
@@ -463,7 +469,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\StandardsProperties\ProfileProperNameTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\StandardsProperties\ProfileSurnameTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\StandardsProperties\ProfileTINtemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
