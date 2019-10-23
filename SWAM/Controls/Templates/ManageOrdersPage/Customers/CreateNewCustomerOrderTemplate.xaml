@@ -98,12 +98,16 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-               
+
                 <Grid Grid.Row="1" Grid.Column="0" Margin="10 0">
+                    <manageOrdersControls:WarehouseAccessListTemplate/>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" Margin="10 0">
                     <manageOrdersControls:ProductsListFromDbTemplate/>
                 </Grid>
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="1" Grid.Column="2">
                     <manageOrdersControls:ProductOrderListTemplate/>
                 </Grid>
             </Grid>
