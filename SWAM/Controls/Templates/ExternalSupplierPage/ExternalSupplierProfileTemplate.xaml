@@ -64,7 +64,7 @@
                 <StackPanel Grid.Column="0" Width="300" Margin="10">
                     <prop:ProfileProperNameTemplate x:Name="ProperName"/>
                     <prop:ProfileTINtemplate x:Name="Tin"/>
-                    <local:ExternalSuppliersEditableListTableTemplate />
+                    <local:ExternalSuppliersEditablePhoneListTemplate />
                     <!--#region Residental Address-->
                     <StackPanel Margin="5">
                         <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">

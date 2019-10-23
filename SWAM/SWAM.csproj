@@ -130,8 +130,8 @@
     <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierProfileTemplate.xaml.cs">
       <DependentUpon>ExternalSupplierProfileTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditableListTableTemplate.xaml.cs">
-      <DependentUpon>ExternalSuppliersEditableListTableTemplate.xaml</DependentUpon>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditablePhoneListTemplate.xaml.cs">
+      <DependentUpon>ExternalSuppliersEditablePhoneListTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MainWindow\CurrentUserProfileTemplate.xaml.cs">
       <DependentUpon>CurrentUserProfileTemplate.xaml</DependentUpon>
@@ -380,7 +380,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditableListTableTemplate.xaml">
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSuppliersEditablePhoneListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

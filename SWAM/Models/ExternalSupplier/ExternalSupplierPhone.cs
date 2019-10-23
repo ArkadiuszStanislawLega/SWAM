@@ -19,11 +19,9 @@ namespace SWAM.Models.ExternalSupplier
         /// Note regarding the telephone number.
         /// </summary>
         public string Note { get; set; }
-
-
+        
         public ExternalSupplier ExternalSupplier { get; set; }
-
-
+        
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext _context
@@ -110,7 +108,9 @@ namespace SWAM.Models.ExternalSupplier
         public ExternalSupplierPhone Get(int id)
         {
             _context = new ApplicationDbContext();
-            return _context.ExternalSupplierPhones.Include(e => e.ExternalSupplier).FirstOrDefault(e => e.Id == id);
+            return _context.ExternalSupplierPhones
+                .Include(e => e.ExternalSupplier)
+                .FirstOrDefault(e => e.Id == id);
         }
         #endregion
     }
