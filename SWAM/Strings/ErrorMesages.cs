@@ -54,8 +54,15 @@
         #region Customer
         public const string REFRESH_CUSTOMER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu klienta.";
         #endregion
-        #region Customer
+        #region External supplier
         public const string REFRESH_EXTERNAL_SUPPLIER_PROFILE_ERROR = "Wystąpił błąd odświerzania profilu zewnętrznego dostawcy.";
+        public const string EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR = "Wystąpił błąd podczas edycji numeru telefonu kontaktowego dostawcy zewnętrzenego.";
+        public const string ADD_EXTERNAL_SUPPLIER_PHONE_ERROR = "Wystąpił błąd podczas dodawania numeru telefonu kontaktowego dostawcy zewnętrzenego.";
+        public const string DELETE_EXTERNAL_SUPPLIER_PHONE_ERROR = "Wystąpił błąd podczas usuwania numeru telefonu kontaktowego dostawcy zewnętrzenego.";
+        public const string EDIT_EXTERNAL_SUPPLIER_ADDRESS_ERROR = "Wystąpił błąd podczas edycji adresu dostawcy zewnętrzenego.";
+        public const string CANCEL_EDIT_EXTERNAL_SUPPLIER_ADDRESS_ERROR = "Wystąpił błąd podczas anulowania edycji adresu dostawcy zewnętrzenego.";
+        public const string EDIT_EXTERNAL_SUPPLIER_PROPER_NAME_ERROR = "Wystąpił błąd podczas edycji nazwy własnej dostawcy zewnętrzenego.";
+        public const string EDIT_EXTERNAL_SUPPLIER_TIN_ERROR = "Wystąpił błąd podczas edycji TIN dostawcy zewnętrzenego.";
         #endregion
     }
 }

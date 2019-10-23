@@ -52,16 +52,16 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                                 InformationToUser($"Numer telefonu {phoneNumberBeforeEdited.ToString()} edytowano na {this.EditNote.Text} - {this.EditPhoneNumber.Text}.");
 
                             else
-                                InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} W czasie zmiany notatki telefonu. {ErrorMesages.DATABASE_ERROR}", true);
+                                InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR} W czasie zmiany notatki telefonu. {ErrorMesages.DATABASE_ERROR}", true);
                         }
                         else
-                            InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} W czasie zmiany numeru telefonu. {ErrorMesages.DATABASE_ERROR}", true);
+                            InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR} W czasie zmiany numeru telefonu. {ErrorMesages.DATABASE_ERROR}", true);
                     }
                 }
                 else
-                    InformationToUser($"{ErrorMesages.DURING_EDIT_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                    InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
-            else InformationToUser(ErrorMesages.DURING_EDIT_PHONE_ERROR, true);
+            else InformationToUser(ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR, true);
         }
         #endregion
         #region Delete_Click
@@ -93,12 +93,12 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                             }
                             catch (RefreshExternalsupplierPhonesListException ex) { ex.ShowMessage(this); }
                         }
-                        else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                        else InformationToUser($"{ErrorMesages.DELETE_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
                     }
                 }
-                else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
+                else InformationToUser($"{ErrorMesages.DELETE_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.MESSAGE_WINDOW_ERROR}", true);
             }
-            else InformationToUser($"{ErrorMesages.DURING_DELETE_PHONE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+            else InformationToUser($"{ErrorMesages.DELETE_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region Cancel_Click

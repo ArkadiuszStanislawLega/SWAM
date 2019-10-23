@@ -53,6 +53,7 @@ namespace SWAM.Models.ExternalSupplier
                 {
                     externalAddressDb.Country = externalSupplierAddress.Country;
                     externalAddressDb.PostCode = externalSupplierAddress.PostCode;
+                    externalAddressDb.Street = externalSupplierAddress.Street;
                     externalAddressDb.City = externalSupplierAddress.City;
                     externalAddressDb.HouseNumber = externalSupplierAddress.HouseNumber;
                     externalAddressDb.ApartmentNumber = externalSupplierAddress.ApartmentNumber;

@@ -1,6 +1,7 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Exceptions;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Strings;
 using System.Windows;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
@@ -31,11 +32,17 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                     PhoneNumber = this.NewPhone.Text,
                     ExternalSupplier = externalSupplier
                 });
-            }
 
-            RefreshPhoneList();
-            this.NewPhone.Text = string.Empty;
-            this.NewPhone.Text = string.Empty;
+                InformationToUser($"Został zmieniony numer kontaktowy telefonu dostawcy: {this.NewPhoneNote.Text}.");
+
+                RefreshPhoneList();
+                this.NewPhone.Text = string.Empty;
+                this.NewPhoneNote.Text = string.Empty;
+            }
+            else
+                InformationToUser($"{ErrorMesages.ADD_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+
+  
         }
         #endregion
         #region CancelCreateNewPhone_Click

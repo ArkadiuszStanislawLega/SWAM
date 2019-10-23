@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -15,6 +16,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             this.ProperName.ConfirmChangeProperName.Click += ConfirmChangeProperName_Click;
             this.Tin.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
         }
+
         #region ConfirmChangeProperName_Click
         /// <summary>
         /// Action after click confirm change proper name button.
@@ -34,7 +36,11 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 });
                 DataContext = ExternalSupplier.Get(externalSupplier.Id);
                 ExternalSupplierListViewModel.Instance.Refresh();
+
+                InformationToUser($"Edytowano nazwę własną zewnętrzengo dostawcy {this.ProperName.EditProperName.Text}.");
             }
+            else
+                InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PROPER_NAME_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region ConfirmChangeTIN_Click
@@ -46,7 +52,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         /// <param name="e">Event click change TIN button.</param>
         private void ConfirmChangeTIN_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if(DataContext is ExternalSupplier externalSupplier)
+            if (DataContext is ExternalSupplier externalSupplier)
             {
                 externalSupplier.Edit(new ExternalSupplier()
                 {
@@ -55,7 +61,12 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                     Tin = this.Tin.EditTin.Text
                 });
                 DataContext = ExternalSupplier.Get(externalSupplier.Id);
+
+                this.Tin.EditTin.Text = string.Empty;
+                InformationToUser($"Edytowano TIN zewnętrzego dostawcy {externalSupplier.Name}.");
             }
+            else
+                InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_TIN_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region ConfirmEditResidentalAddress_Click
@@ -73,8 +84,11 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 {
                     externalSupplier.Address.Edit(editedAddress);
                     DataContext = ExternalSupplier.Get(externalSupplier.Id);
+                    InformationToUser($"Edytowano adres zewnętrznego dostawcy.");
                 }
+                else InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_ADDRESS_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
+            else InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_ADDRESS_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
 
             this.ResidentalAddress.HideEditControls();
         }
@@ -93,6 +107,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             {
                 this.ResidentalAddress.DataContext = ExternalSupplier.Get(externalSupplier.Id).Address;
             }
+            else InformationToUser($"{ErrorMesages.CANCEL_EDIT_EXTERNAL_SUPPLIER_ADDRESS_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
         #region ChangeResidentalAddress_Click
