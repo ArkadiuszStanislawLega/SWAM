@@ -89,8 +89,10 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         private void CancelEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.ResidentalAddress.HideEditControls();
-            //TODO: Change this to update old values from database.
-            this.ResidentalAddress.ClearEditValues();
+            if (DataContext is ExternalSupplier externalSupplier)
+            {
+                this.ResidentalAddress.DataContext = ExternalSupplier.Get(externalSupplier.Id).Address;
+            }
         }
         #endregion
         #region ChangeResidentalAddress_Click
