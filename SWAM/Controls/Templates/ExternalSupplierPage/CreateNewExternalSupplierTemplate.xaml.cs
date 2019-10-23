@@ -2,7 +2,6 @@
 using SWAM.Models.ExternalSupplier;
 using System.Windows;
 
-
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
     /// <summary>
@@ -16,17 +15,28 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             this.ResidentalAddress.ShowEditControls();
         }
 
+        #region AddNewExternalSupplier_Click
+        /// <summary>
+        /// Action after click add new external supplier button.
+        /// Add new external supplier to database and update external supplier list view model.
+        /// </summary>
+        /// <param name="sender">Button add new external supplier.</param>
+        /// <param name="e">Event click add new external supplier button.</param>
         private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
         {
-            var external = new ExternalSupplier()
+            if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
             {
-                Name = this.ExternalSupplierName.Text,
-                Tin = this.ExternalSupplierTIN.Text,
-                Address = this.ResidentalAddress.GetAddress<ExternalSupplierAddress>()
-            };
+                var external = new ExternalSupplier()
+                {
+                    Name = this.ExternalSupplierName.Text,
+                    Tin = this.ExternalSupplierTIN.Text,
+                    Address = residentalAddress
+                };
 
-            ExternalSupplier.Add(external);
-            ExternalSupplierListViewModel.Instance.Refresh();
+                ExternalSupplier.Add(external);
+                ExternalSupplierListViewModel.Instance.Refresh();
+            }
         }
+        #endregion
     }
 }

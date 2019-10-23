@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Models.ExternalSupplier
 {
@@ -16,5 +18,49 @@ namespace SWAM.Models.ExternalSupplier
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
         public ExternalSupplier ExternalSupplier { get; set; }
+        //TODO: Try catch block
+        private static ApplicationDbContext context = new ApplicationDbContext();
+
+        #region Add
+        /// <summary>
+        /// Add external supplier address to datbase.
+        /// </summary>
+        /// <param name="externalSupplierAddress">New external supplier address.</param>
+        public static void Add(ExternalSupplierAddress externalSupplierAddress)
+        {
+            if(externalSupplierAddress != null)
+            {
+                context.ExternalSupplierAddresses.Add(externalSupplierAddress);
+                context.SaveChanges();
+            }
+        }
+        #endregion
+        #region Edit
+        /// <summary>
+        /// Edit external supplier address in database.
+        /// </summary>
+        /// <param name="externalSupplierAddress">New properties values in database.</param>
+        public void Edit(ExternalSupplierAddress externalSupplierAddress)
+        {
+            if (externalSupplierAddress != null)
+            {
+                context = new ApplicationDbContext();
+                var externalAddressDb = context.ExternalSupplierAddresses
+                    .Include(e => e.ExternalSupplier)
+                    .FirstOrDefault(e => e.Id == this.Id);
+
+                if (externalAddressDb != null)
+                {
+                    externalAddressDb.Country = externalSupplierAddress.Country;
+                    externalAddressDb.PostCode = externalSupplierAddress.PostCode;
+                    externalAddressDb.City = externalSupplierAddress.City;
+                    externalAddressDb.HouseNumber = externalSupplierAddress.HouseNumber;
+                    externalAddressDb.ApartmentNumber = externalSupplierAddress.ApartmentNumber;
+
+                    context.SaveChanges();
+                }
+            }
+        }
+        #endregion
     }
 }

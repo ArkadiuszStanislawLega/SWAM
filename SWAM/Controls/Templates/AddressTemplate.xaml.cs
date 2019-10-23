@@ -13,7 +13,6 @@ namespace SWAM.Controls.Templates
     /// </summary>
     public partial class AddressTemplate : UserControl
     {
-  
         public AddressTemplate()
         {
             InitializeComponent();

@@ -1,4 +1,5 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Models.ExternalSupplier;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -14,16 +15,94 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             this.ProperName.ConfirmChangeProperName.Click += ConfirmChangeProperName_Click;
             this.Tin.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
         }
-
-        private void ConfirmChangeTIN_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        #region ConfirmChangeProperName_Click
+        /// <summary>
+        /// Action after click confirm change proper name button.
+        /// Update proper name of external supplier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change proper name button.</param>
+        /// <param name="e">Event click change proper name button.</param>
         private void ConfirmChangeProperName_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            if (DataContext is ExternalSupplier externalSupplier)
+            {
+                externalSupplier.Edit(new ExternalSupplier()
+                {
+                    Id = externalSupplier.Id,
+                    Name = this.ProperName.EditProperName.Text,
+                    Tin = externalSupplier.Tin
+                });
+                DataContext = ExternalSupplier.Get(externalSupplier.Id);
+                ExternalSupplierListViewModel.Instance.Refresh();
+            }
         }
+        #endregion
+        #region ConfirmChangeTIN_Click
+        /// <summary>
+        /// Action after click confirm change TIN button.
+        /// Update TIN of external supplier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change TIN button.</param>
+        /// <param name="e">Event click change TIN button.</param>
+        private void ConfirmChangeTIN_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if(DataContext is ExternalSupplier externalSupplier)
+            {
+                externalSupplier.Edit(new ExternalSupplier()
+                {
+                    Id = externalSupplier.Id,
+                    Name = externalSupplier.Name,
+                    Tin = this.Tin.EditTin.Text
+                });
+                DataContext = ExternalSupplier.Get(externalSupplier.Id);
+            }
+        }
+        #endregion
+        #region ConfirmEditResidentalAddress_Click
+        /// <summary>
+        /// Action after click confirm change residenta address button.
+        /// Update residental address of external supplier in database.
+        /// </summary>
+        /// <param name="sender">Confirm change residental address button.</param>
+        /// <param name="e">Event click change residental address button.</param>
+        private void ConfirmEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is ExternalSupplier externalSupplier)
+            {
+                if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress editedAddress)
+                {
+                    externalSupplier.Address.Edit(editedAddress);
+                    DataContext = ExternalSupplier.Get(externalSupplier.Id);
+                }
+            }
+
+            this.ResidentalAddress.HideEditControls();
+        }
+        #endregion
+        #region CancelEditResidentalAddress_Click
+        /// <summary>
+        /// Action after click cancel edit residental address button.
+        /// Clear values hide edit controls.
+        /// </summary>
+        /// <param name="sender">Cancel change residental address button.</param>
+        /// <param name="e">Event click cancel change residental address button.</param>
+        private void CancelEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.ResidentalAddress.HideEditControls();
+            //TODO: Change this to update old values from database.
+            this.ResidentalAddress.ClearEditValues();
+        }
+        #endregion
+        #region ChangeResidentalAddress_Click
+        /// <summary>
+        /// Action after click change residental address button.
+        /// Show edit residental address controls.
+        /// </summary>
+        /// <param name="sender">Button change residental address.</param>
+        /// <param name="e">Event click button change residental address.</param>
+        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) 
+            => this.ResidentalAddress.ShowEditControls();
+        #endregion  
 
         private void SortAscending_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -39,19 +118,5 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
 
         }
-
-        private void CancelEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            this.ResidentalAddress.HideEditControls();
-            this.ResidentalAddress.ClearEditValues();
-        }
-
-        private void ConfirmEditResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
-        private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) => this.ResidentalAddress.ShowEditControls();
-        
     }
 }

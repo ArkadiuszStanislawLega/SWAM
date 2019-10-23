@@ -20,10 +20,29 @@ namespace SWAM.Models.ExternalSupplier
         public IList<ExternalSupplierPhone> Phones { get; set; }
 
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
-
-
+        //TODO: Try catch block
         private static ApplicationDbContext context = new ApplicationDbContext();
 
+        #region Get
+        /// <summary>
+        /// Resived externa supplier from database.
+        /// </summary>
+        /// <param name="Id">External supplier number Id in database.</param>
+        /// <returns>External supplier from database.</returns>
+        public static ExternalSupplier Get(int Id)
+        {
+            context = new ApplicationDbContext();
+            return context.ExternalSuppliers
+                .Include(e => e.Address)
+                .Include(e => e.Phones)
+                .FirstOrDefault(e => e.Id == Id);
+        }
+        #endregion
+        #region Add
+        /// <summary>
+        /// Add new external supplier to database.
+        /// </summary>
+        /// <param name="externalSupplier">New external supplier.</param>
         public static void Add(ExternalSupplier externalSupplier)
         {
             if (externalSupplier != null)
@@ -32,13 +51,48 @@ namespace SWAM.Models.ExternalSupplier
                 context.SaveChanges();
             }
         }
-
+        #endregion
+        #region GetExternalSupplierPhones
+        /// <summary>
+        /// Retrieves external supplier phone list from database.
+        /// </summary>
+        /// <returns>External supplier phone list.</returns>
         public IList<ExternalSupplierPhone> GetExternalSupplierPhones()
         {
             context = new ApplicationDbContext();
             return context.ExternalSupplierPhones.Where(e => e.ExternalSupplier.Id == this.Id).ToList();
         }
+        #endregion
+        #region Edit
+        /// <summary>
+        /// Edit current external supplier in database.
+        /// </summary>
+        /// <param name="externalSupplier">Updated properties values of external supplier.</param>
+        public void Edit(ExternalSupplier externalSupplier)
+        {
+            if(externalSupplier != null)
+            {
+                context = new ApplicationDbContext();
+                var externalSupplierDb = context.ExternalSuppliers
+                    .Include(e => e.Address)
+                    .FirstOrDefault(e => e.Id == externalSupplier.Id);
 
+                if (externalSupplierDb != null)
+                {
+                    externalSupplierDb.Name = externalSupplier.Name;
+                    externalSupplierDb.Tin = externalSupplier.Tin;
+                    externalSupplierDb.Address = externalSupplier.Address;
+
+                    context.SaveChanges();
+                }
+            }
+        }
+        #endregion
+        #region AddPhone
+        /// <summary>
+        /// Add new phone to external supplier phone list.
+        /// </summary>
+        /// <param name="externalSupplierPhone">New external supplier phone.</param>
         public void AddPhone(ExternalSupplierPhone externalSupplierPhone)
         {
             if (externalSupplierPhone != null)
@@ -55,7 +109,6 @@ namespace SWAM.Models.ExternalSupplier
                 context.SaveChanges();
             }
         }
-
-
+        #endregion  
     }
 }

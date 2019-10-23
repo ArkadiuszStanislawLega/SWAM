@@ -110,7 +110,9 @@ namespace SWAM.Models.ExternalSupplier
         public ExternalSupplierPhone Get(int id)
         {
             _context = new ApplicationDbContext();
-            return _context.ExternalSupplierPhones.Include(e => e.ExternalSupplier).FirstOrDefault(e => e.Id == id);
+            return _context.ExternalSupplierPhones
+                .Include(e => e.ExternalSupplier)
+                .FirstOrDefault(e => e.Id == id);
         }
         #endregion
     }
