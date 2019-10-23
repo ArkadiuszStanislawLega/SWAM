@@ -97,15 +97,16 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplierPhone != null)
             {
+                var externalSupplier = context.ExternalSuppliers.FirstOrDefault(e => e.Id == this.Id);
+
                 var number = new ExternalSupplierPhone()
                 {
                     PhoneNumber = externalSupplierPhone.PhoneNumber,
                     Note = externalSupplierPhone.Note,
-                    ExternalSupplier = this
+                    ExternalSupplier = externalSupplier
                 };
 
                 context.ExternalSupplierPhones.Add(number);
-
                 context.SaveChanges();
             }
         }

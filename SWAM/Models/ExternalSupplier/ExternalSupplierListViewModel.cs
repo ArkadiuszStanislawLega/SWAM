@@ -34,6 +34,9 @@ namespace SWAM.Models.ExternalSupplier
         /// </summary>
         public void Refresh()
         {
+            if(_externalSuppliers.Count > 0)
+                    _externalSuppliers.Clear();
+
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var externalSuppliers = context.People.OfType<ExternalSupplier>()
