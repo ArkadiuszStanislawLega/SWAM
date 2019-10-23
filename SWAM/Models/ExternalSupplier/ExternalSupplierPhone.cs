@@ -19,11 +19,9 @@ namespace SWAM.Models.ExternalSupplier
         /// Note regarding the telephone number.
         /// </summary>
         public string Note { get; set; }
-
-
+        
         public ExternalSupplier ExternalSupplier { get; set; }
-
-
+        
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
         private static ApplicationDbContext _context

@@ -27,7 +27,6 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             InitializeComponent();
         }
 
-
         #region Confirm_Click
         /// <summary>
         /// Action after click button to save changes after 
@@ -42,8 +41,8 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 //Get phone number from database before edit.
                 if (phone.Get(phone.Id) is ExternalSupplierPhone phoneNumberBeforeEdited)
                 {
-                    this._confirmWindow.Show($"Czy jesteś pewien że chcesz zmienić numer telefonu {phoneNumberBeforeEdited.ToString()} na {this.EditNote.Text} - {this.EditPhoneNumber.Text}?",
-                        out bool isEditConfirmed, $"Potwierdź edycję numeru telefonu {phone.ExternalSupplier.Name}");
+                    this._confirmWindow.Show($"Czy jesteś pewien że chcesz zmienić numer telefonu {phoneNumberBeforeEdited.Note} - {phoneNumberBeforeEdited.PhoneNumber} na {this.EditNote.Text} - {this.EditPhoneNumber.Text}?",
+                        out bool isEditConfirmed, $"Potwierdź edycję numeru telefonu {phoneNumberBeforeEdited.ExternalSupplier.Name}");
                     //if the user has confirmed editing the telephone number
                     if (isEditConfirmed)
                     {
@@ -87,7 +86,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                             //Refresh phones list.
                             try
                             {
-                                var phoneList = SWAM.MainWindow.FindParent<ExternalSuppliersEditableListTableTemplate>(this);
+                                var phoneList = SWAM.MainWindow.FindParent<ExternalSuppliersEditablePhoneListTemplate>(this);
                                 if (phoneList != null)
                                     phoneList.RefreshPhoneList();
                                 else throw new RefreshExternalsupplierPhonesListException();

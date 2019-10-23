@@ -6,11 +6,11 @@ using System.Windows;
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
     /// <summary>
-    /// Logika interakcji dla klasy ExternalSuppliersEditableListTableTemplate.xaml
+    /// Logika interakcji dla klasy ExternalSuppliersEditablePhoneListTemplate.xaml
     /// </summary>
-    public partial class ExternalSuppliersEditableListTableTemplate : BasicUserControl
+    public partial class ExternalSuppliersEditablePhoneListTemplate : BasicUserControl
     {
-        public ExternalSuppliersEditableListTableTemplate()
+        public ExternalSuppliersEditablePhoneListTemplate()
         {
             InitializeComponent();
         }
@@ -50,7 +50,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             this.NewPhone.Text = string.Empty;
             this.NewPhone.Text = string.Empty;
         }
-        #endregion
+        #endregion  
         #region RefreshPhoneList
         /// <summary>
         /// Refreshing view list of phones.
