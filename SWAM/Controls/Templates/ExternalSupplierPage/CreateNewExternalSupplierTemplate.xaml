@@ -31,12 +31,8 @@
                 <!--#endregion-->
                 <StackPanel  Grid.Column="0" Width="200">
                     <StackPanel Margin="5">
-                        <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="Nazwa dostawcy" Style="{StaticResource ProfileProperties}"/>
                         <TextBox Name="ExternalSupplierName"/>
-                    </StackPanel>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
-                        <TextBox Name="ExternalSupplierPhone"/>
                     </StackPanel>
                     <StackPanel Margin="5">
                         <TextBlock Text="TIN" Style="{StaticResource ProfileProperties}"/>

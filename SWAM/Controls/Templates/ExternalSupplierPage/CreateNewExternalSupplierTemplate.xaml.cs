@@ -35,6 +35,10 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
 
                 ExternalSupplier.Add(external);
                 ExternalSupplierListViewModel.Instance.Refresh();
+
+                this.ExternalSupplierName.Text = string.Empty;
+                this.ExternalSupplierTIN.Text = string.Empty;
+                this.ResidentalAddress.ClearEditValues();
             }
         }
         #endregion
