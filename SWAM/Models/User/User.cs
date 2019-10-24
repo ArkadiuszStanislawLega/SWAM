@@ -7,6 +7,7 @@ using System.Windows;
 using SWAM.Strings;
 using System.Data.Entity;
 using System.Text.RegularExpressions;
+using SWAM.Models.Warehouse;
 
 namespace SWAM.Models.User
 {
@@ -59,6 +60,10 @@ namespace SWAM.Models.User
         /// List of users phones.
         /// </summary>
         public IList<UserPhone> Phones { get; set; }
+        /// <summary>
+        /// Warehouse orders accepted by the user.
+        /// </summary>
+        public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
 

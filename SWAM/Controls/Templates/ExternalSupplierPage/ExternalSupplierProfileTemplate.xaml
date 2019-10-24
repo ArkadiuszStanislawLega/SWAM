@@ -191,7 +191,7 @@
                               ItemsSource="{Binding WarehouseOrders}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Id}" />
+                                <local:ExternalSupplierDeliverySmallItemListViewModelTemplate/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>

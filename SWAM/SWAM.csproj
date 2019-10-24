@@ -124,6 +124,12 @@
     <Compile Include="Controls\Templates\ExternalSupplierPage\CreateNewExternalSupplierTemplate.xaml.cs">
       <DependentUpon>CreateNewExternalSupplierTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierDeliveryItemListViewModelTemplate.xaml.cs">
+      <DependentUpon>ExternalSupplierDeliveryItemListViewModelTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierDeliverySmallItemListViewModelTemplate.xaml.cs">
+      <DependentUpon>ExternalSupplierDeliverySmallItemListViewModelTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierPhoneItemTemplate.xaml.cs">
       <DependentUpon>ExternalSupplierPhoneItemTemplate.xaml</DependentUpon>
     </Compile>
@@ -230,6 +236,10 @@
     <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.cs" />
     <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.Designer.cs">
       <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs" />
+    <Compile Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.Designer.cs">
+      <DependentUpon>201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -370,6 +380,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\ExternalSupplierPage\CreateNewExternalSupplierTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierDeliveryItemListViewModelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ExternalSupplierPage\ExternalSupplierDeliverySmallItemListViewModelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -779,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.resx">
       <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.resx">
+      <DependentUpon>201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

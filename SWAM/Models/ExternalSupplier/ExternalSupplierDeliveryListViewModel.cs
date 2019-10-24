@@ -38,6 +38,7 @@ namespace SWAM.Models.ExternalSupplier
                     .WarehouseOrders
                     .Include(w => w.OrderPositions)
                     .Include(w => w.WarehouseOrderStatus)
+                    .Include(w => w.UserAcceptingOrder)
                     .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
                     .ToList();
 

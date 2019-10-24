@@ -37,5 +37,9 @@ namespace SWAM.Models.Warehouse
         /// All items with products from the order.
         /// </summary>
         public IList<WarehouseOrderPosition> OrderPositions { get; set; }
+        /// <summary>
+        /// The person who receives the order from the supplier in the warehouse.
+        /// </summary>
+        public User.User UserAcceptingOrder { get; set; }
     }
 }

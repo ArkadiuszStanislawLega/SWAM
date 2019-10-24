@@ -11,6 +11,8 @@ namespace SWAM.EntityConfiguration
             HasRequired(w => w.Warehouse);
 
             HasMany(w => w.OrderPositions);
+            HasOptional(w => w.UserAcceptingOrder)
+                .WithMany(u => u.WarehouseOrders);
         }
     }
 }
