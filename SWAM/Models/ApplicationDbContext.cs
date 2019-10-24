@@ -28,6 +28,7 @@ namespace SWAM
         public DbSet<State> States { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<WarehouseAddress> WarehouseAddresses { get; set; }
+        public DbSet<WarehouseOrder> WarehouseOrders { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection")

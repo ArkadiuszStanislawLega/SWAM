@@ -239,6 +239,7 @@
     <Compile Include="Models\Customer\CustomerResidentalAddress.cs" />
     <Compile Include="Models\Customer\CustomersListViewModel.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierAddress.cs" />
+    <Compile Include="Models\ExternalSupplier\ExternalSupplierDeliveryListViewModel.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />

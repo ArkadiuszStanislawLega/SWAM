@@ -8,7 +8,7 @@
              xmlns:conv="clr-namespace:SWAM.Converters" 
              xmlns:temp="clr-namespace:SWAM.Controls.Templates"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
-             xmlns:lvm="clr-namespace:SWAM.Models.Customer"
+             xmlns:lvm="clr-namespace:SWAM.Models.ExternalSupplier"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:prop="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
@@ -187,8 +187,8 @@
                           VerticalScrollBarVisibility="Auto" 
                           MinWidth="490">
                     <ItemsControl Name="OrdersList"
-                              DataContext="{x:Static lvm:CustomerOrdersListViewModel.Instance}" 
-                              ItemsSource="{Binding Orders}">
+                              DataContext="{x:Static lvm:ExternalSupplierDeliveryListViewModel.Instance}" 
+                              ItemsSource="{Binding WarehouseOrders}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Id}" />
