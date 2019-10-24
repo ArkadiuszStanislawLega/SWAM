@@ -16,7 +16,18 @@ namespace SWAM.Models.ProductOrderList
 
         public void Add(CustomerOrderPosition customerOrderPosition)
         {
-            _customerOrderPositions.Add(customerOrderPosition);
+            if (!IsAddedAlready(customerOrderPosition.Product))
+                _customerOrderPositions.Add(customerOrderPosition);
+        }
+
+        public bool IsAddedAlready(Product product)
+        {
+            foreach (var position in _customerOrderPositions)
+            {
+                if (position.Product.Id == product.Id)
+                    return true;
+            }
+            return false;
         }
 
         public void Clear()
