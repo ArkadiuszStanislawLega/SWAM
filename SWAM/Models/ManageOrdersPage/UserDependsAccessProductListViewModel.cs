@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Linq;
+using SWAM.Models.ProductOrderList;
 
 namespace SWAM.Models.ManageOrdersPage
 {
@@ -50,6 +51,8 @@ namespace SWAM.Models.ManageOrdersPage
             {
                 _states.Add(item);
             }
+
+            ProductOrderListViewModel.Instance.Clear();
         }
         #endregion
     }
