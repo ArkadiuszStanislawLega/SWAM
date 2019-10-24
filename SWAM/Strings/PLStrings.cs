@@ -36,5 +36,8 @@
         public const string ORDER_DATE = "daty złożenia";
         public const string ORDER_STATUS = "statusu";
         #endregion
+        #region WarehouseOrderStatus
+        public const string ORDERED = "zamówione";
+        #endregion
     }
 }

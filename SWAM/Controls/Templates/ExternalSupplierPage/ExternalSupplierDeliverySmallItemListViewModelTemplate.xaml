@@ -61,11 +61,11 @@
                                     <Border.Background>
                                         <LinearGradientBrush StartPoint="0.5,0" >
                                             <GradientStop Color="Transparent" Offset="1" />
-                                            <GradientStop Color="{Binding CustomerOrderStatus, Converter={conv:CustomerOrderStatusToColourConverter}}" Offset="0.1"  />
+                                            <GradientStop Color="{Binding WarehouseOrderStatus, Converter={conv:WarehouseOrderStatusToColourConverter}}" Offset="0.1"  />
                                         </LinearGradientBrush>
                                     </Border.Background>
                                 </Border>
-                                <TextBlock  Grid.Row="1" Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}" Margin="5"/>
+                                <TextBlock  Grid.Row="1" Text="{Binding WarehouseOrderStatus, Converter={conv:ENtoPLwarehouseOrderStatusConverter}}" Margin="5"/>
                             </Grid>
                         </ControlTemplate>
                     </Button.Template>

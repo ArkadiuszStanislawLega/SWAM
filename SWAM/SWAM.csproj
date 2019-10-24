@@ -203,8 +203,10 @@
     <Compile Include="Converters\ENtoPLshipmentTypeConverter.cs" />
     <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
+    <Compile Include="Converters\ENtoPLwarehouseOrderStatusConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityReverseConverter.cs" />
+    <Compile Include="Converters\WarehouseOrderStatusToColourConverter.cs" />
     <Compile Include="Cryptography\CryptoService.cs" />
     <Compile Include="EntityConfiguration\AccessesConfiguration.cs" />
     <Compile Include="EntityConfiguration\AddressConfiguration.cs" />
