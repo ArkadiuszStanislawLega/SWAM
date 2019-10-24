@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ExternalSupplierPage"
              xmlns:conv="clr-namespace:SWAM.Converters"
              mc:Ignorable="d" 
+             Margin="1"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--#region ShowProfileStory-->

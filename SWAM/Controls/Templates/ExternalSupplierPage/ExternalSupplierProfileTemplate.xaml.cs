@@ -1,6 +1,13 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Enumerators;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Models.Warehouse;
 using SWAM.Strings;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -9,6 +16,30 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
     /// </summary>
     public partial class ExternalSupplierProfileTemplate : BasicUserControl
     {
+        #region Properties
+        /// <summary>
+        /// Property to retrieve the proper WarehouseOrder class property names. 
+        /// </summary>
+        private static readonly WarehouseOrder _sampleWarehouseOrder = new WarehouseOrder();
+        /// <summary>
+        /// Default list sort setting.
+        /// </summary>
+        private static readonly string _defaultSortValue = nameof(_sampleWarehouseOrder.Id);
+        /// <summary>
+        /// Property according to which it sorts the list of orders.
+        /// </summary>
+        private string _propertyByWitchIsSort = _defaultSortValue;
+        /// <summary>
+        /// Dictionary for proper sorting.
+        /// </summary>
+        private Dictionary<CustomerOrdersListSortingType, string> _propertiesByWhichSortingCanTakePlace = new Dictionary<CustomerOrdersListSortingType, string>()
+        {
+            { CustomerOrdersListSortingType.Id, nameof(_sampleWarehouseOrder.Id) },
+            { CustomerOrdersListSortingType.OrderDate, nameof(_sampleWarehouseOrder.OrderDate) },
+            { CustomerOrdersListSortingType.OrderStatus, nameof(_sampleWarehouseOrder.WarehouseOrderStatus) }
+        };
+        #endregion
+
         public ExternalSupplierProfileTemplate()
         {
             InitializeComponent();
@@ -121,19 +152,67 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             => this.ResidentalAddress.ShowEditControls();
         #endregion  
 
-        private void SortAscending_Click(object sender, System.Windows.RoutedEventArgs e)
+        #region SortAscending_Click
+        /// <summary>
+        /// Action after click checkBox in filters container to change type of sorting(ascending/descending) user list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
+            //Delete the last setting
+            if (this.OrdersList.Items.SortDescriptions.Count > 0)
+                this.OrdersList.Items.SortDescriptions.RemoveAt(this.OrdersList.Items.SortDescriptions.Count - 1);
 
+            if (this.AscendingSorting.IsChecked != true)
+                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Ascending));
+            else
+                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
         }
-
-        private void ConfirmSortButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        #endregion
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Filtering list depends on text typed in TextBox named FindUser.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            //TODO: Debug this. 
+            ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierDeliveryListViewModel.Instance);
+            if (filter != null)
+            {
+                //filter.Filter = customerOrder =>
+                //{
+                //    WarehouseOrder allCustomerOrdersWhom = customerOrder as WarehouseOrder;
+                //    switch ((CustomerOrdersListSortingType)SortBy.SelectedValue)
+                //    {
+                //        case CustomerOrdersListSortingType.Id:
+                //            return allCustomerOrdersWhom.Id.ToString().Contains(this.OrderNumberInput.Text);
+                //        case CustomerOrdersListSortingType.OrderDate:
+                //            return allCustomerOrdersWhom.OrderDate.ToString().Contains(this.OrderNumberInput.Text);
+                //        case CustomerOrdersListSortingType.OrderStatus:
+                //            return allCustomerOrdersWhom.CustomerOrderStatus.ToString().Contains(this.OrderNumberInput.Text);
+                //        default: return false;
+                //    }
+                //};
+            }
         }
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        #endregion
+        #region ConfirmSortButton_Click
+        /// <summary>
+        /// Action after clicked confirm sort button.
+        /// Sorts the list of customer orders depending on the settings entered by the user.
+        /// </summary>
+        /// <param name="sender">Confrim sort button.</param>
+        /// <param name="e">Event clicked confrim sort button.</param>
+        private void ConfirmSortButton_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this._propertiesByWhichSortingCanTakePlace.TryGetValue((CustomerOrdersListSortingType)this.SortBy.SelectedValue, out this._propertyByWitchIsSort))
+            {
+                SortAscending_Click(sender, e);
+            }
         }
+        #endregion
     }
 }
