@@ -73,7 +73,7 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
             {
-                //CustomerOrdersListViewModel.Instance.Refresh((Customer)button.DataContext);
+                ExternalSupplierDeliveryListViewModel.Instance.Refresh((ExternalSupplier)button.DataContext);
                 ChangeContent(CreateExternalSupplierProfile((ExternalSupplier)button.DataContext));
             }
             else InformationToUser(ErrorMesages.REFRESH_EXTERNAL_SUPPLIER_PROFILE_ERROR);

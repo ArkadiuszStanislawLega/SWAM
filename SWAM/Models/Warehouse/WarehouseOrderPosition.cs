@@ -17,7 +17,7 @@ namespace SWAM.Models.Warehouse
         /// <summary>
         /// Product quantity.
         /// </summary>
-        public uint Quantity { get; set; }
+        public int Quantity { get; set; }
         /// <summary>
         /// Product from the order.
         /// </summary>

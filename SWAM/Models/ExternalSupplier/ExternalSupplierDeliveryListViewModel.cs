@@ -26,25 +26,45 @@ namespace SWAM.Models.ExternalSupplier
         /// <summary>
         /// Refreshes the list with data from the database.
         /// </summary>
+        /// <param name="externalSupplier">External supplier whose data we want to download from the database.</param>
         public void Refresh(ExternalSupplier externalSupplier)
         {
-            if (_warehouseOrders.Count > 0)
-                _warehouseOrders.Clear();
-
-            //TODO: Remove this to model
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            if (externalSupplier != null)
             {
-                var warehouseDelivery = context
-                    .WarehouseOrders
-                    .Include(w => w.OrderPositions)
-                    .Include(w => w.WarehouseOrderStatus)
-                    .Include(w => w.UserAcceptingOrder)
-                    .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
-                    .ToList();
+                if (_warehouseOrders.Count > 0)
+                    _warehouseOrders.Clear();
 
-                foreach (var order in warehouseDelivery)
+                //TODO: Remove this to model
+                using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    _warehouseOrders.Add(order);
+                    var warehouseDelivery = context
+                        .WarehouseOrders
+                        .Include(w => w.OrderPositions)
+                        .Include(w => w.Warehouse)
+                        .Include(w => w.UserAcceptingOrder)
+                        .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
+                        .ToList();
+
+                    foreach (var order in warehouseDelivery)
+                    {
+                        for (int i = 0; i < order.OrderPositions.Count; i++)
+                        {
+                            //TODO: Think about a better solution.
+                            var id = order.OrderPositions[i].Id;
+                            order.OrderPositions[i] = context.WarehouseOrderPositions
+                                .Include(w => w.Product)
+                                .Include(w => w.State)
+                                .FirstOrDefault(w => w.Id == id);
+                        }
+
+                        var userId = order.UserAcceptingOrder.Id;
+                        order.UserAcceptingOrder = context.People
+                            .OfType<User.User>()
+                            .Include(u => u.Phones)
+                            .FirstOrDefault(u => u.Id == userId);
+
+                        _warehouseOrders.Add(order);
+                    }
                 }
             }
         }

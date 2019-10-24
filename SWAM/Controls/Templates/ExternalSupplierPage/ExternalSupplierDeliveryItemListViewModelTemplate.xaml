@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ExternalSupplierPage"
              xmlns:conv="clr-namespace:SWAM.Converters"
              mc:Ignorable="d" 
+             Name="Profile"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <!--#region HideProfileStory-->
@@ -39,15 +40,11 @@
                 <Grid>
                     <!--#region Columns and Rows definitions-->
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
@@ -63,11 +60,6 @@
                         <TextBlock Text="Data dostarczenia zamówienia" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding DeliveryDate}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="0" Grid.Column="4">
-                        <TextBlock Text="Adres dostawy" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding DeliveryAddress.Country}"/>
                     </StackPanel>
                     <!--#endregion-->
                     <!--#region 2nd row-->
@@ -110,84 +102,15 @@
                             <!--#endregion-->
                         </TextBlock>
                     </StackPanel>
-
                     <StackPanel Grid.Row="1" Grid.Column="2">
-                        <TextBlock Text="Kurier" 
-                                   Style="{StaticResource ProfileProperties}"/>
-
-                        <TextBlock Text="{Binding Courier.Name}">
-                            <!--#region ToolTip-->
-                            <TextBlock.ToolTip>
-                                <StackPanel>
-                                    <TextBlock Text="Numer telefonu:" 
-                                               FontStyle="Italic"
-                                               TextDecorations="Underline"
-                                               FontSize="14" 
-                                               Style="{StaticResource Title}">
-                                    </TextBlock>
-                                    <TextBlock Text="{Binding Courier.Phone}"/>
-                                </StackPanel>
-                            </TextBlock.ToolTip>
-                            <!--#endregion-->
-                        </TextBlock>
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="1" Grid.Column="4" Orientation="Horizontal">
-                        <StackPanel Margin="0 0 10 0">
-                            <TextBlock Text="Kod Pocztowy" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding DeliveryAddress.PostCode}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="Miasto" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding DeliveryAddress.City}"/>
-                        </StackPanel>
-                    </StackPanel>
-                    <!--#endregion-->
-                    <!--#region 3th row-->
-                    <StackPanel Grid.Row="2" Grid.Column="0">
                         <TextBlock Text="Nazwa magazynu" 
                                    Style="{StaticResource ProfileProperties}"/>
                         <TextBlock Text="{Binding Warehouse.Name}"/>
                     </StackPanel>
-
-                    <StackPanel Grid.Row="2" Grid.Column="2">
-                        <TextBlock Text="Rodzaj dostawy" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding ShipmentType, Converter={conv:ENtoPLshipmentTypeConverter}}"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="2" Grid.Column="4">
-                        <TextBlock Text="Ulica" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding DeliveryAddress.Street}"/>
-                    </StackPanel>
-                    <!--#endregion-->
-                    <!--#region 4th row-->
-                    <StackPanel Grid.Row="3" Grid.Column="0">
-                        <TextBlock Text="Status zapłaty" 
-                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding IsPaid, Converter={conv:BoolToPLstringConerter}}"/>
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="3" Grid.Column="2" >
-                        <TextBlock Text="Rodzaj zapłaty" 
-                                   Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding PaymentType, Converter={conv:ENtoPLpaymentType}}"/>
-                    </StackPanel>
-                    <StackPanel Grid.Row="4" Grid.Column="4" Orientation="Horizontal">
-                        <StackPanel Margin="0 0 10 0">
-                            <TextBlock Text="Numer domu" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding DeliveryAddress.HouseNumber}"/>
-                        </StackPanel>
-                        <StackPanel>
-                            <TextBlock Text="Numer lokalu" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding DeliveryAddress.ApartmentNumber}"/>
-                        </StackPanel>
-                    </StackPanel>
                     <!--#endregion-->
                 </Grid>
                 <DataGrid Grid.Row="1" Margin="5"
-                          ItemsSource="{Binding CustomerOrderPositions}"  
+                          ItemsSource="{Binding OrderPositions}"  
                           Style="{StaticResource BasicDataGrid}"
                           HorizontalAlignment="Stretch"
                           AutoGenerateColumns="False" 
@@ -198,6 +121,8 @@
                         <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
                         <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
                         <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Dostępna ilość"  Binding="{Binding State.Available}"/>
+                        <DataGridTextColumn Header="Zamówiona ilość"  Binding="{Binding State.Booked}"/>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
