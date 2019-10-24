@@ -97,12 +97,6 @@ namespace SWAM.Models
 
         public static List<Product> AllProducts() => context.Products.ToList();
 
-        public static List<State> GetProductsFromWarehouse(int warehouseId)
-            => context.States
-                    .Include(s => s.Product)
-                    .Include(s => s.Warehouse)
-                    .Where(s => s.WarehouseId == warehouseId).ToList();
-
         public static Product Get(int Id)
         {
             return context.Products.FirstOrDefault(p => p.Id == Id);

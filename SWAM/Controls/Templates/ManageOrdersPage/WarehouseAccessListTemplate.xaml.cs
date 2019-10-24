@@ -1,5 +1,6 @@
 ﻿using SWAM.Models;
 using SWAM.Models.ManageOrdersPage;
+using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Customer list refresh after each page load
-            //CustomersListViewModel.Instance.Refresh();
+            UserDependsAccessProductListViewModel.Instance.Refresh();
             // obtain a reference to the CollectionView instance
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
             // assign a delegate to the Filter property
@@ -54,9 +55,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         /// <returns>True if does</returns>
         private bool WarehouseFilter(object item)
         {
-            if (item is State state)
+            if (item is Warehouse warehouse)
             {
-                return (state.Product.Name.IndexOf(warehouseFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return (warehouse.Name.IndexOf(warehouseFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             return false;
         }
@@ -83,12 +84,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         private void WarehouseListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
         {
             var item = (sender as ListView).SelectedItem;
-            if ((sender as ListView).SelectedItem is State state)
+            if ((sender as ListView).SelectedItem is Warehouse warehouse)
             {
-                if (state == null)
+                if (warehouse == null)
                     return;
 
-                UserDependsAccessProductListViewModel.Instance.SetSelectedState(state);
+                UserDependsAccessProductListViewModel.Instance.SetStates(warehouse);
             }
         }
         #endregion

@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
              xmlns:prodLVM="clr-namespace:SWAM.Models.ManageOrdersPage"
              mc:Ignorable="d" 
+             Loaded="Window_Loaded"
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
@@ -43,10 +44,10 @@
                           Background="{StaticResource MainBarBrash}" 
                           Foreground="White" BorderThickness="0" 
                           DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
-                          ItemsSource="{Binding States}">
+                          ItemsSource="{Binding Warehouses}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                        <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Product.Name}" />
+                        <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}" />
                         </GridView>
                     </ListView.View>
                 </ListView>

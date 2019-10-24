@@ -1,11 +1,8 @@
 ﻿using SWAM.Models.Customer;
 using SWAM.Models.Warehouse;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SWAM.Models;
+using System.Data.Entity;
 
 namespace SWAM.Models
 {
@@ -63,6 +60,11 @@ namespace SWAM.Models
         }
         public static List<State> AllStates() => context.States.Include("Product").Include("Warehouse").ToList();
 
+        public static List<State> GetStatesFromWarehouse(int warehouseId)
+            => context.States
+                    .Include(s => s.Product)
+                    .Include(s => s.Warehouse)
+                    .Where(s => s.WarehouseId == warehouseId).ToList();
     }
 }
 

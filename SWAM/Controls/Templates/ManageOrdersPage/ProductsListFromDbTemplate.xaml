@@ -17,7 +17,7 @@
                   CanUserAddRows="False"
                   SelectionMode="Single"
                   DataContext="{x:Static prodLVM:UserDependsAccessProductListViewModel.Instance}"
-                  ItemsSource="{Binding SelectedState}"
+                  ItemsSource="{Binding States}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Product.Name}"/>

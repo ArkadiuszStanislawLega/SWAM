@@ -7,11 +7,11 @@ namespace SWAM.Models.ManageOrdersPage
 {
     public class UserDependsAccessProductListViewModel : UserControl
     {
+        private readonly ObservableCollection<Warehouse.Warehouse> _warehouses = new ObservableCollection<Warehouse.Warehouse>();
+        public ObservableCollection<Warehouse.Warehouse> Warehouses => this._warehouses;
+
         private readonly ObservableCollection<State> _states = new ObservableCollection<State>();
         public ObservableCollection<State> States => this._states;
-
-        private ObservableCollection<State> _selectedState = new ObservableCollection<State>();
-        public ObservableCollection<State> SelectedState => this._selectedState;
 
         #region Singletone Pattern
         static UserDependsAccessProductListViewModel() => _instance.Refresh();
@@ -23,24 +23,34 @@ namespace SWAM.Models.ManageOrdersPage
         #region Refresh
         public void Refresh()
         {
-            var accessUsersToWarehouses = new List<AccessUsersToWarehouses>(AccessUsersToWarehouses.GetUserAccesses(SWAM.MainWindow.LoggedInUser.Id));
+            var accessUsersToWarehouses = (AccessUsersToWarehouses.GetUserAccesses(SWAM.MainWindow.LoggedInUser.Id)) as List<AccessUsersToWarehouses>;
 
             if (accessUsersToWarehouses != null)
             {
-                if (_states.Count > 0)
-                    _states.Clear();
+                if (_warehouses.Count > 0)
+                    _warehouses.Clear();
 
-                accessUsersToWarehouses.ForEach(a => { Product.GetProductsFromWarehouse(a.Warehouse.Id).ForEach(s => { _states.Add(s); }); });
+                foreach (var item in accessUsersToWarehouses)
+                {
+                    _warehouses.Add(item.Warehouse);
+                }
             }
         }
         #endregion
 
-        public void SetSelectedState(State state)
+        #region SetStates
+        public void SetStates(Warehouse.Warehouse warehouse)
         {
-            if (_selectedState.Count > 0)
-                _selectedState.Clear();
+            if (_states.Count > 0)
+                _states.Clear();
 
-            _selectedState.Add(state);
+            var statesFromWarehouse = State.GetStatesFromWarehouse(warehouse.Id);
+
+            foreach (var item in statesFromWarehouse)
+            {
+                _states.Add(item);
+            }
         }
+        #endregion
     }
 }
