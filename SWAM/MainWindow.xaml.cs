@@ -82,7 +82,7 @@ namespace SWAM
         /// <summary>
         /// Container with whole pages view.
         /// </summary>
-        private readonly Dictionary<PagesUserControls, UserControl> _pages = new Dictionary<PagesUserControls, UserControl>()
+        private readonly Dictionary<PagesUserControls, BasicPage> _pages = new Dictionary<PagesUserControls, BasicPage>()
         {
             { PagesUserControls.LoginPage,new LoginPage()},
             { PagesUserControls.AdministratorPage, new AdministratorPage()},
@@ -142,8 +142,16 @@ namespace SWAM
         #region BasicConstructor
         public MainWindow()
         {
-
             InitializeComponent();
+            foreach (KeyValuePair<PagesUserControls, BasicPage> entry in this._pages)
+            {
+                entry.Value.UnloadStory.Completed += (sender, e) =>
+                 {
+                     this.ContentOfWindow.Children.Remove(entry.Value);
+                     this.ContentOfWindow.Children.Add(BasicPage.CurrentLoadedBasicPage[1]);
+                     BasicPage.CurrentLoadedBasicPage.RemoveAt(0);
+                 };
+            }
 
             ChangeContent(PagesUserControls.LoginPage);
 
@@ -207,14 +215,11 @@ namespace SWAM
         /// <param name="page">The Page which should be loaded.</param>
         public void ChangeContent(PagesUserControls page)
         {
-            if (this.ContentOfWindow.Children.Capacity > 0 && page != this._currentPageLoaded)
-                this.ContentOfWindow.Children.RemoveAt(this.ContentOfWindow.Children.Count - 1);
-
             //If page what we want change is not loaded..
             if (page != this._currentPageLoaded)
             {
                 //find page in dictionary
-                if (this._pages.TryGetValue(page, out UserControl pageToAdd))
+                if (this._pages.TryGetValue(page, out BasicPage pageToAdd))
                 {
                     if (page == PagesUserControls.LogedInUserProfile)
                     {
@@ -223,8 +228,88 @@ namespace SWAM
                             DataContext = MainWindow.LoggedInUser
                         };
                     }
+                    BasicPage.CurrentLoadedBasicPage.Add(pageToAdd);
 
-                    this.ContentOfWindow.Children.Add(pageToAdd);
+                    if (BasicPage.CurrentLoadedBasicPage.Count > 1)
+                    {
+                        if (this._pages.TryGetValue(_currentPageLoaded, out BasicPage pagetToUnload))
+                        {
+                            pagetToUnload.CreateStory();
+
+                            Grid mainContent = new Grid();
+
+                            switch (_currentPageLoaded)
+                            {
+                                case PagesUserControls.AdministratorPage:
+                                    {
+                                        var currentPage = (AdministratorPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.EmptyPage:
+                                    {
+                                        var currentPage = (ErrorPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+
+                                case PagesUserControls.LoginPage:
+                                    {
+                                        var currentPage = (LoginPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageCouriersPage:
+                                    {
+                                        var currentPage = (ManageCouriersPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageCustomersPage:
+                                    {
+                                        var currentPage = (ManageCustomersPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageExternalSuppliersPage:
+                                    {
+                                        var currentPage = (ManageExternalSuppliersPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageItemsPage:
+                                    {
+                                        var currentPage = (ManageItemPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageMagazinePage:
+                                    {
+                                        var currentPage = (ManageMagazinePage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.ManageOrdersPage:
+                                    {
+                                        var currentPage = (ManageOrdersPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.MessagesPage:
+                                    {
+                                        var currentPage = (MessagesPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                            }
+                            pagetToUnload.SetStoryboardTarget(mainContent);
+                            this.BeginStoryboard(pagetToUnload.UnloadStory);
+                        }
+                    }
+                    else
+                    {
+                        this.ContentOfWindow.Children.Add(pageToAdd);
+                    }
 
                     this._currentPageLoaded = page;
                 }
@@ -233,6 +318,8 @@ namespace SWAM
             }
         }
         #endregion
+
+
 
         #region NaviagionBar_Click
         /// <summary>
@@ -338,7 +425,7 @@ namespace SWAM
                 ChangeContent(PagesUserControls.MessagesPage);
             else
             {
-                if(_pages.TryGetValue(PagesUserControls.MessagesPage, out UserControl userControl) && userControl is MessagesPage messagePage)
+                if(_pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage userControl) && userControl is MessagesPage messagePage)
                     messagePage.RefreshMessagesList();
             }
         }

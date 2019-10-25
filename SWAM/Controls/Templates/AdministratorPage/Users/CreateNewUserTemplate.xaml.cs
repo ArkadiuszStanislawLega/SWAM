@@ -2,6 +2,8 @@
 using SWAM.Cryptography;
 using System;
 using System.Windows;
+using System.Windows.Media.Animation;
+using System.Threading.Tasks;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -24,9 +26,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Make passwords and user name validation.
-            if (this.NewUserName.Text != "" && 
-                this.UserPassword.Password != "" && 
-                this.ConfirmPassword.Password == this.UserPassword.Password && 
+            if (this.NewUserName.Text != "" &&
+                this.UserPassword.Password != "" &&
+                this.ConfirmPassword.Password == this.UserPassword.Password &&
                 this.UserPermissions.SelectedValue != null)
             {
                 var hashPassword = new CryptoService();
@@ -68,5 +70,16 @@ namespace SWAM.Controls.Templates.AdministratorPage
             this.UserPermissions.SelectedValue = 0;
         }
         #endregion
+
+        private async void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            await Unload();
+        }
+
+        private async Task Unload()
+        {
+            this.BeginStoryboard((Storyboard)this.FindResource("LoadedStory"));
+            await Task.Delay(600);
+        }
     }
 }

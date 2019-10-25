@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 using SWAM.Exceptions;
-using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Pages;
 
 namespace SWAM.Controls.Templates.MainWindow
 {
     /// <summary>
     /// Logika interakcji dla klasy UserProfileTemplate.xaml
     /// </summary>
-    public partial class CurrentUserProfileTemplate : BasicUserControl
+    public partial class CurrentUserProfileTemplate : BasicPage
     {
         public CurrentUserProfileTemplate()
         {

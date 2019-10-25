@@ -22,6 +22,22 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="UnloadStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="ContentOfWindow"
+                                Duration="0:0:8"
+                                From="0 0 250 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="ContentOfWindow"
+                             Duration="0:0:8" 
+                             From="1" To="0"/>
+        </Storyboard>
+        <!--#endregion-->
+    </Window.Resources>
     <Grid Name="EverythingInWindow">
         <!--#region Rows definitions-->
         <Grid.RowDefinitions>
@@ -172,7 +188,7 @@
         </Grid>
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <Grid Grid.Row="3" Name="ContentOfWindow" VerticalAlignment="Stretch"/>
+        <Grid Grid.Row="3" Name="ContentOfWindow" />
         <!--#endregion-->
         <!--#region Information-->
         <StackPanel Name="Information"  Grid.Row="4"  

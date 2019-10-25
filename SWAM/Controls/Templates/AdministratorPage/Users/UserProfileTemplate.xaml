@@ -12,7 +12,27 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <conv:AccountBlockToTextConverter x:Key="accountBlockToTextConverter"/>
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="MainContent"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="MainContent"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
     </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

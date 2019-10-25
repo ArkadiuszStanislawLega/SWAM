@@ -12,7 +12,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageCustomersPage.xaml
     /// </summary>
-    public partial class ManageCustomersPage : BasicUserControl
+    public partial class ManageCustomersPage : BasicPage
     {
         public ManageCustomersPage()
         {

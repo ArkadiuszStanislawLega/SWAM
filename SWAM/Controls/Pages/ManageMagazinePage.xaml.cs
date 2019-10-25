@@ -1,16 +1,15 @@
 ﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.MagazineListViewModel;
 using SWAM.Strings;
 
 namespace SWAM
 {
-    public partial class ManageMagazinePage : BasicUserControl
+    public partial class ManageMagazinePage : BasicPage
     {
         enum Operation { none, edit, add };
 

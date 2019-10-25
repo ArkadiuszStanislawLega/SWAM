@@ -85,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Pages\BasicPage.cs" />
     <Compile Include="Controls\Pages\ManageCouriersPage.xaml.cs">
       <DependentUpon>ManageCouriersPage.xaml</DependentUpon>
     </Compile>

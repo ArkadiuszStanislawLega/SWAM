@@ -12,7 +12,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageExternalSuppliersPage.xaml
     /// </summary>
-    public partial class ManageExternalSuppliersPage : BasicUserControl
+    public partial class ManageExternalSuppliersPage : BasicPage
     {
         public ManageExternalSuppliersPage()
         {

@@ -1,18 +1,15 @@
-﻿using SWAM.Enumerators;
-using SWAM.Exceptions;
-using SWAM.Windows;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows;
+using System;
+using SWAM.Windows;
+using SWAM.Enumerators;
+using SWAM.Exceptions;
+using System.Collections.Generic;
 
-namespace SWAM.Controls.Templates.AdministratorPage
+namespace SWAM.Controls.Pages
 {
-    /// <summary>
-    /// Logika interakcji dla klasy BasicUserControl.xaml
-    /// </summary>
-    public partial class BasicUserControl : UserControl
+    public partial class BasicPage : UserControl
     {
         /// <summary>
         /// Main window instance.
@@ -25,22 +22,32 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <returns>Confirm window.</returns>
         protected ConfirmWindow _confirmWindow { get => this._mainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
 
+
         public Storyboard UnloadStory = new Storyboard();
+        public static List<BasicPage> CurrentLoadedBasicPage = new List<BasicPage>();
 
         public Storyboard CreateStory()
         {
-            var delay = 6000;
+            var delay = 300;
 
             Storyboard.SetTargetName(UnloadStory, "MainContent");
 
             AddSlide(delay);
             AddFade(delay);
-
             this.Visibility = Visibility.Visible;
 
-            UnloadStory.Begin(this);
-
             return UnloadStory;
+        }
+
+        public void SetStoryboardTarget(DependencyObject obj)
+        {
+            Storyboard.SetTarget(UnloadStory, obj);
+        }
+
+        public void StartUnloadStory()
+        {
+            this.Visibility = Visibility.Visible;
+            this.BeginStoryboard(UnloadStory);
         }
 
         private void AddSlide(double delay)
@@ -68,7 +75,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UnloadStory.Children.Add(doubleAnimation);
         }
 
-
         #region InformationToUser
         /// <summary>
         /// Changing content inforamtion label in main window.
@@ -91,36 +97,5 @@ namespace SWAM.Controls.Templates.AdministratorPage
             }
         }
         #endregion
-        #region UserProfileRefresh
-        /// <summary>
-        /// Refresh current user profile.
-        /// </summary>
-        protected void UserProfileRefresh()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this) is UserProfileTemplate userProfileTemplate)
-                    userProfileTemplate.RefreshData();
-                else throw new RefreshUserProfileException();
-            }
-            catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
-        #region UserListRefresh
-        /// <summary>
-        /// Refreshing user list.
-        /// </summary>
-        protected void UserListRefresh()
-        {
-            try
-            {
-                if (SWAM.MainWindow.FindParent<UsersControlPanelTemplate>(this) is UsersControlPanelTemplate usersControlPanelTemplate)
-                    usersControlPanelTemplate.RefreshUsersList();
-                else throw new RefreshUserListException();
-            }
-            catch (RefreshUserListException ex) { ex.ShowMessage(this); }
-        }
-        #endregion
     }
 }
-

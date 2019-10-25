@@ -9,6 +9,7 @@
              xmlns:conv="clr-namespace:SWAM.Converters"  
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
+             Unloaded="BasicUserControl_Unloaded"
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
