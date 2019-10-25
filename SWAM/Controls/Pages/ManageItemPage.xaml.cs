@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.ProductListViewModel;
 using SWAM.Strings;
@@ -13,7 +13,7 @@ namespace SWAM
     /// <summary>
     /// Logika interakcji dla klasy ManageItemPage.xaml
     /// </summary>
-    public partial class ManageItemPage : BasicUserControl
+    public partial class ManageItemPage : BasicPage
     {
         /// <summary>
         /// Enumerator to check what operation will be performed.

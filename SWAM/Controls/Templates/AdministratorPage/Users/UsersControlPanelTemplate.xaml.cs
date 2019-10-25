@@ -6,6 +6,8 @@ using SWAM.Strings;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Media.Animation;
+using System.Windows.Media;
+using System.Threading.Tasks;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -20,6 +22,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UsersControlPanelTemplate()
         {
             InitializeComponent();
+
+
+
+            ChangeContent(c);
         }
         #endregion
         #region UsersControlPanelTemplate_Loaded
@@ -30,6 +36,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
         #endregion
+
+        CreateNewUserTemplate c = new CreateNewUserTemplate();
 
         #region RefreshUsersList
         /// <summary>
@@ -52,19 +60,32 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNewUser_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewUserTemplate());
+        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeContent(c);
+        }
         #endregion
         #region ChangeContent
         /// <summary>
         /// Changing content for the new one in right section of this user control.
         /// </summary>
         /// <param name="newContent">Profile of user template or New user template.</param>
-        private void ChangeContent(UserControl newContent)
+        private void ChangeContent(BasicUserControl newContent)
         {
-            if (this.RightSection.Children.Count > 0)
-                this.RightSection.Children.RemoveAt(this.RightSection.Children.Count - 1);
-
-            this.RightSection.Children.Add(newContent);
+            if (this.RightSection.Children.Count > 0 && this.RightSection.Children[0] != newContent)
+            {
+                c.CreateStory();
+                this.RightSection.Children.RemoveAt(0);
+                this.RightSection.Children.Add(newContent);
+            }
+            else if(this.RightSection.Children.Count == 0)
+            {
+                c.UnloadStory.Completed += (s, e) =>
+                {
+                    this.RightSection.Children.Remove(c);
+                };
+                this.RightSection.Children.Add(c);
+            }
         }
         #endregion
 
@@ -118,10 +139,5 @@ namespace SWAM.Controls.Templates.AdministratorPage
             else InformationToUser(ErrorMesages.DURING_CHANGING_USER_PROFILE_ERROR);
         }
         #endregion
-
-        private void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

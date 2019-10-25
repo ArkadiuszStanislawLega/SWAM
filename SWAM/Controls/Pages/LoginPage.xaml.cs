@@ -10,7 +10,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy loginPage.xaml
     /// </summary>
-    public partial class LoginPage : UserControl
+    public partial class LoginPage : BasicPage
     {
         public LoginPage()       
         {

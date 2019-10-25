@@ -12,7 +12,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy MessagesPageTemplate.xaml
     /// </summary>
-    public partial class MessagesPage : BasicUserControl
+    public partial class MessagesPage : BasicPage
     {
         #region Properties
         /// <summary>

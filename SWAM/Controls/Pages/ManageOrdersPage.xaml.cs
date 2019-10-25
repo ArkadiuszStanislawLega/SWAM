@@ -10,7 +10,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageOrdersPage.xaml
     /// </summary>
-    public partial class ManageOrdersPage : UserControl
+    public partial class ManageOrdersPage : BasicPage
     {
         Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
                 { BookmarkInPage.WarehouseOrdersPanel, new WarehouseOrdersPanelTemplate()},

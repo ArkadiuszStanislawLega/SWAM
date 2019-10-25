@@ -13,7 +13,7 @@ namespace SWAM.Controls.Pages
     /// <summary>
     /// Logika interakcji dla klasy ManageCouriersPage.xaml
     /// </summary>
-    public partial class ManageCouriersPage : BasicUserControl
+    public partial class ManageCouriersPage : BasicPage
     {
         public ManageCouriersPage()
         {

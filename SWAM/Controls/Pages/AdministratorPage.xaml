@@ -1,17 +1,38 @@
-﻿<UserControl x:Class="SWAM.Controls.Pages.AdministratorPage"
+﻿<page:BasicPage x:Class="SWAM.Controls.Pages.AdministratorPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:temp="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+        xmlns:page="clr-namespace:SWAM.Controls.Pages"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
-        xmlns:local="clr-namespace:SWAM"
         Background="{StaticResource BackgroundOfPagesBrash}"
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
         Padding="10"
-        Name="AdministratorPageContent"
+        x:Name="AdministratorPageContent"
         mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="MainContent"
+                                Duration="0:0:0.8"
+                                From="0 0 -250 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="MainContent"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -41,4 +62,4 @@
             <temp:UsersControlPanelTemplate />
         </Grid>
     </Grid>
-</UserControl>
+</page:BasicPage>
