@@ -27,28 +27,28 @@
             <StackPanel Margin="10">
                 <TextBlock Text="Imię"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerName" Width="250" Text="{Binding Name}"/>
+                <TextBox Name="CustomerName" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Surname-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwisko"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerSurname" Width="250" Text="{Binding Surname}"/>
+                <TextBox Name="CustomerSurname" Width="250" IsReadOnly="True" Text="{Binding Surname}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone number-->
             <StackPanel Margin="10">
                 <TextBlock Text="Numer kontaktowy"
                                    Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerPhoneNumber" Width="250" Text="{Binding Phone}"/>
+                <TextBox Name="CustomerPhoneNumber" Width="250" IsReadOnly="True" Text="{Binding Phone}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                                    Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerEmailAddress" Width="250" Text="{Binding EmailAddress}"/>
+                <TextBox Name="CustomerEmailAddress" Width="250" IsReadOnly="True" Text="{Binding EmailAddress}"/>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>
