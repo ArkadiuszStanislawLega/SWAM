@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.Designer.cs">
       <DependentUpon>201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.cs" />
+    <Compile Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.Designer.cs">
+      <DependentUpon>201910270835086_UpdateTableCouriersColumnNameIsUnique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -810,6 +814,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.resx">
       <DependentUpon>201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.resx">
+      <DependentUpon>201910270835086_UpdateTableCouriersColumnNameIsUnique.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -1,6 +1,7 @@
 ﻿using SWAM.Models.Customer;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace SWAM.Models.Courier
@@ -25,6 +26,28 @@ namespace SWAM.Models.Courier
         public string EmailAddress { get; set; }
         //TODO:Try catch block.
         private static ApplicationDbContext context = new ApplicationDbContext();
+
+        #region IsAdd
+        /// <summary>
+        /// Adding new customer to database.
+        /// </summary>
+        /// <param name="courier">New customer.</param>
+        /// <returns>True if username does not exist in database.</returns>
+        public bool IsAdd(Courier courier)
+        {
+            if (courier != null)
+            {
+                context.Couriers.Add(courier);
+                if (context.Couriers.FirstOrDefault(c => c.Name == courier.Name) == null)
+                {
+                    var number = context.SaveChanges();
+                    if (number == 1)
+                        return true;
+                }
+            }
+            return false;
+        }
+        #endregion
 
         #region Get
         /// <summary>
