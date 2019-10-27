@@ -228,33 +228,9 @@
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
-    <Compile Include="Migrations\201910181237286_Initial.cs" />
-    <Compile Include="Migrations\201910181237286_Initial.Designer.cs">
-      <DependentUpon>201910181237286_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs" />
-    <Compile Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.Designer.cs">
-      <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.cs" />
-    <Compile Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.Designer.cs">
-      <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs" />
-    <Compile Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.Designer.cs">
-      <DependentUpon>201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.cs" />
-    <Compile Include="Migrations\201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.Designer.cs">
-      <DependentUpon>201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.cs" />
-    <Compile Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.Designer.cs">
-      <DependentUpon>201910270835086_UpdateTableCouriersColumnNameIsUnique.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson.cs" />
-    <Compile Include="Migrations\201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson.Designer.cs">
-      <DependentUpon>201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson.cs</DependentUpon>
+    <Compile Include="Migrations\201910271009279_Initial.cs" />
+    <Compile Include="Migrations\201910271009279_Initial.Designer.cs">
+      <DependentUpon>201910271009279_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -804,26 +780,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910181237286_Initial.resx">
-      <DependentUpon>201910181237286_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.resx">
-      <DependentUpon>201910201659230_RenameColumnEmailToEmailAddressInCouriersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221638482_ExternalSupplierHavePhonesAndAddress.resx">
-      <DependentUpon>201910221638482_ExternalSupplierHavePhonesAndAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.resx">
-      <DependentUpon>201910240639410_UpdateWarehouseOrderModelAddUserAcceptingOrderColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.resx">
-      <DependentUpon>201910240715142_UpdateWarehouseOrderPostionChangeQuantityVeriableTypeToInt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910270835086_UpdateTableCouriersColumnNameIsUnique.resx">
-      <DependentUpon>201910270835086_UpdateTableCouriersColumnNameIsUnique.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson.resx">
-      <DependentUpon>201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910271009279_Initial.resx">
+      <DependentUpon>201910271009279_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

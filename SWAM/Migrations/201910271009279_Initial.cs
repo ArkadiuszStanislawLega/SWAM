@@ -32,9 +32,10 @@ namespace SWAM.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false, maxLength: 60),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "IX_FirstName");
             
             CreateTable(
                 "dbo.EmailAddresses",
@@ -78,20 +79,105 @@ namespace SWAM.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Warehouses",
+                "dbo.WarehouseOrders",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        OrderDate = c.DateTime(nullable: false),
+                        DeliveryDate = c.DateTime(),
+                        WarehouseOrderStatus = c.Int(nullable: false),
+                        ExternalSupplayer_Id = c.Int(nullable: false),
+                        UserAcceptingOrder_Id = c.Int(),
+                        Warehouse_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ExternalSuppliers", t => t.ExternalSupplayer_Id)
+                .ForeignKey("dbo.Users", t => t.UserAcceptingOrder_Id)
+                .ForeignKey("dbo.Warehouses", t => t.Warehouse_Id, cascadeDelete: true)
+                .Index(t => t.ExternalSupplayer_Id)
+                .Index(t => t.UserAcceptingOrder_Id)
+                .Index(t => t.Warehouse_Id);
+            
+            CreateTable(
+                "dbo.ExternalSuppliersAddresses",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Country = c.String(),
+                        City = c.String(),
+                        Street = c.String(),
+                        HouseNumber = c.String(),
+                        ApartmentNumber = c.String(),
+                        PostCode = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ExternalSuppliers", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "dbo.ExternalSuppliersPhones",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PhoneNumber = c.String(),
+                        Note = c.String(),
+                        ExternalSupplier_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ExternalSuppliers", t => t.ExternalSupplier_Id)
+                .Index(t => t.ExternalSupplier_Id);
+            
+            CreateTable(
+                "dbo.WarehouseOrderPositions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Quantity = c.Int(nullable: false),
+                        State_Id = c.Int(),
+                        Product_Id = c.Int(),
+                        WarehouseOrder_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.States", t => t.State_Id)
+                .ForeignKey("dbo.Products", t => t.Product_Id)
+                .ForeignKey("dbo.WarehouseOrders", t => t.WarehouseOrder_Id)
+                .Index(t => t.State_Id)
+                .Index(t => t.Product_Id)
+                .Index(t => t.WarehouseOrder_Id);
+            
+            CreateTable(
+                "dbo.Products",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Height = c.Long(nullable: false),
-                        Width = c.Long(nullable: false),
+                        Weigth = c.Long(nullable: false),
                         Length = c.Long(nullable: false),
-                        SurfaceAreaNetto = c.Long(nullable: false),
-                        SurfaceAreaBrutton = c.Long(nullable: false),
-                        AcceptableWeight = c.Long(nullable: false),
-                        WarehouseAddressId = c.Int(nullable: false),
+                        Width = c.Long(nullable: false),
+                        Height = c.Long(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.CustomerOrderPositions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ProductId = c.Int(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        CustomerOrder_Id = c.Int(),
+                        State_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.CustomerOrders", t => t.CustomerOrder_Id)
+                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
+                .ForeignKey("dbo.States", t => t.State_Id)
+                .Index(t => t.ProductId)
+                .Index(t => t.CustomerOrder_Id)
+                .Index(t => t.State_Id);
             
             CreateTable(
                 "dbo.CustomerOrders",
@@ -111,13 +197,25 @@ namespace SWAM.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Couriers", t => t.CourierId)
-                .ForeignKey("dbo.Customers", t => t.CustomerId)
+                .ForeignKey("dbo.Customers", t => t.CustomerId, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserId)
                 .ForeignKey("dbo.Warehouses", t => t.WarehouseId, cascadeDelete: true)
                 .Index(t => t.WarehouseId)
                 .Index(t => t.UserId)
                 .Index(t => t.CustomerId)
                 .Index(t => t.CourierId);
+            
+            CreateTable(
+                "dbo.Customers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Surname = c.String(),
+                        Phone = c.String(),
+                        EmailAddress = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.CustomerResidentalAddress",
@@ -136,35 +234,49 @@ namespace SWAM.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
-                "dbo.CustomerOrderPositions",
+                "dbo.CustomerOrederDeliveryAddress",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ProductId = c.Int(nullable: false),
-                        Quantity = c.Int(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Country = c.String(),
+                        City = c.String(),
+                        Street = c.String(),
+                        HouseNumber = c.String(),
+                        ApartmentNumber = c.String(),
+                        PostCode = c.String(),
                         CustomerOrder_Id = c.Int(),
-                        State_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CustomerOrders", t => t.CustomerOrder_Id)
-                .ForeignKey("dbo.States", t => t.State_Id)
-                .ForeignKey("dbo.Products", t => t.ProductId, cascadeDelete: true)
-                .Index(t => t.ProductId)
-                .Index(t => t.CustomerOrder_Id)
-                .Index(t => t.State_Id);
+                .Index(t => t.CustomerOrder_Id);
             
             CreateTable(
-                "dbo.Products",
+                "dbo.Warehouses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Weigth = c.Long(nullable: false),
-                        Length = c.Long(nullable: false),
-                        Width = c.Long(nullable: false),
                         Height = c.Long(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Width = c.Long(nullable: false),
+                        Length = c.Long(nullable: false),
+                        SurfaceAreaNetto = c.Long(nullable: false),
+                        SurfaceAreaBrutton = c.Long(nullable: false),
+                        AcceptableWeight = c.Long(nullable: false),
+                        WarehouseAddressId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Addresses",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Country = c.String(),
+                        City = c.String(),
+                        Street = c.String(),
+                        HouseNumber = c.String(),
+                        ApartmentNumber = c.String(),
+                        PostCode = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -186,92 +298,24 @@ namespace SWAM.Migrations
                 .Index(t => t.WarehouseId);
             
             CreateTable(
-                "dbo.WarehouseOrderPositions",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Product_Id = c.Int(),
-                        State_Id = c.Int(),
-                        WarehouseOrder_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Products", t => t.Product_Id)
-                .ForeignKey("dbo.States", t => t.State_Id)
-                .ForeignKey("dbo.WarehouseOrders", t => t.WarehouseOrder_Id)
-                .Index(t => t.Product_Id)
-                .Index(t => t.State_Id)
-                .Index(t => t.WarehouseOrder_Id);
-            
-            CreateTable(
-                "dbo.WarehouseOrders",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        OrderDate = c.DateTime(nullable: false),
-                        DeliveryDate = c.DateTime(),
-                        WarehouseOrderStatus = c.Int(nullable: false),
-                        ExternalSupplayer_Id = c.Int(nullable: false),
-                        Warehouse_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ExternalSuppliers", t => t.ExternalSupplayer_Id)
-                .ForeignKey("dbo.Warehouses", t => t.Warehouse_Id, cascadeDelete: true)
-                .Index(t => t.ExternalSupplayer_Id)
-                .Index(t => t.Warehouse_Id);
-            
-            CreateTable(
-                "dbo.CustomerOrederDeliveryAddress",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Country = c.String(),
-                        City = c.String(),
-                        Street = c.String(),
-                        HouseNumber = c.String(),
-                        ApartmentNumber = c.String(),
-                        PostCode = c.String(),
-                        CustomerOrder_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CustomerOrders", t => t.CustomerOrder_Id)
-                .Index(t => t.CustomerOrder_Id);
-            
-            CreateTable(
-                "dbo.Addresses",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Country = c.String(),
-                        City = c.String(),
-                        Street = c.String(),
-                        HouseNumber = c.String(),
-                        ApartmentNumber = c.String(),
-                        PostCode = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Couriers",
                 c => new
                     {
                         Id = c.Int(nullable: false),
                         Tin = c.String(),
                         Phone = c.String(),
-                        Email = c.String(),
+                        EmailAddress = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.People", t => t.Id)
                 .Index(t => t.Id);
             
             CreateTable(
-                "dbo.Customers",
+                "dbo.ExternalSuppliers",
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Surname = c.String(),
-                        Phone = c.String(),
-                        EmailAddress = c.String(),
+                        Tin = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.People", t => t.Id)
@@ -289,17 +333,6 @@ namespace SWAM.Migrations
                 .ForeignKey("dbo.Warehouses", t => t.Warehouse_Id)
                 .Index(t => t.Id)
                 .Index(t => t.Warehouse_Id);
-            
-            CreateTable(
-                "dbo.ExternalSuppliers",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        Tin = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.People", t => t.Id)
-                .Index(t => t.Id);
             
             CreateTable(
                 "dbo.Users",
@@ -368,30 +401,32 @@ namespace SWAM.Migrations
             DropForeignKey("dbo.UsersEmailAddresses", "User_Id", "dbo.Users");
             DropForeignKey("dbo.UsersEmailAddresses", "Id", "dbo.EmailAddresses");
             DropForeignKey("dbo.Users", "Id", "dbo.People");
-            DropForeignKey("dbo.ExternalSuppliers", "Id", "dbo.People");
             DropForeignKey("dbo.WarehouseAddress", "Warehouse_Id", "dbo.Warehouses");
             DropForeignKey("dbo.WarehouseAddress", "Id", "dbo.Addresses");
-            DropForeignKey("dbo.Customers", "Id", "dbo.People");
+            DropForeignKey("dbo.ExternalSuppliers", "Id", "dbo.People");
             DropForeignKey("dbo.Couriers", "Id", "dbo.People");
             DropForeignKey("dbo.AccessUsersToWarehouses", "Warehouse_Id", "dbo.Warehouses");
+            DropForeignKey("dbo.AccessUsersToWarehouses", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.AccessUsersToWarehouses", "Administrator_Id", "dbo.Users");
             DropForeignKey("dbo.WarehouseOrders", "Warehouse_Id", "dbo.Warehouses");
-            DropForeignKey("dbo.CustomerOrders", "WarehouseId", "dbo.Warehouses");
-            DropForeignKey("dbo.CustomerOrders", "UserId", "dbo.Users");
-            DropForeignKey("dbo.CustomerOrederDeliveryAddress", "CustomerOrder_Id", "dbo.CustomerOrders");
-            DropForeignKey("dbo.CustomerOrderPositions", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.WarehouseOrders", "UserAcceptingOrder_Id", "dbo.Users");
             DropForeignKey("dbo.WarehouseOrderPositions", "WarehouseOrder_Id", "dbo.WarehouseOrders");
-            DropForeignKey("dbo.WarehouseOrders", "ExternalSupplayer_Id", "dbo.ExternalSuppliers");
-            DropForeignKey("dbo.WarehouseOrderPositions", "State_Id", "dbo.States");
             DropForeignKey("dbo.WarehouseOrderPositions", "Product_Id", "dbo.Products");
+            DropForeignKey("dbo.WarehouseOrderPositions", "State_Id", "dbo.States");
             DropForeignKey("dbo.States", "WarehouseId", "dbo.Warehouses");
             DropForeignKey("dbo.States", "ProductId", "dbo.Products");
             DropForeignKey("dbo.CustomerOrderPositions", "State_Id", "dbo.States");
+            DropForeignKey("dbo.CustomerOrderPositions", "ProductId", "dbo.Products");
+            DropForeignKey("dbo.CustomerOrders", "WarehouseId", "dbo.Warehouses");
+            DropForeignKey("dbo.CustomerOrders", "UserId", "dbo.Users");
+            DropForeignKey("dbo.CustomerOrederDeliveryAddress", "CustomerOrder_Id", "dbo.CustomerOrders");
             DropForeignKey("dbo.CustomerOrderPositions", "CustomerOrder_Id", "dbo.CustomerOrders");
             DropForeignKey("dbo.CustomerOrders", "CustomerId", "dbo.Customers");
             DropForeignKey("dbo.CustomerResidentalAddress", "Id", "dbo.Customers");
             DropForeignKey("dbo.CustomerOrders", "CourierId", "dbo.Couriers");
-            DropForeignKey("dbo.AccessUsersToWarehouses", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.AccessUsersToWarehouses", "Administrator_Id", "dbo.Users");
+            DropForeignKey("dbo.WarehouseOrders", "ExternalSupplayer_Id", "dbo.ExternalSuppliers");
+            DropForeignKey("dbo.ExternalSuppliersPhones", "ExternalSupplier_Id", "dbo.ExternalSuppliers");
+            DropForeignKey("dbo.ExternalSuppliersAddresses", "Id", "dbo.ExternalSuppliers");
             DropForeignKey("dbo.Messages", "Sender_Id", "dbo.Users");
             DropForeignKey("dbo.Messages", "Receiver_Id", "dbo.Users");
             DropIndex("dbo.CouriersPhones", new[] { "Courier_Id" });
@@ -401,29 +436,32 @@ namespace SWAM.Migrations
             DropIndex("dbo.UsersEmailAddresses", new[] { "User_Id" });
             DropIndex("dbo.UsersEmailAddresses", new[] { "Id" });
             DropIndex("dbo.Users", new[] { "Id" });
-            DropIndex("dbo.ExternalSuppliers", new[] { "Id" });
             DropIndex("dbo.WarehouseAddress", new[] { "Warehouse_Id" });
             DropIndex("dbo.WarehouseAddress", new[] { "Id" });
-            DropIndex("dbo.Customers", new[] { "Id" });
+            DropIndex("dbo.ExternalSuppliers", new[] { "Id" });
             DropIndex("dbo.Couriers", new[] { "Id" });
-            DropIndex("dbo.CustomerOrederDeliveryAddress", new[] { "CustomerOrder_Id" });
-            DropIndex("dbo.WarehouseOrders", new[] { "Warehouse_Id" });
-            DropIndex("dbo.WarehouseOrders", new[] { "ExternalSupplayer_Id" });
-            DropIndex("dbo.WarehouseOrderPositions", new[] { "WarehouseOrder_Id" });
-            DropIndex("dbo.WarehouseOrderPositions", new[] { "State_Id" });
-            DropIndex("dbo.WarehouseOrderPositions", new[] { "Product_Id" });
             DropIndex("dbo.States", new[] { "WarehouseId" });
             DropIndex("dbo.States", new[] { "ProductId" });
-            DropIndex("dbo.CustomerOrderPositions", new[] { "State_Id" });
-            DropIndex("dbo.CustomerOrderPositions", new[] { "CustomerOrder_Id" });
-            DropIndex("dbo.CustomerOrderPositions", new[] { "ProductId" });
+            DropIndex("dbo.CustomerOrederDeliveryAddress", new[] { "CustomerOrder_Id" });
             DropIndex("dbo.CustomerResidentalAddress", new[] { "Id" });
             DropIndex("dbo.CustomerOrders", new[] { "CourierId" });
             DropIndex("dbo.CustomerOrders", new[] { "CustomerId" });
             DropIndex("dbo.CustomerOrders", new[] { "UserId" });
             DropIndex("dbo.CustomerOrders", new[] { "WarehouseId" });
+            DropIndex("dbo.CustomerOrderPositions", new[] { "State_Id" });
+            DropIndex("dbo.CustomerOrderPositions", new[] { "CustomerOrder_Id" });
+            DropIndex("dbo.CustomerOrderPositions", new[] { "ProductId" });
+            DropIndex("dbo.WarehouseOrderPositions", new[] { "WarehouseOrder_Id" });
+            DropIndex("dbo.WarehouseOrderPositions", new[] { "Product_Id" });
+            DropIndex("dbo.WarehouseOrderPositions", new[] { "State_Id" });
+            DropIndex("dbo.ExternalSuppliersPhones", new[] { "ExternalSupplier_Id" });
+            DropIndex("dbo.ExternalSuppliersAddresses", new[] { "Id" });
+            DropIndex("dbo.WarehouseOrders", new[] { "Warehouse_Id" });
+            DropIndex("dbo.WarehouseOrders", new[] { "UserAcceptingOrder_Id" });
+            DropIndex("dbo.WarehouseOrders", new[] { "ExternalSupplayer_Id" });
             DropIndex("dbo.Messages", new[] { "Sender_Id" });
             DropIndex("dbo.Messages", new[] { "Receiver_Id" });
+            DropIndex("dbo.People", "IX_FirstName");
             DropIndex("dbo.AccessUsersToWarehouses", new[] { "Warehouse_Id" });
             DropIndex("dbo.AccessUsersToWarehouses", new[] { "User_Id" });
             DropIndex("dbo.AccessUsersToWarehouses", new[] { "Administrator_Id" });
@@ -431,20 +469,22 @@ namespace SWAM.Migrations
             DropTable("dbo.UsersPhones");
             DropTable("dbo.UsersEmailAddresses");
             DropTable("dbo.Users");
-            DropTable("dbo.ExternalSuppliers");
             DropTable("dbo.WarehouseAddress");
-            DropTable("dbo.Customers");
+            DropTable("dbo.ExternalSuppliers");
             DropTable("dbo.Couriers");
-            DropTable("dbo.Addresses");
-            DropTable("dbo.CustomerOrederDeliveryAddress");
-            DropTable("dbo.WarehouseOrders");
-            DropTable("dbo.WarehouseOrderPositions");
             DropTable("dbo.States");
-            DropTable("dbo.Products");
-            DropTable("dbo.CustomerOrderPositions");
-            DropTable("dbo.CustomerResidentalAddress");
-            DropTable("dbo.CustomerOrders");
+            DropTable("dbo.Addresses");
             DropTable("dbo.Warehouses");
+            DropTable("dbo.CustomerOrederDeliveryAddress");
+            DropTable("dbo.CustomerResidentalAddress");
+            DropTable("dbo.Customers");
+            DropTable("dbo.CustomerOrders");
+            DropTable("dbo.CustomerOrderPositions");
+            DropTable("dbo.Products");
+            DropTable("dbo.WarehouseOrderPositions");
+            DropTable("dbo.ExternalSuppliersPhones");
+            DropTable("dbo.ExternalSuppliersAddresses");
+            DropTable("dbo.WarehouseOrders");
             DropTable("dbo.Phones");
             DropTable("dbo.Messages");
             DropTable("dbo.EmailAddresses");

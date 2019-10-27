@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UpdateCustomerTheClientDoesNotInheritFromPerson : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateCustomerTheClientDoesNotInheritFromPerson));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910270959312_UpdateCustomerTheClientDoesNotInheritFromPerson"; }
+            get { return "201910271009279_Initial"; }
         }
         
         string IMigrationMetadata.Source
