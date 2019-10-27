@@ -40,7 +40,7 @@ namespace SWAM.Models.Customer
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var customers = context.People.OfType<Customer>()
+                var customers = context.Customers.OfType<Customer>()
                     .Include(c => c.ResidentalAddress)
                     .ToList();
 
