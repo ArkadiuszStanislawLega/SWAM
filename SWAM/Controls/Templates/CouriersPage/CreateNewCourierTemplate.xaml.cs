@@ -1,7 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
 using SWAM.Models.Courier;
-using System.Data.Entity.Infrastructure;
 using System.Windows;
 
 namespace SWAM.Controls.Templates.CouriersPage

@@ -2,8 +2,6 @@
 using SWAM.Cryptography;
 using System;
 using System.Windows;
-using System.Windows.Media.Animation;
-using System.Threading.Tasks;
 using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
@@ -81,7 +79,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
             this.UserPermissions.SelectedValue = 0;
         }
         #endregion
-
+        #region NameValidation
+        /// <summary>
+        /// They will check the user's name for length.
+        /// </summary>
+        /// <param name="name">Name to check.</param>
+        /// <returns>True if the name meets the requirements.</returns>
         private bool NameValidation(string name)
         {
             //Check name - The name cannot be empty
@@ -99,16 +102,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
 
             return false;
         }
-
-            private async void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            await Unload();
-        }
-
-        private async Task Unload()
-        {
-            this.BeginStoryboard((Storyboard)this.FindResource("LoadedStory"));
-            await Task.Delay(600);
-        }
+        #endregion
     }
 }

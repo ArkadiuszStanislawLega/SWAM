@@ -7,8 +7,16 @@ namespace SWAM.Models.Customer
 {   /// <summary>
     /// The basic model of the class in the database representing the courier  <see cref="Person"/>.
     /// </summary>
-    public class Customer : Person
+    public class Customer 
     {
+        /// <summary>
+        /// The id number of the person in the database.
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// First name of the person.
+        /// </summary>
+        public string Name { get; set; }
         /// <summary>
         /// customer's lastname
         /// </summary>
@@ -53,7 +61,7 @@ namespace SWAM.Models.Customer
         {
             if (customer != null)
             {
-                context.People.Add(customer);
+                context.Customers.Add(customer);
                 context.SaveChanges();
             }
         }
