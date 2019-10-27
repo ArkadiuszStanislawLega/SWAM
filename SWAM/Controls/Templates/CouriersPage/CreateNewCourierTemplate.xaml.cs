@@ -11,11 +11,6 @@ namespace SWAM.Controls.Templates.CouriersPage
     /// </summary>
     public partial class CreateNewCourierTemplate : BasicUserControl
     {
-        /// <summary>
-        /// Minimum courier name size.
-        /// </summary>
-        public const int MIN_NAME_LEGTH = 3;
-
         public CreateNewCourierTemplate()
         {
             InitializeComponent();
@@ -35,7 +30,7 @@ namespace SWAM.Controls.Templates.CouriersPage
             {
                 char[] nameLength = this.CourierName.Text.ToCharArray();
                 //the name must contain more than 3 letters
-                if (nameLength.Length > MIN_NAME_LEGTH)
+                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LEGTH)
                 {
                     //Validate email address.
                     if (EmailAddress.IsValidEmail(this.CourierEmailAddress.Text))

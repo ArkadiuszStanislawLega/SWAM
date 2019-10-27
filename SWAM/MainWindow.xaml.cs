@@ -17,6 +17,10 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
+        /// <summary>
+        /// Minimum courier name size.
+        /// </summary>
+        public const int MIN_NAME_LEGTH = 3;
         //TODO: Delete this in released 
         /// <summary>
         /// Temporary user id for debug.

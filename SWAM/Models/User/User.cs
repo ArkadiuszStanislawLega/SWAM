@@ -77,6 +77,12 @@ namespace SWAM.Models.User
             set => dbContext = value;
         }
 
+        #region IsValidPassword
+        /// <summary>
+        /// Checking the password in terms of password length and characters used in the password.
+        /// </summary>
+        /// <param name="pasword">Password to be checked.</param>
+        /// <returns>True if the password meets all the requirements.</returns>
         public static bool IsValidPassword(string pasword)
         {
             var input = pasword;
@@ -90,7 +96,7 @@ namespace SWAM.Models.User
             else
                 return false;
         }
-
+        #endregion
 
         #region TryLogIn
         /// <summary>
@@ -131,18 +137,24 @@ namespace SWAM.Models.User
         }
         #endregion
 
-        #region CreateNewUser
+        #region IsAdd
         /// <summary>
         /// Add new user to database.
         /// </summary>
         /// <param name="user"></param>
-        public static void AddNewUser(User user)
+        public bool IsAdd(User user)
         {
             if (user != null)
             {
                 _context.People.Add(user);
-                _context.SaveChanges();
+                if (_context.People.FirstOrDefault(c => c.Name == user.Name) == null)
+                {
+                    var number = _context.SaveChanges();
+                    if (number == 1)
+                        return true;
+                }
             }
+            return false;
         }
         #endregion
         #region ChangeName

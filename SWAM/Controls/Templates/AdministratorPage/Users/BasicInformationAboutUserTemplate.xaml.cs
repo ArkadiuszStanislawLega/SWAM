@@ -92,10 +92,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                         //This error may appear if the account password salt was generated incorrectly when creating the account.
                         InformationToUser($"{ErrorMesages.DURING_EDIT_PASSWORD_ERROR}");
                 }
-                else InformationToUser($"Hasła są niezgodne. Hasła muszą być takie same.", true);
+                else InformationToUser($"{ErrorMesages.PASSWORD_COMMPILANCE_ERROR}", true);
             }
-            else
-                InformationToUser(ErrorMesages.PASSWORD_REQUIREMENT_ERROR, true);
+            else InformationToUser(ErrorMesages.PASSWORD_REQUIREMENT_ERROR, true);
         }
         #endregion
 

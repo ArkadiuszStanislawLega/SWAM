@@ -48,7 +48,6 @@ namespace SWAM.Models.Courier
             return false;
         }
         #endregion
-
         #region Get
         /// <summary>
         /// Returns the courier from the database by id number.

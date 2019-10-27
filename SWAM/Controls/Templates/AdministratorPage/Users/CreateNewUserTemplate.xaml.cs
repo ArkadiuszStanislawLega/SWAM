@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Media.Animation;
 using System.Threading.Tasks;
+using SWAM.Strings;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -25,36 +26,46 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="e"></param>
         private void Comfirm_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Make passwords and user name validation.
-            if (this.NewUserName.Text != "" &&
-                this.UserPassword.Password != "" &&
-                this.ConfirmPassword.Password == this.UserPassword.Password &&
-                this.UserPermissions.SelectedValue != null)
+            //Validate name
+            if (NameValidation(this.NewUserName.Text))
             {
-                var hashPassword = new CryptoService();
-                var passwordSalt = CryptoService.GenerateSalt();
-
-                var user = new User()
+                //Validate passwords
+                if (this.ConfirmPassword.Password == this.UserPassword.Password)
                 {
-                    Name = this.NewUserName.Text,
-                    Password = CryptoService.ComputeHash(this.UserPassword.Password, passwordSalt),
-                    PasswordSalt = passwordSalt,
-                    DateOfCreate = DateTime.Now,
-                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                    StatusOfUserAccount = this.AccountStatus.IsChecked ==
-                                                        true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
-                    DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
-                };
+                    if (User.IsValidPassword(this.UserPassword.Password))
+                    {
+                        //Validate selected user type
+                        if (this.UserPermissions.SelectedValue != null)
+                        {
+                            //Generate password salt.
+                            var passwordSalt = CryptoService.GenerateSalt();
 
-                if (user != null)
-                {
-                    User.AddNewUser(user);
-                    InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
-                    UserListRefresh();
+                            var user = new User()
+                            {
+                                Name = this.NewUserName.Text,
+                                Password = CryptoService.ComputeHash(this.UserPassword.Password, passwordSalt),   //Hash the password
+                                PasswordSalt = passwordSalt,
+                                DateOfCreate = DateTime.Now,
+                                Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
+                                StatusOfUserAccount = this.AccountStatus.IsChecked ==
+                                                                    true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                                DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
+                            };
+
+                            //Try to add new user to database
+                            if (user != null && user.IsAdd(user))
+                            {
+                                InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                                UserListRefresh();
+                                RestartTextBoxes();
+                            }
+                            else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
+                        }
+                        else InformationToUser("Przed utworzniem konta musisz wybrać jego typ.");
+                    }
+                    else InformationToUser(ErrorMesages.PASSWORD_REQUIREMENT_ERROR, true);
                 }
-                else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
-
-                RestartTextBoxes();
+                else InformationToUser(ErrorMesages.PASSWORD_COMMPILANCE_ERROR, true);
             }
         }
         #endregion
@@ -71,7 +82,25 @@ namespace SWAM.Controls.Templates.AdministratorPage
         }
         #endregion
 
-        private async void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
+        private bool NameValidation(string name)
+        {
+            //Check name - The name cannot be empty
+            if (name != string.Empty)
+            {
+                char[] nameLength = name.ToCharArray();
+                //the name must contain more than 3 letters
+                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LEGTH)
+                {
+                    return true;
+                }
+                else InformationToUser($"Nazwa musi mieć więcej niż 3 litery.", true);
+            }
+            else InformationToUser($"Błędna nazwa.", true);
+
+            return false;
+        }
+
+            private async void BasicUserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             await Unload();
         }
