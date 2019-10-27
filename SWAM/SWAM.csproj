@@ -205,6 +205,7 @@
     <Compile Include="Converters\ENtoPLstatusOfUserAccountConverter.cs" />
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\ENtoPLwarehouseOrderStatusConverter.cs" />
+    <Compile Include="Converters\InitialValueForProductQuantity.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityReverseConverter.cs" />
     <Compile Include="Converters\WarehouseOrderStatusToColourConverter.cs" />

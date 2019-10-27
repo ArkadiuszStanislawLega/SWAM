@@ -6,12 +6,14 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
              xmlns:products="clr-namespace:SWAM.Models.ProductOrderList"
+             xmlns:conv="clr-namespace:SWAM.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
+        <conv:InitialValueForProductQuantity x:Key="initialValueForProductQuantity"/>
     </UserControl.Resources>
 
     <Grid>
@@ -55,7 +57,7 @@
                                                 <ColumnDefinition Width="auto" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Grid.Column="0" Text="x"/>
-                                            <TextBox Grid.Column="1" Width="40" Text="{Binding Quantity, Mode=TwoWay}" />
+                                            <TextBox Grid.Column="1" Width="40" Text="{Binding Quantity, Mode=TwoWay, Converter={conv:InitialValueForProductQuantity}}" />
                                         </Grid>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
