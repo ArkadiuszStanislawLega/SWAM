@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.CouriersPage"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
+             xmlns:prop="clr-namespace:SWAM.Controls.Templates.StandardsProperties"
              HorizontalAlignment="Stretch"  
              VerticalAlignment="Stretch"
              mc:Ignorable="d" 
@@ -27,7 +28,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel  Grid.Column="0" Width="200">
                     <StackPanel Margin="5">
-                        <TextBlock Text="Imię" Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="Nazwa" Style="{StaticResource ProfileProperties}"/>
                         <TextBox Name="CourierName"/>
                     </StackPanel>
                     <StackPanel Margin="5">

@@ -63,7 +63,8 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 {
                     Id = externalSupplier.Id,
                     Name = this.ProperName.EditProperName.Text,
-                    Tin = externalSupplier.Tin
+                    Tin = externalSupplier.Tin,
+                    Address = externalSupplier.Address
                 });
                 DataContext = ExternalSupplier.Get(externalSupplier.Id);
                 ExternalSupplierListViewModel.Instance.Refresh();
@@ -89,7 +90,8 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 {
                     Id = externalSupplier.Id,
                     Name = externalSupplier.Name,
-                    Tin = this.Tin.EditTin.Text
+                    Tin = this.Tin.EditTin.Text,
+                    Address = externalSupplier.Address
                 });
                 DataContext = ExternalSupplier.Get(externalSupplier.Id);
 
