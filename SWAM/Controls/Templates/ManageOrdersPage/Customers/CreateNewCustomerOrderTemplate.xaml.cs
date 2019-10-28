@@ -1,4 +1,6 @@
-﻿using SWAM.Enumerators;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Templates.ManageOrdersPage.Customers.Validators;
+using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
@@ -140,21 +142,25 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
 
-            var customerOrder = new CustomerOrder
-            {
-                IsPaid = false,
-                OrderDate = DateTime.Now,
-                CustomerOrderStatus = CustomerOrderStatus.InProcess,
-                ShipmentType = ShipmentType.Reception,
-                PaymentType = PaymentType.Postpaid,
-                UserId = employee.Id,
-                CustomerId = customer.Id,
-                WarehouseId = employeeWarehouse.Id,
-                CustomerOrderPositions = orderedProducts
-            };
+            var validator = new CreateNewCustomerOrderValidator();
 
-            context.CustomerOrders.Add(customerOrder);
-            context.SaveChanges();
+            validator.CustomerValidation(customer);
+
+            //var customerOrder = new CustomerOrder
+            //{
+            //    IsPaid = false,
+            //    OrderDate = DateTime.Now,
+            //    CustomerOrderStatus = CustomerOrderStatus.InProcess,
+            //    ShipmentType = ShipmentType.Reception,
+            //    PaymentType = PaymentType.Postpaid,
+            //    UserId = employee.Id,
+            //    CustomerId = customer.Id,
+            //    WarehouseId = employeeWarehouse.Id,
+            //    CustomerOrderPositions = orderedProducts
+            //};
+
+            //context.CustomerOrders.Add(customerOrder);
+            //context.SaveChanges();
         }
         #endregion
     }

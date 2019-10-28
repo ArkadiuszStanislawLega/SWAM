@@ -155,6 +155,7 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml.cs">
       <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\Validators\CreateNewCustomerOrderValidator.cs" />
     <Compile Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
