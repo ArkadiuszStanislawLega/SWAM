@@ -85,7 +85,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
                 if (SWAM.MainWindow.FindParent<CreateNewCustomerOrderTemplate>(this) is CreateNewCustomerOrderTemplate parent)
                 {
-                    parent.DataContext = customer;
+                    parent.customerProfile.DataContext = customer;
                 }
             }
         }

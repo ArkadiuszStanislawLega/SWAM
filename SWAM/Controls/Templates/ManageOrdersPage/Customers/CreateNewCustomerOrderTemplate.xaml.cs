@@ -122,8 +122,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         {
             if (isPersonalCollected.IsChecked.GetValueOrDefault())
             {
-                DataContext = null;
-                courierListProfile.couriersListView.UnselectAll(); 
+                this.courierProfile.DataContext = null;
+                courierListProfile.couriersListView.UnselectAll();
             }
         }
         #endregion
@@ -141,11 +141,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id, context).Warehouse;
 
-            orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
+            //orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
 
             var validator = new CreateNewCustomerOrderValidator();
 
-            if ((bool) (!isPersonalCollected.IsChecked))
+            if ((bool)(!isPersonalCollected.IsChecked))
             {
                 if (!validator.CourierValidation(courier))
                     InformationToUser("Wybierz kuriera z listy", true);
@@ -156,7 +156,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             if (!validator.CustomerValidation(customer))
                 InformationToUser("Wybierz klienta z listy", true);
-           
+
             //var customerOrder = new CustomerOrder
             //{
             //    IsPaid = false,

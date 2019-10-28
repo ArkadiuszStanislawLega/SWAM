@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.ManageOrdersPage.Customers;
 using SWAM.Models.Courier;
+using SWAM.Models.Customer;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -83,7 +84,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
 
                 if (SWAM.MainWindow.FindParent<CreateNewCustomerOrderTemplate>(this) is CreateNewCustomerOrderTemplate parent)
                 {
-                    parent.DataContext = courier;
+                    parent.courierProfile.DataContext = courier;
                 }
             }
         }
