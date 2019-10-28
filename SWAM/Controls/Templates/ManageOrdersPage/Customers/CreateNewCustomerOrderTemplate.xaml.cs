@@ -4,6 +4,7 @@ using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
+using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.User;
 using SWAM.Models.Warehouse;
@@ -123,7 +124,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             if (isPersonalCollected.IsChecked.GetValueOrDefault())
             {
                 this.courierProfile.DataContext = null;
+                customerOrderAddress.Visibility = Visibility.Hidden;
                 courierListProfile.couriersListView.UnselectAll();
+            }
+            else
+            {
+                customerOrderAddress.Visibility = Visibility.Visible;
             }
         }
         #endregion
@@ -138,40 +144,50 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var customer = customerProfile.DataContext as Customer;
             var courier = courierProfile.DataContext as Courier;
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
-            var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
-            var employeeWarehouse = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id, context).Warehouse;
-
-            //orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
 
             var validator = new CreateNewCustomerOrderValidator();
 
             if ((bool)(!isPersonalCollected.IsChecked))
             {
                 if (!validator.CourierValidation(courier))
+                {
                     InformationToUser("Wybierz kuriera z listy", true);
+                    return;
+                }
             }
 
             if (!validator.OrderedProductsValidation(orderedProducts))
+            {
                 InformationToUser("Lista zamówień jest pusta", true);
+                return;
+            }
 
             if (!validator.CustomerValidation(customer))
+            {
                 InformationToUser("Wybierz klienta z listy", true);
+                return;
+            }
 
-            //var customerOrder = new CustomerOrder
-            //{
-            //    IsPaid = false,
-            //    OrderDate = DateTime.Now,
-            //    CustomerOrderStatus = CustomerOrderStatus.InProcess,
-            //    ShipmentType = ShipmentType.Reception,
-            //    PaymentType = PaymentType.Postpaid,
-            //    UserId = employee.Id,
-            //    CustomerId = customer.Id,
-            //    WarehouseId = employeeWarehouse.Id,
-            //    CustomerOrderPositions = orderedProducts
-            //};
+            orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
 
-            //context.CustomerOrders.Add(customerOrder);
-            //context.SaveChanges();
+            var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
+            var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
+
+            var customerOrder = new CustomerOrder
+            {
+                IsPaid = false,
+                OrderDate = DateTime.Now,
+                CustomerOrderStatus = CustomerOrderStatus.InProcess,
+                ShipmentType = ShipmentType.Reception,
+                PaymentType = PaymentType.Postpaid,
+                UserId = employee.Id,
+                CustomerId = customer.Id,
+                WarehouseId = employeeWarehouse,
+                CustomerOrderPositions = orderedProducts
+            };
+
+            context.CustomerOrders.Add(customerOrder);
+            context.SaveChanges();
         }
         #endregion
     }

@@ -49,7 +49,7 @@
         <!--#endregion-->
         
         <!--#region customerElementsContainer-->
-        <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
+        <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
             <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -68,14 +68,13 @@
                 <Grid Grid.Column="0" Grid.Row="0">
                     <TextBlock FontSize="20" Text="Dane klienta" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
                 </Grid>
-                <Grid Grid.Column="0" Grid.Row="1">
+                <Grid Grid.Column="0" Grid.Row="1" x:Name="customerProfile">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-
-                    <customersControls:CustomerDetailsFormTemplate Grid.Column="0" x:Name="customerProfile"/>
-                    <manageOrdersControls:AddressOrderFormTemplate Grid.Column="1"/>
+                    <customersControls:CustomerDetailsFormTemplate Grid.Column="0"/>
+                    <manageOrdersControls:AddressFormTemplate Grid.Column="1"/>
                 </Grid>
             </Grid>
             <customersControls:CustomerListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>
@@ -116,7 +115,7 @@
         <!--#endregion-->
 
         <!--#region courierElementsContainer-->
-        <Grid x:Name="courierElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+        <Grid x:Name="courierElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
             <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -129,6 +128,7 @@
             <!--#endregion-->
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -147,6 +147,21 @@
                 </Grid>
                 <Grid Grid.Row="2">
                     <CheckBox Name="isPersonalCollected" Click="IsPersonalCollected_Click" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
+                </Grid>
+                <Grid Grid.Row="3" x:Name="customerOrderAddress">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock FontSize="20" Text="Dane dostawy" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
+                        <manageOrdersControls:AddressFormTemplate Grid.Row="1"/>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

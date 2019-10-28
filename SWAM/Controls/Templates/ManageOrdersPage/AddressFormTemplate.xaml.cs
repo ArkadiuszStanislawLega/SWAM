@@ -18,9 +18,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
     /// <summary>
     /// Interaction logic for AddressOrderTemplate.xaml
     /// </summary>
-    public partial class AddressOrderFormTemplate : UserControl
+    public partial class AddressFormTemplate : UserControl
     {
-        public AddressOrderFormTemplate()
+        public AddressFormTemplate()
         {
             InitializeComponent();
         }

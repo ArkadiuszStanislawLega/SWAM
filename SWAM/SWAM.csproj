@@ -412,7 +412,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\AddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -578,8 +578,8 @@
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\AddressOrderFormTemplate.xaml.cs">
-      <DependentUpon>AddressOrderFormTemplate.xaml</DependentUpon>
+    <Compile Include="Controls\Templates\ManageOrdersPage\AddressFormTemplate.xaml.cs">
+      <DependentUpon>AddressFormTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml.cs">
       <DependentUpon>CreateNewCustomerOrderTemplate.xaml</DependentUpon>

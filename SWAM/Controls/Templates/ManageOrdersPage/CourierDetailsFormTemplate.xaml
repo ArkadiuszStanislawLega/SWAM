@@ -41,7 +41,7 @@
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CourierEmailAddress" Width="250" IsReadOnly="True" Text="{Binding Email}"/>
+                <TextBox Name="CourierEmailAddress" Width="250" IsReadOnly="True" Text="{Binding EmailAddress}"/>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>
