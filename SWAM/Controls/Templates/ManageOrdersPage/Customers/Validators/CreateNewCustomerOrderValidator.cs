@@ -9,7 +9,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers.Validators
         {
             if (customer == null)
             {
-                InformationToUser("Wybierz klienta z listy", true);
                 return false;
             }
             return true;

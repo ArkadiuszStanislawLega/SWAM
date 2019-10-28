@@ -92,7 +92,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
             {
                 char[] nameLength = name.ToCharArray();
                 //the name must contain more than 3 letters
-                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LEGTH)
+                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LENGTH)
                 {
                     return true;
                 }

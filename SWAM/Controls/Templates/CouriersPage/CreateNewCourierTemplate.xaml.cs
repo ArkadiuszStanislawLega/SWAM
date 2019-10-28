@@ -29,7 +29,7 @@ namespace SWAM.Controls.Templates.CouriersPage
             {
                 char[] nameLength = this.CourierName.Text.ToCharArray();
                 //the name must contain more than 3 letters
-                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LEGTH)
+                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LENGTH)
                 {
                     //Validate email address.
                     if (EmailAddress.IsValidEmail(this.CourierEmailAddress.Text))

@@ -20,7 +20,7 @@ namespace SWAM
         /// <summary>
         /// Minimum courier name size.
         /// </summary>
-        public const int MIN_NAME_LEGTH = 3;
+        public const int MIN_NAME_LENGTH = 3;
         //TODO: Delete this in released 
         /// <summary>
         /// Temporary user id for debug.

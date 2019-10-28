@@ -19,7 +19,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
     /// <summary>
     /// Interaction logic for CreateNewCustomerOrderTemplate.xaml
     /// </summary>
-    public partial class CreateNewCustomerOrderTemplate : UserControl
+    public partial class CreateNewCustomerOrderTemplate : BasicUserControl
     {
         #region Properties
         // Current visible page
@@ -144,7 +144,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             var validator = new CreateNewCustomerOrderValidator();
 
-            validator.CustomerValidation(customer);
+            if(!validator.CustomerValidation(customer))
+                InformationToUser("Wybierz klienta z listy", true);
 
             //var customerOrder = new CustomerOrder
             //{
