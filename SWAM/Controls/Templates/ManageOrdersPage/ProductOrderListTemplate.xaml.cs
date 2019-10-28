@@ -3,6 +3,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {
@@ -41,6 +43,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
                     quantity.Text = state.Quantity.ToString();
                 }
             } 
+        }
+
+        /// <summary>
+        /// Make quantity textbox field accept numeric input type only
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
