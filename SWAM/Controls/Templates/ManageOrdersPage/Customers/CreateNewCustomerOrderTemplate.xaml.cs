@@ -144,9 +144,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             var validator = new CreateNewCustomerOrderValidator();
 
-            if(!validator.CustomerValidation(customer))
-                InformationToUser("Wybierz klienta z listy", true);
+            if (!validator.OrderedProductsValidation(orderedProducts))
+                InformationToUser("Lista zamówień jest pusta", true);
 
+            if (!validator.CustomerValidation(customer))
+                InformationToUser("Wybierz klienta z listy", true);
+           
             //var customerOrder = new CustomerOrder
             //{
             //    IsPaid = false,
