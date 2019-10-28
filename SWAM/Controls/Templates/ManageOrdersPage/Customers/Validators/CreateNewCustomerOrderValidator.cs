@@ -1,4 +1,5 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using System.Collections.Generic;
 
@@ -18,6 +19,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers.Validators
         public bool OrderedProductsValidation(List<CustomerOrderPosition> customerOrderPosition)
         {
             if (customerOrderPosition.Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CourierValidation (Courier courier)
+        {
+            if (courier == null)
             {
                 return false;
             }

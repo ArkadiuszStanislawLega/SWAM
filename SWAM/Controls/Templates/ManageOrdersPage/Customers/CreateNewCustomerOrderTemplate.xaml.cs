@@ -136,6 +136,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         {
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;
+            var courier = courierProfile.DataContext as Courier;
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = AccessUsersToWarehouses.GetUserAccess(SWAM.MainWindow.LoggedInUser.Id, context).Warehouse;
@@ -143,6 +144,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
 
             var validator = new CreateNewCustomerOrderValidator();
+
+            if ((bool) (!isPersonalCollected.IsChecked))
+            {
+                if (!validator.CourierValidation(courier))
+                    InformationToUser("Wybierz kuriera z listy", true);
+            }
 
             if (!validator.OrderedProductsValidation(orderedProducts))
                 InformationToUser("Lista zamówień jest pusta", true);
