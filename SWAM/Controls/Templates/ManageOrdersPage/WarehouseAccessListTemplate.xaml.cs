@@ -1,5 +1,6 @@
 ﻿using SWAM.Models;
 using SWAM.Models.ManageOrdersPage;
+using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -90,6 +91,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
                     return;
 
                 UserDependsAccessProductListViewModel.Instance.SetStates(warehouse);
+                WarehouseInformationViewModel.Instance.SetWarehouse(warehouse);
             }
         }
         #endregion
