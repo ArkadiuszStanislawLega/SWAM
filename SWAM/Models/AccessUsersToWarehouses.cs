@@ -65,7 +65,7 @@ namespace SWAM.Models
                 if (userId > 0)
                     return context.People
                         .OfType<User.User>()
-                        .Include(u => u.Accesess)
+                        .Include(u => u.Accesess.Select(a=>a.Warehouse.WarehouseAddress))
                         .FirstOrDefault(u => u.Id == userId)
                         .Accesess;
                 else
