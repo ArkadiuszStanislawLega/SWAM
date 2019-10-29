@@ -6,10 +6,9 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
              xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Warehouses"
              xmlns:warehouse="clr-namespace:SWAM.Models.ViewModels.CreateNewCustomerOrder"
-             Loaded="UserControl_Loaded"
+             DataContext="{x:Static warehouse:WarehouseInformationViewModel.Instance}"
              mc:Ignorable="d" >
-    
-    <Grid DataContext="{x:Static warehouse:WarehouseInformationViewModel.Instance}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>

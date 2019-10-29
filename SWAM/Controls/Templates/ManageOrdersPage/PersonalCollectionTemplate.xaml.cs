@@ -11,12 +11,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         public PersonalCollectionTemplate()
         {
             InitializeComponent();
-            warehouseAddress.DataContext = WarehouseInformationViewModel.Instance.Warehouse;
-        }
-
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            warehouseAddress.DataContext = WarehouseInformationViewModel.Instance.Warehouse;
         }
     }
 }
