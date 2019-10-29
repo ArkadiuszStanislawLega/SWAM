@@ -155,6 +155,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml.cs">
       <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\DeliveryAddressFormTemplate.xaml.cs">
+      <DependentUpon>DeliveryAddressFormTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\PaymentOrderTemplate.xaml.cs">
       <DependentUpon>PaymentOrderTemplate.xaml</DependentUpon>
     </Compile>
@@ -452,6 +455,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\DeliveryAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
