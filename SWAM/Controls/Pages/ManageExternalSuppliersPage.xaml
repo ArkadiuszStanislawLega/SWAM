@@ -7,7 +7,6 @@
              xmlns:temp="clr-namespace:SWAM.Controls.Templates.ExternalSupplierPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:ext="clr-namespace:SWAM.Models.ExternalSupplier"
-             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
              Background="{StaticResource BackgroundOfPagesBrash}"
              VerticalAlignment="Stretch"
