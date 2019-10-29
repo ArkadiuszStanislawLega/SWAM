@@ -61,8 +61,7 @@
                                                 Grid.Column="1" 
                                                 Width="35" 
                                                 LostFocus="Quantity_LostFocus" 
-                                                Text="{Binding Quantity, Mode=TwoWay,
-                                                    Converter={StaticResource initialValueForProductQuantity}}"
+                                                Text="{Binding Quantity}"
                                                 PreviewTextInput="NumberValidationTextBox"/>
                                         </Grid>
                                     </DataTemplate>

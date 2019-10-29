@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
+             xmlns:payment="clr-namespace:SWAM.Models.ViewModels.CreateNewCustomerOrder"
              mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -11,6 +12,10 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Text="Do zapłaty:"/>
-        <TextBlock Margin="10 0 0 0" Grid.Column="1" x:Name="paymentAmount"/>
+        <TextBlock DataContext="{x:Static payment:PaymentOrderViewModel.Instance}" 
+                   Text="{Binding TotalPrice, StringFormat={}{0}zł}" 
+                   Margin="10 0 0 0" 
+                   Grid.Column="1" 
+                   x:Name="paymentAmount"/>
     </Grid>
 </UserControl>

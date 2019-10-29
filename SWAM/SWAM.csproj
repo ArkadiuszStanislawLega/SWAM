@@ -259,6 +259,7 @@
     <Compile Include="Models\ProductOrderList\ProductOrderListViewModel.cs" />
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />
+    <Compile Include="Models\ViewModels\CreateNewCustomerOrder\PaymentOrderViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">

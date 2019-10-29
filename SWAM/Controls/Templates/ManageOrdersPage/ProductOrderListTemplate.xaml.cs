@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
+using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {
@@ -40,9 +41,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             {
                 if(int.Parse(quantity.Text) > state.Quantity)
                 {
-                    quantity.Text = state.Quantity.ToString();
+                    quantity.Text = state.Available.ToString();
+                    customerOrderPosition.Quantity = state.Available;
                 }
-            } 
+            }
+
+            PaymentOrderViewModel.Instance.Refresh();
         }
 
         /// <summary>

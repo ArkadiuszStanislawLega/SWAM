@@ -2,6 +2,7 @@
 using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
+using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,10 +33,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             {
                 Product = state.Product,
                 ProductId = state.Id,
-                Price = state.Product.Price
+                Price = state.Product.Price,
+                Quantity=1
             };
 
             ProductOrderListViewModel.Instance.Add(customerOrderPosition);
+            PaymentOrderViewModel.Instance.Refresh();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e) => UserDependsAccessProductListViewModel.Instance.Refresh();
