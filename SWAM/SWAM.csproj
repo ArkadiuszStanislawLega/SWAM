@@ -168,6 +168,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
+      <DependentUpon>WarehouseAddressFormTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
       <DependentUpon>FindUserTemplate.xaml</DependentUpon>
     </Compile>
@@ -469,6 +472,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\WarehouseAccessListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

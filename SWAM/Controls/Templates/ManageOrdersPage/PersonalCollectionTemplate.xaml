@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
-             xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
+             xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Warehouses"
              xmlns:warehouse="clr-namespace:SWAM.Models.ViewModels.CreateNewCustomerOrder"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d" >
+    
     <Grid DataContext="{x:Static warehouse:WarehouseInformationViewModel.Instance}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -18,9 +20,9 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Margin="10 0 0 0" Text="Odbiór w magazynie:"/>
-            <TextBlock x:Name="WarehouseName" Grid.Column="1" Margin="10 0 0 0" 
+            <TextBlock x:Name="warehouseName" Grid.Column="1" Margin="10 0 0 0" 
                        Text="{Binding Warehouse.Name}"/>
         </Grid>
-        <address:AddressFormTemplate Grid.Row="1" x:Name="WarehouseAddress"/>
+        <address:WarehouseAddressFormTemplate Grid.Row="1" x:Name="warehouseAddress" DataContext="{Binding Warehouse}"/>
     </Grid>
 </UserControl>
