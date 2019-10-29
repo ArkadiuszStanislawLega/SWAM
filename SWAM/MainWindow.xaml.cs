@@ -25,7 +25,7 @@ namespace SWAM
         /// <summary>
         /// Temporary user id for debug.
         /// </summary>
-        private const int TEMPORARY_USER_ID = 3;
+        private const int TEMPORARY_USER_ID = 1;
 
         #region Public statics
         /// <summary>
