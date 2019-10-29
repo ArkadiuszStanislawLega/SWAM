@@ -125,11 +125,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             {
                 this.courierProfile.DataContext = null;
                 customerOrderAddress.Visibility = Visibility.Hidden;
+                personalAddressCollection.Visibility = Visibility.Visible;
                 courierListProfile.couriersListView.UnselectAll();
             }
             else
             {
                 customerOrderAddress.Visibility = Visibility.Visible;
+                personalAddressCollection.Visibility = Visibility.Hidden;
             }
         }
         #endregion
