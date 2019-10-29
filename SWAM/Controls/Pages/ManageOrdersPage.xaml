@@ -1,14 +1,13 @@
 ﻿<local:BasicPage x:Class="SWAM.Controls.Pages.ManageOrdersPage"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAM.Controls.Pages"
-             xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
-             Background="{StaticResource BackgroundOfPagesBrash}"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:SWAM.Controls.Pages"
+                 xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
+                 xmlns:client="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
+                 Background="{StaticResource BackgroundOfPagesBrash}"
              Padding="10"
-             Height="auto"
-             Width="auto"
              mc:Ignorable="d">
     <UserControl.Resources>
         <!--#region LoadedStory-->
@@ -31,9 +30,13 @@
             <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <!--#region Navigation Bar between bookmarks-->
-        <StackPanel Orientation="Horizontal" 
+        <StackPanel Orientation="Horizontal" Grid.Row="0"
                     Name="NavigationBar" 
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left">
@@ -44,6 +47,7 @@
                     Click="SwitchToWarehouseOrdersControlPanel_Click"
                     Style="{StaticResource NavigationButton}"/>
             <nav:NavigationButtonTemplate Width="150"
+                    IsSelected="True"
                     Bookmark="CustomerOrdersPanel"
                     Click="SwitchToCustomerOrdersControlPanel_Click"
                     Content="Zlecenia klienckie" 
@@ -51,8 +55,8 @@
                     Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
-        <Grid  Name="MainContent">
-
+        <Grid  Name="MainContent" Grid.Row="1">
+            <client:CustomerOrdersPanelTemplate/>
         </Grid>
-    </StackPanel>
+    </Grid>
 </local:BasicPage>
