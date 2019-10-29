@@ -10,20 +10,32 @@ namespace SWAM.Models.ProductListViewModel
 {
     public class ProductListViewModel : UserControl
     {
-        private readonly ObservableCollection<Product> products = new ObservableCollection<Product>();
-        public ObservableCollection<Product> Products => products;
+        private readonly ObservableCollection<Product> _products = new ObservableCollection<Product>();
+        public ObservableCollection<Product> Products => _products;
+
+        #region SingletonePattern
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        static ProductListViewModel() { _instance.Refresh(); }
+
+        private static readonly ProductListViewModel _instance = new ProductListViewModel();
+        public static ProductListViewModel Instance => _instance;
+        public ProductListViewModel() { }
+        #endregion
+
 
         public void Refresh()
         {
-            if (products.Count > 0)
-                products.Clear();
+            if (_products.Count > 0)
+                _products.Clear();
 
             var productsListFromDb = Product.AllProducts();
             if (productsListFromDb != null)
             {
                 foreach (var item in productsListFromDb)
                 {
-                    products.Add(item);
+                    _products.Add(item);
                 }
             }
         }
@@ -31,7 +43,7 @@ namespace SWAM.Models.ProductListViewModel
 		public Product LastProduct()
 		{
 			Refresh();
-			return products.Last<Product>();			
+			return _products.Last<Product>();			
 		}
 
 	}

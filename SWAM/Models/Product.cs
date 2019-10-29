@@ -54,7 +54,13 @@ namespace SWAM.Models
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
         public List<Product> GetProducts() { throw new NotImplementedException(); /* return _context.Products.ToList();*/ }
 
-        private static readonly ApplicationDbContext _context = new ApplicationDbContext();
+        private static ApplicationDbContext _context = new ApplicationDbContext();
+
+        public Product Get()
+        {
+            _context = new ApplicationDbContext();
+            return _context.Products.FirstOrDefault(p => p.Id == this.Id);
+        }
 
         private static ApplicationDbContext context
         {

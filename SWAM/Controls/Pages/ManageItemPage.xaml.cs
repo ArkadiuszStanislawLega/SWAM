@@ -15,16 +15,7 @@ namespace SWAM
     /// </summary>
     public partial class ManageItemPage : BasicPage
     {
-        /// <summary>
-        /// Enumerator to check what operation will be performed.
-        /// </summary>
-        enum Operation { none, edit, add };
-
         #region Properties
-        /// <summary>
-        /// The operation that will be performed.
-        /// </summary>
-        Operation _currentOperation;
         /// <summary>
         /// Property needed to check if the correct weight value has been entered.
         /// </summary>
@@ -46,10 +37,6 @@ namespace SWAM
         /// </summary>
         private decimal _price;
         /// <summary>
-        /// List view model of all products in database.
-        /// </summary>
-        private ProductListViewModel _productList = new ProductListViewModel();
-        /// <summary>
         /// Connection to database.
         /// </summary>
         private ApplicationDbContext _context = new ApplicationDbContext();
@@ -69,12 +56,9 @@ namespace SWAM
         public ManageItemPage()
         {
             InitializeComponent();
-            DataContext = this._productList;
-			_productList.Refresh();
-			SaveButton.IsEnabled = false;
 
-			if (this._productList.Products.Count > 0)
-                this.ProductProfile.DataContext = this._productList.Products[0];
+			if (ProductListViewModel.Instance.Products.Count > 0)
+                this.ProductProfile.DataContext = ProductListViewModel.Instance.Products[0];
         }
         #endregion
         #region ProductsList_LeftMouseButtonDown
@@ -86,14 +70,11 @@ namespace SWAM
         private void ProductsList_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-			EditButton.IsEnabled = true;
-			SaveButton.IsEnabled = false;
 			if (this.EditedName.Visibility == Visibility.Visible)
             {
                 Storyboard hideStory = (Storyboard)this.FindResource("HideEditStory");
                 hideStory.Begin();
             }
-            this._currentOperation = Operation.none;
         }
 		#endregion
 		#region EditButton_Click
@@ -108,8 +89,7 @@ namespace SWAM
 			{				
 				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)			
 				{					
-					this._currentOperation = Operation.edit;
-					SaveButton.IsEnabled = true;
+					this.AddProductToDbButton.IsEnabled = true;
 				}				
 			}
 		}
@@ -121,50 +101,23 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Save button.</param>
         /// <param name="e">Clicked.</param>
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void AddProductToDbButton_Click(object sender, RoutedEventArgs e)
         {
             if (ValidationTextBoxes())
             {
-                if (this._currentOperation == Operation.add)
+                Product.AddNewProduct(new Models.Product()
                 {
-                    Product.AddNewProduct(new Models.Product()
-                    {
-                        Name = this.EditedName.Text,
-                        Weigth = this._weight,
-                        Length = this._lenght,
-                        Width = this._width,
-                        Height = this._height,
-                        Price = this._price
-                    });
-					this.ProductProfile.DataContext = this._productList.LastProduct();
-				}
-                else if(this._currentOperation == Operation.edit)
-                {
-                    if (ProductProfile.DataContext is Product product)
-                    {
-                        this._confirmWindow.Show($"Potwierdź edycję produktu {this.EditedName.Text}?", out bool isConfirmed, $"Edytuj {this.EditedName.Text}");
-                        if (isConfirmed)
-                        {
-							Product.EditProduct(product);                            
-                        }
+                    Name = this.EditedName.Text,
+                    Weigth = this._weight,
+                    Length = this._lenght,
+                    Width = this._width,
+                    Height = this._height,
+                    Price = this._price
+                });
+                this.ProductProfile.DataContext = ProductListViewModel.Instance.LastProduct();
 
-						else
-						{
-							_context = new ApplicationDbContext();
-							var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-							product.Name = dbProduct.Name;
-							product.Weigth = dbProduct.Weigth;
-							product.Length = dbProduct.Length;
-							product.Width = dbProduct.Width;
-							product.Height = dbProduct.Height;
-							product.Price = dbProduct.Price;							
-						}						
-					}
-					else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
-                }
-                this._productList.Refresh();
-				this._currentOperation = Operation.none;
-			}			
+                ProductListViewModel.Instance.Refresh();
+            }
         }
         #endregion
         #region AddButton_Click
@@ -176,9 +129,7 @@ namespace SWAM
         /// <param name="e">Event click add new item button.</param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this._currentOperation = Operation.add;
 			ClearData();
-			SaveButton.IsEnabled = true;
 		}
 		#endregion
 		#region DeleteButton_Click
@@ -198,7 +149,7 @@ namespace SWAM
 					if (isConfirmed)
 					{
 						Product.DeleteProduct(product);
-						this._productList.Refresh();
+                        ProductListViewModel.Instance.Refresh();
 						ClearData();
 						EditButton.IsEnabled = false;
 					}
@@ -250,6 +201,44 @@ namespace SWAM
 		#endregion
 
 		private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
-    
+
+        private void RefreshProductListButton_Click(object sender, RoutedEventArgs e) => ProductListViewModel.Instance.Refresh();
+
+        private void CancelEditProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductProfile.DataContext is Product product)
+                ProductProfile.DataContext = product.Get();
+        }
+
+        private void SaveEditedChangesInProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ValidationTextBoxes())
+            {
+                if (ProductProfile.DataContext is Product product)
+                {
+                    this._confirmWindow.Show($"Potwierdź edycję produktu {this.EditedName.Text}?", out bool isConfirmed, $"Edytuj {this.EditedName.Text}");
+                    if (isConfirmed)
+                    {
+                        Product.EditProduct(product);
+                    }
+                    else
+                    {
+                        _context = new ApplicationDbContext();
+                        var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
+                        product.Name = dbProduct.Name;
+                        product.Weigth = dbProduct.Weigth;
+                        product.Length = dbProduct.Length;
+                        product.Width = dbProduct.Width;
+                        product.Height = dbProduct.Height;
+                        product.Price = dbProduct.Price;
+                    }
+                }
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+            }
+            ProductListViewModel.Instance.Refresh();
+        }
+
+        private void CancelAddingButton_Click(object sender, RoutedEventArgs e) => ClearData();
+        
     }
 }
