@@ -127,10 +127,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Button add new item</param>
         /// <param name="e">Event click add new item button.</param>
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-			ClearData();
-		}
+        private void AddButton_Click(object sender, RoutedEventArgs e) => ClearData();
 		#endregion
 		#region DeleteButton_Click
 		/// <summary>
@@ -187,7 +184,9 @@ namespace SWAM
 		#endregion
 
 		#region ClearData
-
+        /// <summary>
+        /// Clear all edited fields.
+        /// </summary>
 		private void ClearData()
 		{
 			this.ProductProfile.DataContext = null;

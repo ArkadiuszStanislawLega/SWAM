@@ -1,6 +1,7 @@
 ﻿using SWAM.Models.Customer;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 
 
 namespace SWAM.Models.Warehouse
@@ -60,7 +61,7 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
-        private static readonly ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
+        private static ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
 
         private static ApplicationDbContext _context
         {
@@ -69,8 +70,64 @@ namespace SWAM.Models.Warehouse
             {
                 return DB_CONTEXT;
             }
+            set => DB_CONTEXT = value;
         }
 
+        #region Get
+        /// <summary>
+        /// Retrieves the magazine from the database by ID number.
+        /// </summary>
+        /// <param name="id">Number Id of warehouse in database.</param>
+        /// <returns>Returns Specific warehouse from database or null if warehouse doesn't exist.</returns>
+        public Warehouse Get(int id)
+        {
+            if (id > 0)
+            {
+                _context = new ApplicationDbContext();
+                return _context.Warehouses.FirstOrDefault(w => w.Id == id);
+            }
+
+            return null;
+        }
+        #endregion
+        #region Edit
+        /// <summary>
+        /// Edits warehouse properties.
+        /// </summary>
+        /// <param name="warehouse">The warehouse to be edited.</param>
+        public void Edit(Warehouse warehouse)
+        {
+            if(warehouse != null && warehouse.WarehouseAddress != null)
+            {
+                var warehouseDb = _context.Warehouses.Include(w => w.WarehouseAddress).FirstOrDefault(w => w.Id == warehouse.Id);
+
+                warehouseDb.Name = warehouse.Name;
+                warehouseDb.Height = warehouse.Height;
+                warehouseDb.Width = warehouse.Width;
+                warehouseDb.Length = warehouse.Length;
+                warehouseDb.SurfaceAreaBrutton = warehouse.SurfaceAreaBrutton;
+                warehouseDb.SurfaceAreaNetto = warehouse.SurfaceAreaNetto;
+                warehouseDb.AcceptableWeight = warehouse.AcceptableWeight;
+                warehouseDb.WarehouseAddress = warehouse.WarehouseAddress;
+
+                _context.SaveChanges();
+            }
+        }
+        #endregion
+        #region IsNameInDatabase
+        /// <summary>
+        /// Checks in the database if the storage name is already in use.
+        /// </summary>
+        /// <param name="name">Name to check.</param>
+        /// <returns>True if name isn't in database.</returns>
+        public static bool IsNameInDatabase(string name)
+        {
+            if (_context.Warehouses.FirstOrDefault(w => w.Name == name) == null)
+                return true;
+            else
+                return false;
+        }
+        #endregion
         #region Remove
         /// <summary>
         /// Remove user from database.

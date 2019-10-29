@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:class="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
-             xmlns:local="clr-namespace:SWAM.Controls.Templates.AdministratorPage.Warehouses"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
@@ -36,6 +35,14 @@
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WarehouseName"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditName"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
         <!--#region HideSaveChangesStory-->
@@ -48,51 +55,61 @@
                                                                Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="WarehouseName"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditName"
+                                                               Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
     </class:BasicUserControl.Resources>
     <!--#endregion-->
-    <ScrollViewer
-        VerticalScrollBarVisibility="Auto"
-        HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <!--#region Column definitions-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!--#endregion-->
-            <TextBlock Name="WarehouseName"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Name="EditName" Text="{Binding Name}" Foreground="Gray" FontSize="30" FontWeight="Bold" Visibility="Collapsed" />
+        <TextBlock Name="WarehouseName"
                 HorizontalAlignment="Left"
                 Grid.Row="0"
                 Text="{Binding Name}" 
                 Style="{StaticResource Title}"/>
-            <!--#region Informations-->
-            <Grid Grid.Row="1" HorizontalAlignment="Center" >
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
                 <!--#region Column definitions-->
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--#endregion-->
-                <temp:AddressTemplate x:Name="Address"
+                <!--#region Informations-->
+                <Grid Grid.Row="1" HorizontalAlignment="Center" >
+                    <!--#region Rows definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <!--#endregion-->
+                    <temp:AddressTemplate x:Name="Address"
                                DataContext="{Binding WarehouseAddress}" 
-                               Grid.Column="0"/>
-                <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate"
-             Grid.Column="1"/>
-
-            </Grid>
-            <Border BorderThickness="1" Grid.Row="2"  BorderBrush="{StaticResource EnabledBrash}"
-                     HorizontalAlignment="Center">
-                <DataGrid Name="UserList" ItemsSource="{Binding Accesses}"  
-                          Style="{StaticResource BasicDataGrid}"
-                          Width="708"
-                          AutoGenerateColumns="False" 
-                          IsReadOnly="True"  
-                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                               Grid.Row="0"/>
+                    <temp:WarehouseTechnicalDataTemplate  x:Name="WarehouseTechnicalDate" Grid.Row="1"/>
+                </Grid>
+                <!--#endregion-->
+                <!--#region DataGrid-->
+                <DataGrid 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Center"
+                        Name="UserList" ItemsSource="{Binding Accesses}"  
+                        Style="{StaticResource BasicDataGrid}"
+                        AutoGenerateColumns="False" 
+                        IsReadOnly="True"  
+                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
                         <DataGridTextColumn Header="Uprawnienia" 
@@ -110,40 +127,39 @@
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
                     </DataGrid.ItemContainerStyle>
                 </DataGrid>
-            </Border>
-            <!--#endregion-->
-            <!--#endregion-->
-            <!--#region Buttons-->
-            <StackPanel VerticalAlignment="Top"
+                <!--#endregion-->
+            </Grid>
+        </ScrollViewer>
+        <!--#region Buttons-->
+        <StackPanel VerticalAlignment="Top"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
-                <Button Name="Edit"
+            <Button Name="Edit"
                     Content="Edytuj"
                     Click="Edit_Click"
                     Style="{StaticResource UserProfilebuttons}">
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource ShowSaveChangesStory}"/>
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Name="Confirm"
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource ShowSaveChangesStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Name="Confirm"
                     Content="Zapisz"
                     Visibility="Collapsed"
                     Click="Confirm_Click"
                     Style="{StaticResource UserProfilebuttons}">
-                    <Button.Triggers>
-                        <EventTrigger RoutedEvent="Button.Click">
-                            <BeginStoryboard Storyboard="{StaticResource HideSaveChangesStory}"/>
-                        </EventTrigger>
-                    </Button.Triggers>
-                </Button>
-                <Button Name="Delete"
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard Storyboard="{StaticResource HideSaveChangesStory}"/>
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+            <Button Name="Delete"
                 Content="Usuń"
                 Click="Delete_Click"
                 Style="{StaticResource UserProfilebuttons}"/>
-            </StackPanel>
-            <!--#endregion-->
-        </Grid>
-    </ScrollViewer>
+        </StackPanel>
+        <!--#endregion-->
+    </Grid>
 </class:BasicUserControl>

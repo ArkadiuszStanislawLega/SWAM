@@ -34,10 +34,12 @@
         </EventTrigger>
     </UserControl.Triggers>
     <Grid>
+        <!--#region Row definitions-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--#endregion-->
         <!--#region Navigation Bar between bookmarks-->
         <StackPanel Orientation="Horizontal" 
                     Name="NavigationBar" 
@@ -50,7 +52,7 @@
                                           x:Name="SwitchToUsersControlPanel" 
                                           Click="UsersControlPanelBar_Click"
                                           Style="{StaticResource NavigationButton}"/>
-            
+
             <nav:NavigationButtonTemplate Width="130" Content="Magazyny" 
                                           Bookmark="WarehousesControlPanel"
                                           x:Name="SwitchToWarehousesControlPanel" 

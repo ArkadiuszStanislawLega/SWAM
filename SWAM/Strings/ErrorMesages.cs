@@ -48,6 +48,7 @@
         public const string REFRESH_WAREHOUSES_LIST_ERROR = "W czasie odświerzania listy magazynów.";
         public const string DURGIN_DELETE_WAREHOUSE_ERROR = "Wystąpił błąd podczas usuwania magazynu.";
         public const string DURGIN_ADD_WAREHOUSE_ERROR = "Wystąpił błąd podczas dodawania nowego magazynu.";
+        public const string DURGIN_EDIT_WAREHOUSE_ERROR = "Wystąpił błąd podczas edytowania magazynu.";
         #endregion
         #region Message
         public const string MESSAGE_READ_ERROR = "Wystąpił błąd wczytywania wiadomości.";
