@@ -217,5 +217,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             InformationToUser("Dodano zamówienie", false);
         }
         #endregion
+
+        private void isPostpaid_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
