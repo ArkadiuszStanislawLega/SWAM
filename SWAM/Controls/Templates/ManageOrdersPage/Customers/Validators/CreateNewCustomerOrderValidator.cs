@@ -25,9 +25,26 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers.Validators
             return true;
         }
 
-        public bool CourierValidation (Courier courier)
+        public bool CourierValidation(Courier courier)
         {
             if (courier == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeliveryAddressValidation(CustomerOrderDeliveryAddress customerOrderDeliveryAddress)
+        {
+            if (customerOrderDeliveryAddress == null)
+                return false;
+
+            if (customerOrderDeliveryAddress.ApartmentNumber == string.Empty
+                || customerOrderDeliveryAddress.City == string.Empty
+                || customerOrderDeliveryAddress.Country == string.Empty
+                || customerOrderDeliveryAddress.HouseNumber == string.Empty
+                || customerOrderDeliveryAddress.PostCode == string.Empty
+                || customerOrderDeliveryAddress.Street == string.Empty)
             {
                 return false;
             }

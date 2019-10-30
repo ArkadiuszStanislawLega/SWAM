@@ -164,7 +164,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <TextBlock FontSize="20" Text="Dane dostawy" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
-                        <manageOrdersControls:DeliveryAddressFormTemplate Grid.Row="1"/>
+                        <manageOrdersControls:DeliveryAddressFormTemplate Grid.Row="1" x:Name="deliveryAddressProfile"/>
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="3" x:Name="personalAddressCollection" Visibility="Hidden">

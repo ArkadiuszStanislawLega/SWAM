@@ -145,12 +145,19 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;
             var courier = courierProfile.DataContext as Courier;
+            var deliveryAddress = deliveryAddressProfile.GetCustomerOrderDeliveryAddress();
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
 
             var validator = new CreateNewCustomerOrderValidator();
 
             if ((bool)(!isPersonalCollected.IsChecked))
             {
+                if (!validator.DeliveryAddressValidation(deliveryAddress))
+                {
+                    InformationToUser("Uzupełnij lub popraw adres dostawy", true);
+                    return;
+                }
+
                 if (!validator.CourierValidation(courier))
                 {
                     InformationToUser("Wybierz kuriera z listy", true);
@@ -190,6 +197,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
+
+            InformationToUser("Dodano zamówienie", false);
+
         }
         #endregion
     }

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using SWAM.Models.Customer;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {
@@ -23,6 +11,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         public DeliveryAddressFormTemplate()
         {
             InitializeComponent();
+        }
+
+        public CustomerOrderDeliveryAddress GetCustomerOrderDeliveryAddress()
+        {
+            return new CustomerOrderDeliveryAddress {
+                Country = Country.Text,
+                City = City.Text,
+                ApartmentNumber = ApartmentNumber.Text,
+                Street = Street.Text,
+                HouseNumber = HouseNumber.Text,
+                PostCode = PostCode.Text
+            };
         }
     }
 }
