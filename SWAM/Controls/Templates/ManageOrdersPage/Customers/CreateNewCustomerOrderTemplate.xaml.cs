@@ -147,6 +147,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var courier = courierProfile.DataContext as Courier;
             var deliveryAddress = deliveryAddressProfile.GetCustomerOrderDeliveryAddress();
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
+            ShipmentType shipmentType = ShipmentType.Reception;
 
             var validator = new CreateNewCustomerOrderValidator();
 
@@ -157,17 +158,19 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             if ((bool)(!isPersonalCollected.IsChecked))
             {
+                if (!validator.CourierValidation(courier))
+                {
+                    InformationToUser("Wybierz kuriera z listy", true);
+                    return;
+                }
+
                 if (!validator.DeliveryAddressValidation(deliveryAddress))
                 {
                     InformationToUser("Uzupełnij lub popraw adres dostawy", true);
                     return;
                 }
 
-                if (!validator.CourierValidation(courier))
-                {
-                    InformationToUser("Wybierz kuriera z listy", true);
-                    return;
-                }
+                shipmentType = ShipmentType.Shipment;
             }
 
             if (!validator.OrderedProductsValidation(orderedProducts))
@@ -193,7 +196,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 IsPaid = false,
                 OrderDate = DateTime.Now,
                 CustomerOrderStatus = CustomerOrderStatus.InProcess,
-                ShipmentType = ShipmentType.Reception,
+                ShipmentType = shipmentType,
                 PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
                 UserId = employee.Id,
                 CustomerId = customer.Id,

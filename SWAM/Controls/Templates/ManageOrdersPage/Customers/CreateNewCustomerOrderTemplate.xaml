@@ -49,7 +49,7 @@
         <!--#endregion-->
         
         <!--#region customerElementsContainer-->
-        <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
+        <Grid x:Name="customerElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
             <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -119,7 +119,7 @@
         <!--#endregion-->
 
         <!--#region courierElementsContainer-->
-        <Grid x:Name="courierElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Visible">
+        <Grid x:Name="courierElementsContainer" Grid.Row="1" HorizontalAlignment="Center" Visibility="Hidden">
             <!--#region RowsDefinitions-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
