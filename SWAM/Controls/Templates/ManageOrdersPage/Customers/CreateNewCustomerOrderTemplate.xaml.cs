@@ -182,6 +182,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
 
+            // Create customer order based on forms data
             var customerOrder = new CustomerOrder
             {
                 IsPaid = false,
@@ -195,11 +196,16 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 CustomerOrderPositions = orderedProducts
             };
 
+            // Add address only if package is not personaly collected by customer
+            if ((bool)(!isPersonalCollected.IsChecked))
+            {
+                customerOrder.DeliveryAddress = deliveryAddress;
+            }
+
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
 
             InformationToUser("Dodano zamówienie", false);
-
         }
         #endregion
     }
