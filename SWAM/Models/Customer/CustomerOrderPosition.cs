@@ -29,5 +29,9 @@
         /// Order number to which this item applies.
         /// </summary>
         public CustomerOrder CustomerOrder { get; set; }
+        /// <summary>
+        /// State that product belong to
+        /// </summary>
+        public State State { get; set; }
     }
 }
