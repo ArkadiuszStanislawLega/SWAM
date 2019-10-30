@@ -16,6 +16,7 @@ namespace SWAM.Controls.Pages
         {
             InitializeComponent();
         }
+
         #region LoginButton_Click
         /// <summary>
         /// Action after click login in button.
@@ -31,18 +32,8 @@ namespace SWAM.Controls.Pages
             if (user == null ) InformationToUser($"Błędny login lub hasło!", true); //If logging into the system is unsuccessful.
             else
             {
-                //if logging into the system is successful, hide page animation begin and after this...
-                var story = (Storyboard)FindResource("UnloadedStory");
-                story.Completed += (seender, ee) =>
-                {
-                    //... refresh mssages button ...
-                    SWAM.MainWindow.RefreshMessagesButton();
-
-                    //... change content to message page.
-                    if (SWAM.MainWindow.FindParent<MainWindow>(this) is SWAM.MainWindow mainWindow)
-                        mainWindow.ChangeContent(PagesUserControls.MessagesPage);
-                };
-                story.Begin();
+                if(MainWindow.currentInstance != null)
+                    MainWindow.currentInstance.ChangeContent(PagesUserControls.MessagesPage);
             }
 
             UserPassword.Password = "";

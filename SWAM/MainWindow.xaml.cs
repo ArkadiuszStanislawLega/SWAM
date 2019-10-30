@@ -147,6 +147,7 @@ namespace SWAM
         public MainWindow()
         {
             InitializeComponent();
+
             foreach (KeyValuePair<PagesUserControls, BasicPage> entry in this._pages)
             {
                 entry.Value.UnloadStory.Completed += (sender, e) =>
@@ -154,6 +155,12 @@ namespace SWAM
                      this.ContentOfWindow.Children.Remove(entry.Value);
                      this.ContentOfWindow.Children.Add(BasicPage.CurrentLoadedBasicPage[1]);
                      BasicPage.CurrentLoadedBasicPage.RemoveAt(0);
+
+                     if (entry.Key == PagesUserControls.LoginPage)
+                     {
+                         RefreshMessagesButton();
+                         ChangeContent(PagesUserControls.MessagesPage);
+                     }
                  };
             }
 
@@ -236,13 +243,13 @@ namespace SWAM
 
                     if (BasicPage.CurrentLoadedBasicPage.Count > 1)
                     {
-                        if (this._pages.TryGetValue(_currentPageLoaded, out BasicPage pagetToUnload))
+                        if (this._pages.TryGetValue(this._currentPageLoaded, out BasicPage pagetToUnload))
                         {
                             pagetToUnload.CreateStory();
 
                             Grid mainContent = new Grid();
 
-                            switch (_currentPageLoaded)
+                            switch (this._currentPageLoaded)
                             {
                                 case PagesUserControls.AdministratorPage:
                                     {
