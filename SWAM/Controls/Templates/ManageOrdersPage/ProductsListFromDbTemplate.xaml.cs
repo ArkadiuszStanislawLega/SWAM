@@ -34,7 +34,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
                 Product = state.Product,
                 ProductId = state.Id,
                 Price = state.Product.Price,
-                Quantity=1
+                Quantity=1,
+                State = state
             };
 
             ProductOrderListViewModel.Instance.Add(customerOrderPosition);
