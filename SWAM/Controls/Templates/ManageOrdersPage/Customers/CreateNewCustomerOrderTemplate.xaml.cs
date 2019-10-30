@@ -150,6 +150,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 
             var validator = new CreateNewCustomerOrderValidator();
 
+            // Get all radio buttons 
+            List<RadioButton> radioButtons = paymentTypes.Children.OfType<RadioButton>().ToList();
+            // Search list for checked radio button
+            RadioButton chekedRadioButton = radioButtons.Where(rb => rb.IsChecked == true).Single();
+
             if ((bool)(!isPersonalCollected.IsChecked))
             {
                 if (!validator.DeliveryAddressValidation(deliveryAddress))
@@ -189,7 +194,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 OrderDate = DateTime.Now,
                 CustomerOrderStatus = CustomerOrderStatus.InProcess,
                 ShipmentType = ShipmentType.Reception,
-                PaymentType = PaymentType.Postpaid,
+                PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
                 UserId = employee.Id,
                 CustomerId = customer.Id,
                 WarehouseId = employeeWarehouse,
@@ -217,10 +222,5 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             InformationToUser("Dodano zamówienie", false);
         }
         #endregion
-
-        private void isPostpaid_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

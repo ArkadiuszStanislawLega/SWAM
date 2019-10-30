@@ -196,8 +196,8 @@
                         
                         <StackPanel x:Name="paymentTypes" Grid.Row="1" Margin="20 10 0 0">
                             <Label FontWeight="Bold">Formy płatności:</Label>
-                            <RadioButton IsChecked="True">Przelew</RadioButton>
-                            <RadioButton>Płatność pobraniowa</RadioButton>
+                            <RadioButton Name="prePaid" Tag="0" IsChecked="True">Przelew</RadioButton>
+                            <RadioButton Name="postPaid" Tag="1">Płatność pobraniowa</RadioButton>
                         </StackPanel>
                     </Grid>
                 </Grid>
