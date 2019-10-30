@@ -29,6 +29,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             if (!(((FrameworkElement)sender).DataContext is State state))
                 return;
 
+            if (state.Available <= 0 || state.Quantity <= 0)
+                return;
+
             var customerOrderPosition = new CustomerOrderPosition
             {
                 Product = state.Product,
