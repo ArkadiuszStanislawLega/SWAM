@@ -202,6 +202,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 customerOrder.DeliveryAddress = deliveryAddress;
             }
 
+            // Decrease quantity of products in states that have been purchased from
+            foreach (var item in orderedProducts)
+            {
+                var state = context.States.FirstOrDefault(s => s.Id == item.State.Id);
+                state.Quantity -= item.Quantity;
+                state.Available -= item.Quantity;
+                context.SaveChanges();
+            }
+
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
 
