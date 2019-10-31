@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
+using SWAM.Models.AdministratorPage;
 using SWAM.Templates.AdministratorPage;
 
 namespace SWAM.Controls.Pages
@@ -26,10 +27,6 @@ namespace SWAM.Controls.Pages
         /// Current visible bookmark.
         /// </summary>
         private UserControl _currentContent;
-        /// <summary>
-        /// Currently loaded bookmark in administrator page.
-        /// </summary>
-        public BookmarkInPage CurrentBookmarkLoaded { get; private set; } = BookmarkInPage.CustomerOrdersPanel;
         #endregion
 
         #region Basic Constructor
@@ -46,8 +43,17 @@ namespace SWAM.Controls.Pages
 
             ChangeThisContent(BookmarkInPage.UsersControlPanel);
         }
-        #endregion  
-
+        #endregion
+        #region RefreshData
+        /// <summary>
+        /// Refreshing data depends on <see cref="CurrentBookmarkLoaded"/>.
+        /// </summary>
+        public void RefreshData()
+        {
+            if (this.CurrentBookmarkLoaded == BookmarkInPage.UsersControlPanel) UsersListViewModel.Instance.Refresh();
+            else if (this.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel) WarehousesListViewModel.Instance.Refresh();
+        }
+        #endregion
         private void WarhousesControlPanelBarPage_Click(object sender, RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.WarehousesControlPanel);
         private void UsersControlPanelBar_Click(object sender, RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.UsersControlPanel);
 

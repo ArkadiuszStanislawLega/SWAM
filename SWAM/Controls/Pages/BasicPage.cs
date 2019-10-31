@@ -125,5 +125,12 @@ namespace SWAM.Controls.Pages
             }
         }
         #endregion
+
+        #region RefreshData
+        /// <summary>
+        /// Refreshing data in page.
+        /// </summary>
+        public virtual void RefreshData() { }
+        #endregion
     }
 }

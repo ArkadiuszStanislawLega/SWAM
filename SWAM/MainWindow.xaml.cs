@@ -441,7 +441,7 @@ namespace SWAM
             else
             {
                 if(_pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage userControl) && userControl is MessagesPage messagePage)
-                    messagePage.RefreshMessagesList();
+                    messagePage.RefreshData();
             }
         }
         #endregion
@@ -529,8 +529,7 @@ namespace SWAM
                     {
                         if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
                         {
-                            if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.UsersControlPanel) UsersListViewModel.Instance.Refresh();
-                            else if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel) WarehousesListViewModel.Instance.Refresh();
+                            administratorPage.RefreshData();
                         }
                         break;
                     }
@@ -538,14 +537,9 @@ namespace SWAM
                 #region ManageCouriersPage
                 case PagesUserControls.ManageCouriersPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage) && currentPage is ManageCouriersPage courierPage)
+                        if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage))
                         {
-                            if (courierPage.CurrentBookmarkLoaded == BookmarkInPage.CourierProfile)
-                            {
-                                CouriersListViewModel.Instance.Refresh();
-                                CourierOrdersListViewModel.Instance.Refresh(courierPage.CurrentlyLoadedCourierProfile);
-                            }
-                            else if (courierPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCourier) CouriersListViewModel.Instance.Refresh();
+                            currentPage.RefreshData();
                         }
                         break;
                     }
@@ -555,12 +549,7 @@ namespace SWAM
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage) && currentPage is ManageCustomersPage customerPage)
                         {
-                            if (customerPage.CurrentBookmarkLoaded == BookmarkInPage.CustomerProfile)
-                            {
-                                CustomersListViewModel.Instance.Refresh();
-                                CustomerOrdersListViewModel.Instance.Refresh(customerPage.CurrentlyLoadedCustomerProfile);
-                            }
-                            else if (customerPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCustomer) CustomersListViewModel.Instance.Refresh(); ;
+                            customerPage.RefreshData();
                         }
                         break;
                     }
@@ -568,14 +557,9 @@ namespace SWAM
                 #region ManageExternalSuppliersPage
                 case PagesUserControls.ManageExternalSuppliersPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage) && currentPage is ManageExternalSuppliersPage externalSupplierPage)
+                        if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage))
                         {
-                            if (externalSupplierPage.CurrentBookmarkLoaded == BookmarkInPage.ExternalSupplierProfile)
-                            {
-                                ExternalSupplierListViewModel.Instance.Refresh();
-                                ExternalSupplierDeliveryListViewModel.Instance.Refresh(externalSupplierPage.CurrentlyLoadedExternalSupplier);
-                            }
-                            else if (externalSupplierPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewExternalSupplier) ExternalSupplierListViewModel.Instance.Refresh(); ;
+                            currentPage.RefreshData();
                         }
                         break;
                     }
@@ -583,24 +567,33 @@ namespace SWAM
                 #region ManageItemsPage
                 case PagesUserControls.ManageItemsPage:
                     {
-                        ProductListViewModel.Instance.Refresh();
+                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage))
+                             currentPage.RefreshData();
                         break;
                     }
                 #endregion
                 case PagesUserControls.ManageMagazinePage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.ManageMagazinePage, out BasicPage currentPage))
+                        {
+                            currentPage.RefreshData();
+                        }
                         break;
                     }
                 case PagesUserControls.ManageOrdersPage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.ManageOrdersPage, out BasicPage currentPage))
+                        {
+                            currentPage.RefreshData();
+                        }
                         break;
                     }
                 #region MessagesPage
                 case PagesUserControls.MessagesPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage) && currentPage is MessagesPage messagePage)
+                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage))
                         {
-                            messagePage.RefreshMessagesList();
+                            currentPage.RefreshData();
                         }
                         break;
                     }

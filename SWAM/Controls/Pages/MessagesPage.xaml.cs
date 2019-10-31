@@ -138,7 +138,7 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Loaded</param>
         private void BasicUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            RefreshMessagesList();
+            RefreshData();
 
             //TODO: Think about it Why this don't Work in xaml
             MessagesList.ItemsSource = MessagesListViewModel.Instance.MessagesList;
@@ -147,11 +147,11 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
-        #region RefreshMessagesList
+        #region RefreshData
         /// <summary>
         /// Refresh data context depends on what context is shown by user.
         /// </summary>
-        public void RefreshMessagesList()
+        public void RefreshData()
         {
             if (this._isResivedIsOpen) SetReceivedContent();
             else SetSendedContent();
@@ -224,7 +224,7 @@ namespace SWAM.Controls.Pages
                     else
                         SWAM.Models.Message.DeleteMessageBySender(message);
 
-                    RefreshMessagesList();
+                    RefreshData();
                 }
             }
         }
@@ -247,7 +247,7 @@ namespace SWAM.Controls.Pages
                     SWAM.Models.Message.DeleteMessageBySender(this._currentMessage);
 
                 SetDabuleClickedMessageContent(null);
-                RefreshMessagesList();
+                RefreshData();
             }
         }
         #endregion
@@ -259,7 +259,7 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="sender">Refresh button</param>
         /// <param name="e">Action clicked</param>
-        private void RefreshMessage_Click(object sender, RoutedEventArgs e) => RefreshMessagesList();
+        private void RefreshMessage_Click(object sender, RoutedEventArgs e) => RefreshData();
         #endregion
     }
 }

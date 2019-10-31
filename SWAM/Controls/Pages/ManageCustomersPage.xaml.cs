@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.CustomerPage;
+using SWAM.Enumerators;
 using SWAM.Models.Customer;
 using SWAM.Strings;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageCustomersPage : BasicPage
     {
-        public Customer CurrentlyLoadedCustomerProfile { get; private set; }
+        private Customer _currentlyLoadedCustomerProfile;
         public ManageCustomersPage()
         {
             InitializeComponent();
@@ -50,7 +51,20 @@ namespace SWAM.Controls.Pages
             this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewCustomer;
             ChangeContent(new CreateNewCustomerTemplate());
         }
-        
+        #region RefreshData
+        /// <summary>
+        /// Refreshing data depends on <see cref="CurrentBookmarkLoaded"/>.
+        /// </summary>
+        public void RefreshData()
+        {
+            if (this.CurrentBookmarkLoaded == BookmarkInPage.CustomerProfile)
+            {
+                CustomersListViewModel.Instance.Refresh();
+                CustomerOrdersListViewModel.Instance.Refresh(this._currentlyLoadedCustomerProfile);
+            }
+            else if (this.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCustomer) CustomersListViewModel.Instance.Refresh(); ;
+        }
+        #endregion  
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
@@ -80,10 +94,10 @@ namespace SWAM.Controls.Pages
             {
                 if (button.DataContext is Customer customer)
                 {
-                    this.CurrentlyLoadedCustomerProfile = customer;
+                    this._currentlyLoadedCustomerProfile = customer;
                     this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CustomerProfile;
-                    CustomerOrdersListViewModel.Instance.Refresh(this.CurrentlyLoadedCustomerProfile);
-                    ChangeContent(CreateCustomerProfile(this.CurrentlyLoadedCustomerProfile));
+                    CustomerOrdersListViewModel.Instance.Refresh(this._currentlyLoadedCustomerProfile);
+                    ChangeContent(CreateCustomerProfile(this._currentlyLoadedCustomerProfile));
                 } 
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);

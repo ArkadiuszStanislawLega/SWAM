@@ -199,9 +199,13 @@ namespace SWAM
 		}
 		#endregion
 
-		private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+        /// <summary>
+        /// Refreshing data.
+        /// </summary>
+        public override void RefreshData() => ProductListViewModel.Instance.Refresh();
+        private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
 
-        private void RefreshProductListButton_Click(object sender, RoutedEventArgs e) => ProductListViewModel.Instance.Refresh();
+        private void RefreshProductListButton_Click(object sender, RoutedEventArgs e) => RefreshData();
 
         private void CancelEditProductButton_Click(object sender, RoutedEventArgs e)
         {

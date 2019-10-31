@@ -16,7 +16,7 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageCouriersPage : BasicPage
     {
-        public Courier CurrentlyLoadedCourierProfile { get; private set; }
+        private Courier _currentlyLoadedCourierProfile;
         public ManageCouriersPage()
         {
             InitializeComponent();
@@ -30,8 +30,21 @@ namespace SWAM.Controls.Pages
             this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
             ChangeContent(new CreateNewCourierTemplate());
         }
-        
 
+        #region RefreshData
+        /// <summary>
+        /// Refresh lists depends on <see cref="CurrentBookmarkLoaded"/>.
+        /// </summary>
+        public override void RefreshData()
+        {
+            if (this.CurrentBookmarkLoaded == BookmarkInPage.CourierProfile)
+            {
+                CouriersListViewModel.Instance.Refresh();
+                CourierOrdersListViewModel.Instance.Refresh(this._currentlyLoadedCourierProfile);
+            }
+            else if (this.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCourier) CouriersListViewModel.Instance.Refresh();
+        }
+        #endregion
         #region CreateCourierProfile
         /// <summary>
         /// Made view of the courier profile in right section.
@@ -48,7 +61,7 @@ namespace SWAM.Controls.Pages
             {
                 if ((Courier)button.DataContext is Courier courier)
                 {
-                    this.CurrentlyLoadedCourierProfile = courier;
+                    this._currentlyLoadedCourierProfile = courier;
                     this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
 
                     CourierOrdersListViewModel.Instance.Refresh(courier);

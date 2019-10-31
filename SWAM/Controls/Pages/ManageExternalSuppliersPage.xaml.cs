@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.ExternalSupplierPage;
+using SWAM.Enumerators;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Strings;
 using System.ComponentModel;
@@ -31,6 +32,20 @@ namespace SWAM.Controls.Pages
             ChangeContent(new CreateNewExternalSupplierTemplate());
         }
 
+        #region RefreshingData
+        /// <summary>
+        /// Refreshing data depends on <see cref="CurrentBookmarkLoaded"/>.
+        /// </summary>
+        public override void RefreshData()
+        {
+            if (this.CurrentBookmarkLoaded == BookmarkInPage.ExternalSupplierProfile)
+            {
+                ExternalSupplierListViewModel.Instance.Refresh();
+                ExternalSupplierDeliveryListViewModel.Instance.Refresh(this.CurrentlyLoadedExternalSupplier);
+            }
+            else if (this.CurrentBookmarkLoaded == BookmarkInPage.CreateNewExternalSupplier) ExternalSupplierListViewModel.Instance.Refresh(); ;
+        }
+        #endregion
 
         #region CreateCustomerProfile
         /// <summary>
