@@ -124,13 +124,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             if (isPersonalCollected.IsChecked.GetValueOrDefault())
             {
                 courierProfile.DataContext = null;
-                courierProfile.SetGrayFields();
+                courierProfile.SetFieldsGray();
                 customerOrderAddress.Visibility = Visibility.Hidden;
                 personalAddressCollection.Visibility = Visibility.Visible;
                 courierListProfile.couriersListView.UnselectAll();
             }
             else
             {
+                courierProfile.SetFieldsWhite();
                 customerOrderAddress.Visibility = Visibility.Visible;
                 personalAddressCollection.Visibility = Visibility.Hidden;
             }
