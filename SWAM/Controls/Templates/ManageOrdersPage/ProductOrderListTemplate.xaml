@@ -8,7 +8,7 @@
              xmlns:products="clr-namespace:SWAM.Models.ProductOrderList"
              xmlns:conv="clr-namespace:SWAM.Converters" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="231">
+             d:DesignHeight="300" Width="230">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -75,7 +75,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="37">
+                            <GridViewColumn Width="40">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid Width="25">
