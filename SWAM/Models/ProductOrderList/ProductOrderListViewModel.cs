@@ -35,5 +35,10 @@ namespace SWAM.Models.ProductOrderList
             if (_customerOrderPositions.Count > 0)
                 _customerOrderPositions.Clear();
         }
+
+        public void Delete(int Id)
+        {
+            CustomerOrderPositions.RemoveAt(Id);
+        }
     }
 }
