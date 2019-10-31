@@ -7,6 +7,7 @@ using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.User;
+using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
@@ -225,6 +226,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             context.SaveChanges();
 
             InformationToUser("Dodano zamówienie", false);
+
+            customerProfile.DataContext = null;
+            courierProfile.DataContext = null;
+            ProductOrderListViewModel.Instance.Clear();
+            PaymentOrderViewModel.Instance.Refresh();
         }
         #endregion
     }
