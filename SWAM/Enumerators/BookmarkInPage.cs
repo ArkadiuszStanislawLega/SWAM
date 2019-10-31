@@ -31,6 +31,14 @@ namespace SWAM.Enumerators
         /// <summary>
         /// A tab in <see cref="ManageOrdersPage"/> with orders for the warehouse.
         /// </summary>
-        ToWarehousesOrdersList
+        ToWarehousesOrdersList,
+        /// <summary>
+        /// A tab in <see cref="ManageCouriersPage"/> with courier profile.
+        /// </summary>
+        CourierProfile,
+        /// <summary>
+        /// A tab in <see cref="ManageCouriersPage"/> with create new courier panel.
+        /// </summary>
+        CreateNewCourier
     }
 }

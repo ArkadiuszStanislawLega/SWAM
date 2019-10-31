@@ -41,7 +41,7 @@
         <!--#endregion-->
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding Command="com:MainWindowCommands.RefreshData" CanExecute="RefreshDataCommand_CanExecute" Executed="RefreshDataCommand_Executed"  />
+        <CommandBinding Command="com:MainWindowCommands.RefreshData" Executed="RefreshDataCommand_Executed" />
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Key="F5" Command="com:MainWindowCommands.RefreshData" />

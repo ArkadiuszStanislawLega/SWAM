@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.CouriersPage;
+using SWAM.Enumerators;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Strings;
@@ -15,13 +16,20 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageCouriersPage : BasicPage
     {
+        public Courier CurrentlyLoadedCourierProfile { get; private set; }
         public ManageCouriersPage()
         {
             InitializeComponent();
+
             ChangeContent(new CreateNewCourierTemplate());
+            this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
         }
 
-        private void AddNewCourier_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewCourierTemplate());
+        private void AddNewCourier_Click(object sender, RoutedEventArgs e)
+        {
+            this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
+            ChangeContent(new CreateNewCourierTemplate());
+        }
         
 
         #region CreateCourierProfile
@@ -40,6 +48,9 @@ namespace SWAM.Controls.Pages
             {
                 if ((Courier)button.DataContext is Courier courier)
                 {
+                    this.CurrentlyLoadedCourierProfile = courier;
+                    this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
+
                     CourierOrdersListViewModel.Instance.Refresh(courier);
                     ChangeContent(CreateCourierProfile((Courier)button.DataContext));
                 }

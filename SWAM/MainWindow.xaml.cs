@@ -8,6 +8,7 @@ using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
+using SWAM.Models.Courier;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -513,24 +514,30 @@ namespace SWAM
         #endregion
 
 
-
-        private void RefereshData_Click(object sender, RoutedEventArgs e)
+        private void RefreshList()
         {
-            switch(this._currentPageLoaded)
+            switch (this._currentPageLoaded)
             {
                 case PagesUserControls.AdministratorPage:
                     {
-                        if(this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
+                        if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
                         {
-                            if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.CustomerOrdersPanel)
-                                UsersListViewModel.Instance.Refresh();
-                            else if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel)
-                                WarehousesListViewModel.Instance.Refresh();
+                            if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.UsersControlPanel) UsersListViewModel.Instance.Refresh();
+                            else if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel) WarehousesListViewModel.Instance.Refresh();
                         }
                         break;
                     }
                 case PagesUserControls.ManageCouriersPage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage) && currentPage is ManageCouriersPage courierPage)
+                        {
+                            if (courierPage.CurrentBookmarkLoaded == BookmarkInPage.CourierProfile)
+                            {
+                                CouriersListViewModel.Instance.Refresh();
+                                CourierOrdersListViewModel.Instance.Refresh(courierPage.CurrentlyLoadedCourierProfile);
+                            }
+                            else if (courierPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCourier) CouriersListViewModel.Instance.Refresh();
+                        }
                         break;
                     }
                 case PagesUserControls.ManageCustomersPage:
@@ -561,14 +568,8 @@ namespace SWAM
             }
         }
 
-        private void RefreshDataCommand_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
-        {
-            //RefereshData_Click = (sender1, e1) => { };
-        }
-
-        private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-
-        }
+        private void RefereshData_Click(object sender, RoutedEventArgs e) => RefreshList();
+        private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) => RefreshList();
+        
     }
 }

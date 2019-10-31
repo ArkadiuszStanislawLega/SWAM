@@ -13,6 +13,10 @@ namespace SWAM.Controls.Pages
     {
         #region Properties
         /// <summary>
+        /// Currently loaded bookmark in page.
+        /// </summary>
+        public BookmarkInPage CurrentBookmarkLoaded { get; protected set; }
+        /// <summary>
         /// Main window instance.
         /// </summary>
         /// <returns></returns>
