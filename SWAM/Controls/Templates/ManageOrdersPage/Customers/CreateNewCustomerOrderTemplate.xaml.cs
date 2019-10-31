@@ -198,7 +198,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             {
                 IsPaid = false,
                 OrderDate = DateTime.Now,
-                CustomerOrderStatus = CustomerOrderStatus.InProcess,
                 ShipmentType = shipmentType,
                 PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
                 UserId = employee.Id,
@@ -206,6 +205,16 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 WarehouseId = employeeWarehouse,
                 CustomerOrderPositions = orderedProducts
             };
+
+            // Add order status based on selected pay method
+            if ((PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())) == PaymentType.Postpaid)
+            {
+                customerOrder.CustomerOrderStatus = CustomerOrderStatus.InProcess;
+            }
+            else if ((PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())) == PaymentType.Prepaid)
+            {
+                customerOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
+            }
 
             // Add address only if package is not personaly collected by customer
             if ((bool)(!isPersonalCollected.IsChecked))
