@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SWAM.Enumerators
 {
     public enum BookmarkInPage
@@ -32,6 +27,10 @@ namespace SWAM.Enumerators
         /// <summary>
         /// Finding user template in <see cref="SendMessageMessagesWindow"/>.
         /// </summary>
-        FindUserMessagesWindow
+        FindUserMessagesWindow,
+        /// <summary>
+        /// A tab in <see cref="ManageOrdersPage"/> with orders for the warehouse.
+        /// </summary>
+        ToWarehousesOrdersList
     }
 }
