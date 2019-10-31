@@ -48,7 +48,7 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Refreshing data depends on <see cref="CurrentBookmarkLoaded"/>.
         /// </summary>
-        public void RefreshData()
+        public override void RefreshData()
         {
             if (this.CurrentBookmarkLoaded == BookmarkInPage.UsersControlPanel) UsersListViewModel.Instance.Refresh();
             else if (this.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel) WarehousesListViewModel.Instance.Refresh();

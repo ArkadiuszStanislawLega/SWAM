@@ -572,6 +572,7 @@ namespace SWAM
                         break;
                     }
                 #endregion
+                #region ManageMagazinePage
                 case PagesUserControls.ManageMagazinePage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageMagazinePage, out BasicPage currentPage))
@@ -580,6 +581,8 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
+                #region ManageOrdersPage
                 case PagesUserControls.ManageOrdersPage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageOrdersPage, out BasicPage currentPage))
@@ -588,6 +591,7 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
                 #region MessagesPage
                 case PagesUserControls.MessagesPage:
                     {
