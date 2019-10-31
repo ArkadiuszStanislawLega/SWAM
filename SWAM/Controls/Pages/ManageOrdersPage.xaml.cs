@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Controls.Templates.ManageOrdersPage.Customers;
-using SWAM.Controls.Templates.ManageOrdersPage.ToWarehousesOrdersList;
 using SWAM.Controls.Templates.ManageOrdersPage.Warehouses;
 using SWAM.Enumerators;
 
@@ -15,8 +14,7 @@ namespace SWAM.Controls.Pages
     {
         Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
                 { BookmarkInPage.WarehouseOrdersPanel, new WarehouseOrdersPanelTemplate()},
-                { BookmarkInPage.CustomerOrdersPanel, new CustomerOrdersPanelTemplate() },
-                { BookmarkInPage.ToWarehousesOrdersList, new ToWarehousesOrdersListPanelTemplate() }
+                { BookmarkInPage.CustomerOrdersPanel, new CustomerOrdersPanelTemplate() }
         };
         /// <summary>
         /// Current visible bookmark.
@@ -30,7 +28,6 @@ namespace SWAM.Controls.Pages
 
         private void SwitchToWarehouseOrdersControlPanel_Click(object sender, System.Windows.RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.WarehouseOrdersPanel);
         private void SwitchToCustomerOrdersControlPanel_Click(object sender, System.Windows.RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.CustomerOrdersPanel);
-        private void SwitchToWarehousesListPanelPanel_Click(object sender, System.Windows.RoutedEventArgs e) => ChangeThisContent(BookmarkInPage.ToWarehousesOrdersList);
 
         #region ChangeThisContent
         /// <summary>

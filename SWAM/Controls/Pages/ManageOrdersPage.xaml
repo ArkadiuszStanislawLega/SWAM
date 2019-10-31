@@ -53,13 +53,6 @@
                     Content="Zlecenia klienckie" 
                     x:Name="SwitchToCustomerOrdersControlPanel" 
                     Style="{StaticResource NavigationButton}"/>
-            <nav:NavigationButtonTemplate Width="150"
-                    IsSelected="True"
-                    Bookmark="ToWarehousesOrdersList"
-                    Click="SwitchToWarehousesListPanelPanel_Click"
-                    Content="Lista zamówień" 
-                    x:Name="SwitchToWarehouseListOfOrdersPanel" 
-                    Style="{StaticResource NavigationButton}"/>
         </StackPanel>
         <!--#endregion-->
         <Grid  Name="MainContent" Grid.Row="1">
