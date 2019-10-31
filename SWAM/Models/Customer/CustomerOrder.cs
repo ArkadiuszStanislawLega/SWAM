@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using SWAM.Enumerators;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Models.Customer
 {
@@ -74,5 +76,18 @@ namespace SWAM.Models.Customer
         /// </summary>
         public CustomerOrderDeliveryAddress DeliveryAddress { get; set; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
+
+        //TODO:TRy catch block.
+        private static ApplicationDbContext context = new ApplicationDbContext();
+        public static IList<CustomerOrder> GetAllOrders()
+        {
+           return context.CustomerOrders
+                .Include(c => c.Customer)
+                .Include(c => c.Courier)
+                .Include(c => c.Warehouse)
+                .Include(c => c.User)
+                .Include(c => c.DeliveryAddress)
+                .ToList();
+        }
     }
 }

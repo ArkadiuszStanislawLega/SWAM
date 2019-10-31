@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
 {
     /// <summary>
-    /// Interaction logic for CustomerOrdersNavigationTemplate.xaml
+    /// Logika interakcji dla klasy CustomerOrderProfileTemplate.xaml
     /// </summary>
-    public partial class CustomerOrdersNavigationTemplate : UserControl
+    public partial class CustomerOrderProfileTemplate : UserControl
     {
-        public CustomerOrdersNavigationTemplate()
+        public CustomerOrderProfileTemplate()
         {
             InitializeComponent();
         }

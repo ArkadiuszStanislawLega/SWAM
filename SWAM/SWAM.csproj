@@ -157,6 +157,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml.cs">
       <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrderProfileTemplate.xaml.cs">
+      <DependentUpon>CustomerOrderProfileTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\DeliveryAddressFormTemplate.xaml.cs">
       <DependentUpon>DeliveryAddressFormTemplate.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,7 @@
     <Compile Include="Models\ExternalSupplier\ExternalSupplierAddress.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierDeliveryListViewModel.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierListViewModel.cs" />
+    <Compile Include="Models\ManageOrdersPage\CustomerOrdersListViewModel.cs" />
     <Compile Include="Models\ManageOrdersPage\UserDependsAccessProductListViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ExternalSupplier\ExternalSupplierPhone.cs" />
@@ -452,11 +456,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrderProfileTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -621,12 +621,6 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml.cs">
       <DependentUpon>CustomerListFromDbTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersNavigationTemplate.xaml.cs">
-      <DependentUpon>CustomerOrdersNavigationTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
-      <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml.cs">
       <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>

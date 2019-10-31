@@ -37,14 +37,14 @@
                 VerticalAlignment="Top"
                 Content="Poprzedni"
                 Click="SwitchContentPreviousButton_Click"
-                Style="{StaticResource UserProfilebuttons}"/>
+                Style="{StaticResource CreatePeople}"/>
 
             <Button x:Name="switchContentNextButton"
                 Grid.Column="1"
                 VerticalAlignment="Top"
                 Content="Następny"
                 Click="SwitchContentNextButton_Click"
-                Style="{StaticResource UserProfilebuttons}"/>
+               Style="{StaticResource CreatePeople}"/>
         </Grid>
         <!--#endregion-->
         

@@ -56,5 +56,13 @@ namespace SWAM.Enumerators
         /// A tab in <see cref="ManageExternalSupplierPage"/> with create new external supplier panel.
         /// </summary>
         CreateNewExternalSupplier,
+        /// <summary>
+        /// A tab in <see cref="ManageOrdersPage"/> with create new customer order panel.
+        /// </summary>
+        CustomerOrderProfile,
+        /// <summary>
+        /// A tab in <see cref="ManageOrdersPage"/> with create new customer order panel.
+        /// </summary>
+        CreateNewCustomerOrder
     }
 }
