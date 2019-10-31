@@ -1,5 +1,6 @@
 ﻿using SWAM.Models.Customer;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {

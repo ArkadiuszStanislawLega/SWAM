@@ -123,7 +123,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
         {
             if (isPersonalCollected.IsChecked.GetValueOrDefault())
             {
-                this.courierProfile.DataContext = null;
+                courierProfile.DataContext = null;
+                courierProfile.SetGrayFields();
                 customerOrderAddress.Visibility = Visibility.Hidden;
                 personalAddressCollection.Visibility = Visibility.Visible;
                 courierListProfile.couriersListView.UnselectAll();
