@@ -47,7 +47,7 @@
                           Foreground="White" BorderThickness="0">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                            <GridViewColumn>
+                            <GridViewColumn Width="120">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ScrollViewer Width="110"

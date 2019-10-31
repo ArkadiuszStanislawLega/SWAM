@@ -20,7 +20,7 @@
                   ItemsSource="{Binding States}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nazwa" Binding="{Binding Product.Name}"/>
+                <DataGridTextColumn Header="Nazwa" MaxWidth="200" Binding="{Binding Product.Name}"/>
                 <DataGridTextColumn Header="Szerokość" Binding="{Binding Product.Width}"/>
                 <DataGridTextColumn Header="Długość" Binding="{Binding Product.Length}"/>
                 <DataGridTextColumn Header="Waga" Binding="{Binding Product.Weigth}"/>
