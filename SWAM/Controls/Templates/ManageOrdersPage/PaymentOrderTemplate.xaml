@@ -11,8 +11,9 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Text="Do zapłaty:"/>
-        <TextBlock DataContext="{x:Static payment:PaymentOrderViewModel.Instance}" 
+        <TextBlock FontWeight="Bold" Grid.Column="0" Text="Do zapłaty:"/>
+        <TextBlock FontWeight="Bold"
+                   DataContext="{x:Static payment:PaymentOrderViewModel.Instance}" 
                    Text="{Binding TotalPrice, StringFormat={}{0}zł}" 
                    Margin="10 0 0 0" 
                    Grid.Column="1" 
