@@ -8,7 +8,7 @@
              xmlns:products="clr-namespace:SWAM.Models.ProductOrderList"
              xmlns:conv="clr-namespace:SWAM.Converters" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="200">
+             d:DesignHeight="300" d:DesignWidth="231">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -25,7 +25,7 @@
         <!--#region Product search box-->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Name="FindUserOrCreate" >
             <TextBox Tag="Wyszukaj produkt"
-                             FontSize="14" Width="170" Height="30"
+                             FontSize="14" Width="200" Height="30"
                              HorizontalAlignment="Center"
                              Margin="0"
                              Style="{StaticResource UserLogin}"
@@ -47,11 +47,19 @@
                           Foreground="White" BorderThickness="0">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                            <GridViewColumn Width="120" DisplayMemberBinding="{Binding Product.Name}" />
+                            <GridViewColumn Width="120">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0 5 0 0">
+                                            <TextBlock Text="{Binding Product.Name}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                             <GridViewColumn Width="60">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Grid>
+                                        <Grid Margin="0 5 0 0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="10" />
                                                 <ColumnDefinition Width="auto" />
@@ -63,6 +71,17 @@
                                                 LostFocus="Quantity_LostFocus" 
                                                 Text="{Binding Quantity}"
                                                 PreviewTextInput="NumberValidationTextBox"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="37">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="25">
+                                            <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
+                                                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}" Height="20" Width="16"/>
+                                            </Button>
                                         </Grid>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
