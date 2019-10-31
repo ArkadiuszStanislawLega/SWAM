@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Text.RegularExpressions;
 using SWAM.Models.ViewModels.CreateNewCustomerOrder;
+using SWAM.Models.ProductOrderList;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage
 {
@@ -58,6 +59,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DeleteRow_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(((FrameworkElement)sender).DataContext is CustomerOrderPosition customerOrderPosition))
+                return;
+
+            ProductOrderListViewModel.Instance.Delete(customerOrderPosition.Id);
         }
     }
 }
