@@ -516,11 +516,11 @@ namespace SWAM
         }
         #endregion
 
-        #region RefreshList
+        #region RefreshDataOnPage
         /// <summary>
-        /// Refreshing lists depends on <see cref="_currentPageLoaded"/> property.
+        /// Refreshing data depends on <see cref="_currentPageLoaded"/> property.
         /// </summary>
-        private void RefreshList()
+        private void RefreshDataOnPage()
         {
             switch (this._currentPageLoaded)
             {
@@ -608,7 +608,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Context menu button "refresh data".</param>
         /// <param name="e">Event clicked.</param>
-        private void RefereshData_Click(object sender, RoutedEventArgs e) => RefreshList();
+        private void RefereshData_Click(object sender, RoutedEventArgs e) => RefreshDataOnPage();
         #endregion
         #region RefreshDataCommand_Executed
         /// <summary>
@@ -617,7 +617,7 @@ namespace SWAM
         /// </summary>
         /// <param name="sender">Button F5</param>
         /// <param name="e">Event button click.</param>
-        private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) => RefreshList();
+        private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) => RefreshDataOnPage();
         #endregion
     }
 }
