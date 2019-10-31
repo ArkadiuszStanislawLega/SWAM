@@ -567,7 +567,7 @@ namespace SWAM
                 #region ManageItemsPage
                 case PagesUserControls.ManageItemsPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage))
+                        if (this._pages.TryGetValue(PagesUserControls.ManageItemsPage, out BasicPage currentPage))
                              currentPage.RefreshData();
                         break;
                     }
