@@ -67,6 +67,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
                 return;
 
             ProductOrderListViewModel.Instance.Delete(customerOrderPosition.Id);
+            PaymentOrderViewModel.Instance.Refresh();
         }
     }
 }
