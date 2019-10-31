@@ -1,9 +1,4 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace SWAM.Commands.AdministratorPage

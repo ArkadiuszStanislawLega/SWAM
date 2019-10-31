@@ -7,6 +7,7 @@ using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
+using SWAM.Models.AdministratorPage;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -159,7 +160,6 @@ namespace SWAM
                      if (entry.Key == PagesUserControls.LoginPage)
                      {
                          RefreshMessagesButton();
-                         ChangeContent(PagesUserControls.MessagesPage);
                      }
                  };
             }
@@ -511,5 +511,64 @@ namespace SWAM
             return LoggedInUser;
         }
         #endregion
+
+
+
+        private void RefereshData_Click(object sender, RoutedEventArgs e)
+        {
+            switch(this._currentPageLoaded)
+            {
+                case PagesUserControls.AdministratorPage:
+                    {
+                        if(this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
+                        {
+                            if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.CustomerOrdersPanel)
+                                UsersListViewModel.Instance.Refresh();
+                            else if (administratorPage.CurrentBookmarkLoaded == BookmarkInPage.WarehousesControlPanel)
+                                WarehousesListViewModel.Instance.Refresh();
+                        }
+                        break;
+                    }
+                case PagesUserControls.ManageCouriersPage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.ManageCustomersPage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.ManageExternalSuppliersPage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.ManageItemsPage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.ManageMagazinePage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.ManageOrdersPage:
+                    {
+                        break;
+                    }
+                case PagesUserControls.MessagesPage:
+                    {
+                        break;
+                    }
+
+            }
+        }
+
+        private void RefreshDataCommand_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+            //RefereshData_Click = (sender1, e1) => { };
+        }
+
+        private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+
+        }
     }
 }

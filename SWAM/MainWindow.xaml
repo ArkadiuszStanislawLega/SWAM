@@ -4,6 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
+        xmlns:com="clr-namespace:SWAM.Commands.MainWindow"
         xmlns:conv="clr-namespace:SWAM.Converters"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -22,6 +23,7 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
+
     <Window.Resources>
         <!--#region LoadedStory-->
         <Storyboard x:Key="UnloadStory">
@@ -38,6 +40,12 @@
         </Storyboard>
         <!--#endregion-->
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="com:MainWindowCommands.RefreshData" CanExecute="RefreshDataCommand_CanExecute" Executed="RefreshDataCommand_Executed"  />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="F5" Command="com:MainWindowCommands.RefreshData" />
+    </Window.InputBindings>
     <Grid Name="EverythingInWindow">
         <!--#region Rows definitions-->
         <Grid.RowDefinitions>
@@ -68,6 +76,7 @@
                     <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
                         <Menu DockPanel.Dock="Top" >
                             <MenuItem Header="_Plik">
+                                <MenuItem Name="RefereshData" Header="_Odśwież dane" InputGestureText="F5" Click="RefereshData_Click"/>
                                 <MenuItem Header="_Zapisz"/>
                                 <Separator/>
                                 <MenuItem Header="_Zamknij"/>

@@ -18,14 +18,18 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Instances of all bookmarks in AdministratorPage.
         /// </summary>
-        Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
+        private Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
                 { BookmarkInPage.WarehousesControlPanel, new WarehousesControlPanelTemplate()},
                 { BookmarkInPage.UsersControlPanel, new UsersControlPanelTemplate() }
         };
         /// <summary>
         /// Current visible bookmark.
         /// </summary>
-        UserControl _currentContent;
+        private UserControl _currentContent;
+        /// <summary>
+        /// Currently loaded bookmark in administrator page.
+        /// </summary>
+        public BookmarkInPage CurrentBookmarkLoaded { get; private set; } = BookmarkInPage.CustomerOrdersPanel;
         #endregion
 
         #region Basic Constructor
@@ -62,8 +66,11 @@ namespace SWAM.Controls.Pages
                 else nvb.IsSelected = false;
             }
 
-            this._userControls.TryGetValue(bookmarkAdministratorPage, out UserControl userControl);
-            ChangeContext(userControl);
+            if (this._userControls.TryGetValue(bookmarkAdministratorPage, out UserControl userControl))
+            {
+                ChangeContext(userControl);
+                this.CurrentBookmarkLoaded = bookmarkAdministratorPage;
+            }
         }
         #endregion
         #region ChangeContext
