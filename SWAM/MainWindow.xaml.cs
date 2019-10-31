@@ -10,6 +10,7 @@ using SWAM.Models;
 using SWAM.Models.AdministratorPage;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
+using SWAM.Models.ExternalSupplier;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -513,8 +514,10 @@ namespace SWAM
             return LoggedInUser;
         }
         #endregion
-
-
+        #region RefreshList
+        /// <summary>
+        /// Refreshing lists depends on <see cref="_currentPageLoaded"/> property.
+        /// </summary>
         private void RefreshList()
         {
             switch (this._currentPageLoaded)
@@ -556,6 +559,15 @@ namespace SWAM
                     }
                 case PagesUserControls.ManageExternalSuppliersPage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage) && currentPage is ManageExternalSuppliersPage externalSupplierPage)
+                        {
+                            if (externalSupplierPage.CurrentBookmarkLoaded == BookmarkInPage.ExternalSupplierProfile)
+                            {
+                                ExternalSupplierListViewModel.Instance.Refresh();
+                                ExternalSupplierDeliveryListViewModel.Instance.Refresh(externalSupplierPage.CurrentlyLoadedExternalSupplier);
+                            }
+                            else if (externalSupplierPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewExternalSupplier) ExternalSupplierListViewModel.Instance.Refresh(); ;
+                        }
                         break;
                     }
                 case PagesUserControls.ManageItemsPage:
@@ -577,9 +589,23 @@ namespace SWAM
 
             }
         }
-
+        #endregion 
+        #region RefereshData_Click
+        /// <summary>
+        /// Action after pressing the context menu button "refresh data" at the top of the application.
+        /// </summary>
+        /// <param name="sender">Context menu button "refresh data".</param>
+        /// <param name="e">Event clicked.</param>
         private void RefereshData_Click(object sender, RoutedEventArgs e) => RefreshList();
+        #endregion
+        #region RefreshDataCommand_Executed
+        /// <summary>
+        /// Action after click button F5 in application.
+        /// Refreshing the lists depending on the enabled page.
+        /// </summary>
+        /// <param name="sender">Button F5</param>
+        /// <param name="e">Event button click.</param>
         private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) => RefreshList();
-        
+        #endregion
     }
 }

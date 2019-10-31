@@ -14,12 +14,22 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageExternalSuppliersPage : BasicPage
     {
+        /// <summary>
+        /// If in page is loaded some profile here is the dataContext.
+        /// </summary>
+        public ExternalSupplier CurrentlyLoadedExternalSupplier { get; private set; }
         public ManageExternalSuppliersPage()
         {
             InitializeComponent();
+
+            this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewExternalSupplier;
         }
 
-        private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewExternalSupplierTemplate());
+        private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewExternalSupplier;
+            ChangeContent(new CreateNewExternalSupplierTemplate());
+        }
 
 
         #region CreateCustomerProfile
@@ -28,8 +38,8 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="externalSupplier">Index number of ExternalSupplierListViewModel in the users list.</param>
         /// <return>Chosen user profile.</return>
-        private ExternalSupplierProfileTemplate CreateExternalSupplierProfile(ExternalSupplier externalSupplier)
-            => new ExternalSupplierProfileTemplate() { DataContext = externalSupplier };
+        private ExternalSupplierProfileTemplate CreateExternalSupplierProfile() => new ExternalSupplierProfileTemplate() { DataContext = this.CurrentlyLoadedExternalSupplier };
+        
         #endregion
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,8 +83,13 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
             {
-                ExternalSupplierDeliveryListViewModel.Instance.Refresh((ExternalSupplier)button.DataContext);
-                ChangeContent(CreateExternalSupplierProfile((ExternalSupplier)button.DataContext));
+                if (button.DataContext is ExternalSupplier external)
+                {
+                    this.CurrentlyLoadedExternalSupplier = external;
+                    this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.ExternalSupplierProfile;
+                    ExternalSupplierDeliveryListViewModel.Instance.Refresh(this.CurrentlyLoadedExternalSupplier);
+                    ChangeContent(CreateExternalSupplierProfile());
+                }
             }
             else InformationToUser(ErrorMesages.REFRESH_EXTERNAL_SUPPLIER_PROFILE_ERROR);
         }
