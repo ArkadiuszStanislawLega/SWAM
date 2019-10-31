@@ -11,6 +11,7 @@ using SWAM.Models.AdministratorPage;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Models.ProductListViewModel;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -514,6 +515,7 @@ namespace SWAM
             return LoggedInUser;
         }
         #endregion
+
         #region RefreshList
         /// <summary>
         /// Refreshing lists depends on <see cref="_currentPageLoaded"/> property.
@@ -522,6 +524,7 @@ namespace SWAM
         {
             switch (this._currentPageLoaded)
             {
+                #region AdministratorPage
                 case PagesUserControls.AdministratorPage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
@@ -531,6 +534,8 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
+                #region ManageCouriersPage
                 case PagesUserControls.ManageCouriersPage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage) && currentPage is ManageCouriersPage courierPage)
@@ -544,6 +549,8 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
+                #region ManageCustomersPage
                 case PagesUserControls.ManageCustomersPage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage) && currentPage is ManageCustomersPage customerPage)
@@ -557,6 +564,8 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
+                #region ManageExternalSuppliersPage
                 case PagesUserControls.ManageExternalSuppliersPage:
                     {
                         if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage) && currentPage is ManageExternalSuppliersPage externalSupplierPage)
@@ -570,10 +579,14 @@ namespace SWAM
                         }
                         break;
                     }
+                #endregion
+                #region ManageItemsPage
                 case PagesUserControls.ManageItemsPage:
                     {
+                        ProductListViewModel.Instance.Refresh();
                         break;
                     }
+                #endregion
                 case PagesUserControls.ManageMagazinePage:
                     {
                         break;
@@ -582,10 +595,16 @@ namespace SWAM
                     {
                         break;
                     }
+                #region MessagesPage
                 case PagesUserControls.MessagesPage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage) && currentPage is MessagesPage messagePage)
+                        {
+                            messagePage.RefreshMessagesList();
+                        }
                         break;
                     }
+                #endregion
 
             }
         }
