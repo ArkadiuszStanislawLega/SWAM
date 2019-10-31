@@ -39,6 +39,14 @@ namespace SWAM.Enumerators
         /// <summary>
         /// A tab in <see cref="ManageCouriersPage"/> with create new courier panel.
         /// </summary>
-        CreateNewCourier
+        CreateNewCourier,
+        /// <summary>
+        /// A tab in <see cref="ManageCustomerPage"/> with customer profile.
+        /// </summary>
+        CustomerProfile,
+        /// <summary>
+        /// A tab in <see cref="ManageCustomerPage"/> with create new customer panel.
+        /// </summary>
+        CreateNewCustomer,
     }
 }

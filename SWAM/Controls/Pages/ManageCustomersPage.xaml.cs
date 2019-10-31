@@ -14,9 +14,11 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageCustomersPage : BasicPage
     {
+        public Customer CurrentlyLoadedCustomerProfile { get; private set; }
         public ManageCustomersPage()
         {
             InitializeComponent();
+            this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewCustomer;
             ChangeContent(new CreateNewCustomerTemplate());
         }
         #region ChangeContent
@@ -39,11 +41,15 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="customer">Index number of UsersListItemTemplate in the users list.</param>
         /// <return>Chosen user profile.</return>
-        private CustomerProfileTemplate CreateCustomerProfile(Customer customer) 
+        private CustomerProfileTemplate CreateCustomerProfile(Customer customer)
             => new CustomerProfileTemplate() { DataContext = customer };
         #endregion
 
-        private void AddNewUser_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewCustomerTemplate());
+        private void AddNewUser_Click(object sender, RoutedEventArgs e)
+        {
+            this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewCustomer;
+            ChangeContent(new CreateNewCustomerTemplate());
+        }
         
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -72,8 +78,13 @@ namespace SWAM.Controls.Pages
         {
             if (sender is Button button)
             {
-                CustomerOrdersListViewModel.Instance.Refresh((Customer)button.DataContext);
-                ChangeContent(CreateCustomerProfile((Customer)button.DataContext));
+                if (button.DataContext is Customer customer)
+                {
+                    this.CurrentlyLoadedCustomerProfile = customer;
+                    this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CustomerProfile;
+                    CustomerOrdersListViewModel.Instance.Refresh(this.CurrentlyLoadedCustomerProfile);
+                    ChangeContent(CreateCustomerProfile(this.CurrentlyLoadedCustomerProfile));
+                } 
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }

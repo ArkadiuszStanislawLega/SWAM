@@ -9,6 +9,7 @@ using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.AdministratorPage;
 using SWAM.Models.Courier;
+using SWAM.Models.Customer;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -542,6 +543,15 @@ namespace SWAM
                     }
                 case PagesUserControls.ManageCustomersPage:
                     {
+                        if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage) && currentPage is ManageCustomersPage customerPage)
+                        {
+                            if (customerPage.CurrentBookmarkLoaded == BookmarkInPage.CustomerProfile)
+                            {
+                                CustomersListViewModel.Instance.Refresh();
+                                CustomerOrdersListViewModel.Instance.Refresh(customerPage.CurrentlyLoadedCustomerProfile);
+                            }
+                            else if (customerPage.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCustomer) CustomersListViewModel.Instance.Refresh(); ;
+                        }
                         break;
                     }
                 case PagesUserControls.ManageExternalSuppliersPage:
