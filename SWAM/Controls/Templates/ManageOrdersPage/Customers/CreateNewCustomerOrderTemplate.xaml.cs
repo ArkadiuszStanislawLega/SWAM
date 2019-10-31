@@ -145,9 +145,16 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;
             var courier = courierProfile.DataContext as Courier;
+            var deliveryAddress = deliveryAddressProfile.GetCustomerOrderDeliveryAddress();
             var orderedProducts = new List<CustomerOrderPosition>(ProductOrderListViewModel.Instance.CustomerOrderPositions);
+            ShipmentType shipmentType = ShipmentType.Reception;
 
             var validator = new CreateNewCustomerOrderValidator();
+
+            // Get all radio buttons 
+            List<RadioButton> radioButtons = paymentTypes.Children.OfType<RadioButton>().ToList();
+            // Search list for checked radio button
+            RadioButton chekedRadioButton = radioButtons.Where(rb => rb.IsChecked == true).Single();
 
             if ((bool)(!isPersonalCollected.IsChecked))
             {
@@ -156,6 +163,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                     InformationToUser("Wybierz kuriera z listy", true);
                     return;
                 }
+
+                if (!validator.DeliveryAddressValidation(deliveryAddress))
+                {
+                    InformationToUser("Uzupełnij lub popraw adres dostawy", true);
+                    return;
+                }
+
+                shipmentType = ShipmentType.Shipment;
             }
 
             if (!validator.OrderedProductsValidation(orderedProducts))
@@ -175,21 +190,39 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
 
+            // Create customer order based on forms data
             var customerOrder = new CustomerOrder
             {
                 IsPaid = false,
                 OrderDate = DateTime.Now,
                 CustomerOrderStatus = CustomerOrderStatus.InProcess,
-                ShipmentType = ShipmentType.Reception,
-                PaymentType = PaymentType.Postpaid,
+                ShipmentType = shipmentType,
+                PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
                 UserId = employee.Id,
                 CustomerId = customer.Id,
                 WarehouseId = employeeWarehouse,
                 CustomerOrderPositions = orderedProducts
             };
 
+            // Add address only if package is not personaly collected by customer
+            if ((bool)(!isPersonalCollected.IsChecked))
+            {
+                customerOrder.DeliveryAddress = deliveryAddress;
+            }
+
+            // Decrease quantity of products in states that have been purchased from
+            foreach (var item in orderedProducts)
+            {
+                var state = context.States.FirstOrDefault(s => s.Id == item.State.Id);
+                state.Quantity -= item.Quantity;
+                state.Available -= item.Quantity;
+                context.SaveChanges();
+            }
+
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
+
+            InformationToUser("Dodano zamówienie", false);
         }
         #endregion
     }

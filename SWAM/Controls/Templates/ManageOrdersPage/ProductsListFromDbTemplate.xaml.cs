@@ -29,12 +29,16 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             if (!(((FrameworkElement)sender).DataContext is State state))
                 return;
 
+            if (state.Available <= 0 || state.Quantity <= 0)
+                return;
+
             var customerOrderPosition = new CustomerOrderPosition
             {
                 Product = state.Product,
                 ProductId = state.Id,
                 Price = state.Product.Price,
-                Quantity=1
+                Quantity=1,
+                State = state
             };
 
             ProductOrderListViewModel.Instance.Add(customerOrderPosition);

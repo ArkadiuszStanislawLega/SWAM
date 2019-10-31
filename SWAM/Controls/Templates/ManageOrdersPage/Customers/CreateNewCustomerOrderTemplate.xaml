@@ -145,46 +145,64 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    
                     <manageOrdersControls:CourierDetailsFormTemplate Grid.Column="0" x:Name="courierProfile"/>
                     <manageOrdersControls:CourierListFromDbTemplate Grid.Column="1" x:Name="courierListProfile"/>
                 </Grid>
                 <Grid Grid.Row="2">
                     <CheckBox Name="isPersonalCollected" Click="IsPersonalCollected_Click" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
                 </Grid>
-                <Grid Grid.Row="3" x:Name="customerOrderAddress" Visibility="Visible">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock FontSize="20" Text="Dane dostawy" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
-                        <manageOrdersControls:DeliveryAddressFormTemplate Grid.Row="1"/>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="customerOrderAddress" Visibility="Visible">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="20" Text="Dane dostawy" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
+                            <manageOrdersControls:DeliveryAddressFormTemplate Grid.Row="1" x:Name="deliveryAddressProfile"/>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <Grid Grid.Row="3" x:Name="personalAddressCollection" Visibility="Hidden">
-                    <Grid>
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="personalAddressCollection" Visibility="Hidden">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock FontSize="20" Text="Dane magazynu" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
+                            <manageOrdersControls:PersonalCollectionTemplate Margin="0 10 0 0" Grid.Row="1"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="auto"/>
-                        </Grid.ColumnDefinitions>
                         
-                        <TextBlock FontSize="20" Text="Dane magazynu" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
-                        <manageOrdersControls:PersonalCollectionTemplate Margin="0 10 0 0" Grid.Row="1"/>
+                        <TextBlock Grid.Row="0" FontSize="20" Text="Dane płatności" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
+                        
+                        <StackPanel x:Name="paymentTypes" Grid.Row="1" Margin="20 10 0 0">
+                            <Label FontWeight="Bold">Formy płatności:</Label>
+                            <RadioButton Name="prePaid" Tag="0" IsChecked="True">Przelew</RadioButton>
+                            <RadioButton Name="postPaid" Tag="1">Płatność pobraniowa</RadioButton>
+                        </StackPanel>
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
         <!--#endregion-->
-        
     </Grid>
 </basic:BasicUserControl>
