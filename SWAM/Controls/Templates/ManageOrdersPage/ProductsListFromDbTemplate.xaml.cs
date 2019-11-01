@@ -4,6 +4,7 @@ using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -37,7 +38,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
                 Product = state.Product,
                 ProductId = state.Id,
                 Price = state.Product.Price,
-                Quantity=1,
+                Quantity = 1,
                 State = state
             };
 
@@ -45,7 +46,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             PaymentOrderViewModel.Instance.Refresh();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e) => UserDependsAccessProductListViewModel.Instance.Refresh();
-        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserDependsAccessProductListViewModel.Instance.Refresh();
+        }
     }
 }

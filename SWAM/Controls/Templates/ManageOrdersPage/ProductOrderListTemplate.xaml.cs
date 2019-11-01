@@ -69,10 +69,5 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             ProductOrderListViewModel.Instance.Delete(customerOrderPosition.Id);
             PaymentOrderViewModel.Instance.Refresh();
         }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

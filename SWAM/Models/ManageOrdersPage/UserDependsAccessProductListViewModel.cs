@@ -36,6 +36,8 @@ namespace SWAM.Models.ManageOrdersPage
                     _warehouses.Add(item.Warehouse);
                 }
             }
+
+            StatesRefresh();
         }
         #endregion
 
@@ -53,6 +55,14 @@ namespace SWAM.Models.ManageOrdersPage
             }
 
             ProductOrderListViewModel.Instance.Clear();
+        }
+        #endregion
+
+        #region StatesRefresh
+        public void StatesRefresh()
+        {
+            if (_states.Count > 0)
+                SetStates(_states.ElementAtOrDefault(0).Warehouse);
         }
         #endregion
     }

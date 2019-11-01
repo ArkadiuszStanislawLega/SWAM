@@ -16,7 +16,7 @@ namespace SWAM.Models
         /// Product quantity avaiable to sale
         /// </summary>
         int _available;
-         
+
         Warehouse.Warehouse _warehouse;
         IList<CustomerOrderPosition> _customerOrderPositions;
         IList<WarehouseOrderPosition> _warehouseOrderPositions;
