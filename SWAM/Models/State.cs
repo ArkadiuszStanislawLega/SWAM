@@ -62,9 +62,10 @@ namespace SWAM.Models
 
         public static List<State> GetStatesFromWarehouse(int warehouseId)
             => context.States
-                    .Include(s => s.Product)
-                    .Include(s => s.Warehouse)
-                    .Where(s => s.WarehouseId == warehouseId).ToList();
+                .Include(s => s.Product)
+                .Include(s => s.Warehouse)
+                .Where(s => s.WarehouseId == warehouseId)
+                .AsNoTracking()
+                .ToList();
     }
 }
-
