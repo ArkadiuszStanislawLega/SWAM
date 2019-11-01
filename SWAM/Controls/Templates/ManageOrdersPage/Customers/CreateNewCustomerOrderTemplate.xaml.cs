@@ -187,6 +187,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 InformationToUser("Wybierz klienta z listy", true);
                 return;
             }
+
             try
             {
                 orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
