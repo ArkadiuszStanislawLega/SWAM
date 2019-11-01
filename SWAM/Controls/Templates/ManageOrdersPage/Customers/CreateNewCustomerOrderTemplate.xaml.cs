@@ -240,6 +240,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
             courierProfile.DataContext = null;
             ProductOrderListViewModel.Instance.Clear();
             PaymentOrderViewModel.Instance.Refresh();
+            UserDependsAccessProductListViewModel.Instance.Refresh();
         }
         #endregion
     }
