@@ -187,8 +187,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
                 InformationToUser("Wybierz klienta z listy", true);
                 return;
             }
-
-            orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
+            try
+            {
+                orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
+            }
+            catch(Exception)
+            {
+                InformationToUser("Wystąpił błąd", true);
+            }
 
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
