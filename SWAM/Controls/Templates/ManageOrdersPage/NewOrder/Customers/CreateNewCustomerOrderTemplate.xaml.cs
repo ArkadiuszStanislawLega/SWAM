@@ -1,20 +1,17 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers.Validators;
 using SWAM.Enumerators;
-using SWAM.Models;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.User;
 using SWAM.Models.ViewModels.CreateNewCustomerOrder;
-using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers
 {
@@ -27,7 +24,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers
         // Current visible page
         CustomerOrderVisiblePage visiblePage = CustomerOrderVisiblePage.CustomerPage;
         // Pages with its grid containers elements
-        Dictionary<CustomerOrderVisiblePage, Grid> pages;
+        Dictionary<CustomerOrderVisiblePage, ScrollViewer> pages;
         #endregion
 
         #region Constructor
@@ -36,7 +33,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers
             InitializeComponent();
 
             // Seed dictionary
-            pages = new Dictionary<CustomerOrderVisiblePage, Grid>()
+            pages = new Dictionary<CustomerOrderVisiblePage, ScrollViewer>()
             {
                 { CustomerOrderVisiblePage.CustomerPage, customerElementsContainer},
                 { CustomerOrderVisiblePage.ProductPage, productElementsContainer},
