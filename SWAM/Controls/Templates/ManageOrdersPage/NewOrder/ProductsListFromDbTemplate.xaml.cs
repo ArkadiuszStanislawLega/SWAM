@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for ProductsListFromDbTemplate.xaml

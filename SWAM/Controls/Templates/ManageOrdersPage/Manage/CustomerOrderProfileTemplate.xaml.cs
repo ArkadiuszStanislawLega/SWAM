@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.Customers
+namespace SWAM.Controls.Templates.ManageOrdersPage.Manage
 {
     /// <summary>
     /// Logika interakcji dla klasy CustomerOrderProfileTemplate.xaml

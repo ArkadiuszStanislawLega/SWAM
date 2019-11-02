@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for AddressOrderTemplate.xaml

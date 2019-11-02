@@ -7,7 +7,7 @@
 
                  xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
       
-                 xmlns:client="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Customers"
+                 xmlns:client="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
                  Background="{StaticResource BackgroundOfPagesBrash}"
              Padding="10"
              mc:Ignorable="d">

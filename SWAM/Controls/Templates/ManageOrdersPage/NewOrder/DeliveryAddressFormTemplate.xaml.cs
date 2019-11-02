@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for DeliveryAddressFormTemplate.xaml

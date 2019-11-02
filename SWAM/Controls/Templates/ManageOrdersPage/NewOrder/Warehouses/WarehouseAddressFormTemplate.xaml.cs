@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.Warehouses
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses
 {
     /// <summary>
     /// Interaction logic for WarehouseAddressFormTemplate.xaml

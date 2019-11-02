@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.PersonalCollectionTemplate"
+﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.NewOrder.PersonalCollectionTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
-             xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.Warehouses"
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.NewOrder"
+             xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses"
              xmlns:warehouse="clr-namespace:SWAM.Models.ViewModels.CreateNewCustomerOrder"
              DataContext="{x:Static warehouse:WarehouseInformationViewModel.Instance}"
              mc:Ignorable="d" >

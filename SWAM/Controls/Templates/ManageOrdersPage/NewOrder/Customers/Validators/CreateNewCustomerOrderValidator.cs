@@ -3,7 +3,7 @@ using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using System.Collections.Generic;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.Customers.Validators
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers.Validators
 {
     public class CreateNewCustomerOrderValidator : BasicUserControl
     {

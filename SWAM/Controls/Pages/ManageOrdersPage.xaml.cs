@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using SWAM.Controls.Templates.MainWindow;
-using SWAM.Controls.Templates.ManageOrdersPage.Customers;
-using SWAM.Controls.Templates.ManageOrdersPage.Warehouses;
+using SWAM.Controls.Templates.ManageOrdersPage;
+using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
 

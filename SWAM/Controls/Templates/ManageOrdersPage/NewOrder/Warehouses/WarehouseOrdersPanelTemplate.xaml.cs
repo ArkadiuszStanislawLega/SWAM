@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.Warehouses
+namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses
 {
     /// <summary>
     /// Logika interakcji dla klasy WarehouseOrdersPanel.xaml
