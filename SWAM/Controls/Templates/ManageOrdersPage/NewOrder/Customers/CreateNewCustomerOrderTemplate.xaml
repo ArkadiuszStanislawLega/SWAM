@@ -74,7 +74,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <customersControls:CustomerDetailsFormTemplate Grid.Column="0"/>
-                    <manageOrdersControls:AddressFormTemplate Grid.Column="1"/>
+                    <manageOrdersControls:CustomerAddressFormTemplate Grid.Column="1"/>
                 </Grid>
             </Grid>
             <customersControls:CustomerListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>

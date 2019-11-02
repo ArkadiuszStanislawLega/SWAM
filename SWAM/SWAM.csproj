@@ -439,7 +439,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\AddressFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -617,8 +617,8 @@
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\AddressFormTemplate.xaml.cs">
-      <DependentUpon>AddressFormTemplate.xaml</DependentUpon>
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerAddressFormTemplate.xaml.cs">
+      <DependentUpon>CustomerAddressFormTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CreateNewCustomerOrderTemplate.xaml.cs">
       <DependentUpon>CreateNewCustomerOrderTemplate.xaml</DependentUpon>
