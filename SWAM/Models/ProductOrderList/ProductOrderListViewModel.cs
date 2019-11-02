@@ -1,7 +1,6 @@
 ﻿using SWAM.Models.Customer;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Data.Entity;
 
 namespace SWAM.Models.ProductOrderList
 {
