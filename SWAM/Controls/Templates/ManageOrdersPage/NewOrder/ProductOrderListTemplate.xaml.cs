@@ -64,6 +64,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
         }
         #endregion
 
+        #region Quantity_LostFocus
         /// <summary>
         /// Checks if quantity is not greater than available products number
         /// </summary>
@@ -88,7 +89,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
 
             PaymentOrderViewModel.Instance.Refresh();
         }
+        #endregion
 
+        #region NumberValidationTextBox
         /// <summary>
         /// Make quantity textbox field accept numeric input type only
         /// </summary>
@@ -99,14 +102,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+        #endregion
 
+        #region DeleteRow_Click
         private void DeleteRow_Click(object sender, RoutedEventArgs e)
         {
             if (!(((FrameworkElement)sender).DataContext is CustomerOrderPosition customerOrderPosition))
                 return;
 
-            ProductOrderListViewModel.Instance.Delete(customerOrderPosition.Id);
+            ProductOrderListViewModel.Instance.Delete(customerOrderPosition.ProductId);
             PaymentOrderViewModel.Instance.Refresh();
         }
+        #endregion
     }
 }

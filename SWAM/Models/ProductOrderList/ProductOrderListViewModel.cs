@@ -1,5 +1,7 @@
 ﻿using SWAM.Models.Customer;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Data.Entity;
 
 namespace SWAM.Models.ProductOrderList
 {
@@ -38,7 +40,11 @@ namespace SWAM.Models.ProductOrderList
 
         public void Delete(int Id)
         {
-            CustomerOrderPositions.RemoveAt(Id);
+            for (int i = 0; i < _customerOrderPositions.Count; i++)
+            {
+                if (_customerOrderPositions.ElementAt(i).ProductId == Id)
+                    CustomerOrderPositions.RemoveAt(i);
+            }
         }
     }
 }
