@@ -26,11 +26,14 @@
                 <DataGridTextColumn Header="Waga" Binding="{Binding Product.Weigth}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Product.Price}"/>
                 <DataGridTextColumn Header="Dostępna ilość" Binding="{Binding Available}"/>
-                <DataGridTemplateColumn Header="Dodaj do koszyka">
+                <DataGridTemplateColumn Header="Dodaj">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Content="+" Click="AddToShoppingCart_Click"/>
+                                <Button Width="45" Style="{StaticResource BasicFunctionalButtons}"
+                                        Click="AddToShoppingCart_Click">
+                                    <TextBlock TextAlignment="Center" Text="+" Margin="15 0 0 0"/>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
