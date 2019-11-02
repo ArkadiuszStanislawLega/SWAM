@@ -151,35 +151,35 @@
     <Compile Include="Controls\Pages\MessagesPage.xaml.cs">
       <DependentUpon>MessagesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml.cs">
-      <DependentUpon>CourierDetailsFormTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml.cs">
-      <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrderProfileTemplate.xaml.cs">
-      <DependentUpon>CustomerOrderProfileTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\CustomerOrdersPanelTemplate.xaml.cs">
       <DependentUpon>CustomerOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\DeliveryAddressFormTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\CourierDetailsFormTemplate.xaml.cs">
+      <DependentUpon>CourierDetailsFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\CourierListFromDbTemplate.xaml.cs">
+      <DependentUpon>CourierListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\Manage\CustomerOrderProfileTemplate.xaml.cs">
+      <DependentUpon>CustomerOrderProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\DeliveryAddressFormTemplate.xaml.cs">
       <DependentUpon>DeliveryAddressFormTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\PaymentOrderTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\PaymentOrderTemplate.xaml.cs">
       <DependentUpon>PaymentOrderTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\Validators\CreateNewCustomerOrderValidator.cs" />
-    <Compile Include="Controls\Templates\ManageOrdersPage\PersonalCollectionTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\Validators\CreateNewCustomerOrderValidator.cs" />
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\PersonalCollectionTemplate.xaml.cs">
       <DependentUpon>PersonalCollectionTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\WarehouseAccessListTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
       <DependentUpon>WarehouseAddressFormTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
@@ -435,67 +435,67 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\AddressFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\CustomerOrdersPanelTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\AddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\CourierDetailsFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\CourierDetailsFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\CourierListFromDbTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\CourierListFromDbTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CreateNewCustomerOrderTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerDetailsFormTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerListFromDbTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrderProfileTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\Manage\CustomerOrderProfileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\DeliveryAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Customers\CustomerOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\PaymentOrderTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\DeliveryAddressFormTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\PersonalCollectionTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\PaymentOrderTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\ProductOrderListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\PersonalCollectionTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\ProductsListFromDbTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\ProductOrderListTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\WarehouseAccessListTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseAddressFormTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrdersPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -617,22 +617,22 @@
     <Compile Include="Controls\Templates\MainWindow\NavigationButtonTemplate.xaml.cs">
       <DependentUpon>NavigationButtonTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\AddressFormTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\AddressFormTemplate.xaml.cs">
       <DependentUpon>AddressFormTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CreateNewCustomerOrderTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CreateNewCustomerOrderTemplate.xaml.cs">
       <DependentUpon>CreateNewCustomerOrderTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerDetailsFormTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerDetailsFormTemplate.xaml.cs">
       <DependentUpon>CustomerDetailsFormTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Customers\CustomerListFromDbTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Customers\CustomerListFromDbTemplate.xaml.cs">
       <DependentUpon>CustomerListFromDbTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\ProductsListFromDbTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\ProductsListFromDbTemplate.xaml.cs">
       <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
       <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AddProductWindow.xaml.cs">
