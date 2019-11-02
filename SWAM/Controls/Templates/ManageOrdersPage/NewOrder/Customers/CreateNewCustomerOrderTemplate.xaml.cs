@@ -245,6 +245,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers
 
             customerProfile.DataContext = null;
             courierProfile.DataContext = null;
+            deliveryAddressProfile.ClearCustomerOrderDeliveryAddress();
             ProductOrderListViewModel.Instance.Clear();
             PaymentOrderViewModel.Instance.Refresh();
             UserDependsAccessProductListViewModel.Instance.Refresh();

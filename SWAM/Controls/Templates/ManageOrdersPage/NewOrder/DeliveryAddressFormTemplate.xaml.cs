@@ -25,5 +25,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
                 PostCode = PostCode.Text
             };
         }
+
+        public void ClearCustomerOrderDeliveryAddress()
+        {
+            Country.Text = string.Empty;
+            City.Text = string.Empty;
+            ApartmentNumber.Text = string.Empty;
+            Street.Text = string.Empty;
+            HouseNumber.Text = string.Empty;
+            PostCode.Text = string.Empty;
+        }
     }
 }
