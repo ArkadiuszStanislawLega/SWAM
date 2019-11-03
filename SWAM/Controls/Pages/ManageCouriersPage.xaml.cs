@@ -86,17 +86,24 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Action when user type courier name in text box.
+        /// Finding all couriers whose name contains typed letters.
+        /// </summary>
+        /// <param name="sender">Text box.</param>
+        /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(CouriersListViewModel.Instance);
-            filter.Filter = customer =>
+            ICollectionView filter = CollectionViewSource.GetDefaultView(CouriersListViewModel.Instance.CouriersList);
+            filter.Filter = couriers =>
             {
-                Customer allCustomersWhose = customer as Customer;
-                return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCourier.Text) : allCustomersWhose.Surname.Contains(this.FindCourier.Text);
+                Courier allCouriersWhose = couriers as Courier;
+                return  allCouriersWhose.Name.Contains(this.FindCourier.Text);
             };
         }
-
+        #endregion
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting
