@@ -1,8 +1,6 @@
-﻿using SWAM.Controls.Templates.AdministratorPage;
-using SWAM.Controls.Templates.CouriersPage;
+﻿using SWAM.Controls.Templates.CouriersPage;
 using SWAM.Enumerators;
 using SWAM.Models.Courier;
-using SWAM.Models.Customer;
 using SWAM.Strings;
 using System.ComponentModel;
 using System.Windows;
@@ -17,20 +15,31 @@ namespace SWAM.Controls.Pages
     public partial class ManageCouriersPage : BasicPage
     {
         private Courier _currentlyLoadedCourierProfile;
+        #region Basic constructor
         public ManageCouriersPage()
         {
             InitializeComponent();
 
-            ChangeContent(new CreateNewCourierTemplate());
             this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
         }
+        #endregion
 
+        #region AddNewCourier_Click
+        /// <summary>
+        /// Action after add new courier button is clicked.
+        /// Changing content to create new courier template.
+        /// </summary>
+        /// <param name="sender">Button add new courier.</param>
+        /// <param name="e">Event clicked.</param>
         private void AddNewCourier_Click(object sender, RoutedEventArgs e)
         {
-            this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
-            ChangeContent(new CreateNewCourierTemplate());
+            if (this.CurrentBookmarkLoaded != BookmarkInPage.CreateNewCourier)
+            {
+                this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
+                ChangeContent(new CreateNewCourierTemplate());
+            }
         }
-
+        #endregion
         #region RefreshData
         /// <summary>
         /// Refresh lists depends on <see cref="CurrentBookmarkLoaded"/>.
@@ -52,9 +61,23 @@ namespace SWAM.Controls.Pages
         /// <param name="customer">Index number of CouriersListItemTemplate in the couriers list.</param>
         /// <return>Chosen courier profile.</return>
         private CourierProfileTemplate CreateCourierProfile(Courier customer)
-            => new CourierProfileTemplate() { DataContext = customer };
-        #endregion
+        {
+            if (this.CurrentBookmarkLoaded != BookmarkInPage.CourierProfile)
+            {
+                this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
+                return new CourierProfileTemplate() { DataContext = customer };
+            }
 
+            return null;
+        }
+        #endregion
+        #region Item_Click
+        /// <summary>
+        /// Action after click item from the couriers list.
+        /// Adding courier profile to MainContent of this template.
+        /// </summary>
+        /// <param name="sender">Item from the couriers list.</param>
+        /// <param name="e">Clicked.</param>
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
@@ -71,7 +94,7 @@ namespace SWAM.Controls.Pages
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
-
+        #endregion
         #region ChangeContent
         /// <summary>
         /// Changing content for the new one in right section of this user control.
@@ -82,7 +105,8 @@ namespace SWAM.Controls.Pages
             if (this.MainContent.Children.Count > 0)
                 this.MainContent.Children.RemoveAt(this.MainContent.Children.Count - 1);
 
-            this.MainContent.Children.Add(newContent);
+            if (newContent != null)
+                this.MainContent.Children.Add(newContent);
         }
         #endregion
 
@@ -104,6 +128,12 @@ namespace SWAM.Controls.Pages
             };
         }
         #endregion
+        #region SortAscending_Click
+        /// <summary>
+        /// Sorting list of courier ascending or descanding.
+        /// </summary>
+        /// <param name="sender">Checkbox</param>
+        /// <param name="e">Clicked.</param>
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting
@@ -115,6 +145,6 @@ namespace SWAM.Controls.Pages
             else
                 CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
         }
-
+        #endregion
     }
 }

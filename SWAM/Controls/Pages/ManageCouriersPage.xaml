@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates.CouriersPage"
              xmlns:local="clr-namespace:SWAM.Controls.Pages"
              xmlns:lvm="clr-namespace:SWAM.Models.Courier"
              mc:Ignorable="d" 
@@ -140,16 +141,6 @@
                             Opacity="0.4"
                             BorderBrush="{StaticResource LightGrayBrash}"/>
                         <StackPanel Margin="5" Grid.Row="0">
-                            <TextBlock Text="Filtruj według:"/>
-                            <RadioButton Name="FiltrByName"
-                                 Content="Nazwy klienta" 
-                                 IsChecked="True" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
-                            <RadioButton Name="FiltrByUserType"
-                                 Content="Rodzaju uprawnienia" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
@@ -199,7 +190,7 @@
             <Grid Grid.Column="1"
               HorizontalAlignment="Stretch"
               Name="MainContent">
-
+                <temp:CreateNewCourierTemplate />
             </Grid>
         </Grid>
     </Border>
