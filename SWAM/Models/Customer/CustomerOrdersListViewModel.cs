@@ -7,8 +7,8 @@ namespace SWAM.Models.Customer
 {
     public class CustomerOrdersListViewModel : UserControl
     {
-        private readonly static  ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
-        public static ObservableCollection<CustomerOrder> Orders => _orders;
+        private readonly ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
+        public ObservableCollection<CustomerOrder> Orders => _orders;
 
         #region SingletonePattern
         /// <summary>
