@@ -126,21 +126,24 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage
         /// </summary>
         private void ChangeSortingType()
         {
-            //Delete the last setting
-            if (this.CustomersListView.Items.SortDescriptions.Count > 0)
-                this.CustomersListView.Items.SortDescriptions.RemoveAt(this.CustomersListView.Items.SortDescriptions.Count - 1);
+            if (this.CustomersListView != null)
+            {
+                //Delete the last setting
+                if (this.CustomersListView.Items.SortDescriptions.Count > 0)
+                    this.CustomersListView.Items.SortDescriptions.RemoveAt(this.CustomersListView.Items.SortDescriptions.Count - 1);
 
-            //Get the name of the property by which to sort the list.
-            string sortByProperty = string.Empty;
-            if (this.FiltrByCustomerOrderStatus.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.CustomerOrderStatus);
-            else if (this.FiltrByDateOfCreate.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.OrderDate);
-            else if (this.FiltrById.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.Id);
+                //Get the name of the property by which to sort the list.
+                string sortByProperty = string.Empty;
+                if (this.FiltrByCustomerOrderStatus.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.CustomerOrderStatus);
+                else if (this.FiltrByDateOfCreate.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.OrderDate);
+                else if (this.FiltrById.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.Id);
 
-            //Depends on SortAscending is checked or not chose type od sorting.
-            if (this.SortAscending.IsChecked == true)
-                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Ascending));
-            else
-                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Descending));
+                //Depends on SortAscending is checked or not chose type od sorting.
+                if (this.SortAscending.IsChecked == true)
+                    this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Ascending));
+                else
+                    this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Descending));
+            }
         }
         #endregion
 
@@ -193,7 +196,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage
         /// <param name="e">Event set IsCheced on true.</param>
         private void FiltrByDateOfCreate_Checked(object sender, RoutedEventArgs e)
         {
-            if (this.FiltrByCustomerOrderStatus.IsChecked == true)
+            if (this.FiltrByDateOfCreate.IsChecked == true)
             {
                 this._filter.Filter = customerOrder =>
                 {
