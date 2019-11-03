@@ -185,8 +185,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 return;
             }
 
-
-
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
 
@@ -231,7 +229,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             context.CustomerOrders.Add(customerOrder);
             context.SaveChanges();
 
-            // Add customers order positions
+            // Add customer order positions
             var customerOrderPositionsFromDb = new List<CustomerOrderPosition>();
             foreach (var item in orderedProducts)
             {
@@ -241,10 +239,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                     Price = item.Price,
                     Product = context.Products.SingleOrDefault(s => s.Id == item.ProductId),
                     ProductId = context.Products.SingleOrDefault(s => s.Id == item.ProductId).Id,
-                    State = context.States.SingleOrDefault(s => s.Id == item.State.Id),
-                    CustomerOrder = customerOrder
+                    State = context.States.SingleOrDefault(s => s.Id == item.State.Id)
                 });
+            }
 
+            foreach (var item in customerOrderPositionsFromDb)
+            {
+                item.CustomerOrder = customerOrder;
                 context.CustomerOrderPositions.Add(item);
             }
 
