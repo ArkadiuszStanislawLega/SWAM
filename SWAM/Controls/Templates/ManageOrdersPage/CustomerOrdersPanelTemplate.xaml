@@ -3,14 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage"
              xmlns:new="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers"
+             xmlns:conv="clr-namespace:SWAM.Converters"  
              xmlns:lvm="clr-namespace:SWAM.Models.ManageOrdersPage"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000">
     <!--#region Resources-->
     <UserControl.Resources>
+        <ObjectDataProvider x:Key="OrderStatus"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:CustomerOrderStatus"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -139,9 +149,19 @@
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
                             <RadioButton Name="FiltrByCustomerOrderStatus"
+                                 Checked="FiltrByCustomerOrderStatus_Checked"
                                  Content="Stanu zamówienia" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
+                            <ComboBox Name="OrderStatus" 
+                                  ItemsSource="{Binding Source={StaticResource OrderStatus}}"
+                                       SelectionChanged="OrderStatus_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={conv:ENtoPLcustomerOrderStatus}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
