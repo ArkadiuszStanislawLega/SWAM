@@ -7,11 +7,6 @@ using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
-using SWAM.Models.AdministratorPage;
-using SWAM.Models.Courier;
-using SWAM.Models.Customer;
-using SWAM.Models.ExternalSupplier;
-using SWAM.Models.ProductListViewModel;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -156,9 +151,8 @@ namespace SWAM
             InitializeComponent();
 
             SetUnloadStoryToAllPages();
-            RefreshMessagesButton();
-
             CurrentInstance = this;
+            RefreshMessagesButton();
         }
         #endregion
 

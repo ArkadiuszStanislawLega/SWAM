@@ -6,7 +6,6 @@
         xmlns:page="clr-namespace:SWAM.Controls.Pages"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:com="clr-namespace:SWAM.Commands.MainWindow"
-        xmlns:conv="clr-namespace:SWAM.Converters"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MinHeight="400"
@@ -24,7 +23,6 @@
     <WindowChrome.WindowChrome >
         <WindowChrome />
     </WindowChrome.WindowChrome>
-
     <Window.Resources>
         <!--#region LoadedStory-->
         <Storyboard x:Key="UnloadStory">
