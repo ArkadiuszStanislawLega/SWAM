@@ -49,7 +49,7 @@
                                 Storyboard.TargetName="FiltersContainer"
                                 Duration="0:0:0.5"
                                 From="0"
-                                To="110"
+                                To="150"
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
                                             Storyboard.TargetProperty="IsEnabled">
@@ -70,7 +70,7 @@
             <DoubleAnimation Storyboard.TargetProperty="Height"
                                 Storyboard.TargetName="FiltersContainer"
                                 Duration="0:0:0.5"
-                                From="110"
+                                From="150"
                                 To="0"
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
@@ -100,15 +100,20 @@
                     </Grid.RowDefinitions>
                     <!--#endregion-->
                     <!--#region Find User-->
-                    <StackPanel Orientation="Horizontal" Name="FindOrderOrCreate" Grid.Row="0">
-                        <TextBox Name="FindCustomerOrder"
+                    <Grid Name="FindOrderOrCreate" Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Name="FindCustomerOrder" Grid.Column="0"
                              Tag="Wyszukaj zamówienie" 
                              FontSize="14" Width="170" Height="30"
                              HorizontalAlignment="Left"
                              Margin="0 0 0 0"
                              Style="{StaticResource UserLogin}"
                              TextChanged="TextBox_TextChanged"/>
-                        <Button Name="FiltersButton"
+                        <Button Name="FiltersButton" Grid.Column="1"
                             Width="15" Height="30" 
                             Style="{StaticResource FaLightGrayBackground}"
                             ToolTip="Ustawienia filtrów listy">
@@ -120,7 +125,7 @@
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
-                        <Button Width="15" 
+                        <Button Width="15"  Grid.Column="2"
                             Height="30"
                             Click="AddNewCustomerOrder_Click" 
                             Style="{StaticResource FaLightGrayBackground}">
@@ -128,7 +133,7 @@
                                          Foreground="{StaticResource FontsBrash}"
                                          ToolTip="Dodaj nowe zamówienie."/>
                         </Button>
-                    </StackPanel>
+                    </Grid>
                     <!--#endregion-->
                     <!--#region Filter Container-->
                     <Grid Name="FiltersContainer" Grid.Row="1" Visibility="Collapsed">
@@ -146,6 +151,12 @@
                             <RadioButton Name="FiltrById"
                                  Content="Numeru zamówienia" 
                                  IsChecked="True" 
+                                 Checked="FiltrById_Checked"
+                                 Margin="5 0 0 0"
+                                 GroupName="Filter"/>
+                            <RadioButton Name="FiltrByDateOfCreate"
+                                 Checked="FiltrByDateOfCreate_Checked"
+                                 Content="Daty utworzenia" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
                             <RadioButton Name="FiltrByCustomerOrderStatus"
@@ -154,6 +165,7 @@
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
                             <ComboBox Name="OrderStatus" 
+                                      SelectedItem="CustomerOrderStatus.Delivered"
                                   ItemsSource="{Binding Source={StaticResource OrderStatus}}"
                                        SelectionChanged="OrderStatus_SelectionChanged">
                                 <ComboBox.ItemTemplate>

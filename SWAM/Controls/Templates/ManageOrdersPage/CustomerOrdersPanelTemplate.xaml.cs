@@ -2,7 +2,6 @@
 using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
-using SWAM.Models.ManageOrdersPage;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,49 +14,29 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
     /// </summary>
     public partial class CustomerOrdersPanelTemplate : UserControl
     {
+        #region Properties
+        /// <summary>
+        /// It is required for customer order properties names.
+        /// </summary>
+        public CustomerOrder _defaultCustomerOrder = new CustomerOrder();
+        /// <summary>
+        /// Current bookmark loaded in main content.
+        /// </summary>
         public BookmarkInPage CurrentBookmarkLoaded { get; private set; }
-
-        private ICollectionView _filter = CollectionViewSource.GetDefaultView(Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.CustomerOrders);
-
+        /// <summary>
+        /// Current filter on customer orders list.
+        /// </summary>
+        private readonly ICollectionView _filter = CollectionViewSource.GetDefaultView(Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.CustomerOrders);
+        #endregion
+        #region Basic Constructor
         public CustomerOrdersPanelTemplate()
         {
             InitializeComponent();
-        }
 
-        #region TextBox_TextChanged
-        /// <summary>
-        /// Action when user type customer order id in text box.
-        /// Finding all customer ordier whose id contains typed letters.
-        /// </summary>
-        /// <param name="sender">Text box.</param>
-        /// <param name="e">Event typed letter.</param>
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (this.FiltrById.IsChecked == true)
-            {
-                this._filter.Filter = customerOrder =>
-                {
-                    CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
-
-                    return allCustomerOrdersWhose.Id.ToString().Contains(this.FindCustomerOrder.Text);
-                };
-            }
+            this.OrderStatus.SelectedItem = CustomerOrderStatus.Delivered;
         }
         #endregion
 
-        private void GenerateFilter()
-        {
-            if (this.FiltrByCustomerOrderStatus.IsChecked == true)
-            {
-                var selectedValue = (CustomerOrderStatus)this.OrderStatus.SelectedValue;
-
-                this._filter.Filter = customerOrder =>
-                {
-                    CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
-                    return allCustomerOrdersWhose.CustomerOrderStatus.ToString().Contains(selectedValue.ToString());
-                };
-            }
-        }
         #region SwitchBetweenOrdersAndCreating
         /// <summary>
         /// Change main content between new customer order template or order profile.
@@ -84,12 +63,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             SwitchBetweenOrdersAndCreating(new CreateNewCustomerOrderTemplate());
         }
         #endregion
-
-        private void SortAscending_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
+      
         #region Item_Click
         /// <summary>
         /// Action after click any of item in customer orders list.
@@ -106,6 +80,70 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             }
         }
         #endregion
+
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Action when user type customer order id in text box.
+        /// Finding all customer ordier whose id contains typed letters.
+        /// </summary>
+        /// <param name="sender">Text box.</param>
+        /// <param name="e">Event typed letter.</param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.FiltrById.IsChecked == true)
+            {
+                this._filter.Filter = customerOrder =>
+                {
+                    CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
+
+                    return allCustomerOrdersWhose.Id.ToString().Contains(this.FindCustomerOrder.Text);
+                };
+            }
+            else if (this.FiltrByDateOfCreate.IsChecked == true)
+            {
+                this._filter.Filter = customerOrder =>
+                {
+                    CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
+
+                    return allCustomerOrdersWhose.OrderDate.ToString().Contains(this.FindCustomerOrder.Text);
+                };
+            }
+        }
+        #endregion
+
+        #region SortAscending_Click
+        /// <summary>
+        /// Action after sort ascending checkbox is checked.
+        /// Sorts items by the selected option.
+        /// </summary>
+        /// <param name="sender">Sort ascending checkbox.</param>
+        /// <param name="e">Event is clicked.</param>
+        private void SortAscending_Click(object sender, System.Windows.RoutedEventArgs e) => ChangeSortingType();
+        #endregion
+        #region ChangeSortingType
+        /// <summary>
+        /// Sets the list rotation depending on the settings made.
+        /// </summary>
+        private void ChangeSortingType()
+        {
+            //Delete the last setting
+            if (this.CustomersListView.Items.SortDescriptions.Count > 0)
+                this.CustomersListView.Items.SortDescriptions.RemoveAt(this.CustomersListView.Items.SortDescriptions.Count - 1);
+
+            //Get the name of the property by which to sort the list.
+            string sortByProperty = string.Empty;
+            if (this.FiltrByCustomerOrderStatus.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.CustomerOrderStatus);
+            else if (this.FiltrByDateOfCreate.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.OrderDate);
+            else if (this.FiltrById.IsChecked == true) sortByProperty = nameof(this._defaultCustomerOrder.Id);
+
+            //Depends on SortAscending is checked or not chose type od sorting.
+            if (this.SortAscending.IsChecked == true)
+                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Ascending));
+            else
+                this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(sortByProperty, System.ComponentModel.ListSortDirection.Descending));
+        }
+        #endregion
+
         #region FiltrByCustomerOrderStatus_Checked
         /// <summary>
         /// Action after change checked radio button filter by customer order status.
@@ -123,6 +161,68 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
         /// <param name="sender">Combo box order status.</param>
         /// <param name="e">Event change value.</param>
         private void OrderStatus_SelectionChanged(object sender, SelectionChangedEventArgs e) => GenerateFilter();
+        #endregion
+        #region GenerateFilter
+        /// <summary>
+        /// Generate filter when the items from combobox are change.
+        /// </summary>
+        private void GenerateFilter()
+        {
+            if (this.FiltrByCustomerOrderStatus.IsChecked == true)
+            {
+                if (this.OrderStatus.SelectedValue != null)
+                {
+                    var selectedValue = (CustomerOrderStatus)this.OrderStatus.SelectedValue;
+
+                    this._filter.Filter = customerOrder =>
+                    {
+                        CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
+                        return allCustomerOrdersWhose.CustomerOrderStatus.ToString().Contains(selectedValue.ToString());
+                    };
+                }
+                ChangeSortingType();
+            }
+        }
+        #endregion
+        #region FiltrByDateOfCreate_Checked
+        /// <summary>
+        /// Action after filtr by date of create radio button is checked.
+        /// Sets sorting the list by order creation date.
+        /// </summary>
+        /// <param name="sender">Order by creation date radio button.</param>
+        /// <param name="e">Event set IsCheced on true.</param>
+        private void FiltrByDateOfCreate_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.FiltrByCustomerOrderStatus.IsChecked == true)
+            {
+                this._filter.Filter = customerOrder =>
+                {
+                CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
+                return allCustomerOrdersWhose.OrderDate.ToString().Contains(this.FindCustomerOrder.Text);
+                };
+                ChangeSortingType();
+            }
+        }
+        #endregion
+        #region FiltrById_Checked
+        /// <summary>
+        /// Action after filtr by Id radio button is checked.
+        /// Sets sorting the list according to Order Id.
+        /// </summary>
+        /// <param name="sender">Order by Id radio button.</param>
+        /// <param name="e">Event set IsCheced on true.</param>
+        private void FiltrById_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.FiltrById.IsChecked == true)
+            {
+                this._filter.Filter = customerOrder =>
+                {
+                    CustomerOrder allCustomerOrdersWhose = customerOrder as CustomerOrder;
+                    return allCustomerOrdersWhose.Id.ToString().Contains(this.FindCustomerOrder.Text);
+                };
+                ChangeSortingType();
+            }
+        }
         #endregion
     }
 }
