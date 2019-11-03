@@ -98,7 +98,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(UsersListViewModel.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(UsersListViewModel.UsersList);
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;
