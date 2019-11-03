@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for PaymentOrderTemplate.xaml

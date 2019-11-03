@@ -1,4 +1,4 @@
-﻿using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers;
+﻿using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using System;
@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for CourierListFromDbTemplate.xaml

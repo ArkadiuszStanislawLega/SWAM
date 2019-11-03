@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for WarehouseAccessListTemplate.xaml

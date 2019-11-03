@@ -9,7 +9,7 @@ using SWAM.Models.ViewModels.CreateNewCustomerOrder;
 using SWAM.Models.ProductOrderList;
 using System.Windows.Data;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for ProductOrderListTemplate.xaml

@@ -179,7 +179,7 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml.cs">
       <DependentUpon>CreateNewWarehouseOrderTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
@@ -501,7 +501,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -866,8 +866,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

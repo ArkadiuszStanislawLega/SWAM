@@ -1,5 +1,5 @@
-﻿using SWAM.Controls.Templates.ManageOrdersPage.Manage;
-using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers;
+﻿using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage
 {
     /// <summary>
     /// Logika interakcji dla klasy CustomerOrdersPanelTemplate.xaml

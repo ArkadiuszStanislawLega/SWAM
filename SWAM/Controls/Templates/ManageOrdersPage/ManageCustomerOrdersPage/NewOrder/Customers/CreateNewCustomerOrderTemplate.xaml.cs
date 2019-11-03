@@ -1,5 +1,5 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
-using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers.Validators;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers.Validators;
 using SWAM.Enumerators;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Customers
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers
 {
     /// <summary>
     /// Interaction logic for CreateNewCustomerOrderTemplate.xaml
