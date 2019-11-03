@@ -54,20 +54,25 @@ namespace SWAM.Controls.Pages
         /// <param name="externalSupplier">Index number of ExternalSupplierListViewModel in the users list.</param>
         /// <return>Chosen user profile.</return>
         private ExternalSupplierProfileTemplate CreateExternalSupplierProfile() => new ExternalSupplierProfileTemplate() { DataContext = this.CurrentlyLoadedExternalSupplier };
-        
         #endregion
-
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Action when user type external supplier name in text box.
+        /// Finding all external suppliers whose name contains typed letters.
+        /// </summary>
+        /// <param name="sender">Text box.</param>
+        /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierListViewModel.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierListViewModel.Instance.ExternalSuppliers);
             filter.Filter = externalSupplier =>
             {
                 ExternalSupplier allExternalSupplierWhose = externalSupplier as ExternalSupplier;
                 return this.FiltrByName.IsChecked == true ? allExternalSupplierWhose.Name.Contains(this.FindExternalSupplier.Text) : allExternalSupplierWhose.Name.Contains(this.FindExternalSupplier.Text);
             };
         }
-
+        #endregion
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting

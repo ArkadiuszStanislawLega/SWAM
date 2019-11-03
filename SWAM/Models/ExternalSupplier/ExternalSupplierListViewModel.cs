@@ -11,11 +11,11 @@ namespace SWAM.Models.ExternalSupplier
         /// <summary>
         /// External suppliers list view model, holds all external suppliers from database.
         /// </summary>
-        private static readonly ObservableCollection<ExternalSupplier> _externalSuppliers = new ObservableCollection<ExternalSupplier>();
+        private readonly ObservableCollection<ExternalSupplier> _externalSuppliers = new ObservableCollection<ExternalSupplier>();
         /// <summary>
         /// External suppliers list view model, holds all External suppliers from database.
         /// </summary>
-        public static ObservableCollection<ExternalSupplier> ExternalSuppliers => _externalSuppliers;
+        public ObservableCollection<ExternalSupplier> ExternalSuppliers => _externalSuppliers;
         #endregion
 
         #region SingletonePattern

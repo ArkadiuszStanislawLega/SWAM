@@ -64,18 +64,25 @@ namespace SWAM.Controls.Pages
             }
             else if (this.CurrentBookmarkLoaded == BookmarkInPage.CreateNewCustomer) CustomersListViewModel.Instance.Refresh(); ;
         }
-        #endregion  
+        #endregion
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Action when user type customer name in text box.
+        /// Finding all customers whose name contains typed letters.
+        /// </summary>
+        /// <param name="sender">Text box.</param>
+        /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(CustomersListViewModel.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(CustomersListViewModel.Instance.CustomersList);
             filter.Filter = customer =>
             {
                 Customer allCustomersWhose = customer as Customer;
                 return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCustomer.Text) : allCustomersWhose.Surname.Contains(this.FindCustomer.Text);
             };
         }
-
+        #endregion
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting
