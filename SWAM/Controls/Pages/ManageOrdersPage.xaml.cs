@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Controls;
 using SWAM.Controls.Templates.MainWindow;
-using SWAM.Controls.Templates.ManageOrdersPage;
-using SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage;
 using SWAM.Enumerators;
-using SWAM.Models.Customer;
 
 namespace SWAM.Controls.Pages
 {
