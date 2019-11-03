@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:page="clr-namespace:SWAM.Controls.Pages"
         xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
         xmlns:com="clr-namespace:SWAM.Commands.MainWindow"
         xmlns:conv="clr-namespace:SWAM.Converters"
@@ -197,7 +198,9 @@
         </Grid>
         <!--#endregion-->
         <!--#region MainContent of the Window-->
-        <Grid Grid.Row="3" Name="ContentOfWindow" />
+        <Grid Grid.Row="3" Name="ContentOfWindow" >
+            <page:LoginPage />
+        </Grid>
         <!--#endregion-->
         <!--#region Information-->
         <StackPanel Name="Information"  Grid.Row="4"  

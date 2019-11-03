@@ -22,6 +22,7 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
+        #region Constances
         /// <summary>
         /// Minimum courier name size.
         /// </summary>
@@ -31,6 +32,7 @@ namespace SWAM
         /// Temporary user id for debug.
         /// </summary>
         private const int TEMPORARY_USER_ID = 1;
+        #endregion
 
         #region Public statics
         /// <summary>
@@ -54,7 +56,7 @@ namespace SWAM
         /// <summary>
         /// Static instance of main window.
         /// </summary>
-        public static MainWindow currentInstance { get; private set; }
+        public static MainWindow CurrentInstance { get; private set; }
         #endregion
 
         #region Properties
@@ -153,29 +155,13 @@ namespace SWAM
         {
             InitializeComponent();
 
-            foreach (KeyValuePair<PagesUserControls, BasicPage> entry in this._pages)
-            {
-                entry.Value.UnloadStory.Completed += (sender, e) =>
-                 {
-                     this.ContentOfWindow.Children.Remove(entry.Value);
-                     this.ContentOfWindow.Children.Add(BasicPage.CurrentLoadedBasicPage[1]);
-                     BasicPage.CurrentLoadedBasicPage.RemoveAt(0);
-
-                     if (entry.Key == PagesUserControls.LoginPage)
-                     {
-                         RefreshMessagesButton();
-                     }
-                 };
-            }
-
-            ChangeContent(PagesUserControls.LoginPage);
-
-            currentInstance = this;
-
+            SetUnloadStoryToAllPages();
             RefreshMessagesButton();
+
+            CurrentInstance = this;
         }
         #endregion
-        
+
         #region Window Functions Buttons
         #region Maximize_Click
         /// <summary>
@@ -334,8 +320,6 @@ namespace SWAM
         }
         #endregion
 
-
-
         #region NaviagionBar_Click
         /// <summary>
         /// Navigation bar - buttonClicker.
@@ -396,13 +380,13 @@ namespace SWAM
         /// <summary>
         /// Enable every controls in widnow.
         /// </summary>
-        public static void EnabledEverything() => currentInstance.EverythingInWindow.IsEnabled = false;
+        public static void EnabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = false;
         #endregion
         #region DisabledEverything
         /// <summary>
         /// Disable every control in windwo.
         /// </summary>
-        public static void DisabledEverything() => currentInstance.EverythingInWindow.IsEnabled = true;
+        public static void DisabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = true;
         #endregion
         #endregion
 
@@ -463,7 +447,7 @@ namespace SWAM
             if (LoggedInUser != null)
             {
                 int number = Message.CountUnreadedMessages(LoggedInUser);
-                currentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+                CurrentInstance.Messages.Content = number > 0 ? $"{number}" : "";
             }
         }
         #endregion
@@ -497,22 +481,44 @@ namespace SWAM
             if (LoggedInUser != null)
             {
                 if (user.StatusOfUserAccount == StatusOfUserAccount.Blocked)
-                    currentInstance.InformationForUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
+                    CurrentInstance.InformationForUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
                 else
                 {
-                    currentInstance.VisibleMode = Visibility.Visible;
-                    currentInstance.RefreshNavigationButtons();
-                    currentInstance.InformationForUser($"Witaj w systemie {LoggedInUser.Name}.");
+                    CurrentInstance.VisibleMode = Visibility.Visible;
+                    CurrentInstance.RefreshNavigationButtons();
+                    CurrentInstance.InformationForUser($"Witaj w systemie {LoggedInUser.Name}.");
                 }
             }
             else
             {
-                currentInstance.VisibleMode = Visibility.Collapsed;
-                currentInstance.InformationForUser("Wylogowano z systemu.");
-                currentInstance.ChangeContent(PagesUserControls.LoginPage);
+                CurrentInstance.VisibleMode = Visibility.Collapsed;
+                CurrentInstance.InformationForUser("Wylogowano z systemu.");
+                CurrentInstance.ChangeContent(PagesUserControls.LoginPage);
             }
 
             return LoggedInUser;
+        }
+        #endregion
+        #region SetUnloadStoryToAllPages
+        /// <summary>
+        /// Setting to all main pages unload storyboard and action after storyboard.
+        /// </summary>
+        private void SetUnloadStoryToAllPages()
+        {
+            foreach (KeyValuePair<PagesUserControls, BasicPage> entry in this._pages)
+            {
+                entry.Value.UnloadStory.Completed += (sender, e) =>
+                {
+                    this.ContentOfWindow.Children.Remove(entry.Value);
+                    this.ContentOfWindow.Children.Add(BasicPage.CurrentLoadedBasicPage[1]);
+                    BasicPage.CurrentLoadedBasicPage.RemoveAt(0);
+
+                    if (entry.Key == PagesUserControls.LoginPage)
+                    {
+                        RefreshMessagesButton();
+                    }
+                };
+            }
         }
         #endregion
 
@@ -527,9 +533,9 @@ namespace SWAM
                 #region AdministratorPage
                 case PagesUserControls.AdministratorPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage) && currentPage is AdministratorPage administratorPage)
+                        if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage))
                         {
-                            administratorPage.RefreshData();
+                            currentPage.RefreshData();
                         }
                         break;
                     }
@@ -547,9 +553,9 @@ namespace SWAM
                 #region ManageCustomersPage
                 case PagesUserControls.ManageCustomersPage:
                     {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage) && currentPage is ManageCustomersPage customerPage)
+                        if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage))
                         {
-                            customerPage.RefreshData();
+                            currentPage.RefreshData();
                         }
                         break;
                     }
