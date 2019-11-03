@@ -58,17 +58,12 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Made view of the courier profile in right section.
         /// </summary>
-        /// <param name="customer">Index number of CouriersListItemTemplate in the couriers list.</param>
+        /// <param name="courier">Index number of CouriersListItemTemplate in the couriers list.</param>
         /// <return>Chosen courier profile.</return>
-        private CourierProfileTemplate CreateCourierProfile(Courier customer)
+        private CourierProfileTemplate CreateCourierProfile(Courier courier)
         {
-            if (this.CurrentBookmarkLoaded != BookmarkInPage.CourierProfile)
-            {
-                this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
-                return new CourierProfileTemplate() { DataContext = customer };
-            }
-
-            return null;
+            this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
+            return new CourierProfileTemplate() { DataContext = courier };
         }
         #endregion
         #region Item_Click
@@ -85,7 +80,6 @@ namespace SWAM.Controls.Pages
                 if ((Courier)button.DataContext is Courier courier)
                 {
                     this._currentlyLoadedCourierProfile = courier;
-                    this.CurrentBookmarkLoaded = BookmarkInPage.CourierProfile;
 
                     CourierOrdersListViewModel.Instance.Refresh(courier);
                     ChangeContent(CreateCourierProfile((Courier)button.DataContext));
