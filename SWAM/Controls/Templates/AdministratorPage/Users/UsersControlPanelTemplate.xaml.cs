@@ -22,10 +22,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
         public UsersControlPanelTemplate()
         {
             InitializeComponent();
-
-
-
-            ChangeContent(c);
         }
         #endregion
         #region UsersControlPanelTemplate_Loaded
@@ -36,8 +32,6 @@ namespace SWAM.Controls.Templates.AdministratorPage
             UsersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
         }
         #endregion
-
-        CreateNewUserTemplate c = new CreateNewUserTemplate();
 
         #region RefreshUsersList
         /// <summary>
@@ -60,10 +54,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void AddNewUser_Click(object sender, RoutedEventArgs e)
-        {
-            ChangeContent(c);
-        }
+        private void AddNewUser_Click(object sender, RoutedEventArgs e) => ChangeContent(new CreateNewUserTemplate());
         #endregion
         #region ChangeContent
         /// <summary>
@@ -74,17 +65,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (this.RightSection.Children.Count > 0 && this.RightSection.Children[0] != newContent)
             {
-                c.CreateStory();
                 this.RightSection.Children.RemoveAt(0);
                 this.RightSection.Children.Add(newContent);
-            }
-            else if(this.RightSection.Children.Count == 0)
-            {
-                c.UnloadStory.Completed += (s, e) =>
-                {
-                    this.RightSection.Children.Remove(c);
-                };
-                this.RightSection.Children.Add(c);
             }
         }
         #endregion

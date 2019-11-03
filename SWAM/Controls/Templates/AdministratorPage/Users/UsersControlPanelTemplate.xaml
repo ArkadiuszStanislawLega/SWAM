@@ -183,7 +183,7 @@
             <Grid  Name="RightSection" Grid.Column="1" 
                    VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch">
-                <!--<temp:CreateNewUserTemplate Grid.Row="0"/>-->
+                <temp:CreateNewUserTemplate Grid.Row="0"/>
             </Grid>
             <!--#endregion-->
         </Grid>
