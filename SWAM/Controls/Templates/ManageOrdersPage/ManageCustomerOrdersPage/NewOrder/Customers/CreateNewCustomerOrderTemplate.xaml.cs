@@ -185,14 +185,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 return;
             }
 
-            try
-            {
-                orderedProducts.ForEach(p => { if (p.Product != null) context.Products.Attach(p.Product); });
-            }
-            catch(Exception)
-            {
-                InformationToUser("Wystąpił błąd", true);
-            }
+
 
             var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
             var employeeWarehouse = UserDependsAccessProductListViewModel.Instance.States.ElementAtOrDefault(0).WarehouseId;
@@ -206,8 +199,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
                 UserId = employee.Id,
                 CustomerId = customer.Id,
-                WarehouseId = employeeWarehouse,
-                CustomerOrderPositions = orderedProducts
+                WarehouseId = employeeWarehouse
+                //CustomerOrderPositions = orderedProducts
             };
 
             // Add order status based on selected pay method
@@ -236,6 +229,25 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             }
 
             context.CustomerOrders.Add(customerOrder);
+            context.SaveChanges();
+
+            // Add customers order positions
+            var customerOrderPositionsFromDb = new List<CustomerOrderPosition>();
+            foreach (var item in orderedProducts)
+            {
+                customerOrderPositionsFromDb.Add(new CustomerOrderPosition()
+                {
+                    Quantity = item.Quantity,
+                    Price = item.Price,
+                    Product = context.Products.SingleOrDefault(s => s.Id == item.ProductId),
+                    ProductId = context.Products.SingleOrDefault(s => s.Id == item.ProductId).Id,
+                    State = context.States.SingleOrDefault(s => s.Id == item.State.Id),
+                    CustomerOrder = customerOrder
+                });
+
+                context.CustomerOrderPositions.Add(item);
+            }
+
             context.SaveChanges();
 
             InformationToUser("Dodano zamówienie", false);
