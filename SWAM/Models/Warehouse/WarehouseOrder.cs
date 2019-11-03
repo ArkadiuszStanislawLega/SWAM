@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using SWAM.Enumerators;
+using System.Data.Entity;
+using System.Linq;
 
 namespace SWAM.Models.Warehouse
 {
@@ -41,5 +43,16 @@ namespace SWAM.Models.Warehouse
         /// The person who receives the order from the supplier in the warehouse.
         /// </summary>
         public User.User UserAcceptingOrder { get; set; }
+
+        //TODO:TRy catch block.
+        private static ApplicationDbContext context = new ApplicationDbContext();
+        public static IList<WarehouseOrder> GetAllOrders()
+        {
+            return context.WarehouseOrders
+                 .Include(w => w.ExternalSupplayer)
+                 .Include(w => w.OrderPositions)
+                 .Include(w => w.Warehouse)                
+                 .ToList();
+        }
     }
 }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SWAM.Controls.Templates.ManageOrdersPage.NewOrder.Warehouses
 {
     /// <summary>
-    /// Logika interakcji dla klasy WarehouseOrdersPanel.xaml
+    /// Logika interakcji dla klasy WarehouseOrderProfileTemplate.xaml
     /// </summary>
-    public partial class WarehouseOrdersPanelTemplate : UserControl
+    public partial class WarehouseOrderProfileTemplate : UserControl
     {
-        public WarehouseOrdersPanelTemplate()
+        public WarehouseOrderProfileTemplate()
         {
             InitializeComponent();
         }

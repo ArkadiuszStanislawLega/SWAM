@@ -179,8 +179,17 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml.cs">
+      <DependentUpon>CreateNewWarehouseOrderTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
       <DependentUpon>WarehouseAddressFormTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrderProfileTemplate.xaml.cs">
+      <DependentUpon>WarehouseOrderProfileTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\WarehouseOrdersPanelTemplate.xaml.cs">
+      <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\MessagesPage\FindUserTemplate.xaml.cs">
       <DependentUpon>FindUserTemplate.xaml</DependentUpon>
@@ -280,6 +289,7 @@
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\ViewModels\CreateNewCustomerOrder\PaymentOrderViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
+    <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
@@ -491,11 +501,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrdersPanelTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrderProfileTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\WarehouseOrdersPanelTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -631,9 +649,6 @@
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\ProductsListFromDbTemplate.xaml.cs">
       <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\NewOrder\Warehouses\WarehouseOrdersPanelTemplate.xaml.cs">
-      <DependentUpon>WarehouseOrdersPanelTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AddProductWindow.xaml.cs">
       <DependentUpon>AddProductWindow.xaml</DependentUpon>

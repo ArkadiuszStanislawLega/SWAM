@@ -875,6 +875,59 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region WArehouseOrderItemButtons Buttons-->
+    <Style x:Key="WarehouseOrderItemButtons" TargetType="{x:Type Button}"   BasedOn="{StaticResource ButtonBaseStyle}">
+        <Setter Property="Width" Value="183"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{TemplateBinding Background}">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding WarehouseOrderStatus, Converter={conv:ENtoPLwarehouseOrderStatusConverter}}"
+                                   Foreground="{StaticResource LightGrayBrash}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   Margin="10 5 0 0"
+                                   FontSize="10" />
+                            <TextBlock Text="{Binding Id}"
+                                   Foreground="{StaticResource FontsBrash}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   Margin="10 0 10 0" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="{StaticResource MainBarBrash}" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        <Trigger Property="Control.IsFocused" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
     <!--#region CustomerOrderItemButtons Buttons-->
     <Style x:Key="CustomerOrderItemButtons" TargetType="{x:Type Button}"   BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="183"/>

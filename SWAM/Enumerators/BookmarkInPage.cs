@@ -63,6 +63,14 @@ namespace SWAM.Enumerators
         /// <summary>
         /// A tab in <see cref="ManageOrdersPage"/> with create new customer order panel.
         /// </summary>
-        CreateNewCustomerOrder
+        CreateNewCustomerOrder,
+        /// <summary>
+        /// A tab in <see cref="ManageOrdersPage"/> with create new warehouse order panel.
+        /// </summary>
+        WarehouseOrderProfile,
+        /// <summary>
+        /// A tab in <see cref="ManageOrdersPage"/> with create new warehouse order panel.
+        /// </summary>
+        NewWarehouseOrder
     }
 }
