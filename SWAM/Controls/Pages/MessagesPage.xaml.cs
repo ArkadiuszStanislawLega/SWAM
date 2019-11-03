@@ -104,7 +104,7 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Event click button</param>
         private void NewMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
+            if (SWAM.MainWindow.CurrentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
             {
                 sendMessageWindow.Show();
             }
@@ -120,7 +120,7 @@ namespace SWAM.Controls.Pages
         {
             if (this._currentMessage != null)
             {
-                if (SWAM.MainWindow.currentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
+                if (SWAM.MainWindow.CurrentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
                     sendMessageWindow is SendMessageWindow messageWindow)
                 {
                     messageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);

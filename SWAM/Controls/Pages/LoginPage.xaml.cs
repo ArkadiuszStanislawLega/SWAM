@@ -32,8 +32,8 @@ namespace SWAM.Controls.Pages
             if (user == null ) InformationToUser($"Błędny login lub hasło!", true); //If logging into the system is unsuccessful.
             else
             {
-                if(MainWindow.currentInstance != null)
-                    MainWindow.currentInstance.ChangeContent(PagesUserControls.MessagesPage);
+                if(MainWindow.CurrentInstance != null)
+                    MainWindow.CurrentInstance.ChangeContent(PagesUserControls.MessagesPage);
             }
 
             UserPassword.Password = "";
@@ -47,9 +47,9 @@ namespace SWAM.Controls.Pages
         {
             try
             {
-                if (SWAM.MainWindow.currentInstance != null)
+                if (SWAM.MainWindow.CurrentInstance != null)
                 {
-                    SWAM.MainWindow.currentInstance.InformationForUser(message, warning);
+                    SWAM.MainWindow.CurrentInstance.InformationForUser(message, warning);
                     return true;
                 }
                 else throw new InformationLabelException(message);
