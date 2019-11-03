@@ -3,6 +3,7 @@ using SWAM.Enumerators;
 using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,10 +44,24 @@ namespace SWAM.Controls.Templates.ManageOrdersPage
             SwitchBetweenOrdersAndCreating(new CreateNewWarehouseOrderTemplate());
         }
 
+        #region TextBox_TextChanged
+        /// <summary>
+        /// Action when user type warehouse order id in text box.
+        /// Finding all warehouse ordier whose id contains typed letters.
+        /// </summary>
+        /// <param name="sender">Text box.</param>
+        /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            //filter is required observable collection.
+            ICollectionView filter = CollectionViewSource.GetDefaultView(WarehouseOrderListViewModel.Instance.WarehouseOrders);
+            filter.Filter = warehouseOrder =>
+            {
+                WarehouseOrder allWarehouseOrdersWhose = warehouseOrder as WarehouseOrder;
+                return allWarehouseOrdersWhose.Id.ToString().Contains(this.FindWarehouseOrder.Text);
+            };
         }
+        #endregion
 
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
