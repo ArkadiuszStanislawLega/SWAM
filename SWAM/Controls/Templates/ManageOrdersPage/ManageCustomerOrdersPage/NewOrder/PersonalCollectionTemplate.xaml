@@ -7,21 +7,24 @@
              xmlns:address="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Warehouses"
              xmlns:warehouse="clr-namespace:SWAM.Models.ViewModels.CreateNewCustomerOrder"
              DataContext="{x:Static warehouse:WarehouseInformationViewModel.Instance}"
-             mc:Ignorable="d" >
+             mc:Ignorable="d"
+             Width="270">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Margin="10 0 0 0" Text="Odbiór w magazynie:"/>
-            <TextBlock x:Name="warehouseName" Grid.Column="1" Margin="10 0 0 0" 
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <Grid Margin="10 0 0 0"  Height="30" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Odbiór w magazynie:"/>
+                <TextBlock x:Name="warehouseName" Grid.Column="1" Margin="10 0 0 0" 
                        Text="{Binding Warehouse.Name}"/>
-        </Grid>
+            </Grid>
+        </ScrollViewer>
         <address:WarehouseAddressFormTemplate Grid.Row="1" x:Name="warehouseAddress" DataContext="{Binding Warehouse}"/>
     </Grid>
 </UserControl>
