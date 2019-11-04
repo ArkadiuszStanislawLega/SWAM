@@ -72,7 +72,7 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="0" Grid.Row="0">
-                        <TextBlock FontSize="20" Text="Dane Magazynu" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
+                        <TextBlock FontSize="20" Text="Dane magazynu" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
                     </Grid>
                     <Grid Grid.Column="0" Grid.Row="1" x:Name="warehouseProfile">
                         <Grid.ColumnDefinitions>
