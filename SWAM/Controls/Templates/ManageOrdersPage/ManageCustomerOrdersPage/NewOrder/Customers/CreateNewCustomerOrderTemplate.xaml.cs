@@ -259,6 +259,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             ProductOrderListViewModel.Instance.Clear();
             PaymentOrderViewModel.Instance.Refresh();
             UserDependsAccessProductListViewModel.Instance.Refresh();
+            WarehouseInformationViewModel.Instance.Clear();
         }
         #endregion
     }

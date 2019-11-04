@@ -26,5 +26,12 @@ namespace SWAM.Models.ViewModels.CreateNewCustomerOrder
             Warehouse = warehouse;
         }
         #endregion
+
+        #region Clear
+        public void Clear()
+        {
+            Warehouse = null;
+        }
+        #endregion
     }
 }
