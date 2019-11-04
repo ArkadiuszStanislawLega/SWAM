@@ -88,7 +88,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
                 if (SWAM.MainWindow.FindParent<CreateNewWarehouseOrderTemplate>(this) is CreateNewWarehouseOrderTemplate parent)
                 {
-                   // parent.warehouseProfile.DataContext = warehouse;
+                    parent.warehouseProfile.DataContext = warehouse;
                 }
             }
         }

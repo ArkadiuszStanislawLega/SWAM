@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Controls.Templates.AdministratorPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,21 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
     /// <summary>
     /// Logika interakcji dla klasy CreateNewWarehouseOrderTemplate.xaml
     /// </summary>
-    public partial class CreateNewWarehouseOrderTemplate : UserControl
+    public partial class CreateNewWarehouseOrderTemplate : BasicUserControl
     {
         public CreateNewWarehouseOrderTemplate()
         {
             InitializeComponent();
+        }
+
+        private void SwitchContentPreviousButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SwitchContentNextButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
