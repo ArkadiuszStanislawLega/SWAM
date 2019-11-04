@@ -261,6 +261,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             UserDependsAccessProductListViewModel.Instance.Refresh();
             WarehouseInformationViewModel.Instance.Clear();
             Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();
+
+            visiblePage = CustomerOrderVisiblePage.CustomerPage;
+            SwitchPagesVisibility();
         }
         #endregion
     }
