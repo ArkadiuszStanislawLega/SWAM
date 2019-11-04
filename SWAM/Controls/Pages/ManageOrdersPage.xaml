@@ -7,7 +7,7 @@
 
                  xmlns:nav="clr-namespace:SWAM.Controls.Templates.MainWindow"
       
-                 xmlns:client="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage"
+                 xmlns:warehouse="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage"
                  Background="{StaticResource BackgroundOfPagesBrash}"
              Padding="10"
              mc:Ignorable="d">
@@ -89,13 +89,13 @@
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Left">
             <nav:NavigationButtonTemplate Width="150" 
+                    IsSelected="True"
                     Bookmark="WarehouseOrdersPanel"
                     Content="Zlecenia magazynowe" 
                     x:Name="SwitchToWarehouseOrdersControlPanel" 
                     Click="SwitchToWarehouseOrdersControlPanel_Click"
                     Style="{StaticResource NavigationButton}"/>
             <nav:NavigationButtonTemplate Width="150"
-                    IsSelected="True"
                     Bookmark="CustomerOrdersPanel"
                     Click="SwitchToCustomerOrdersControlPanel_Click"
                     Content="Zlecenia klienckie" 
@@ -104,7 +104,7 @@
         </StackPanel>
 
         <Grid Name="MainContent" Grid.Row="1" >
-            <client:CustomerOrdersPanelTemplate/>
+            <warehouse:WarehouseOrdersPanelTemplate/>
         </Grid>
 
         <!--#endregion-->
