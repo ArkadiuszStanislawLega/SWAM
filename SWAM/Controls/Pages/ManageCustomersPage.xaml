@@ -6,6 +6,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:SWAM.Controls.Pages"
              xmlns:customer="clr-namespace:SWAM.Models.Customer"
+             xmlns:temp="clr-namespace:SWAM.Controls.Templates.CustomerPage"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              mc:Ignorable="d" 
              Background="{StaticResource BackgroundOfPagesBrash}"
@@ -43,7 +44,7 @@
                                 Storyboard.TargetName="FiltersContainer"
                                 Duration="0:0:0.5"
                                 From="0"
-                                To="110"
+                                To="55"
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
                                             Storyboard.TargetProperty="IsEnabled">
@@ -62,11 +63,11 @@
                              From="1" To="0"
                              Duration="0:0:0.5"/>
             <DoubleAnimation Storyboard.TargetProperty="Height"
-                                Storyboard.TargetName="FiltersContainer"
-                                Duration="0:0:0.5"
-                                From="110"
-                                To="0"
-                                DecelerationRatio="1"/>
+                             Storyboard.TargetName="FiltersContainer"
+                             Duration="0:0:0.5"
+                             From="55"
+                             To="0"
+                             DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
                                             Storyboard.TargetProperty="IsEnabled">
                 <DiscreteBooleanKeyFrame Value="True" KeyTime="0:0:0" />
@@ -142,16 +143,6 @@
                             Opacity="0.4"
                             BorderBrush="{StaticResource LightGrayBrash}"/>
                         <StackPanel Margin="5" Grid.Row="0">
-                            <TextBlock Text="Filtruj według:"/>
-                            <RadioButton Name="FiltrByName"
-                                 Content="Nazwy klienta" 
-                                 IsChecked="True" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
-                            <RadioButton Name="FiltrByUserType"
-                                 Content="Rodzaju uprawnienia" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
@@ -198,7 +189,9 @@
                 </Grid>
             </Border>
             <!--#endregion-->
-            <Grid Grid.Column="1" Name="MainContent"/>
+            <Grid Grid.Column="1" Name="MainContent">
+                <temp:CreateNewCustomerTemplate/>
+            </Grid>
         </Grid>
     </Border>
 </local:BasicPage>

@@ -1,5 +1,4 @@
-﻿using SWAM.Controls.Templates.AdministratorPage;
-using SWAM.Controls.Templates.CustomerPage;
+﻿using SWAM.Controls.Templates.CustomerPage;
 using SWAM.Enumerators;
 using SWAM.Models.Customer;
 using SWAM.Strings;
@@ -16,12 +15,14 @@ namespace SWAM.Controls.Pages
     public partial class ManageCustomersPage : BasicPage
     {
         private Customer _currentlyLoadedCustomerProfile;
+        #region Basic constructor
         public ManageCustomersPage()
         {
             InitializeComponent();
+
             this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewCustomer;
-            ChangeContent(new CreateNewCustomerTemplate());
         }
+        #endregion
         #region ChangeContent
         /// <summary>
         /// Changing content for the new one in right section of this user control.
@@ -45,12 +46,19 @@ namespace SWAM.Controls.Pages
         private CustomerProfileTemplate CreateCustomerProfile(Customer customer)
             => new CustomerProfileTemplate() { DataContext = customer };
         #endregion
-
+        #region AddNewUser_Click
+        /// <summary>
+        /// Action after click add new customer button.
+        /// Change main content to customer profile.
+        /// </summary>
+        /// <param name="sender">Add new customer button.</param>
+        /// <param name="e">Event clicked.</param>
         private void AddNewUser_Click(object sender, RoutedEventArgs e)
         {
             this.CurrentBookmarkLoaded = Enumerators.BookmarkInPage.CreateNewCustomer;
             ChangeContent(new CreateNewCustomerTemplate());
         }
+        #endregion
         #region RefreshData
         /// <summary>
         /// Refreshing data depends on <see cref="CurrentBookmarkLoaded"/>.
@@ -79,10 +87,16 @@ namespace SWAM.Controls.Pages
             filter.Filter = customer =>
             {
                 Customer allCustomersWhose = customer as Customer;
-                return this.FiltrByName.IsChecked == true ? allCustomersWhose.Name.Contains(this.FindCustomer.Text) : allCustomersWhose.Surname.Contains(this.FindCustomer.Text);
+                return allCustomersWhose.Name.Contains(this.FindCustomer.Text);
             };
         }
         #endregion
+        #region SortAscending_Click
+        /// <summary>
+        /// Action after click sort ascending checkbox.
+        /// </summary>
+        /// <param name="sender">Sort ascending checkbox.</param>
+        /// <param name="e">Event clicked.</param>
         private void SortAscending_Click(object sender, RoutedEventArgs e)
         {
             //Delete the last setting
@@ -94,7 +108,14 @@ namespace SWAM.Controls.Pages
             else
                 this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
         }
-
+        #endregion
+        #region Item_Click
+        /// <summary>
+        /// Action after click item from customers list.
+        /// Change main content to customer profile.
+        /// </summary>
+        /// <param name="sender">Item from customers list.</param>
+        /// <param name="e">Event clicked.</param>
         private void Item_Click(object sender, RoutedEventArgs e)
         {
             if (sender is Button button)
@@ -109,5 +130,6 @@ namespace SWAM.Controls.Pages
             }
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
+        #endregion
     }
 }
