@@ -144,14 +144,16 @@
                         <StackPanel Margin="5" Grid.Row="0">
                             <TextBlock Text="Filtruj według:"/>
                             <RadioButton Name="FiltrByName"
-                                 Content="Nazwy dostawcy" 
-                                 IsChecked="True" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
-                            <RadioButton Name="FiltrByUserType"
-                                 Content="Rodzaju uprawnienia" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
+                                         Checked="FiltrByName_Checked"
+                                         Content="Nazwy dostawcy" 
+                                         IsChecked="True" 
+                                         Margin="5 0 0 0"
+                                         GroupName="Filter"/>
+                            <RadioButton Name="FiltrByTIN"
+                                         Checked="FiltrByTIN_Checked"
+                                         Content="Numeru TIN" 
+                                         Margin="5 0 0 0"
+                                         GroupName="Filter"/>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 

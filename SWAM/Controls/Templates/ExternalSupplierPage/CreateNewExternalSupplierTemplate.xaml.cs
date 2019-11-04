@@ -1,5 +1,6 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Strings;
 using System.Windows;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
@@ -40,6 +41,8 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 this.ExternalSupplierTIN.Text = string.Empty;
                 this.ResidentalAddress.ClearEditValues();
             }
+            else
+                InformationToUser($"Błędny adres.", true);
         }
         #endregion
     }
