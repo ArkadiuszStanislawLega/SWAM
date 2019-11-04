@@ -36,6 +36,10 @@
                         <TextBox Name="CourierPhone"/>
                     </StackPanel>
                     <StackPanel Margin="5">
+                        <TextBlock Text="TIN" Style="{StaticResource ProfileProperties}"/>
+                        <TextBox Name="CourierTIN"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
                         <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>
                         <TextBox Name="CourierEmailAddress"/>
                     </StackPanel>

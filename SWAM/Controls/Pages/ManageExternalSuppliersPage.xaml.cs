@@ -58,25 +58,25 @@ namespace SWAM.Controls.Pages
         /// </summary>
         private void ChangeSorting()
         {
-            if (this.CustomersListView != null)
+            if (this.ExternalSuppliersListView != null)
             {
                 //Delete the last setting
-                if (this.CustomersListView.Items.SortDescriptions.Count > 0)
-                    this.CustomersListView.Items.SortDescriptions.RemoveAt(this.CustomersListView.Items.SortDescriptions.Count - 1);
+                if (this.ExternalSuppliersListView.Items.SortDescriptions.Count > 0)
+                    this.ExternalSuppliersListView.Items.SortDescriptions.RemoveAt(this.ExternalSuppliersListView.Items.SortDescriptions.Count - 1);
 
                 if (this.FiltrByName.IsChecked == true)
                 {
                     if (this.SortAscending.IsChecked == true)
-                        this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Name), System.ComponentModel.ListSortDirection.Ascending));
+                        this.ExternalSuppliersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Name), System.ComponentModel.ListSortDirection.Ascending));
                     else
-                        this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Name), System.ComponentModel.ListSortDirection.Descending));
+                        this.ExternalSuppliersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Name), System.ComponentModel.ListSortDirection.Descending));
                 }
                 else if (this.FiltrByTIN.IsChecked == true)
                 {
                     if (this.SortAscending.IsChecked == true)
-                        this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Tin), System.ComponentModel.ListSortDirection.Ascending));
+                        this.ExternalSuppliersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Tin), System.ComponentModel.ListSortDirection.Ascending));
                     else
-                        this.CustomersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Tin), System.ComponentModel.ListSortDirection.Descending));
+                        this.ExternalSuppliersListView.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this.CurrentlyLoadedExternalSupplier.Tin), System.ComponentModel.ListSortDirection.Descending));
                 }
             }
         }

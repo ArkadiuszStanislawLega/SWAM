@@ -55,6 +55,7 @@ namespace SWAM.Controls.Templates.CouriersPage
         {
             this.Name.ConfirmChangeName.Click += ConfirmChangeName_Click;
             this.Phone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
+            this.TIN.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
             this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
         #endregion
@@ -67,6 +68,7 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// <param name="e">Click confirm change name button</param>
         private void ConfirmChangeName_Click(object sender, RoutedEventArgs e)
         {
+            //TODO:Create name validation.
             if (DataContext is Courier courier)
             {
                 courier.Name = this.Name.EditName.Text;
@@ -95,6 +97,30 @@ namespace SWAM.Controls.Templates.CouriersPage
                 CouriersListViewModel.Instance.Refresh();
 
                 InformationToUser($"Zaktualizowano numer telefonu kontaktowego kuriera {courier.Name}.");
+            }
+        }
+        #endregion
+        #region ConfirmChangeTIN_Click
+        /// <summary>
+        /// Action after click confrim change TIN.
+        /// Changing TIN value in database.
+        /// </summary>
+        /// <param name="sender">Confirm change TIN button.</param>
+        /// <param name="e">Event clicked.</param>
+        private void ConfirmChangeTIN_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO:Create TIN validation.
+            if (this.TIN.EditTin.Text != string.Empty)
+            {
+                if (DataContext is Courier courier)
+                {
+                    courier.Tin = this.TIN.EditTin.Text;
+                    courier.Edit(courier);
+                    DataContext = Courier.Get(courier.Id);
+                    CouriersListViewModel.Instance.Refresh();
+
+                    InformationToUser($"Zaktualizowano TIN kuriera {courier.Name}.");
+                }
             }
         }
         #endregion

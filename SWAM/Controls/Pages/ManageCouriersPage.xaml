@@ -141,6 +141,18 @@
                             Opacity="0.4"
                             BorderBrush="{StaticResource LightGrayBrash}"/>
                         <StackPanel Margin="5" Grid.Row="0">
+                            <TextBlock Text="Filtruj według:"/>
+                            <RadioButton Name="FiltrByName"
+                                         Checked="FiltrByName_Checked"
+                                         Content="Nazwy dostawcy" 
+                                         IsChecked="True" 
+                                         Margin="5 0 0 0"
+                                         GroupName="Filter"/>
+                            <RadioButton Name="FiltrByTIN"
+                                         Checked="FiltrByTIN_Checked"
+                                         Content="Numeru TIN" 
+                                         Margin="5 0 0 0"
+                                         GroupName="Filter"/>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 

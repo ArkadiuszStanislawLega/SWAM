@@ -1,7 +1,6 @@
 ﻿using SWAM.Models.Customer;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace SWAM.Models.Courier
@@ -72,6 +71,7 @@ namespace SWAM.Models.Courier
                 var customer = Get(editedCourier.Id);
                 customer.Name = editedCourier.Name;
                 customer.Phone = editedCourier.Phone;
+                customer.Tin = editedCourier.Tin;
                 customer.EmailAddress = editedCourier.EmailAddress;
                 context.SaveChanges();
             }

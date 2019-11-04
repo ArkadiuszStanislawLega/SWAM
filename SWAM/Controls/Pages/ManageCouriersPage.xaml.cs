@@ -14,7 +14,7 @@ namespace SWAM.Controls.Pages
     /// </summary>
     public partial class ManageCouriersPage : BasicPage
     {
-        private Courier _currentlyLoadedCourierProfile;
+        private Courier _currentlyLoadedCourierProfile = new Courier();
         #region Basic constructor
         public ManageCouriersPage()
         {
@@ -24,22 +24,6 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
-        #region AddNewCourier_Click
-        /// <summary>
-        /// Action after add new courier button is clicked.
-        /// Changing content to create new courier template.
-        /// </summary>
-        /// <param name="sender">Button add new courier.</param>
-        /// <param name="e">Event clicked.</param>
-        private void AddNewCourier_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.CurrentBookmarkLoaded != BookmarkInPage.CreateNewCourier)
-            {
-                this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
-                ChangeContent(new CreateNewCourierTemplate());
-            }
-        }
-        #endregion
         #region RefreshData
         /// <summary>
         /// Refresh lists depends on <see cref="CurrentBookmarkLoaded"/>.
@@ -66,6 +50,67 @@ namespace SWAM.Controls.Pages
             return new CourierProfileTemplate() { DataContext = courier };
         }
         #endregion
+
+        #region ChangeContent
+        /// <summary>
+        /// Changing content for the new one in right section of this user control.
+        /// </summary>
+        /// <param name="newContent">Profile of user template or New user template.</param>
+        private void ChangeContent(UserControl newContent)
+        {
+            if (this.MainContent.Children.Count > 0)
+                this.MainContent.Children.RemoveAt(this.MainContent.Children.Count - 1);
+
+            if (newContent != null)
+                this.MainContent.Children.Add(newContent);
+        }
+        #endregion
+        #region ChangeSorting
+        /// <summary>
+        /// Change type of sorting depends on user settings.
+        /// </summary>
+        private void ChangeSorting()
+        {
+            if (this.CouriersList != null)
+            {
+                //Delete the last setting
+                if (this.CouriersList.Items.SortDescriptions.Count > 0)
+                    this.CouriersList.Items.SortDescriptions.RemoveAt(this.CouriersList.Items.SortDescriptions.Count - 1);
+
+                if (this.FiltrByName.IsChecked == true)
+                {
+                    if (this.SortAscending.IsChecked == true)
+                        this.CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this._currentlyLoadedCourierProfile.Name), System.ComponentModel.ListSortDirection.Ascending));
+                    else
+                        this.CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this._currentlyLoadedCourierProfile.Name), System.ComponentModel.ListSortDirection.Descending));
+                }
+                else if (this.FiltrByTIN.IsChecked == true)
+                {
+                    if (this.SortAscending.IsChecked == true)
+                        this.CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this._currentlyLoadedCourierProfile.Tin), System.ComponentModel.ListSortDirection.Ascending));
+                    else
+                        this.CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(this._currentlyLoadedCourierProfile.Tin), System.ComponentModel.ListSortDirection.Descending));
+                }
+            }
+        }
+        #endregion
+
+        #region AddNewCourier_Click
+        /// <summary>
+        /// Action after add new courier button is clicked.
+        /// Changing content to create new courier template.
+        /// </summary>
+        /// <param name="sender">Button add new courier.</param>
+        /// <param name="e">Event clicked.</param>
+        private void AddNewCourier_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.CurrentBookmarkLoaded != BookmarkInPage.CreateNewCourier)
+            {
+                this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
+                ChangeContent(new CreateNewCourierTemplate());
+            }
+        }
+        #endregion
         #region Item_Click
         /// <summary>
         /// Action after click item from the couriers list.
@@ -89,21 +134,6 @@ namespace SWAM.Controls.Pages
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
         #endregion
-        #region ChangeContent
-        /// <summary>
-        /// Changing content for the new one in right section of this user control.
-        /// </summary>
-        /// <param name="newContent">Profile of user template or New user template.</param>
-        private void ChangeContent(UserControl newContent)
-        {
-            if (this.MainContent.Children.Count > 0)
-                this.MainContent.Children.RemoveAt(this.MainContent.Children.Count - 1);
-
-            if (newContent != null)
-                this.MainContent.Children.Add(newContent);
-        }
-        #endregion
-
         #region TextBox_TextChanged
         /// <summary>
         /// Action when user type courier name in text box.
@@ -118,27 +148,37 @@ namespace SWAM.Controls.Pages
             filter.Filter = couriers =>
             {
                 Courier allCouriersWhose = couriers as Courier;
-                return  allCouriersWhose.Name.Contains(this.FindCourier.Text);
+                return this.FiltrByName.IsChecked == true ? allCouriersWhose.Name.Contains(this.FindCourier.Text) : allCouriersWhose.Tin.Contains(this.FindCourier.Text);
             };
         }
         #endregion
+
+        #region FiltrByName_Checked
+        /// <summary>
+        /// Action after clicked filter by name radio button.
+        /// Changing type of sorting list with couriers.
+        /// </summary>
+        /// <param name="sender">Filter by name radio button.</param>
+        /// <param name="e">Event is checked.</param>
+        private void FiltrByName_Checked(object sender, RoutedEventArgs e) => ChangeSorting();
+        #endregion
+        #region FiltrByTIN_Checked
+        /// <summary>
+        /// Action after clicked filter TIN radio button.
+        /// Changing type of sorting list with couriers.
+        /// </summary>
+        /// <param name="sender">Filter by TIN radio button.</param>
+        /// <param name="e">Event is checked.</param>
+        private void FiltrByTIN_Checked(object sender, RoutedEventArgs e) => ChangeSorting();
+        #endregion
         #region SortAscending_Click
         /// <summary>
-        /// Sorting list of courier ascending or descanding.
+        /// Action after clicked filter sorting ascending checkbox.
+        /// Changing type of sorting list with couriers.
         /// </summary>
-        /// <param name="sender">Checkbox</param>
-        /// <param name="e">Clicked.</param>
-        private void SortAscending_Click(object sender, RoutedEventArgs e)
-        {
-            //Delete the last setting
-            if (CouriersList.Items.SortDescriptions.Count > 0)
-                CouriersList.Items.SortDescriptions.RemoveAt(CouriersList.Items.SortDescriptions.Count - 1);
-
-            if (SortAscending.IsChecked == true)
-                CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Ascending));
-            else
-                CouriersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Name", System.ComponentModel.ListSortDirection.Descending));
-        }
+        /// <param name="sender">Sort ascending checkbox.</param>
+        /// <param name="e">Event is clicked.</param>
+        private void SortAscending_Click(object sender, RoutedEventArgs e) => ChangeSorting();
         #endregion
     }
 }

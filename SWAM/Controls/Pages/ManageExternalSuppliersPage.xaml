@@ -181,7 +181,7 @@
                             Opacity="0.4"/>
                         <ScrollViewer Name="ScrollOfCustomerList" 
                                   VerticalScrollBarVisibility="Auto">
-                            <ItemsControl Name="CustomersListView" 
+                            <ItemsControl Name="ExternalSuppliersListView" 
                                       DataContext="{x:Static ext:ExternalSupplierListViewModel.Instance}"
                                       ItemsSource="{Binding ExternalSuppliers}">
                                 <ItemsControl.ItemTemplate>

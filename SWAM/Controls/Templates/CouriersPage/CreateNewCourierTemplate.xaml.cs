@@ -34,25 +34,32 @@ namespace SWAM.Controls.Templates.CouriersPage
                     //Validate email address.
                     if (EmailAddress.IsValidEmail(this.CourierEmailAddress.Text))
                     {
-                        Courier courier = new Courier()
+                        //TODO: Update TIN validation.
+                        if (this.CourierTIN.Text != string.Empty)
                         {
-                            Name = this.CourierName.Text,
-                            Phone = this.CourierPhone.Text,
-                            EmailAddress = this.CourierEmailAddress.Text
-                        };
+                            Courier courier = new Courier()
+                            {
+                                Name = this.CourierName.Text,
+                                Phone = this.CourierPhone.Text,
+                                Tin = this.CourierTIN.Text,
+                                EmailAddress = this.CourierEmailAddress.Text
+                            };
 
-                        //Try to add courier
-                        if (courier.IsAdd(courier))
-                        {
-                            InformationToUser($"Dodano nowego kuriera {this.CourierName.Text}.");
+                            //Try to add courier
+                            if (courier.IsAdd(courier))
+                            {
+                                InformationToUser($"Dodano nowego kuriera {this.CourierName.Text}.");
 
-                            this.CourierName.Text = string.Empty;
-                            this.CourierPhone.Text = string.Empty;
-                            this.CourierEmailAddress.Text = string.Empty;
+                                this.CourierName.Text = string.Empty;
+                                this.CourierPhone.Text = string.Empty;
+                                this.CourierTIN.Text = string.Empty;
+                                this.CourierEmailAddress.Text = string.Empty;
 
-                            CouriersListViewModel.Instance.Refresh();
+                                CouriersListViewModel.Instance.Refresh();
+                            }
+                            else InformationToUser($"Kurier o nazwie {this.CourierName.Text} już isnieje.", true);
                         }
-                        else InformationToUser($"Kurier o nazwie {this.CourierName.Text} już isnieje.", true);
+                        else InformationToUser($"TIN jest błędny.", true);
                     }
                     else InformationToUser($"Adres e-mail {this.CourierEmailAddress.Text} jest nieprawidłowy.");
                 }
