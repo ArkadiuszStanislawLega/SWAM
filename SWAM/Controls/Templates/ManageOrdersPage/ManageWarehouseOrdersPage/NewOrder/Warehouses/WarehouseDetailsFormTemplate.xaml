@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses.WarehouseDetailsFormTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses"
+             mc:Ignorable="d" 
+             Height="auto"
+             Width="auto"
+             d:DesignHeight="180" d:DesignWidth="270">
+
+    <StackPanel>
+        <!--#region Name-->
+        <StackPanel Margin="10">
+            <TextBlock Text="Nazwa"
+                           Style="{StaticResource ProfileProperties}"/>
+            <TextBox Name="Name" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
+        </StackPanel>
+        <!--#endregion-->
+        <!--#region Dimensions-->
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10">
+                <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
+                <TextBox Name="Height" Width="76" IsReadOnly="True" Text="{Binding Height}"/>
+            </StackPanel>
+            <StackPanel Margin="0 10">
+                <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
+                <TextBox Name="Width" Width="76" IsReadOnly="True" Text="{Binding Width}"/>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
+                <TextBox Name="Length" Width="76" IsReadOnly="True" Text="{Binding Length}"/>
+            </StackPanel>
+        </StackPanel>
+        <!--#endregion-->
+        <!--#region Acceptable weight-->
+        <StackPanel Margin="10">
+            <TextBlock Text="Maksymalna dopuszczalna waga"
+                                   Style="{StaticResource ProfileProperties}"/>
+            <TextBox Name="AcceptableWeight" Width="250" IsReadOnly="True" Text="{Binding AcceptableWeight}"/>
+        </StackPanel>
+        <!--#endregion-->
+    </StackPanel>
+</UserControl>
