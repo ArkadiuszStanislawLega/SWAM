@@ -9,7 +9,7 @@ namespace SWAM.Models.Customer
     /// <summary>
     /// Singleton customers list view model, holds all customers from database.
     /// </summary>
-    public class CustomersListViewModel : UserControl
+    public class CustomersListViewModel
     {
         #region Properties
         /// <summary>

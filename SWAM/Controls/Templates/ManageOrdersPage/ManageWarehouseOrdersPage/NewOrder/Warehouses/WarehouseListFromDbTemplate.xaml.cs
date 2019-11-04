@@ -1,4 +1,5 @@
-﻿using SWAM.Models.Warehouse;
+﻿using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using SWAM.Models.Warehouse;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            // Customer list refresh after each page load
+            // warehouse list refresh after each page load
+            WarehouseListViewModel.Instance.Refresh();
             // obtain a reference to the CollectionView instance
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
             // assign a delegate to the Filter property
@@ -84,7 +86,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
                 if (warehouse == null)
                     return;
 
-               
+                if (SWAM.MainWindow.FindParent<CreateNewWarehouseOrderTemplate>(this) is CreateNewWarehouseOrderTemplate parent)
+                {
+                   // parent.warehouseProfile.DataContext = warehouse;
+                }
             }
         }
         #endregion

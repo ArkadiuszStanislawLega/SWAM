@@ -297,6 +297,7 @@
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\ViewModels\CreateNewCustomerOrder\PaymentOrderViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\WarehouseListViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
     <Compile Include="Strings\PLStrings.cs" />
