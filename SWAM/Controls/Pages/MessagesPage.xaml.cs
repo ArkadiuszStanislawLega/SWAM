@@ -151,7 +151,7 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Refresh data context depends on what context is shown by user.
         /// </summary>
-        public void RefreshData()
+        public override void RefreshData()
         {
             if (this._isResivedIsOpen) SetReceivedContent();
             else SetSendedContent();

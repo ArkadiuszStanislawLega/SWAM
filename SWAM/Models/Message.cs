@@ -279,6 +279,8 @@ namespace SWAM.Models
         {
             if (userId > 0)
                 return _context.Messages
+                    .Include(m => m.Receiver)
+                    .Include(m => m.Sender)
                     .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver)
                     .ToList();
             else return null;
