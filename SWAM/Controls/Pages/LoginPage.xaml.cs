@@ -1,9 +1,5 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
+﻿using System.Windows;
 using SWAM.Enumerators;
-using SWAM.Exceptions;
 using SWAM.Models.User;
 
 namespace SWAM.Controls.Pages

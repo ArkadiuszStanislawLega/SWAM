@@ -33,8 +33,7 @@ namespace SWAM
         {
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
-            Permissions = UserType.Programmer,
-            //Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
+            Permissions = UserType.Programmer
         };
         #endregion
         #region Public statics

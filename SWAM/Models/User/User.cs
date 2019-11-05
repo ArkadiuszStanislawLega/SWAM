@@ -98,7 +98,6 @@ namespace SWAM.Models.User
         }
         #endregion
 
-
         #region TryLogIn
         /// <summary>
         /// Looking for a specific user in the database by name. When it finds it, it checks that the hashed password matches the one in the database. 

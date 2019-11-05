@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 
-
 namespace SWAM.Models.Warehouse
 {
     /// <summary>
@@ -31,14 +30,6 @@ namespace SWAM.Models.Warehouse
         /// Warehouse lenght.
         /// </summary>
         public long Length { get; set; }
-        /// <summary>
-        /// Net area available in the warehouse.
-        /// </summary>
-        public long SurfaceAreaNetto { get; set; }
-        /// <summary>
-        /// Gross area available in the warehouse.
-        /// </summary>
-        public long SurfaceAreaBrutton { get; set; }
         /// <summary>
         /// Maximum total weight of products in the warehouse.
         /// </summary>
@@ -105,8 +96,6 @@ namespace SWAM.Models.Warehouse
                 warehouseDb.Height = warehouse.Height;
                 warehouseDb.Width = warehouse.Width;
                 warehouseDb.Length = warehouse.Length;
-                warehouseDb.SurfaceAreaBrutton = warehouse.SurfaceAreaBrutton;
-                warehouseDb.SurfaceAreaNetto = warehouse.SurfaceAreaNetto;
                 warehouseDb.AcceptableWeight = warehouse.AcceptableWeight;
                 warehouseDb.WarehouseAddress = warehouse.WarehouseAddress;
 

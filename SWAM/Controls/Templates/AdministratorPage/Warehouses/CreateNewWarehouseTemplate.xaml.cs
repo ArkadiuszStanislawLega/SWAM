@@ -69,8 +69,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                                                     Height = isHeight,
                                                     Width = isWidth,
                                                     Length = isLength,
-                                                    SurfaceAreaNetto = isSurfaceAreaNetto,
-                                                    SurfaceAreaBrutton = isSurfaceAreaBrutton,
                                                     AcceptableWeight = isAcceptableWeight
                                                 });
                                                 context.SaveChanges(); //Add warehouse to databas

@@ -109,8 +109,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                                                     Height = eHeight,
                                                     Width = eWidth,
                                                     Length = eLenght,
-                                                    SurfaceAreaBrutton = eSurfaceAreaBrutto,
-                                                    SurfaceAreaNetto = eSurfaceAreaNetto,
                                                     AcceptableWeight = eAcceptableWeight,
                                                     WarehouseAddress = warehouseAddress
                                                 });
