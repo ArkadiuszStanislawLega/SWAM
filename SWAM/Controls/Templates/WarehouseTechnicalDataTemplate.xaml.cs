@@ -73,8 +73,6 @@ namespace SWAM.Controls.Templates
             this.pHeight.Text = "";
             this.pWidth.Text = "";
             this.pLength.Text = "";
-            this.pSurfaceAreaNetto.Text = "";
-            this.pSurfaceAreaBrutton.Text = "";
             this.pAcceptableWeight.Text = "";
         }
         #endregion  

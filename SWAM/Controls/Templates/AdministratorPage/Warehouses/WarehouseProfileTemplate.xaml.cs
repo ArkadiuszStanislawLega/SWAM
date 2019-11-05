@@ -94,40 +94,30 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                         {
                             if (long.TryParse(this.WarehouseTechnicalDate.EditLength.Text, out long eLenght))
                             {
-                                if (long.TryParse(this.WarehouseTechnicalDate.EditSurfaceAreaBrutton.Text, out long eSurfaceAreaBrutto))
+                                if (long.TryParse(this.WarehouseTechnicalDate.EditAcceptableWeight.Text, out long eAcceptableWeight))
                                 {
-                                    if (long.TryParse(this.WarehouseTechnicalDate.EditSurfaceAreaNetto.Text, out long eSurfaceAreaNetto))
+                                    if (this.Address.GetAddress<WarehouseAddress>() is WarehouseAddress warehouseAddress)
                                     {
-                                        if (long.TryParse(this.WarehouseTechnicalDate.EditAcceptableWeight.Text, out long eAcceptableWeight))
+                                        warehouse.Edit(new Warehouse()
                                         {
-                                            if (this.Address.GetAddress<WarehouseAddress>() is WarehouseAddress warehouseAddress)
-                                            {
-                                                warehouse.Edit(new Warehouse()
-                                                {
-                                                    Id = warehouse.Id,
-                                                    Name = this.WarehouseName.Text,
-                                                    Height = eHeight,
-                                                    Width = eWidth,
-                                                    Length = eLenght,
-                                                    AcceptableWeight = eAcceptableWeight,
-                                                    WarehouseAddress = warehouseAddress
-                                                });
+                                            Id = warehouse.Id,
+                                            Name = this.WarehouseName.Text,
+                                            Height = eHeight,
+                                            Width = eWidth,
+                                            Length = eLenght,
+                                            AcceptableWeight = eAcceptableWeight,
+                                            WarehouseAddress = warehouseAddress
+                                        });
 
-                                                this.Address.HideEditControls();
-                                                this.WarehouseTechnicalDate.HideEditControls();
+                                        this.Address.HideEditControls();
+                                        this.WarehouseTechnicalDate.HideEditControls();
 
-                                                WarehousesListViewModel.Instance.Refresh();
+                                        WarehousesListViewModel.Instance.Refresh();
 
-                                                InformationToUser($"Edytowano magazyn {this.WarehouseName.Text}.");
-                                            }
-                                            else
-                                                InformationToUser("Błędny adres magazynu.", true);
-                                        }
-                                        else
-                                            InformationToUser("Błędna wartość dopuszczalna waga magazynu.", true);
+                                        InformationToUser($"Edytowano magazyn {this.WarehouseName.Text}.");
                                     }
                                     else
-                                        InformationToUser("Błędna wartość pole powierzchni brutto magazynu.", true);
+                                        InformationToUser("Błędny adres magazynu.", true);
                                 }
                                 else
                                     InformationToUser("Błędna wartość pole powierzchni netto magazynu.", true);
