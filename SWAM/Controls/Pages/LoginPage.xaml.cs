@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using SWAM.Enumerators;
@@ -27,39 +28,12 @@ namespace SWAM.Controls.Pages
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Try to login in.
-            var user = User.TryLogIn(UserLogin.Text, UserPassword.Password);
-
-            if (user == null ) InformationToUser($"Błędny login lub hasło!", true); //If logging into the system is unsuccessful.
-            else
-            {
-                if(MainWindow.CurrentInstance != null)
+            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.CurrentInstance != null)
                     MainWindow.CurrentInstance.ChangeContent(PagesUserControls.MessagesPage);
-            }
+            
 
-            UserPassword.Password = "";
+            this.UserPassword.Password = "";
         }
         #endregion
-        #region InformationToUser
-        /// <summary>
-        /// Changing content inforamtion label in main window.
-        /// </summary>
-        protected bool InformationToUser(string message, bool warning = false)
-        {
-            try
-            {
-                if (SWAM.MainWindow.CurrentInstance != null)
-                {
-                    SWAM.MainWindow.CurrentInstance.InformationForUser(message, warning);
-                    return true;
-                }
-                else throw new InformationLabelException(message);
-            }
-            catch (InformationLabelException ex)
-            {
-                ex.ShowMessage(this);
-                return false;
-            }
-        }
-        #endregion  
     }
 }

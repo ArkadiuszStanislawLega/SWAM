@@ -8,6 +8,7 @@
         public const string DATABASE_ERROR = "Wystąpił problem z bazą danych.";
         public const string CANCEL_ERROR = "W czasie anulowania wystąpił błąd.";
         public const string CONFIRMATION_WINDOW_ERROR = "Wystąpił problem z oknem potwierdzenia.";
+        public const string BAD_LOGIN_OR_PASSWORD = "Blędny login lub hasło.";
 
         public const string PASSWORD_COMMPILANCE_ERROR = "Hasło oraz hasło potwierdzające muszą być takie same.";
         public const string PASSWORD_REQUIREMENT_ERROR = "Hasło nie spełnia wymagań. Musi posiadać 8 znaków, conajmniej jeden z wielkiej litery oraz conajmniej jedną cyfrę.";

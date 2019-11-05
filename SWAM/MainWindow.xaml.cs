@@ -28,18 +28,33 @@ namespace SWAM
         /// </summary>
         private const int TEMPORARY_USER_ID = 1;
         #endregion
-
-        #region Public statics
-        /// <summary>
-        /// Current user logged in to application.
-        /// </summary>
-        public static User LoggedInUser { get; private set; } = new User
+        #region Private Statics
+        private static User loggedInUser = new User()
         {
             Id = TEMPORARY_USER_ID,
             Name = "Admin",
             Permissions = UserType.Programmer,
             //Messages = Message.AllReceivedMessages(TEMPORARY_USER_ID)
         };
+        #endregion
+        #region Public statics
+        /// <summary>
+        /// Current user logged in to application.
+        /// </summary>
+        public static User LoggedInUser
+        {
+            get => loggedInUser;
+            private set
+            {
+                if (value == null)
+                {
+                    CurrentInstance.VisibleMode = Visibility.Collapsed;
+                    CurrentInstance.InformationForUser("Wylogowano z systemu.");
+                    CurrentInstance.ChangeContent(PagesUserControls.LoginPage);
+                }
+                loggedInUser = value;
+            }
+        }
         /// <summary>
         /// Visibile mode after user logged in or logged out.
         /// </summary>
@@ -346,7 +361,7 @@ namespace SWAM
         {
             InformationLabel.Text = newInformation;
 
-            if (warning) InformationLabel.Background = (Brush)Application.Current.FindResource("WarningBrash"); 
+            if (warning) InformationLabel.Background = (Brush)Application.Current.FindResource("WarningBrash");
             else InformationLabel.Background = Brushes.Transparent;
         }
         #endregion
@@ -358,7 +373,7 @@ namespace SWAM
         /// <typeparam name="T">Type of parent.</typeparam>
         /// <param name="child">Child, current object.</param>
         /// <returns></returns>
-        public static T FindParent<T> (DependencyObject child) where T : DependencyObject
+        public static T FindParent<T>(DependencyObject child) where T : DependencyObject
         {
             DependencyObject parentObject = VisualTreeHelper.GetParent(child);
 
@@ -418,7 +433,7 @@ namespace SWAM
                 ChangeContent(PagesUserControls.MessagesPage);
             else
             {
-                if(_pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage userControl) && userControl is MessagesPage messagePage)
+                if (_pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage userControl) && userControl is MessagesPage messagePage)
                     messagePage.RefreshData();
             }
         }
@@ -452,10 +467,10 @@ namespace SWAM
         /// </summary>
         public void RefreshNavigationButtons()
         {
-            foreach(FrameworkElement u in NavigationBar.Children)
+            foreach (FrameworkElement u in NavigationBar.Children)
             {
                 if (u is NavigationButtonTemplate button)
-                    button.CheckIsVisible();   
+                    button.CheckIsVisible();
             }
         }
         #endregion
@@ -474,20 +489,12 @@ namespace SWAM
 
             if (LoggedInUser != null)
             {
-                if (user.StatusOfUserAccount == StatusOfUserAccount.Blocked)
-                    CurrentInstance.InformationForUser("Twoje konto jest zablokowane, zgłoś się do administratora systemu.", true);
-                else
-                {
-                    CurrentInstance.VisibleMode = Visibility.Visible;
-                    CurrentInstance.RefreshNavigationButtons();
-                    CurrentInstance.InformationForUser($"Witaj w systemie {LoggedInUser.Name}.");
-                }
+                
+
             }
             else
             {
-                CurrentInstance.VisibleMode = Visibility.Collapsed;
-                CurrentInstance.InformationForUser("Wylogowano z systemu.");
-                CurrentInstance.ChangeContent(PagesUserControls.LoginPage);
+
             }
 
             return LoggedInUser;

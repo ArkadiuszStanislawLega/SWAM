@@ -98,6 +98,7 @@ namespace SWAM.Models.User
         }
         #endregion
 
+
         #region TryLogIn
         /// <summary>
         /// Looking for a specific user in the database by name. When it finds it, it checks that the hashed password matches the one in the database. 
@@ -106,7 +107,7 @@ namespace SWAM.Models.User
         /// <param name="name">Name of specific user.</param>
         /// <param name="password">Password to user account.</param>
         /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
-        public static User TryLogIn(string name, string password)
+        public static bool TryLogIn(string name, string password)
         {
             if (_context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
             {
@@ -120,20 +121,77 @@ namespace SWAM.Models.User
                     //Comparing created hashed password from input with hashed password from database.
                     if (userFinded.Password.SequenceEqual(userPassword))
                     {
-                        return SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
+                        //Checking account status to see if it's blocked
+                        if (userFinded.StatusOfUserAccount == StatusOfUserAccount.Blocked)
+                        {
+                            //Checking if the blockade date has passed...
+                            if (userFinded.ExpiryDateOfTheBlockade <= DateTime.Now)
+                            {
+                                //If it's expired, it will unlock the account.
+                                userFinded.ChangeStatus(StatusOfUserAccount.Active);
+                                userFinded.ChangeExpiryDateOfTheBlockade(null);
+
+                                MainWindow.CurrentInstance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
+                            }
+                            else
+                            {
+                                //Set information to user about blockade.
+                                //If the blockade expiration date is set, count the number of days and hours that must elapse by the end of the blockade.
+                                if (userFinded.ExpiryDateOfTheBlockade != null)
+                                {
+                                    var timeOfBlockadeLeft = userFinded.ExpiryDateOfTheBlockade - DateTime.Now;
+                                    var stringBlockadeDay = timeOfBlockadeLeft.Value.Days == 1 ? "dzień" : "dni";
+
+                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
+                                }
+                                //If time is not seated, inform about pernament block of account.
+                                else
+                                {
+                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
+                                }
+
+                                return false;
+                            }
+                        }
+
+                        //Checking if the account expiry time has not been exceeded.
+                        if (userFinded.DateOfExpiryOfTheAccount <= DateTime.Now)
+                        {
+                            MainWindow.CurrentInstance.InformationForUser($"Twoje konto nie jest już dłużej aktywne, skontaktuj się z administratorem.", true);
+
+                            return false;
+                        }
+
+                        #region***************If the login attempt was successful***************
+                        var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
+                        var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
+
+                        MainWindow.CurrentInstance.VisibleMode = Visibility.Visible;
+                        MainWindow.CurrentInstance.RefreshNavigationButtons();
+                        MainWindow.CurrentInstance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+
+                        SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.EmailAddresses)
                             .FirstOrDefault(u => u.Id == userFinded.Id));
+                        return true;
+                        #endregion
                     }
-                    throw new NotImplementedException();
+                    else
+                        //Password doesn't match.
+                        MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
                 }
                 catch (PasswordSaltNullException)
                 {
                     MessageBox.Show($"{ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION} {ErrorMesages.PASSWORD_SALT_NULL_EXCEPTION_TIP}", "Błąd", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            return null;
+            else
+                //There is no such login in the database.
+                MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
+
+            return false;
         }
         #endregion
 
@@ -212,11 +270,15 @@ namespace SWAM.Models.User
         /// <param name="dateTime">New date od blockade of user accout.</param>
         public void ChangeExpiryDateOfTheBlockade(DateTime? dateTime)
         {
-            if (dateTime != null)
-            {
+
                 _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
                 _context.SaveChanges();
-            }
+            
+            //else
+            //{
+            //    _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = DateTime.Parse("1/1/0001");
+            //    _context.SaveChanges();
+            //}
         }
         #endregion
         #region ChangeDateOfExpiryOfTheAccount
@@ -231,6 +293,7 @@ namespace SWAM.Models.User
                 _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
                 _context.SaveChanges();
             }
+
         }
         #endregion
         #region ChangeStatus
