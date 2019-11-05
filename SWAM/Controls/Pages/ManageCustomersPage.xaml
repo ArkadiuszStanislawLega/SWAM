@@ -17,19 +17,19 @@
     <!--#region Resources-->
     <UserControl.Resources>
         <!--#region LoadedStory-->
-            <Storyboard x:Key="LoadedStory">
-                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                 Storyboard.TargetName="MainContent"
                                 Duration="0:0:0.8"
                                 From="0 0 -250 0"
                                 To="0"
                                 DecelerationRatio="1"/>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              Storyboard.TargetName="MainContent"
                              Duration="0:0:0.8" 
                              From="0" To="1"/>
-            </Storyboard>
-            <!--#endregion-->
+        </Storyboard>
+        <!--#endregion-->
         <!--#region ShowFiltersContainer-->
         <Storyboard x:Key="ShowFiltersContainer">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FiltersContainer"
@@ -189,9 +189,11 @@
                 </Grid>
             </Border>
             <!--#endregion-->
-            <Grid Grid.Column="1" Name="MainContent">
-                <temp:CreateNewCustomerTemplate/>
-            </Grid>
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid Name="MainContent">
+                    <temp:CreateNewCustomerTemplate/>
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Border>
 </local:BasicPage>

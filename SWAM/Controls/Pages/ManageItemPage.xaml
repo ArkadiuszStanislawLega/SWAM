@@ -15,19 +15,19 @@
     <!--#region Reosurces-->
     <UserControl.Resources>
         <!--#region LoadedStory-->
-            <Storyboard x:Key="LoadedStory">
-                <ThicknessAnimation Storyboard.TargetProperty="Margin"
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
                                 Storyboard.TargetName="MainContent"
                                 Duration="0:0:0.8"
                                 From="0 0 -250 0"
                                 To="0"
                                 DecelerationRatio="1"/>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
                              Storyboard.TargetName="MainContent"
                              Duration="0:0:0.8" 
                              From="0" To="1"/>
-            </Storyboard>
-            <!--#endregion-->
+        </Storyboard>
+        <!--#endregion-->
         <!--#region ProducutsButton-->
         <Style x:Key="ProducutsButton" TargetType="Button" BasedOn="{StaticResource NavigationButton}">
             <Setter Property="Width" Value="50"/>
@@ -144,7 +144,7 @@
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
-            
+
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditButton" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
@@ -196,6 +196,7 @@
             <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
+
     <Grid>
         <!--#region RowsDefinitions-->
         <Grid.RowDefinitions>
@@ -208,164 +209,165 @@
                    Margin="10 0 0 0"
                    Style="{StaticResource Title}"
                    HorizontalAlignment="Left"/>
-        <Grid Grid.Row="1" Name="MainContent" HorizontalAlignment="Center">
-            <!--#region Column definitions-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <!--#endregion-->
-            <Grid Grid.Column="0" Name="ProductProfile" Width="400">
-                <!--#region Column definitions-->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <!--#endregion-->
-                <!--#region Properites-->
-                <StackPanel Grid.Column="0" Margin="10">
-                    <!--#region Name-->
-                    <TextBlock Text="Nazwa:"  Style="{StaticResource ProfileProperties}"/>
-                    <Label Name="LabelName" Content="{Binding Name}" Visibility="Visible" HorizontalAlignment="Right"/>
-                    <TextBox  Name="EditedName" Text="{Binding Name}" 
+        <Border Grid.Row="1" BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="1" >
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid  Name="MainContent">
+                    <!--#region Column definitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#endregion-->
+                    <Grid Grid.Column="0" Name="ProductProfile">
+                        <!--#region Column definitions-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <!--#endregion-->
+                        <!--#region Properites-->
+                        <StackPanel Grid.Column="0" Margin="10" MinWidth="300">
+                            <!--#region Name-->
+                            <TextBlock Text="Nazwa:"  Style="{StaticResource ProfileProperties}"/>
+                            <Label Name="LabelName" Content="{Binding Name}" Visibility="Visible" HorizontalAlignment="Right"/>
+                            <TextBox  Name="EditedName" Text="{Binding Name}" 
                               FontSize="14"
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Right"
                               Visibility="{Binding Visibility,
                                         ElementName=LabelName,
                                         Converter={conv:VisibilityReverseConverter}}"/>
-                    <!--#endregion-->
-                    <!--#region Width-->
-                    <Grid>
-                        <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                    </Grid>
-                    <Label Content="{Binding Width}"  Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Width}" Name="EditedWidth" Style="{StaticResource ProductTextBox}"/>
-                    <!--#endregion-->
-                    <!--#region Length-->
-                    <Grid>
-                        <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                    </Grid>
-                    <Label Content="{Binding Length}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Name="EditedLenght" Text="{Binding Length}" Style="{StaticResource ProductTextBox}"/>
-                    <!--#endregion-->
-                    <!--#region Height-->
-                    <Grid>
-                        <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                    </Grid>
-                    <Label Content="{Binding Height}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Name="EditedHeight" Text="{Binding Height}" Style="{StaticResource ProductTextBox}" />
-                    <!--#endregion-->
-                    <!--#region Weigth-->
-                    <Grid>
-                        <TextBlock Text="Waga" Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="g" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                    </Grid>
-                    <Label Content="{Binding Weigth}" Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Weigth}" Name="EditedWeight" Style="{StaticResource ProductTextBox}"/>
-                    <!--#endregion-->
-                    <!--#region Price-->
-                    <Grid>
-                        <TextBlock Text="Cena sprzedaży" Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="zł" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                    </Grid>
-                    <Label Content="{Binding Price, Converter={conv:DecimalToIntegerConverter}}"  Style="{StaticResource ProductLabel}"/>
-                    <TextBox Text="{Binding Price, Converter={conv:DecimalToIntegerConverter}}" Name="EditedPrice" Style="{StaticResource ProductTextBox}" />
-                    <!--#endregion-->
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region Buttons-->
-                <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10">
-                    <Button Name="AddButton" Click="AddButton_Click" 
+                            <!--#endregion-->
+                            <!--#region Width-->
+                            <Grid>
+                                <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
+                                <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                            </Grid>
+                            <Label Content="{Binding Width}"  Style="{StaticResource ProductLabel}"/>
+                            <TextBox Text="{Binding Width}" Name="EditedWidth" Style="{StaticResource ProductTextBox}"/>
+                            <!--#endregion-->
+                            <!--#region Length-->
+                            <Grid>
+                                <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
+                                <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                            </Grid>
+                            <Label Content="{Binding Length}" Style="{StaticResource ProductLabel}"/>
+                            <TextBox Name="EditedLenght" Text="{Binding Length}" Style="{StaticResource ProductTextBox}"/>
+                            <!--#endregion-->
+                            <!--#region Height-->
+                            <Grid>
+                                <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
+                                <TextBlock Text="mm" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                            </Grid>
+                            <Label Content="{Binding Height}" Style="{StaticResource ProductLabel}"/>
+                            <TextBox Name="EditedHeight" Text="{Binding Height}" Style="{StaticResource ProductTextBox}" />
+                            <!--#endregion-->
+                            <!--#region Weigth-->
+                            <Grid>
+                                <TextBlock Text="Waga" Style="{StaticResource ProfileProperties}"/>
+                                <TextBlock Text="g" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                            </Grid>
+                            <Label Content="{Binding Weigth}" Style="{StaticResource ProductLabel}"/>
+                            <TextBox Text="{Binding Weigth}" Name="EditedWeight" Style="{StaticResource ProductTextBox}"/>
+                            <!--#endregion-->
+                            <!--#region Price-->
+                            <Grid>
+                                <TextBlock Text="Cena sprzedaży" Style="{StaticResource ProfileProperties}"/>
+                                <TextBlock Text="zł" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
+                            </Grid>
+                            <Label Content="{Binding Price, Converter={conv:DecimalToIntegerConverter}}"  Style="{StaticResource ProductLabel}"/>
+                            <TextBox Text="{Binding Price, Converter={conv:DecimalToIntegerConverter}}" Name="EditedPrice" Style="{StaticResource ProductTextBox}" />
+                            <!--#endregion-->
+                        </StackPanel>
+                        <!--#endregion-->
+                        <!--#region Buttons-->
+                        <StackPanel Orientation="Vertical" Grid.Column="2" Margin="10">
+                            <Button Name="AddButton" Click="AddButton_Click" 
                             Style="{StaticResource BasicFunctionalButtons}"
                             ToolTip="Dodaj nowy produkt.">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource ShowAddStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Plus" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
-                    
-                    <Button Name="EditButton" Click="EditButton_Click"
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource ShowAddStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Plus" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
+
+                            <Button Name="EditButton" Click="EditButton_Click"
                             Style="{StaticResource BasicFunctionalButtons}" 
                             ToolTip="Edytuj produkt">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource ShowEditStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource ShowEditStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Pencil" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Name="CancelAddingButton" Click="CancelAddingButton_Click"
+                            <Button Name="CancelAddingButton" Click="CancelAddingButton_Click"
                             Style="{StaticResource BasicFunctionalButtons}" 
                             ToolTip="Anuluj edycje produktu"
                             Visibility="Collapsed">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideAddStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource HideAddStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Name="CancelEditButton" Click="CancelEditProductButton_Click"
+                            <Button Name="CancelEditButton" Click="CancelEditProductButton_Click"
                             Style="{StaticResource BasicFunctionalButtons}" 
                             ToolTip="Anuluj edycje produktu"
                             Visibility="Collapsed">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Name="SaveEditedValuesButton" Click="SaveEditedChangesInProductButton_Click"
+                            <Button Name="SaveEditedValuesButton" Click="SaveEditedChangesInProductButton_Click"
                             Style="{StaticResource BasicFunctionalButtons}" 
                             ToolTip="Zapisz zmiany produktu"
                             Visibility="Collapsed">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Name="DeleteButton" Click="DeleteButton_Click" 
+                            <Button Name="DeleteButton" Click="DeleteButton_Click" 
                             Style="{StaticResource BasicFunctionalButtons}"
                             ToolTip="Usuń produkt.">
-                        <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <fa:ImageAwesome Icon="Trash" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Name="AddProductToDbButton" Click="AddProductToDbButton_Click" 
+                            <Button Name="AddProductToDbButton" Click="AddProductToDbButton_Click" 
                             Style="{StaticResource BasicFunctionalButtons}" ToolTip="Dodaj produkt do bazy."
                             Visibility="Collapsed">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideAddStory}"/>
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click">
+                                        <BeginStoryboard Storyboard="{StaticResource HideAddStory}"/>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                                <fa:ImageAwesome Icon="Save" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
 
-                    <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"
+                            <Button Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top"
                             Style="{StaticResource BasicFunctionalButtons}" Click="RefreshProductListButton_Click"
                             ToolTip="Odśwież listę.">
-                        <fa:ImageAwesome Icon="Refresh" Foreground="{StaticResource FontsBrash}"/>
-                    </Button>
-                </StackPanel>
-                <!--#endregion-->
-            </Grid>
-            <!--#region ProductsList-->
-            <DataGrid Name="ProductsList" Grid.Column="1"
-                      HorizontalAlignment="Left"
+                                <fa:ImageAwesome Icon="Refresh" Foreground="{StaticResource FontsBrash}"/>
+                            </Button>
+                        </StackPanel>
+                        <!--#endregion-->
+                    </Grid>
+                    <!--#region ProductsList-->
+                    <DataGrid Name="ProductsList" Grid.Column="1"
+                      HorizontalAlignment="Stretch"
                       DataContext="{x:Static prod:ProductListViewModel.Instance}"
                       ItemsSource="{Binding Products}" 
                       AutoGenerateColumns="False" 
@@ -373,17 +375,18 @@
                       CanUserAddRows="False" SelectionMode="Single" 
                       IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
                       MouseLeftButtonUp="ProductsList_LeftMouseButtonDown">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
-                    <DataGridTextColumn Header="Wysokość" Binding="{Binding Height}"/>
-                    <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
-                    <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
-                    <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Price}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <!--#endregion-->
-
-        </Grid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
+                            <DataGridTextColumn Header="Wysokość" Binding="{Binding Height}"/>
+                            <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
+                            <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
+                            <DataGridTextColumn Header="Cena sprzedaży" Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--#endregion-->
+                </Grid>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </local:BasicPage>

@@ -171,10 +171,11 @@
             </Border>
             <!--#endregion-->
             <!--#region Right section-->
-            <Grid  Name="RightSection" Grid.Column="1" 
-                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" />
-            </Grid>
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid  Name="RightSection" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <temp:CreateNewWarehouseTemplate x:Name="NewWarehouse" />
+                </Grid>
+            </ScrollViewer>
             <!--#endregion-->
         </Grid>
     </Border>

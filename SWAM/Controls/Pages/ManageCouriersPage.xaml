@@ -199,11 +199,11 @@
                 </Grid>
             </Border>
             <!--#endregion-->
-            <Grid Grid.Column="1"
-              HorizontalAlignment="Stretch"
-              Name="MainContent">
-                <temp:CreateNewCourierTemplate />
-            </Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="1">
+                <Grid Name="MainContent" HorizontalAlignment="Stretch" >
+                    <temp:CreateNewCourierTemplate />
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Border>
 </local:BasicPage>

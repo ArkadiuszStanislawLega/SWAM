@@ -200,9 +200,11 @@
                 </Grid>
             </Border>
             <!--#endregion-->
-            <Grid Grid.Column="1" Name="MainContent">
-                <temp:CreateNewExternalSupplierTemplate/>
-            </Grid>
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid  Name="MainContent">
+                    <temp:CreateNewExternalSupplierTemplate/>
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Border>
 </local:BasicPage>
