@@ -179,6 +179,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ProductsListFromDbTemplate.xaml.cs">
+      <DependentUpon>ProductsListFromDbTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml.cs">
       <DependentUpon>CreateNewWarehouseOrderTemplate.xaml</DependentUpon>
     </Compile>
@@ -301,6 +304,7 @@
     <Compile Include="Models\User\UserEmailAddress.cs" />
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\ViewModels\CreateNewCustomerOrder\PaymentOrderViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\ProductListViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\WarehouseListViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
@@ -514,6 +518,10 @@
     <Page Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ProductsListFromDbTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\CreateNewWarehouseOrderTemplate.xaml">
       <SubType>Designer</SubType>

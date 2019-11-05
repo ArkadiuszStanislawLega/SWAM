@@ -17,8 +17,8 @@ namespace SWAM.Models.ViewModels.CreateNewWarehouseOrder
         /// </summary>
         static ProductListViewModel() => _instance.Refresh();
 
-        private static readonly WarehouseListViewModel _instance = new WarehouseListViewModel();
-        public static WarehouseListViewModel Instance => _instance;
+        private static readonly ProductListViewModel _instance = new ProductListViewModel();
+        public static ProductListViewModel Instance => _instance;
         #endregion
 
         #region Refresh

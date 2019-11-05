@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses"
              xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:warehouseControl="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses"
+             xmlns:warehouseNewOrderControl="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
              mc:Ignorable="d" 
              Height="auto"
              Width="auto"
@@ -54,7 +55,7 @@
         </Grid>
 
         <!--#region warehouseElementsContainer-->
-        <ScrollViewer x:Name="warehouseElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+        <ScrollViewer x:Name="warehouseElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
             <Grid HorizontalAlignment="Center">
                 <!--#region RowsDefinitions-->
                 <Grid.ColumnDefinitions>
@@ -86,5 +87,44 @@
                 <warehouseControl:WarehouseListFromDbTemplate  Grid.Column="1" Grid.Row="0"/>
             </Grid>
         </ScrollViewer>
+
+        <!--#region productElementsContainer-->
+        <ScrollViewer x:Name="productElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock FontSize="20" Text="Produkty" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
+                </Grid>
+                <Grid Grid.Row="1" Margin="10 0 0 10">
+                    <!--<manageOrdersControls:PaymentOrderTemplate x:Name="paymentProfile"/>-->
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="1" Grid.Column="0" Margin="10 0">
+                        <!--<manageOrdersControls:WarehouseAccessListTemplate/>-->
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" Margin="10 0">
+                        <warehouseNewOrderControl:ProductsListFromDbTemplate/>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="2">
+                        <!--<manageOrdersControls:ProductOrderListTemplate/>-->
+                    </Grid>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+        <!--#endregion-->
     </Grid>
 </basic:BasicUserControl>
