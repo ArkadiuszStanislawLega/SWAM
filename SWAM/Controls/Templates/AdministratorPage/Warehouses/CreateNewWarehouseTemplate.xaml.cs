@@ -56,30 +56,22 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                             {
                                 if (long.TryParse(pLength.Text, out long isLength) && isLength > 0)
                                 {
-                                    if (long.TryParse(pSurfaceAreaNetto.Text, out long isSurfaceAreaNetto) && isSurfaceAreaNetto > 0)
+                                    if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
                                     {
-                                        if (long.TryParse(pSurfaceAreaBrutton.Text, out long isSurfaceAreaBrutton) && isSurfaceAreaBrutton > 0)
+                                        context.Warehouses.Add(new Warehouse()
                                         {
-                                            if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
-                                            {
-                                                context.Warehouses.Add(new Warehouse()
-                                                {
-                                                    Name = WarehouseName.Text,
-                                                    WarehouseAddress = dbAddress,
-                                                    Height = isHeight,
-                                                    Width = isWidth,
-                                                    Length = isLength,
-                                                    AcceptableWeight = isAcceptableWeight
-                                                });
-                                                context.SaveChanges(); //Add warehouse to databas
-                                                InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
-                                                isWarehouseCreated = true;
-                                            }
-                                            else BadValueMessage(tbAcceptableWeight.Text);
-                                        }
-                                        else BadValueMessage(tbSurfaceAreaBrutton.Text);
+                                            Name = WarehouseName.Text,
+                                            WarehouseAddress = dbAddress,
+                                            Height = isHeight,
+                                            Width = isWidth,
+                                            Length = isLength,
+                                            AcceptableWeight = isAcceptableWeight
+                                        });
+                                        context.SaveChanges(); //Add warehouse to databas
+                                        InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
+                                        isWarehouseCreated = true;
                                     }
-                                    else BadValueMessage(tbSurfaceAreaNetto.Text);
+                                    else BadValueMessage(tbAcceptableWeight.Text);
                                 }
                                 else BadValueMessage(tbLength.Text);
                             }
@@ -146,8 +138,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             this.pHeight.Text = "";
             this.pWidth.Text = "";
             this.pLength.Text = "";
-            this.pSurfaceAreaNetto.Text = "";
-            this.pSurfaceAreaBrutton.Text = "";
             this.pAcceptableWeight.Text = "";
         }
         #endregion  
