@@ -157,26 +157,26 @@ namespace SWAM.Models.User
                         //Checking if the account expiry time has not been exceeded.
                         if (userFinded.DateOfExpiryOfTheAccount <= DateTime.Now)
                         {
-                            MainWindow.Instance.InformationForUser($"Twoje konto nie jest już dłużej aktywne, skontaktuj się z administratorem.", true);
-
+                            MainWindow.Instance.InformationForUser($"Upłynął czas aktywności konta, skontaktuj się z administratorem.", true);
                             return false;
                         }
 
                         #region***************If the login attempt was successful***************
                         var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
                         var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
-                        //Make bar with navigation buttons visible.
-                        MainWindow.Instance.VisibleMode = Visibility.Visible;
-                        //Refresh navigation buttons.
-                        MainWindow.Instance.RefreshNavigationButtons();
-                        //Message to user about login in to the system.
-                        MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+
                         //Geting profile of user from database.
                         SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.EmailAddresses)
                             .FirstOrDefault(u => u.Id == userFinded.Id));
+                        //Make bar with navigation buttons visible.
+                        MainWindow.Instance.VisibleMode = Visibility.Visible;
+                        //Refresh navigation buttons.
+                        MainWindow.Instance.RefreshNavigationButtons();
+                        //Message to user about login in to the system.
+                        MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
                         return true;
                         #endregion
                     }

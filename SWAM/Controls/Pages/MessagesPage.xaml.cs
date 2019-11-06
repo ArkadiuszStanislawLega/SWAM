@@ -22,6 +22,8 @@ namespace SWAM.Controls.Pages
         /// Flag indicating whether received messages are on.
         /// </summary>
         private bool _isResivedIsOpen = true;
+
+        public bool IsResivedIsOpen { get => _isResivedIsOpen; private set => _isResivedIsOpen = value; }
         #endregion
         #region Basic Constructor
         public MessagesPage() => InitializeComponent();
