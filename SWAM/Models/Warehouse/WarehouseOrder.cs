@@ -16,10 +16,13 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public int Id { get; set; }
         /// <summary>
+        /// Indicates if order has been paid
+        /// </summary>
+        public bool IsPaid { get; set; }
+        /// <summary>
         /// Date of the order.
         /// </summary>
         public DateTime OrderDate { get; set; }
-        /// <summary>
         /// Date of delivery of products from the order to the warehouse.
         /// </summary>
         public DateTime? DeliveryDate { get; set; }
@@ -32,9 +35,29 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public int WarehouseId { get; set; }
         /// <summary>
+        /// The employee who created order.
+        /// </summary>
+        public User.User Creator { get; set; }
+        /// <summary>
+        /// User foreign key property
+        /// </summary>
+        public int CreatorId { get; set; }
+        /// <summary>
+        /// The person who receives the order from the supplier in the warehouse.
+        /// </summary>
+        public User.User UserReceivedOrder { get; set; }
+        /// <summary>
+        /// UserReceivedOrder foreign key property
+        /// </summary>
+        public int? UserReceivedOrderId { get; set; }
+        /// <summary>
         /// An external supplier who delivers products from the order.
         /// </summary>
         public ExternalSupplier.ExternalSupplier ExternalSupplayer { get; set; }
+        /// <summary>
+        /// ExternalSupplayer foreign key property
+        /// </summary>
+        public int ExternalSupplayerId { get; set; }
         /// <summary>
         /// Current order status.
         /// </summary>
@@ -43,10 +66,6 @@ namespace SWAM.Models.Warehouse
         /// All items with products from the order.
         /// </summary>
         public IList<WarehouseOrderPosition> OrderPositions { get; set; }
-        /// <summary>
-        /// The person who receives the order from the supplier in the warehouse.
-        /// </summary>
-        public User.User UserAcceptingOrder { get; set; }
 
         //TODO:TRy catch block.
         private static ApplicationDbContext context = new ApplicationDbContext();

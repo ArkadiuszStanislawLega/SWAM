@@ -290,6 +290,10 @@
     <Compile Include="Migrations\201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.Designer.cs">
       <DependentUpon>201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.cs" />
+    <Compile Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.Designer.cs">
+      <DependentUpon>201911061949187_AddFieldsToWarehouseOrdersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -891,6 +895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.resx">
       <DependentUpon>201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.resx">
+      <DependentUpon>201911061949187_AddFieldsToWarehouseOrdersTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
