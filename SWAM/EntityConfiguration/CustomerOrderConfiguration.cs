@@ -7,7 +7,7 @@ namespace SWAM.EntityConfiguration
         public CustomerOrderConfiguration()
         {
             HasRequired(c => c.Customer);
-            HasRequired(c => c.User);
+            HasRequired(c => c.Creator);
             HasRequired(c => c.Warehouse)
                 .WithMany(w=>w.CustomerOrders);
             HasOptional(c => c.Courier);

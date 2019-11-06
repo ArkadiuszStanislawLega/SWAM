@@ -195,7 +195,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 OrderDate = DateTime.Now,
                 ShipmentType = shipmentType,
                 PaymentType = (PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())),
-                UserId = employee.Id,
+                CreatorId = employee.Id,
                 CustomerId = customer.Id,
                 WarehouseId = employeeWarehouse
                 //CustomerOrderPositions = orderedProducts

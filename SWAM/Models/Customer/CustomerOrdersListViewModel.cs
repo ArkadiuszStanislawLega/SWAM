@@ -40,10 +40,10 @@ namespace SWAM.Models.Customer
 
                     foreach( var order in orders)
                     {
-                        order.User = context.People
+                        order.Creator = context.People
                             .OfType<User.User>()
                             .Include(u => u.Phones)
-                            .FirstOrDefault(u => u.Id == order.UserId);
+                            .FirstOrDefault(u => u.Id == order.CreatorId);
 
                         foreach (var position in order.CustomerOrderPositions)
                         {

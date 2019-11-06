@@ -36,13 +36,13 @@ namespace SWAM.Models.Customer
         /// </summary>
         public int WarehouseId { get; set; }
         /// <summary>
-        /// The employee who is responsible for the order.
+        /// The employee who created order.
         /// </summary>
-        public User.User User { get; set; }
+        public User.User Creator { get; set; }
         /// <summary>
         /// Foreign key property
         /// </summary>
-        public int UserId { get; set; }
+        public int CreatorId { get; set; }
         /// <summary>
         /// The customer who made the purchase.
         /// </summary>
@@ -85,7 +85,7 @@ namespace SWAM.Models.Customer
                 .Include(c => c.Customer)
                 .Include(c => c.Courier)
                 .Include(c => c.Warehouse)
-                .Include(c => c.User)
+                .Include(c => c.Creator)
                 .Include(c => c.DeliveryAddress)
                 .ToList();
         }
