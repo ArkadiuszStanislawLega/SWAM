@@ -108,6 +108,7 @@ namespace SWAM.Models.User
         /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
         public static bool TryLogIn(string name, string password)
         {
+            //Getting user password and password salt from database 
             if (_context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
             {
                 try
@@ -126,7 +127,7 @@ namespace SWAM.Models.User
                             //Checking if the blockade date has passed...
                             if (userFinded.ExpiryDateOfTheBlockade <= DateTime.Now)
                             {
-                                //If it's expired, it will unlock the account.
+                                //If it's expired, it will unblock the account and clear date of blockade.
                                 userFinded.ChangeStatus(StatusOfUserAccount.Active);
                                 userFinded.ChangeExpiryDateOfTheBlockade(null);
 
@@ -164,12 +165,13 @@ namespace SWAM.Models.User
                         #region***************If the login attempt was successful***************
                         var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
                         var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
-
+                        //Make bar with navigation buttons visible.
                         MainWindow.Instance.VisibleMode = Visibility.Visible;
                         //Refresh navigation buttons.
                         MainWindow.Instance.RefreshNavigationButtons();
+                        //Message to user about login in to the system.
                         MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
-
+                        //Geting profile of user from database.
                         SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
@@ -304,6 +306,8 @@ namespace SWAM.Models.User
         public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
         {
             _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            if(statusOfUserAccount == StatusOfUserAccount.Active)
+                _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = null;
             _context.SaveChanges();
         }
         #endregion
