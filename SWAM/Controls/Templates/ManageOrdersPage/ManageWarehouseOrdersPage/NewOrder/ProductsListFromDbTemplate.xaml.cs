@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         public ProductsListFromDbTemplate()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ProductListViewModel.Instance.Refresh();
         }
 
         private void NumberRowIteration(object sender, DataGridRowEventArgs e)

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
              xmlns:products="clr-namespace:SWAM.Models.ViewModels.CreateNewWarehouseOrder"
+             Loaded="Window_Loaded"
              Width="auto"
              MinHeight="300"
              mc:Ignorable="d">
