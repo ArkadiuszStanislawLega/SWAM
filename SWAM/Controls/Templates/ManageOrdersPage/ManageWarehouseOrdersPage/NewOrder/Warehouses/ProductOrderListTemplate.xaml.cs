@@ -1,4 +1,5 @@
-﻿using SWAM.Models.Warehouse;
+﻿using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using SWAM.Models.Warehouse;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -82,7 +83,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             if (!(((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition))
                 return;
 
-            //ProductOrderListViewModel.Instance.Delete(warehouseOrderPosition.ProductId);
+            ProductOrderListViewModel.Instance.Delete(warehouseOrderPosition.ProductId);
             //PaymentOrderViewModel.Instance.Refresh();
         }
         #endregion
