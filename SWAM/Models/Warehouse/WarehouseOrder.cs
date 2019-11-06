@@ -28,6 +28,10 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public Warehouse Warehouse { get; set; }
         /// <summary>
+        /// Warehouse foreign key property
+        /// </summary>
+        public int WarehouseId { get; set; }
+        /// <summary>
         /// An external supplier who delivers products from the order.
         /// </summary>
         public ExternalSupplier.ExternalSupplier ExternalSupplayer { get; set; }
