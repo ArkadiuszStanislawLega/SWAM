@@ -282,6 +282,10 @@
     <Compile Include="Migrations\201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.Designer.cs">
       <DependentUpon>201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs" />
+    <Compile Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.Designer.cs">
+      <DependentUpon>201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -308,6 +312,7 @@
     <Compile Include="Models\User\UserPhone.cs" />
     <Compile Include="Models\ViewModels\CreateNewCustomerOrder\PaymentOrderViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\ProductListViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\ProductOrderListViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\WarehouseListViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
@@ -876,6 +881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.resx">
       <DependentUpon>201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.resx">
+      <DependentUpon>201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

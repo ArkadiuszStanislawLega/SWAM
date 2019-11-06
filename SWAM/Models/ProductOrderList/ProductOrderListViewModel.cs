@@ -10,7 +10,6 @@ namespace SWAM.Models.ProductOrderList
         public ObservableCollection<CustomerOrderPosition> CustomerOrderPositions => this._customerOrderPositions;
 
         #region Singletone Pattern
-
         private static readonly ProductOrderListViewModel _instance = new ProductOrderListViewModel();
         public static ProductOrderListViewModel Instance => _instance;
         #endregion 
