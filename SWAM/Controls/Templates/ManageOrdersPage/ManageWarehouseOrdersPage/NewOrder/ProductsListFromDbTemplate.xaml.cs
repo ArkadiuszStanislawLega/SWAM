@@ -1,4 +1,6 @@
-﻿using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+﻿using SWAM.Models;
+using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using SWAM.Models.Warehouse;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -26,7 +28,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
         private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
         {
+            if (!(((FrameworkElement)sender).DataContext is Product product))
+                return;
 
+            var warehouseOrderPosition = new WarehouseOrderPosition
+            {
+                Product = product,
+                ProductId = product.Id,
+                Quantity = 1
+            };
+
+            ProductOrderListViewModel.Instance.Add(warehouseOrderPosition);
         }
     }
 }

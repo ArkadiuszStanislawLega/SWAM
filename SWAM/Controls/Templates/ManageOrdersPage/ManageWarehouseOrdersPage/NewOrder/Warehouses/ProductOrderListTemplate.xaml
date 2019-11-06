@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses"
+             xmlns:products="clr-namespace:SWAM.Models.ViewModels.CreateNewWarehouseOrder"
              mc:Ignorable="d" 
              d:DesignHeight="300" Width="230">
     <UserControl.Resources>
@@ -37,7 +38,9 @@
         <!--#region Product list-->
         <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <ScrollViewer HorizontalScrollBarVisibility="Hidden">
-                <ListView MaxHeight="300" Name="warehouseOrderPositionsListView" 
+                <ListView MaxHeight="300" Name="warehouseOrderPositionsListView"
+                          DataContext="{x:Static products:ProductOrderListViewModel.Instance}"
+                          ItemsSource="{Binding WarehouseOrderPositions}"
                           Background="{StaticResource MainBarBrash}" 
                           Foreground="White" BorderThickness="0">
                     <ListView.View>
