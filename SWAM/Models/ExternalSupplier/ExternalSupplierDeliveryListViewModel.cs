@@ -53,7 +53,6 @@ namespace SWAM.Models.ExternalSupplier
                             var id = order.OrderPositions[i].Id;
                             order.OrderPositions[i] = context.WarehouseOrderPositions
                                 .Include(w => w.Product)
-                                .Include(w => w.State)
                                 .FirstOrDefault(w => w.Id == id);
                         }
 

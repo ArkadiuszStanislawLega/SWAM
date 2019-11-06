@@ -30,9 +30,5 @@ namespace SWAM.Models.Warehouse
         /// Warehouse with orders.
         /// </summary>
         public WarehouseOrder WarehouseOrder { get; set; }
-        /// <summary>
-        /// Implementation status.
-        /// </summary>
-        public State State { get; set; }
     }
 }

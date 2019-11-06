@@ -298,6 +298,10 @@
     <Compile Include="Migrations\201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.Designer.cs">
       <DependentUpon>201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs" />
+    <Compile Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.Designer.cs">
+      <DependentUpon>201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -905,6 +909,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.resx">
       <DependentUpon>201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.resx">
+      <DependentUpon>201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
