@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:page="clr-namespace:SWAM.Controls.Pages"
+             xmlns:page="clr-namespace:SWAM.Controls.Pages"
              xmlns:local="clr-namespace:SWAM.Models.Messages"
              xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
@@ -15,13 +15,13 @@
     <page:BasicPage.Resources>
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
-                                Storyboard.TargetName="MessagesList"
+                                Storyboard.TargetName="MainContent"
                                 Duration="0:0:0.8"
                                 From="0 -100 0 0"
                                 To="0"
                                 SpeedRatio="2"/>
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="MessagesList"
+                             Storyboard.TargetName="MainContent"
                              Duration="0:0:0.8" 
                              From="0" To="1"/>
         </Storyboard>

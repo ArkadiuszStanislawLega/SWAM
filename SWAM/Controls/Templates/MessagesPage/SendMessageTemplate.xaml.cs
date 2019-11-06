@@ -114,7 +114,7 @@ namespace SWAM.Controls.Templates.MessagesPage
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
                 sendMessageWindow.Hide();
 
-            SWAM.MainWindow.RefreshMessagesButton();
+            SWAM.MainWindow.Instance.RefreshMessagesButton();
         }
         #endregion
 

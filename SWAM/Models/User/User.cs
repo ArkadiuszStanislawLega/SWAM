@@ -130,7 +130,7 @@ namespace SWAM.Models.User
                                 userFinded.ChangeStatus(StatusOfUserAccount.Active);
                                 userFinded.ChangeExpiryDateOfTheBlockade(null);
 
-                                MainWindow.CurrentInstance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
+                                MainWindow.Instance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
                             }
                             else
                             {
@@ -141,12 +141,12 @@ namespace SWAM.Models.User
                                     var timeOfBlockadeLeft = userFinded.ExpiryDateOfTheBlockade - DateTime.Now;
                                     var stringBlockadeDay = timeOfBlockadeLeft.Value.Days == 1 ? "dzień" : "dni";
 
-                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
+                                    MainWindow.Instance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
                                 }
                                 //If time is not seated, inform about pernament block of account.
                                 else
                                 {
-                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
+                                    MainWindow.Instance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
                                 }
 
                                 return false;
@@ -156,7 +156,7 @@ namespace SWAM.Models.User
                         //Checking if the account expiry time has not been exceeded.
                         if (userFinded.DateOfExpiryOfTheAccount <= DateTime.Now)
                         {
-                            MainWindow.CurrentInstance.InformationForUser($"Twoje konto nie jest już dłużej aktywne, skontaktuj się z administratorem.", true);
+                            MainWindow.Instance.InformationForUser($"Twoje konto nie jest już dłużej aktywne, skontaktuj się z administratorem.", true);
 
                             return false;
                         }
@@ -165,9 +165,10 @@ namespace SWAM.Models.User
                         var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
                         var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
 
-                        MainWindow.CurrentInstance.VisibleMode = Visibility.Visible;
-                        MainWindow.CurrentInstance.RefreshNavigationButtons();
-                        MainWindow.CurrentInstance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+                        MainWindow.Instance.VisibleMode = Visibility.Visible;
+                        //Refresh navigation buttons.
+                        MainWindow.Instance.RefreshNavigationButtons();
+                        MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
 
                         SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
                             .Include(u => u.Accesess)
@@ -179,7 +180,7 @@ namespace SWAM.Models.User
                     }
                     else
                         //Password doesn't match.
-                        MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
+                        MainWindow.Instance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
                 }
                 catch (PasswordSaltNullException)
                 {
@@ -188,7 +189,7 @@ namespace SWAM.Models.User
             }
             else
                 //There is no such login in the database.
-                MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
+                MainWindow.Instance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
 
             return false;
         }

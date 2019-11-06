@@ -16,10 +16,10 @@ namespace SWAM.Converters
             {
                 switch (user)
                 {
-                    case CustomerOrderStatus.Delivered: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("DarkGraphite");
-                    case CustomerOrderStatus.InDelivery: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("LightBlue");
-                    case CustomerOrderStatus.InProcess: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("WhiteCream");
-                    case CustomerOrderStatus.WaitingForPayment: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("Red");
+                    case CustomerOrderStatus.Delivered: return (Color)SWAM.MainWindow.Instance.FindResource("DarkGraphite");
+                    case CustomerOrderStatus.InDelivery: return (Color)SWAM.MainWindow.Instance.FindResource("LightBlue");
+                    case CustomerOrderStatus.InProcess: return (Color)SWAM.MainWindow.Instance.FindResource("WhiteCream");
+                    case CustomerOrderStatus.WaitingForPayment: return (Color)SWAM.MainWindow.Instance.FindResource("Red");
                     default : return value.ToString();
                 }
             }

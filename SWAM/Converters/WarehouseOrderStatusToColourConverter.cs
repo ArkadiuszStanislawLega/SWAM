@@ -13,9 +13,9 @@ namespace SWAM.Converters
             {
                 switch (warehouseOrderStatus)
                 {
-                    case WarehouseOrderStatus.Delivered: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("DarkGraphite");
-                    case WarehouseOrderStatus.InDelivery: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("LightBlue");
-                    case WarehouseOrderStatus.Ordered: return (Color)SWAM.MainWindow.CurrentInstance.FindResource("WhiteCream");
+                    case WarehouseOrderStatus.Delivered: return (Color)SWAM.MainWindow.Instance.FindResource("DarkGraphite");
+                    case WarehouseOrderStatus.InDelivery: return (Color)SWAM.MainWindow.Instance.FindResource("LightBlue");
+                    case WarehouseOrderStatus.Ordered: return (Color)SWAM.MainWindow.Instance.FindResource("WhiteCream");
                     default: return value.ToString();
                 }
             }

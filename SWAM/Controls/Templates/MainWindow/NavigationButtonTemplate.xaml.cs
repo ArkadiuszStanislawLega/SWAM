@@ -137,7 +137,7 @@ namespace SWAM.Controls.Templates.MainWindow
         {
             bool pageCanBeOpen = false;
 
-            if (PageToOpen != PagesUserControls.EmptyPage)
+            if (this.PageToOpen != PagesUserControls.EmptyPage)
             {
                 if (LoggedInUser != null && PAGES_FOR_USER.TryGetValue(LoggedInUser.Permissions, out List<PagesUserControls> listWithPermissions))
                 {

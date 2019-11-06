@@ -47,9 +47,9 @@ namespace SWAM
             {
                 if (value == null)
                 {
-                    CurrentInstance.VisibleMode = Visibility.Collapsed;
-                    CurrentInstance.InformationForUser("Wylogowano z systemu.");
-                    CurrentInstance.ChangeContent(PagesUserControls.LoginPage);
+                    Instance.VisibleMode = Visibility.Collapsed;
+                    Instance.InformationForUser("Wylogowano z systemu.");
+                    Instance.ChangeContent(PagesUserControls.LoginPage);
                 }
                 loggedInUser = value;
             }
@@ -65,7 +65,7 @@ namespace SWAM
         /// <summary>
         /// Static instance of main window.
         /// </summary>
-        public static MainWindow CurrentInstance { get; private set; }
+        public static MainWindow Instance { get; private set; }
         #endregion
 
         #region Properties
@@ -165,8 +165,7 @@ namespace SWAM
             InitializeComponent();
 
             SetUnloadStoryToAllPages();
-            CurrentInstance = this;
-            RefreshMessagesButton();
+            Instance = this;
         }
         #endregion
 
@@ -388,13 +387,13 @@ namespace SWAM
         /// <summary>
         /// Enable every controls in widnow.
         /// </summary>
-        public static void EnabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = false;
+        public static void EnabledEverything() => Instance.EverythingInWindow.IsEnabled = false;
         #endregion
         #region DisabledEverything
         /// <summary>
         /// Disable every control in windwo.
         /// </summary>
-        public static void DisabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = true;
+        public static void DisabledEverything() => Instance.EverythingInWindow.IsEnabled = true;
         #endregion
         #endregion
 
@@ -450,12 +449,12 @@ namespace SWAM
         /// <summary>
         /// Getting number of user unread messages, and update content of button.
         /// </summary>
-        public static void RefreshMessagesButton()
+        public void RefreshMessagesButton()
         {
             if (LoggedInUser != null)
             {
                 int number = Message.CountUnreadedMessages(LoggedInUser);
-                CurrentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+                Instance.Messages.Content = number > 0 ? $"{number}" : "";
             }
         }
         #endregion
@@ -466,7 +465,7 @@ namespace SWAM
         /// </summary>
         public void RefreshNavigationButtons()
         {
-            foreach (FrameworkElement u in NavigationBar.Children)
+            foreach (FrameworkElement u in Instance.NavigationBar.Children)
             {
                 if (u is NavigationButtonTemplate button)
                     button.CheckIsVisible();

@@ -87,8 +87,8 @@ namespace SWAM.Windows
         /// </summary>
         public void RefreshContents()
         {
-            SWAM.MainWindow.CurrentInstance.Windows.Remove(WindowType.SendMessage);
-            SWAM.MainWindow.CurrentInstance.Windows.Add(WindowType.SendMessage, new SendMessageWindow());
+            SWAM.MainWindow.Instance.Windows.Remove(WindowType.SendMessage);
+            SWAM.MainWindow.Instance.Windows.Add(WindowType.SendMessage, new SendMessageWindow());
 
             SelectedUsersListViewModel.Instance.UsersList.Clear();
         }

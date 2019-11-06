@@ -29,9 +29,11 @@ namespace SWAM.Controls.Pages
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Try to login in.
-            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.CurrentInstance != null)
+            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.Instance != null)
             {
-                MainWindow.CurrentInstance.ChangeContent(PagesUserControls.MessagesPage);
+                MainWindow.Instance.ChangeContent(PagesUserControls.MessagesPage);
+                MainWindow.Instance.RefreshMessagesButton();
+                MainWindow.Instance.RefreshNavigationButtons();
                 this._failedLogingAttempts = 0;
             }
             else
