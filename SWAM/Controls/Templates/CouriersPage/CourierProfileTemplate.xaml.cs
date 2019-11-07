@@ -53,10 +53,10 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// </summary>
         private void SetButtonsEvents()
         {
-            this.Name.ConfirmChangeName.Click += ConfirmChangeName_Click;
-            this.Phone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
-            this.TIN.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
-            this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
+            this.CourierName.ConfirmChangeName.Click += ConfirmChangeName_Click;
+            this.CourierPhone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
+            this.CourierTIN.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
+            this.CourierEmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
         #endregion
         #region ConfirmChangeName_Click
@@ -71,7 +71,7 @@ namespace SWAM.Controls.Templates.CouriersPage
             //TODO:Create name validation.
             if (DataContext is Courier courier)
             {
-                courier.Name = this.Name.EditName.Text;
+                courier.Name = this.CourierName.EditName.Text;
                 courier.Edit(courier);
                 DataContext = Courier.Get(courier.Id);
                 CouriersListViewModel.Instance.Refresh();
@@ -91,7 +91,7 @@ namespace SWAM.Controls.Templates.CouriersPage
         {
             if (DataContext is Courier courier)
             {
-                courier.Phone = this.Phone.EditPhone.Text;
+                courier.Phone = this.CourierPhone.EditPhone.Text;
                 courier.Edit(courier);
                 DataContext = Courier.Get(courier.Id);
                 CouriersListViewModel.Instance.Refresh();
@@ -110,11 +110,11 @@ namespace SWAM.Controls.Templates.CouriersPage
         private void ConfirmChangeTIN_Click(object sender, RoutedEventArgs e)
         {
             //TODO:Create TIN validation.
-            if (this.TIN.EditTin.Text != string.Empty)
+            if (this.CourierTIN.EditTin.Text != string.Empty)
             {
                 if (DataContext is Courier courier)
                 {
-                    courier.Tin = this.TIN.EditTin.Text;
+                    courier.Tin = this.CourierTIN.EditTin.Text;
                     courier.Edit(courier);
                     DataContext = Courier.Get(courier.Id);
                     CouriersListViewModel.Instance.Refresh();
@@ -133,11 +133,11 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// <param name="e">Click confirm change e-mail address button</param>
         private void ConfirmChangeEmailAddress_Click(object sender, RoutedEventArgs e)
         {
-            if (Models.EmailAddress.IsValidEmail(this.EmailAddress.EditEmailAddress.Text))
+            if (Models.EmailAddress.IsValidEmail(this.CourierEmailAddress.EditEmailAddress.Text))
             {
                 if (DataContext is Courier courier)
                 {
-                    courier.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
+                    courier.EmailAddress = this.CourierEmailAddress.EditEmailAddress.Text;
                     courier.Edit(courier);
                     DataContext = Courier.Get(courier.Id);
                     CouriersListViewModel.Instance.Refresh();
@@ -146,7 +146,7 @@ namespace SWAM.Controls.Templates.CouriersPage
                     InformationToUser($"Zaktualizowano adres e-mail kuriera {courier.Name}.");
                 }
             }
-            else InformationToUser($"Adres e-mail {this.EmailAddress.EditEmailAddress.Text} jest nieprawidłowy.", true);
+            else InformationToUser($"Adres e-mail {this.CourierEmailAddress.EditEmailAddress.Text} jest nieprawidłowy.", true);
         }
         #endregion
 

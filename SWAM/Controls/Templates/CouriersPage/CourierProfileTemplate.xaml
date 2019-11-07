@@ -41,10 +41,10 @@
             <StackPanel Grid.Row="0"
                     HorizontalAlignment="Left" 
                     VerticalAlignment="Top">
-                <prop:ProfileNameTemplate x:Name="Name"/>
-                <prop:ProfileTINtemplate x:Name="TIN"/>
-                <prop:ProfilePhoneTemplate x:Name="Phone"/>
-                <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                <prop:ProfileNameTemplate x:Name="CourierName"/>
+                <prop:ProfileTINtemplate x:Name="CourierTIN"/>
+                <prop:ProfilePhoneTemplate x:Name="CourierPhone"/>
+                <prop:ProfileEmailAddressTemplate x:Name="CourierEmailAddress"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Right section-->
