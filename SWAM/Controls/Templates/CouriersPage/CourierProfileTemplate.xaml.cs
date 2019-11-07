@@ -2,6 +2,7 @@
 using SWAM.Enumerators;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
+using SWAM.Strings;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -68,16 +69,22 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// <param name="e">Click confirm change name button</param>
         private void ConfirmChangeName_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:Create name validation.
             if (DataContext is Courier courier)
             {
-                courier.Name = this.CourierName.EditName.Text;
-                courier.Edit(courier);
-                DataContext = Courier.Get(courier.Id);
-                CouriersListViewModel.Instance.Refresh();
+                if (!Courier.IsNameExist(this.CourierName.EditName.Text))
+                {
+                    courier.Name = this.CourierName.EditName.Text;
+                    courier.Edit(courier);
+                    DataContext = Courier.Get(courier.Id);
+                    CouriersListViewModel.Instance.Refresh();
 
-                InformationToUser($"Zaktualizowano nazwę kuriera {courier.Name}.");
+                    InformationToUser($"Zaktualizowano nazwę kuriera {courier.Name}.");
+                }
+                else
+                    InformationToUser($"Nazwa {this.CourierName.EditName.Text} jest już używana.", true);
             }
+            else
+                InformationToUser($"{ErrorMesages.DATACONTEXT_ERROR} Wystąpił błąd pod czas dodawania nowego kuriera.", true);
         }
         #endregion
         #region ConfirmChangePhone_Click

@@ -26,6 +26,24 @@ namespace SWAM.Models.Courier
         //TODO:Try catch block.
         private static ApplicationDbContext context = new ApplicationDbContext();
 
+        #region IsNameExist
+        /// <summary>
+        /// checks the database to see if the courier name already exists.
+        /// </summary>
+        /// <param name="name">Name to check</param>
+        /// <returns>True if name alredy exists in database.</returns>
+        public static bool IsNameExist(string name)
+        {
+            if(name != string.Empty)
+            {
+                context = new ApplicationDbContext();
+                if (context.Couriers.FirstOrDefault(c => c.Name == name) != null)
+                    return true;
+            }
+
+            return false;
+        }
+        #endregion
         #region IsAdd
         /// <summary>
         /// Adding new customer to database.
@@ -37,12 +55,11 @@ namespace SWAM.Models.Courier
             if (courier != null)
             {
                 context.Couriers.Add(courier);
-                if (context.Couriers.FirstOrDefault(c => c.Name == courier.Name) == null)
-                {
-                    var number = context.SaveChanges();
-                    if (number == 1)
-                        return true;
-                }
+
+                var number = context.SaveChanges();
+                if (number == 1)
+                    return true;
+
             }
             return false;
         }
