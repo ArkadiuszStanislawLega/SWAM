@@ -59,6 +59,14 @@ namespace SWAM
 
 			if (ProductListViewModel.Instance.Products.Count > 0)
 				this.ProductProfile.DataContext = ProductListViewModel.Instance.Products[0];
+
+			if (MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Warehouseman || MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Seller)
+			{
+				AddButton.IsEnabled = false;
+				EditButton.IsEnabled = false;
+				DeleteButton.IsEnabled = false;
+			}
+
 		}
 		#endregion
 		#region ProductsList_LeftMouseButtonDown
@@ -74,6 +82,13 @@ namespace SWAM
 			{
 				Storyboard hideStory = (Storyboard)this.FindResource("HideEditStory");
 				hideStory.Begin();
+			}
+
+			if (MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Warehouseman || MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Seller)
+			{
+				AddButton.IsEnabled = false;
+				EditButton.IsEnabled = false;
+				DeleteButton.IsEnabled = false;
 			}
 		}
 		#endregion

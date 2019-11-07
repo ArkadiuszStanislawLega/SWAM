@@ -471,6 +471,7 @@
                     </Grid>
                     <!--#region ProductsList-->
                     <DataGrid Name="ProductsList"
+                              Margin="5"
                               Grid.Column="1"
                               HorizontalAlignment="Stretch"
                               DataContext="{x:Static prod:ProductListViewModel.Instance}"
