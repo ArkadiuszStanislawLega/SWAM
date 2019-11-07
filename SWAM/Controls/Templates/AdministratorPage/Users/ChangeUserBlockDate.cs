@@ -38,7 +38,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e">Event clicked.</param>
         override protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (this.Calendar.SelectedDate != null && this.Calendar.SelectedDate > DateTime.Now)
+            if (this.Calendar.SelectedDate != null && this.Calendar.SelectedDate >= DateTime.Now)
             {
                 if (DataContext is User user)
                 {
