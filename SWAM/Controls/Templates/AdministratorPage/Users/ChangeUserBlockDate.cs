@@ -1,5 +1,7 @@
 ﻿using SWAM.Exceptions;
 using SWAM.Models.User;
+using SWAM.Strings;
+using System;
 using System.Windows.Input;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
@@ -32,18 +34,24 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// Action after click button "ok" when change date of user block.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">Confrimation button.</param>
+        /// <param name="e">Event clicked.</param>
         override protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //TODO: Create validation.
-            if (this.Calendar.SelectedDate != null && DataContext is User user)
+            if (this.Calendar.SelectedDate != null && this.Calendar.SelectedDate > DateTime.Now)
             {
-                user.ChangeExpiryDateOfTheBlockade(this.Calendar.SelectedDate);
-                UserProfileRefresh();
+                if (DataContext is User user)
+                {
+                    user.ChangeExpiryDateOfTheBlockade(this.Calendar.SelectedDate);
+                    UserProfileRefresh();
 
-                InformationToUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
+                    InformationToUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
+                }
+                else
+                    InformationToUser($"{ErrorMesages.DATACONTEXT_ERROR}", true);
             }
+            else
+                InformationToUser($"Popraw datę blokady użytkownika. Data nie może być wcześniejsza niż dzisiejsza.", true);
         }
         #endregion
 
