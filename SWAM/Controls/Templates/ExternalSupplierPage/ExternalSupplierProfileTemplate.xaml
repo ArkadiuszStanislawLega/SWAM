@@ -23,6 +23,13 @@
                 <x:Type TypeName="enum:CustomerOrdersListSortingType" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+        <ObjectDataProvider x:Key="WarehouseOrderStatusListSorting"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:WarehouseOrderStatus" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
         <!--#region ShowResidentalAddressButtonsContainer-->
         <Storyboard x:Key="ShowResidentalAddressButtonsContainer">
             <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" 
@@ -161,6 +168,15 @@
                     <!--#region Filters bar-->
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
                         <TextBox Name="OrderNumberInput" Width="200" TextChanged="TextBox_TextChanged"/>
+                        <ComboBox Name="SortByOrderStatus" Width="200" Margin="5" Visibility="Collapsed"
+                                   ItemsSource="{Binding Source={StaticResource WarehouseOrderStatusListSorting}}" 
+                                  SelectionChanged="SortByOrderStatus_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={conv:ENtoPLwarehouseOrderStatusConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <TextBlock Text="Sortuj według:" Margin="5" Style="{StaticResource ProfileProperties}" />
                         <ComboBox Margin="5" Name="SortBy"   
                               ItemsSource="{Binding Source={StaticResource CustomerOrdersListSortingType}}">

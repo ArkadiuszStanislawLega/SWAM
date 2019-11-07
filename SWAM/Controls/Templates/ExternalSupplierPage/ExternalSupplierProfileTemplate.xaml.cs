@@ -39,14 +39,36 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             { CustomerOrdersListSortingType.OrderStatus, nameof(_sampleWarehouseOrder.WarehouseOrderStatus) }
         };
         #endregion
-
+        #region Deafault Constructor
         public ExternalSupplierProfileTemplate()
         {
             InitializeComponent();
 
+            SetButtonsEvents();
+            SetDefaultValuesInComboBoxes();
+        }
+        #endregion
+
+        #region SetDefaultValuesInComboBoxes
+        /// <summary>
+        /// Setting default values in combo boxes.
+        /// </summary>
+        private void SetDefaultValuesInComboBoxes()
+        {
+            this.SortBy.SelectedValue = CustomerOrdersListSortingType.Id;
+            this.SortByOrderStatus.SelectedValue = WarehouseOrderStatus.Delivered;
+        }
+        #endregion
+        #region SetButtonsEvents
+        /// <summary>
+        /// Sets all edit buttons to press triggers.
+        /// </summary>
+        private void SetButtonsEvents()
+        {
             this.ProperName.ConfirmChangeProperName.Click += ConfirmChangeProperName_Click;
             this.Tin.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
         }
+        #endregion
 
         #region ConfirmChangeProperName_Click
         /// <summary>
@@ -166,10 +188,26 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             if (this.OrdersList.Items.SortDescriptions.Count > 0)
                 this.OrdersList.Items.SortDescriptions.RemoveAt(this.OrdersList.Items.SortDescriptions.Count - 1);
 
-            if (this.AscendingSorting.IsChecked != true)
-                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Ascending));
+            //When sorting is by order status.
+            if ((CustomerOrdersListSortingType)this.SortBy.SelectedValue == CustomerOrdersListSortingType.OrderStatus)
+            {
+                //Changing filtering to currently selected value in combo box - SortByOrderStatus.
+                ChangeFilterWhenFilteringIsByOrderStatus();
+
+                //Sort all orders with specific status by order Id ascending or desceding
+                if (this.AscendingSorting.IsChecked != true)
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(_sampleWarehouseOrder.Id), System.ComponentModel.ListSortDirection.Ascending));
+                else
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(_sampleWarehouseOrder.Id), System.ComponentModel.ListSortDirection.Descending));
+            }
             else
-                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
+            {
+
+                if (this.AscendingSorting.IsChecked != true)
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Ascending));
+                else
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
+            }
         }
         #endregion
         #region TextBox_TextChanged
@@ -180,24 +218,23 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         /// <param name="e"></param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO: Debug this. 
-            ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierDeliveryListViewModel.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierDeliveryListViewModel.Instance.WarehouseOrders);
             if (filter != null)
             {
-                //filter.Filter = customerOrder =>
-                //{
-                //    WarehouseOrder allCustomerOrdersWhom = customerOrder as WarehouseOrder;
-                //    switch ((CustomerOrdersListSortingType)SortBy.SelectedValue)
-                //    {
-                //        case CustomerOrdersListSortingType.Id:
-                //            return allCustomerOrdersWhom.Id.ToString().Contains(this.OrderNumberInput.Text);
-                //        case CustomerOrdersListSortingType.OrderDate:
-                //            return allCustomerOrdersWhom.OrderDate.ToString().Contains(this.OrderNumberInput.Text);
-                //        case CustomerOrdersListSortingType.OrderStatus:
-                //            return allCustomerOrdersWhom.CustomerOrderStatus.ToString().Contains(this.OrderNumberInput.Text);
-                //        default: return false;
-                //    }
-                //};
+                filter.Filter = customerOrder =>
+                {
+                    WarehouseOrder allCustomerOrdersWhom = customerOrder as WarehouseOrder;
+                    switch ((CustomerOrdersListSortingType)SortBy.SelectedValue)
+                    {
+                        case CustomerOrdersListSortingType.Id:
+                            return allCustomerOrdersWhom.Id.ToString().Contains(this.OrderNumberInput.Text);
+                        case CustomerOrdersListSortingType.OrderDate:
+                            return allCustomerOrdersWhom.OrderDate.ToString().Contains(this.OrderNumberInput.Text);
+                        case CustomerOrdersListSortingType.OrderStatus:
+                            return allCustomerOrdersWhom.WarehouseOrderStatus.ToString().Contains(this.OrderNumberInput.Text);
+                        default: return false;
+                    }
+                };
             }
         }
         #endregion
@@ -212,9 +249,46 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             if (this._propertiesByWhichSortingCanTakePlace.TryGetValue((CustomerOrdersListSortingType)this.SortBy.SelectedValue, out this._propertyByWitchIsSort))
             {
+                if ((CustomerOrdersListSortingType)this.SortBy.SelectedValue == CustomerOrdersListSortingType.OrderStatus)
+                {
+                    this.OrderNumberInput.Visibility = Visibility.Collapsed;
+                    this.SortByOrderStatus.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.OrderNumberInput.Visibility = Visibility.Visible;
+                    this.SortByOrderStatus.Visibility = Visibility.Collapsed;
+                }
                 SortAscending_Click(sender, e);
             }
         }
+        #endregion
+
+        #region ChangeFilterWhenFilteringIsByOrderStatus
+        /// <summary>
+        /// Changing external supplier orders list view model filtering by currentyle selected warehouse order status.
+        /// </summary>
+        private void ChangeFilterWhenFilteringIsByOrderStatus()
+        {
+            if (this.SortByOrderStatus.SelectedValue != null)
+            {
+                var value = (WarehouseOrderStatus)this.SortByOrderStatus.SelectedValue;
+                ICollectionView filter = CollectionViewSource.GetDefaultView(ExternalSupplierDeliveryListViewModel.Instance.WarehouseOrders);
+                filter.Filter = customerOrder =>
+                {
+                    WarehouseOrder allCustomerOrdersWhom = customerOrder as WarehouseOrder;
+                    return allCustomerOrdersWhom.WarehouseOrderStatus.ToString().Contains(value.ToString());
+                };
+            }
+        }
+        #endregion
+        #region SortByOrderStatus_SelectionChanged
+        /// <summary>
+        /// Action after select value from SortByOrderStatus combo box. 
+        /// </summary>
+        /// <param name="sender">SortByOrderStatus ComboBox</param>
+        /// <param name="e">Selection is change.</param>
+        private void SortByOrderStatus_SelectionChanged(object sender, SelectionChangedEventArgs e) => ChangeFilterWhenFilteringIsByOrderStatus();
         #endregion
     }
 }

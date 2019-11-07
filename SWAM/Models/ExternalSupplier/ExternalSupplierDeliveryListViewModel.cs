@@ -8,9 +8,9 @@ namespace SWAM.Models.ExternalSupplier
 {
     public class ExternalSupplierDeliveryListViewModel: UserControl
     {
-        private static readonly ObservableCollection<WarehouseOrder> _warehouseOrders = new ObservableCollection<WarehouseOrder>();
+        private readonly ObservableCollection<WarehouseOrder> _warehouseOrders = new ObservableCollection<WarehouseOrder>();
 
-        public static ObservableCollection<WarehouseOrder> WarehouseOrders => _warehouseOrders;
+        public ObservableCollection<WarehouseOrder> WarehouseOrders => _warehouseOrders;
 
         #region SingletonePattern
         /// <summary>
