@@ -52,10 +52,10 @@ namespace SWAM.Controls.Templates.CustomerPage
         /// </summary>
         private void SetButtonsEvents()
         {
-            this.Name.ConfirmChangeName.Click += ConfirmChangeName_Click;
-            this.Surname.ConfirmChangeSurname.Click += ConfirmChangeSurname_Click;
-            this.Phone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
-            this.EmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
+            this.CustomerName.ConfirmChangeName.Click += ConfirmChangeName_Click;
+            this.CustomerSurname.ConfirmChangeSurname.Click += ConfirmChangeSurname_Click;
+            this.CustomerPhone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
+            this.CustomerEmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
         #endregion
         #region ConfirmChangeName_Click
@@ -69,7 +69,7 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if(DataContext is Customer customer)
             {
-                customer.Name = Name.EditName.Text;
+                customer.Name = CustomerName.EditName.Text;
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
@@ -89,7 +89,7 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if (DataContext is Customer customer)
             {
-                customer.Surname = Surname.EditSurname.Text;
+                customer.Surname = CustomerSurname.EditSurname.Text;
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
@@ -109,7 +109,7 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if (DataContext is Customer customer)
             {
-                customer.Phone = Phone.EditPhone.Text;
+                customer.Phone = CustomerPhone.EditPhone.Text;
                 customer.Edit(customer);
                 DataContext = Customer.Get(customer.Id);
                 CustomersListViewModel.Instance.Refresh();
@@ -129,9 +129,9 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if (DataContext is Customer customer)
             {
-                if (Models.EmailAddress.IsValidEmail(this.EmailAddress.EditEmailAddress.Text))
+                if (Models.EmailAddress.IsValidEmail(this.CustomerEmailAddress.EditEmailAddress.Text))
                 {
-                    customer.EmailAddress = this.EmailAddress.EditEmailAddress.Text;
+                    customer.EmailAddress = this.CustomerEmailAddress.EditEmailAddress.Text;
                     customer.Edit(customer);
                     DataContext = Customer.Get(customer.Id);
                     CustomersListViewModel.Instance.Refresh();
@@ -139,7 +139,7 @@ namespace SWAM.Controls.Templates.CustomerPage
                     InformationToUser($"Zaktualizowano adres e-mail klienta {customer.Name} {customer.Surname}.");
                 }
                 else
-                    InformationToUser($"Adres e-email {this.EmailAddress.EditEmailAddress.Text} jest błędny.", true);
+                    InformationToUser($"Adres e-email {this.CustomerEmailAddress.EditEmailAddress.Text} jest błędny.", true);
             }
         }
         #endregion

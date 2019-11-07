@@ -62,10 +62,10 @@
             <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto">
                 <StackPanel Grid.Column="0" Width="300" Margin="10">
-                    <prop:ProfileNameTemplate x:Name="Name"/>
-                    <prop:ProfileSurnameTemplate x:Name="Surname"/>
-                    <prop:ProfilePhoneTemplate x:Name="Phone"/>
-                    <prop:ProfileEmailAddressTemplate x:Name="EmailAddress"/>
+                    <prop:ProfileNameTemplate x:Name="CustomerName"/>
+                    <prop:ProfileSurnameTemplate x:Name="CustomerSurname"/>
+                    <prop:ProfilePhoneTemplate x:Name="CustomerPhone"/>
+                    <prop:ProfileEmailAddressTemplate x:Name="CustomerEmailAddress"/>
                     <!--#region Residental Address-->
                     <StackPanel Margin="5">
                         <Border CornerRadius="5 5 0 0" Padding="5 5 5 0">
