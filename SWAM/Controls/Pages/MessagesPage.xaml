@@ -129,6 +129,10 @@
                                         Header="Nadawca"  
                                         IsReadOnly="True"  
                                         Binding="{Binding  Sender.Name}"/>
+                        <DataGridTextColumn Width="auto"  
+                                        Header="Odbiorca"  
+                                        IsReadOnly="True"  
+                                        Binding="{Binding  Receiver.Name}"/>
                         <DataGridTextColumn Width="auto" 
                                         Header="Data odczytania"
                                         IsReadOnly="True" 
