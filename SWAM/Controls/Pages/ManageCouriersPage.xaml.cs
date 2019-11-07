@@ -21,6 +21,7 @@ namespace SWAM.Controls.Pages
             InitializeComponent();
 
             this.CurrentBookmarkLoaded = BookmarkInPage.CreateNewCourier;
+            ChangeSorting();
         }
         #endregion
 
