@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
              xmlns:products="clr-namespace:SWAM.Models.ViewModels.CreateNewWarehouseOrder"
              mc:Ignorable="d" 
+             Loaded="Window_Loaded"
              d:DesignHeight="300" Width="230">
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
@@ -27,7 +28,7 @@
                              HorizontalAlignment="Center"
                              Margin="0"
                              Style="{StaticResource UserLogin}"
-                             Name="customerOrderPositionFilter"
+                             Name="warehouseOrderPositionFilter"
                              TextChanged="WarehouseOrderPositionFilter_TextChanged"/>
             <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
                 <fa:ImageAwesome Icon="ShoppingCart" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
