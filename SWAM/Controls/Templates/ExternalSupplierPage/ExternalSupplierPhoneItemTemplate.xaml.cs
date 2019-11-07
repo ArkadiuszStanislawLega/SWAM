@@ -49,7 +49,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                         if (phone.UpdateNumber(phoneNumberBeforeEdited, this.EditPhoneNumber.Text))
                         {
                             if (phone.UpdateNote(phoneNumberBeforeEdited, this.EditNote.Text))
-                                InformationToUser($"Numer telefonu {phoneNumberBeforeEdited.ToString()} edytowano na {this.EditNote.Text} - {this.EditPhoneNumber.Text}.");
+                                InformationToUser($"Numer telefonu {phoneNumberBeforeEdited.Note}-{phoneNumberBeforeEdited.PhoneNumber} edytowano na {this.EditNote.Text} - {this.EditPhoneNumber.Text}.");
 
                             else
                                 InformationToUser($"{ErrorMesages.EDIT_EXTERNAL_SUPPLIER_PHONE_ERROR} W czasie zmiany notatki telefonu. {ErrorMesages.DATABASE_ERROR}", true);
