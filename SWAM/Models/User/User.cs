@@ -163,7 +163,10 @@ namespace SWAM.Models.User
 
                         #region***************If the login attempt was successful***************
                         var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
-                        var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
+                        string stringDay = string.Empty;
+                        //Protection if the user does not set the account expiration date.
+                        if (timeLeft != null)
+                            stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
 
                         //Geting profile of user from database.
                         SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
@@ -176,7 +179,10 @@ namespace SWAM.Models.User
                         //Refresh navigation buttons.
                         MainWindow.Instance.RefreshNavigationButtons();
                         //Message to user about login in to the system.
-                        MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+                        if (stringDay != string.Empty)
+                            MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+                        else
+                            MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}.");
                         return true;
                         #endregion
                     }
