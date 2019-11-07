@@ -63,7 +63,43 @@ namespace SWAM.Models.Warehouse
             }
             set => DB_CONTEXT = value;
         }
+        #region IsWarehouseNameExist
+        /// <summary>
+        /// Checks the database to see if the warehouse name already exists.
+        /// </summary>
+        /// <param name="name">Name to check.</param>
+        /// <returns>True if name already exists in database.</returns>
+        public static bool IsWarehouseNameExist(string name)
+        {
+            if (name != string.Empty)
+            {
+                _context = new ApplicationDbContext(); 
+                if (_context.Warehouses.FirstOrDefault(w => w.Name == name) != null)
+                    return true;
+            }
 
+            return false;
+        }
+        #endregion
+        #region IsAdd
+        /// <summary>
+        /// Adding new warehouse to database.
+        /// </summary>
+        /// <param name="warehouse">New warehouse.</param>
+        /// <returns>True if the database addition was successful.</returns>
+        public static bool IsAdd(Warehouse warehouse)
+        {
+            if (warehouse != null)
+            {
+                _context.Warehouses.Add(warehouse);
+
+                if (_context.SaveChanges() == 3)
+                    return true;
+            }
+
+            return false;
+        }
+        #endregion
         #region Get
         /// <summary>
         /// Retrieves the magazine from the database by ID number.
@@ -101,20 +137,6 @@ namespace SWAM.Models.Warehouse
 
                 _context.SaveChanges();
             }
-        }
-        #endregion
-        #region IsNameInDatabase
-        /// <summary>
-        /// Checks in the database if the storage name is already in use.
-        /// </summary>
-        /// <param name="name">Name to check.</param>
-        /// <returns>True if name isn't in database.</returns>
-        public static bool IsNameInDatabase(string name)
-        {
-            if (_context.Warehouses.FirstOrDefault(w => w.Name == name) == null)
-                return true;
-            else
-                return false;
         }
         #endregion
         #region Remove
