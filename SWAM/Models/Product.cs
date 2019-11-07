@@ -100,11 +100,7 @@ namespace SWAM.Models
             context.SaveChanges();
         }
 
-		public static List<Product> AllProducts()
-		{
-			_context = new ApplicationDbContext();
-			return context.Products.ToList();
-		}
+        public static List<Product> AllProducts() => context.Products.ToList();
 
         public static Product Get(int Id)
         {

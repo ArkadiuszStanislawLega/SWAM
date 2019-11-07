@@ -59,13 +59,6 @@ namespace SWAM
 
 			if (ProductListViewModel.Instance.Products.Count > 0)
                 this.ProductProfile.DataContext = ProductListViewModel.Instance.Products[0];
-		
-			if (MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Seller || MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Warehouseman)
-			{
-				AddButton.IsEnabled = false;
-				EditButton.IsEnabled = false;
-				DeleteButton.IsEnabled = false;				
-			}
         }
         #endregion
         #region ProductsList_LeftMouseButtonDown
@@ -80,16 +73,9 @@ namespace SWAM
 			if (this.EditedName.Visibility == Visibility.Visible)
             {
                 Storyboard hideStory = (Storyboard)this.FindResource("HideEditStory");
-                hideStory.Begin();				
-			}
-
-			if (MainWindow.LoggedInUser.Permissions != Enumerators.UserType.Seller && MainWindow.LoggedInUser.Permissions != Enumerators.UserType.Warehouseman)
-			{
-				EditButton.IsEnabled = true;
-				DeleteButton.IsEnabled = true;
-			}
-				
-		}
+                hideStory.Begin();
+            }
+        }
 		#endregion
 		#region EditButton_Click
 		/// <summary>
@@ -104,8 +90,7 @@ namespace SWAM
 				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)			
 				{					
 					this.AddProductToDbButton.IsEnabled = true;
-				}	
-				else this.AddProductToDbButton.IsEnabled = false;
+				}				
 			}
 		}
         #endregion
@@ -164,13 +149,13 @@ namespace SWAM
                         ProductListViewModel.Instance.Refresh();
 						ClearData();
 						EditButton.IsEnabled = false;
-						DeleteButton.IsEnabled = false;
 					}
 				}								
             }
 			else InformationToUser($"{ErrorMesages.DURING_DELETE_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
+
         #region ValidationTextBoxes
         /// <summary>
         /// Validate fields that should be filled. They must be long digits, only at the price it must be decimal.
@@ -219,7 +204,7 @@ namespace SWAM
         /// </summary>
         public override void RefreshData() => ProductListViewModel.Instance.Refresh();
         private void NumberRowIteration(object sender, DataGridRowEventArgs e) => e.Row.Header = (e.Row.GetIndex() + 1).ToString();
-		
+
         private void RefreshProductListButton_Click(object sender, RoutedEventArgs e) => RefreshData();
 
         private void CancelEditProductButton_Click(object sender, RoutedEventArgs e)

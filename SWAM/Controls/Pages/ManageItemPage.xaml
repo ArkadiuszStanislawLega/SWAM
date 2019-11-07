@@ -366,8 +366,7 @@
                         <!--#endregion-->
                     </Grid>
                     <!--#region ProductsList-->
-                    <DataGrid Name="ProductsList" Grid.Column="1" 
-                      Margin="5"
+                    <DataGrid Name="ProductsList" Grid.Column="1"
                       HorizontalAlignment="Stretch"
                       DataContext="{x:Static prod:ProductListViewModel.Instance}"
                       ItemsSource="{Binding Products}" 
