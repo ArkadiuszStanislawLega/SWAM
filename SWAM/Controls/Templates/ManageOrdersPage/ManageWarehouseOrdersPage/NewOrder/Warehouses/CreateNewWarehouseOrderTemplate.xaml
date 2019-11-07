@@ -89,7 +89,7 @@
         </ScrollViewer>
 
         <!--#region productElementsContainer-->
-        <ScrollViewer x:Name="productElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+        <ScrollViewer x:Name="productElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
             <Grid HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -122,5 +122,38 @@
             </Grid>
         </ScrollViewer>
         <!--#endregion-->
+
+        <!--#region externalSupplierElementsContainer-->
+        <ScrollViewer x:Name="externalSupplierElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+            <Grid HorizontalAlignment="Center">
+                <!--#region RowsDefinitions-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0">
+                        <TextBlock FontSize="20" Text="Dane dostawcy" HorizontalAlignment="Center" Style="{StaticResource Title}"/>
+                    </Grid>
+                    <Grid Grid.Column="0" Grid.Row="1" x:Name="externalSupplierProfile">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                    </Grid>
+                </Grid>
+                <warehouseNewOrderControl:ExternalSupplierListFromDbTemplate Grid.Column="1" Grid.Row="0"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </basic:BasicUserControl>

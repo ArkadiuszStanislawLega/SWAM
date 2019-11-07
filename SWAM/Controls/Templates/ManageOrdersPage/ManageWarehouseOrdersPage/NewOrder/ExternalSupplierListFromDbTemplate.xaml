@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.ExternalSupplierListFromDbTemplate"
+﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.ExternalSupplierListFromDbTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage"
+             xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Loaded="Window_Loaded"
@@ -27,7 +27,7 @@
                              HorizontalAlignment="Center"
                              Margin="0"
                              Style="{StaticResource UserLogin}"
-                             Name="customerFilter"
+                             Name="externalSupplierFilter"
                              TextChanged="ExternalSupplier_TextChanged"/>
             <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
                 <fa:ImageAwesome Icon="AddressBook" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>

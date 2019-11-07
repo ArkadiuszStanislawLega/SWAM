@@ -1,21 +1,11 @@
 ﻿using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses;
 using SWAM.Models.ExternalSupplier;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
+namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder
 {
     /// <summary>
     /// Interaction logic for ExternalSupplierListFromDbTemplate.xaml
@@ -55,7 +45,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         {
             if (item is ExternalSupplier externalSupplier)
             {
-                return (externalSupplier.Name.IndexOf(customerFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return (externalSupplier.Name.IndexOf(externalSupplierFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             return false;
         }
@@ -73,7 +63,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         }
         #endregion
 
-        #region CustomersListViewItem_PreviewMouseLeftButtonUp
+        #region ExternalSupplierViewItem_PreviewMouseLeftButtonUp
         /// <summary>
         /// Fill parent (CreateNewWarehouseOrderTemplate) control DataContext with clicked customer data
         /// </summary>
@@ -89,7 +79,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
 
                 if (SWAM.MainWindow.FindParent<CreateNewWarehouseOrderTemplate>(this) is CreateNewWarehouseOrderTemplate parent)
                 {
-                    //parent.externalSupplierProfile.DataContext = externalSupplier;
+                    parent.externalSupplierProfile.DataContext = externalSupplier;
                 }
             }
         }
