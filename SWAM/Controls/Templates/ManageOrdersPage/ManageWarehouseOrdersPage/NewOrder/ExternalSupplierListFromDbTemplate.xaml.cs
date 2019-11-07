@@ -28,6 +28,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // External suppliers list refresh after each page load
+            Models.ViewModels.CreateNewWarehouseOrder.ExternalSupplierListViewModel.Instance.Refresh();
             // obtain a reference to the CollectionView instance
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(externalSuppliersListView.ItemsSource);
             // assign a delegate to the Filter property

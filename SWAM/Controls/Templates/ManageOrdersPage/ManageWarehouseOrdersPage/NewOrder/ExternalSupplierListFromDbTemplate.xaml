@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:context="clr-namespace:SWAM.Models.ViewModels.CreateNewWarehouseOrder"
              mc:Ignorable="d" 
              Loaded="Window_Loaded"
              d:DesignHeight="300" d:DesignWidth="200">
@@ -41,7 +42,9 @@
                 <ListView MaxHeight="300" Name="externalSuppliersListView" 
                           PreviewMouseLeftButtonUp="ExternalSupplierViewItem_PreviewMouseLeftButtonUp" 
                           Background="{StaticResource MainBarBrash}" 
-                          Foreground="White" BorderThickness="0">
+                          Foreground="White" BorderThickness="0"
+                          DataContext="{x:Static context:ExternalSupplierListViewModel.Instance}"
+                          ItemsSource="{Binding ExternalSuppliers}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
                             <GridViewColumn Width="180">
