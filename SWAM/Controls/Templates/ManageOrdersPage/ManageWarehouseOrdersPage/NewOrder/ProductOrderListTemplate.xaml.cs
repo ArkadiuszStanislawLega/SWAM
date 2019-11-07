@@ -46,7 +46,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         {
             if (item is WarehouseOrderPosition warehouseOrderPosition)
             {
-                return (warehouseOrderPosition.Product.Name.IndexOf(customerOrderPositionFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return (warehouseOrderPosition.Product.Name.IndexOf(warehouseOrderPositionFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
             return false;
         }
