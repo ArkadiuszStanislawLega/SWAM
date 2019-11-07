@@ -37,29 +37,33 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         {
                             if (this.AccoutnExpireCallendar.SelectedDate != null)
                             {
-                                //Generate password salt.
-                                var passwordSalt = CryptoService.GenerateSalt();
-
-                                var user = new User()
+                                if (this.AccoutnExpireCallendar.SelectedDate >= DateTime.Now)
                                 {
-                                    Name = this.NewUserName.Text,
-                                    Password = CryptoService.ComputeHash(this.UserPassword.Password, passwordSalt),   //Hash the password
-                                    PasswordSalt = passwordSalt,
-                                    DateOfCreate = DateTime.Now,
-                                    Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
-                                    StatusOfUserAccount = this.AccountStatus.IsChecked ==
-                                                                        true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
-                                    DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
-                                };
+                                    //Generate password salt.
+                                    var passwordSalt = CryptoService.GenerateSalt();
 
-                                //Try to add new user to database
-                                if (user != null && user.IsAdd(user))
-                                {
-                                    InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
-                                    UserListRefresh();
-                                    RestartTextBoxes();
+                                    var user = new User()
+                                    {
+                                        Name = this.NewUserName.Text,
+                                        Password = CryptoService.ComputeHash(this.UserPassword.Password, passwordSalt),   //Hash the password
+                                        PasswordSalt = passwordSalt,
+                                        DateOfCreate = DateTime.Now,
+                                        Permissions = (Enumerators.UserType)this.UserPermissions.SelectedValue,
+                                        StatusOfUserAccount = this.AccountStatus.IsChecked ==
+                                                                            true ? Enumerators.StatusOfUserAccount.Active : Enumerators.StatusOfUserAccount.Blocked,
+                                        DateOfExpiryOfTheAccount = this.AccoutnExpireCallendar.SelectedDate
+                                    };
+
+                                    //Try to add new user to database
+                                    if (user != null && user.IsAdd(user))
+                                    {
+                                        InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                                        UserListRefresh();
+                                        RestartTextBoxes();
+                                    }
+                                    else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
                                 }
-                                else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
+                                else InformationToUser("Data wygaśnięcia konta musi co najmniej z dniem jutrzejszym.", true);
                             }
                             else InformationToUser("Do utworzenia konta jest potrzebna data jego wygaśnięcia.", true);
                         }
