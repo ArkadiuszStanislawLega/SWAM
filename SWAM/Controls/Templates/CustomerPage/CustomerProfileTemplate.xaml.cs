@@ -43,9 +43,20 @@ namespace SWAM.Controls.Templates.CustomerPage
             InitializeComponent();
 
             SetButtonsEvents();
+            SetDefaultValuesInComboBoxes();
         }
         #endregion
 
+        #region SetDefaultValuesInComboBoxes
+        /// <summary>
+        /// Setting default values in combo boxes.
+        /// </summary>
+        private void SetDefaultValuesInComboBoxes()
+        {
+            this.SortBy.SelectedValue = CustomerOrdersListSortingType.Id;
+            this.SortByOrderStatus.SelectedValue = CustomerOrderStatus.Delivered;
+        }
+        #endregion
         #region SetButtonsEvents
         /// <summary>
         /// Sets all edit buttons to press triggers.
@@ -202,10 +213,25 @@ namespace SWAM.Controls.Templates.CustomerPage
             if (this.OrdersList.Items.SortDescriptions.Count > 0)
                 this.OrdersList.Items.SortDescriptions.RemoveAt(this.OrdersList.Items.SortDescriptions.Count - 1);
 
-            if (this.AscendingSorting.IsChecked != true)
-                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Ascending));
+            //When sorting is by order status.
+            if ((CustomerOrdersListSortingType)this.SortBy.SelectedValue == CustomerOrdersListSortingType.OrderStatus)
+            {
+                //Changing filtering to currently selected value in combo box - SortByOrderStatus.
+                ChangeFilterWhenFilteringIsByOrderStatus();
+
+                //Sort all orders with specific status by order Id ascending or desceding
+                if (this.AscendingSorting.IsChecked != true)
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(_sampleCustomerOrder.Id), System.ComponentModel.ListSortDirection.Ascending));
+                else
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(nameof(_sampleCustomerOrder.Id), System.ComponentModel.ListSortDirection.Descending));
+            }
             else
-                this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
+            {
+                if (this.AscendingSorting.IsChecked != true)
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Ascending));
+                else
+                    this.OrdersList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription(this._propertyByWitchIsSort, System.ComponentModel.ListSortDirection.Descending));
+            }
         }
         #endregion
         #region TextBox_TextChanged
@@ -216,8 +242,7 @@ namespace SWAM.Controls.Templates.CustomerPage
         /// <param name="e"></param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //TODO: Debug this. 
-            ICollectionView filter = CollectionViewSource.GetDefaultView(CustomerOrdersListViewModel.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(CustomerOrdersListViewModel.Instance.Orders);
             if (filter != null)
             {
                 filter.Filter = customerOrder =>
@@ -248,9 +273,47 @@ namespace SWAM.Controls.Templates.CustomerPage
         {
             if (this._propertiesByWhichSortingCanTakePlace.TryGetValue((CustomerOrdersListSortingType)this.SortBy.SelectedValue, out this._propertyByWitchIsSort))
             {
+                if ((CustomerOrdersListSortingType)this.SortBy.SelectedValue == CustomerOrdersListSortingType.OrderStatus)
+                {
+                    this.OrderNumberInput.Visibility = Visibility.Collapsed;
+                    this.SortByOrderStatus.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.OrderNumberInput.Visibility = Visibility.Visible;
+                    this.SortByOrderStatus.Visibility = Visibility.Collapsed;
+                }
                 SortAscending_Click(sender, e);
             }
         }
+        #endregion
+
+        #region ChangeFilterWhenFilteringIsByOrderStatus
+        /// <summary>
+        /// Changing customer orders list view model filtering by currentyle selected customer order status.
+        /// </summary>
+        private void ChangeFilterWhenFilteringIsByOrderStatus()
+        {
+            if (this.SortByOrderStatus.SelectedValue != null)
+            {
+                var value = (CustomerOrderStatus)this.SortByOrderStatus.SelectedValue;
+                ICollectionView filter = CollectionViewSource.GetDefaultView(CustomerOrdersListViewModel.Instance.Orders);
+                filter.Filter = customerOrder =>
+                {
+                    CustomerOrder allCustomerOrdersWhom = customerOrder as CustomerOrder;
+                    return allCustomerOrdersWhom.CustomerOrderStatus.ToString().Contains(value.ToString());
+                };
+            }
+        }
+
+        #endregion
+        #region SortByOrderStatus_SelectionChanged
+        /// <summary>
+        /// Action after select value from SortByOrderStatus combo box. 
+        /// </summary>
+        /// <param name="sender">SortByOrderStatus ComboBox</param>
+        /// <param name="e">Selection is change.</param>
+        private void SortByOrderStatus_SelectionChanged(object sender, SelectionChangedEventArgs e) => ChangeFilterWhenFilteringIsByOrderStatus();
         #endregion
     }
 }
