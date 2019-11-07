@@ -647,6 +647,16 @@ namespace SWAM
                         break;
                     }
                 #endregion
+                #region LogedInUserProfile
+                case PagesUserControls.LogedInUserProfile:
+                    {
+                        if (this._pages.TryGetValue(PagesUserControls.LogedInUserProfile, out BasicPage currentPage))
+                        {
+                            currentPage.RefreshData();
+                        }
+                        break;
+                    }
+                    #endregion
 
             }
         }

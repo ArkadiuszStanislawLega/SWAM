@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using SWAM.Exceptions;
 using SWAM.Controls.Pages;
+using SWAM.Models.User;
 
 namespace SWAM.Controls.Templates.MainWindow
 {
@@ -18,12 +19,12 @@ namespace SWAM.Controls.Templates.MainWindow
         /// <summary>
         /// Getting data from database and refresh profile.
         /// </summary>
-        public void RefreshData()
+        public override void RefreshData()
         {
             try
             {
                 DataContext = SWAM.MainWindow.LoggedInUser;
-                /*
+              
                 if (this.DataContext is User user)
                 {
                     //Clearing datacontext... is required for proper refresh of profile.
@@ -31,7 +32,7 @@ namespace SWAM.Controls.Templates.MainWindow
                     this.DataContext = User.GetUser(user.Id);
                     if(this.DataContext == null) throw new RefreshUserProfileException("RefreshData");
                 }
-                else throw new RefreshUserProfileException("RefreshData");*/
+                else throw new RefreshUserProfileException("RefreshData");
             }
             catch (RefreshUserProfileException ex) { ex.ShowMessage(this); }
         }
