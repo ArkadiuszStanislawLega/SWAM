@@ -191,7 +191,7 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\Manage\WarehouseOrderProfileTemplate.xaml.cs">
       <DependentUpon>WarehouseOrderProfileTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\ProductOrderListTemplate.xaml.cs">
+    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
@@ -559,7 +559,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\ProductOrderListTemplate.xaml">
+    <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ProductOrderListTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

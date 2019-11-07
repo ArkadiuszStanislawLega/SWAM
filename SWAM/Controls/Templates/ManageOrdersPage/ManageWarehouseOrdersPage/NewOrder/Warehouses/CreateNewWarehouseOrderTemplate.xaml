@@ -116,7 +116,7 @@
                         <warehouseNewOrderControl:ProductsListFromDbTemplate/>
                     </Grid>
                     <Grid Grid.Row="1" Grid.Column="1">
-                        <warehouseControl:ProductOrderListTemplate/>
+                        <warehouseNewOrderControl:ProductOrderListTemplate/>
                     </Grid>
                 </Grid>
             </Grid>
