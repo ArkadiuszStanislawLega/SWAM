@@ -79,7 +79,7 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
 
-            <Grid Name="Content" Grid.Row="0"/>
+            <Grid Name="SubpageMainContent" Grid.Row="0"/>
         </Grid>
     </Grid>
 </Window>

@@ -87,8 +87,8 @@ namespace SWAM.Windows
         /// </summary>
         public void RefreshContents()
         {
-            SWAM.MainWindow.CurrentInstance.Windows.Remove(WindowType.SendMessage);
-            SWAM.MainWindow.CurrentInstance.Windows.Add(WindowType.SendMessage, new SendMessageWindow());
+            SWAM.MainWindow.Instance.Windows.Remove(WindowType.SendMessage);
+            SWAM.MainWindow.Instance.Windows.Add(WindowType.SendMessage, new SendMessageWindow());
 
             SelectedUsersListViewModel.Instance.UsersList.Clear();
         }
@@ -100,15 +100,15 @@ namespace SWAM.Windows
         /// <param name="content"><see cref="BookmarkInPage"/> new content of the window</param>
         public void ChangeContent(BookmarkInPage content)
         {
-            if (this.Content.Children.Count > 0)
+            if (this.SubpageMainContent.Children.Count > 0)
             {
-                this.Content.Children.RemoveAt(this.Content.Children.Count - 1);
+                this.SubpageMainContent.Children.RemoveAt(this.SubpageMainContent.Children.Count - 1);
 
                 if (this._contents.TryGetValue(content, out UserControl userControl))
-                    this.Content.Children.Add(userControl);
+                    this.SubpageMainContent.Children.Add(userControl);
             }
             else if (this._contents.TryGetValue(content, out UserControl userControl))
-                this.Content.Children.Add(userControl);
+                this.SubpageMainContent.Children.Add(userControl);
         }
         #endregion
         #region SendMessageReplay

@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder"
+             xmlns:products="clr-namespace:SWAM.Models.ViewModels.CreateNewWarehouseOrder"
+             Loaded="Window_Loaded"
              Width="auto"
              MinHeight="300"
              mc:Ignorable="d">
@@ -14,12 +16,14 @@
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
                   SelectionMode="Single"
-                  Style="{StaticResource BasicDataGrid}">
+                  Style="{StaticResource BasicDataGrid}"
+                  DataContext="{x:Static products:ProductListViewModel.Instance}"
+                  ItemsSource="{Binding Products}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nazwa" MaxWidth="200" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}"/>
                 <DataGridTextColumn Header="Długość" Binding="{Binding Length}"/>
-                <DataGridTextColumn Header="Waga" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
                 <DataGridTemplateColumn Header="Dodaj">
                     <DataGridTemplateColumn.CellTemplate>

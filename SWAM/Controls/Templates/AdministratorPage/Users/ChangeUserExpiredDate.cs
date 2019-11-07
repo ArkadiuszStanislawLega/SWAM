@@ -1,5 +1,7 @@
 ﻿using SWAM.Exceptions;
 using SWAM.Models.User;
+using SWAM.Strings;
+using System;
 using System.Windows.Input;
 
 namespace SWAM.Controls.Templates.AdministratorPage.Users
@@ -13,12 +15,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             Loaded += ChangeUserExpiredDate_Loaded;
         }
 
+        #region ChangeUserExpiredDate_Loaded
+        /// <summary>
+        /// Action when change user expire date is loaded.
+        /// Set new data context.
+        /// </summary>
+        /// <param name="sender">Change user expire date.</param>
+        /// <param name="e">Evenet is loaded.</param>
         private void ChangeUserExpiredDate_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (DataContext is User user)
+            if (this.DataContext is User user)
                     this.Calendar.SelectedDate = user.DateOfExpiryOfTheAccount;
         }
-
+        #endregion       
         #region NewCommand_Executed
         /// <summary>
         /// Action after click confirm change user accout date of expire button.
@@ -27,13 +36,19 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <param name="e"></param>
         override protected void NewCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //TODO: Create validation.
-            if (this.Calendar.SelectedDate != null && DataContext is User user)
+            if (this.Calendar.SelectedDate != null && this.Calendar.SelectedDate >= DateTime.Now )
             {
-                user.ChangeDateOfExpiryOfTheAccount(this.Calendar.SelectedDate);
-                UserProfileRefresh();
-                InformationToUser($"Data wygaśnięcia konta {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
+                if (DataContext is User user)
+                {
+                    user.ChangeDateOfExpiryOfTheAccount(this.Calendar.SelectedDate);
+                    UserProfileRefresh();
+                    InformationToUser($"Data wygaśnięcia konta {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
+                }
+                else
+                    InformationToUser($"{ErrorMesages.DATACONTEXT_ERROR}", true);
             }
+            else
+                InformationToUser($"Popraw datę wygaśnięcia konta. Data nie może być wcześniejsza niż dzisiejsza.", true);
         }
         #endregion
 

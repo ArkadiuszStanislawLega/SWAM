@@ -26,13 +26,14 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <param name="sender">Login in button</param>
         /// <param name="e">Action clicked</param>
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private async void  LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Try to login in.
-            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.CurrentInstance != null)
+            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.Instance != null)
             {
-                MainWindow.CurrentInstance.ChangeContent(PagesUserControls.MessagesPage);
+                MainWindow.Instance.ChangeContent(PagesUserControls.MessagesPage);
                 this._failedLogingAttempts = 0;
+                await MainWindow.Instance.RefreshMessageButton();
             }
             else
             {

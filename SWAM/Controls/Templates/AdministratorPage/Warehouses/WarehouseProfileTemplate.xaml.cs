@@ -148,7 +148,8 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
             if (DataContext is Warehouse warehouse)
             {
                 if (this.EditName.Text.Length > SWAM.MainWindow.MIN_NAME_LENGTH && warehouse.Get(warehouse.Id).Name != this.EditName.Text)
-                    return Warehouse.IsNameInDatabase(this.EditName.Text);
+                    if (!Warehouse.IsWarehouseNameExist(this.EditName.Text))
+                        return true;
             }
 
             return true;

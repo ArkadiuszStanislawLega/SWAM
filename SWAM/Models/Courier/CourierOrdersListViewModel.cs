@@ -8,8 +8,8 @@ namespace SWAM.Models.Courier
 {
     public class CourierOrdersListViewModel : UserControl
     {
-        private readonly static ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
-        public static ObservableCollection<CustomerOrder> Orders => _orders;
+        private readonly ObservableCollection<CustomerOrder> _orders = new ObservableCollection<CustomerOrder>();
+        public ObservableCollection<CustomerOrder> Orders => _orders;
 
         #region SingletonePattern
         /// <summary>
@@ -21,7 +21,11 @@ namespace SWAM.Models.Courier
         public static CourierOrdersListViewModel Instance => _instance;
         public CourierOrdersListViewModel() { }
         #endregion
-
+        #region Refresh
+        /// <summary>
+        /// Geting courier orders from database.
+        /// </summary>
+        /// <param name="courier">The courier whose orders are to be retrieved.</param>
         public void Refresh(Courier courier)
         {
             if (courier != null)
@@ -42,10 +46,10 @@ namespace SWAM.Models.Courier
 
                     foreach (var order in orders)
                     {
-                        order.User = context.People
+                        order.Creator = context.People
                             .OfType<User.User>()
                             .Include(u => u.Phones)
-                            .FirstOrDefault(u => u.Id == order.UserId);
+                            .FirstOrDefault(u => u.Id == order.CreatorId);
 
                         foreach (var position in order.CustomerOrderPositions)
                         {
@@ -57,5 +61,6 @@ namespace SWAM.Models.Courier
                 }
             }
         }
+        #endregion
     }
 }

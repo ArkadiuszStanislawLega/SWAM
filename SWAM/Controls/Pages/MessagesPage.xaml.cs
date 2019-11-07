@@ -1,5 +1,4 @@
-﻿using SWAM.Controls.Templates.AdministratorPage;
-using SWAM.Models;
+﻿using SWAM.Models;
 using SWAM.Models.Messages;
 using SWAM.Windows;
 using System.Windows;
@@ -23,6 +22,8 @@ namespace SWAM.Controls.Pages
         /// Flag indicating whether received messages are on.
         /// </summary>
         private bool _isResivedIsOpen = true;
+
+        public bool IsResivedIsOpen { get => _isResivedIsOpen; private set => _isResivedIsOpen = value; }
         #endregion
         #region Basic Constructor
         public MessagesPage() => InitializeComponent();
@@ -86,7 +87,7 @@ namespace SWAM.Controls.Pages
                         row.IsSelected = true;
 
                         //refresh number of unreaded messages in main window
-                        SWAM.MainWindow.RefreshMessagesButton();
+                        SWAM.MainWindow.Instance.RefreshMessagesButton();
                     }
                 }
                 else
@@ -104,7 +105,7 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Event click button</param>
         private void NewMessage_Click(object sender, RoutedEventArgs e)
         {
-            if (SWAM.MainWindow.CurrentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
+            if (SWAM.MainWindow.Instance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow))
             {
                 sendMessageWindow.Show();
             }
@@ -120,7 +121,7 @@ namespace SWAM.Controls.Pages
         {
             if (this._currentMessage != null)
             {
-                if (SWAM.MainWindow.CurrentInstance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
+                if (SWAM.MainWindow.Instance.Windows.TryGetValue(Enumerators.WindowType.SendMessage, out Window sendMessageWindow) &&
                     sendMessageWindow is SendMessageWindow messageWindow)
                 {
                     messageWindow.SendMessageReplay.SetReplayMessage(this._currentMessage);
@@ -140,10 +141,7 @@ namespace SWAM.Controls.Pages
         {
             RefreshData();
 
-            //TODO: Think about it Why this don't Work in xaml
-            MessagesList.ItemsSource = MessagesListViewModel.Instance.MessagesList;
-
-            MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
+            this.MessagesList.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("PostDate", System.ComponentModel.ListSortDirection.Descending));
         }
         #endregion
 

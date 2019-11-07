@@ -25,7 +25,7 @@ namespace SWAM.Controls.Templates.CouriersPage
         private void AddNewCourier_Click(object sender, RoutedEventArgs e)
         {
             //Check name - The name cannot be empty
-            if (this.CourierName.Text != string.Empty)
+            if (this.CourierName.Text != string.Empty && !Courier.IsNameExist(this.CourierName.Text))
             {
                 char[] nameLength = this.CourierName.Text.ToCharArray();
                 //the name must contain more than 3 letters

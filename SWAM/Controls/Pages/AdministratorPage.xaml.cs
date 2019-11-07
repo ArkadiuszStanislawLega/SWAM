@@ -19,7 +19,7 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Instances of all bookmarks in AdministratorPage.
         /// </summary>
-        private Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
+        private readonly Dictionary<BookmarkInPage, UserControl> _userControls = new Dictionary<BookmarkInPage, UserControl>(){
                 { BookmarkInPage.WarehousesControlPanel, new WarehousesControlPanelTemplate()},
                 { BookmarkInPage.UsersControlPanel, new UsersControlPanelTemplate() }
         };

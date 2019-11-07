@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SWAM.Models;
+using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using SWAM.Models.Warehouse;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder
 {
@@ -25,6 +16,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            ProductListViewModel.Instance.Refresh();
+        }
+
         private void NumberRowIteration(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
@@ -32,7 +28,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
         private void AddToShoppingCart_Click(object sender, RoutedEventArgs e)
         {
+            if (!(((FrameworkElement)sender).DataContext is Product product))
+                return;
 
+            var warehouseOrderPosition = new WarehouseOrderPosition
+            {
+                Product = product,
+                ProductId = product.Id,
+                Quantity = 1
+            };
+
+            ProductOrderListViewModel.Instance.Add(warehouseOrderPosition);
         }
     }
 }

@@ -19,7 +19,6 @@ namespace SWAM.Models
 
         Warehouse.Warehouse _warehouse;
         IList<CustomerOrderPosition> _customerOrderPositions;
-        IList<WarehouseOrderPosition> _warehouseOrderPositions;
 
         public int Id { get => _id; set => _id = value; }
         public int Available { get => _available; set => _available = value; }
@@ -33,8 +32,6 @@ namespace SWAM.Models
         public int WarehouseId { get; set; }
         public Warehouse.Warehouse Warehouse { get => _warehouse; set => _warehouse = value; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get => _customerOrderPositions; set => _customerOrderPositions = value; }
-        public IList<WarehouseOrderPosition> WarehouseOrderPositions { get => _warehouseOrderPositions; set => _warehouseOrderPositions = value; }
-
         //---------------
 
         private static readonly ApplicationDbContext _context = new ApplicationDbContext();

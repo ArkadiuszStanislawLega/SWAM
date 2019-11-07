@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -7,6 +8,7 @@ using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
 using SWAM.Models;
+using SWAM.Models.Messages;
 using SWAM.Models.User;
 using SWAM.Windows;
 
@@ -22,6 +24,11 @@ namespace SWAM
         /// Minimum courier name size.
         /// </summary>
         public const int MIN_NAME_LENGTH = 3;
+        /// <summary>
+        /// Time in miliseconds after which the messages are to be refreshed again. 
+        /// Currently default value is 5 min.
+        /// </summary>
+        private const int REFRESHING_DELAY_OF_USER_MESSAGES = 300000;
         //TODO: Delete this in released 
         /// <summary>
         /// Temporary user id for debug.
@@ -47,9 +54,9 @@ namespace SWAM
             {
                 if (value == null)
                 {
-                    CurrentInstance.VisibleMode = Visibility.Collapsed;
-                    CurrentInstance.InformationForUser("Wylogowano z systemu.");
-                    CurrentInstance.ChangeContent(PagesUserControls.LoginPage);
+                    Instance.VisibleMode = Visibility.Collapsed;
+                    Instance.InformationForUser("Wylogowano z systemu.");
+                    Instance.ChangeContent(PagesUserControls.LoginPage);
                 }
                 loggedInUser = value;
             }
@@ -65,7 +72,7 @@ namespace SWAM
         /// <summary>
         /// Static instance of main window.
         /// </summary>
-        public static MainWindow CurrentInstance { get; private set; }
+        public static MainWindow Instance { get; private set; }
         #endregion
 
         #region Properties
@@ -165,8 +172,7 @@ namespace SWAM
             InitializeComponent();
 
             SetUnloadStoryToAllPages();
-            CurrentInstance = this;
-            RefreshMessagesButton();
+            Instance = this;
         }
         #endregion
 
@@ -388,13 +394,13 @@ namespace SWAM
         /// <summary>
         /// Enable every controls in widnow.
         /// </summary>
-        public static void EnabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = false;
+        public static void EnabledEverything() => Instance.EverythingInWindow.IsEnabled = false;
         #endregion
         #region DisabledEverything
         /// <summary>
         /// Disable every control in windwo.
         /// </summary>
-        public static void DisabledEverything() => CurrentInstance.EverythingInWindow.IsEnabled = true;
+        public static void DisabledEverything() => Instance.EverythingInWindow.IsEnabled = true;
         #endregion
         #endregion
 
@@ -450,12 +456,12 @@ namespace SWAM
         /// <summary>
         /// Getting number of user unread messages, and update content of button.
         /// </summary>
-        public static void RefreshMessagesButton()
+        public void RefreshMessagesButton()
         {
             if (LoggedInUser != null)
             {
                 int number = Message.CountUnreadedMessages(LoggedInUser);
-                CurrentInstance.Messages.Content = number > 0 ? $"{number}" : "";
+                Instance.Messages.Content = number > 0 ? $"{number}" : "";
             }
         }
         #endregion
@@ -466,7 +472,7 @@ namespace SWAM
         /// </summary>
         public void RefreshNavigationButtons()
         {
-            foreach (FrameworkElement u in NavigationBar.Children)
+            foreach (FrameworkElement u in Instance.NavigationBar.Children)
             {
                 if (u is NavigationButtonTemplate button)
                     button.CheckIsVisible();
@@ -518,6 +524,39 @@ namespace SWAM
                         RefreshMessagesButton();
                     }
                 };
+            }
+        }
+        #endregion
+
+        #region async Task RefreshMessageButton
+        /// <summary>
+        /// Refreshing message button every 5 min and message page if its opened.
+        /// </summary>
+        /// <returns>Asynchronous refreshing message task.</returns>
+        public async Task RefreshMessageButton()
+        {
+            while (true)
+            {
+                //update message button
+                RefreshMessagesButton();
+
+                //if message page is opened
+                if(this._currentPageLoaded == PagesUserControls.MessagesPage)
+                {
+                    //Get the message page
+                    if(this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage) && currentPage is MessagesPage messagePage)
+                    {
+                        //if resived meessage bookmark is opened, refresh resived messages 
+                        if (messagePage.IsResivedIsOpen)
+                            MessagesListViewModel.Instance.RefreshResivedMessages();
+                        //else refresh sended messages 
+                        else
+                            MessagesListViewModel.Instance.RefreshSendedMessages();
+                    }
+                }
+
+                // don't run again for at least value of REFRESHING_DELAY_OF_USER_MESSAGES
+                await Task.Delay(REFRESHING_DELAY_OF_USER_MESSAGES);
             }
         }
         #endregion
@@ -608,6 +647,16 @@ namespace SWAM
                         break;
                     }
                 #endregion
+                #region LogedInUserProfile
+                case PagesUserControls.LogedInUserProfile:
+                    {
+                        if (this._pages.TryGetValue(PagesUserControls.LogedInUserProfile, out BasicPage currentPage))
+                        {
+                            currentPage.RefreshData();
+                        }
+                        break;
+                    }
+                    #endregion
 
             }
         }

@@ -1,10 +1,7 @@
-﻿using SWAM.Exceptions;
-using SWAM.Models;
+﻿using SWAM.Models;
 using SWAM.Models.User;
 using System.Windows;
 using SWAM.Strings;
-using System.Data.Entity;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace SWAM.Controls.Templates.AdministratorPage
@@ -34,12 +31,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
                     var email = new UserEmailAddress()
                     {
                         AddressEmail = this.NewEmail.Text
-                        //TODO: Add edit note
                     };
 
                     if (email != null)
                     {
-
                         user.AddAddressEmail(email);
                         this.NewEmail.Text = string.Empty;
 

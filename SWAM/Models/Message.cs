@@ -257,12 +257,11 @@ namespace SWAM.Models
         {
             if (user != null)
             {
-                var dbUser = _context.People
-                    .OfType<User.User>()
-                    .FirstOrDefault(u => u.Id == user.Id);
-
-                if (dbUser != null && dbUser.Messages != null)
-                    return dbUser.Messages.Where(m => m.Receiver.Id == user.Id && !m.IsReaded).ToList().Count;
+                _context = new ApplicationDbContext();
+                return _context.Messages
+                    .Include(m => m.Receiver)
+                    .Include(m => m.Sender)
+                    .Where(m => m.Receiver.Id == user.Id && !m.IsReaded).ToList().Count;
             }
              
             return -1;
@@ -302,6 +301,5 @@ namespace SWAM.Models
             else return null;
         }
         #endregion
-
     }
 }

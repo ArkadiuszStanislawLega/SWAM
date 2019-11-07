@@ -23,12 +23,12 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public Product Product { get; set; }
         /// <summary>
+        /// Product's foreign key property
+        /// </summary>
+        public int ProductId { get; set; }
+        /// <summary>
         /// Warehouse with orders.
         /// </summary>
         public WarehouseOrder WarehouseOrder { get; set; }
-        /// <summary>
-        /// Implementation status.
-        /// </summary>
-        public State State { get; set; }
     }
 }

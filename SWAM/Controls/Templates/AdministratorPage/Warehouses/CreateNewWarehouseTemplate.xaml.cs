@@ -31,71 +31,61 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         {
             bool isWarehouseCreated = false; //Flag indicating whether a new warehouse was created
 
-            //TODO: Try - catch
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            var newAddress = this.Address.GetAddress<WarehouseAddress>();//Take address from view 
+            if (newAddress != null)
             {
-                var newAddress = this.Address.GetAddress<WarehouseAddress>();//Take address from view 
-                if (newAddress != null)
+                if (this.WarehouseName.Text != string.Empty)
                 {
-                    context.Adresses.Add(newAddress);
-                    context.SaveChanges();
-
-                    var dbAddress = context.WarehouseAddresses.FirstOrDefault(a =>
-                    a.Country == newAddress.Country &&
-                    a.PostCode == newAddress.PostCode &&
-                    a.City == newAddress.City &&
-                    a.Street == newAddress.Street &&
-                    a.HouseNumber == newAddress.HouseNumber &&
-                    a.ApartmentNumber == newAddress.ApartmentNumber); //Take address with database address Id
-
-                    if (WarehouseName.Text != "")
+                    if (!Warehouse.IsWarehouseNameExist(this.WarehouseName.Text))
                     {
-                        if (long.TryParse(pHeight.Text, out long isHeight) && isHeight > 0)
+                        if (long.TryParse(this.pHeight.Text, out long isHeight) && isHeight > 0)
                         {
-                            if (long.TryParse(pWidth.Text, out long isWidth) && isWidth > 0)
+                            if (long.TryParse(this.pWidth.Text, out long isWidth) && isWidth > 0)
                             {
-                                if (long.TryParse(pLength.Text, out long isLength) && isLength > 0)
+                                if (long.TryParse(this.pLength.Text, out long isLength) && isLength > 0)
                                 {
-                                    if (long.TryParse(pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
+                                    if (long.TryParse(this.pAcceptableWeight.Text, out long isAcceptableWeight) && isAcceptableWeight > 0)
                                     {
-                                        context.Warehouses.Add(new Warehouse()
+                                        if (Warehouse.IsAdd(new Warehouse()
                                         {
-                                            Name = WarehouseName.Text,
-                                            WarehouseAddress = dbAddress,
+                                            Name = this.WarehouseName.Text,
+                                            WarehouseAddress = newAddress,
                                             Height = isHeight,
                                             Width = isWidth,
                                             Length = isLength,
                                             AcceptableWeight = isAcceptableWeight
-                                        });
-                                        context.SaveChanges(); //Add warehouse to databas
-                                        InformationToUser($"Został utworzony nowy magazn - {WarehouseName.Text}.");
-                                        isWarehouseCreated = true;
+                                        }))
+                                        {
+                                            InformationToUser($"Został utworzony nowy magazn - {this.WarehouseName.Text}.");
+                                            isWarehouseCreated = true;
+                                        }
                                     }
-                                    else BadValueMessage(tbAcceptableWeight.Text);
+                                    else BadValueMessage(this.tbAcceptableWeight.Text);
                                 }
-                                else BadValueMessage(tbLength.Text);
+                                else BadValueMessage(this.tbLength.Text);
                             }
-                            else BadValueMessage(tbWidth.Text);
+                            else BadValueMessage(this.tbWidth.Text);
                         }
-                        else BadValueMessage(tbHeight.Text);
+                        else BadValueMessage(this.tbHeight.Text);
                     }
-                    else BadValueMessage(tbWarehouseName.Text);//TODO: Consider validating the same warehouse name.
-
-                    //Refresh List with warehouses
-                    if (SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this) is WarehousesControlPanelTemplate template)
-                        template.RefreshList();
-                    else InformationToUser($"{ErrorMesages.DURGIN_ADD_WAREHOUSE_ERROR} {ErrorMesages.REFRESH_WAREHOUSES_LIST_ERROR}", true);
-
-                    //Restart all controls
-                    if (isWarehouseCreated)
-                    {
-                        this.WarehouseName.Text = "";
-                        this.Address.ClearEditValues();
-                        this.ClearTechnicalDataControls();
-                    }
+                    else InformationToUser($"Nazwa {this.WarehouseName.Text} jest już używana.", true);
                 }
-                else BadValueMessage("Adres");
+                else BadValueMessage(this.tbWarehouseName.Text);
+
+                //Refresh List with warehouses
+                if (SWAM.MainWindow.FindParent<WarehousesControlPanelTemplate>(this) is WarehousesControlPanelTemplate template)
+                    template.RefreshList();
+                else InformationToUser($"{ErrorMesages.DURGIN_ADD_WAREHOUSE_ERROR} {ErrorMesages.REFRESH_WAREHOUSES_LIST_ERROR}", true);
+
+                //Restart all controls
+                if (isWarehouseCreated)
+                {
+                    this.WarehouseName.Text = "";
+                    this.Address.ClearEditValues();
+                    this.ClearTechnicalDataControls();
+                }
             }
+            else BadValueMessage("Adres");
         }
         #endregion
 

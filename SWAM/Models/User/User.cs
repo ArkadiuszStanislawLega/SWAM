@@ -66,8 +66,7 @@ namespace SWAM.Models.User
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
-
-        private static ApplicationDbContext _context
+        private static ApplicationDbContext Context
         {
             //TODO: Make all exceptions
             get
@@ -108,7 +107,8 @@ namespace SWAM.Models.User
         /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
         public static bool TryLogIn(string name, string password)
         {
-            if (_context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
+            //Getting user password and password salt from database 
+            if (Context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
             {
                 try
                 {
@@ -126,11 +126,11 @@ namespace SWAM.Models.User
                             //Checking if the blockade date has passed...
                             if (userFinded.ExpiryDateOfTheBlockade <= DateTime.Now)
                             {
-                                //If it's expired, it will unlock the account.
+                                //If it's expired, it will unblock the account and clear date of blockade.
                                 userFinded.ChangeStatus(StatusOfUserAccount.Active);
                                 userFinded.ChangeExpiryDateOfTheBlockade(null);
 
-                                MainWindow.CurrentInstance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
+                                MainWindow.Instance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
                             }
                             else
                             {
@@ -141,12 +141,12 @@ namespace SWAM.Models.User
                                     var timeOfBlockadeLeft = userFinded.ExpiryDateOfTheBlockade - DateTime.Now;
                                     var stringBlockadeDay = timeOfBlockadeLeft.Value.Days == 1 ? "dzień" : "dni";
 
-                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
+                                    MainWindow.Instance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
                                 }
                                 //If time is not seated, inform about pernament block of account.
                                 else
                                 {
-                                    MainWindow.CurrentInstance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
+                                    MainWindow.Instance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
                                 }
 
                                 return false;
@@ -156,30 +156,38 @@ namespace SWAM.Models.User
                         //Checking if the account expiry time has not been exceeded.
                         if (userFinded.DateOfExpiryOfTheAccount <= DateTime.Now)
                         {
-                            MainWindow.CurrentInstance.InformationForUser($"Twoje konto nie jest już dłużej aktywne, skontaktuj się z administratorem.", true);
-
+                            MainWindow.Instance.InformationForUser($"Upłynął czas aktywności konta, skontaktuj się z administratorem.", true);
                             return false;
                         }
 
                         #region***************If the login attempt was successful***************
                         var timeLeft = userFinded.DateOfExpiryOfTheAccount - DateTime.Now;
-                        var stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
+                        string stringDay = string.Empty;
+                        //Protection if the user does not set the account expiration date.
+                        if (timeLeft != null)
+                            stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
 
-                        MainWindow.CurrentInstance.VisibleMode = Visibility.Visible;
-                        MainWindow.CurrentInstance.RefreshNavigationButtons();
-                        MainWindow.CurrentInstance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
-
-                        SWAM.MainWindow.SetLoggedInUser(_context.People.OfType<User>()
+                        //Geting profile of user from database.
+                        SWAM.MainWindow.SetLoggedInUser(Context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.EmailAddresses)
                             .FirstOrDefault(u => u.Id == userFinded.Id));
+                        //Make bar with navigation buttons visible.
+                        MainWindow.Instance.VisibleMode = Visibility.Visible;
+                        //Refresh navigation buttons.
+                        MainWindow.Instance.RefreshNavigationButtons();
+                        //Message to user about login in to the system.
+                        if (stringDay != string.Empty)
+                            MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
+                        else
+                            MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}.");
                         return true;
                         #endregion
                     }
                     else
                         //Password doesn't match.
-                        MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
+                        MainWindow.Instance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
                 }
                 catch (PasswordSaltNullException)
                 {
@@ -188,7 +196,7 @@ namespace SWAM.Models.User
             }
             else
                 //There is no such login in the database.
-                MainWindow.CurrentInstance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
+                MainWindow.Instance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
 
             return false;
         }
@@ -203,10 +211,10 @@ namespace SWAM.Models.User
         {
             if (user != null)
             {
-                _context.People.Add(user);
-                if (_context.People.FirstOrDefault(c => c.Name == user.Name) == null)
+                Context.People.Add(user);
+                if (Context.People.FirstOrDefault(c => c.Name == user.Name) == null)
                 {
-                    var number = _context.SaveChanges();
+                    var number = Context.SaveChanges();
                     if (number == 1)
                         return true;
                 }
@@ -221,8 +229,8 @@ namespace SWAM.Models.User
         /// <param name="name">New name of user.</param>
         public void ChangeName(string name)
         {
-            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Name = name;
-            _context.SaveChanges();
+            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Name = name;
+            Context.SaveChanges();
         }
         #endregion
         #region ChangePermissions
@@ -232,8 +240,8 @@ namespace SWAM.Models.User
         /// <param name="userType">New perminssion.</param>
         public void ChangePermissions(UserType userType)
         {
-            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
-            _context.SaveChanges();
+            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
+            Context.SaveChanges();
         }
         #endregion
         #region ChangePassword
@@ -243,8 +251,8 @@ namespace SWAM.Models.User
         /// <param name="password">New password.</param>
         public void ChangePassword(byte[] password)
         {
-            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Password = password;
-            _context.SaveChanges();
+            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Password = password;
+            Context.SaveChanges();
         }
         #endregion
         #region GetUser
@@ -255,7 +263,7 @@ namespace SWAM.Models.User
         /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
         public static User GetUser(int userID) 
             => 
-                    _context.People.OfType<User>()
+                    Context.People.OfType<User>()
                         .Include(u => u.Accesess)
                         .Include(u => u.EmailAddresses)
                         .Include(u => u.Phones)
@@ -270,8 +278,8 @@ namespace SWAM.Models.User
         public void ChangeExpiryDateOfTheBlockade(DateTime? dateTime)
         {
 
-                _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
-                _context.SaveChanges();
+                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
+                Context.SaveChanges();
             
             //else
             //{
@@ -289,8 +297,8 @@ namespace SWAM.Models.User
         {
             if (dateTime != null)
             {
-                _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
-                _context.SaveChanges();
+                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
+                Context.SaveChanges();
             }
 
         }
@@ -302,8 +310,10 @@ namespace SWAM.Models.User
         /// <param name="statusOfUserAccount">New status of account.</param>
         public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
         {
-            _context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
-            _context.SaveChanges();
+            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            if(statusOfUserAccount == StatusOfUserAccount.Active)
+                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = null;
+            Context.SaveChanges();
         }
         #endregion
 
@@ -316,9 +326,9 @@ namespace SWAM.Models.User
         {
             if (userPhone != null)
             {
-                _context = new ApplicationDbContext();
+                Context = new ApplicationDbContext();
 
-                var user = _context.People.OfType<User>()
+                var user = Context.People.OfType<User>()
                     .Include(u => u.Phones)
                     .FirstOrDefault(u => u.Id == this.Id);
 
@@ -333,7 +343,7 @@ namespace SWAM.Models.User
 
                     user.Phones.Add(dbUserPhone);
 
-                    if (_context.SaveChanges() == 2)
+                    if (Context.SaveChanges() == 2)
                         return true;
                 }
             }
@@ -348,8 +358,8 @@ namespace SWAM.Models.User
         /// <returns>List with phones.</returns>
         public IList<UserPhone> GetPhones()
         {
-            _context = new ApplicationDbContext();
-            return _context.People
+            Context = new ApplicationDbContext();
+            return Context.People
                         .OfType<User>()
                         .Include(u => u.Phones)
                         .First(u => u.Id == this.Id).Phones;
@@ -366,11 +376,11 @@ namespace SWAM.Models.User
             if (email != null)
             {
                 //TODO: try - catch block is needed ... when excetion will be catch than send false.
-                _context.People.OfType<User>()
+                Context.People.OfType<User>()
                     .Include(u => u.EmailAddresses)
                     .FirstOrDefault(u => u.Id == this.Id)
                     .EmailAddresses.Add(email);
-                _context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -382,8 +392,8 @@ namespace SWAM.Models.User
         /// <returns>List with email addresses.</returns>
         public IList<UserEmailAddress> GetEmailsAddresses()
         {
-            _context = new ApplicationDbContext();
-            return  _context.People
+            Context = new ApplicationDbContext();
+            return  Context.People
                         .OfType<User>()
                         .Include(u => u.EmailAddresses)
                         .First(u => u.Id == this.Id).EmailAddresses;
@@ -395,7 +405,7 @@ namespace SWAM.Models.User
         /// Gets the complete list of users from the database.
         /// </summary>
         /// <returns>Full list of users from the database.</returns>
-        public static IList<User> AllUsersList() => _context
+        public static IList<User> AllUsersList() => Context
             .People.OfType<User>()
             .Include(u => u.Phones)
             .Include(u => u.Accesess)

@@ -51,7 +51,7 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
             <TextBlock Text="Imię" Grid.Column="0" Style="{StaticResource ProfileProperties}"/>
-            <TextBlock Name="Name" Text="{Binding Name}" Grid.Column="0" Grid.Row="1" />
+            <TextBlock Name="PropertyName" Text="{Binding Name}" Grid.Column="0" Grid.Row="1" />
             <Button Name="EditNameButton"
                             Grid.Column="2" Grid.Row="0"
                             Style="{StaticResource BasicFunctionalButtons}"

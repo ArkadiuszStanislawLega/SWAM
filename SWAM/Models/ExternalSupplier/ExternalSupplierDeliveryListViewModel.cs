@@ -8,9 +8,9 @@ namespace SWAM.Models.ExternalSupplier
 {
     public class ExternalSupplierDeliveryListViewModel: UserControl
     {
-        private static readonly ObservableCollection<WarehouseOrder> _warehouseOrders = new ObservableCollection<WarehouseOrder>();
+        private readonly ObservableCollection<WarehouseOrder> _warehouseOrders = new ObservableCollection<WarehouseOrder>();
 
-        public static ObservableCollection<WarehouseOrder> WarehouseOrders => _warehouseOrders;
+        public ObservableCollection<WarehouseOrder> WarehouseOrders => _warehouseOrders;
 
         #region SingletonePattern
         /// <summary>
@@ -41,7 +41,7 @@ namespace SWAM.Models.ExternalSupplier
                         .WarehouseOrders
                         .Include(w => w.OrderPositions)
                         .Include(w => w.Warehouse)
-                        .Include(w => w.UserAcceptingOrder)
+                        .Include(w => w.UserReceivedOrder)
                         .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
                         .ToList();
 
@@ -53,12 +53,11 @@ namespace SWAM.Models.ExternalSupplier
                             var id = order.OrderPositions[i].Id;
                             order.OrderPositions[i] = context.WarehouseOrderPositions
                                 .Include(w => w.Product)
-                                .Include(w => w.State)
                                 .FirstOrDefault(w => w.Id == id);
                         }
 
-                        var userId = order.UserAcceptingOrder.Id;
-                        order.UserAcceptingOrder = context.People
+                        var userId = order.UserReceivedOrder.Id;
+                        order.UserReceivedOrder = context.People
                             .OfType<User.User>()
                             .Include(u => u.Phones)
                             .FirstOrDefault(u => u.Id == userId);
