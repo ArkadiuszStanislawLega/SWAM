@@ -15,6 +15,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
 
         public void SetFieldsGray()
         {
+            CourierTIN.Background = Brushes.Gray;
             CourierName.Background = Brushes.Gray;
             CourierEmailAddress.Background = Brushes.Gray;
             CourierPhoneNumber.Background = Brushes.Gray;
@@ -22,6 +23,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
 
         public void SetFieldsWhite()
         {
+            CourierTIN.Background = Brushes.White;
             CourierName.Background = Brushes.White;
             CourierEmailAddress.Background = Brushes.White;
             CourierPhoneNumber.Background = Brushes.White;
