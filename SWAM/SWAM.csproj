@@ -179,6 +179,9 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml.cs">
       <DependentUpon>WarehouseAccessListTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ExternalSupplierDetailsFormTemplate.xaml.cs">
+      <DependentUpon>ExternalSupplierDetailsFormTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ExternalSupplierListFromDbTemplate.xaml.cs">
       <DependentUpon>ExternalSupplierListFromDbTemplate.xaml</DependentUpon>
     </Compile>
@@ -529,6 +532,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Templates\ManageOrdersPage\ManageCustomerOrdersPage\NewOrder\WarehouseAccessListTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ExternalSupplierDetailsFormTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
