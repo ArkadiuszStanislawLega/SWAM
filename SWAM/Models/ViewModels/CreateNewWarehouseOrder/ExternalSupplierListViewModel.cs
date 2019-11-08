@@ -33,7 +33,8 @@ namespace SWAM.Models.ViewModels.CreateNewWarehouseOrder
 
             var externalSuppliers = context.ExternalSuppliers
                 .Include(e => e.Address)
-                .Include(e => e.Phone)
+                .Include(e => e.ExternalSupplierEmailAddress)
+                .Include(e => e.Address)
                 .ToList();
 
             foreach (var externalSupplier in externalSuppliers)

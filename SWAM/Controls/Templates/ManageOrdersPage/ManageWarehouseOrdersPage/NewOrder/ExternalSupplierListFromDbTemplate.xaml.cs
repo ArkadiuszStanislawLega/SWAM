@@ -73,7 +73,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         private void ExternalSupplierViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
         {
             var item = (sender as ListView).SelectedItem;
-            if ((sender as ListView).SelectedItem is ExternalSupplier    externalSupplier)
+            if ((sender as ListView).SelectedItem is ExternalSupplier externalSupplier)
             {
                 if (externalSupplier == null)
                     return;
