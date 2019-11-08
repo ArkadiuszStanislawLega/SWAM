@@ -285,6 +285,10 @@
     <Compile Include="Migrations\201911081829225_AddExternalSupplierEmailAddressTable.Designer.cs">
       <DependentUpon>201911081829225_AddExternalSupplierEmailAddressTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs" />
+    <Compile Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.Designer.cs">
+      <DependentUpon>201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -886,6 +890,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911081829225_AddExternalSupplierEmailAddressTable.resx">
       <DependentUpon>201911081829225_AddExternalSupplierEmailAddressTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.resx">
+      <DependentUpon>201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

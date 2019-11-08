@@ -12,6 +12,10 @@ namespace SWAM.EntityConfiguration
                 .WithRequiredPrincipal(e => e.ExternalSupplier);
 
             HasMany(e => e.WarehouseOrders);
+
+            HasRequired(e => e.ExternalSupplierEmailAddress)
+                .WithRequiredPrincipal(e => e.ExternalSupplier)
+                .WillCascadeOnDelete(true);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace SWAM.Models.ExternalSupplier
     [Table("ExternalSupplierEmailAddresses")]
     public class ExternalSupplierEmailAddress : EmailAddress
     {
+        public ExternalSupplier ExternalSupplier { get; set; }
+        public int ExternalSupplierId { get; set; }
     }
 }

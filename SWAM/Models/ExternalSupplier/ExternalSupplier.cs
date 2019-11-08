@@ -19,6 +19,8 @@ namespace SWAM.Models.ExternalSupplier
 
         public ExternalSupplierPhone Phone { get; set; }
 
+        public ExternalSupplierEmailAddress ExternalSupplierEmailAddress { get; set; }
+
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
         //TODO: Try catch block
         private static ApplicationDbContext context = new ApplicationDbContext();
@@ -70,7 +72,7 @@ namespace SWAM.Models.ExternalSupplier
         /// <param name="externalSupplier">Updated properties values of external supplier.</param>
         public void Edit(ExternalSupplier externalSupplier)
         {
-            if(externalSupplier != null)
+            if (externalSupplier != null)
             {
                 context = new ApplicationDbContext();
                 var externalSupplierDb = context.ExternalSuppliers
