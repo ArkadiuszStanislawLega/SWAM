@@ -280,17 +280,9 @@
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
-    <Compile Include="Migrations\201911081759169_InitialModel.cs" />
-    <Compile Include="Migrations\201911081759169_InitialModel.Designer.cs">
-      <DependentUpon>201911081759169_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911081829225_AddExternalSupplierEmailAddressTable.cs" />
-    <Compile Include="Migrations\201911081829225_AddExternalSupplierEmailAddressTable.Designer.cs">
-      <DependentUpon>201911081829225_AddExternalSupplierEmailAddressTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs" />
-    <Compile Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.Designer.cs">
-      <DependentUpon>201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs</DependentUpon>
+    <Compile Include="Migrations\201911081908347_ChangeExternalSupplierPhones.cs" />
+    <Compile Include="Migrations\201911081908347_ChangeExternalSupplierPhones.Designer.cs">
+      <DependentUpon>201911081908347_ChangeExternalSupplierPhones.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -892,14 +884,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201911081759169_InitialModel.resx">
-      <DependentUpon>201911081759169_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911081829225_AddExternalSupplierEmailAddressTable.resx">
-      <DependentUpon>201911081829225_AddExternalSupplierEmailAddressTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.resx">
-      <DependentUpon>201911081833509_AddRelationshipBetweenExternalSupplierEmialAdressesAndExternalSuppliersTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911081908347_ChangeExternalSupplierPhones.resx">
+      <DependentUpon>201911081908347_ChangeExternalSupplierPhones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

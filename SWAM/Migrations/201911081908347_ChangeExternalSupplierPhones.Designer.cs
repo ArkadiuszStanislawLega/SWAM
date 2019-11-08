@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitialModel : IMigrationMetadata
+    public sealed partial class ChangeExternalSupplierPhones : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeExternalSupplierPhones));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911081759169_InitialModel"; }
+            get { return "201911081908347_ChangeExternalSupplierPhones"; }
         }
         
         string IMigrationMetadata.Source
