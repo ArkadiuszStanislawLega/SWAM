@@ -11,7 +11,6 @@ namespace SWAM.EntityConfiguration
             HasRequired(e => e.Address)
                 .WithRequiredPrincipal(e => e.ExternalSupplier);
 
-            HasMany(e => e.Phones);
             HasMany(e => e.WarehouseOrders);
         }
     }

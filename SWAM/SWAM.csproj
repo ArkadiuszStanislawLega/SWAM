@@ -277,33 +277,9 @@
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
-    <Compile Include="Migrations\201910271009279_Initial.cs" />
-    <Compile Include="Migrations\201910271009279_Initial.Designer.cs">
-      <DependentUpon>201910271009279_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.cs" />
-    <Compile Include="Migrations\201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.Designer.cs">
-      <DependentUpon>201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs" />
-    <Compile Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.Designer.cs">
-      <DependentUpon>201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.cs" />
-    <Compile Include="Migrations\201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.Designer.cs">
-      <DependentUpon>201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.cs" />
-    <Compile Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.Designer.cs">
-      <DependentUpon>201911061949187_AddFieldsToWarehouseOrdersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.cs" />
-    <Compile Include="Migrations\201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.Designer.cs">
-      <DependentUpon>201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs" />
-    <Compile Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.Designer.cs">
-      <DependentUpon>201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs</DependentUpon>
+    <Compile Include="Migrations\201911081759169_InitialModel.cs" />
+    <Compile Include="Migrations\201911081759169_InitialModel.Designer.cs">
+      <DependentUpon>201911081759169_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -900,26 +876,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201910271009279_Initial.resx">
-      <DependentUpon>201910271009279_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.resx">
-      <DependentUpon>201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.resx">
-      <DependentUpon>201911061809171_AddProductIdForeignKeyPropertyToWarehouseOrderPositionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.resx">
-      <DependentUpon>201911061923121_AddWarehouseIdForeinKeyToWarehouseOrderTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061949187_AddFieldsToWarehouseOrdersTable.resx">
-      <DependentUpon>201911061949187_AddFieldsToWarehouseOrdersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.resx">
-      <DependentUpon>201911061953045_RenameFieldUserToCreatorInCustomerOrdersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.resx">
-      <DependentUpon>201911061958525_DropStatesAndWarehouseOrderPositionsAssociation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911081759169_InitialModel.resx">
+      <DependentUpon>201911081759169_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

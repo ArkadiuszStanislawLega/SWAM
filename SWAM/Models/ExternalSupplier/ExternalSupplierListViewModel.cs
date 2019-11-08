@@ -40,7 +40,7 @@ namespace SWAM.Models.ExternalSupplier
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 var externalSuppliers = context.People.OfType<ExternalSupplier>()
-                    .Include(e => e.Phones)
+                    .Include(e => e.Phone)
                     .Include(e => e.Address)
                     .ToList();
 

@@ -17,7 +17,7 @@ namespace SWAM.Models.ExternalSupplier
 
         public ExternalSupplierAddress Address { get; set; }
 
-        public IList<ExternalSupplierPhone> Phones { get; set; }
+        public ExternalSupplierPhone Phone { get; set; }
 
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
         //TODO: Try catch block
@@ -34,7 +34,7 @@ namespace SWAM.Models.ExternalSupplier
             context = new ApplicationDbContext();
             return context.ExternalSuppliers
                 .Include(e => e.Address)
-                .Include(e => e.Phones)
+                .Include(e => e.Phone)
                 .FirstOrDefault(e => e.Id == Id);
         }
         #endregion

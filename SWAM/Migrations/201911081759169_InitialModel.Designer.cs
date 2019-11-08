@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns : IMigrationMetadata
+    public sealed partial class InitialModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911050922254_RemoveFromWarehouseTableNettoAndBruttoSurfaceAreaColumns"; }
+            get { return "201911081759169_InitialModel"; }
         }
         
         string IMigrationMetadata.Source
