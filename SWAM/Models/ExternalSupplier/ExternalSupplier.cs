@@ -77,6 +77,7 @@ namespace SWAM.Models.ExternalSupplier
                 context = new ApplicationDbContext();
                 var externalSupplierDb = context.ExternalSuppliers
                     .Include(e => e.Address)
+                    .Include(e => e.Phone)
                     .FirstOrDefault(e => e.Id == externalSupplier.Id);
 
                 if (externalSupplierDb != null)
@@ -88,6 +89,8 @@ namespace SWAM.Models.ExternalSupplier
                     externalSupplierDb.Address.PostCode = externalSupplier.Address.PostCode;
                     externalSupplierDb.Address.HouseNumber = externalSupplier.Address.HouseNumber;
                     externalSupplierDb.Address.ApartmentNumber = externalSupplier.Address.ApartmentNumber;
+                    externalSupplierDb.Phone.PhoneNumber = externalSupplier.Phone.PhoneNumber;
+                    externalSupplierDb.Phone.Note = externalSupplier.Phone.Note;
 
                     context.SaveChanges();
                 }
@@ -103,7 +106,13 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplierPhone != null)
             {
-                var externalSupplier = context.ExternalSuppliers.FirstOrDefault(e => e.Id == this.Id);
+                var externalSupplier = context.ExternalSuppliers.Include(e => e.Phone).Include(e => e.Address).FirstOrDefault(e => e.Id == this.Id);
+
+                if (externalSupplier.Phone != null)
+                {
+                    Edit(externalSupplier);
+                    return;
+                }
 
                 var number = new ExternalSupplierPhone()
                 {

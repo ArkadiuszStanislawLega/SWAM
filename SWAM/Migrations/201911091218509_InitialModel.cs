@@ -3,7 +3,7 @@ namespace SWAM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ChangeExternalSupplierPhones : DbMigration
+    public partial class InitialModel : DbMigration
     {
         public override void Up()
         {
@@ -113,6 +113,18 @@ namespace SWAM.Migrations
                         HouseNumber = c.String(),
                         ApartmentNumber = c.String(),
                         PostCode = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ExternalSuppliers", t => t.Id)
+                .Index(t => t.Id);
+            
+            CreateTable(
+                "dbo.ExternalSupplierPhones",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        PhoneNumber = c.String(),
+                        Note = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ExternalSuppliers", t => t.Id)
@@ -297,16 +309,6 @@ namespace SWAM.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
-                "dbo.ExternalSuppliersPhones",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ExternalSuppliers", t => t.Id)
-                .Index(t => t.Id);
-            
-            CreateTable(
                 "dbo.ExternalSuppliers",
                 c => new
                     {
@@ -414,7 +416,6 @@ namespace SWAM.Migrations
             DropForeignKey("dbo.WarehouseAddress", "Warehouse_Id", "dbo.Warehouses");
             DropForeignKey("dbo.WarehouseAddress", "Id", "dbo.Addresses");
             DropForeignKey("dbo.ExternalSuppliers", "Id", "dbo.People");
-            DropForeignKey("dbo.ExternalSuppliersPhones", "Id", "dbo.ExternalSuppliers");
             DropForeignKey("dbo.Couriers", "Id", "dbo.People");
             DropForeignKey("dbo.AccessUsersToWarehouses", "Warehouse_Id", "dbo.Warehouses");
             DropForeignKey("dbo.AccessUsersToWarehouses", "User_Id", "dbo.Users");
@@ -435,6 +436,7 @@ namespace SWAM.Migrations
             DropForeignKey("dbo.CustomerOrders", "CreatorId", "dbo.Users");
             DropForeignKey("dbo.CustomerOrders", "CourierId", "dbo.Couriers");
             DropForeignKey("dbo.WarehouseOrders", "ExternalSupplayerId", "dbo.ExternalSuppliers");
+            DropForeignKey("dbo.ExternalSupplierPhones", "Id", "dbo.ExternalSuppliers");
             DropForeignKey("dbo.ExternalSuppliersAddresses", "Id", "dbo.ExternalSuppliers");
             DropForeignKey("dbo.WarehouseOrders", "CreatorId", "dbo.Users");
             DropForeignKey("dbo.Messages", "Sender_Id", "dbo.Users");
@@ -450,7 +452,6 @@ namespace SWAM.Migrations
             DropIndex("dbo.WarehouseAddress", new[] { "Warehouse_Id" });
             DropIndex("dbo.WarehouseAddress", new[] { "Id" });
             DropIndex("dbo.ExternalSuppliers", new[] { "Id" });
-            DropIndex("dbo.ExternalSuppliersPhones", new[] { "Id" });
             DropIndex("dbo.Couriers", new[] { "Id" });
             DropIndex("dbo.States", new[] { "WarehouseId" });
             DropIndex("dbo.States", new[] { "ProductId" });
@@ -465,6 +466,7 @@ namespace SWAM.Migrations
             DropIndex("dbo.CustomerOrderPositions", new[] { "ProductId" });
             DropIndex("dbo.WarehouseOrderPositions", new[] { "WarehouseOrder_Id" });
             DropIndex("dbo.WarehouseOrderPositions", new[] { "ProductId" });
+            DropIndex("dbo.ExternalSupplierPhones", new[] { "Id" });
             DropIndex("dbo.ExternalSuppliersAddresses", new[] { "Id" });
             DropIndex("dbo.WarehouseOrders", new[] { "ExternalSupplayerId" });
             DropIndex("dbo.WarehouseOrders", new[] { "UserReceivedOrderId" });
@@ -483,7 +485,6 @@ namespace SWAM.Migrations
             DropTable("dbo.Users");
             DropTable("dbo.WarehouseAddress");
             DropTable("dbo.ExternalSuppliers");
-            DropTable("dbo.ExternalSuppliersPhones");
             DropTable("dbo.Couriers");
             DropTable("dbo.States");
             DropTable("dbo.Addresses");
@@ -495,6 +496,7 @@ namespace SWAM.Migrations
             DropTable("dbo.CustomerOrderPositions");
             DropTable("dbo.Products");
             DropTable("dbo.WarehouseOrderPositions");
+            DropTable("dbo.ExternalSupplierPhones");
             DropTable("dbo.ExternalSuppliersAddresses");
             DropTable("dbo.WarehouseOrders");
             DropTable("dbo.Phones");
