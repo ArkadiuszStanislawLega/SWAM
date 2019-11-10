@@ -150,6 +150,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <warehouseNewOrderControl:ExternalSupplierDetailsFormTemplate Grid.Column="0" Grid.Row="1"/>
+                        <warehouseNewOrderControl:ExternalSupplierAddressFormTemplate Grid.Column="1" Grid.Row="1"/>
                     </Grid>
                 </Grid>
                 <warehouseNewOrderControl:ExternalSupplierListFromDbTemplate Grid.Column="1" Grid.Row="0"/>
