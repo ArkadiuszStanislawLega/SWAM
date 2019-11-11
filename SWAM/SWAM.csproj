@@ -281,6 +281,7 @@
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\CustomerOrdersListSortingType.cs" />
     <Compile Include="Enumerators\CustomerOrderVisiblePage.cs" />
+    <Compile Include="Enumerators\WarehouseOrderVisiblePage.cs" />
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
