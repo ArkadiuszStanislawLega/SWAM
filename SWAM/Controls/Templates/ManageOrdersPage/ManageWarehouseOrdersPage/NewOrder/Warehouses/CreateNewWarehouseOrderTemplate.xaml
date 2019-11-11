@@ -55,7 +55,7 @@
         </Grid>
 
         <!--#region warehouseElementsContainer-->
-        <ScrollViewer x:Name="warehouseElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
+        <ScrollViewer x:Name="warehouseElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
             <Grid HorizontalAlignment="Center">
                 <!--#region RowsDefinitions-->
                 <Grid.ColumnDefinitions>
@@ -124,7 +124,7 @@
         <!--#endregion-->
 
         <!--#region externalSupplierElementsContainer-->
-        <ScrollViewer x:Name="externalSupplierElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+        <ScrollViewer x:Name="externalSupplierElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
             <Grid HorizontalAlignment="Center">
                 <!--#region RowsDefinitions-->
                 <Grid.ColumnDefinitions>
