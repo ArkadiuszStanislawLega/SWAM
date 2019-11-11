@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWAM.Enumerators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
         public WarehouseOrderProfileTemplate()
         {
             InitializeComponent();
-        }
-    }
+
+		}
+
+
+
+	}
 }
