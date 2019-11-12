@@ -18,29 +18,39 @@ namespace SWAM.Controls.Templates.CustomerPage
             InitializeComponent();
             this.ResidentalAddress.ShowEditControls();
         }
-
+        #region AddNewCustomer_Click
+        /// <summary>
+        /// Action after confirm add new customer button was clicked.
+        /// Validate all values and add new customer to database.
+        /// </summary>
+        /// <param name="sender">Confirm add new customer button.</param>
+        /// <param name="e">Event confrim add new customer button clicked.</param>
         private void AddNewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            if (EmailAddress.IsValidEmail(this.CustomerEmailAddress.Text))
+            if (this.CustomerName.Text != string.Empty && this.CustomerSurname.Text != null)
             {
-                Customer customer = new Customer()
+                if (EmailAddress.IsValidEmail(this.CustomerEmailAddress.Text))
                 {
-                    Name = this.CustomerName.Text,
-                    Surname = this.CustomerSurname.Text,
-                    EmailAddress = this.CustomerEmailAddress.Text,
-                    Phone = this.CustomerPhone.Text,
-                    ResidentalAddress = this.ResidentalAddress.GetAddress<CustomerResidentalAddress>()
-                };
-                Customer.Add(customer);
+                    Customer customer = new Customer()
+                    {
+                        Name = this.CustomerName.Text,
+                        Surname = this.CustomerSurname.Text,
+                        EmailAddress = this.CustomerEmailAddress.Text,
+                        Phone = this.CustomerPhone.Text,
+                        ResidentalAddress = this.ResidentalAddress.GetAddress<CustomerResidentalAddress>()
+                    };
+                    Customer.Add(customer);
 
-                InformationToUser($"Dodano nowego klienta - {this.CustomerName.Name}");
+                    InformationToUser($"Dodano nowego klienta - {this.CustomerName.Name}");
 
-                CustomersListViewModel.Instance.Refresh();
-                ClearTextBoxes();
+                    CustomersListViewModel.Instance.Refresh();
+                    ClearTextBoxes();
+                }
+                else InformationToUser($"Adres email {this.CustomerEmailAddress.Text} jest błędny.", true);
             }
-            else InformationToUser($"Adres email {this.CustomerEmailAddress.Text} jest błędny.");
+            else InformationToUser($"Pola nazwiska i imienia nie mogą być puste.", true);
         }
-
+        #endregion
         #region ClearTextBoxes
         /// <summary>
         /// Make all TextBoxes field text clear.
