@@ -1,7 +1,10 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models;
 using SWAM.Models.Courier;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.CouriersPage
 {
@@ -66,6 +69,30 @@ namespace SWAM.Controls.Templates.CouriersPage
                 else InformationToUser($"Nazwa musi mieć więcej niż 3 litery.", true);
             }
             else InformationToUser($"Błędna nazwa.", true);
+        }
+        #endregion
+        #region CourierPhone_TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void CourierPhone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            char[] charArray;
+
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
+            {
+                var values = textBox.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+
+                charArray = values.ToArray();
+
+                textBox.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
         }
         #endregion
     }

@@ -33,7 +33,7 @@
                     </StackPanel>
                     <StackPanel Margin="5">
                         <TextBlock Text="Numer telefonu" Style="{StaticResource ProfileProperties}"/>
-                        <TextBox Name="CourierPhone"/>
+                        <TextBox Name="CourierPhone" TextChanged="CourierPhone_TextChanged"/>
                     </StackPanel>
                     <StackPanel Margin="5">
                         <TextBlock Text="TIN" Style="{StaticResource ProfileProperties}"/>
