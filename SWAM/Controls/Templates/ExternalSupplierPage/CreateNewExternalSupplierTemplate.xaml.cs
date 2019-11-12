@@ -29,34 +29,39 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         /// <param name="e">Event click add new external supplier button.</param>
         private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
         {
-            if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
+            if (Models.EmailAddress.IsValidEmail(this.ExternalSupplierEmailAddress.Text))
             {
-                var external = new ExternalSupplier()
+                if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
                 {
-                    Name = this.ExternalSupplierName.Text,
-                    Tin = this.ExternalSupplierTIN.Text,
-                    Address = residentalAddress
-                };
+                    var external = new ExternalSupplier()
+                    {
+                        Name = this.ExternalSupplierName.Text,
+                        Tin = this.ExternalSupplierTIN.Text,
+                        Address = residentalAddress
+                    };
 
-                ExternalSupplier.Add(external);
+                    ExternalSupplier.Add(external);
 
-                external.AddPhone(new ExternalSupplierPhone() 
-                { 
-                    Note = BASIC_PHONE_NAME, 
-                    PhoneNumber = ExternalSupplierPhoneNumber.Text 
-                });
+                    external.AddPhone(new ExternalSupplierPhone()
+                    {
+                        Note = BASIC_PHONE_NAME,
+                        PhoneNumber = ExternalSupplierPhoneNumber.Text
+                    });
 
-                external.EditEmail(new ExternalSupplierEmailAddress()
-                {
-                    EmailAddress = this.ExternalSupplierEmailAddress.Text
-                });
+                    external.EditEmail(new ExternalSupplierEmailAddress()
+                    {
+                        EmailAddress = this.ExternalSupplierEmailAddress.Text
+                    });
 
-                ExternalSupplierListViewModel.Instance.Refresh();
+                    ExternalSupplierListViewModel.Instance.Refresh();
 
-                ClearAllValues();
+                    ClearAllValues();
+                }
+                else
+                    InformationToUser($"Błędny adres.", true);
             }
             else
-                InformationToUser($"Błędny adres.", true);
+                InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
         }
         #endregion
         #region  ClearAllValues

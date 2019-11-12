@@ -186,15 +186,19 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             if (DataContext is ExternalSupplier externalSupplier)
             {
-                externalSupplier.EditEmail(new ExternalSupplierEmailAddress()
+                if (Models.EmailAddress.IsValidEmail(this.AdressEmail.EditEmailAddress.Text))
                 {
-                    EmailAddress = this.AdressEmail.EditEmailAddress.Text
-                });
+                    externalSupplier.EditEmail(new ExternalSupplierEmailAddress()
+                    {
+                        EmailAddress = this.AdressEmail.EditEmailAddress.Text
+                    });
 
-                DataContext = ExternalSupplier.Get(externalSupplier.Id);
-                ExternalSupplierListViewModel.Instance.Refresh();
+                    DataContext = ExternalSupplier.Get(externalSupplier.Id);
+                    ExternalSupplierListViewModel.Instance.Refresh();
 
-                InformationToUser($"Edytowano adres email zewnętrzengo dostawcy {externalSupplier.Name}.");
+                    InformationToUser($"Edytowano adres email zewnętrzengo dostawcy {externalSupplier.Name}.");
+                }
+                else InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
             }
             else
                 InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
