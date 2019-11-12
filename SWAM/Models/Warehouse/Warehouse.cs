@@ -63,6 +63,7 @@ namespace SWAM.Models.Warehouse
             }
             set => DB_CONTEXT = value;
         }
+
         #region IsWarehouseNameExist
         /// <summary>
         /// Checks the database to see if the warehouse name already exists.
@@ -156,12 +157,12 @@ namespace SWAM.Models.Warehouse
             else return false;
         }
         #endregion
-        #region GetAllWharehousesFromDb
+        #region GetAllWharehouses
         /// <summary>
         /// Get list of all Warehouses from database
         /// </summary>
         /// <returns>IList with all warehouses in database</returns>
-        public static IList<Warehouse> GetAllWharehousesFromDb()
+        public static IList<Warehouse> GetAllWarehouses()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -169,5 +170,39 @@ namespace SWAM.Models.Warehouse
             }
         }
         #endregion
+
+        #region GetAllWarehousesIncludingFullAccesess
+        /// <summary>
+        /// Get list of all Warehouses from database including accessess and users.
+        /// </summary>
+        /// <returns>IList with all warehouses in database including accessess and users</returns>
+        public static IList<Warehouse> GetAllWarehousesIncludingFullAccesess()
+        {
+            _context = new ApplicationDbContext();
+            IList<Warehouse> dbWarehouses;
+
+            dbWarehouses = _context.Warehouses
+                .Include(a => a.WarehouseAddress)
+                .Include(co => co.CustomerOrders)
+                .Include(u => u.Accesses)
+                .ToList();
+
+            //TODO: Make this more pro!!
+            foreach (Warehouse w in dbWarehouses)
+            {
+                for (int i = 0; i < w.Accesses.Count; i++)
+                {
+                    int id = w.Accesses[i].Id;
+                    w.Accesses[i] = _context.AccessUsersToWarehouses
+                      .Include(au => au.User)
+                      .Include(au => au.Administrator)
+                      .Include(au => au.Warehouse)
+                      .FirstOrDefault(au => au.Id == id);
+                }
+            }
+            return dbWarehouses;
+        }
+        #endregion
+
     }
 }

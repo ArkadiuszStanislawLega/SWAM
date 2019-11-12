@@ -19,7 +19,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// List with all warehouses available in database.
         /// </summary>
-        private readonly IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
+        private readonly IList<Warehouse> _warehouses = Warehouse.GetAllWarehouses();
 
         #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
