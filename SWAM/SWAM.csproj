@@ -285,13 +285,13 @@
     <Compile Include="Enumerators\WindowType.cs" />
     <Compile Include="Exceptions\PasswordSaltNullException.cs" />
     <Compile Include="Exceptions\RefreshExternalSupplierPhonesListException.cs" />
-    <Compile Include="Migrations\201911091218509_InitialModel.cs" />
-    <Compile Include="Migrations\201911091218509_InitialModel.Designer.cs">
-      <DependentUpon>201911091218509_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201911120721326_Initial.cs" />
+    <Compile Include="Migrations\201911120721326_Initial.Designer.cs">
+      <DependentUpon>201911120721326_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables.cs" />
-    <Compile Include="Migrations\201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables.Designer.cs">
-      <DependentUpon>201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables.cs</DependentUpon>
+    <Compile Include="Migrations\201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.cs" />
+    <Compile Include="Migrations\201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.Designer.cs">
+      <DependentUpon>201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
@@ -897,11 +897,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201911091218509_InitialModel.resx">
-      <DependentUpon>201911091218509_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120721326_Initial.resx">
+      <DependentUpon>201911120721326_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables.resx">
-      <DependentUpon>201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.resx">
+      <DependentUpon>201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

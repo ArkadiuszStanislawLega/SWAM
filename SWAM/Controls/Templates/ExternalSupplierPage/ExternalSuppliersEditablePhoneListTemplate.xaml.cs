@@ -15,6 +15,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             InitializeComponent();
         }
+
         #region ConfirmNewPhone_Click
         /// <summary>
         /// Action after click confirm new phone button.
@@ -33,9 +34,10 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                     ExternalSupplier = externalSupplier
                 });
 
-                InformationToUser($"Został zmieniony numer kontaktowy telefonu dostawcy: {this.NewPhoneNote.Text}.");
+                InformationToUser($"Został dodany nowy numer kontaktowy telefonu dostawcy: {this.NewPhoneNote.Text}- {this.NewPhone.Text}.");
 
                 RefreshPhoneList();
+
                 this.NewPhone.Text = string.Empty;
                 this.NewPhoneNote.Text = string.Empty;
             }

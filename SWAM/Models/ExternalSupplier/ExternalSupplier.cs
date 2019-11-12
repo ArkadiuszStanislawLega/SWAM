@@ -17,9 +17,9 @@ namespace SWAM.Models.ExternalSupplier
 
         public ExternalSupplierAddress Address { get; set; }
 
-        public ExternalSupplierPhone Phone { get; set; }
+        public List<ExternalSupplierPhone> Phones { get; set; }
 
-        public ExternalSupplierEmailAddress ExternalSupplierEmailAddress { get; set; }
+        public ExternalSupplierEmailAddress EmailAddress { get; set; }
 
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
         //TODO: Try catch block
@@ -36,7 +36,8 @@ namespace SWAM.Models.ExternalSupplier
             context = new ApplicationDbContext();
             return context.ExternalSuppliers
                 .Include(e => e.Address)
-                .Include(e => e.Phone)
+                .Include(e => e.Phones)
+                .Include(e => e.EmailAddress)
                 .FirstOrDefault(e => e.Id == Id);
         }
         #endregion
@@ -77,7 +78,7 @@ namespace SWAM.Models.ExternalSupplier
                 context = new ApplicationDbContext();
                 var externalSupplierDb = context.ExternalSuppliers
                     .Include(e => e.Address)
-                    .Include(e => e.Phone)
+                    .Include(e => e.Phones)
                     .FirstOrDefault(e => e.Id == externalSupplier.Id);
 
                 if (externalSupplierDb != null)
@@ -89,9 +90,6 @@ namespace SWAM.Models.ExternalSupplier
                     externalSupplierDb.Address.PostCode = externalSupplier.Address.PostCode;
                     externalSupplierDb.Address.HouseNumber = externalSupplier.Address.HouseNumber;
                     externalSupplierDb.Address.ApartmentNumber = externalSupplier.Address.ApartmentNumber;
-                    externalSupplierDb.Phone.PhoneNumber = externalSupplier.Phone.PhoneNumber;
-                    externalSupplierDb.Phone.Note = externalSupplier.Phone.Note;
-
                     context.SaveChanges();
                 }
             }
@@ -106,13 +104,7 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplierPhone != null)
             {
-                var externalSupplier = context.ExternalSuppliers.Include(e => e.Phone).Include(e => e.Address).FirstOrDefault(e => e.Id == this.Id);
-
-                if (externalSupplier.Phone != null)
-                {
-                    Edit(externalSupplier);
-                    return;
-                }
+                var externalSupplier = context.ExternalSuppliers.Include(e => e.Phones).FirstOrDefault(e => e.Id == this.Id);
 
                 var number = new ExternalSupplierPhone()
                 {
@@ -125,6 +117,24 @@ namespace SWAM.Models.ExternalSupplier
                 context.SaveChanges();
             }
         }
-        #endregion  
+        #endregion
+        #region AddEmail
+        /// <summary>
+        /// Edits the email address of the external supplier.
+        /// </summary>
+        /// <param name="emailAddress">New email address.</param>
+        public void EditEmail(ExternalSupplierEmailAddress emailAddress)
+        {
+            if (emailAddress != null)
+            {
+                var externalDb = Get(this.Id);
+
+                externalDb.EmailAddress.EmailAddress = emailAddress.EmailAddress;
+                externalDb.EmailAddress.Note = emailAddress.Note;
+
+                context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }

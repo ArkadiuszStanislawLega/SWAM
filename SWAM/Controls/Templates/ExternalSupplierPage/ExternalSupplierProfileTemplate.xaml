@@ -71,6 +71,7 @@
                 <StackPanel Grid.Column="0" Width="300" Margin="10">
                     <prop:ProfileProperNameTemplate x:Name="ProperName"/>
                     <prop:ProfileTINtemplate x:Name="Tin"/>
+                    <prop:ProfileEmailAddressTemplate x:Name="AdressEmail" DataContext="{Binding EmailAddress}" />
                     <local:ExternalSuppliersEditablePhoneListTemplate />
                     <!--#region Residental Address-->
                     <StackPanel Margin="5">

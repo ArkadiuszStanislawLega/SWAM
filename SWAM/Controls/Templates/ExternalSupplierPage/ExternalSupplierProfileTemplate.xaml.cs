@@ -67,6 +67,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             this.ProperName.ConfirmChangeProperName.Click += ConfirmChangeProperName_Click;
             this.Tin.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
+            this.AdressEmail.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
         }
         #endregion
 
@@ -174,8 +175,31 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         /// <param name="e">Event click button change residental address.</param>
         private void ChangeResidentalAddress_Click(object sender, System.Windows.RoutedEventArgs e) 
             => this.ResidentalAddress.ShowEditControls();
-        #endregion  
+        #endregion
+        #region ConfirmChangeEmailAddress_Click
+        /// <summary>
+        /// Action after click confirm edit email address button.
+        /// </summary>
+        /// <param name="sender">Confirm edit email address button</param>
+        /// <param name="e">Event clicked.</param>
+        private void ConfirmChangeEmailAddress_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is ExternalSupplier externalSupplier)
+            {
+                externalSupplier.EditEmail(new ExternalSupplierEmailAddress()
+                {
+                    EmailAddress = this.AdressEmail.EditEmailAddress.Text
+                });
 
+                DataContext = ExternalSupplier.Get(externalSupplier.Id);
+                ExternalSupplierListViewModel.Instance.Refresh();
+
+                InformationToUser($"Edytowano adres email zewnętrzengo dostawcy {externalSupplier.Name}.");
+            }
+            else
+                InformationToUser($"{ErrorMesages.DURING_EDIT_EMAIL_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+        }
+        #endregion
         #region SortAscending_Click
         /// <summary>
         /// Action after click checkBox in filters container to change type of sorting(ascending/descending) user list.

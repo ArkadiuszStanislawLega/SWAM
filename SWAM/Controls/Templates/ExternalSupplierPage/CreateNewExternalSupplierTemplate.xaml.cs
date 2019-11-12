@@ -10,6 +10,10 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
     /// </summary>
     public partial class CreateNewExternalSupplierTemplate : BasicUserControl
     {
+        /// <summary>
+        /// The name of the first phone number in the list with the supplier's numbers.
+        /// </summary>
+        private const string BASIC_PHONE_NAME = "właściciel";
         public CreateNewExternalSupplierTemplate()
         {
             InitializeComponent();
@@ -35,14 +39,38 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 };
 
                 ExternalSupplier.Add(external);
+
+                external.AddPhone(new ExternalSupplierPhone() 
+                { 
+                    Note = BASIC_PHONE_NAME, 
+                    PhoneNumber = ExternalSupplierPhoneNumber.Text 
+                });
+
+                external.EditEmail(new ExternalSupplierEmailAddress()
+                {
+                    EmailAddress = this.ExternalSupplierEmailAddress.Text
+                });
+
                 ExternalSupplierListViewModel.Instance.Refresh();
 
-                this.ExternalSupplierName.Text = string.Empty;
-                this.ExternalSupplierTIN.Text = string.Empty;
-                this.ResidentalAddress.ClearEditValues();
+                ClearAllValues();
             }
             else
                 InformationToUser($"Błędny adres.", true);
+        }
+        #endregion
+        #region  ClearAllValues
+        /// <summary>
+        /// Returns the editable fields to their initial state.
+        /// </summary>
+        private void ClearAllValues()
+        {
+            this.ExternalSupplierName.Text = string.Empty;
+            this.ExternalSupplierTIN.Text = string.Empty;
+            this.ExternalSupplierPhoneNumber.Text = string.Empty;
+            this.ExternalSupplierEmailAddress.Text = string.Empty;
+
+            this.ResidentalAddress.ClearEditValues();
         }
         #endregion
     }
