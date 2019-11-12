@@ -77,6 +77,21 @@ namespace SWAM
 
         #region Properties
         /// <summary>
+        /// Warning window instance.
+        /// </summary>
+        public WarningWindow WarningWindow 
+        {
+            get
+            {
+                if (Windows.TryGetValue(WindowType.Warning, out Window window) && window is WarningWindow warningWindow)
+                {
+                    return warningWindow;
+                }
+                else
+                    return null;
+            }
+        }
+        /// <summary>
         /// Visibile mode after user logged in or logged out.
         /// All user controls that appear only when a user is logged in should be connected to this property.
         /// </summary>
@@ -101,7 +116,7 @@ namespace SWAM
         {
             { WindowType.Question, new ConfirmWindow()},
             { WindowType.SendMessage, new SendMessageWindow()},
-            { WindowType.Question, new ConfirmWindow()}
+            { WindowType.Warning, new WarningWindow()}
         };
         /// <summary>
         /// Indicates which page is currently loaded.

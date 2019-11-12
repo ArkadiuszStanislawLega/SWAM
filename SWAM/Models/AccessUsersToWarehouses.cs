@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Windows;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using SWAM.Strings;
 
 namespace SWAM.Models
 {
@@ -42,12 +46,44 @@ namespace SWAM.Models
 
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
-        private static ApplicationDbContext context
+        private static ApplicationDbContext Context
         {
-            //TODO: Make all exceptions
             get
             {
-                return dbContext;
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e) 
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null; 
+                }
+                catch (DbUpdateException e) 
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e) 
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null; 
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
             set => dbContext = value;
         }
@@ -58,8 +94,8 @@ namespace SWAM.Models
         /// <returns>Returns user specific access to the store.</returns>
         public AccessUsersToWarehouses Get()
         {
-            context = new ApplicationDbContext();
-            return context.AccessUsersToWarehouses
+            Context = new ApplicationDbContext();
+            return Context.AccessUsersToWarehouses
                 .Include(a => a.Administrator)
                 .Include(a => a.User)
                 .Include(a => a.Warehouse)
@@ -74,11 +110,11 @@ namespace SWAM.Models
         /// <returns>List with user accesses to warehouses</returns>
         public static IList<AccessUsersToWarehouses> GetUserAccesses(int userId)
         {
-            context = new ApplicationDbContext();
+            Context = new ApplicationDbContext();
             try
             {
                 if (userId > 0)
-                    return context.People
+                    return Context.People
                         .OfType<User.User>()
                         .Include(u => u.Accesess.Select(a=>a.Warehouse.WarehouseAddress))
                         .FirstOrDefault(u => u.Id == userId)
@@ -104,11 +140,11 @@ namespace SWAM.Models
         {
             if (accessId > 0)
             {
-                var removeAccss = context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
+                var removeAccss = Context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == accessId);
                 if (removeAccss != null)
                 {
-                    context.AccessUsersToWarehouses.Remove(removeAccss);
-                    context.SaveChanges();
+                    Context.AccessUsersToWarehouses.Remove(removeAccss);
+                    Context.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -124,22 +160,22 @@ namespace SWAM.Models
         /// <returns>True - access has been added, false - access is null.</returns>
         public static bool AddNewAccess(AccessUsersToWarehouses accessUsersToWarehouses)
         {
-            context = new ApplicationDbContext();
+            Context = new ApplicationDbContext();
 
             if (accessUsersToWarehouses != null
                 && accessUsersToWarehouses.User.Id > 0
                 && accessUsersToWarehouses.Administrator.Id > 0
                 && accessUsersToWarehouses.Warehouse.Id > 0)
             {
-                var user = context.People
+                var user = Context.People
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == accessUsersToWarehouses.User.Id);
 
-                var administrator = context.People
+                var administrator = Context.People
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == accessUsersToWarehouses.Administrator.Id);
 
-                var warehouse = context.Warehouses
+                var warehouse = Context.Warehouses
                     .FirstOrDefault(w => w.Id == accessUsersToWarehouses.Warehouse.Id);
 
                 AccessUsersToWarehouses access = new AccessUsersToWarehouses()
@@ -161,7 +197,7 @@ namespace SWAM.Models
                     };
                 }
 
-                if (context.SaveChanges() == 4)
+                if (Context.SaveChanges() == 4)
                     return true;
             }
 
@@ -175,11 +211,11 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditExpiredAccess(DateTime? dateTime)
         {
-            context.AccessUsersToWarehouses
+            Context.AccessUsersToWarehouses
                 .FirstOrDefault(a => a.Id == this.Id)
                 .DateOfExpiredAcces = dateTime;
 
-            context.SaveChanges();
+            Context.SaveChanges();
         }
         #endregion
         #region EditTypeOfAccess
@@ -189,8 +225,8 @@ namespace SWAM.Models
         /// <param name="userType">New type of access.</param>
         public void EditTypeOfAccess(UserType userType)
         {
-            context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
-            context.SaveChanges();
+            Context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == this.Id).TypeOfAccess = userType;
+            Context.SaveChanges();
         }
         #endregion
     }
