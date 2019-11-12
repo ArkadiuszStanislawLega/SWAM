@@ -36,21 +36,6 @@ namespace SWAM
 		/// Property needed to check if the correct price value has been entered.
 		/// </summary>
 		private decimal _price;
-		/// <summary>
-		/// Connection to database.
-		/// </summary>
-		private ApplicationDbContext _context = new ApplicationDbContext();
-		/// <summary>
-		/// Connection to database.
-		/// </summary>
-		public ApplicationDbContext context
-		{
-			get
-			{
-				//TODO: Try catch block
-				return this._context;
-			}
-		}
 		#endregion
 		#region BasicConstructor
 		public ManageItemPage()
@@ -102,7 +87,7 @@ namespace SWAM
 		{
 			if (ProductProfile.DataContext is Product product)
 			{
-				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)
+				if (product.Get() != null)
 				{
 					this.AddProductToDbButton.IsEnabled = true;
 				}
@@ -155,7 +140,7 @@ namespace SWAM
 		{
 			if (ProductProfile.DataContext is Product product)
 			{
-				if (context.Products.FirstOrDefault(p => p.Id == product.Id) != null)
+				if (product.Get() != null)
 				{
 					this._confirmWindow.Show($"Czy jesteś pewien że chcesz usunąć {product.Name}?", out bool isConfirmed, $"Usuń {product.Name}");
 					if (isConfirmed)
@@ -241,14 +226,8 @@ namespace SWAM
 					}
 					else
 					{
-						_context = new ApplicationDbContext();
-						var dbProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
-						product.Name = dbProduct.Name;
-						product.Weigth = dbProduct.Weigth;
-						product.Length = dbProduct.Length;
-						product.Width = dbProduct.Width;
-						product.Height = dbProduct.Height;
-						product.Price = dbProduct.Price;
+						if(product.Get() is Product dbProduct)
+                            DataContext = dbProduct.Get();
 					}
 				}
 				else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
