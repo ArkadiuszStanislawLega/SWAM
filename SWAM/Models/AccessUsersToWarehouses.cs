@@ -51,6 +51,21 @@ namespace SWAM.Models
             }
             set => dbContext = value;
         }
+        #region AccessUsersToWarehouses
+        /// <summary>
+        /// Gets user access to the warehouse from the database by the access ID number.
+        /// </summary>
+        /// <returns>Returns user specific access to the store.</returns>
+        public AccessUsersToWarehouses Get()
+        {
+            context = new ApplicationDbContext();
+            return context.AccessUsersToWarehouses
+                .Include(a => a.Administrator)
+                .Include(a => a.User)
+                .Include(a => a.Warehouse)
+                .FirstOrDefault(a => a.Id == this.Id);
+        }
+        #endregion
         #region GetUserAccesses
         /// <summary>
         /// Get list with specific user accesses to warehouses from database. 
@@ -77,25 +92,6 @@ namespace SWAM.Models
                 return null;
             }
         }
-        #endregion
-
-        #region GetUserAccess(userId)
-        /// <summary>
-        /// Get object with specific user accesses to warehouses from database. 
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
-        public static AccessUsersToWarehouses GetUserAccess(int userId) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.User.Id == userId);
-        #endregion
-
-        #region GetUserAccess(userId, context)
-        /// <summary>
-        /// Get object with specific user accesses to warehouses from database.
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public static AccessUsersToWarehouses GetUserAccess(int userId, ApplicationDbContext context) => context.AccessUsersToWarehouses.SingleOrDefault(u => u.User.Id == userId);
         #endregion
 
         #region RemoveAccess

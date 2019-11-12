@@ -159,25 +159,16 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             if (this.Calendar.SelectedDate != null && this.DataContext is AccessUsersToWarehouses access)
             {
-                //Try - catch
-                using (ApplicationDbContext context = new ApplicationDbContext())
+                access.Get();
+                access.EditExpiredAccess(this.Calendar.SelectedDate);
+
+                if (access != null)
                 {
-                    access.EditExpiredAccess(this.Calendar.SelectedDate);
-
-                    var newAccess = context.AccessUsersToWarehouses
-                        .Include(u => u.User)
-                        .Include(w => w.Warehouse)
-                        .FirstOrDefault(a => a.Id == access.Id);
-
-                    if (newAccess != null)
-                    {
-                        DataContext = newAccess;
-                        InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {newAccess.User.Name} do magazynu {newAccess.Warehouse.Name} została edytowana.");
-                    }
-                    else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
+                    DataContext = access;
+                    InformationToUser($"Data wygaśnięcia uprawnienia {access.TypeOfAccess.ToString()} użytkownika {access.User.Name} do magazynu {access.Warehouse.Name} została edytowana.");
                 }
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR} {ErrorMesages.DATABASE_ERROR}", true);
             }
-            else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/}
             else InformationToUser($"{ErrorMesages.DURING_EDIT_ACCESS_TO_WAREHOUSE_ERROR}  {ErrorMesages.DATACONTEXT_ERROR}", true);
         }
         #endregion
