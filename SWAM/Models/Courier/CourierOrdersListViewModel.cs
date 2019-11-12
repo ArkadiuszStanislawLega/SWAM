@@ -33,6 +33,7 @@ namespace SWAM.Models.Courier
                 if (_orders.Count > 0)
                     _orders.Clear();
 
+                //TODO: Try catch block.
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     var orders = context.CustomerOrders

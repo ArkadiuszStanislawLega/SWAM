@@ -100,7 +100,8 @@ namespace SWAM
         public Dictionary<WindowType, Window> Windows = new Dictionary<WindowType, Window>()
         {
             { WindowType.Question, new ConfirmWindow()},
-            { WindowType.SendMessage, new SendMessageWindow()}
+            { WindowType.SendMessage, new SendMessageWindow()},
+            { WindowType.Question, new ConfirmWindow()}
         };
         /// <summary>
         /// Indicates which page is currently loaded.

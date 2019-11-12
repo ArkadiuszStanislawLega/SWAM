@@ -34,7 +34,7 @@ namespace SWAM.Models.ExternalSupplier
                 if (_warehouseOrders.Count > 0)
                     _warehouseOrders.Clear();
 
-                //TODO: Remove this to model
+                //TODO: Add try catch block.
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
                     var warehouseDelivery = context

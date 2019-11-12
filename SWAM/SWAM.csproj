@@ -332,6 +332,9 @@
     <Compile Include="Windows\SendMessageWindow.xaml.cs">
       <DependentUpon>SendMessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WarningWindow.xaml.cs">
+      <DependentUpon>WarningWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\Pages\ErrorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -843,6 +846,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\SendMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WarningWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
