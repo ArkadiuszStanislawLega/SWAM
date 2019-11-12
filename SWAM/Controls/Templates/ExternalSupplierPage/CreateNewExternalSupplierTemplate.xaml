@@ -41,7 +41,7 @@
                     </StackPanel>
                     <StackPanel Margin="5">
                         <TextBlock Text="Numer kontaktowy" Style="{StaticResource ProfileProperties}"/>
-                        <TextBox Name="ExternalSupplierPhoneNumber"/>
+                        <TextBox Name="ExternalSupplierPhoneNumber" TextChanged="TextChanged"/>
                     </StackPanel>
                     <StackPanel Margin="5">
                         <TextBlock Text="Adres e-mail" Style="{StaticResource ProfileProperties}"/>

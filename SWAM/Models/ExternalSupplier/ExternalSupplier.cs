@@ -129,8 +129,20 @@ namespace SWAM.Models.ExternalSupplier
             {
                 var externalDb = Get(this.Id);
 
-                externalDb.EmailAddress.EmailAddress = emailAddress.EmailAddress;
-                externalDb.EmailAddress.Note = emailAddress.Note;
+                if (externalDb.EmailAddress != null)
+                {
+                    externalDb.EmailAddress.EmailAddress = emailAddress.EmailAddress;
+                    externalDb.EmailAddress.Note = emailAddress.Note;
+                }
+                else
+                {
+                    context.ExternalSupplierEmailAddresses.Add(new ExternalSupplierEmailAddress()
+                    {
+                        ExternalSupplier = externalDb,
+                        EmailAddress = emailAddress.EmailAddress,
+                        Note = emailAddress.Note
+                    });
+                }
 
                 context.SaveChanges();
             }

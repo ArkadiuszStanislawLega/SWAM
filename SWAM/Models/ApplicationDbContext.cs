@@ -19,6 +19,7 @@ namespace SWAM
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<EmailAddress> EmailAddresses { get; set; }
         public DbSet<ExternalSupplier> ExternalSuppliers { get; set; }
+        public DbSet<ExternalSupplierEmailAddress> ExternalSupplierEmailAddresses { get; set; }
         public DbSet<ExternalSupplierPhone> ExternalSupplierPhones { get; set; }
         public DbSet<ExternalSupplierAddress> ExternalSupplierAddresses { get; set; }
         public DbSet<Message> Messages { get; set; }

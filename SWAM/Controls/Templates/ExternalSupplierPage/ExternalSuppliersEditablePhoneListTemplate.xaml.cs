@@ -2,7 +2,10 @@
 using SWAM.Exceptions;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Strings;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -44,7 +47,7 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             else
                 InformationToUser($"{ErrorMesages.ADD_EXTERNAL_SUPPLIER_PHONE_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
 
-  
+
         }
         #endregion
         #region CancelCreateNewPhone_Click
@@ -78,6 +81,31 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
                 else throw new RefreshExternalsupplierPhonesListException();
             }
             catch (RefreshExternalsupplierPhonesListException ex) { ex.ShowMessage(this); }
+        }
+        #endregion
+        #region NewPhone_TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void NewPhone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            char[] charArray;
+
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
+            {
+                var values = textBox.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+
+                charArray = values.ToArray();
+
+                textBox.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
+
         }
         #endregion
     }

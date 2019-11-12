@@ -1,7 +1,10 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Strings;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -29,39 +32,44 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         /// <param name="e">Event click add new external supplier button.</param>
         private void AddNewExternalSupplier_Click(object sender, RoutedEventArgs e)
         {
-            if (Models.EmailAddress.IsValidEmail(this.ExternalSupplierEmailAddress.Text))
+            if (NameValidation(this.ExternalSupplierName.Text))
             {
-                if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
+                if (Models.EmailAddress.IsValidEmail(this.ExternalSupplierEmailAddress.Text))
                 {
-                    var external = new ExternalSupplier()
+                    if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
                     {
-                        Name = this.ExternalSupplierName.Text,
-                        Tin = this.ExternalSupplierTIN.Text,
-                        Address = residentalAddress
-                    };
+                        var external = new ExternalSupplier()
+                        {
+                            Name = this.ExternalSupplierName.Text,
+                            Tin = this.ExternalSupplierTIN.Text,
+                            Address = residentalAddress
+                        };
 
-                    ExternalSupplier.Add(external);
+                        ExternalSupplier.Add(external);
 
-                    external.AddPhone(new ExternalSupplierPhone()
-                    {
-                        Note = BASIC_PHONE_NAME,
-                        PhoneNumber = ExternalSupplierPhoneNumber.Text
-                    });
+                        external.AddPhone(new ExternalSupplierPhone()
+                        {
+                            Note = BASIC_PHONE_NAME,
+                            PhoneNumber = ExternalSupplierPhoneNumber.Text
+                        });
 
-                    external.EditEmail(new ExternalSupplierEmailAddress()
-                    {
-                        EmailAddress = this.ExternalSupplierEmailAddress.Text
-                    });
+                        external.EditEmail(new ExternalSupplierEmailAddress()
+                        {
+                            EmailAddress = this.ExternalSupplierEmailAddress.Text
+                        });
 
-                    ExternalSupplierListViewModel.Instance.Refresh();
+                        InformationToUser($"Dodano nowego dostawcę: {this.ExternalSupplierName.Text}.");
 
-                    ClearAllValues();
+                        ExternalSupplierListViewModel.Instance.Refresh();
+
+                        ClearAllValues();
+                    }
+                    else
+                        InformationToUser($"Błędny adres.", true);
                 }
                 else
-                    InformationToUser($"Błędny adres.", true);
+                    InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
             }
-            else
-                InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
         }
         #endregion
         #region  ClearAllValues
@@ -76,6 +84,54 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
             this.ExternalSupplierEmailAddress.Text = string.Empty;
 
             this.ResidentalAddress.ClearEditValues();
+        }
+        #endregion
+        #region NameValidation
+        /// <summary>
+        /// They will check the external supplier's name for length.
+        /// </summary>
+        /// <param name="name">Name to check.</param>
+        /// <returns>True if the name meets the requirements.</returns>
+        private bool NameValidation(string name)
+        {
+            //Check name - The name cannot be empty
+            if (name != string.Empty)
+            {
+                char[] nameLength = name.ToCharArray();
+                //the name must contain more than 3 letters
+                if (nameLength.Length > SWAM.MainWindow.MIN_NAME_LENGTH)
+                {
+                    return true;
+                }
+                else InformationToUser($"Nazwa musi mieć więcej niż 3 litery.", true);
+            }
+            else InformationToUser($"Błędna nazwa.", true);
+
+            return false;
+        }
+        #endregion
+        #region TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            char[] charArray;
+
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
+            {
+                var values = textBox.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+
+                charArray = values.ToArray();
+
+                textBox.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
         }
         #endregion
     }
