@@ -1,19 +1,13 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Enumerators;
-using System;
+using SWAM.Models;
+using SWAM.Models.ExternalSupplier;
+using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using SWAM.Models.Warehouse;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses
 {
@@ -113,9 +107,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         }
         #endregion
 
+        #region CreateWarehouseOrder
+        /// <summary>
+        /// Gets form values and creates warehouse order
+        /// </summary>
         private void CreateWarehouseOrder()
         {
-
+            var context = new ApplicationDbContext();
+            var warehouse = warehouseProfile.DataContext as Warehouse;
+            var externalSupplier = externalSupplierProfile.DataContext as ExternalSupplier;
+            var orderedProducts = new List<WarehouseOrderPosition>(ProductOrderListViewModel.Instance.WarehouseOrderPositions);
         }
+        #endregion
     }
 }
