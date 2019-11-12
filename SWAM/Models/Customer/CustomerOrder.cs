@@ -89,5 +89,7 @@ namespace SWAM.Models.Customer
                 .Include(c => c.DeliveryAddress)
                 .ToList();
         }
+
+
     }
 }

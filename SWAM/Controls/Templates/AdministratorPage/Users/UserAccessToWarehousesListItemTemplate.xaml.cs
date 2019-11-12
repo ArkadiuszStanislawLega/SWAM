@@ -2,9 +2,7 @@
 using SWAM.Models.User;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using System.Data.Entity;
 using SWAM.Exceptions;
 using SWAM.Strings;
 using SWAM.Models.Warehouse;

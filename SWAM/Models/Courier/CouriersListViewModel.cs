@@ -33,18 +33,14 @@ namespace SWAM.Models.Courier
         /// </summary>
         public void Refresh()
         {
-            //TODO: Change this, remove to the couriers class.
-            using (ApplicationDbContext context = new ApplicationDbContext())
+            var couriers = Courier.GetAllCouriers();
+
+            if (couriers != null && _couriersList.Count > 0)
+                _couriersList.Clear();
+
+            foreach (var courier in couriers)
             {
-                var couriers = context.People.OfType<Courier>().ToList();
-
-                if (couriers != null && _couriersList.Count > 0)
-                    _couriersList.Clear();
-
-                foreach (var courier in couriers)
-                {
-                    _couriersList.Add(courier);
-                }
+                _couriersList.Add(courier);
             }
         }
         #endregion

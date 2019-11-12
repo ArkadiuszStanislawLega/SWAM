@@ -94,5 +94,17 @@ namespace SWAM.Models.Courier
             }
         }
         #endregion
+        #region GetAllCouriers
+        /// <summary>
+        /// Retrieves a list of all couriers from the database.
+        /// </summary>
+        /// <returns>Returns a list of all couriers available in the database.</returns>
+        public static IList<Courier> GetAllCouriers()
+        {
+            context = new ApplicationDbContext();
+
+            return  context.Couriers.ToList();
+        }
+        #endregion
     }
 }
