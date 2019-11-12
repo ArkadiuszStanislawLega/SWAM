@@ -19,7 +19,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// List with all warehouses available in database.
         /// </summary>
-        private IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
+        private readonly IList<Warehouse> _warehouses = Warehouse.GetAllWharehousesFromDb();
 
         #region Basic constructor
         public UserAccessToWarehousesListItemTemplate()
@@ -40,13 +40,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
             try
             {
                 if (this.DataContext is AccessUsersToWarehouses access)
-                {
-                    //TODO: Try - catch
-                    var context = new ApplicationDbContext();
-                    this.Calendar.SelectedDate = access.DateOfExpiredAcces; /*context.AccessUsersToWarehouses.FirstOrDefault(a => a.Id == access.Id).DateOfExpiredAcces;*/
-                }
-                else if (this.DataContext is User user) { /*TODO: debug this - it's work but it's weird*/ }
-                else throw new RefreshWarehousessAccessesListExeption();
+                    this.Calendar.SelectedDate = access.DateOfExpiredAcces;
             }
             catch (RefreshWarehousessAccessesListExeption ex) { ex.ShowMessage(this); }
         }
