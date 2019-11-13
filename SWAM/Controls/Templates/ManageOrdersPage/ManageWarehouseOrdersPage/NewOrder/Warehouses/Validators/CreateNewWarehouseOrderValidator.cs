@@ -1,9 +1,5 @@
 ﻿using SWAM.Models.Warehouse;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses.Validators
 {
@@ -12,6 +8,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         public bool WarehouseValidator(Warehouse warehouse)
         {
             if (warehouse == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool OrderedProductsValidation(List<WarehouseOrderPosition> warehouseOrderPositions)
+        {
+            if (warehouseOrderPositions.Count == 0)
             {
                 return false;
             }
