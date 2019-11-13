@@ -125,6 +125,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 courierProfile.SetFieldsGray();
                 customerOrderAddress.Visibility = Visibility.Hidden;
                 personalAddressCollection.Visibility = Visibility.Visible;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Visible;
                 courierListProfile.couriersListView.UnselectAll();
             }
             else
@@ -132,6 +133,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 courierProfile.SetFieldsWhite();
                 customerOrderAddress.Visibility = Visibility.Visible;
                 personalAddressCollection.Visibility = Visibility.Hidden;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Hidden;
             }
         }
         #endregion
