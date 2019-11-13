@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers.Validators
 {
-    public class CreateNewCustomerOrderValidator : BasicUserControl
+    public class CreateNewCustomerOrderValidator
     {
         public bool CustomerValidation(Customer customer)
         {

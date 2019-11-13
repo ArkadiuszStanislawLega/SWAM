@@ -1,4 +1,5 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses.Validators;
 using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.ExternalSupplier;
@@ -117,6 +118,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             var warehouse = warehouseProfile.DataContext as Warehouse;
             var externalSupplier = externalSupplierProfile.DataContext as ExternalSupplier;
             var orderedProducts = new List<WarehouseOrderPosition>(ProductOrderListViewModel.Instance.WarehouseOrderPositions);
+
+            var validator = new CreateNewWarehouseOrderValidator();
+
+            if (!validator.WarehouseValidator(warehouse))
+            {
+                InformationToUser("Wybierz magazyn z listy", true);
+                return;
+            }
+
         }
         #endregion
     }

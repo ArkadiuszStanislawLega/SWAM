@@ -203,6 +203,7 @@
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\ProductOrderListTemplate.xaml.cs">
       <DependentUpon>ProductOrderListTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\Validators\CreateNewWarehouseOrderValidator.cs" />
     <Compile Include="Controls\Templates\ManageOrdersPage\ManageWarehouseOrdersPage\NewOrder\Warehouses\WarehouseAddressFormTemplate.xaml.cs">
       <DependentUpon>WarehouseAddressFormTemplate.xaml</DependentUpon>
     </Compile>
