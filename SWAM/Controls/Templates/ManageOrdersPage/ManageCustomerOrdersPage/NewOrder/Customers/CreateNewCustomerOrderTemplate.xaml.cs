@@ -146,10 +146,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <param name="e"></param>
         public void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
         {
-            var customer = customerProfile.DataContext as Customer;
+            if (isDeliveryAddressSameAsCustomerAddress.IsChecked.GetValueOrDefault())
+            {
+                var customer = customerProfile.DataContext as Customer;
 
-            if (customer != null)
-                deliveryAddressProfile.DataContext = customer.ResidentalAddress;
+                if (customer != null)
+                    deliveryAddressProfile.DataContext = customer.ResidentalAddress;
+            }
+            else
+            {
+                deliveryAddressProfile.DataContext = null;
+            }
         }
         #endregion
 
