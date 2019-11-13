@@ -125,7 +125,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 courierProfile.SetFieldsGray();
                 customerOrderAddress.Visibility = Visibility.Hidden;
                 personalAddressCollection.Visibility = Visibility.Visible;
-                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Visible;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Hidden;
                 courierListProfile.couriersListView.UnselectAll();
             }
             else
@@ -133,7 +133,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 courierProfile.SetFieldsWhite();
                 customerOrderAddress.Visibility = Visibility.Visible;
                 personalAddressCollection.Visibility = Visibility.Hidden;
-                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Hidden;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Visible;
             }
         }
         #endregion
@@ -146,7 +146,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <param name="e"></param>
         private void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
         {
+            var customer = customerProfile.DataContext as Customer;
 
+            if (customer != null)
+                deliveryAddressProfile.DataContext = customer.ResidentalAddress;
         }
         #endregion
 
@@ -280,7 +283,5 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             SwitchPagesVisibility();
         }
         #endregion
-
-
     }
 }

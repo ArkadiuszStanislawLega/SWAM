@@ -167,7 +167,7 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <CheckBox Grid.Column="0" Name="isPersonalCollected" Click="IsPersonalCollected_Click" Foreground="Gray" Content="Odbiór osobisty?" Margin="10 10 0 0"/>
-                        <CheckBox Grid.Column="1" Name="isDeliveryAddressSameAsCustomerAddress" Click="IsDeliveryAddressSameAsCustomerAddress_Click" Foreground="Gray" Content="Dostawa pod adres zamieszkania?" Margin="10 10 0 0" Visibility="Hidden"/>
+                        <CheckBox Grid.Column="1" Name="isDeliveryAddressSameAsCustomerAddress" Click="IsDeliveryAddressSameAsCustomerAddress_Click" Foreground="Gray" Content="Dostawa pod adres zamieszkania?" Margin="10 10 0 0"/>
                     </Grid>
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
