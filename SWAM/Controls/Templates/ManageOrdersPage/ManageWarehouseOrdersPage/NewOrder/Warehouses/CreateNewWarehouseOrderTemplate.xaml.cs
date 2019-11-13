@@ -121,6 +121,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
             var validator = new CreateNewWarehouseOrderValidator();
 
+            if (!validator.ExternalSupplierValidation(externalSupplier))
+            {
+                InformationToUser("Wybierz dostawcę z listy", true);
+                return;
+            }
+
             if (!validator.OrderedProductsValidation(orderedProducts))
             {
                 InformationToUser("Lista zamówień jest pusta", true);

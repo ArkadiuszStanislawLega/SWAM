@@ -1,4 +1,5 @@
-﻿using SWAM.Models.Warehouse;
+﻿using SWAM.Models.ExternalSupplier;
+using SWAM.Models.Warehouse;
 using System.Collections.Generic;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses.Validators
@@ -17,6 +18,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         public bool OrderedProductsValidation(List<WarehouseOrderPosition> warehouseOrderPositions)
         {
             if (warehouseOrderPositions.Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool ExternalSupplierValidation(ExternalSupplier externalSupplier)
+        {
+            if (externalSupplier == null)
             {
                 return false;
             }
