@@ -3,8 +3,10 @@ using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrde
 using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Models.User;
 using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
 using SWAM.Models.Warehouse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -138,6 +140,21 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
                 InformationToUser("Wybierz magazyn z listy", true);
                 return;
             }
+
+            var employee = context.People.OfType<User>().SingleOrDefault(p => p.Id == SWAM.MainWindow.LoggedInUser.Id);
+
+            var warehouseOrder = new WarehouseOrder
+            {
+                IsPaid = true,
+                OrderDate = DateTime.Now,
+                WarehouseId = warehouse.Id,
+                CreatorId = employee.Id,
+                ExternalSupplayerId = externalSupplier.Id,
+                WarehouseOrderStatus = WarehouseOrderStatus.Ordered
+            };
+
+            context.WarehouseOrders.Add(warehouseOrder);
+            context.SaveChanges();
 
         }
         #endregion
