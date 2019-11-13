@@ -76,7 +76,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
-                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Menager))
+                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager))
                 {
                     InformationToUser("Niewystarczający poziom uprawnień", true);
                     return;

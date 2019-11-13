@@ -21,7 +21,7 @@ namespace SWAM.Converters
                     case UserType.Seller: return PLstrings.SELLER;
                     case UserType.Warehouseman: return PLstrings.WAREHOUSEMAN;
                     case UserType.Owner: return PLstrings.OWNER;
-                    case UserType.Menager: return PLstrings.MENAGER;
+                    case UserType.Manager: return PLstrings.MENAGER;
                     default: return user.ToString();
                 }
             }

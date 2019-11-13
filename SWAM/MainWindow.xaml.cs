@@ -156,7 +156,7 @@ namespace SWAM
                 new List<PagesUserControls>(){ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage }},
-            { UserType.Menager,
+            { UserType.Manager,
                 new List<PagesUserControls>(){ PagesUserControls.ManageItemsPage,
                                           /**/ PagesUserControls.ManageMagazinePage,
                                           /**/ PagesUserControls.ManageOrdersPage,

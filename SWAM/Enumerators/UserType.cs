@@ -33,7 +33,7 @@ namespace SWAM.Enumerators
         /// <summary>
         /// The user who creates orders for the warehouse. 
         /// </summary>
-        Menager,
+        Manager,
         /// <summary>
         /// The user who is the owner of the application.
         /// </summary>
