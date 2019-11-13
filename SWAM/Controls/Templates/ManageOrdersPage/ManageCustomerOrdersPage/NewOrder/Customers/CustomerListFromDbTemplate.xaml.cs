@@ -87,6 +87,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 if (SWAM.MainWindow.FindParent<CreateNewCustomerOrderTemplate>(this) is CreateNewCustomerOrderTemplate parent)
                 {
                     parent.customerProfile.DataContext = customer;
+                    parent.IsDeliveryAddressSameAsCustomerAddress_Click(this, null);
                 }
             }
         }

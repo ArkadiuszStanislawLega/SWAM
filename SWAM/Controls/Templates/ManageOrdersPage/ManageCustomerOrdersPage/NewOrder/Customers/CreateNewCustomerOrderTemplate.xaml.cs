@@ -144,7 +144,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
+        public void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
         {
             var customer = customerProfile.DataContext as Customer;
 
