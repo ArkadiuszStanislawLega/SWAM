@@ -156,6 +156,29 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             context.WarehouseOrders.Add(warehouseOrder);
             context.SaveChanges();
 
+            // Add warehouse order positions
+            var customerOrderPositionsFromDb = new List<WarehouseOrderPosition>();
+            foreach (var item in orderedProducts)
+            {
+                customerOrderPositionsFromDb.Add(new WarehouseOrderPosition()
+                {
+                    Quantity = item.Quantity,
+                    Price = item.Price,
+                    Product = context.Products.SingleOrDefault(s => s.Id == item.ProductId),
+                    ProductId = context.Products.SingleOrDefault(s => s.Id == item.ProductId).Id
+                });
+            }
+
+            foreach (var item in customerOrderPositionsFromDb)
+            {
+                item.WarehouseOrder = warehouseOrder;
+                context.WarehouseOrderPositions.Add(item);
+            }
+
+            context.SaveChanges();
+
+            InformationToUser("Dodano zamówienie", false);
+
         }
         #endregion
     }
