@@ -136,6 +136,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         }
         #endregion
 
+        #region IsDeliveryAddressSameAsCustomerAddress_Click
+        /// <summary>
+        /// Marks delivery address same as customer address and automaticly fill the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
         #region CreateCustomerOrder
         /// <summary>
         /// Gets form values and creates customer order
@@ -266,5 +278,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             SwitchPagesVisibility();
         }
         #endregion
+
+
     }
 }
