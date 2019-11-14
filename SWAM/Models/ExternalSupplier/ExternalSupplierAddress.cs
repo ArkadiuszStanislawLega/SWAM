@@ -22,7 +22,7 @@ namespace SWAM.Models.ExternalSupplier
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
         public ExternalSupplier ExternalSupplier { get; set; }
-
+        #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
         private static ApplicationDbContext Context
         {
@@ -65,7 +65,7 @@ namespace SWAM.Models.ExternalSupplier
             }
             set => context = value;
         }
-
+        #endregion
         #region Add
         /// <summary>
         /// Add external supplier address to datbase.

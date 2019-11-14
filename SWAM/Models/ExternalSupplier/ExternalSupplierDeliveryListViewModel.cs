@@ -3,6 +3,10 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Data.Entity;
 using System.Linq;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System;
+using SWAM.Strings;
 
 namespace SWAM.Models.ExternalSupplier
 {
@@ -34,36 +38,62 @@ namespace SWAM.Models.ExternalSupplier
                 if (_warehouseOrders.Count > 0)
                     _warehouseOrders.Clear();
 
-                //TODO: Add try catch block.
-                using (ApplicationDbContext context = new ApplicationDbContext())
+                try
                 {
-                    var warehouseDelivery = context
-                        .WarehouseOrders
-                        .Include(w => w.OrderPositions)
-                        .Include(w => w.Warehouse)
-                        .Include(w => w.UserReceivedOrder)
-                        .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
-                        .ToList();
-
-                    foreach (var order in warehouseDelivery)
+                    using (ApplicationDbContext context = new ApplicationDbContext())
                     {
-                        for (int i = 0; i < order.OrderPositions.Count; i++)
+                        var warehouseDelivery = context
+                            .WarehouseOrders
+                            .Include(w => w.OrderPositions)
+                            .Include(w => w.Warehouse)
+                            .Include(w => w.UserReceivedOrder)
+                            .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
+                            .ToList();
+
+                        foreach (var order in warehouseDelivery)
                         {
-                            //TODO: Think about a better solution.
-                            var id = order.OrderPositions[i].Id;
-                            order.OrderPositions[i] = context.WarehouseOrderPositions
-                                .Include(w => w.Product)
-                                .FirstOrDefault(w => w.Id == id);
+                            for (int i = 0; i < order.OrderPositions.Count; i++)
+                            {
+                                //TODO: Think about a better solution.
+                                var id = order.OrderPositions[i].Id;
+                                order.OrderPositions[i] = context.WarehouseOrderPositions
+                                    .Include(w => w.Product)
+                                    .FirstOrDefault(w => w.Id == id);
+                            }
+
+                            var userId = order.UserReceivedOrder.Id;
+                            order.UserReceivedOrder = context.People
+                                .OfType<User.User>()
+                                .Include(u => u.Phones)
+                                .FirstOrDefault(u => u.Id == userId);
+
+                            _warehouseOrders.Add(order);
                         }
-
-                        var userId = order.UserReceivedOrder.Id;
-                        order.UserReceivedOrder = context.People
-                            .OfType<User.User>()
-                            .Include(u => u.Phones)
-                            .FirstOrDefault(u => u.Id == userId);
-
-                        _warehouseOrders.Add(order);
                     }
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
                 }
             }
         }
