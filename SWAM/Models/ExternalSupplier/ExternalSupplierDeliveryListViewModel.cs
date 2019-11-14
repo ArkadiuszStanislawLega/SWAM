@@ -54,7 +54,6 @@ namespace SWAM.Models.ExternalSupplier
                         {
                             for (int i = 0; i < order.OrderPositions.Count; i++)
                             {
-                                //TODO: Think about a better solution.
                                 var id = order.OrderPositions[i].Id;
                                 order.OrderPositions[i] = context.WarehouseOrderPositions
                                     .Include(w => w.Product)

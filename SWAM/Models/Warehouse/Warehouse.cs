@@ -222,7 +222,6 @@ namespace SWAM.Models.Warehouse
                 .Include(u => u.Accesses)
                 .ToList();
 
-            //TODO: Make this more pro!!
             foreach (Warehouse w in dbWarehouses)
             {
                 for (int i = 0; i < w.Accesses.Count; i++)
