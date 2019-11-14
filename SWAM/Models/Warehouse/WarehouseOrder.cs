@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using SWAM.Enumerators;
 using System.Data.Entity;
 using System.Linq;
+using SWAM.Strings;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace SWAM.Models.Warehouse
 {
@@ -66,12 +69,53 @@ namespace SWAM.Models.Warehouse
         /// All items with products from the order.
         /// </summary>
         public IList<WarehouseOrderPosition> OrderPositions { get; set; }
-
-        //TODO:TRy catch block.
-        private static ApplicationDbContext context = new ApplicationDbContext();
+        #region Database connection
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
+        private static ApplicationDbContext Context
+        {
+            get
+            {
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => dbContext = value;
+        }
+        #endregion
         public static IList<WarehouseOrder> GetAllOrders()
         {
-            return context.WarehouseOrders
+            return Context.WarehouseOrders
                  .Include(w => w.ExternalSupplayer)
                  .Include(w => w.OrderPositions)
                  .Include(w => w.Warehouse)                

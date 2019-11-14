@@ -182,7 +182,6 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public bool Remove()
         {
-            //TODO: Make block try-catch
             var warehouse = Context.Warehouses.FirstOrDefault(w => w.Id == this.Id);
             if (warehouse != null)
             {
