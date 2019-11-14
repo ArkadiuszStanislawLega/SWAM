@@ -55,11 +55,15 @@ namespace SWAM.Controls.Templates.AdministratorPage
                                     };
 
                                     //Try to add new user to database
-                                    if (user != null && user.IsAdd(user))
+                                    if (user != null)
                                     {
-                                        InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
-                                        UserListRefresh();
-                                        RestartTextBoxes();
+                                        if (user.IsAdd(user))
+                                        {
+                                            InformationToUser($"Dodano nowego {user.Permissions.ToString()} {user.Name}.");
+                                            UserListRefresh();
+                                            RestartTextBoxes();
+                                        }
+                                        else InformationToUser($"Nazwa uyżytkownika {this.NewUserName.Text} istnieje już w bazie danych.", true);
                                     }
                                     else InformationToUser($"Nie udało się dodać użytkownika {this.NewUserName.Text}.", true);
                                 }
