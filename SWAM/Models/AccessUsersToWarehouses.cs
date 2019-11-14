@@ -43,8 +43,8 @@ namespace SWAM.Models
         /// </summary>
         public virtual Warehouse.Warehouse Warehouse { get; set; }
 
+        #region Database connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
-
         private static ApplicationDbContext Context
         {
             get
@@ -86,6 +86,7 @@ namespace SWAM.Models
             }
             set => dbContext = value;
         }
+        #endregion
         #region AccessUsersToWarehouses
         /// <summary>
         /// Gets user access to the warehouse from the database by the access ID number.
