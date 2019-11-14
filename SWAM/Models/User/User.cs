@@ -69,7 +69,7 @@ namespace SWAM.Models.User
 
         #region Database connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
-        private static ApplicationDbContext Context
+        private static ApplicationDbContext context
         {
             get
             {
@@ -143,7 +143,7 @@ namespace SWAM.Models.User
         public static bool TryLogIn(string name, string password)
         {
             //Getting user password and password salt from database 
-            if (Context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
+            if (context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
             {
                 try
                 {
@@ -203,7 +203,7 @@ namespace SWAM.Models.User
                             stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
 
                         //Geting profile of user from database.
-                        SWAM.MainWindow.SetLoggedInUser(Context.People.OfType<User>()
+                        SWAM.MainWindow.SetLoggedInUser(context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.EmailAddresses)
@@ -246,10 +246,10 @@ namespace SWAM.Models.User
         {
             if (user != null)
             {
-                Context.People.Add(user);
-                if (Context.People.FirstOrDefault(c => c.Name == user.Name) == null)
+                context.People.Add(user);
+                if (context.People.FirstOrDefault(c => c.Name == user.Name) == null)
                 {
-                    var number = Context.SaveChanges();
+                    var number = context.SaveChanges();
                     if (number == 1)
                         return true;
                 }
@@ -264,8 +264,8 @@ namespace SWAM.Models.User
         /// <param name="name">New name of user.</param>
         public void ChangeName(string name)
         {
-            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Name = name;
-            Context.SaveChanges();
+            context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Name = name;
+            context.SaveChanges();
         }
         #endregion
         #region ChangePermissions
@@ -275,8 +275,8 @@ namespace SWAM.Models.User
         /// <param name="userType">New perminssion.</param>
         public void ChangePermissions(UserType userType)
         {
-            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
-            Context.SaveChanges();
+            context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Permissions = userType;
+            context.SaveChanges();
         }
         #endregion
         #region ChangePassword
@@ -286,8 +286,8 @@ namespace SWAM.Models.User
         /// <param name="password">New password.</param>
         public void ChangePassword(byte[] password)
         {
-            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Password = password;
-            Context.SaveChanges();
+            context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).Password = password;
+            context.SaveChanges();
         }
         #endregion
         #region GetUser
@@ -298,7 +298,7 @@ namespace SWAM.Models.User
         /// <returns>Sepcific User by Id included accesses, email and phones.</returns>
         public static User GetUser(int userID) 
             => 
-                    Context.People.OfType<User>()
+                    context.People.OfType<User>()
                         .Include(u => u.Accesess)
                         .Include(u => u.EmailAddresses)
                         .Include(u => u.Phones)
@@ -313,8 +313,8 @@ namespace SWAM.Models.User
         public void ChangeExpiryDateOfTheBlockade(DateTime? dateTime)
         {
 
-                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
-                Context.SaveChanges();
+                context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = dateTime;
+                context.SaveChanges();
             
             //else
             //{
@@ -332,8 +332,8 @@ namespace SWAM.Models.User
         {
             if (dateTime != null)
             {
-                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
-                Context.SaveChanges();
+                context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).DateOfExpiryOfTheAccount = dateTime;
+                context.SaveChanges();
             }
 
         }
@@ -345,10 +345,10 @@ namespace SWAM.Models.User
         /// <param name="statusOfUserAccount">New status of account.</param>
         public void ChangeStatus(StatusOfUserAccount statusOfUserAccount)
         {
-            Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
+            context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).StatusOfUserAccount = statusOfUserAccount;
             if(statusOfUserAccount == StatusOfUserAccount.Active)
-                Context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = null;
-            Context.SaveChanges();
+                context.People.OfType<User>().FirstOrDefault(u => u.Id == this.Id).ExpiryDateOfTheBlockade = null;
+            context.SaveChanges();
         }
         #endregion
 
@@ -361,9 +361,9 @@ namespace SWAM.Models.User
         {
             if (userPhone != null)
             {
-                Context = new ApplicationDbContext();
+                context = new ApplicationDbContext();
 
-                var user = Context.People.OfType<User>()
+                var user = context.People.OfType<User>()
                     .Include(u => u.Phones)
                     .FirstOrDefault(u => u.Id == this.Id);
 
@@ -378,7 +378,7 @@ namespace SWAM.Models.User
 
                     user.Phones.Add(dbUserPhone);
 
-                    if (Context.SaveChanges() == 2)
+                    if (context.SaveChanges() == 2)
                         return true;
                 }
             }
@@ -393,8 +393,8 @@ namespace SWAM.Models.User
         /// <returns>List with phones.</returns>
         public IList<UserPhone> GetPhones()
         {
-            Context = new ApplicationDbContext();
-            return Context.People
+            context = new ApplicationDbContext();
+            return context.People
                         .OfType<User>()
                         .Include(u => u.Phones)
                         .First(u => u.Id == this.Id).Phones;
@@ -410,12 +410,11 @@ namespace SWAM.Models.User
         {
             if (email != null)
             {
-                //TODO: try - catch block is needed ... when excetion will be catch than send false.
-                Context.People.OfType<User>()
+                context.People.OfType<User>()
                     .Include(u => u.EmailAddresses)
                     .FirstOrDefault(u => u.Id == this.Id)
                     .EmailAddresses.Add(email);
-                Context.SaveChanges();
+                context.SaveChanges();
             }
         }
         #endregion
@@ -427,8 +426,8 @@ namespace SWAM.Models.User
         /// <returns>List with email addresses.</returns>
         public IList<UserEmailAddress> GetEmailsAddresses()
         {
-            Context = new ApplicationDbContext();
-            return  Context.People
+            context = new ApplicationDbContext();
+            return  context.People
                         .OfType<User>()
                         .Include(u => u.EmailAddresses)
                         .First(u => u.Id == this.Id).EmailAddresses;
@@ -440,7 +439,7 @@ namespace SWAM.Models.User
         /// Gets the complete list of users from the database.
         /// </summary>
         /// <returns>Full list of users from the database.</returns>
-        public static IList<User> AllUsersList() => Context
+        public static IList<User> AllUsersList() => context
             .People.OfType<User>()
             .Include(u => u.Phones)
             .Include(u => u.Accesess)

@@ -26,7 +26,7 @@ namespace SWAM.Models
         #region Database Connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
 
-        protected static ApplicationDbContext _context 
+        protected static ApplicationDbContext context 
         {
             get
             {
