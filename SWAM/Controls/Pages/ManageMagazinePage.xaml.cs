@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -29,13 +32,46 @@ namespace SWAM
 
         private ApplicationDbContext _context = new ApplicationDbContext();
 
-        public ApplicationDbContext context
+        public ApplicationDbContext Context
         {
             get
             {
-                //TODO: Try catch block
-                return this._context;
+                try
+                {
+                    return _context;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
+            set => _context = value;
         }
         #endregion
         #region BasicConstructor
@@ -76,7 +112,7 @@ namespace SWAM
         {
             if (ProductProfile.DataContext is State state)
             {
-                if (context.Products.FirstOrDefault(p => p.Id == state.Id) != null)
+                if (Context.Products.FirstOrDefault(p => p.Id == state.Id) != null)
                 {
                     this._currentOperation = Operation.edit;
                     SaveButton.IsEnabled = true;
@@ -107,8 +143,8 @@ namespace SWAM
                         }
                         else
                         {
-                            _context = new ApplicationDbContext();
-                            var dbState = context.States.FirstOrDefault(p => p.Id == state.Id);
+                            Context = new ApplicationDbContext();
+                            var dbState = Context.States.FirstOrDefault(p => p.Id == state.Id);
                             state.Quantity = dbState.Quantity;
                         }
                     }

@@ -1,6 +1,10 @@
 ﻿using SWAM.Models.Customer;
+using SWAM.Strings;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace SWAM.Models.Courier
@@ -23,9 +27,50 @@ namespace SWAM.Models.Courier
         /// </summary>
         public string Phone { get; set; }
         public string EmailAddress { get; set; }
-        //TODO:Try catch block.
+        #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
-
+        public static ApplicationDbContext Context
+        {
+            get
+            {
+                try
+                {
+                    return context;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => context = value;
+        }
+        #endregion
         #region IsNameExist
         /// <summary>
         /// checks the database to see if the courier name already exists.
@@ -36,8 +81,8 @@ namespace SWAM.Models.Courier
         {
             if(name != string.Empty)
             {
-                context = new ApplicationDbContext();
-                if (context.Couriers.FirstOrDefault(c => c.Name == name) != null)
+                Context = new ApplicationDbContext();
+                if (Context.Couriers.FirstOrDefault(c => c.Name == name) != null)
                     return true;
             }
 
@@ -54,9 +99,9 @@ namespace SWAM.Models.Courier
         {
             if (courier != null)
             {
-                context.Couriers.Add(courier);
+                Context.Couriers.Add(courier);
 
-                var number = context.SaveChanges();
+                var number = Context.SaveChanges();
                 if (number == 1)
                     return true;
 
@@ -72,8 +117,8 @@ namespace SWAM.Models.Courier
         /// <returns>Courier from database.</returns>
         public static Courier Get(int Id)
         {
-            context = new ApplicationDbContext();
-            return context.People.OfType<Courier>().Include(c => c.CustomerOrders).FirstOrDefault(c => c.Id == Id);
+            Context = new ApplicationDbContext();
+            return Context.People.OfType<Courier>().Include(c => c.CustomerOrders).FirstOrDefault(c => c.Id == Id);
         }
         #endregion
         #region Edit
@@ -90,7 +135,7 @@ namespace SWAM.Models.Courier
                 customer.Phone = editedCourier.Phone;
                 customer.Tin = editedCourier.Tin;
                 customer.EmailAddress = editedCourier.EmailAddress;
-                context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -101,9 +146,9 @@ namespace SWAM.Models.Courier
         /// <returns>Returns a list of all couriers available in the database.</returns>
         public static IList<Courier> GetAllCouriers()
         {
-            context = new ApplicationDbContext();
+            Context = new ApplicationDbContext();
 
-            return  context.Couriers.ToList();
+            return Context.Couriers.ToList();
         }
         #endregion
     }
