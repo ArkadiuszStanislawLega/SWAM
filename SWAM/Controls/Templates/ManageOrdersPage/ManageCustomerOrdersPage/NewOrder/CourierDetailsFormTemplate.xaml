@@ -27,27 +27,27 @@
             <StackPanel Margin="10">
                 <TextBlock Text="TIN"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CourierTIN" Width="250" IsReadOnly="True" Text="{Binding Tin}"/>
+                <TextBlock Name="CourierTIN" Width="250" Text="{Binding Tin}"/>
             </StackPanel>
             <!--#region Name-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CourierName" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
+                <TextBlock Name="CourierName" Width="250" Text="{Binding Name}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone number-->
             <StackPanel Margin="10">
                 <TextBlock Text="Numer kontaktowy"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CourierPhoneNumber" Width="250" IsReadOnly="True" Text="{Binding Phone}"/>
+                <TextBlock Name="CourierPhoneNumber" Width="250" Text="{Binding Phone}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CourierEmailAddress" Width="250" IsReadOnly="True" Text="{Binding EmailAddress}"/>
+                <TextBlock Name="CourierEmailAddress" Width="250" Text="{Binding EmailAddress}"/>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>
