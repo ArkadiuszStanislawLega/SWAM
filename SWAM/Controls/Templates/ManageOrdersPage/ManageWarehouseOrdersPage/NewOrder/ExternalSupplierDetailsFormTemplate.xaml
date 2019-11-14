@@ -27,20 +27,20 @@
             <StackPanel Margin="10">
                 <TextBlock Text="TIN"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierTIN" Width="250" IsReadOnly="True" Text="{Binding Tin}"/>
+                <TextBlock Name="ExternalSupplierTIN" Width="250" Text="{Binding Tin}"/>
             </StackPanel>
             <!--#region Name-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierName" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
+                <TextBlock Name="ExternalSupplierName" Width="250" Text="{Binding Name}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierEmail" Width="250" IsReadOnly="True" Text="{Binding EmailAddress.EmailAddress}"/>
+                <TextBlock Name="ExternalSupplierEmail" Width="250" Text="{Binding EmailAddress.EmailAddress}"/>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone numbers-->
@@ -51,9 +51,8 @@
                             <StackPanel Margin="10">
                                 <TextBlock Text="Numer kontaktowy"
                                             Style="{StaticResource ProfileProperties}"/>
-                                <TextBox Name="ExternalSupplierPhone" 
+                                <TextBlock Name="ExternalSupplierPhone" 
                                          Width="250" 
-                                         IsReadOnly="True" 
                                          Text="{Binding PhoneNumber}"/>
                             </StackPanel>
                         </DataTemplate>
