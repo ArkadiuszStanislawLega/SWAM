@@ -9,30 +9,30 @@
     <StackPanel >
         <StackPanel Margin="10">
             <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Country" Width="250" IsReadOnly="True" Text="{Binding WarehouseAddress.Country}"/>
+            <TextBlock Name="Country" Width="250" Text="{Binding WarehouseAddress.Country}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10 10 0 10">
                 <TextBlock Text="Kod pocztowy" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="PostCode" IsReadOnly="True" Text="{Binding WarehouseAddress.PostCode}"/>
+                <TextBlock Name="PostCode" Text="{Binding WarehouseAddress.PostCode}"/>
             </StackPanel>
             <StackPanel Margin="20 10 0 10">
                 <TextBlock Text="Miasto" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="City" Width="140" IsReadOnly="True" Text="{Binding WarehouseAddress.City}"/>
+                <TextBlock Name="City" Width="140" Text="{Binding WarehouseAddress.City}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10">
             <TextBlock Text="Ulica" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Street" Width="250" IsReadOnly="True" Text="{Binding WarehouseAddress.Street}"/>
+            <TextBlock Name="Street" Width="250" Text="{Binding WarehouseAddress.Street}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10">
                 <TextBlock Text="Nr budynku" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="HouseNumber" IsReadOnly="True" Width="80" Text="{Binding WarehouseAddress.HouseNumber}"/>
+                <TextBlock HorizontalAlignment="Left" Name="HouseNumber" Width="80" Text="{Binding WarehouseAddress.HouseNumber}"/>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Nr lokalu" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="ApartmentNumber" IsReadOnly="True" Width="80" Text="{Binding WarehouseAddress.ApartmentNumber}"/>
+                <TextBlock HorizontalAlignment="Left" Name="ApartmentNumber" Width="80" Text="{Binding WarehouseAddress.ApartmentNumber}"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
