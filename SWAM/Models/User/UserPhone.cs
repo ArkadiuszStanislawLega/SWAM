@@ -1,5 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SWAM.Strings;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace SWAM.Models.User
@@ -9,18 +13,50 @@ namespace SWAM.Models.User
     {
         public User User { get; set; }
 
+        #region Database connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
-
-        private static ApplicationDbContext _context
+        private static ApplicationDbContext Context
         {
-            //TODO: Make all exceptions
             get
             {
-                return dbContext;
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
             set => dbContext = value;
         }
-
+        #endregion
         #region UpdateNumber
         /// <summary>
         /// Update current phone number.
@@ -34,13 +70,13 @@ namespace SWAM.Models.User
                 if (userPhone.PhoneNumber == newPhoneNumber)
                     return true;
 
-                _context.People
+                Context.People
                             .OfType<User>()
                             .Include(u => u.Phones)
                             .First(u => u.Id == userPhone.User.Id)
                             .Phones.First(p => p.Id == userPhone.Id)
                             .PhoneNumber = newPhoneNumber;
-                if (_context.SaveChanges() == 1)
+                if (Context.SaveChanges() == 1)
                     return true;
             }
 
@@ -60,13 +96,13 @@ namespace SWAM.Models.User
                 if (userPhone.Note == newNote)
                     return true;
 
-                _context.People
+                Context.People
                          .OfType<User>()
                          .Include(u => u.Phones)
                          .First(u => u.Id == userPhone.User.Id)
                          .Phones.First(p => p.Id == userPhone.Id)
                          .Note = newNote;
-                if (_context.SaveChanges() == 1)
+                if (Context.SaveChanges() == 1)
                     return true;
             }
 
@@ -83,16 +119,16 @@ namespace SWAM.Models.User
         {
             if (userPhone != null)
             {
-                _context = new ApplicationDbContext();
+                Context = new ApplicationDbContext();
 
-                var phones = _context.Phones.FirstOrDefault(u => u.Id == userPhone.Id);
+                var phones = Context.Phones.FirstOrDefault(u => u.Id == userPhone.Id);
 
                 if (phones != null)
                 {
-                    _context.Phones.Remove(phones);
+                    Context.Phones.Remove(phones);
                     //Two rows are affected in database.
                     //One in Phone table and one in UserPhone table.
-                    if (_context.SaveChanges() == 2)
+                    if (Context.SaveChanges() == 2)
                         return true;
                 }
             }
@@ -108,8 +144,8 @@ namespace SWAM.Models.User
         /// <returns>Specific full user phone from database.</returns>
         public UserPhone Get(UserPhone userPhone)
         {
-            _context = new ApplicationDbContext();
-            return _context.People
+            Context = new ApplicationDbContext();
+            return Context.People
                 .OfType<User>()
                 .Include(u => u.Phones)
                 .FirstOrDefault(u => u.Id == userPhone.User.Id)
