@@ -246,6 +246,7 @@ namespace SWAM.Models.User
         {
             if (user != null)
             {
+                context = new ApplicationDbContext();
                 context.People.Add(user);
                 if (context.People.FirstOrDefault(c => c.Name == user.Name) == null)
                 {
