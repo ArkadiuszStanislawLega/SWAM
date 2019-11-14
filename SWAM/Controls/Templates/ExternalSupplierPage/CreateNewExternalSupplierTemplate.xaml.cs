@@ -34,42 +34,49 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             if (NameValidation(this.ExternalSupplierName.Text))
             {
-                if (Models.EmailAddress.IsValidEmail(this.ExternalSupplierEmailAddress.Text))
+                if(!ExternalSupplier.IsExternalSupplierInDatabase(this.ExternalSupplierName.Text))
                 {
-                    if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
+                    if (Models.EmailAddress.IsValidEmail(this.ExternalSupplierEmailAddress.Text))
                     {
-                        var external = new ExternalSupplier()
+                        if (this.ResidentalAddress.GetAddress<ExternalSupplierAddress>() is ExternalSupplierAddress residentalAddress)
                         {
-                            Name = this.ExternalSupplierName.Text,
-                            Tin = this.ExternalSupplierTIN.Text,
-                            Address = residentalAddress
-                        };
+                            var external = new ExternalSupplier()
+                            {
+                                Name = this.ExternalSupplierName.Text,
+                                Tin = this.ExternalSupplierTIN.Text,
+                                Address = residentalAddress
+                            };
 
-                        ExternalSupplier.Add(external);
+                            ExternalSupplier.Add(external);
 
-                        external.AddPhone(new ExternalSupplierPhone()
-                        {
-                            Note = BASIC_PHONE_NAME,
-                            PhoneNumber = ExternalSupplierPhoneNumber.Text
-                        });
+                            external.AddPhone(new ExternalSupplierPhone()
+                            {
+                                Note = BASIC_PHONE_NAME,
+                                PhoneNumber = ExternalSupplierPhoneNumber.Text
+                            });
 
-                        external.EditEmail(new ExternalSupplierEmailAddress()
-                        {
-                            EmailAddress = this.ExternalSupplierEmailAddress.Text
-                        });
+                            external.EditEmail(new ExternalSupplierEmailAddress()
+                            {
+                                EmailAddress = this.ExternalSupplierEmailAddress.Text
+                            });
 
-                        InformationToUser($"Dodano nowego dostawcę: {this.ExternalSupplierName.Text}.");
+                            InformationToUser($"Dodano nowego dostawcę: {this.ExternalSupplierName.Text}.");
 
-                        ExternalSupplierListViewModel.Instance.Refresh();
+                            ExternalSupplierListViewModel.Instance.Refresh();
 
-                        ClearAllValues();
+                            ClearAllValues();
+                        }
+                        else
+                            InformationToUser($"Błędny adres.", true);
                     }
                     else
-                        InformationToUser($"Błędny adres.", true);
+                        InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
                 }
                 else
-                    InformationToUser($"Wprowadzony adres e-mail, jest nieprawidłowy.", true);
+                    InformationToUser($"Taka nazwa {this.ExternalSupplierName.Text} istnieje już w bazie danych.", true);
             }
+            else
+                InformationToUser($"Nazwa dostawcy nie może być pusta i musi posiadać conajmniej {SWAM.MainWindow.MIN_NAME_LENGTH} litery.", true);
         }
         #endregion
         #region  ClearAllValues
