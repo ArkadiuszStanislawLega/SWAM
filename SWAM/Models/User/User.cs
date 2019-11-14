@@ -8,6 +8,8 @@ using SWAM.Strings;
 using System.Data.Entity;
 using System.Text.RegularExpressions;
 using SWAM.Models.Warehouse;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace SWAM.Models.User
 {
@@ -65,17 +67,50 @@ namespace SWAM.Models.User
         /// </summary>
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
+        #region Database connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
         private static ApplicationDbContext Context
         {
-            //TODO: Make all exceptions
             get
             {
-                return dbContext;
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
             set => dbContext = value;
         }
-
+        #endregion
         #region IsValidPassword
         /// <summary>
         /// Checking the password in terms of password length and characters used in the password.
