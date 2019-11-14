@@ -85,6 +85,23 @@ namespace SWAM.Models.ExternalSupplier
                 .FirstOrDefault(e => e.Id == Id);
         }
         #endregion
+        #region IsExternalSupplierInDatabase
+        /// <summary>
+        /// Checks if the name is already in the database.
+        /// </summary>
+        /// <param name="name">Name of the external supplier to be retrieved in the database.</param>
+        /// <returns>True if name is already exist in database.</returns>
+        public static bool IsExternalSupplierInDatabase(string name)
+        {
+            if(name != string.Empty)
+            {
+                if (Context.People.FirstOrDefault(e => e.Name == name) != null)
+                    return true;
+            }
+
+            return false;
+        }
+        #endregion
         #region Add
         /// <summary>
         /// Add new external supplier to database.
