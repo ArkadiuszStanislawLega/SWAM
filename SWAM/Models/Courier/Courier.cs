@@ -82,7 +82,7 @@ namespace SWAM.Models.Courier
             if(name != string.Empty)
             {
                 Context = new ApplicationDbContext();
-                if (Context.Couriers.FirstOrDefault(c => c.Name == name) != null)
+                if (Context.People.FirstOrDefault(c => c.Name == name) != null)
                     return true;
             }
 
