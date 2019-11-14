@@ -76,11 +76,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
-                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager))
-                {
-                    InformationToUser("Niewystarczający poziom uprawnień", true);
-                    return;
-                }
+                //if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager))
+                //{
+                //    InformationToUser("Niewystarczający poziom uprawnień", true);
+                //    return;
+                //}
                 // Submit form
                 CreateWarehouseOrder();
                 return;
@@ -184,6 +184,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
             InformationToUser("Dodano zamówienie", false);
 
+            warehouseProfile.DataContext = null;
+            externalSupplierProfile.DataContext = null;
+            ProductOrderListViewModel.Instance.Clear();
         }
         #endregion
     }
