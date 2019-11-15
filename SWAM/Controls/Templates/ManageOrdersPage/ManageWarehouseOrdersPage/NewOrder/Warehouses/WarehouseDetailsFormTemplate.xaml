@@ -14,22 +14,30 @@
         <StackPanel Margin="10">
             <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-            <TextBlock Name="Name" Width="250" Text="{Binding Name}"/>
+            <Border Style="{StaticResource GrayBorder}">
+                <TextBlock Name="Name" Width="250" Text="{Binding Name}"/>
+            </Border>
         </StackPanel>
         <!--#endregion-->
         <!--#region Dimensions-->
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10">
                 <TextBlock Text="Wysokość" Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="Height" Width="76" Text="{Binding Height}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="Height" Width="76" Text="{Binding Height}"/>
+                </Border>
             </StackPanel>
             <StackPanel Margin="0 10">
                 <TextBlock Text="Szerokość" Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="Width" Width="76" Text="{Binding Width}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="Width" Width="76" Text="{Binding Width}"/>
+                </Border>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Długość" Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="Length" Width="76" Text="{Binding Length}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="Length" Width="76" Text="{Binding Length}"/>
+                </Border>
             </StackPanel>
         </StackPanel>
         <!--#endregion-->
@@ -37,7 +45,9 @@
         <StackPanel Margin="10">
             <TextBlock Text="Maksymalna dopuszczalna waga"
                                    Style="{StaticResource ProfileProperties}"/>
-            <TextBlock Name="AcceptableWeight" Width="250" Text="{Binding AcceptableWeight}"/>
+            <Border Style="{StaticResource GrayBorder}">
+                <TextBlock Name="AcceptableWeight" Width="250" Text="{Binding AcceptableWeight}"/>
+            </Border>
         </StackPanel>
         <!--#endregion-->
     </StackPanel>
