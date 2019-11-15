@@ -14,6 +14,8 @@
 
     <!--#region Resources-->
     <UserControl.Resources>
+
+        <!--#region ObjectDataProviders-->
         <ObjectDataProvider x:Key="WarehouseOrderStatus"
                             MethodName="GetValues"
                             ObjectType="{x:Type System:Enum}">
@@ -29,8 +31,25 @@
                 <x:Type TypeName="enum:PaymentStatus" />
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-
-        <!--#region EditStatusChangeStory-->
+        <!--#endregion-->
+        
+        <!--#region Storyboards-->
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="Content"
+                                Duration="0:0:1.0"
+                                From="-300 0 0 0"
+                                To="1"
+                                DecelerationRatio="1" />
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="Content"
+                             Duration="0:0:1.5"
+                             From="0" To="1" />
+        </Storyboard>
+        <!--#endregion-->        
+        
+        <!--#region HideStatusChangeStory-->
         <Storyboard x:Key="HideStatusChangeStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditOrderStatusGrid"
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -46,7 +65,7 @@
         </Storyboard>
         <!--#endregion-->
 
-        <!--#region EditPaymentChangeStory-->
+        <!--#region HidePaymentStatusStory-->
         <Storyboard x:Key="HidePaymentStatusStory">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditPaymentStatusGrid"
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
@@ -62,252 +81,404 @@
         </Storyboard>
         <!--#endregion-->
 
+        <!--#region HideCalendarStory-->
+        <Storyboard x:Key="HideCalendarStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CalendarArea"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3"
+                                        Value="{x:Static Visibility.Collapsed}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="CalendarArea"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1"
+                             To="0"
+                             Duration="0:0:0.3" />
+        </Storyboard>
+        <!--#endregion-->
+
+        <!--#region ShowStatusChangeStory-->
+        <Storyboard x:Key="ShowStatusChangeStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditOrderStatusGrid"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="EditOrderStatusGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.3"/>
+        </Storyboard>
+        <!--#endregion-->
+
+        <!--#region ShowPaymentStatusStory-->
+        <Storyboard x:Key="ShowPaymentStatusStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditPaymentStatusGrid"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+
+            <DoubleAnimation Storyboard.TargetName="EditPaymentStatusGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             Duration="0:0:0.3"/>
+        </Storyboard>
+        <!--#endregion-->
+
+        <!--#region ShowCalendarStory-->
+        <Storyboard x:Key="ShowCalendarStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CalendarArea"
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="00:00:0.3"
+                                        Value="{x:Static Visibility.Visible}" />
+            </ObjectAnimationUsingKeyFrames>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="CalendarArea"
+                                Duration="0:0:1.0"
+                                From="0 0 -300 0"
+                                To="1"
+                                DecelerationRatio="1" />
+
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="CalendarArea"                             
+                             From="0"
+                             To="1"
+                             Duration="0:0:0.9" />
+        </Storyboard>
+        <!--#endregion-->
+        <!--#endregion-->
     </UserControl.Resources>
-
-
     <!--#endregion-->
 
-    <Grid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Margin="10">
-                <!--#region Order Id-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Id zamówienia"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding Id}" />
-                </StackPanel>
-                <!--#endregion-->
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}" />
+        </EventTrigger>
+    </UserControl.Triggers>
 
-                <!--#region Order Date-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Utworzenie zamówienia"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding OrderDate}" />
-                </StackPanel>
-                <!--#endregion-->
+    <Border Name="Content" CornerRadius="10" Padding="10 10 10 0">
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="10">
+                    <!--#region Order Id-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Id zamówienia"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding Id}" />
+                    </StackPanel>
+                    <!--#endregion-->
 
-                <!--#region Delivery Date-->
-                <StackPanel Margin="5">
+                    <!--#region Order Date-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Utworzenie zamówienia"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding OrderDate, StringFormat=\{0:dd.MM.yyyy\}}" />
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region Delivery Date-->
+                    <Grid Margin="5">
+                        <!--#region Columnd & rows definitions-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <!--#endregion-->
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Data dostawy"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding DeliveryDate, StringFormat=\{0:dd.MM.yyyy\}}" />
+                        <Button Name="EditDeliveryDateButton"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                ToolTip="Edytuj datę dostawy.">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource ShowCalendarStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Calendar"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+
+                    <!--#region Warehouse Id-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Id Magazynu"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding WarehouseId}" />
+                    </StackPanel>
+                    <!--#endregion-->
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <!--#region Creator Id-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Id twórcy zamówienia"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding CreatorId}" />
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region User Received Order Id-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Id odbiorcy zamówienia"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding UserReceivedOrderId}" />
+                    </StackPanel>
+                    <!--#endregion-->
+
+                    <!--#region External Supplayer Id-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Id dostawcy"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding ExternalSupplayerId}" />
+                    </StackPanel>
+                    <!--#endregion-->
+                </StackPanel>
+
+                <StackPanel Margin="10">
+                    <!--#region Warehouse Order Status-->
+                    <Grid Margin="5">
+                        <!--#region Columnd & rows definitions-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <!--#endregion-->
+
+                        <TextBlock Text="Status zamówienia"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   Style="{StaticResource ProfileProperties}" />
+
+                        <TextBlock Text="{Binding WarehouseOrderStatus, Converter={conv:ENtoPLwarehouseOrderStatusConverter}}"
+                                   Grid.Column="0"
+                                   Grid.Row="1" />
+
+                        <Button Name="EditOrderStatusButton"                               
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                ToolTip="Edytuj status zamówienia.">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource ShowStatusChangeStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Pencil"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+                    </Grid>
+
+                    <Grid Name="EditOrderStatusGrid"
+                          Visibility="Collapsed"
+                          Margin="5">
+                        <!--#region Column definition-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13.5" />
+                            <ColumnDefinition Width="106.5" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--#endregion-->
+                        <ComboBox Name="EditOrderStatus"
+                                  Grid.Column="0"
+                                  IsEditable="False"
+                                  ItemsSource="{Binding Source={StaticResource WarehouseOrderStatus}}"
+                                  Grid.ColumnSpan="2">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={conv:ENtoPLwarehouseOrderStatusConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Button Name="ConfirmStatusChange"
+                                Grid.Column="2"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                ToolTip="Zaakceptuj zmianę statusu."
+                                Grid.ColumnSpan="2">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideStatusChangeStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Check"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+
+                        <Button Name="CancelStatusChange"
+                                Grid.Column="4"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                Margin="8 0 0 0"
+                                ToolTip="Anuluj zmianę statusu">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideStatusChangeStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Close"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+
+                    <!--#region Is Paid-->
+                    <Grid Margin="5">
+                        <!--#region Columnd & rows definitions-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <!--#endregion-->
+
+                        <TextBlock Text="Opłacone"
+                                   Grid.Column="0"
+                                   Grid.Row="0"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding IsPaid, Converter={conv:ENtoPLpaymentStatus}}"
+                                   Grid.Column="0"
+                                   Grid.Row="1" />
+                        <Button Name="EditPaymentStatusButton"
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                ToolTip="Edytuj status płatności.">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource ShowPaymentStatusStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Pencil"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+                    </Grid>
+
+                    <Grid Name="EditPaymentStatusGrid"
+                          Visibility="Collapsed"
+                          Margin="5">
+                        <!--#region Column definition-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="18" />
+                            <ColumnDefinition Width="102" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--#endregion-->
+                        <ComboBox Name="EditPaymentStatus"
+                                  Grid.Column="0"
+                                  IsEditable="False"
+                                  ItemsSource="{Binding Source={StaticResource PaymentStatus}}"
+                                  Grid.ColumnSpan="2">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={conv:ENtoPLpaymentStatus}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Button Name="ConfirmPaymentStatusChange"
+                                Grid.Column="2"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                ToolTip="Zaakceptuj zmianę statusu."
+                                Grid.ColumnSpan="2">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HidePaymentStatusStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Check"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+
+                        <Button Name="CancelPaymentStatusChange"
+                                Grid.Column="4"
+                                Style="{StaticResource BasicFunctionalButtons}"
+                                Margin="8 0 0 0"
+                                ToolTip="Anuluj zmianę statusu">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HidePaymentStatusStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                            <fa:ImageAwesome Icon="Close"
+                                             Foreground="{StaticResource FontsBrash}" />
+                        </Button>
+                    </Grid>
+                    <!--#endregion-->
+                </StackPanel>
+            </StackPanel>
+
+            <!--#region Callendar -->
+            <Border Name="CalendarArea"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    CornerRadius="5"
+                    Padding="5"
+                    IsEnabled="True"
+                    Visibility="Collapsed">
+                <Border.Background>
+                    <SolidColorBrush Opacity="0.7" Color="{StaticResource DarkGraphite}" />                    
+                </Border.Background>
+                <StackPanel>
                     <TextBlock Text="Data dostawy"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding DeliveryDate}" />
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               TextWrapping="Wrap" />
+                    <Calendar Name="Calendar" SelectionMode="SingleDate" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        
+                        <Button Name="AcceptDeliveryDateButton"                               
+                                ToolTip="Potwierdź termin dostawy"
+                                Style="{StaticResource  BasicFunctionalButtons}">
+                                <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideCalendarStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Name="CancelDeliveryDateButton"                               
+                                ToolTip="Zamknij kalendarz"
+                                Style="{StaticResource  BasicFunctionalButtons}">
+                                <fa:ImageAwesome Icon="Close" Foreground="{StaticResource FontsBrash}" />                            
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HideCalendarStory}" />
+                                </EventTrigger>
+                            </Button.Triggers>                            
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
-                <!--#endregion-->
-
-                <!--#region Warehouse Id-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Id Magazynu"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding WarehouseId}" />
-                </StackPanel>
-                <!--#endregion-->
-            </StackPanel>
-
-            <StackPanel Margin="10">
-                <!--#region Creator Id-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Id twórcy zamówienia"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding CreatorId}" />
-                </StackPanel>
-                <!--#endregion-->
-
-                <!--#region User Received Order Id-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Id odbiorcy zamówienia"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding UserReceivedOrderId}" />
-                </StackPanel>
-                <!--#endregion-->
-
-                <!--#region External Supplayer Id-->
-                <StackPanel Margin="5">
-                    <TextBlock Text="Id dostawcy"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding ExternalSupplayerId}" />
-                </StackPanel>
-                <!--#endregion-->
-            </StackPanel>
-
-            <StackPanel Margin="10">
-                <!--#region Warehouse Order Status-->
-                <Grid Margin="5">
-                    <!--#region Columnd & rows definitions-->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <!--#endregion-->
-
-                    <TextBlock Text="Status zamówienia"
-                               Grid.Column="0"
-                               Grid.Row="0"
-                               Style="{StaticResource ProfileProperties}" />
-
-                    <TextBlock Text="{Binding WarehouseOrderStatus, Converter={conv:ENtoPLwarehouseOrderStatusConverter}}"
-                               Grid.Column="0"
-                               Grid.Row="1" />
-
-                    <Button Name="EditOrderStatusButton"
-                            Grid.Column="2"
-                            Grid.Row="1"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            ToolTip="Edytuj status zamówienia.">
-                        <fa:ImageAwesome Icon="Pencil"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-                </Grid>
-
-                <Grid Name="EditOrderStatusGrid"
-                      Visibility="Visible"
-                      Margin="5">
-                    <!--#region Column definition-->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="13.5" />
-                        <ColumnDefinition Width="106.5" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--#endregion-->
-                    <ComboBox Name="EditOrderStatus"
-                              Grid.Column="0"
-                              IsEditable="False"
-                              ItemsSource="{Binding Source={StaticResource WarehouseOrderStatus}}"
-                              Grid.ColumnSpan="2">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={conv:ENtoPLwarehouseOrderStatusConverter}}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <Button Name="ConfirmStatusChange"
-                            Grid.Column="2"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            ToolTip="Zaakceptuj zmianę statusu."
-                            Grid.ColumnSpan="2">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideStatusChangeStory}" />
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Check"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-
-                    <Button Name="CancelStatusChange"
-                            Grid.Column="4"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            Margin="8 0 0 0"
-                            ToolTip="Anuluj zmianę statusu">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HideStatusChangeStory}" />
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Close"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-                </Grid>
-                <!--#endregion-->
-
-                <!--#region Is Paid-->
-                <Grid Margin="5">
-                    <!--#region Columnd & rows definitions-->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                    </Grid.RowDefinitions>
-                    <!--#endregion-->
-
-                    <TextBlock Text="Opłacone"
-                               Grid.Column="0"
-                               Grid.Row="0"
-                               Style="{StaticResource ProfileProperties}" />
-                    <TextBlock Text="{Binding IsPaid, Converter={conv:ENtoPLpaymentStatus}}"
-                               Grid.Column="0"
-                               Grid.Row="1" />
-                    <Button Name="EditPaymentStatusButton"
-                            Grid.Column="2"
-                            Grid.Row="1"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            ToolTip="Edytuj status płatności.">
-                        <fa:ImageAwesome Icon="Pencil"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-                </Grid>
-
-                <Grid Name="EditPaymentStatusGrid"
-                      Visibility="Visible"
-                      Margin="5">
-                    <!--#region Column definition-->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="18" />
-                        <ColumnDefinition Width="102" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
-                    <!--#endregion-->
-                    <ComboBox Name="EditPaymentStatus"
-                              Grid.Column="0"
-                              IsEditable="False"
-                              ItemsSource="{Binding Source={StaticResource PaymentStatus}}"
-                              Grid.ColumnSpan="2">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={conv:ENtoPLpaymentStatus}}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <Button Name="ConfirmPaymentStatusChange"
-                            Grid.Column="2"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            ToolTip="Zaakceptuj zmianę statusu."
-                            Grid.ColumnSpan="2">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HidePaymentStatusStory}" />
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Check"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-
-                    <Button Name="CancelPaymentStatusChange"
-                            Grid.Column="4"
-                            Style="{StaticResource BasicFunctionalButtons}"
-                            Margin="8 0 0 0"
-                            ToolTip="Anuluj zmianę statusu">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard Storyboard="{StaticResource HidePaymentStatusStory}" />
-                            </EventTrigger>
-                        </Button.Triggers>
-                        <fa:ImageAwesome Icon="Close"
-                                         Foreground="{StaticResource FontsBrash}" />
-                    </Button>
-                </Grid>
-                <!--#endregion-->
-
-
-
-                <!--#endregion-->
-            </StackPanel>
-        </StackPanel>
-
-
-    </Grid>
+            </Border>
+            <!--#endregion-->
+        </Grid>
+    </Border>
+    
+    
 </UserControl>
