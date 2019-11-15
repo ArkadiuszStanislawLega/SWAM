@@ -26,6 +26,11 @@ namespace SWAM.Controls.Pages
         /// </summary>
         /// <returns>Confirm window.</returns>
         protected ConfirmWindow _confirmWindow { get => this._mainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
+        /// <summary
+        /// Confirm window instance.
+        /// </summary>
+        /// <returns>Confirm window.</returns>
+        protected WarningWindow _warningWindow { get => this._mainWindow.Windows.TryGetValue(WindowType.Warning, out Window messageWindow) ? messageWindow as WarningWindow : null; }
         /// <summary>
         /// A storyboard that is executed when the page is turned off.
         /// </summary>

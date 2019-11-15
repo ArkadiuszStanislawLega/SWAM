@@ -3,6 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Data.Entity;
 using System.Windows.Controls;
+using System;
+using SWAM.Strings;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace SWAM.Models.Courier
 {
@@ -33,32 +37,60 @@ namespace SWAM.Models.Courier
                 if (_orders.Count > 0)
                     _orders.Clear();
 
-                using (ApplicationDbContext context = new ApplicationDbContext())
+                try
                 {
-                    var orders = context.CustomerOrders
-                        .Include(c => c.Customer)
-                        .Include(c => c.Courier)
-                        .Include(c => c.Warehouse)
-                        .Include(c => c.CustomerOrderPositions)
-                        .Include(c => c.DeliveryAddress)
-                        .Where(c => c.Courier.Id == courier.Id)
-                        .ToList();
-
-                    foreach (var order in orders)
+                    using (ApplicationDbContext context = new ApplicationDbContext())
                     {
-                        order.Creator = context.People
-                            .OfType<User.User>()
-                            .Include(u => u.Phones)
-                            .FirstOrDefault(u => u.Id == order.CreatorId);
+                        var orders = context.CustomerOrders
+                            .Include(c => c.Customer)
+                            .Include(c => c.Courier)
+                            .Include(c => c.Warehouse)
+                            .Include(c => c.CustomerOrderPositions)
+                            .Include(c => c.DeliveryAddress)
+                            .Where(c => c.Courier.Id == courier.Id)
+                            .ToList();
 
-                        foreach (var position in order.CustomerOrderPositions)
+                        foreach (var order in orders)
                         {
-                            position.Product = context.Products.FirstOrDefault(p => p.Id == position.ProductId);
-                        }
+                            order.Creator = context.People
+                                .OfType<User.User>()
+                                .Include(u => u.Phones)
+                                .FirstOrDefault(u => u.Id == order.CreatorId);
 
-                        _orders.Add(order);
+                            foreach (var position in order.CustomerOrderPositions)
+                            {
+                                position.Product = context.Products.FirstOrDefault(p => p.Id == position.ProductId);
+                            }
+
+                            _orders.Add(order);
+                        }
                     }
                 }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                }
+
             }
         }
         #endregion

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using SWAM.Strings;
+using System.Data.Entity.Validation;
 
 namespace SWAM.Models
 {
@@ -53,19 +56,51 @@ namespace SWAM.Models
         /// </summary>
         public User.User Receiver { get; set; }
 
+        #region Database connection
         private static ApplicationDbContext dbContext = new ApplicationDbContext();
-
-        private static ApplicationDbContext _context
+        private static ApplicationDbContext Context
         {
-            //TODO: Make all exceptions
             get
             {
-                return dbContext;
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
             set => dbContext = value;
         }
-
-        public static Message GetMessage(int messageId) => _context.Messages.FirstOrDefault(m => m.Id == messageId);
+        #endregion
+        public static Message GetMessage(int messageId) => Context.Messages.FirstOrDefault(m => m.Id == messageId);
         
 
         #region DeleteMessageBySender
@@ -77,13 +112,13 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context.People
+                Context.People
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == message.Sender.Id)
                     .Messages.Single(m => m.Id == message.Id)
                     .IsDeletedBySender = true;
 
-                if (_context.SaveChanges() == 1)
+                if (Context.SaveChanges() == 1)
                 {
                     message.IsDeletedBySender = true;
 
@@ -102,13 +137,13 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context.People
+                Context.People
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == message.Sender.Id)
                     .Messages.Single(m => m.Id == message.Id)
                     .IsDeletedByReceiver = true;
 
-                if (_context.SaveChanges() == 1)
+                if (Context.SaveChanges() == 1)
                 {
                     message.IsDeletedBySender = true;
 
@@ -127,12 +162,12 @@ namespace SWAM.Models
         {
             if (message != null && message.Sender.Id > 0)
             {
-                _context.People
+                Context.People
                     .OfType<User.User>()
                     .FirstOrDefault(u => u.Id == message.Sender.Id)
                     .Messages.Remove(message);
 
-                _context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -145,20 +180,20 @@ namespace SWAM.Models
         {
             if (messages != null)
             {
-                _context = new ApplicationDbContext();
+                Context = new ApplicationDbContext();
                 foreach (var message in messages)
                 {
-                    var sender = _context.People
+                    var sender = Context.People
                         .OfType<User.User>()
                         .FirstOrDefault(u => u.Id == message.Sender.Id);
 
-                    var receiver = _context.People
+                    var receiver = Context.People
                         .OfType<User.User>()
                         .FirstOrDefault(u => u.Id == message.Receiver.Id);
 
                     if (receiver != null & sender != null)
                     {
-                        _context.Messages.Add(new Message()
+                        Context.Messages.Add(new Message()
                         {
                             Sender = sender,
                             Receiver = receiver,
@@ -168,7 +203,7 @@ namespace SWAM.Models
                         });
                     }
                 }
-                _context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -182,17 +217,17 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context = new ApplicationDbContext();
-                var sender = _context.People
+                Context = new ApplicationDbContext();
+                var sender = Context.People
                                      .OfType<User.User>()
                                      .FirstOrDefault(u => u.Id == message.Sender.Id);
 
-                var receiver = _context.People
+                var receiver = Context.People
                                        .OfType<User.User>()
                                        .FirstOrDefault(u => u.Id == message.Receiver.Id);
                 if (receiver != null & sender != null)
                 {
-                    _context.Messages.Add(new Message()
+                    Context.Messages.Add(new Message()
                     {
                         Sender = sender,
                         Receiver = receiver,
@@ -200,7 +235,7 @@ namespace SWAM.Models
                         ContentOfMessage = message.ContentOfMessage,
                         PostDate = DateTime.Now
                     });
-                    _context.SaveChanges();
+                    Context.SaveChanges();
                 }
             }
         }
@@ -216,8 +251,8 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context.People.OfType<User.User>().FirstOrDefault(u => u.Id == message.Sender.Id).Messages.Single(m => m.Id == message.Id).DateOfReading = DateTime.Now;
-                if (_context.SaveChanges() == 1)
+                Context.People.OfType<User.User>().FirstOrDefault(u => u.Id == message.Sender.Id).Messages.Single(m => m.Id == message.Id).DateOfReading = DateTime.Now;
+                if (Context.SaveChanges() == 1)
                     return true;
             }
 
@@ -234,13 +269,13 @@ namespace SWAM.Models
         {
             if (message != null)
             {
-                _context.People
+                Context.People
                  .OfType<User.User>()
                  .FirstOrDefault(u => u.Id == message.Sender.Id)
                  .Messages.Single(m => m.Id == message.Id)
                  .IsReaded = true;
 
-                if (_context.SaveChanges() == 1)
+                if (Context.SaveChanges() == 1)
                     return true;
             }
 
@@ -257,8 +292,8 @@ namespace SWAM.Models
         {
             if (user != null)
             {
-                _context = new ApplicationDbContext();
-                return _context.Messages
+                Context = new ApplicationDbContext();
+                return Context.Messages
                     .Include(m => m.Receiver)
                     .Include(m => m.Sender)
                     .Where(m => m.Receiver.Id == user.Id && !m.IsReaded).ToList().Count;
@@ -277,7 +312,7 @@ namespace SWAM.Models
         public static IList<Message> AllReceivedMessages(int userId)
         {
             if (userId > 0)
-                return _context.Messages
+                return Context.Messages
                     .Include(m => m.Receiver)
                     .Include(m => m.Sender)
                     .Where(m => m.Receiver.Id == userId && !m.IsDeletedByReceiver)
@@ -294,7 +329,7 @@ namespace SWAM.Models
         public static IList<Message> AllSendedMessages(int userId)
         {
             if (userId > 0)
-                return _context.Messages
+                return Context.Messages
                         .Include(m => m.Receiver)
                         .Include(m => m.Sender)
                         .Where(m => m.Sender.Id == userId && !m.IsDeletedBySender).ToList();

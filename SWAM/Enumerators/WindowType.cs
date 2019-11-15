@@ -16,5 +16,9 @@ namespace SWAM.Enumerators
         /// Send message window.
         /// </summary>
         SendMessage,
+        /// <summary>
+        /// Messagebox with warning.
+        /// </summary>
+        Warning
     }
 }

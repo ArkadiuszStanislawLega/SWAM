@@ -2,7 +2,10 @@
 using SWAM.Exceptions;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Strings;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SWAM.Controls.Templates.ExternalSupplierPage
 {
@@ -126,6 +129,30 @@ namespace SWAM.Controls.Templates.ExternalSupplierPage
         {
             this._phone = this.PhoneNumber.Text;
             this._note = this.Note.Text;
+        }
+        #endregion
+        #region EditPhoneNumber_TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void EditPhoneNumber_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            char[] charArray;
+
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
+            {
+                var values = textBox.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+
+                charArray = values.ToArray();
+
+                textBox.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
         }
         #endregion
     }

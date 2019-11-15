@@ -2,7 +2,9 @@
 using System.Windows;
 using SWAM.Strings;
 using SWAM.Exceptions;
-
+using System.Text.RegularExpressions;
+using System.Windows.Controls;
+using System.Linq;
 
 namespace SWAM.Controls.Templates.AdministratorPage
 {
@@ -86,6 +88,30 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CancelCreateNewPhone_Click(object sender, RoutedEventArgs e) => ClearEditableFieldsAfterAddNewPhone();
+        #endregion
+        #region NewPhone_TextChanged
+        /// <summary>
+        /// User can write only numbers.
+        /// </summary>
+        /// <param name="sender">TextBox</param>
+        /// <param name="e">New char in text field event</param>
+        private void NewPhone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            char[] charArray;
+
+            Regex regex = new Regex("[^0-9]+");
+            if (sender is TextBox textBox && regex.IsMatch(textBox.Text))
+            {
+                var values = textBox.Text.ToList();
+                values.RemoveAt(values.Count - 1);
+
+                charArray = values.ToArray();
+
+                textBox.Text = new string(charArray);
+                InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
+            }
+            else InformationToUser("");
+        }
         #endregion
     }
 }

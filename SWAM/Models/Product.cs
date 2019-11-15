@@ -55,12 +55,6 @@ namespace SWAM.Models
 
         private static ApplicationDbContext _context = new ApplicationDbContext();
 
-        public Product Get()
-        {
-            _context = new ApplicationDbContext();
-            return _context.Products.FirstOrDefault(p => p.Id == this.Id);
-        }
-
         private static ApplicationDbContext context
         {
             get
@@ -69,6 +63,34 @@ namespace SWAM.Models
             }
         }
 
+        #region Get
+        /// <summary>
+        /// Extracts product from the database by id number
+        /// </summary>
+        /// <param name="id">Product id number from the database.</param>
+        /// <returns>Product with given Id number from the database.</returns>
+        public static Product Get(int id)
+        {
+            _context = new ApplicationDbContext();
+            return _context.Products.FirstOrDefault(p => p.Id == id);
+        }
+        #endregion
+        #region Get
+        /// <summary>
+        /// Retrieves the current product from the database.
+        /// </summary>
+        /// <returns>Product from the database with current ID number.</returns>
+        public Product Get()
+        {
+            _context = new ApplicationDbContext();
+            return _context.Products.FirstOrDefault(p => p.Id == this.Id);
+        }
+        #endregion
+        #region AddNewProduct
+        /// <summary>
+        /// Adds the specified product to the database.
+        /// </summary>
+        /// <param name="product">New product to be added to the database.</param>
         public static void AddNewProduct(Product product)
         {
             if (product != null)
@@ -77,7 +99,12 @@ namespace SWAM.Models
                 context.SaveChanges();
             }
         }
-
+        #endregion
+        #region EditProduct
+        /// <summary>
+        /// Edits product values in the database.
+        /// </summary>
+        /// <param name="product">Product with edited values.</param>
         public static void EditProduct(Product product)
         {
             if (product != null)
@@ -90,31 +117,36 @@ namespace SWAM.Models
                 dbProduct.Width = product.Width;
                 dbProduct.Height = product.Height;
                 dbProduct.Price = product.Price;
+
                 context.SaveChanges();
             }
         }
+        #endregion
 
+        //TODO: Consider the option of removing the product from the database.
         public static void DeleteProduct(Product product)
         {
             context.Products.Remove(context.Products.FirstOrDefault(p => p.Id == product.Id));
             context.SaveChanges();
         }
 
-		public static List<Product> AllProducts()
+        #region AllProducts
+        /// <summary>
+        /// Gets a list of all products from the database.
+        /// </summary>
+        /// <returns>Returns a list with all products in the database.</returns>
+        public static List<Product> AllProducts()
 		{
 			_context = new ApplicationDbContext();
 			return context.Products.ToList();
 		}
+        #endregion
 
-		public static Product Get(int Id)
-        {
-            return context.Products.FirstOrDefault(p => p.Id == Id);
-        }
-
+        #region CompareTo
         /// <summary>
-        /// 
+        /// Comparing two products with each other.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">Product with which the current product is to be compared.</param>
         /// <returns>1 - prodducts are same, 0 products are different, -1 - error</returns>
         public int CompareTo(object obj)
         {
@@ -134,5 +166,6 @@ namespace SWAM.Models
             else
                 return -1;
         }
+        #endregion
     }
 }

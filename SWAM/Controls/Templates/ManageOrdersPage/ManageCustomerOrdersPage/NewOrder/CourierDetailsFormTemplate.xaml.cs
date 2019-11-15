@@ -13,20 +13,20 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             InitializeComponent();
         }
 
-        public void SetFieldsGray()
+        public void HideFields()
         {
-            CourierTIN.Background = Brushes.Gray;
-            CourierName.Background = Brushes.Gray;
-            CourierEmailAddress.Background = Brushes.Gray;
-            CourierPhoneNumber.Background = Brushes.Gray;
+            CourierTIN.Visibility = System.Windows.Visibility.Hidden;
+            CourierName.Visibility = System.Windows.Visibility.Hidden;
+            CourierEmailAddress.Visibility = System.Windows.Visibility.Hidden;
+            CourierPhoneNumber.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        public void SetFieldsWhite()
+        public void ShowFields()
         {
-            CourierTIN.Background = Brushes.White;
-            CourierName.Background = Brushes.White;
-            CourierEmailAddress.Background = Brushes.White;
-            CourierPhoneNumber.Background = Brushes.White;
+            CourierTIN.Visibility = System.Windows.Visibility.Visible;
+            CourierName.Visibility = System.Windows.Visibility.Visible;
+            CourierEmailAddress.Visibility = System.Windows.Visibility.Visible;
+            CourierPhoneNumber.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }

@@ -97,6 +97,7 @@
                              Width="135"
                              Grid.Column="2"
                              Tag="Numer telefonu" 
+                             TextChanged="NewPhone_TextChanged"
                              Style="{StaticResource UserLogin}"/>
                     <Button Name="ConfirmNewPhone" 
                             Margin="3"

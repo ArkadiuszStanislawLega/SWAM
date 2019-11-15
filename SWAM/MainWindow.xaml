@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         MinHeight="400"
-        MinWidth="300"
+        MinWidth="600"
         WindowStyle="None"
         Closed="SWAM_Closed"
         Name="SWAM"

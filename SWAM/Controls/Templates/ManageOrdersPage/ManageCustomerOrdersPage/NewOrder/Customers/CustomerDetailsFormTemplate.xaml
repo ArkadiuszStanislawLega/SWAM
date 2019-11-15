@@ -27,28 +27,36 @@
             <StackPanel Margin="10">
                 <TextBlock Text="Imię"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerName" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CustomerName" Width="250" Text="{Binding Name}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region Surname-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwisko"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerSurname" Width="250" IsReadOnly="True" Text="{Binding Surname}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CustomerSurname" Width="250" Text="{Binding Surname}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone number-->
             <StackPanel Margin="10">
                 <TextBlock Text="Numer kontaktowy"
                                    Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerPhoneNumber" Width="250" IsReadOnly="True" Text="{Binding Phone}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CustomerPhoneNumber" Width="250" Text="{Binding Phone}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                                    Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="CustomerEmailAddress" Width="250" IsReadOnly="True" Text="{Binding EmailAddress}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CustomerEmailAddress" Width="250" Text="{Binding EmailAddress}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>

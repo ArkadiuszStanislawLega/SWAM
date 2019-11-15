@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SWAM.Windows
 {
@@ -48,8 +37,8 @@ namespace SWAM.Windows
                     this.ShowDialog();
                 else
                 { 
-                    Hide();
-                    ShowDialog();
+                    this.Hide();
+                    this.ShowDialog();
                 }
             }
             catch(InvalidOperationException) {  /*TODO: Debug this.*/ }

@@ -82,13 +82,13 @@ namespace SWAM.Controls.Templates.MainWindow
 
         private void NavigationButtonTemplate_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (!_isSeleceted) ChangeColoursIsnSelected();
+            if (!this._isSeleceted) ChangeColoursIsnSelected();
             else  ChangeColoursIsSelected();
         }
 
         private void NavigationButtonTemplate_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (!_isSeleceted) ChangeColoursIsSelected();
+            if (!this._isSeleceted) ChangeColoursIsSelected();
             else ChangeColoursIsnSelected();
            
         }
@@ -102,12 +102,11 @@ namespace SWAM.Controls.Templates.MainWindow
         /// <param name="isSelectedArg">Is selected argument, true - button is selected, false - isn't selected.</param>
         private void NavigationButtonTemplate_IsSelectedEvent(NavigationButtonTemplate button, ButtonSelectedArgs isSelectedArg)
         {
-            if (_isSeleceted) ChangeColoursIsSelected();
+            if (this._isSeleceted) ChangeColoursIsSelected();
             else ChangeColoursIsnSelected();
         }
         #endregion
 
-        //TODO:Make this in xaml
         private void ChangeColoursIsSelected()
         {
             this.Background = this.FindResource("BackgroundOfPagesBrash") as Brush;

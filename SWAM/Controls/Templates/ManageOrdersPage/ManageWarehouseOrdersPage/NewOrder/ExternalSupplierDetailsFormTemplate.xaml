@@ -27,27 +27,46 @@
             <StackPanel Margin="10">
                 <TextBlock Text="TIN"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierTIN" Width="250" IsReadOnly="True" Text="{Binding Tin}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierTIN" Width="250" Text="{Binding Tin}"/>
+                </Border>
             </StackPanel>
             <!--#region Name-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierName" Width="250" IsReadOnly="True" Text="{Binding Name}"/>
-            </StackPanel>
-            <!--#endregion-->
-            <!--#region Phone number-->
-            <StackPanel Margin="10">
-                <TextBlock Text="Numer kontaktowy"
-                            Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierPhone" Width="250" IsReadOnly="True" Text="{Binding Phone.PhoneNumber}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierName" Width="250" Text="{Binding Name}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="ExternalSupplierEmail" Width="250" IsReadOnly="True" Text="{Binding ExternalSupplierEmailAddress.AddressEmail}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierEmail" Width="250" Text="{Binding EmailAddress.EmailAddress}"/>
+                </Border>
+            </StackPanel>
+            <!--#endregion-->
+            <!--#region Phone numbers-->
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding Phones}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="10">
+
+                                <TextBlock Text="Numer kontaktowy"
+                                            Style="{StaticResource ProfileProperties}"/>
+                                <Border Style="{StaticResource GrayBorder}">
+                                    <TextBlock Name="ExternalSupplierPhone" 
+                                         Width="250" 
+                                         Text="{Binding PhoneNumber}"/>
+                                </Border>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using SWAM.Strings;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace SWAM.Models.Customer
@@ -37,9 +40,51 @@ namespace SWAM.Models.Customer
         /// Customer residental address.
         /// </summary>
         public CustomerResidentalAddress ResidentalAddress { get; set; }
-        //TODO:Try catch block.
+        #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
 
+        public static ApplicationDbContext Context
+        {
+            get
+            {
+                try
+                {
+                    return context;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => context = value;
+        }
+        #endregion
         #region Get
         /// <summary>
         /// Returns the client from the database by id number.
@@ -48,8 +93,8 @@ namespace SWAM.Models.Customer
         /// <returns>Client from database.</returns>
         public static Customer Get(int Id)
         {
-            context = new ApplicationDbContext();
-            return context.People.OfType<Customer>().Include(c => c.ResidentalAddress).FirstOrDefault(c => c.Id == Id);
+            Context = new ApplicationDbContext();
+            return Context.People.OfType<Customer>().Include(c => c.ResidentalAddress).FirstOrDefault(c => c.Id == Id);
         }
         #endregion
         #region Add
@@ -61,8 +106,8 @@ namespace SWAM.Models.Customer
         {
             if (customer != null)
             {
-                context.Customers.Add(customer);
-                context.SaveChanges();
+                Context.Customers.Add(customer);
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -81,7 +126,7 @@ namespace SWAM.Models.Customer
                 customer.Surname = editedCustomer.Surname;
                 customer.Phone = editedCustomer.Phone;
                 customer.EmailAddress = editedCustomer.EmailAddress;
-                context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion

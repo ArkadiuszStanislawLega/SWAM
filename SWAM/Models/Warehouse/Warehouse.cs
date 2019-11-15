@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using SWAM.Strings;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System;
 
 namespace SWAM.Models.Warehouse
 {
@@ -52,17 +56,50 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
 
-        private static ApplicationDbContext DB_CONTEXT = new ApplicationDbContext();
-
-        private static ApplicationDbContext _context
+        #region Database connection
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
+        private static ApplicationDbContext Context
         {
-            //TODO: Make all exceptions
             get
             {
-                return DB_CONTEXT;
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
             }
-            set => DB_CONTEXT = value;
+            set => dbContext = value;
         }
+        #endregion
         #region IsWarehouseNameExist
         /// <summary>
         /// Checks the database to see if the warehouse name already exists.
@@ -73,8 +110,8 @@ namespace SWAM.Models.Warehouse
         {
             if (name != string.Empty)
             {
-                _context = new ApplicationDbContext(); 
-                if (_context.Warehouses.FirstOrDefault(w => w.Name == name) != null)
+                Context = new ApplicationDbContext(); 
+                if (Context.Warehouses.FirstOrDefault(w => w.Name == name) != null)
                     return true;
             }
 
@@ -91,9 +128,9 @@ namespace SWAM.Models.Warehouse
         {
             if (warehouse != null)
             {
-                _context.Warehouses.Add(warehouse);
+                Context.Warehouses.Add(warehouse);
 
-                if (_context.SaveChanges() == 3)
+                if (Context.SaveChanges() == 3)
                     return true;
             }
 
@@ -110,8 +147,8 @@ namespace SWAM.Models.Warehouse
         {
             if (id > 0)
             {
-                _context = new ApplicationDbContext();
-                return _context.Warehouses.FirstOrDefault(w => w.Id == id);
+                Context = new ApplicationDbContext();
+                return Context.Warehouses.FirstOrDefault(w => w.Id == id);
             }
 
             return null;
@@ -126,7 +163,7 @@ namespace SWAM.Models.Warehouse
         {
             if(warehouse != null && warehouse.WarehouseAddress != null)
             {
-                var warehouseDb = _context.Warehouses.Include(w => w.WarehouseAddress).FirstOrDefault(w => w.Id == warehouse.Id);
+                var warehouseDb = Context.Warehouses.Include(w => w.WarehouseAddress).FirstOrDefault(w => w.Id == warehouse.Id);
 
                 warehouseDb.Name = warehouse.Name;
                 warehouseDb.Height = warehouse.Height;
@@ -135,7 +172,7 @@ namespace SWAM.Models.Warehouse
                 warehouseDb.AcceptableWeight = warehouse.AcceptableWeight;
                 warehouseDb.WarehouseAddress = warehouse.WarehouseAddress;
 
-                _context.SaveChanges();
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -145,23 +182,22 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public bool Remove()
         {
-            //TODO: Make block try-catch
-            var warehouse = _context.Warehouses.FirstOrDefault(w => w.Id == this.Id);
+            var warehouse = Context.Warehouses.FirstOrDefault(w => w.Id == this.Id);
             if (warehouse != null)
             {
-                _context.Warehouses.Remove(warehouse);
-                _context.SaveChanges();
+                Context.Warehouses.Remove(warehouse);
+                Context.SaveChanges();
                 return true;
             }
             else return false;
         }
         #endregion
-        #region GetAllWharehousesFromDb
+        #region GetAllWharehouses
         /// <summary>
         /// Get list of all Warehouses from database
         /// </summary>
         /// <returns>IList with all warehouses in database</returns>
-        public static IList<Warehouse> GetAllWharehousesFromDb()
+        public static IList<Warehouse> GetAllWarehouses()
         {
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
@@ -169,5 +205,38 @@ namespace SWAM.Models.Warehouse
             }
         }
         #endregion
+
+        #region GetAllWarehousesIncludingFullAccesess
+        /// <summary>
+        /// Get list of all Warehouses from database including accessess and users.
+        /// </summary>
+        /// <returns>IList with all warehouses in database including accessess and users</returns>
+        public static IList<Warehouse> GetAllWarehousesIncludingFullAccesess()
+        {
+            Context = new ApplicationDbContext();
+            IList<Warehouse> dbWarehouses;
+
+            dbWarehouses = Context.Warehouses
+                .Include(a => a.WarehouseAddress)
+                .Include(co => co.CustomerOrders)
+                .Include(u => u.Accesses)
+                .ToList();
+
+            foreach (Warehouse w in dbWarehouses)
+            {
+                for (int i = 0; i < w.Accesses.Count; i++)
+                {
+                    int id = w.Accesses[i].Id;
+                    w.Accesses[i] = Context.AccessUsersToWarehouses
+                      .Include(au => au.User)
+                      .Include(au => au.Administrator)
+                      .Include(au => au.Warehouse)
+                      .FirstOrDefault(au => au.Id == id);
+                }
+            }
+            return dbWarehouses;
+        }
+        #endregion
+
     }
 }

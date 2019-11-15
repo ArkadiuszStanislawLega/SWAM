@@ -1,5 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using SWAM.Strings;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace SWAM.Models.ExternalSupplier
@@ -18,9 +22,50 @@ namespace SWAM.Models.ExternalSupplier
         public string ApartmentNumber { get; set; }
         public string PostCode { get; set; }
         public ExternalSupplier ExternalSupplier { get; set; }
-        //TODO: Try catch block
+        #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
-
+        private static ApplicationDbContext Context
+        {
+            get
+            {
+                try
+                {
+                    return context;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => context = value;
+        }
+        #endregion
         #region Add
         /// <summary>
         /// Add external supplier address to datbase.
@@ -30,8 +75,8 @@ namespace SWAM.Models.ExternalSupplier
         {
             if(externalSupplierAddress != null)
             {
-                context.ExternalSupplierAddresses.Add(externalSupplierAddress);
-                context.SaveChanges();
+                Context.ExternalSupplierAddresses.Add(externalSupplierAddress);
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -44,8 +89,8 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplierAddress != null)
             {
-                context = new ApplicationDbContext();
-                var externalAddressDb = context.ExternalSupplierAddresses
+                Context = new ApplicationDbContext();
+                var externalAddressDb = Context.ExternalSupplierAddresses
                     .Include(e => e.ExternalSupplier)
                     .FirstOrDefault(e => e.Id == this.Id);
 
@@ -58,7 +103,7 @@ namespace SWAM.Models.ExternalSupplier
                     externalAddressDb.HouseNumber = externalSupplierAddress.HouseNumber;
                     externalAddressDb.ApartmentNumber = externalSupplierAddress.ApartmentNumber;
 
-                    context.SaveChanges();
+                    Context.SaveChanges();
                 }
             }
         }

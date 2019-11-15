@@ -21,6 +21,7 @@
                 <ResourceDictionary Source="Styles/TextBlocks.xaml"/>
                 <ResourceDictionary Source="Styles/Callendar.xaml"/>
                 <ResourceDictionary Source="Styles/ListViews.xaml" />
+                <ResourceDictionary Source="Styles/Borders.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

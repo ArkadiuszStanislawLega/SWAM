@@ -51,8 +51,8 @@
             </Grid.RowDefinitions>
             <!--#endregion-->
             <TextBlock Text="Adres e-mail" 
-                                       Grid.Column="0"
-                                       Style="{StaticResource ProfileProperties}"/>
+                       Grid.Column="0"
+                       Style="{StaticResource ProfileProperties}"/>
             <TextBlock Name="EmailAddress" Text="{Binding EmailAddress}"
                                        Grid.Column="0" Grid.Row="1"/>
             <Button Name="EditEmailAddressButton"

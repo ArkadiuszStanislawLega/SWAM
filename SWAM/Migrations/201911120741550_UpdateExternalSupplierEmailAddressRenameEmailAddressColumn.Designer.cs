@@ -7,13 +7,13 @@ namespace SWAM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables : IMigrationMetadata
+    public sealed partial class UpdateExternalSupplierEmailAddressRenameEmailAddressColumn : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateExternalSupplierEmailAddressRenameEmailAddressColumn));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911091313576_DropRelationshipBetweenExternalSupplierEmailAddressAndEmailAdressesTables"; }
+            get { return "201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn"; }
         }
         
         string IMigrationMetadata.Source

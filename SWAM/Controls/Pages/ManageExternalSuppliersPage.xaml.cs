@@ -43,7 +43,7 @@ namespace SWAM.Controls.Pages
             else if (this.CurrentBookmarkLoaded == BookmarkInPage.CreateNewExternalSupplier) ExternalSupplierListViewModel.Instance.Refresh(); ;
         }
         #endregion
-        #region CreateCustomerProfile
+        #region CreateExternalSupplierProfile
         /// <summary>
         /// Made view of the external supplier profile in right section.
         /// </summary>

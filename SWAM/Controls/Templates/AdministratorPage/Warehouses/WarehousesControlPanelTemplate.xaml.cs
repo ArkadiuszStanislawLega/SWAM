@@ -1,14 +1,11 @@
 ﻿using SWAM.Controls.Templates.AdministratorPage.Warehouses;
 using SWAM.Enumerators;
-using SWAM.Models;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Data.Entity;
 using SWAM.Controls.Templates.AdministratorPage;
 using System.ComponentModel;
-using System;
 using SWAM.Models.Warehouse;
 using SWAM.Models.AdministratorPage;
 

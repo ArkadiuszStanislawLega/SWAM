@@ -122,16 +122,40 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if (isPersonalCollected.IsChecked.GetValueOrDefault())
             {
                 courierProfile.DataContext = null;
-                courierProfile.SetFieldsGray();
+                courierProfile.HideFields();
                 customerOrderAddress.Visibility = Visibility.Hidden;
                 personalAddressCollection.Visibility = Visibility.Visible;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Hidden;
                 courierListProfile.couriersListView.UnselectAll();
             }
             else
             {
-                courierProfile.SetFieldsWhite();
+                courierProfile.ShowFields();
                 customerOrderAddress.Visibility = Visibility.Visible;
                 personalAddressCollection.Visibility = Visibility.Hidden;
+                isDeliveryAddressSameAsCustomerAddress.Visibility = Visibility.Visible;
+            }
+        }
+        #endregion
+
+        #region IsDeliveryAddressSameAsCustomerAddress_Click
+        /// <summary>
+        /// Marks delivery address same as customer address and automaticly fill the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void IsDeliveryAddressSameAsCustomerAddress_Click(object sender, RoutedEventArgs e)
+        {
+            if (isDeliveryAddressSameAsCustomerAddress.IsChecked.GetValueOrDefault())
+            {
+                var customer = customerProfile.DataContext as Customer;
+
+                if (customer != null)
+                    deliveryAddressProfile.DataContext = customer.ResidentalAddress;
+            }
+            else
+            {
+                deliveryAddressProfile.DataContext = null;
             }
         }
         #endregion

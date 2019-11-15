@@ -15,13 +15,12 @@ namespace SWAM.Models.User
         /// </summary>
         public bool Delete()
         {
-            //TODO: try - catch block is needed ... when excetion will be catch than send false.
-            var emailAddresses = _context.EmailAddresses.First(e => e.Id == this.Id);
+            var emailAddresses = context.EmailAddresses.First(e => e.Id == this.Id);
             if (emailAddresses != null)
             {
-                _context.EmailAddresses.Remove(emailAddresses);
+                context.EmailAddresses.Remove(emailAddresses);
 
-                if (_context.SaveChanges() == 2)
+                if (context.SaveChanges() == 2)
                     return true;
             }
 
@@ -35,8 +34,8 @@ namespace SWAM.Models.User
         /// <returns>Specific user email address from database.</returns>
         public UserEmailAddress Get()
         {
-            _context = new ApplicationDbContext();
-            return _context.People.OfType<User>()
+            context = new ApplicationDbContext();
+            return context.People.OfType<User>()
                .Include(u => u.EmailAddresses)
                .First(u => u.Id == this.User.Id)
                .EmailAddresses.First(e => e.Id == this.Id);
@@ -50,9 +49,9 @@ namespace SWAM.Models.User
         /// <returns>True if the email address could be changed.</returns>
         public bool Update(string emailAddress)
         {
-            _context = new ApplicationDbContext();
+            context = new ApplicationDbContext();
 
-            User dbEmailOwner = _context.People
+            User dbEmailOwner = context.People
                 .OfType<User>()
                 .Include(u => u.EmailAddresses)
                 .First(u => u.Id == this.User.Id);
@@ -65,7 +64,7 @@ namespace SWAM.Models.User
                         .First(e => e.Id == this.Id)
                         .AddressEmail = emailAddress;
 
-                    if (_context.SaveChanges() == 1)
+                    if (context.SaveChanges() == 1)
                         return true;
                 }
             }

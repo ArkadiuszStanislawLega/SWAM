@@ -82,9 +82,15 @@
             <Border.Background>
                 <SolidColorBrush Color="{StaticResource LightGray}" Opacity="0.1"/>
             </Border.Background>
-            <StackPanel HorizontalAlignment="Center">
+            <Grid HorizontalAlignment="Stretch">
+                <!--#region Rows definitions-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
                 <!--#region Add new phone type section-->
-                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed">
+                <Grid Name="AddNewPhoneContainer" Visibility="Collapsed" Grid.Row="0">
                     <!--#region Columns definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -101,6 +107,7 @@
                              Style="{StaticResource UserLogin}"/>
                     <Label Grid.Column="1" Content="-"/>
                     <TextBox Name="NewPhone" 
+                             TextChanged="NewPhone_TextChanged"
                              Width="100"
                              Grid.Column="2"
                              Tag="Numer telefonu" 
@@ -133,7 +140,7 @@
                 </Grid>
                 <!--#endregion-->
                 <!--#region phone list-->
-                <StackPanel Margin="0 5 0 0 ">
+                <StackPanel Margin="0 5 0 0 " Grid.Row="1">
                     <ItemsControl  ItemsSource="{Binding Phones}" Name="PhoneNumbers">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -145,7 +152,7 @@
                     </ItemsControl>
                 </StackPanel>
                 <!--#endregion-->
-            </StackPanel>
+            </Grid>
         </Border>
     </StackPanel>
 

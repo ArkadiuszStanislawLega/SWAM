@@ -1,6 +1,10 @@
 ﻿using SWAM.Models.Warehouse;
+using SWAM.Strings;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 
 namespace SWAM.Models.ExternalSupplier
@@ -17,14 +21,54 @@ namespace SWAM.Models.ExternalSupplier
 
         public ExternalSupplierAddress Address { get; set; }
 
-        public ExternalSupplierPhone Phone { get; set; }
+        public List<ExternalSupplierPhone> Phones { get; set; }
 
-        public ExternalSupplierEmailAddress ExternalSupplierEmailAddress { get; set; }
+        public ExternalSupplierEmailAddress EmailAddress { get; set; }
 
         public IList<WarehouseOrder> WarehouseOrders { get; set; }
-        //TODO: Try catch block
-        private static ApplicationDbContext context = new ApplicationDbContext();
 
+        private static ApplicationDbContext context = new ApplicationDbContext();
+        private static ApplicationDbContext Context
+        {
+            get
+            {
+                try
+                {
+                    return context;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => context = value;
+        }
         #region Get
         /// <summary>
         /// Resived externa supplier from database.
@@ -33,11 +77,29 @@ namespace SWAM.Models.ExternalSupplier
         /// <returns>External supplier from database.</returns>
         public static ExternalSupplier Get(int Id)
         {
-            context = new ApplicationDbContext();
-            return context.ExternalSuppliers
+            Context = new ApplicationDbContext();
+            return Context.ExternalSuppliers
                 .Include(e => e.Address)
-                .Include(e => e.Phone)
+                .Include(e => e.Phones)
+                .Include(e => e.EmailAddress)
                 .FirstOrDefault(e => e.Id == Id);
+        }
+        #endregion
+        #region IsExternalSupplierInDatabase
+        /// <summary>
+        /// Checks if the name is already in the database.
+        /// </summary>
+        /// <param name="name">Name of the external supplier to be retrieved in the database.</param>
+        /// <returns>True if name is already exist in database.</returns>
+        public static bool IsExternalSupplierInDatabase(string name)
+        {
+            if(name != string.Empty)
+            {
+                if (Context.People.FirstOrDefault(e => e.Name == name) != null)
+                    return true;
+            }
+
+            return false;
         }
         #endregion
         #region Add
@@ -49,8 +111,8 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplier != null)
             {
-                context.ExternalSuppliers.Add(externalSupplier);
-                context.SaveChanges();
+                Context.ExternalSuppliers.Add(externalSupplier);
+                Context.SaveChanges();
             }
         }
         #endregion
@@ -61,8 +123,8 @@ namespace SWAM.Models.ExternalSupplier
         /// <returns>External supplier phone list.</returns>
         public IList<ExternalSupplierPhone> GetExternalSupplierPhones()
         {
-            context = new ApplicationDbContext();
-            return context.ExternalSupplierPhones.Where(e => e.ExternalSupplier.Id == this.Id).ToList();
+            Context = new ApplicationDbContext();
+            return Context.ExternalSupplierPhones.Where(e => e.ExternalSupplier.Id == this.Id).ToList();
         }
         #endregion
         #region Edit
@@ -74,10 +136,10 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplier != null)
             {
-                context = new ApplicationDbContext();
-                var externalSupplierDb = context.ExternalSuppliers
+                Context = new ApplicationDbContext();
+                var externalSupplierDb = Context.ExternalSuppliers
                     .Include(e => e.Address)
-                    .Include(e => e.Phone)
+                    .Include(e => e.Phones)
                     .FirstOrDefault(e => e.Id == externalSupplier.Id);
 
                 if (externalSupplierDb != null)
@@ -89,10 +151,7 @@ namespace SWAM.Models.ExternalSupplier
                     externalSupplierDb.Address.PostCode = externalSupplier.Address.PostCode;
                     externalSupplierDb.Address.HouseNumber = externalSupplier.Address.HouseNumber;
                     externalSupplierDb.Address.ApartmentNumber = externalSupplier.Address.ApartmentNumber;
-                    externalSupplierDb.Phone.PhoneNumber = externalSupplier.Phone.PhoneNumber;
-                    externalSupplierDb.Phone.Note = externalSupplier.Phone.Note;
-
-                    context.SaveChanges();
+                    Context.SaveChanges();
                 }
             }
         }
@@ -106,13 +165,7 @@ namespace SWAM.Models.ExternalSupplier
         {
             if (externalSupplierPhone != null)
             {
-                var externalSupplier = context.ExternalSuppliers.Include(e => e.Phone).Include(e => e.Address).FirstOrDefault(e => e.Id == this.Id);
-
-                if (externalSupplier.Phone != null)
-                {
-                    Edit(externalSupplier);
-                    return;
-                }
+                var externalSupplier = Context.ExternalSuppliers.Include(e => e.Phones).FirstOrDefault(e => e.Id == this.Id);
 
                 var number = new ExternalSupplierPhone()
                 {
@@ -121,10 +174,40 @@ namespace SWAM.Models.ExternalSupplier
                     ExternalSupplier = externalSupplier
                 };
 
-                context.ExternalSupplierPhones.Add(number);
-                context.SaveChanges();
+                Context.ExternalSupplierPhones.Add(number);
+                Context.SaveChanges();
             }
         }
-        #endregion  
+        #endregion
+        #region AddEmail
+        /// <summary>
+        /// Edits the email address of the external supplier.
+        /// </summary>
+        /// <param name="emailAddress">New email address.</param>
+        public void EditEmail(ExternalSupplierEmailAddress emailAddress)
+        {
+            if (emailAddress != null)
+            {
+                var externalDb = Get(this.Id);
+
+                if (externalDb.EmailAddress != null)
+                {
+                    externalDb.EmailAddress.EmailAddress = emailAddress.EmailAddress;
+                    externalDb.EmailAddress.Note = emailAddress.Note;
+                }
+                else
+                {
+                    Context.ExternalSupplierEmailAddresses.Add(new ExternalSupplierEmailAddress()
+                    {
+                        ExternalSupplier = externalDb,
+                        EmailAddress = emailAddress.EmailAddress,
+                        Note = emailAddress.Note
+                    });
+                }
+
+                Context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }
