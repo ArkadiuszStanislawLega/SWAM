@@ -37,8 +37,8 @@ namespace SWAM.Windows
                     this.ShowDialog();
                 else
                 { 
-                    Hide();
-                    ShowDialog();
+                    this.Hide();
+                    this.ShowDialog();
                 }
             }
             catch(InvalidOperationException) {  /*TODO: Debug this.*/ }

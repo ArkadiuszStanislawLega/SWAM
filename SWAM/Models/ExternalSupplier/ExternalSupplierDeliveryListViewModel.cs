@@ -60,11 +60,14 @@ namespace SWAM.Models.ExternalSupplier
                                     .FirstOrDefault(w => w.Id == id);
                             }
 
-                            var userId = order.UserReceivedOrder.Id;
-                            order.UserReceivedOrder = context.People
-                                .OfType<User.User>()
-                                .Include(u => u.Phones)
-                                .FirstOrDefault(u => u.Id == userId);
+                            if (order.UserReceivedOrder != null)
+                            {
+                                var userId = order.UserReceivedOrder.Id;
+                                order.UserReceivedOrder = context.People
+                                    .OfType<User.User>()
+                                    .Include(u => u.Phones)
+                                    .FirstOrDefault(u => u.Id == userId);
+                            }
 
                             _warehouseOrders.Add(order);
                         }
