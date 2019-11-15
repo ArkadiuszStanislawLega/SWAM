@@ -27,20 +27,26 @@
             <StackPanel Margin="10">
                 <TextBlock Text="TIN"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="ExternalSupplierTIN" Width="250" Text="{Binding Tin}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierTIN" Width="250" Text="{Binding Tin}"/>
+                </Border>
             </StackPanel>
             <!--#region Name-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="ExternalSupplierName" Width="250" Text="{Binding Name}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierName" Width="250" Text="{Binding Name}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="ExternalSupplierEmail" Width="250" Text="{Binding EmailAddress.EmailAddress}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="ExternalSupplierEmail" Width="250" Text="{Binding EmailAddress.EmailAddress}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone numbers-->
@@ -49,11 +55,14 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10">
+
                                 <TextBlock Text="Numer kontaktowy"
                                             Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Name="ExternalSupplierPhone" 
+                                <Border Style="{StaticResource GrayBorder}">
+                                    <TextBlock Name="ExternalSupplierPhone" 
                                          Width="250" 
                                          Text="{Binding PhoneNumber}"/>
+                                </Border>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
