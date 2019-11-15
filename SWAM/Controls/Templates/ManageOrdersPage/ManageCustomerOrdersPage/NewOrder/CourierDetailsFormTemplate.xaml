@@ -27,27 +27,35 @@
             <StackPanel Margin="10">
                 <TextBlock Text="TIN"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="CourierTIN" Width="250" Text="{Binding Tin}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CourierTIN" Width="250" Text="{Binding Tin}"/>
+                </Border>
             </StackPanel>
             <!--#region Name-->
             <StackPanel Margin="10">
                 <TextBlock Text="Nazwa"
                            Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="CourierName" Width="250" Text="{Binding Name}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CourierName" Width="250" Text="{Binding Name}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region Phone number-->
             <StackPanel Margin="10">
                 <TextBlock Text="Numer kontaktowy"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="CourierPhoneNumber" Width="250" Text="{Binding Phone}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CourierPhoneNumber" Width="250" Text="{Binding Phone}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
             <!--#region e-mail-->
             <StackPanel Margin="10">
                 <TextBlock Text="Adres e-mail"
                             Style="{StaticResource ProfileProperties}"/>
-                <TextBlock Name="CourierEmailAddress" Width="250" Text="{Binding EmailAddress}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="CourierEmailAddress" Width="250" Text="{Binding EmailAddress}"/>
+                </Border>
             </StackPanel>
             <!--#endregion-->
         </StackPanel>
