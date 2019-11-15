@@ -12,7 +12,7 @@ namespace SWAM.Enumerators
 	public enum PaymentStatus
 	{
 		/// <summary>
-		/// Order is paid
+		/// Order is paid by customer
 		/// </summary>
 		Paid,
 		/// <summary>
