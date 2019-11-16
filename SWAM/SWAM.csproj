@@ -296,6 +296,10 @@
     <Compile Include="Migrations\201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.Designer.cs">
       <DependentUpon>201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911161052201_DropWarehouseAdressIdFromWarehousesTable.cs" />
+    <Compile Include="Migrations\201911161052201_DropWarehouseAdressIdFromWarehousesTable.Designer.cs">
+      <DependentUpon>201911161052201_DropWarehouseAdressIdFromWarehousesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -916,6 +920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.resx">
       <DependentUpon>201911120741550_UpdateExternalSupplierEmailAddressRenameEmailAddressColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911161052201_DropWarehouseAdressIdFromWarehousesTable.resx">
+      <DependentUpon>201911161052201_DropWarehouseAdressIdFromWarehousesTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
