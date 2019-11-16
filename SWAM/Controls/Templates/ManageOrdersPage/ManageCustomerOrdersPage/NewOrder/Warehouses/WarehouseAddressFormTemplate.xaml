@@ -9,30 +9,42 @@
     <StackPanel>
         <StackPanel Margin="10">
             <TextBlock Text="Kraj" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Country" Width="250" IsReadOnly="True" Text="{Binding WarehouseAddress.Country}"/>
+            <Border Style="{StaticResource GrayBorder}">
+                <TextBlock Name="Country" Width="250" Text="{Binding WarehouseAddress.Country}"/>
+            </Border>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10 10 0 10">
                 <TextBlock Text="Kod pocztowy" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="PostCode" IsReadOnly="True" Text="{Binding WarehouseAddress.PostCode}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="PostCode" Text="{Binding WarehouseAddress.PostCode}"/>
+                </Border>
             </StackPanel>
             <StackPanel Margin="20 10 0 10">
                 <TextBlock Text="Miasto" Style="{StaticResource ProfileProperties}"/>
-                <TextBox Name="City" Width="140" IsReadOnly="True" Text="{Binding WarehouseAddress.City}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock Name="City" Width="140" Text="{Binding WarehouseAddress.City}"/>
+                </Border>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10">
             <TextBlock Text="Ulica" Style="{StaticResource ProfileProperties}"/>
-            <TextBox Name="Street" Width="250" IsReadOnly="True" Text="{Binding WarehouseAddress.Street}"/>
+            <Border Style="{StaticResource GrayBorder}">
+                <TextBlock Name="Street" Width="250" Text="{Binding WarehouseAddress.Street}"/>
+            </Border>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <StackPanel Margin="10">
                 <TextBlock Text="Nr budynku" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="HouseNumber" IsReadOnly="True" Width="80" Text="{Binding WarehouseAddress.HouseNumber}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock HorizontalAlignment="Left" Name="HouseNumber" Width="80" Text="{Binding WarehouseAddress.HouseNumber}"/>
+                </Border>
             </StackPanel>
             <StackPanel Margin="10">
                 <TextBlock Text="Nr lokalu" Style="{StaticResource ProfileProperties}"/>
-                <TextBox HorizontalAlignment="Left" Name="ApartmentNumber" IsReadOnly="True" Width="80" Text="{Binding WarehouseAddress.ApartmentNumber}"/>
+                <Border Style="{StaticResource GrayBorder}">
+                    <TextBlock HorizontalAlignment="Left" Name="ApartmentNumber" Width="80" Text="{Binding WarehouseAddress.ApartmentNumber}"/>
+                </Border>
             </StackPanel>
         </StackPanel>
     </StackPanel>
