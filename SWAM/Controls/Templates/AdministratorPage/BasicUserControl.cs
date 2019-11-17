@@ -2,6 +2,8 @@
 using SWAM.Exceptions;
 using SWAM.Windows;
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +16,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
     /// </summary>
     public partial class BasicUserControl : UserControl
     {
+        private readonly List<CancellationTokenSource> _cancellationTokens = new List<CancellationTokenSource>();
         /// <summary>
         /// Main window instance.
         /// </summary>
@@ -80,6 +83,7 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
                 {
                     mainWindow.InformationForUser(message, warning);
+                    HideInformation();
                     return true;
                 }
                 else throw new InformationLabelException(message);
@@ -92,7 +96,61 @@ namespace SWAM.Controls.Templates.AdministratorPage
         }
         #endregion
 
+        #region HideInformation
+        /// <summary>
+        /// Hides the information bar after a specified time.
+        /// </summary>
+        /// <param name="mainWindow">Main window of application.</param>
+        /// <returns>Hiding Task</returns>
+        private async void HideInformation()
+        {
+            //When new task is added old task should be finished.
+            if (this._cancellationTokens.Count > 0)
+            {
+                this._cancellationTokens[_cancellationTokens.Count - 1].Cancel();
+                this._cancellationTokens.RemoveAt(_cancellationTokens.Count - 1);
+            }
 
+            await GetTask();
+        }
+        #endregion
+        #region GetTask
+        /// <summary>
+        /// A task that measures the time to hide the last information for the user that has been shown.
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetTask()
+        {
+            int counter = 0;
+            //Creating new cancellation token source is needed to cancel a new task that will be added.
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+            //Add new cancelation token to list.
+            this._cancellationTokens.Add(cts);
+
+            await Task.Run(async () =>
+            {
+                //Counting seconds to hide information
+                while (counter < SWAM.MainWindow.TIME_LEFT_TO_HIDE_INFORMATION)
+                {
+                    //if the job cancellation token is activated - break this loop
+                    if (token.IsCancellationRequested) break;
+                    //Await 1 second
+                    await Task.Delay(1000);
+                    counter++;
+
+                    //If number of second is equal property TIME_LEFT_TO_HIDE_INFORMATION then start storyboard to hide information.
+                    if (counter == SWAM.MainWindow.TIME_LEFT_TO_HIDE_INFORMATION)
+                    {
+                        Dispatcher.Invoke(new Action(() => {
+                            SWAM.MainWindow.Instance.HideInformationForUser();
+                        }))
+                       ;
+                    }
+                }
+            }, token);
+        }
+        #endregion
         #region UserProfileRefresh
         /// <summary>
         /// Refresh current user profile.
