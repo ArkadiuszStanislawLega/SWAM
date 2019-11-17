@@ -175,5 +175,6 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Event is clicked.</param>
         private void SortAscending_Click(object sender, RoutedEventArgs e) => ChangeSorting();
         #endregion
+
     }
 }

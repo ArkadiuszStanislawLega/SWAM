@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
 using SWAM.Enumerators;
@@ -19,11 +22,27 @@ namespace SWAM
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-        #region Constances
+        #region Constance values
         /// <summary>
         /// Minimum courier name size.
         /// </summary>
         public const int MIN_NAME_LENGTH = 3;
+        /// <summary>
+        /// Time in seconds after which the information bar will hide.
+        /// </summary>
+        public const int TIME_LEFT_TO_HIDE_INFORMATION = 6;
+        /// <summary>
+        /// The max number of failed attempts to log into the system.
+        /// </summary>
+        public const int MAX_FAILED_LOGING_ATTEMPTS = 3;
+        /// <summary>
+        /// The time penalty provided for the first incorrect login attempt.
+        /// </summary>
+        public const int FIRST_ATTEMPT_DELAY = 3;
+        /// <summary>
+        /// The time penalty provided for the second incorrect login attempt.
+        /// </summary>
+        public const int SECOND_ATTEMPT_DELAY = 10;
         /// <summary>
         /// Time in miliseconds after which the messages are to be refreshed again. 
         /// Currently default value is 5 min.
@@ -180,6 +199,10 @@ namespace SWAM
                                           /**/ PagesUserControls.ManageCouriersPage,
                                           /**/ PagesUserControls.ManageExternalSuppliersPage}},
         };
+        /// <summary>
+        /// List with cancellation tokens to cancel hide information.
+        /// </summary>
+        private readonly List<CancellationTokenSource> _cancellationTokens = new List<CancellationTokenSource>();
         #endregion
 
         #region BasicConstructor
@@ -384,6 +407,76 @@ namespace SWAM
 
             if (warning) InformationLabel.Background = (Brush)Application.Current.FindResource("WarningBrash");
             else InformationLabel.Background = Brushes.Transparent;
+
+            HideInformation();
+        }
+        #endregion
+
+        #region HideInformation
+        /// <summary>
+        /// Hides the information bar after a specified time.
+        /// </summary>
+        /// <param name="mainWindow">Main window of application.</param>
+        /// <returns>Hiding Task</returns>
+        private async void HideInformation()
+        {
+            //When new task is added old task should be finished.
+            if (this._cancellationTokens.Count > 0)
+            {
+                this._cancellationTokens[_cancellationTokens.Count - 1].Cancel();
+                this._cancellationTokens.RemoveAt(_cancellationTokens.Count - 1);
+            }
+
+            await GetTask();
+        }
+        #endregion
+        #region GetTask
+        /// <summary>
+        /// A task that measures the time to hide the last information for the user that has been shown.
+        /// </summary>
+        /// <returns></returns>
+        private async Task GetTask()
+        {
+            int counter = 0;
+            //Creating new cancellation token source is needed to cancel a new task that will be added.
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token; 
+            //Add new cancelation token to list.
+            this._cancellationTokens.Add(cts);
+
+            await Task.Run(async () =>
+            {
+                //Counting seconds to hide information
+                while (counter < TIME_LEFT_TO_HIDE_INFORMATION)
+                {
+                    //if the job cancellation token is activated - break this loop
+                    if (token.IsCancellationRequested) break;
+                    //Await 1 second
+                    await Task.Delay(1000);
+                    counter++;
+
+                    //If number of second is equal property TIME_LEFT_TO_HIDE_INFORMATION then start storyboard to hide information.
+                    if (counter == TIME_LEFT_TO_HIDE_INFORMATION)
+                    {
+                        Dispatcher.Invoke(new Action(() => {
+                            HideInformationForUser();
+                        }))
+                       ;
+                    }
+                }
+            }, token);
+        }
+        #endregion
+        #region HideInformationForUser
+        /// <summary>
+        /// Changing value of information bar to empty and makes background to transparent.
+        /// </summary>
+        public void HideInformationForUser()
+        {
+            var hideInfomrationBarStoryboard = (Storyboard)this.FindResource("HideInformationBar");
+            hideInfomrationBarStoryboard.Completed += (sender, e) => this.InformationLabel.Text = string.Empty;
+
+            this.BeginStoryboard(hideInfomrationBarStoryboard);
         }
         #endregion
         #region Statc Methods

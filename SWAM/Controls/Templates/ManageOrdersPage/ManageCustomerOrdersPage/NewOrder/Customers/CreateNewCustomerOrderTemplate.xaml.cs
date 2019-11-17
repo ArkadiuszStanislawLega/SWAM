@@ -78,7 +78,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if (pages.Last().Key == visiblePage)
             {
                 // Submit form
-                CreateCustomerOrder();
+                CreateCustomerOrderAsync();
                 return;
             }
 
@@ -164,7 +164,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <summary>
         /// Gets form values and creates customer order
         /// </summary>
-        private void CreateCustomerOrder()
+        private void CreateCustomerOrderAsync()
         {
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;

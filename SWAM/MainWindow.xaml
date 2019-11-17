@@ -38,6 +38,15 @@
                              From="1" To="0"/>
         </Storyboard>
         <!--#endregion-->
+        <!--#region HideInformationBar-->
+        <Storyboard x:Key="HideInformationBar">
+            <ColorAnimation Storyboard.TargetName="InformationLabel"
+                            Storyboard.TargetProperty="(TextBlock.Background).(SolidColorBrush.Color)" 
+                            
+                            To="Transparent" 
+                            Duration="0:0:1"/>
+        </Storyboard>
+        <!--#endregion-->
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="com:MainWindowCommands.RefreshData" Executed="RefreshDataCommand_Executed" />
@@ -206,7 +215,7 @@
                     VerticalAlignment="Top" Height="20" >
             <Grid Background="{StaticResource  MainBarBrash}" 
                   Opacity="0.8">
-                <TextBlock Name="InformationLabel" 
+                <TextBlock Name="InformationLabel"
                            Text="Jesteś nie zalogowany" 
                            Padding="2"/>
             </Grid>

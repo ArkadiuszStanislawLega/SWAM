@@ -235,6 +235,5 @@ namespace SWAM
 		}
 
 		private void CancelAddingButton_Click(object sender, RoutedEventArgs e) => ClearData();
-
-	}
+    }
 }

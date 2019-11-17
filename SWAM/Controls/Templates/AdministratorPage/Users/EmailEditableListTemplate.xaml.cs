@@ -41,11 +41,11 @@ namespace SWAM.Controls.Templates.AdministratorPage
                         RefreshEmailsList();
                         InformationToUser($"Dodano nowy adress e-mail {email.AddressEmail} użytkownikowi {user.Name}.");
                     }
-                    else InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu e-mail.");
+                    else  InformationToUser($"Nie udało się dodać użytkownikowi {user.Name} nowego adresu e-mail.");
                 }
-                else InformationToUser($"Adres e-mail {this.NewEmail.Text} jest błędny.", true);
+                else  InformationToUser($"Adres e-mail {this.NewEmail.Text} jest błędny.", true);
             }
-            else InformationToUser($"Nie udało się dodać użytkownikowi nowy adress e-mail.");
+            else  InformationToUser($"Nie udało się dodać użytkownikowi nowy adress e-mail.");
 
             this.NewEmail.Text = string.Empty;
         }

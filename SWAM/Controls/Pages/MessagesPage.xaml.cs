@@ -259,5 +259,6 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Action clicked</param>
         private void RefreshMessage_Click(object sender, RoutedEventArgs e) => RefreshData();
         #endregion
+
     }
 }

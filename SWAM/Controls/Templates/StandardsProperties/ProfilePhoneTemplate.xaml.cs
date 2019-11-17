@@ -42,5 +42,6 @@ namespace SWAM.Controls.Templates.StandardsProperties
             else InformationToUser("");
         }
         #endregion
+
     }
 }

@@ -2,13 +2,14 @@
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using System.Text.RegularExpressions;
+using SWAM.Controls.Templates.AdministratorPage;
 
 namespace SWAM.Controls.Templates
 {
     /// <summary>
     /// Logika interakcji dla klasy WarehouseTechnicalDataTemplate.xaml
     /// </summary>
-    public partial class WarehouseTechnicalDataTemplate : UserControl
+    public partial class WarehouseTechnicalDataTemplate : BasicUserControl
     {
         public WarehouseTechnicalDataTemplate()
         {
@@ -49,21 +50,6 @@ namespace SWAM.Controls.Templates
         }
         #endregion
 
-        #region InformationToUser
-        /// <summary>
-        /// Changing content inforamtion label in main window.
-        /// </summary>
-        protected bool InformationToUser(string message, bool warning = false)
-        {
-            if (SWAM.MainWindow.FindParent<SWAM.MainWindow>(this) is SWAM.MainWindow mainWindow)
-            {
-                mainWindow.InformationForUser(message, warning);
-                return true;
-            }
-            else return false;
-        }
-        #endregion
-
         #region ClearControls
         /// <summary>
         /// Clear all TextBlocks.
@@ -75,6 +61,7 @@ namespace SWAM.Controls.Templates
             this.pLength.Text = "";
             this.pAcceptableWeight.Text = "";
         }
-        #endregion  
+        #endregion
+
     }
 }

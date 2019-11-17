@@ -165,7 +165,7 @@ namespace SWAM.Models.User
                                 userFinded.ChangeStatus(StatusOfUserAccount.Active);
                                 userFinded.ChangeExpiryDateOfTheBlockade(null);
 
-                                MainWindow.Instance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
+                                 MainWindow.Instance.InformationForUser($"Czas blokady konta minął, witamy ponownie.", true);
                             }
                             else
                             {
@@ -176,12 +176,12 @@ namespace SWAM.Models.User
                                     var timeOfBlockadeLeft = userFinded.ExpiryDateOfTheBlockade - DateTime.Now;
                                     var stringBlockadeDay = timeOfBlockadeLeft.Value.Days == 1 ? "dzień" : "dni";
 
-                                    MainWindow.Instance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
+                                     MainWindow.Instance.InformationForUser($"Twoje konto jest zablokowane, skontaktuj się z administratorem. Do końca blokady pozostało: {timeOfBlockadeLeft.Value.Days} {stringBlockadeDay}, oraz {timeOfBlockadeLeft.Value.Hours}:{timeOfBlockadeLeft.Value.Minutes}:{timeOfBlockadeLeft.Value.Seconds}", true);
                                 }
                                 //If time is not seated, inform about pernament block of account.
                                 else
                                 {
-                                    MainWindow.Instance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
+                                     MainWindow.Instance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
                                 }
 
                                 return false;

@@ -45,13 +45,13 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
                     user.ChangeExpiryDateOfTheBlockade(this.Calendar.SelectedDate);
                     UserProfileRefresh();
 
-                    InformationToUser($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
+                    InformationToUserAsync($"Data blokady użytkownika {user.Name} została zmieniona na {this.Calendar.SelectedDate}.");
                 }
                 else
-                    InformationToUser($"{ErrorMesages.DATACONTEXT_ERROR}", true);
+                    InformationToUserAsync($"{ErrorMesages.DATACONTEXT_ERROR}", true);
             }
             else
-                InformationToUser($"Popraw datę blokady użytkownika. Data nie może być wcześniejsza niż dzisiejsza.", true);
+                InformationToUserAsync($"Popraw datę blokady użytkownika. Data nie może być wcześniejsza niż dzisiejsza.", true);
         }
         #endregion
 
@@ -74,7 +74,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         /// <summary>
         /// Changing content inforamtion label in main window.
         /// </summary>
-        private bool InformationToUser(string message, bool warning = false)
+        private bool InformationToUserAsync(string message, bool warning = false)
         {
             try
             {

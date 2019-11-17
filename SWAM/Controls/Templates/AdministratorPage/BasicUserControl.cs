@@ -91,6 +91,8 @@ namespace SWAM.Controls.Templates.AdministratorPage
             }
         }
         #endregion
+
+
         #region UserProfileRefresh
         /// <summary>
         /// Refresh current user profile.

@@ -187,7 +187,7 @@
                                     <DataTemplate>
                                         <Grid>
                                             <Button Tag="{Binding Id}"
-                                                Style="{StaticResource UsersListButtons}"
+                                                Style="{StaticResource UsersListButtons}" 
                                                 Click="Item_Click"/>
                                         </Grid>
                                     </DataTemplate>

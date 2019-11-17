@@ -135,6 +135,7 @@ namespace SWAM.Controls.Pages
             else InformationToUser(ErrorMesages.REFRESH_CUSTOMER_PROFILE_ERROR);
         }
         #endregion
+
         #region TextBox_TextChanged
         /// <summary>
         /// Action when user type courier name in text box.

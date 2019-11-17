@@ -6,6 +6,7 @@ using SWAM.Windows;
 using SWAM.Enumerators;
 using SWAM.Exceptions;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SWAM.Controls.Pages
 {
