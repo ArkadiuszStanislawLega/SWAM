@@ -55,8 +55,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="10">
-
-                                <TextBlock Text="Numer kontaktowy"
+                                <TextBlock Text="{Binding Note, StringFormat={}Numer kontaktowy - {0}}"
                                             Style="{StaticResource ProfileProperties}"/>
                                 <Border Style="{StaticResource GrayBorder}">
                                     <TextBlock Name="ExternalSupplierPhone" 
