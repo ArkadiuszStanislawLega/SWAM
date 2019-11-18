@@ -53,8 +53,6 @@ namespace SWAM.Models.ManageOrdersPage
             {
                 _states.Add(item);
             }
-
-            ProductOrderListViewModel.Instance.Clear();
         }
         #endregion
 

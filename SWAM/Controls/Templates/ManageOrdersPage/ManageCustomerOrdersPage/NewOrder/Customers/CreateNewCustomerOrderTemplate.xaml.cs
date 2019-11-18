@@ -283,6 +283,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             ProductOrderListViewModel.Instance.Clear();
             PaymentOrderViewModel.Instance.Refresh();
             UserDependsAccessProductListViewModel.Instance.Refresh();
+            ProductOrderListViewModel.Instance.Clear();
             WarehouseInformationViewModel.Instance.Clear();
             Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();
 
