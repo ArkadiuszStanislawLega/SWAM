@@ -83,6 +83,7 @@
                 </Button>
 
                 <Button Name="RefreshMessage"
+                        IsDefault="True"
                         Margin="2"
                         Style="{StaticResource BasicFunctionalButtons}"
                         ToolTip="Odśwież"

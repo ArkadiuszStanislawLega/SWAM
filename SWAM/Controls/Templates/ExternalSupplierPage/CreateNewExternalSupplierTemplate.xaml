@@ -56,6 +56,7 @@
         </Grid>
 
         <Button Name="Comfirm"
+                IsDefault="True"
                 Background="{StaticResource GraphiteBrash}"
                 Content="Utwórz" Click="AddNewExternalSupplier_Click"
                 VerticalAlignment="Top"

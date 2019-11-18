@@ -112,9 +112,10 @@
                             </Button.Triggers>
                         </Button>
                         <Button Width="15" 
-                            Height="30"
-                            Click="AddNewWarehouseOrder_Click" 
-                            Style="{StaticResource FaLightGrayBackground}">
+                                Height="30"
+                                IsDefault="True"
+                                Click="AddNewWarehouseOrder_Click" 
+                                Style="{StaticResource FaLightGrayBackground}">
                             <fa:ImageAwesome Icon="Plus" 
                                          Foreground="{StaticResource FontsBrash}"
                                          ToolTip="Dodaj nowe zamówienie."/>

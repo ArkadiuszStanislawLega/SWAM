@@ -55,7 +55,8 @@
         </Grid>
 
         <Button Name="Comfirm"
-                    Background="{StaticResource GraphiteBrash}"
+                IsDefault="True"
+                Background="{StaticResource GraphiteBrash}"
                 Content="Utwórz" Click="AddNewCustomer_Click"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"

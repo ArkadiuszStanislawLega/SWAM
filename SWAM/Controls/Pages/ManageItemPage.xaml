@@ -458,6 +458,7 @@
                             </Button>
 
                             <Button Grid.Column="2"
+                                    IsDefault="True"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Top"
                                     Style="{StaticResource BasicFunctionalButtons}"
