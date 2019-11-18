@@ -37,8 +37,7 @@ namespace SWAM.Controls.Templates.MessagesPage
         /// <param name="e">Entered character</param>
         private void UserName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //filter is required observable collection.
-            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.Instance);
+            ICollectionView filter = CollectionViewSource.GetDefaultView(MessagesUsersList.Instance.UsersList);
             filter.Filter = user =>
             {
                 User allUsersWhose = user as User;

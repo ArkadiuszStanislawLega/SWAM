@@ -8,9 +8,9 @@ namespace SWAM.Models.Messages
 {
     public class MessagesUsersList : UserControl
     {
-        private readonly static ObservableCollection<User.User> _usersListViewModel = new ObservableCollection<User.User>();
+        private readonly ObservableCollection<User.User> _usersListViewModel = new ObservableCollection<User.User>();
 
-        public static ObservableCollection<User.User> UsersList => _usersListViewModel; 
+        public ObservableCollection<User.User> UsersList => _usersListViewModel; 
 
         #region Singletone Pattern
         static MessagesUsersList() => _instance.Refresh();
