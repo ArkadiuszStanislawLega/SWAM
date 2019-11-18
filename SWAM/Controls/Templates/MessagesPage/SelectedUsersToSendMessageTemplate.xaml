@@ -7,28 +7,29 @@
              xmlns:usersLVM="clr-namespace:SWAM.Models.Messages"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid MaxHeight="100">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Wybrani użytkownicy:" Style="{StaticResource ProfileProperties}"
                        Grid.Column="0" VerticalAlignment="Center"/>
-        <ItemsControl Name="ChosenUserContainer"
-                      Margin="10 0 0 0"
-                      DataContext="{x:Static usersLVM:SelectedUsersListViewModel.Instance}"
-                      ItemsSource="{Binding UsersList}" 
-                    Grid.Column="1">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <local:SelectedUsersItemListTemplate/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Margin="3"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <ScrollViewer  Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+            <ItemsControl Name="ChosenUserContainer"
+                          Margin="10 0 0 0"
+                          DataContext="{x:Static usersLVM:SelectedUsersListViewModel.Instance}"
+                          ItemsSource="{Binding UsersList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate >
+                        <local:SelectedUsersItemListTemplate/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Margin="3"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>
