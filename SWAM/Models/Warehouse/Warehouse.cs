@@ -142,15 +142,10 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         /// <param name="id">Number Id of warehouse in database.</param>
         /// <returns>Returns Specific warehouse from database or null if warehouse doesn't exist.</returns>
-        public Warehouse Get(int id)
+        public Warehouse Get()
         {
-            if (id > 0)
-            {
-                Context = new ApplicationDbContext();
-                return Context.Warehouses.FirstOrDefault(w => w.Id == id);
-            }
-
-            return null;
+            Context = new ApplicationDbContext();
+            return Context.Warehouses.FirstOrDefault(w => w.Id == this.Id);
         }
         #endregion
         #region Edit

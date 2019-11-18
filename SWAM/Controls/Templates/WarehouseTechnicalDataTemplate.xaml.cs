@@ -46,7 +46,6 @@ namespace SWAM.Controls.Templates
                 textBox.Text = new string(charArray);
                 InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
             }
-            else InformationToUser("");
         }
         #endregion
 

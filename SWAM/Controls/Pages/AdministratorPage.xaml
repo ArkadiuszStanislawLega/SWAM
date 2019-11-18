@@ -47,6 +47,7 @@
                     HorizontalAlignment="Left"
                     Grid.Row="0">
             <nav:NavigationButtonTemplate Width="130" 
+                                          IsDefault="True"
                                           Bookmark="UsersControlPanel"
                                           Content="Użytkownicy" 
                                           x:Name="SwitchToUsersControlPanel" 

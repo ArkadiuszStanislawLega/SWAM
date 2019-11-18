@@ -48,6 +48,7 @@
         </Grid>
 
         <Button Name="Comfirm"
+                IsDefault="True"
                 Content="Utwórz" Click="AddNewCourier_Click"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"

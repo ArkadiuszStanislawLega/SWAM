@@ -116,7 +116,6 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
                 textBox.Text = new string(charArray);
                 InformationToUser($"Podając tą wartość możesz użyć tylko cyfr.", true);
             }
-            else InformationToUser("");
         }
         #endregion
         #region ClearControls

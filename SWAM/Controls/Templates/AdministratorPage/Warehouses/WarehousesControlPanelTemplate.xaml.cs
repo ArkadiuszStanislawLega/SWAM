@@ -49,10 +49,10 @@ namespace SWAM.Templates.AdministratorPage
         /// <return>Chosen warehouse profile.</return>
         private WarehouseProfileTemplate CreateWarehouseProfile(int warehouseIndexInWaregohouseList)
         {
-            var context = new ApplicationDbContext();
+            var warehouse = new Warehouse() { Id = warehouseIndexInWaregohouseList };
             return new WarehouseProfileTemplate()
             {
-                DataContext = context.Warehouses.FirstOrDefault(w => w.Id == warehouseIndexInWaregohouseList)
+                DataContext = warehouse.Get()
             };
         }
         #endregion
