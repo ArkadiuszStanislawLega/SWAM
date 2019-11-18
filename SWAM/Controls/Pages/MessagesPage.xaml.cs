@@ -156,6 +156,7 @@ namespace SWAM.Controls.Pages
             else SetSendedContent();
 
             UsersListViewModel.Instance.Refresh();
+            MainWindow.Instance.RefreshMessagesButton();
         }
         #endregion
 

@@ -71,7 +71,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void SwitchContentNextButton_Click(object sender, RoutedEventArgs e)
+        private void SwitchContentNextButton_Click(object sender, RoutedEventArgs e)
         {
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
