@@ -187,6 +187,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             warehouseProfile.DataContext = null;
             externalSupplierProfile.DataContext = null;
             ProductOrderListViewModel.Instance.Clear();
+            WarehouseOrderListViewModel.Instance.Refresh();
 
             visiblePage = WarehouseOrderVisiblePage.WarehousePage;
             SwitchPagesVisibility();
