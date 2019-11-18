@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using SWAM.Strings;
+using SWAM.Models.AdministratorPage;
 
 namespace SWAM.Controls.Pages
 {
@@ -153,6 +154,8 @@ namespace SWAM.Controls.Pages
         {
             if (this._isResivedIsOpen) SetReceivedContent();
             else SetSendedContent();
+
+            UsersListViewModel.Instance.Refresh();
         }
         #endregion
 

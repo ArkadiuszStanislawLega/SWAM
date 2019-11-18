@@ -111,6 +111,11 @@ namespace SWAM.Controls.Templates.MessagesPage
                 SWAM.Models.Message.AddManyMessages(this._messagesList);
             }
 
+            this.Message.Text = string.Empty;
+            this.Title.Text = string.Empty;
+            this._messagesList.Clear();
+            SelectedUsersListViewModel.Instance.UsersList.Clear();
+
             if (SWAM.MainWindow.FindParent<SendMessageWindow>(this) is SendMessageWindow sendMessageWindow)
                 sendMessageWindow.Hide();
 
