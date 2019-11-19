@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using SWAM.Models.Customer;
+using SWAM.Enumerators;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -26,7 +27,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             {
                 if (this.EditPaymentStatus.SelectedItem != null)
                 {
-                    customerOrder.CustomerOrderStatus = (Enumerators.CustomerOrderStatus)this.EditPaymentStatus.SelectedItem;
+                    if ((PaymentStatus)this.EditPaymentStatus.SelectedItem == PaymentStatus.Paid)
+                        customerOrder.IsPaid = true;
+                    else
+                        customerOrder.IsPaid = false;
 
                     customerOrder.Edit(customerOrder);
                     this.DataContext = CustomerOrder.Get(customerOrder.Id);

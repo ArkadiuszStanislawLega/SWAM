@@ -162,13 +162,9 @@ namespace SWAM.Models.Customer
             {
                 Context = new ApplicationDbContext();
                 var customerOrderDb = Context.CustomerOrders.FirstOrDefault(c => c.Id == this.Id);
+                customerOrderDb.IsPaid = customerOrder.IsPaid;
                 customerOrderDb.PaymentType = customerOrder.PaymentType;
                 customerOrderDb.ShipmentType = customerOrder.ShipmentType;
-                if(customerOrder != null)
-                    customerOrderDb.DeliveryAddress = customerOrder.DeliveryAddress;
-
-                if (customerOrder.Courier != null)
-                    customerOrderDb.Courier = customerOrder.Courier;
 
                 Context.SaveChanges();
             }
