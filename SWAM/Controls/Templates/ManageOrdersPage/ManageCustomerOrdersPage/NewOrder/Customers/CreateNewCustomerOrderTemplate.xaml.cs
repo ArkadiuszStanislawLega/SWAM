@@ -243,7 +243,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 CreatorId = employee.Id,
                 CustomerId = customer.Id,
                 WarehouseId = employeeWarehouse
-                //CustomerOrderPositions = orderedProducts
             };
 
             // Add order status based on selected pay method
@@ -253,7 +252,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             }
             else if ((PaymentType)(int.Parse(chekedRadioButton.Tag.ToString())) == PaymentType.Prepaid)
             {
-                customerOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
+                // Check if order is paid
+                if((bool)isPaid.IsChecked)
+                {
+                    customerOrder.IsPaid = true;
+                    customerOrder.CustomerOrderStatus = CustomerOrderStatus.InProcess;
+                }
+                else
+                {
+                    customerOrder.IsPaid = false;
+                    customerOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
+                }
             }
 
             // Add address only if package is not personaly collected by customer
