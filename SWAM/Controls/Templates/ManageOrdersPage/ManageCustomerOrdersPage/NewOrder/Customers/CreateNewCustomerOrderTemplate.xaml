@@ -57,7 +57,7 @@
         </Grid>
 
         <!--#region customerElementsContainer-->
-        <ScrollViewer x:Name="customerElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
+        <ScrollViewer x:Name="customerElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
             <Grid HorizontalAlignment="Center">
                 <!--#region RowsDefinitions-->
                 <Grid.ColumnDefinitions>
@@ -131,7 +131,7 @@
         <!--#endregion-->
 
         <!--#region courierElementsContainer-->
-        <ScrollViewer x:Name="courierElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Hidden">
+        <ScrollViewer x:Name="courierElementsContainer" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="Visible">
             <Grid HorizontalAlignment="Center">
                 <!--#region RowsDefinitions-->
                 <Grid.ColumnDefinitions>
@@ -209,7 +209,7 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
-
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" FontSize="20" Text="Dane płatności" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
@@ -220,7 +220,9 @@
                                 <RadioButton Name="postPaid" Tag="1">Płatność pobraniowa</RadioButton>
                             </StackPanel>
 
-                            <manageOrdersControls:PaymentOrderTemplate Grid.Row="2" Margin="20 10 0 0"/>
+                            <CheckBox Grid.Row="2" Name="isPaid" Foreground="Gray" Content="Zapłacono?" Margin="20 10 0 10"/>
+
+                            <manageOrdersControls:PaymentOrderTemplate Grid.Row="3" Margin="20 10 0 0"/>
                         </Grid>
                     </Grid>
                 </Grid>
