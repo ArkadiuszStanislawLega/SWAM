@@ -94,7 +94,7 @@ namespace SWAM.Models.Customer
         public static Customer Get(int Id)
         {
             Context = new ApplicationDbContext();
-            return Context.People.OfType<Customer>().Include(c => c.ResidentalAddress).FirstOrDefault(c => c.Id == Id);
+            return Context.Customers.Include(c => c.ResidentalAddress).FirstOrDefault(c => c.Id == Id);
         }
         #endregion
         #region Add
