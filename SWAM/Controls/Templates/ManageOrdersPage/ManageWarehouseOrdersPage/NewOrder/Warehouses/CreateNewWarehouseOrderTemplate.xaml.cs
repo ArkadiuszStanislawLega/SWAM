@@ -150,13 +150,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
             var warehouseOrder = new WarehouseOrder
             {
-                IsPaid = true,
                 OrderDate = DateTime.Now,
                 WarehouseId = warehouse.Id,
                 CreatorId = employee.Id,
                 ExternalSupplayerId = externalSupplier.Id,
                 WarehouseOrderStatus = WarehouseOrderStatus.Ordered
             };
+
+            // Check if order is paid
+            warehouseOrder.IsPaid = (bool)isPaid.IsChecked ? true : false;
 
             context.WarehouseOrders.Add(warehouseOrder);
             context.SaveChanges();
