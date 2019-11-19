@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SWAM.Models.Warehouse;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 { 
@@ -24,10 +25,28 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
         public WarehouseOrderProfileTemplate()
         {
             InitializeComponent();
+		}
+						
+		private void ConfirmStatusChange_Button(object sender, RoutedEventArgs e)
+		{
+			if (DataContext is WarehouseOrder warehouseOrder && EditOrderStatus.SelectedItem != null)
+			{
+				WarehouseOrder.ChangeDeliveryStatus((WarehouseOrderStatus)EditOrderStatus.SelectedItem, warehouseOrder);
+				DataContext = new ApplicationDbContext();
+				DataContext = warehouseOrder;				
+			}
+		} 
 
+		private void ConfirmPaymentStatusChange_Button(object sender, RoutedEventArgs e)
+		{
+			if (DataContext is WarehouseOrder warehouseOrder && EditPaymentStatus.SelectedItem != null)
+			{
+				WarehouseOrder.ChangePaymentStatus((PaymentStatus)EditPaymentStatus.SelectedItem, warehouseOrder);
+				DataContext = new ApplicationDbContext();
+				DataContext = warehouseOrder;
+			}
 		}
 
-		
 
 
 	}

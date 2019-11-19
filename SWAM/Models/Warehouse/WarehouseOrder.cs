@@ -6,6 +6,7 @@ using System.Linq;
 using SWAM.Strings;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Windows;
 
 namespace SWAM.Models.Warehouse
 {
@@ -121,5 +122,31 @@ namespace SWAM.Models.Warehouse
                  .Include(w => w.Warehouse)                
                  .ToList();
         }
-    }
+
+		public static void ChangePaymentStatus(PaymentStatus status, WarehouseOrder order)
+		{
+			if (status.ToString() != null)
+			{				
+				var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == order.Id);
+				if (status == PaymentStatus.Paid) dbOrder.IsPaid = true;
+				else dbOrder.IsPaid = false;
+				Context.SaveChanges();				
+			}			
+		}
+
+		public static void ChangeDeliveryStatus(WarehouseOrderStatus status, WarehouseOrder order)
+		{
+			var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == order.Id);
+			if (status == WarehouseOrderStatus.Ordered) dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Ordered;
+			else if (status == WarehouseOrderStatus.InDelivery) dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;
+			else if (status == WarehouseOrderStatus.Delivered)
+			{
+				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
+				dbOrder.DeliveryDate = DateTime.Now;
+				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;				
+			}
+			Context.SaveChanges();			
+		}
+		
+	}
 }

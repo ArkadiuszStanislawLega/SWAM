@@ -31,6 +31,7 @@ namespace SWAM.Models.ProductListViewModel
                 _products.Clear();
 
             var productsListFromDb = Product.AllProducts();
+
             if (productsListFromDb != null)
             {
                 foreach (var item in productsListFromDb)
