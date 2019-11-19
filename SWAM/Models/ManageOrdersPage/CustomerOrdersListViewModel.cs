@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using SWAM.Enumerators;
+using SWAM.Exceptions;
+using System;
+using SWAM.Strings;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Linq;
+using System.Data.Entity;
+
 
 namespace SWAM.Models.ManageOrdersPage
 {
@@ -10,6 +19,57 @@ namespace SWAM.Models.ManageOrdersPage
         private readonly ObservableCollection<CustomerOrder> _customerOrders = new ObservableCollection<CustomerOrder>();
         public ObservableCollection<CustomerOrder> CustomerOrders => this._customerOrders;
 
+        /// <summary>
+        /// The type of status of delivery.
+        /// </summary>
+        public CustomerOrderStatus CustomerOrderStatus { get; set; }
+
+        public int Id { get; set; }
+
+        #region Database connection
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
+        private static ApplicationDbContext context
+        {
+            get
+            {
+                try
+                {
+                    return dbContext;
+                }
+                catch (DbUpdateConcurrencyException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbUpdateException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (DbEntityValidationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (NotSupportedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (ObjectDisposedException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
+                    return null;
+                }
+            }
+            set => dbContext = value;
+        }
+        #endregion
         #region SingletonePattern
         /// <summary>
         /// Constructor.
@@ -34,5 +94,30 @@ namespace SWAM.Models.ManageOrdersPage
                 }
             }
         }
+
+        #region ChangeStatus
+        /// <summary>
+        /// Changing status in database.
+        /// </summary>
+        /// <param name="customerOrderStatus">New status.</param>
+        public void ChangeStatus(CustomerOrderStatus customerOrderStatus)
+        {
+            context.CustomerOrders.OfType<CustomerOrder>().FirstOrDefault(u => u.Id == this.Id).CustomerOrderStatus = customerOrderStatus;
+            context.SaveChanges();
+        }
+        #endregion
+
+        public static List<CustomerOrder> AllCustomerOrdersList() => context
+        .CustomerOrders.OfType<CustomerOrder>()
+        .ToList();
+
+
+
+
+
+
+
+
+
     }
 }
