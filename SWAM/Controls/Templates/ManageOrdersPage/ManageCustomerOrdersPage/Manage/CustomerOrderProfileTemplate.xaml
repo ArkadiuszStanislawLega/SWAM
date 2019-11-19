@@ -403,6 +403,7 @@
                         </ComboBox>
 
                         <Button Name="ConfirmPaymentStatusChange"
+                                Click="ConfirmEditStatus_Click"
                                 Grid.Column="2"
                                 Style="{StaticResource BasicFunctionalButtons}"
                                 ToolTip="Zaakceptuj zmianę statusu."

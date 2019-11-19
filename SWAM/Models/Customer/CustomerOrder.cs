@@ -81,7 +81,7 @@ namespace SWAM.Models.Customer
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
 
         #region Database connection
-        private static readonly ApplicationDbContext context = new ApplicationDbContext();
+        private static ApplicationDbContext context = new ApplicationDbContext();
         private static ApplicationDbContext Context
         {
             get
@@ -121,6 +121,7 @@ namespace SWAM.Models.Customer
                     return null;
                 }
             }
+            set => context = value;
         }
         #endregion
         public static IList<CustomerOrder> GetAllOrders()
@@ -133,7 +134,45 @@ namespace SWAM.Models.Customer
                 .Include(c => c.DeliveryAddress)
                 .ToList();
         }
+        #region Get
+        /// <summary>
+        /// Resived customer order from database.
+        /// </summary>
+        /// <param name="id">ID number of the order we want to download.</param>
+        /// <returns>Full customer order with, customer, creater, courier and warehouse.</returns>
+        public static CustomerOrder Get(int id)
+        {
+            Context = new ApplicationDbContext();
+            return Context.CustomerOrders
+                .Include(c => c.Customer)
+                .Include(c => c.Creator)
+                .Include(c => c.Courier)
+                .Include(c => c.Warehouse)
+                .FirstOrDefault(c => c.Id == id);
+        }
+        #endregion
+        #region Edit
+        /// <summary>
+        /// Edit customer order properties.
+        /// </summary>
+        /// <param name="customerOrder">New customer order values.</param>
+        public void Edit(CustomerOrder customerOrder)
+        {
+            if(customerOrder != null)
+            {
+                Context = new ApplicationDbContext();
+                var customerOrderDb = Context.CustomerOrders.FirstOrDefault(c => c.Id == this.Id);
+                customerOrderDb.PaymentType = customerOrder.PaymentType;
+                customerOrderDb.ShipmentType = customerOrder.ShipmentType;
+                if(customerOrder != null)
+                    customerOrderDb.DeliveryAddress = customerOrder.DeliveryAddress;
 
+                if (customerOrder.Courier != null)
+                    customerOrderDb.Courier = customerOrder.Courier;
 
+                Context.SaveChanges();
+            }
+        }
+        #endregion
     }
 }

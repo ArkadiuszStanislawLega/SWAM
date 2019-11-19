@@ -1,8 +1,6 @@
 ﻿using System.Windows.Controls;
-using SWAM.Models.ManageOrdersPage;
 using System.Windows;
-using SWAM.Strings;
-using SWAM.Models.User;
+using SWAM.Models.Customer;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -24,15 +22,19 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         /// <param name="e"></param>
         private void ConfirmEditStatus_Click(object sender, RoutedEventArgs e)
         {
-           if (DataContext is CustomerOrdersListViewModel CustomerOrderStatus)
-            {      
-                var customerOrderStatus = (Enumerators.CustomerOrderStatus)this.EditOrderStatus.SelectedValue;
+           if (DataContext is CustomerOrder customerOrder)
+            {
+                if (this.EditPaymentStatus.SelectedItem != null)
+                {
+                    customerOrder.CustomerOrderStatus = (Enumerators.CustomerOrderStatus)this.EditPaymentStatus.SelectedItem;
 
-                CustomerOrderStatus.ChangeStatus(customerOrderStatus);
+                    customerOrder.Edit(customerOrder);
+                    this.DataContext = CustomerOrder.Get(customerOrder.Id);
 
-                CustomerOrdersListViewModel.Instance.Refresh();
+                    CustomerOrdersListViewModel.Instance.Refresh(customerOrder.Customer);
 
-                this.EditOrderStatus.SelectedValue = null;
+                    this.EditOrderStatus.SelectedValue = null;
+                }
             }
         }
         #endregion
