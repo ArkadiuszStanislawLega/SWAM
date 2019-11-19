@@ -193,6 +193,5 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             SwitchPagesVisibility();
         }
         #endregion
-
     }
 }
