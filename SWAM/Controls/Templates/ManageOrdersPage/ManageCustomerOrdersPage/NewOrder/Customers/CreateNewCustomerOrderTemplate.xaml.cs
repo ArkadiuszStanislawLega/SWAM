@@ -160,6 +160,27 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         }
         #endregion
 
+        #region PaymentType_Checked
+        /// <summary>
+        /// Check for payment type selection and hide or show is paid checkbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PaymentType_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton paymentType = sender as RadioButton;
+
+            if ((PaymentType)(int.Parse(paymentType.Tag.ToString())) == PaymentType.Postpaid)
+            {
+                isPaid.Visibility = Visibility.Hidden;
+            }
+            else if ((PaymentType)(int.Parse(paymentType.Tag.ToString())) == PaymentType.Prepaid)
+            {
+                isPaid.Visibility = Visibility.Visible;
+            }
+        }
+        #endregion
+
         #region CreateCustomerOrder
         /// <summary>
         /// Gets form values and creates customer order
