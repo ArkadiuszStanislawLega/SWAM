@@ -77,18 +77,18 @@
                         <TextBlock Name="OrderTaker"
                                     Text="Przyjmujący zamówienie" 
                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding User.Name}">
+                        <TextBlock Text="{Binding Creator.Name}">
                             <!--#region ToolTip-->
                             <TextBlock.ToolTip>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding User.Name}" 
+                                    <TextBlock Text="{Binding Creator.Name}" 
                                                FontStyle="Italic"
                                                TextDecorations="Underline"
                                                FontSize="14" 
                                                Style="{StaticResource Title}">
                                     </TextBlock>
                                     <Separator/>
-                                    <ItemsControl ItemsSource="{Binding User.Phones}">
+                                    <ItemsControl ItemsSource="{Binding Creator.Phones}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
