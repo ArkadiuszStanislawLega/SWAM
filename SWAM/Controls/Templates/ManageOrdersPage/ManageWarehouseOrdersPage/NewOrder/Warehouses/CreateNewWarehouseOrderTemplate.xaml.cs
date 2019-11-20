@@ -164,10 +164,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             context.SaveChanges();
 
             // Add warehouse order positions
-            var customerOrderPositionsFromDb = new List<WarehouseOrderPosition>();
+            var warehouseOrderPositionsFromDb = new List<WarehouseOrderPosition>();
             foreach (var item in orderedProducts)
             {
-                customerOrderPositionsFromDb.Add(new WarehouseOrderPosition()
+                warehouseOrderPositionsFromDb.Add(new WarehouseOrderPosition()
                 {
                     Quantity = item.Quantity,
                     Price = item.Price,
@@ -176,7 +176,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
                 });
             }
 
-            foreach (var item in customerOrderPositionsFromDb)
+            foreach (var item in warehouseOrderPositionsFromDb)
             {
                 item.WarehouseOrder = warehouseOrder;
                 context.WarehouseOrderPositions.Add(item);
