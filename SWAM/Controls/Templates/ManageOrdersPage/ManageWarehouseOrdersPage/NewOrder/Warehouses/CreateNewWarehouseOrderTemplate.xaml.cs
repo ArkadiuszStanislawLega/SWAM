@@ -170,7 +170,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
                 warehouseOrderPositionsFromDb.Add(new WarehouseOrderPosition()
                 {
                     Quantity = item.Quantity,
-                    Price = item.Price,
                     Product = context.Products.SingleOrDefault(s => s.Id == item.ProductId),
                     ProductId = context.Products.SingleOrDefault(s => s.Id == item.ProductId).Id
                 });

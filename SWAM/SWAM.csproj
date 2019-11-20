@@ -300,6 +300,10 @@
     <Compile Include="Migrations\201911161052201_DropWarehouseAdressIdFromWarehousesTable.Designer.cs">
       <DependentUpon>201911161052201_DropWarehouseAdressIdFromWarehousesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911201710260_DropPriceFromWarehouseOrderPositionsTable.cs" />
+    <Compile Include="Migrations\201911201710260_DropPriceFromWarehouseOrderPositionsTable.Designer.cs">
+      <DependentUpon>201911201710260_DropPriceFromWarehouseOrderPositionsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -923,6 +927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911161052201_DropWarehouseAdressIdFromWarehousesTable.resx">
       <DependentUpon>201911161052201_DropWarehouseAdressIdFromWarehousesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911201710260_DropPriceFromWarehouseOrderPositionsTable.resx">
+      <DependentUpon>201911201710260_DropPriceFromWarehouseOrderPositionsTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

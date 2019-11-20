@@ -11,10 +11,6 @@ namespace SWAM.Models.Warehouse
         /// </summary>
         public int Id { get; set; }
         /// <summary>
-        /// The total price for this item.
-        /// </summary>
-        public decimal Price { get; set; }
-        /// <summary>
         /// Product quantity.
         /// </summary>
         public int Quantity { get; set; }
