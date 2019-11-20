@@ -160,7 +160,6 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
                         <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
-                        <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
                         <DataGridTextColumn Header="Dostępna ilość"  Binding="{Binding State.Available}"/>
                         <DataGridTextColumn Header="Zamówiona ilość"  Binding="{Binding State.Booked}"/>
                     </DataGrid.Columns>
