@@ -65,7 +65,7 @@ namespace SWAM.Controls.Templates.CouriersPage
         /// </summary>
         private void SetButtonsEvents()
         {
-            this.CourierName.ConfirmChangeName.Click += ConfirmChangeName_Click;
+            this.CourierName.ConfirmChangeProperName.Click += ConfirmChangeName_Click;
             this.CourierPhone.ConfirmChangePhone.Click += ConfirmChangePhone_Click;
             this.CourierTIN.ConfirmChangeTIN.Click += ConfirmChangeTIN_Click;
             this.CourierEmailAddress.ConfirmChangeEmailAddress.Click += ConfirmChangeEmailAddress_Click;
@@ -82,9 +82,9 @@ namespace SWAM.Controls.Templates.CouriersPage
         {
             if (DataContext is Courier courier)
             {
-                if (!Courier.IsNameExist(this.CourierName.EditName.Text))
+                if (!Courier.IsNameExist(this.CourierName.EditProperName.Text))
                 {
-                    courier.Name = this.CourierName.EditName.Text;
+                    courier.Name = this.CourierName.EditProperName.Text;
                     courier.Edit(courier);
                     DataContext = Courier.Get(courier.Id);
                     CouriersListViewModel.Instance.Refresh();
@@ -92,7 +92,7 @@ namespace SWAM.Controls.Templates.CouriersPage
                     InformationToUser($"Zaktualizowano nazwę kuriera {courier.Name}.");
                 }
                 else
-                    InformationToUser($"Nazwa {this.CourierName.EditName.Text} jest już używana.", true);
+                    InformationToUser($"Nazwa {this.CourierName.EditProperName.Text} jest już używana.", true);
             }
             else
                 InformationToUser($"{ErrorMesages.DATACONTEXT_ERROR} Wystąpił błąd pod czas dodawania nowego kuriera.", true);
