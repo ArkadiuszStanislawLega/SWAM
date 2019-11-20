@@ -46,6 +46,7 @@ namespace SWAM.Models.ExternalSupplier
                             .WarehouseOrders
                             .Include(w => w.OrderPositions)
                             .Include(w => w.Warehouse)
+                            .Include(w => w.Creator)
                             .Include(w => w.UserReceivedOrder)
                             .Where(w => w.ExternalSupplayer.Id == externalSupplier.Id)
                             .ToList();
@@ -64,6 +65,15 @@ namespace SWAM.Models.ExternalSupplier
                             {
                                 var userId = order.UserReceivedOrder.Id;
                                 order.UserReceivedOrder = context.People
+                                    .OfType<User.User>()
+                                    .Include(u => u.Phones)
+                                    .FirstOrDefault(u => u.Id == userId);
+                            }
+
+                            if (order.Creator != null)
+                            {
+                                var userId = order.Creator.Id;
+                                order.Creator = context.People
                                     .OfType<User.User>()
                                     .Include(u => u.Phones)
                                     .FirstOrDefault(u => u.Id == userId);

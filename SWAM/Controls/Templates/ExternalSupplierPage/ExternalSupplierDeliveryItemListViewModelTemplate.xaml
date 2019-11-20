@@ -47,6 +47,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <!--#endregion-->
                     <!--#region 1st row-->
@@ -64,21 +65,60 @@
                     <!--#endregion-->
                     <!--#region 2nd row-->
                     <StackPanel Grid.Row="1" Grid.Column="0">
-                        <TextBlock Name="OrderTaker"
-                                    Text="Przyjmujący zamówienie" 
+                        <TextBlock Name="Creator"
+                                    Text="Składający zamówienie" 
                                    Style="{StaticResource ProfileProperties}"/>
-                        <TextBlock Text="{Binding UserAcceptingOrder.Name}">
+                        <TextBlock Text="{Binding Creator.Name}">
                             <!--#region ToolTip-->
                             <TextBlock.ToolTip>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding UserAcceptingOrder.Name}" 
+                                    <TextBlock Text="{Binding Creator.Name}" 
                                                FontStyle="Italic"
                                                TextDecorations="Underline"
                                                FontSize="14" 
                                                Style="{StaticResource Title}">
                                     </TextBlock>
                                     <Separator/>
-                                    <ItemsControl ItemsSource="{Binding UserAcceptingOrder.Phones}">
+                                    <ItemsControl ItemsSource="{Binding Creator.Phones}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="80"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="80"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Note}" Grid.Column="0"
+                                                               HorizontalAlignment="Left"/>
+                                                    <TextBlock Text="-" Grid.Column="1"/>
+                                                    <TextBlock Text="{Binding PhoneNumber}" 
+                                                               HorizontalAlignment="Right"
+                                                               Grid.Column="2"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
+                            <!--#endregion-->
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock Name="OrderTaker"
+                                    Text="Przyjmujący zamówienie" 
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Text="{Binding UserReceivedOrder.Name}">
+                            <!--#region ToolTip-->
+                            <TextBlock.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding UserReceivedOrder.Name}" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}">
+                                    </TextBlock>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding UserReceivedOrder.Phones}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
