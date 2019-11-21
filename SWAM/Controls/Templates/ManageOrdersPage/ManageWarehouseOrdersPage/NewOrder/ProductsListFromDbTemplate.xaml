@@ -12,7 +12,6 @@
     <StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="1"
                   Name="States"
-                  LoadingRow="NumberRowIteration"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
                   SelectionMode="Single"
