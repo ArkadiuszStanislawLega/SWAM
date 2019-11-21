@@ -9,6 +9,12 @@
              MinHeight="300"
              Loaded="UserControl_Loaded"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
+    </UserControl.Resources>
+    
     <StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="1"
                   Name="States"
@@ -20,12 +26,12 @@
                   ItemsSource="{Binding States}"
                   Style="{StaticResource BasicDataGrid}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nazwa" MaxWidth="200" Binding="{Binding Product.Name}"/>
-                <DataGridTextColumn Header="Szerokość" Binding="{Binding Product.Width}"/>
-                <DataGridTextColumn Header="Długość" Binding="{Binding Product.Length}"/>
-                <DataGridTextColumn Header="Waga" Binding="{Binding Product.Weigth}"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Product.Price}"/>
-                <DataGridTextColumn Header="Dostępna ilość" Binding="{Binding Available}"/>
+                <DataGridTextColumn Header="Nazwa" MaxWidth="200" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Szerokość" Binding="{Binding Product.Width}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Długość" Binding="{Binding Product.Length}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Waga" Binding="{Binding Product.Weigth}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Product.Price}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Dostępna ilość" Binding="{Binding Available}" ElementStyle="{StaticResource TextBlockMargin}"/>
                 <DataGridTemplateColumn Header="Dodaj">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
