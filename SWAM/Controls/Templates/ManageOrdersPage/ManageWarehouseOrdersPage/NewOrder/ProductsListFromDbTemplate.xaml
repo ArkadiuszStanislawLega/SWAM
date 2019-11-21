@@ -18,6 +18,7 @@
     <StackPanel>
         <DataGrid Grid.Column="1" Grid.Row="1"
                   Name="States"
+                  IsReadOnly="True"
                   RowHeaderWidth="0"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False"
