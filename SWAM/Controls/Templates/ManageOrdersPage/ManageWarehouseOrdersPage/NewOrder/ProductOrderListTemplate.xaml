@@ -66,13 +66,15 @@
                                                 <ColumnDefinition Width="6" />
                                                 <ColumnDefinition Width="auto" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Margin="0 0 0 2" Grid.Column="0" Text="x"/>
+                                            <TextBlock Grid.Column="0" Text="x"/>
                                             <TextBox 
                                                 Grid.Column="1" 
                                                 Width="35" 
                                                 Background="Transparent"
                                                 Foreground="White"
                                                 BorderBrush="Transparent"
+                                                BorderThickness="1.5"
+                                                Style="{StaticResource TextBoxGrayBorder}"
                                                 Text="{Binding Quantity}"
                                                 PreviewTextInput="NumberValidationTextBox"/>
                                         </Grid>
