@@ -859,7 +859,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource BlueBrash}" />
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource TopGrayBrash}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Background" TargetName="Border"  Value="{StaticResource GraphiteBrash}" />

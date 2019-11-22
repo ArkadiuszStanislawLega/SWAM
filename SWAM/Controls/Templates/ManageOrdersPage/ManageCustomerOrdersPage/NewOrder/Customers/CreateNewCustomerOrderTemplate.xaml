@@ -51,7 +51,7 @@
                 VerticalAlignment="Top"
                 Content="Następny"
                 Click="SwitchContentNextButton_Click"
-               Style="{StaticResource CreatePeople}"/>
+                Style="{StaticResource CreatePeople}"/>
             </Grid>
             <!--#endregion-->
         </Grid>
