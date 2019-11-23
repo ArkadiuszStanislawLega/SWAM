@@ -267,7 +267,7 @@
                         <TextBlock Text="Status zamówienia"
                                    Grid.Column="0"
                                    Grid.Row="0"
-                                   Style="{StaticResource ProfileProperties}" />
+                                   Style="{StaticResource ProfileProperties}" Height="19" VerticalAlignment="Top" />
 
                         <TextBlock Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}"
                                    Grid.Column="0"
@@ -313,6 +313,7 @@
                         </ComboBox>
 
                         <Button Name="ConfirmStatusChange"
+                                Click="ConfirmEditDeliveryStatus_Click"
                                 Grid.Column="2"
                                 Style="{StaticResource BasicFunctionalButtons}"
                                 ToolTip="Zaakceptuj zmianę statusu."

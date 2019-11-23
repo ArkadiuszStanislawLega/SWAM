@@ -151,9 +151,9 @@ namespace SWAM.Models.Customer
                 .FirstOrDefault(c => c.Id == id);
         }
         #endregion
-        #region Edit
+        #region EditPayment
         /// <summary>
-        /// Edit customer order properties.
+        /// Edit customer order payment properties.
         /// </summary>
         /// <param name="customerOrder">New customer order values.</param>
         public void Edit(CustomerOrder customerOrder)
@@ -168,6 +168,26 @@ namespace SWAM.Models.Customer
 
                 Context.SaveChanges();
             }
+        }
+        #endregion
+
+        #region EditDeliveryStatus
+        /// <summary>
+        /// Edit customer order delivery properties.
+        /// </summary>
+        /// <param name="customerOrderStatus">New customer order values.</param>     
+        public static void ChangeDeliveryStatus(CustomerOrderStatus status, CustomerOrder order)
+        {
+            var dbOrder = Context.CustomerOrders.FirstOrDefault(p => p.Id == order.Id);
+            if (status == CustomerOrderStatus.WaitingForPayment) dbOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
+            else if (status == CustomerOrderStatus.InDelivery) dbOrder.CustomerOrderStatus = CustomerOrderStatus.InDelivery;
+            else if (status == CustomerOrderStatus.InProcess) dbOrder.CustomerOrderStatus = CustomerOrderStatus.InProcess;
+            else if (status == CustomerOrderStatus.Delivered)
+            {
+                dbOrder.CustomerOrderStatus = CustomerOrderStatus.Delivered;
+                dbOrder.DeliveryDate = DateTime.Now;
+            }
+            Context.SaveChanges();
         }
         #endregion
     }

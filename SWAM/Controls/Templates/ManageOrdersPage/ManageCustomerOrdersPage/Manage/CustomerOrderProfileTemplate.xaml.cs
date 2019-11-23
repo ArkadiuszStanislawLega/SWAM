@@ -15,7 +15,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             InitializeComponent();
         }
 
-        #region ConfirmEditStatus_Click
+        #region ConfirmEditPaymentStatus_Click
         /// <summary>
         /// Action after click confirm change permision button.
         /// </summary>
@@ -23,7 +23,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         /// <param name="e"></param>
         private void ConfirmEditStatus_Click(object sender, RoutedEventArgs e)
         {
-           if (DataContext is CustomerOrder customerOrder)
+            if (DataContext is CustomerOrder customerOrder)
             {
                 if (this.EditPaymentStatus.SelectedItem != null)
                 {
@@ -43,27 +43,21 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         }
         #endregion
 
+        #region ConfirmEditDeliverytStatus_Click
+        /// <summary>
+        /// Action after click confirm change permision button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfirmEditDeliveryStatus_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is CustomerOrder customerOrder && EditOrderStatus.SelectedItem != null)
+            {
+                CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
+                DataContext = new ApplicationDbContext();
+                DataContext = customerOrder;
+            }
+        }
+        #endregion
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
