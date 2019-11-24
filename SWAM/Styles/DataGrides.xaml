@@ -205,11 +205,12 @@
 
     <!--Style and template for the DataGridCell.-->
     <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <Border x:Name="border"
-                            BorderBrush="Transparent"
+                            BorderBrush="{StaticResource LightGrayBrash}"
                             BorderThickness="1"
                             Background="{StaticResource GraphiteBrash}"
                             SnapsToDevicePixels="True">
@@ -225,7 +226,7 @@
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
                                                                       Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                                                 Value="{StaticResource Blue}" />
+                                                                 Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -238,12 +239,11 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="White" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridCell}">
                             <Border x:Name="border"
-                            BorderBrush="Transparent"
+                            BorderBrush="{StaticResource LightGrayBrash}"
                             BorderThickness="1"
                             Background="{StaticResource DarkGraphiteBrash}"
                             SnapsToDevicePixels="True">
@@ -259,7 +259,7 @@
                                                 <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
                                                                       Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
                                                     <EasingColorKeyFrame KeyTime="0"
-                                                                 Value="{StaticResource Blue}" />
+                                                                 Value="White" />
                                                 </ColorAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
