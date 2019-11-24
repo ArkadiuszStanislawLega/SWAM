@@ -457,6 +457,7 @@
 
                         <Button Name="AcceptDeliveryDateButton"                               
                                 ToolTip="Potwierdź termin dostawy"
+                                Click="ChangeDeliveryDate_Click"
                                 Style="{StaticResource  BasicFunctionalButtons}">
                             <fa:ImageAwesome Icon="Check" Foreground="{StaticResource FontsBrash}" />
                             <Button.Triggers>
