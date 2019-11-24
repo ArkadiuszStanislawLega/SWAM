@@ -59,5 +59,25 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             }
         }
         #endregion
+
+
+        #region ChangeDeliveryDate_Click
+        /// <summary>
+        /// Action when change user expire date is loaded.
+        /// Set new data context.
+        /// </summary>
+        /// <param name="sender">Change user expire date.</param>
+        /// <param name="e">Evenet is loaded.</param>
+        private void ChangeDeliveryDate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is CustomerOrder customerOrder && EditOrderStatus.SelectedItem != null)
+            {
+                CustomerOrder.ChangeDateOfDelivery(Calendar.SelectedDate, customerOrder);
+                DataContext = new ApplicationDbContext();
+                DataContext = customerOrder;
+            }
+        }
+        #endregion 
+        
     }
 }

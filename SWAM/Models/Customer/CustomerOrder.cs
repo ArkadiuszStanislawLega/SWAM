@@ -80,6 +80,7 @@ namespace SWAM.Models.Customer
         public CustomerOrderDeliveryAddress DeliveryAddress { get; set; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
 
+
         #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
         private static ApplicationDbContext Context
@@ -190,5 +191,23 @@ namespace SWAM.Models.Customer
             Context.SaveChanges();
         }
         #endregion
+
+        
+        #region ChangeDateOfDelivery
+        /// <summary>
+        /// Changing date of the blockade user account.
+        /// </summary>
+        /// <param name="dateTime">New date of expiry user accout.</param>
+        public static void ChangeDateOfDelivery(DateTime? dateTime, CustomerOrder order)
+        {
+            if (dateTime != null)
+            {
+                var dbOrder = Context.CustomerOrders.FirstOrDefault(p => p.Id == order.Id);
+                dbOrder.DeliveryDate = dateTime;  
+            }
+            context.SaveChanges();
+        }
+        #endregion
+        
     }
 }
