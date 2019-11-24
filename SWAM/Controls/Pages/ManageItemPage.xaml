@@ -496,7 +496,7 @@
                             <DataGridTextColumn Header="Waga"
                                                 Binding="{Binding Weigth}" />
                             <DataGridTextColumn Header="Cena sprzedaży"
-                                                Binding="{Binding Price}" />
+                                                Binding="{Binding Price, StringFormat={}{0:c}}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->
