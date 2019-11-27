@@ -429,7 +429,7 @@
                             <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
                             <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
                         </MultiTrigger>
-                        
+
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>
@@ -860,7 +860,6 @@
                     <Border Name="Border"
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            Background="{StaticResource GraphiteBrash}"
                             Padding="5"
                             CornerRadius="0 0 10 10">
                         <TextBlock Text="{TemplateBinding Content}"
@@ -870,14 +869,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource TopGrayBrash}" />
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource MiddleDarkGraphiteBrash}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource GraphiteBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" TargetName="Border" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource TopGrayBrash}"/>
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource TopGrayBrash}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
