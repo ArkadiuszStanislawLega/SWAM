@@ -61,7 +61,7 @@
                     Width="100" 
                     Margin="0 10 0 10"
                     Click="LoginButton_Click"
-                    Style="{StaticResource NavigationButton}">
+                    Style="{StaticResource ActionButton}">
                 </Button>
                 <TextBlock Name="TimeCounterView" 
                            HorizontalAlignment="Center"
