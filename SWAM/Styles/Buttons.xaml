@@ -415,21 +415,17 @@
                     <Border Name="Border" 
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            Background="{StaticResource EnabledBrash}">
+                            Background="{TemplateBinding Background}">
                         <Label Content="{TemplateBinding Content}"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <MultiTrigger>
-                            <MultiTrigger.Conditions>
-                                <Condition Property="IsMouseOver" Value="False"/>
-                                <Condition Property="IsFocused" Value="True"/>
-                            </MultiTrigger.Conditions>
-                            <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </MultiTrigger>
-
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="Background"  Value="{StaticResource EnabledBrash}" />
+                            <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
+                        </Trigger>
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" Value="True"/>
