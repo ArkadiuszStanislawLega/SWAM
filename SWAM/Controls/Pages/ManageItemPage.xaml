@@ -474,6 +474,7 @@
                     <DataGrid Name="ProductsList"
                               Margin="5"
                               Grid.Column="1"
+                              RowHeaderWidth="0"
                               HorizontalAlignment="Stretch"
                               DataContext="{x:Static prod:ProductListViewModel.Instance}"
                               ItemsSource="{Binding Products}"
