@@ -99,7 +99,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            TextBox quanity = sender as TextBox;
             Regex regex = new Regex("[^1-9]+");
+
+            if (quanity.Text.Length > 0)
+                regex = new Regex("[^0-9]+");
+
             e.Handled = regex.IsMatch(e.Text);
         }
         #endregion
