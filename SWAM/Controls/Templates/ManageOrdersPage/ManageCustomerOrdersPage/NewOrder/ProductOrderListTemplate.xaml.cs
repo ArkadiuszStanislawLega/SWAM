@@ -78,13 +78,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if (quantity.Text == String.Empty)
                 return;
 
-            foreach (var state in customerOrderPosition.Product.States)
+            if (int.Parse(quantity.Text) > customerOrderPosition.State.Available)
             {
-                if(int.Parse(quantity.Text) > state.Quantity)
-                {
-                    quantity.Text = state.Available.ToString();
-                    customerOrderPosition.Quantity = state.Available;
-                }
+                quantity.Text = customerOrderPosition.State.Available.ToString();
+                customerOrderPosition.Quantity = customerOrderPosition.State.Available;
             }
 
             PaymentOrderViewModel.Instance.Refresh();
