@@ -78,6 +78,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if (quantity.Text == String.Empty)
                 return;
 
+            if (quantity.Text == "0")
+            {
+                quantity.Text = "1";
+                customerOrderPosition.Quantity = 1;
+                return;
+            }
+
             if (int.Parse(quantity.Text) > customerOrderPosition.State.Available)
             {
                 quantity.Text = customerOrderPosition.State.Available.ToString();
