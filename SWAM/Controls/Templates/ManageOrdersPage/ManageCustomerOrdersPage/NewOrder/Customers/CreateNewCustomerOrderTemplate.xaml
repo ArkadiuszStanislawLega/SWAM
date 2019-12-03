@@ -13,6 +13,57 @@
       Height="auto"
       Width="auto"
       d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <Storyboard x:Key="LoadedStory">
+            <!--#region ThicknessAnimation-->
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="customerElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="productElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="courierElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <!--#endregion-->
+            
+            <!--#region DoubleAnimations-->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="customerElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+            
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="productElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="courierElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+            <!--#endregion-->
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -213,7 +264,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" FontSize="20" Text="Dane płatności" HorizontalAlignment="Center" Margin="0 10 0 0" Style="{StaticResource Title}"/>
-                            
+
                             <CheckBox Grid.Row="2" Name="isPaid" Foreground="Gray" Content="Zapłacono?" Margin="20 10 0 10"/>
 
                             <StackPanel x:Name="paymentTypes" Grid.Row="1" Margin="20 10 0 0">
