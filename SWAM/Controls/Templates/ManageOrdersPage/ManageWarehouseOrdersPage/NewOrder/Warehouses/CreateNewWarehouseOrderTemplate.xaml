@@ -11,6 +11,57 @@
              Height="auto"
              Width="auto"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Storyboard x:Key="LoadedStory">
+            <!--#region ThicknessAnimation-->
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="warehouseElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="productElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="externalSupplierElementsContainer"
+                                Duration="0:0:0.8"
+                                From="0 0 -500 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <!--#endregion-->
+
+            <!--#region DoubleAnimations-->
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="warehouseElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="productElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="externalSupplierElementsContainer"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+            <!--#endregion-->
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
