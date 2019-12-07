@@ -119,8 +119,10 @@ namespace SWAM.Models.Warehouse
             return Context.WarehouseOrders
                  .Include(w => w.ExternalSupplayer)
                  .Include(w => w.OrderPositions)
-                 .Include(w => w.Warehouse)                
-                 .ToList();
+                 .Include(w => w.Warehouse)
+				 .Include(w => w.Creator)
+				 .Include(w => w.UserReceivedOrder)
+				 .ToList();
         }
 
 		public static void ChangePaymentStatus(PaymentStatus status, WarehouseOrder order)
