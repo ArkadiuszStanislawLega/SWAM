@@ -155,6 +155,8 @@
                                    
                     </StackPanel>
                     <!--#endregion-->
+                    
+
                 </StackPanel>
 
                 <StackPanel Margin="10">
@@ -368,6 +370,27 @@
                     </Grid>
                     <!--#endregion-->
                 </StackPanel>
+
+                <StackPanel Margin="10">
+                    <DataGrid x:Name="ProductsFromOrderList"                              
+                              HorizontalAlignment="Stretch"
+                              RowHeaderWidth="0"
+                              ItemsSource="{Binding OrderPositions}"                            
+                              AutoGenerateColumns="False"                              
+                              CanUserAddRows="False"                              
+                              SelectionMode="Single"
+                              IsReadOnly="True"
+                              Style="{StaticResource BasicDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produkt"
+                                                Binding="{Binding Product.Name}"/>
+                            <DataGridTextColumn Header="Ilość"
+                                                Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </StackPanel>
+                
             </StackPanel>            
             <!--#endregion-->
         </Grid>
