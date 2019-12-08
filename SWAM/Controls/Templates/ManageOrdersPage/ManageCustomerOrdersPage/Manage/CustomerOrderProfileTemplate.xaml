@@ -221,8 +221,8 @@
                         <TextBlock Text="{Binding WarehouseId}" />
                     </StackPanel>
                     <!--#endregion-->
-                    
-                    <!--#region Warehouse Id-->
+
+                    <!--#region Warehouse Name-->
                     <StackPanel Margin="5">
                         <TextBlock Text="Nazwa Magazynu"
                                    Style="{StaticResource ProfileProperties}" />
@@ -238,6 +238,13 @@
                         <TextBlock Text="Id twórcy zamówienia"
                                    Style="{StaticResource ProfileProperties}" />
                         <TextBlock Text="{Binding CreatorId}" />
+                    </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Creator Name-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Twórca zamówienia"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding Creator.Name}" />
                     </StackPanel>
                     <!--#endregion-->
 
@@ -264,7 +271,7 @@
                     </StackPanel>
                     <!--#endregion-->
 
-                    <!--#region External Supplayer Id-->
+                    <!--#region Data2-->
                     <StackPanel Margin="5">
                         <TextBlock Text="Id kuriera"
                                    Style="{StaticResource ProfileProperties}" />
@@ -274,7 +281,7 @@
                 </StackPanel>
 
                 <StackPanel Margin="10">
-                    <!--#region Warehouse Order Status-->
+                    <!--#region Customer Order Status-->
                     <Grid Margin="5">
                         <!--#region Columnd & rows definitions-->
                         <Grid.ColumnDefinitions>
@@ -458,6 +465,28 @@
                     </Grid>
                     <!--#endregion-->
                 </StackPanel>
+
+                <StackPanel Margin="10">
+
+                    <DataGrid Grid.Row="1" Margin="5"
+                          ItemsSource="{Binding CustomerOrderPositions}"  
+                          Style="{StaticResource BasicDataGrid}"
+                          HorizontalAlignment="Stretch"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True"  
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa produktu" Binding="{Binding Product.Name}"/>
+                            <DataGridTextColumn Header="Ilość produktu" Binding ="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
+                </StackPanel>
+
             </StackPanel>
 
             <!--#region Callendar -->
@@ -507,6 +536,4 @@
         </Grid>
     </Border>
 
-
 </UserControl>
-
