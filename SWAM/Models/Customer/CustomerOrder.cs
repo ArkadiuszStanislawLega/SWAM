@@ -192,7 +192,6 @@ namespace SWAM.Models.Customer
         }
         #endregion
 
-        
         #region ChangeDateOfDelivery
         /// <summary>
         /// Changing date of the blockade user account.
@@ -208,6 +207,5 @@ namespace SWAM.Models.Customer
             context.SaveChanges();
         }
         #endregion
-        
     }
 }
