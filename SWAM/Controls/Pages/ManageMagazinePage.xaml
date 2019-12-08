@@ -208,7 +208,9 @@
                             <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}"/>
                             <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}"/>
                             <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}"/>
-                            <DataGridTextColumn Header="Dostępne" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}"/>
+                            <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->

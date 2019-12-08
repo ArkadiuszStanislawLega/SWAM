@@ -240,6 +240,21 @@
                     </StackPanel>
                     <!--#endregion-->
 
+                    <!--#region User Received Order Name-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Imię odbiorcy"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding Customer.Name}" />
+                    </StackPanel>
+
+                    <!--#region User Received Order Surname-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Nazwisko odbiorcy"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding Customer.Surname}" />
+                    </StackPanel>
+                    <!--#endregion-->
+
                     <!--#region External Supplayer Id-->
                     <StackPanel Margin="5">
                         <TextBlock Text="Id kuriera"
