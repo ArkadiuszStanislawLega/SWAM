@@ -9,6 +9,7 @@
              xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
+             Loaded="Window_Loaded"
              d:DesignHeight="450"
              d:DesignWidth="800">
 
@@ -113,8 +114,8 @@
     <!--#endregion-->
 
     <UserControl.Triggers>
-        <EventTrigger RoutedEvent="UserControl.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource LoadedStory}" />
+        <EventTrigger RoutedEvent="UserControl.Loaded">            
+                <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
 
@@ -125,8 +126,8 @@
                     <!--#region Order Id-->
                     <StackPanel Margin="5">
                         <TextBlock Text="Id zamówienia"
-                                   Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding Id}" />
+                                   Style="{StaticResource ProfileProperties}"/>
+                        <TextBlock Name="OrderId" Text="{Binding Id}"/>
                     </StackPanel>
                     <!--#endregion-->
 
@@ -150,33 +151,36 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Id Magazynu"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding WarehouseId}" />
+                        <TextBlock Name="WarehouseName" />
+                                   
                     </StackPanel>
                     <!--#endregion-->
+                    
+
                 </StackPanel>
 
                 <StackPanel Margin="10">
                     <!--#region Creator Id-->
                     <StackPanel Margin="5">
-                        <TextBlock Text="Id twórcy zamówienia"
+                        <TextBlock Text="Twórca zamówienia"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding CreatorId}" />
+                        <TextBlock Name="CreatorName"/>
                     </StackPanel>
                     <!--#endregion-->
 
                     <!--#region User Received Order Id-->
                     <StackPanel Margin="5">
-                        <TextBlock Text="Id odbiorcy zamówienia"
+                        <TextBlock Text="Odbiorca zamówienia"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding UserReceivedOrderId}" />
+                        <TextBlock Name="OrderReceiver" />
                     </StackPanel>
                     <!--#endregion-->
 
                     <!--#region External Supplayer Id-->
                     <StackPanel Margin="5">
-                        <TextBlock Text="Id dostawcy"
+                        <TextBlock Text="Dostawca"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding ExternalSupplayerId}" />
+                        <TextBlock x:Name="SupplierName"/>
                     </StackPanel>
                     <!--#endregion-->
                 </StackPanel>
@@ -366,6 +370,27 @@
                     </Grid>
                     <!--#endregion-->
                 </StackPanel>
+
+                <StackPanel Margin="10">
+                    <DataGrid x:Name="ProductsFromOrderList"                              
+                              HorizontalAlignment="Stretch"
+                              RowHeaderWidth="0"
+                              ItemsSource="{Binding OrderPositions}"                            
+                              AutoGenerateColumns="False"                              
+                              CanUserAddRows="False"                              
+                              SelectionMode="Single"
+                              IsReadOnly="True"
+                              Style="{StaticResource BasicDataGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produkt"
+                                                Binding="{Binding Product.Name}"/>
+                            <DataGridTextColumn Header="Ilość"
+                                                Binding="{Binding Quantity}"/>
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
+                </StackPanel>
+                
             </StackPanel>            
             <!--#endregion-->
         </Grid>

@@ -198,6 +198,7 @@
                               Margin="5"
                               Grid.Column="1"
                               HorizontalAlignment="Stretch"
+                              RowHeaderWidth="0"
                               ItemsSource="{Binding States}" 
                               AutoGenerateColumns="False" 
                               CanUserAddRows="False" SelectionMode="Single" 

@@ -64,6 +64,29 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         }
         #endregion
 
+        #region Quantity_LostFocus
+        /// <summary>
+        /// Checks if quantity is not 0 after lost focus of the field
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Quantity_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var quantity = sender as TextBox;
+            var warehouseOrderPosition = quantity.DataContext as WarehouseOrderPosition;
+
+            if (quantity.Text == String.Empty)
+                return;
+
+            if (quantity.Text == "0")
+            {
+                quantity.Text = "1";
+                warehouseOrderPosition.Quantity = 1;
+                return;
+            }
+        }
+        #endregion
+
         #region NumberValidationTextBox
         /// <summary>
         /// Make quantity textbox field accept numeric input type only
@@ -72,7 +95,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
         /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            TextBox quanity = sender as TextBox;
             Regex regex = new Regex("[^1-9]+");
+
+            if (quanity.Text.Length > 0)
+                regex = new Regex("[^0-9]+");
+
             e.Handled = regex.IsMatch(e.Text);
         }
         #endregion

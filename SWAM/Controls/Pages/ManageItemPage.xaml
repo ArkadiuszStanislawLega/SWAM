@@ -474,6 +474,7 @@
                     <DataGrid Name="ProductsList"
                               Margin="5"
                               Grid.Column="1"
+                              RowHeaderWidth="0"
                               HorizontalAlignment="Stretch"
                               DataContext="{x:Static prod:ProductListViewModel.Instance}"
                               ItemsSource="{Binding Products}"
@@ -496,7 +497,7 @@
                             <DataGridTextColumn Header="Waga"
                                                 Binding="{Binding Weigth}" />
                             <DataGridTextColumn Header="Cena sprzedaży"
-                                                Binding="{Binding Price}" />
+                                                Binding="{Binding Price, StringFormat={}{0:c}}" />
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->

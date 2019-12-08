@@ -1,10 +1,9 @@
-﻿
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:conv="clr-namespace:SWAM.Converters">
     <conv:TextToVisibilityConverter x:Key="textToVisibilityConverter" />
-    
+
     <!--#region BasicFunctionalButtons-->
     <!-- All buttons in message page have this style-->
     <Style x:Key="BasicFunctionalButtons" TargetType="Button">
@@ -245,7 +244,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region FAMaxymizeButton-->
     <!-- To properly work of fanAwesome Buttons you should make run the following command in the Package Manager Console:
             PM> Install-Package FontAwesome.WPF -->
@@ -345,7 +344,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region AdditionSign Buttons-->
     <Style x:Key="AdditionSign" TargetType="Button" >
         <Setter Property="Width" Value="20"/>
@@ -404,7 +403,6 @@
         <Setter Property="Width" Value="30"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
         <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -414,28 +412,84 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Width="{TemplateBinding Width}"
+                    <Border Name="Border" 
+                            Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
                             Background="{TemplateBinding Background}">
                         <Label Content="{TemplateBinding Content}"
-                               Foreground="{TemplateBinding Foreground}"
                                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                               VerticalAlignment="{TemplateBinding VerticalAlignment}"
-                               />
+                               VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
                             <Setter Property="Background"  Value="{StaticResource EnabledBrash}" />
                             <Setter Property="Foreground"  Value="{StaticResource DarkGraphiteBrash}"/>
                         </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
-                        </Trigger>
+                        
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsEnabled" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource BackgroundOfPagesBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsEnabled" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource EnabledBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource DarkGraphiteBrash}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Action Buttons-->
+    <Style x:Key="ActionButton" TargetType="Button" >
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource FontsBrash}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border" 
+                            Width="{TemplateBinding Width}"
+                            Height="{TemplateBinding Height}"
+                            Background="{StaticResource EnabledBrash}">
+                        <Label Content="{TemplateBinding Content}"
+                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                               VerticalAlignment="{TemplateBinding VerticalAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource MiddleDarkGraphiteBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </MultiTrigger>
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsEnabled" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource MiddleDarkGraphiteBrash}" />
+                            <Setter Property="Foreground" Value="{StaticResource FontsBrash}" />
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -749,7 +803,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
- 
+
     <!--#region ConfirmAddNewWarehouseAccess-->
     <Style x:Key="ConfirmAddNewWarehouseAccess" TargetType="Button" >
         <Setter Property="Width" Value="auto"/>
@@ -849,7 +903,6 @@
                     <Border Name="Border"
                             Width="{TemplateBinding Width}"
                             Height="{TemplateBinding Height}"
-                            Background="{StaticResource GraphiteBrash}"
                             Padding="5"
                             CornerRadius="0 0 10 10">
                         <TextBlock Text="{TemplateBinding Content}"
@@ -859,14 +912,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource TopGrayBrash}" />
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource MiddleDarkGraphiteBrash}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource GraphiteBrash}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" TargetName="Border" Value="{StaticResource BackgroundOfPagesBrash}"/>
-                            <Setter Property="Foreground" Value="{StaticResource TopGrayBrash}"/>
+                            <Setter Property="Background" TargetName="Border"  Value="{StaticResource TopGrayBrash}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1143,5 +1192,5 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
 </ResourceDictionary>

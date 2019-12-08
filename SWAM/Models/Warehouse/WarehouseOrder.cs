@@ -116,12 +116,29 @@ namespace SWAM.Models.Warehouse
         #endregion
         public static IList<WarehouseOrder> GetAllOrders()
         {
-            return Context.WarehouseOrders
+			  var WarehouseOrders = Context
+				 .WarehouseOrders
                  .Include(w => w.ExternalSupplayer)
                  .Include(w => w.OrderPositions)
-                 .Include(w => w.Warehouse)                
-                 .ToList();
-        }
+                 .Include(w => w.Warehouse)
+				 .Include(w => w.Creator)
+				 .Include(w => w.UserReceivedOrder)
+				 .ToList();
+
+			foreach (var order in WarehouseOrders)
+			{
+				for (int i=0; i <order.OrderPositions.Count; i++)
+				{
+					var id = order.OrderPositions[i].Id;
+					order.OrderPositions[i] = Context.WarehouseOrderPositions
+						.Include(w => w.Product)
+						.FirstOrDefault(w => w.Id == id);
+				}
+			}
+
+			return WarehouseOrders;
+
+		}
 
 		public static void ChangePaymentStatus(PaymentStatus status, WarehouseOrder order)
 		{

@@ -205,11 +205,12 @@
 
     <!--Style and template for the DataGridCell.-->
     <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <Border x:Name="border"
-                            BorderBrush="Transparent"
+                            BorderBrush="{StaticResource LightGrayBrash}"
                             BorderThickness="1"
                             Background="{StaticResource GraphiteBrash}"
                             SnapsToDevicePixels="True">
@@ -225,7 +226,7 @@
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
                                                                       Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
                                             <EasingColorKeyFrame KeyTime="0"
-                                                                 Value="{StaticResource Blue}" />
+                                                                 Value="Transparent" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -238,7 +239,37 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                            <Border x:Name="border"
+                            BorderBrush="{StaticResource LightGrayBrash}"
+                            BorderThickness="1"
+                            Background="{StaticResource DarkGraphiteBrash}"
+                            SnapsToDevicePixels="True">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Unfocused" />
+                                        <VisualState x:Name="Focused" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="CurrentStates">
+                                        <VisualState x:Name="Regular" />
+                                        <VisualState x:Name="Current">
+                                            <Storyboard>
+                                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                                      Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)">
+                                                    <EasingColorKeyFrame KeyTime="0"
+                                                                 Value="White" />
+                                                </ColorAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -533,13 +564,14 @@
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="VerticalContentAlignment"
                 Value="Center" />
+        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <Grid>
                         <Border x:Name="columnHeaderBorder"
                                 BorderThickness="1 0 0 1"
-                                Padding="3,0,3,0">
+                                Padding="5,3">
                             <Border.BorderBrush>
                                 <SolidColorBrush Color="{StaticResource LightGray}"
                                                  Opacity="0.4" />

@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Szerokość" Binding="{Binding Width}" ElementStyle="{StaticResource TextBlockMargin}"/>
                 <DataGridTextColumn Header="Długość" Binding="{Binding Length}" ElementStyle="{StaticResource TextBlockMargin}"/>
                 <DataGridTextColumn Header="Waga" Binding="{Binding Weigth}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Price}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Price, StringFormat={}{0:c}}" ElementStyle="{StaticResource TextBlockMargin}"/>
                 <DataGridTemplateColumn Header="Dodaj">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

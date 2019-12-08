@@ -78,13 +78,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if (quantity.Text == String.Empty)
                 return;
 
-            foreach (var state in customerOrderPosition.Product.States)
+            if (quantity.Text == "0")
             {
-                if(int.Parse(quantity.Text) > state.Quantity)
-                {
-                    quantity.Text = state.Available.ToString();
-                    customerOrderPosition.Quantity = state.Available;
-                }
+                quantity.Text = "1";
+                customerOrderPosition.Quantity = 1;
+                return;
+            }
+
+            if (int.Parse(quantity.Text) > customerOrderPosition.State.Available)
+            {
+                quantity.Text = customerOrderPosition.State.Available.ToString();
+                customerOrderPosition.Quantity = customerOrderPosition.State.Available;
             }
 
             PaymentOrderViewModel.Instance.Refresh();
@@ -99,7 +103,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <param name="e"></param>
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            TextBox quanity = sender as TextBox;
             Regex regex = new Regex("[^1-9]+");
+
+            if (quanity.Text.Length > 0)
+                regex = new Regex("[^0-9]+");
+
             e.Handled = regex.IsMatch(e.Text);
         }
         #endregion
