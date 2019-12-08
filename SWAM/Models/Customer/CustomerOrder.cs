@@ -80,6 +80,7 @@ namespace SWAM.Models.Customer
         public CustomerOrderDeliveryAddress DeliveryAddress { get; set; }
         public IList<CustomerOrderPosition> CustomerOrderPositions { get; set; }
 
+        public Person Person { get; set; }
 
         #region Database connection
         private static ApplicationDbContext context = new ApplicationDbContext();
@@ -133,6 +134,7 @@ namespace SWAM.Models.Customer
                 .Include(c => c.Warehouse)
                 .Include(c => c.Creator)
                 .Include(c => c.DeliveryAddress)
+                //.Include(C => C.Person)
                 .ToList();
         }
         #region Get
@@ -149,6 +151,7 @@ namespace SWAM.Models.Customer
                 .Include(c => c.Creator)
                 .Include(c => c.Courier)
                 .Include(c => c.Warehouse)
+                //.Include(C => C.Person)
                 .FirstOrDefault(c => c.Id == id);
         }
         #endregion
@@ -192,7 +195,6 @@ namespace SWAM.Models.Customer
         }
         #endregion
 
-        
         #region ChangeDateOfDelivery
         /// <summary>
         /// Changing date of the blockade user account.
@@ -208,6 +210,7 @@ namespace SWAM.Models.Customer
             context.SaveChanges();
         }
         #endregion
-        
+
     }
 }
+

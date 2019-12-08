@@ -221,6 +221,13 @@
                         <TextBlock Text="{Binding WarehouseId}" />
                     </StackPanel>
                     <!--#endregion-->
+                    <!--#region Warehouse Name-->
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Nazwa Magazynu"
+                                   Style="{StaticResource ProfileProperties}" />
+                        <TextBlock Text="{Binding Warehouse.Name}" />
+                    </StackPanel>
+                    <!--#endregion-->
                 </StackPanel>
 
                 <StackPanel Margin="10">
@@ -234,7 +241,7 @@
 
                     <!--#region User Received Order Id-->
                     <StackPanel Margin="5">
-                        <TextBlock Text="Id odbiorcy zamówienia"
+                        <TextBlock Text="Id odbiorcy"
                                    Style="{StaticResource ProfileProperties}" />
                         <TextBlock Text="{Binding CustomerId}" />
                     </StackPanel>
@@ -449,6 +456,7 @@
                     </Grid>
                     <!--#endregion-->
                 </StackPanel>
+
             </StackPanel>
 
             <!--#region Callendar -->
