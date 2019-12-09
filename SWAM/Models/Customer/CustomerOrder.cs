@@ -127,13 +127,24 @@ namespace SWAM.Models.Customer
         #endregion
         public static IList<CustomerOrder> GetAllOrders()
         {
-           return Context.CustomerOrders
+            var orders = Context.CustomerOrders
                 .Include(c => c.Customer)
                 .Include(c => c.Courier)
                 .Include(c => c.Warehouse)
                 .Include(c => c.Creator)
                 .Include(c => c.DeliveryAddress)
+                .Include(c => c.CustomerOrderPositions)
                 .ToList();
+
+            foreach (var order in orders)
+            {
+                foreach (var orderPostion in order.CustomerOrderPositions)
+                {
+                    orderPostion.Product = Context.Products.FirstOrDefault(p => p.Id == orderPostion.ProductId);
+                } 
+            }
+
+            return orders;
         }
         #region Get
         /// <summary>
