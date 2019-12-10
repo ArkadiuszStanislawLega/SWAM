@@ -210,7 +210,7 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <Grid Grid.Column="0" Margin="5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
