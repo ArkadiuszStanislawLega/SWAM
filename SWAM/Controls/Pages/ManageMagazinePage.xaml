@@ -109,7 +109,7 @@
                     <!--#region Column definitions-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <Grid Grid.Column="0" Name="ProductProfile" >
@@ -194,26 +194,34 @@
                         <!--#endregion-->
                     </Grid>
                     <!--#region ProductsList-->
-                    <DataGrid Name="ProductsList"
-                              Margin="5"
-                              Grid.Column="1"
-                              HorizontalAlignment="Stretch"
-                              RowHeaderWidth="0"
-                              ItemsSource="{Binding States}" 
-                              AutoGenerateColumns="False" 
-                              CanUserAddRows="False" SelectionMode="Single" 
-                              IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
-                              MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}"/>
-                            <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}"/>
-                            <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}"/>
-                            <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}"/>
-                            <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}"/>
-                            <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <DataGrid Name="ProductsList"
+                                  Margin="5"
+                                  HorizontalAlignment="Stretch"
+                                  RowHeaderWidth="0"
+                                  ItemsSource="{Binding States}" 
+                                  AutoGenerateColumns="False" 
+                                  CanUserAddRows="False" SelectionMode="Single" 
+                                  IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
+                                  MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}"/>
+                                <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}"/>
+                                <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}"/>
+                                <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}"/>
+                                <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}"/>
+                                <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                     <!--#endregion-->
                 </Grid>
             </ScrollViewer>
