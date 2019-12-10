@@ -26,17 +26,14 @@ namespace SWAM.Models.ViewModels.ManageMagazinePage
         #region Refresh
         public void Refresh()
         {
-            var accessUsersToWarehouses = (AccessUsersToWarehouses.GetUserAccesses(SWAM.MainWindow.LoggedInUser.Id)) as List<AccessUsersToWarehouses>;
+            if (_warehouses.Count > 0)
+                _warehouses.Clear();
 
-            if (accessUsersToWarehouses != null)
+            var warehouses = new ApplicationDbContext().Warehouses.ToList();
+
+            foreach (var item in warehouses)
             {
-                if (_warehouses.Count > 0)
-                    _warehouses.Clear();
-
-                foreach (var item in accessUsersToWarehouses)
-                {
-                    _warehouses.Add(item.Warehouse);
-                }
+                _warehouses.Add(item);
             }
 
             StatesRefresh();
