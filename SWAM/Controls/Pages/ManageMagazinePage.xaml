@@ -7,6 +7,7 @@
       xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
       xmlns:conv="clr-namespace:SWAM.Converters"
       xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:context="clr-namespace:SWAM.Models.ViewModels.ManageMagazinePage"
       mc:Ignorable="d" 
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch"
@@ -238,7 +239,7 @@
                                     <ListView MaxHeight="300" Name="warehouseListView" 
                                               Background="{StaticResource MainBarBrash}" 
                                               Foreground="White" BorderThickness="0" 
-                                              DataContext=""
+                                              DataContext="{x:Static context:WarehouseListViewModel.Instance}"
                                               ItemsSource="{Binding Warehouses}">
                                         <ListView.View>
                                             <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
