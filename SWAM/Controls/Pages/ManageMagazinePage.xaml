@@ -239,6 +239,7 @@
                                     <ListView MaxHeight="300" Name="warehouseListView" 
                                               Background="{StaticResource MainBarBrash}" 
                                               Foreground="White" BorderThickness="0" 
+                                              PreviewMouseLeftButtonUp="WarehouseListViewItem_PreviewMouseLeftButtonUp" 
                                               DataContext="{x:Static context:WarehouseListViewModel.Instance}"
                                               ItemsSource="{Binding Warehouses}">
                                         <ListView.View>
@@ -263,7 +264,7 @@
                                   Grid.Row="0"
                                   Margin="5"
                                   RowHeaderWidth="0"
-                                  ItemsSource="{Binding States}" 
+                                  ItemsSource="{Binding states}" 
                                   AutoGenerateColumns="False" 
                                   CanUserAddRows="False" SelectionMode="Single" 
                                   IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   

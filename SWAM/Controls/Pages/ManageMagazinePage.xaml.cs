@@ -3,11 +3,13 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.MagazineListViewModel;
+using SWAM.Models.Warehouse;
 using SWAM.Strings;
 
 namespace SWAM
@@ -100,6 +102,7 @@ namespace SWAM
             this._currentOperation = Operation.none;
         }
         #endregion
+
         #region EditButton_Click
         /// <summary>
         /// Action after click Edit button.
@@ -170,19 +173,22 @@ namespace SWAM
         }
         #endregion
 
+        #region WarehouseListViewItem_PreviewMouseLeftButtonUp
+        /// <summary>
+        /// Fill parent (CreateNewWarehouseOrderTemplate) control DataContext with clicked warehouse data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WarehouseListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as ListView).SelectedItem;
+            if ((sender as ListView).SelectedItem is Warehouse warehouse)
+            {
+                if (warehouse == null)
+                    return;
 
-
-
-
-
-
-
-
+            }
+        }
+        #endregion
     }
-
-
-
-
-
-
 }
