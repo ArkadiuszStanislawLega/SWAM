@@ -78,8 +78,6 @@ namespace SWAM
         public ManageMagazinePage()
         {
             InitializeComponent();
-            DataContext = this._stateList;
-            _stateList.Refresh();
         }
         #endregion
 
