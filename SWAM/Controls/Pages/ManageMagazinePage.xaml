@@ -240,7 +240,7 @@
                                               Background="{StaticResource MainBarBrash}" 
                                               Foreground="White" BorderThickness="0" 
                                               PreviewMouseLeftButtonUp="WarehouseListViewItem_PreviewMouseLeftButtonUp" 
-                                              DataContext="{x:Static context:WarehouseListViewModel.Instance}"
+                                              DataContext="{x:Static context:StatesViewModel.Instance}"
                                               ItemsSource="{Binding Warehouses}">
                                         <ListView.View>
                                             <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
@@ -264,7 +264,8 @@
                                   Grid.Row="0"
                                   Margin="5"
                                   RowHeaderWidth="0"
-                                  ItemsSource="{Binding states}" 
+                                  DataContext="{x:Static context:StatesViewModel.Instance}"
+                                  ItemsSource="{Binding States}"
                                   AutoGenerateColumns="False" 
                                   CanUserAddRows="False" SelectionMode="Single" 
                                   IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   

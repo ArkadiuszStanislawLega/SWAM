@@ -188,7 +188,7 @@ namespace SWAM
                 if (warehouse == null)
                     return;
 
-                WarehouseInformationViewModel.Instance.SetWarehouse(warehouse);
+                StatesViewModel.Instance.SetStates(warehouse);
             }
         }
         #endregion

@@ -334,8 +334,7 @@
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\ProductListViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\ProductOrderListViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateNewWarehouseOrder\WarehouseListViewModel.cs" />
-    <Compile Include="Models\ViewModels\ManageMagazinePage\WarehouseInformationViewModel.cs" />
-    <Compile Include="Models\ViewModels\ManageMagazinePage\WarehouseListViewModel.cs" />
+    <Compile Include="Models\ViewModels\ManageMagazinePage\StatesViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
     <Compile Include="Strings\PLStrings.cs" />
