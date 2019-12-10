@@ -9,6 +9,7 @@ using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.MagazineListViewModel;
+using SWAM.Models.ViewModels.ManageMagazinePage;
 using SWAM.Models.Warehouse;
 using SWAM.Strings;
 
@@ -187,6 +188,7 @@ namespace SWAM
                 if (warehouse == null)
                     return;
 
+                WarehouseInformationViewModel.Instance.SetWarehouse(warehouse);
             }
         }
         #endregion
