@@ -77,7 +77,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
-                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Seller))
+                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager 
+                    || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Seller
+                    || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Owner))
                 {
                     InformationToUser("Niewystarczający poziom uprawnień", true);
                     return;
