@@ -13,7 +13,8 @@
       VerticalAlignment="Stretch"
       Background="{StaticResource BackgroundOfPagesBrash}"
       d:DesignHeight="450"
-      d:DesignWidth="800">
+      d:DesignWidth="800"
+      Loaded="Window_Loaded">
     <!--#region Reosurces-->
     <UserControl.Resources>
         <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
@@ -230,7 +231,7 @@
                              Margin="0"
                              Style="{StaticResource UserLogin}"
                              Name="warehouseFilter"
-                             />
+                             TextChanged="WarehouseFilter_TextChanged"/>
                                 <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
                                     <fa:ImageAwesome Icon="BuildingOutline" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
                                 </Button>

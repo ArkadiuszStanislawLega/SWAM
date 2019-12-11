@@ -4,6 +4,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
@@ -171,6 +172,49 @@ namespace SWAM
             }
             #endregion
 
+        }
+        #endregion
+
+        #region Window_Loaded
+        /// <summary>
+        /// Provide initial configuration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // obtain a reference to the CollectionView instance
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
+            // assign a delegate to the Filter property
+            view.Filter = WarehouseFilter;
+        }
+        #endregion
+
+        #region WarehouseFilter
+        /// <summary>
+        /// Check if warehouse name contains searching text
+        /// </summary>
+        /// <param name="item">customer object</param>
+        /// <returns>True if does</returns>
+        private bool WarehouseFilter(object item)
+        {
+            if (item is Warehouse warehouse)
+            {
+                return (warehouse.Name.IndexOf(warehouseFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+            return false;
+        }
+        #endregion
+
+        #region WarehouseFilter_TextChanged
+        /// <summary>
+        /// Recreate warehouse list view when text changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WarehouseFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource).Refresh();
         }
         #endregion
 
