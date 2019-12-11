@@ -77,6 +77,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
+                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Seller))
+                {
+                    InformationToUser("Niewystarczający poziom uprawnień", true);
+                    return;
+                }
+
                 // Submit form
                 CreateCustomerOrderAsync();
                 return;
