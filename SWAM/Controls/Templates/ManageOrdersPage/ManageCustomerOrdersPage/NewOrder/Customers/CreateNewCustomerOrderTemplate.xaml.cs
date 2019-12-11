@@ -84,7 +84,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
                 }
 
                 // Submit form
-                CreateCustomerOrderAsync();
+                CreateCustomerOrder();
                 return;
             }
 
@@ -191,7 +191,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         /// <summary>
         /// Gets form values and creates customer order
         /// </summary>
-        private void CreateCustomerOrderAsync()
+        private void CreateCustomerOrder()
         {
             var context = new ApplicationDbContext();
             var customer = customerProfile.DataContext as Customer;
