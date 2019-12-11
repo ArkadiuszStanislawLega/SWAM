@@ -3,11 +3,15 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.MagazineListViewModel;
+using SWAM.Models.ViewModels.ManageMagazinePage;
+using SWAM.Models.Warehouse;
 using SWAM.Strings;
 
 namespace SWAM
@@ -78,8 +82,6 @@ namespace SWAM
         public ManageMagazinePage()
         {
             InitializeComponent();
-            DataContext = this._stateList;
-            _stateList.Refresh();
         }
         #endregion
 
@@ -102,6 +104,7 @@ namespace SWAM
             this._currentOperation = Operation.none;
         }
         #endregion
+
         #region EditButton_Click
         /// <summary>
         /// Action after click Edit button.
@@ -172,19 +175,66 @@ namespace SWAM
         }
         #endregion
 
+        #region Window_Loaded
+        /// <summary>
+        /// Provide initial configuration
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // obtain a reference to the CollectionView instance
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
+            // assign a delegate to the Filter property
+            view.Filter = WarehouseFilter;
+        }
+        #endregion
 
+        #region WarehouseFilter
+        /// <summary>
+        /// Check if warehouse name contains searching text
+        /// </summary>
+        /// <param name="item">customer object</param>
+        /// <returns>True if does</returns>
+        private bool WarehouseFilter(object item)
+        {
+            if (item is Warehouse warehouse)
+            {
+                return (warehouse.Name.IndexOf(warehouseFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+            return false;
+        }
+        #endregion
 
+        #region WarehouseFilter_TextChanged
+        /// <summary>
+        /// Recreate warehouse list view when text changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WarehouseFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource).Refresh();
+        }
+        #endregion
 
+        #region WarehouseListViewItem_PreviewMouseLeftButtonUp
+        /// <summary>
+        /// Fill parent (CreateNewWarehouseOrderTemplate) control DataContext with clicked warehouse data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WarehouseListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as ListView).SelectedItem;
+            if ((sender as ListView).SelectedItem is Warehouse warehouse)
+            {
+                if (warehouse == null)
+                    return;
 
-
-
-
-
+                StatesViewModel.Instance.SetStates(warehouse);
+            }
+        }
+        #endregion
     }
-
-
-
-
-
-
 }

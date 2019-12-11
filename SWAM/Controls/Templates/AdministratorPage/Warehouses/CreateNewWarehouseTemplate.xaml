@@ -60,7 +60,7 @@
                     <TextBlock Text="Wysokość"  Grid.Column="0"
                                Name="tbHeight" 
                            Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Text="mm"  
+                    <TextBlock Text="m"  
                                Grid.Column="2"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
@@ -81,7 +81,7 @@
                     <TextBlock Text="Szerokość"  
                                Name="tbWidth" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Text="mm"  Grid.Column="2"
+                    <TextBlock Text="m"  Grid.Column="2"
                                HorizontalAlignment="Right"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
@@ -101,7 +101,7 @@
                     <TextBlock Text="Długość"  
                                Name="tbLength" Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Text="mm"  Grid.Column="2"
+                    <TextBlock Text="m"  Grid.Column="2"
                                HorizontalAlignment="Right"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>
@@ -122,7 +122,7 @@
                                ToolTip="Maksymalna łączna waga towarów umieszona magazynie"
                                Grid.Column="0"
                                Style="{StaticResource ProfileProperties}"/>
-                    <TextBlock Text="g"  
+                    <TextBlock Text="kg"  
                                Grid.Column="2"
                                Style="{StaticResource ProfileProperties}"/>
                 </Grid>

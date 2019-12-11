@@ -76,11 +76,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
-                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager))
+                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager
+                    || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Owner))
                 {
                     InformationToUser("Niewystarczający poziom uprawnień", true);
                     return;
                 }
+
                 // Submit form
                 CreateWarehouseOrder();
                 return;

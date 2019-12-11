@@ -6,14 +6,25 @@
       xmlns:local="clr-namespace:SWAM.Controls.Pages"
       xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
       xmlns:conv="clr-namespace:SWAM.Converters"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:context="clr-namespace:SWAM.Models.ViewModels.ManageMagazinePage"
       mc:Ignorable="d" 
       HorizontalAlignment="Stretch"
       VerticalAlignment="Stretch"
       Background="{StaticResource BackgroundOfPagesBrash}"
       d:DesignHeight="450"
-      d:DesignWidth="800">
+      d:DesignWidth="800"
+      Loaded="Window_Loaded">
     <!--#region Reosurces-->
     <UserControl.Resources>
+        <Style x:Key="HeaderConcealment" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
+
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -107,9 +118,12 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <Grid Name="MainContent">
                     <!--#region Column definitions-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="300" MaxWidth="500"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <Grid Grid.Column="0" Name="ProductProfile" >
@@ -194,26 +208,87 @@
                         <!--#endregion-->
                     </Grid>
                     <!--#region ProductsList-->
-                    <DataGrid Name="ProductsList"
-                              Margin="5"
-                              Grid.Column="1"
-                              HorizontalAlignment="Stretch"
-                              RowHeaderWidth="0"
-                              ItemsSource="{Binding States}" 
-                              AutoGenerateColumns="False" 
-                              CanUserAddRows="False" SelectionMode="Single" 
-                              IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
-                              MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}"/>
-                            <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}"/>
-                            <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}"/>
-                            <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}"/>
-                            <DataGridTextColumn Header="Dostępne" Binding="{Binding Quantity}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <!--#endregion-->
+                    <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!--#region Warehouse search box-->
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Name="FindUserOrCreate" >
+                                <TextBox Tag="Wyszukaj magazyn" 
+                             FontSize="14" Width="170" Height="30"
+                             HorizontalAlignment="Center"
+                             Margin="0"
+                             Style="{StaticResource UserLogin}"
+                             Name="warehouseFilter"
+                             TextChanged="WarehouseFilter_TextChanged"/>
+                                <Button Width="30" Height="30" Style="{StaticResource NavigationButton}">
+                                    <fa:ImageAwesome Icon="BuildingOutline" Foreground="{StaticResource FontsBrash}" Height="20" Width="20"/>
+                                </Button>
+                            </StackPanel>
+                            <!--#endregion-->
+
+                            <!--#region Warehouse list-->
+                            <Grid Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <ScrollViewer HorizontalScrollBarVisibility="Hidden">
+                                    <ListView MaxHeight="300" Name="warehouseListView" 
+                                              Background="{StaticResource MainBarBrash}" 
+                                              Foreground="White" BorderThickness="0" 
+                                              PreviewMouseLeftButtonUp="WarehouseListViewItem_PreviewMouseLeftButtonUp" 
+                                              DataContext="{x:Static context:StatesViewModel.Instance}"
+                                              ItemsSource="{Binding Warehouses}">
+                                        <ListView.View>
+                                            <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
+                                                <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </ScrollViewer>
+                            </Grid>
+                            <!--#endregion-->
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <DataGrid Name="ProductsList"
+                                  Grid.Row="0"
+                                  Margin="5"
+                                  RowHeaderWidth="0"
+                                  DataContext="{x:Static context:StatesViewModel.Instance}"
+                                  ItemsSource="{Binding States}"
+                                  AutoGenerateColumns="False" 
+                                  CanUserAddRows="False" SelectionMode="Single" 
+                                  IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
+                                  MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
                 </Grid>
+                <!--#endregion-->
             </ScrollViewer>
         </Border>
     </Grid>
