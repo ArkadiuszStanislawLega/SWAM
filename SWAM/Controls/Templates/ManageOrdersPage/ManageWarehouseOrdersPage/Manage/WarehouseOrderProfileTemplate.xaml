@@ -107,9 +107,17 @@
                              From="0" To="1"
                              Duration="0:0:0.3"/>
         </Storyboard>
+        <!--#endregion-->       
+        <!--#endregion-->
+
+        <!--#region GridViewConcealmentStyle-->
+        <Style x:Key="GridViewConcealment"
+               TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility"
+                    Value="Collapsed" />
+        </Style>
         <!--#endregion-->
         
-        <!--#endregion-->
     </UserControl.Resources>
     <!--#endregion-->
 
@@ -372,23 +380,75 @@
                 </StackPanel>
 
                 <StackPanel Margin="10">
-                    <DataGrid x:Name="ProductsFromOrderList"                              
-                              HorizontalAlignment="Stretch"
-                              RowHeaderWidth="0"
-                              ItemsSource="{Binding OrderPositions}"                            
-                              AutoGenerateColumns="False"                              
-                              CanUserAddRows="False"                              
-                              SelectionMode="Single"
-                              IsReadOnly="True"
-                              Style="{StaticResource BasicDataGrid}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Produkt"
-                                                Binding="{Binding Product.Name}"/>
-                            <DataGridTextColumn Header="Ilość"
-                                                Binding="{Binding Quantity}"/>
-                        </DataGrid.Columns>
-                        
-                    </DataGrid>
+                    <ListView MaxHeight="300"
+                              Name="warehouseOrderPositionsListView"
+                              ItemsSource="{Binding OrderPositions}"
+                              Background="Transparent"
+                              Foreground="White"
+                              BorderThickness="0">
+                        <ListView.View>
+                            <GridView ColumnHeaderContainerStyle="{StaticResource GridViewConcealment}">
+                                
+                                <GridViewColumn Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ScrollViewer Width="110"
+                                                          HorizontalScrollBarVisibility="Auto">
+                                                <Grid Margin="5">
+                                                    <TextBlock Text="{Binding Product.Name}" />
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                
+                                <GridViewColumn Width="60">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="6" />
+                                                    <ColumnDefinition Width="auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="x" />
+                                                <TextBox x:Name="quantityTextBox"
+                                                         Grid.Column="1"
+                                                         Width="35"
+                                                         LostFocus="UpdateQuantity" 
+                                                         Background="Transparent"
+                                                         Foreground="White"
+                                                         BorderBrush="Transparent"
+                                                         BorderThickness="1.5"
+                                                         Style="{StaticResource TextBoxGrayBorder}"
+                                                         Text="{Binding Quantity}"
+                                                         PreviewTextInput="QuantityValidation"/>                                                
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="40">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="25">
+                                                <Button x:Name="deleteProduct"
+                                                        Click="DeleteProduct_Click"
+                                                        Width="30"
+                                                        Height="35"
+                                                        Style="{StaticResource NavigationButton}">
+                                                    <fa:ImageAwesome Icon="Trash"
+                                                                     Foreground="{StaticResource FontsBrash}"
+                                                                     Height="20"
+                                                                     Width="16" />
+                                                </Button>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                
+                            </GridView>                            
+                        </ListView.View>                        
+                    </ListView>
                 </StackPanel>
                 
             </StackPanel>            

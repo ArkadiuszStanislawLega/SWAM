@@ -137,7 +137,6 @@ namespace SWAM.Models.Warehouse
 			}
 
 			return WarehouseOrders;
-
 		}
 
 		public static void ChangePaymentStatus(PaymentStatus status, WarehouseOrder order)
@@ -162,8 +161,20 @@ namespace SWAM.Models.Warehouse
 				dbOrder.DeliveryDate = DateTime.Now;
 				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;				
 			}
+			Context.SaveChanges();
+		}
+
+		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
+		{			
+			var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == orderPosition.WarehouseOrder.Id);
+			dbOrder.OrderPositions.RemoveAt(dbOrder.OrderPositions.IndexOf(orderPosition));
 			Context.SaveChanges();			
 		}
-		
+
+		public static void updateQuantity(WarehouseOrderPosition orderPosition, int productQty)
+		{	
+			orderPosition.Quantity = productQty;
+			Context.SaveChanges();
+		}
 	}
 }

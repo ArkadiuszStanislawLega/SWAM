@@ -20,6 +20,8 @@ using System.Data.Entity.Validation;
 using System.Data.Entity;
 using SWAM.Strings;
 using SWAM.Models.User;
+using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
+using System.Text.RegularExpressions;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 {
@@ -27,8 +29,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 	/// Logika interakcji dla klasy WarehouseOrderProfileTemplate.xaml
 	/// </summary>
 	/// 
-
-
 	
 public partial class WarehouseOrderProfileTemplate : UserControl
 	{
@@ -47,8 +47,6 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 				SupplierName.Text = warehouseOrder.ExternalSupplayer.Name;
 				if (warehouseOrder.UserReceivedOrder != null) OrderReceiver.Text = warehouseOrder.UserReceivedOrder.Name;
 			}
-				
-
 		}
 		
 		private void ConfirmStatusChange_Button(object sender, RoutedEventArgs e)
@@ -72,7 +70,57 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 			}
 		}
 
+		private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+		{			
+			 if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
+			{
+				var newContext = warehouseOrderPosition.WarehouseOrder;
+				WarehouseOrder.DeleteProduct(warehouseOrderPosition);
+				DataContext = new ApplicationDbContext();
+				DataContext = newContext;
+			}
+		}
+				
+		private void UpdateQuantity(object sender, RoutedEventArgs e)
+		{
+			var quantity = sender as TextBox;
+			var warehouseOrderPosition = quantity.DataContext as WarehouseOrderPosition;
 
+			if (quantity.Text == String.Empty)
+				return;
+
+			else if (quantity.Text == "0")
+			{
+				quantity.Text = "1";
+				warehouseOrderPosition.Quantity = 1;
+				return;
+			}
+
+			else
+			{
+				WarehouseOrder.updateQuantity(warehouseOrderPosition, int.Parse(quantity.Text));				
+			}
+		}
+
+		#region QuantityValidation
+		/// <summary>
+		/// Validate if characters in product quantity texbox are integers, don't allow other characters to be writen	
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void QuantityValidation(object sender, TextCompositionEventArgs e)
+		{
+			TextBox quanity = sender as TextBox;
+			Regex regex = new Regex("[^1-9]+");
+
+			if (quanity.Text.Length > 0)
+				regex = new Regex("[^0-9]+");
+
+			e.Handled = regex.IsMatch(e.Text);
+		}
+		#endregion
+
+		
 
 	}
 }
