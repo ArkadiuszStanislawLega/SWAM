@@ -20,6 +20,10 @@
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
 
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
+
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -271,13 +275,13 @@
                                   IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
                                   MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}"/>
-                                    <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}"/>
-                                    <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}"/>
-                                    <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}"/>
-                                    <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}"/>
-                                    <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}"/>
-                                    <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}"/>
+                                    <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
