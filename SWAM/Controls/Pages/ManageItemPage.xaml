@@ -15,6 +15,10 @@
                  d:DesignWidth="800">
     <!--#region Reosurces-->
     <UserControl.Resources>
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
+        
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -487,17 +491,17 @@
                               MouseLeftButtonUp="ProductsList_LeftMouseButtonDown">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa"
-                                                Binding="{Binding Name}" />
+                                                Binding="{Binding Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                             <DataGridTextColumn Header="Szerokość"
-                                                Binding="{Binding Width}" />
+                                                Binding="{Binding Width}" ElementStyle="{StaticResource TextBlockMargin}"/>
                             <DataGridTextColumn Header="Wysokość"
-                                                Binding="{Binding Height}" />
+                                                Binding="{Binding Height}" ElementStyle="{StaticResource TextBlockMargin}"/>
                             <DataGridTextColumn Header="Długość"
-                                                Binding="{Binding Length}" />
+                                                Binding="{Binding Length}" ElementStyle="{StaticResource TextBlockMargin}"/>
                             <DataGridTextColumn Header="Waga"
-                                                Binding="{Binding Weigth}" />
+                                                Binding="{Binding Weigth}" ElementStyle="{StaticResource TextBlockMargin}"/>
                             <DataGridTextColumn Header="Cena sprzedaży"
-                                                Binding="{Binding Price, StringFormat={}{0:c}}" />
+                                                Binding="{Binding Price, StringFormat={}{0:c}}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--#endregion-->
