@@ -126,14 +126,14 @@
                    HorizontalAlignment="Left"/>
         <Border  Grid.Row="1" BorderBrush="{StaticResource GraphiteBrash}" BorderThickness="1" >
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <Grid Name="MainContent">
+                <Grid Name="MainContent" HorizontalAlignment="Center">
                     <!--#region Column definitions-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="300" MaxWidth="500"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
                     <Grid Grid.Column="0" Name="ProductProfile" >
@@ -243,7 +243,7 @@
                         <!--#endregion-->
                     </Grid>
                     <!--#region ProductsList-->
-                    <Grid Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 10 0">
+                    <Grid Grid.Column="1" Margin="0 0 10 0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
