@@ -47,7 +47,13 @@
                           ItemsSource="{Binding Warehouses}">
                     <ListView.View>
                         <GridView ColumnHeaderContainerStyle="{StaticResource HeaderConcealment}">
-                        <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Width="180">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" Margin="30 5 0 5"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
