@@ -18,7 +18,7 @@
         <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="5 3 0 5" />
         </Style>
-        
+
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -475,9 +475,13 @@
                         <!--#endregion-->
                     </Grid>
                     <!--#region ProductsList-->
-                    <DataGrid Name="ProductsList"
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <DataGrid Name="ProductsList"
                               Margin="5"
-                              Grid.Column="1"
                               RowHeaderWidth="0"
                               HorizontalAlignment="Stretch"
                               DataContext="{x:Static prod:ProductListViewModel.Instance}"
@@ -489,21 +493,22 @@
                               IsReadOnly="True"
                               Style="{StaticResource BasicDataGrid}"
                               MouseLeftButtonUp="ProductsList_LeftMouseButtonDown">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nazwa"
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nazwa"
                                                 Binding="{Binding Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                            <DataGridTextColumn Header="Szerokość"
+                                <DataGridTextColumn Header="Szerokość"
                                                 Binding="{Binding Width}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                            <DataGridTextColumn Header="Wysokość"
+                                <DataGridTextColumn Header="Wysokość"
                                                 Binding="{Binding Height}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                            <DataGridTextColumn Header="Długość"
+                                <DataGridTextColumn Header="Długość"
                                                 Binding="{Binding Length}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                            <DataGridTextColumn Header="Waga"
+                                <DataGridTextColumn Header="Waga"
                                                 Binding="{Binding Weigth}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                            <DataGridTextColumn Header="Cena sprzedaży"
+                                <DataGridTextColumn Header="Cena sprzedaży"
                                                 Binding="{Binding Price, StringFormat={}{0:c}}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                     <!--#endregion-->
                 </Grid>
             </ScrollViewer>
