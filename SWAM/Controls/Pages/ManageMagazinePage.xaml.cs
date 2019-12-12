@@ -236,5 +236,10 @@ namespace SWAM
             }
         }
         #endregion
+
+        private void CancelEditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
