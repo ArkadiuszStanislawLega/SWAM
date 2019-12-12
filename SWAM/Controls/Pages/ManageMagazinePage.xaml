@@ -45,22 +45,6 @@
             <Setter Property="Margin" Value="10"/>
         </Style>
         <!--#endregion-->
-        <!--#region ProductTextBox-->
-        <Style x:Key="ProductTextBox" TargetType="TextBox">
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="HorizontalContentAlignment" Value="Right" />
-            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=EditedName}"/>
-            <Setter Property="Opacity" Value="{Binding Opacity, ElementName=EditedName}" />
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-        <!--#endregion-->
-        <!--#region ProductLabel-->
-        <Style x:Key="ProductLabel" TargetType="Label">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Visibility" Value="{Binding Visibility, ElementName=LabelName}"/>
-            <Setter Property="Opacity" Value="{Binding Opacity, ElementName=LabelName}" />
-        </Style>
-        <!--#endregion-->
         <!--#region ShowEditStory-->
         <Storyboard x:Key="ShowEditStory">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -150,7 +134,7 @@
                             <!--#region Name-->
                             <TextBlock Text="Produkt:"  Style="{StaticResource ProfileProperties}"/>
                             <Label Name="LabelName" Content="{Binding Product.Name}" Visibility="Visible" HorizontalAlignment="Right"/>
-                            <TextBox  Name="EditedName" Text="{Binding Name}" 
+                            <TextBox  Name="EditedName" Text="{Binding Product.Name}" 
                               FontSize="14"
                               HorizontalAlignment="Stretch"
                               HorizontalContentAlignment="Right"
@@ -158,41 +142,33 @@
                                         ElementName=LabelName,
                                         Converter={conv:VisibilityReverseConverter}}"/>
                             <!--#endregion-->
+                            
                             <!--#region Nazwa magazynu-->
-                            <Grid>
-                                <TextBlock Text="Magazyn:" Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Text="" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                            </Grid>
-                            <Label Content="{Binding Warehouse.Name}"  Style="{StaticResource ProductLabel}"/>
+                            <TextBlock Text="Magazyn:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Warehouse.Name}" HorizontalAlignment="Right"/>
                             <!--#endregion-->
+                            
                             <!--#region WarehouseName-->
-                            <Grid>
-                                <TextBlock Text="Ilość dostępna:" Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Text="" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                            </Grid>
-                            <Label Content="{Binding Available }" Style="{StaticResource ProductLabel}"/>
+                            <TextBlock Text="Ilość dostępna:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Available }" HorizontalAlignment="Right"/>
                             <!--#endregion-->
+
                             <!--#region Quantity-->
-                            <Grid>
-                                <TextBlock Text="Ilość całkowita:" Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Text="" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                            </Grid>
-                            <Label Content="{Binding Quantity}" Style="{StaticResource ProductLabel}"/>
-                            <TextBox Name="EditedQuantity" Text="{Binding Quantity}" Style="{StaticResource ProductTextBox}" />
+                            <TextBlock Text="Ilość całkowita:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Quantity}"  HorizontalAlignment="Right"
+                                       Visibility="{Binding ElementName=EditedQuantity, Path=Visibility, Converter={conv:VisibilityReverseConverter}}"/>
+                            <TextBox Name="EditedQuantity" Text="{Binding Quantity}" HorizontalContentAlignment="Right"
+                                     Visibility="{Binding ElementName=EditedName, Path=Visibility}"/>
                             <!--#endregion-->
+
                             <!--#region Booked-->
-                            <Grid>
-                                <TextBlock Text="Ilość zarezerwowana:" Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Text="" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                            </Grid>
-                            <Label Content="{Binding Booked}" Style="{StaticResource ProductLabel}"/>
+                            <TextBlock Text="Ilość zarezerwowana:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Booked}" HorizontalAlignment="Right"/>
                             <!--#endregion-->
+
                             <!--#region Price-->
-                            <Grid>
-                                <TextBlock Text="Cena sprzedaży:" Style="{StaticResource ProfileProperties}"/>
-                                <TextBlock Text="" HorizontalAlignment="Right" Style="{StaticResource ProfileProperties}"/>
-                            </Grid>
-                            <Label Content="{Binding Product.Price, Converter={conv:DecimalToIntegerConverter}}"  Style="{StaticResource ProductLabel}"/>
+                            <TextBlock Text="Cena sprzedaży:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Product.Price, Converter={conv:DecimalToIntegerConverter}}"  HorizontalAlignment="Right"/>
                             <!--#endregion-->
                         </StackPanel>
                         <!--#endregion-->
