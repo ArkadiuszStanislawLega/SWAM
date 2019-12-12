@@ -256,10 +256,10 @@
                 BorderThickness="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">
-                <Grid  Name="MainContent">
+                <Grid Name="MainContent" HorizontalAlignment="Center">
                     <!--#region Column definitions-->
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
                     <!--#endregion-->
