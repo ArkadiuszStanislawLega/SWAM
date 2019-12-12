@@ -76,6 +76,11 @@
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditButton" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
         <!--#region HideEditStory-->
@@ -90,6 +95,11 @@
             </ObjectAnimationUsingKeyFrames>
 
             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName" 
+                                           Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditButton" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -204,7 +214,8 @@
                             <Button Name="SaveButton"
                                     Click="SaveButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
-                                    ToolTip="Zapisz zmiany">
+                                    ToolTip="Zapisz zmiany"
+                                    Visibility="{Binding ElementName=EditButton, Path=Visibility, Converter={conv:VisibilityReverseConverter}}">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
                                         <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
@@ -217,7 +228,8 @@
                             <Button Name="CancelButton"
                                     Click="CancelEditButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
-                                    ToolTip="Anuluj edycję">
+                                    ToolTip="Anuluj edycję"
+                                    Visibility="{Binding ElementName=EditButton, Path=Visibility, Converter={conv:VisibilityReverseConverter}}">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
                                         <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
