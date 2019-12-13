@@ -115,6 +115,8 @@ namespace SWAM
         {
             if (ProductProfile.DataContext is State state)
             {
+                this.EditedName.Text = state.Product.Name;
+                this.EditedQuantity.Text = ""+state.Quantity;
                 if (Context.Products.FirstOrDefault(p => p.Id == state.Id) != null)
                 {
                     this._currentOperation = Operation.edit;

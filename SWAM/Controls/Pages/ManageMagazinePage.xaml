@@ -134,11 +134,11 @@
                             <!--#region Name-->
                             <TextBlock Text="Produkt:"  Style="{StaticResource ProfileProperties}"/>
                             <Label Name="LabelName" Content="{Binding Product.Name}" Visibility="Visible" HorizontalAlignment="Right"/>
-                            <TextBox  Name="EditedName" Text="{Binding Product.Name}" 
-                              FontSize="14"
-                              HorizontalAlignment="Stretch"
-                              HorizontalContentAlignment="Right"
-                              Visibility="{Binding Visibility,
+                            <TextBox  Name="EditedName"  
+                                      FontSize="14"
+                                      HorizontalAlignment="Stretch"
+                                      HorizontalContentAlignment="Right"
+                                      Visibility="{Binding Visibility,
                                         ElementName=LabelName,
                                         Converter={conv:VisibilityReverseConverter}}"/>
                             <!--#endregion-->
@@ -155,9 +155,9 @@
 
                             <!--#region Quantity-->
                             <TextBlock Text="Ilość całkowita:" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding Quantity}"  HorizontalAlignment="Right"
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding Quantity}"
                                        Visibility="{Binding ElementName=EditedQuantity, Path=Visibility, Converter={conv:VisibilityReverseConverter}}"/>
-                            <TextBox Name="EditedQuantity" Text="{Binding Quantity}" HorizontalContentAlignment="Right"
+                            <TextBox Name="EditedQuantity" HorizontalContentAlignment="Right"
                                      Visibility="{Binding ElementName=EditedName, Path=Visibility}"/>
                             <!--#endregion-->
 
