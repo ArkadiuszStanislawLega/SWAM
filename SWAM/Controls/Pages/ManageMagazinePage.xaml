@@ -255,11 +255,11 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0">
+                            <Grid Grid.Row="0" HorizontalAlignment="Right">
                                 <TextBox Tag="Wyszukaj produkt" 
                                          FontSize="14" Width="170" Height="30"
-                                         Margin="0"
-                                         HorizontalAlignment="Right"
+                                         Margin="0 0 5 0"
+                                         HorizontalAlignment="Center"
                                          Style="{StaticResource UserLogin}"
                                          TextChanged="WarehouseDatagridFilter_TextChanged"/>    
                             </Grid>
