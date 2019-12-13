@@ -186,5 +186,10 @@ namespace SWAM
             }
         }
         #endregion
+
+        private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
