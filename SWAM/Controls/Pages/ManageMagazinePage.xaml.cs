@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -187,9 +188,24 @@ namespace SWAM
         }
         #endregion
 
+        #region WarehouseDatagridFilter_TextChanged
         private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            TextBox filterTextBox = sender as TextBox;
+            string searchingText = filterTextBox.Text;
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(ProductsList.ItemsSource);
 
+            if (searchingText == string.Empty)
+                collectionView.Filter = null;
+            else
+            {
+                collectionView.Filter = @object =>
+                {
+                    State state = @object as State;
+                    return (state.Product.Name.ToUpper().StartsWith(searchingText.ToUpper()));
+                };
+            }
         }
+        #endregion
     }
 }
