@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
 using SWAM.Models;
 using SWAM.Models.MagazineListViewModel;
@@ -18,12 +17,7 @@ namespace SWAM
 {
     public partial class ManageMagazinePage : BasicPage
     {
-        enum Operation { none, edit, add };
-
         #region Properties
-
-        Operation _currentOperation;
-
         private int _quantity;
 
         private MagazineListViewModel _stateList = new MagazineListViewModel();
@@ -88,9 +82,6 @@ namespace SWAM
         private void MagazineList_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-            this.EditButton.IsEnabled = true;
-            this.SaveButton.IsEnabled = false;
-            this._currentOperation = Operation.none;
         }
         #endregion
 
@@ -104,12 +95,7 @@ namespace SWAM
         {
             if (ProductProfile.DataContext is State state)
             {
-                this.EditedQuantity.Text = ""+state.Quantity;
-                if (Context.Products.FirstOrDefault(p => p.Id == state.Id) != null)
-                {
-                    this._currentOperation = Operation.edit;
-                    SaveButton.IsEnabled = true;
-                }
+                this.EditedQuantity.Text = "" + state.Quantity;
             }
         }
         #endregion
@@ -125,43 +111,37 @@ namespace SWAM
         {
             if (ValidationTextBoxes())
             {
-                 if (this._currentOperation == Operation.edit)
+                if (ProductProfile.DataContext is State state)
                 {
-                    if (ProductProfile.DataContext is State state)
+                    this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
+                    if (isConfirmed)
                     {
-                        this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
-                        if (isConfirmed)
-                        {
-                            State.EditState(state);
-                        }
-                        else
-                        {
-                            Context = new ApplicationDbContext();
-                            var dbState = Context.States.FirstOrDefault(p => p.Id == state.Id);
-                            state.Quantity = dbState.Quantity;
-                        }
+                        State.EditState(state);
                     }
-                    else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+                    else
+                    {
+                        Context = new ApplicationDbContext();
+                        var dbState = Context.States.FirstOrDefault(p => p.Id == state.Id);
+                        state.Quantity = dbState.Quantity;
+                    }
                 }
-                this._stateList.Refresh();
-                this._currentOperation = Operation.none;
+                else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
             }
-
-            #region ValidationTextBoxes
-            /// <summary>
-            /// Validate fields that should be filled
-            /// </summary>
-            /// <returns>True if all numbers are correct.</returns>
-            bool ValidationTextBoxes()
+            this._stateList.Refresh();
+        }
+        #endregion
+        #region ValidationTextBoxes
+        /// <summary>
+        /// Validate fields that should be filled
+        /// </summary>
+        /// <returns>True if all numbers are correct.</returns>
+        bool ValidationTextBoxes()
+        {
+            if (int.TryParse(this.EditedQuantity.Text, out this._quantity) && this._quantity > 0)
             {
-                if (int.TryParse(this.EditedQuantity.Text, out this._quantity) && this._quantity > 0)
-                {
-                    return true;
-                }
-                return false;
+                return true;
             }
-            #endregion
-
+            return false;
         }
         #endregion
 
@@ -177,6 +157,18 @@ namespace SWAM
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
             // assign a delegate to the Filter property
             view.Filter = WarehouseFilter;
+            if (this.warehouseListView.Items.Count > 0)
+            {
+                this.warehouseListView.SelectedIndex = 0;
+               
+                this.ProductsList.ItemsSource = StatesViewModel.Instance.States;
+                WarehouseListViewItem_PreviewMouseLeftButtonUp(this.warehouseListView, e);
+                if (StatesViewModel.Instance.States.Count > 0)
+                {
+                    this.ProductsList.SelectedIndex = 0;
+                    this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
+                }
+            }
         }
         #endregion
 
