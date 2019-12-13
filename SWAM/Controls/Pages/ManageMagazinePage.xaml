@@ -115,12 +115,12 @@
                             <TextBlock Text="Produkt:"  Style="{StaticResource ProfileProperties}"/>
                             <Label Name="LabelName" Content="{Binding Product.Name}" Visibility="Visible" HorizontalAlignment="Right"/>
                             <!--#endregion-->
-                            
+
                             <!--#region Nazwa magazynu-->
                             <TextBlock Text="Magazyn:" Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Text="{Binding Warehouse.Name}" HorizontalAlignment="Right"/>
                             <!--#endregion-->
-                            
+
                             <!--#region WarehouseName-->
                             <TextBlock Text="Ilość dostępna:" Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Text="{Binding Available }" HorizontalAlignment="Right"/>
@@ -249,13 +249,23 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
+                            <Grid Grid.Row="0">
+                                <TextBox Tag="Wyszukaj produkt" 
+                                         FontSize="14" Width="170" Height="30"
+                                         Margin="0"
+                                         HorizontalAlignment="Right"
+                                         Style="{StaticResource UserLogin}"
+                                         TextChanged="WarehouseDatagridFilter_TextChanged"/>    
+                            </Grid>
+
                             <DataGrid Name="ProductsList"
-                                  Grid.Row="0"
+                                  Grid.Row="1"
                                   Margin="5"
                                   RowHeaderWidth="0"
                                   DataContext="{x:Static context:StatesViewModel.Instance}"
