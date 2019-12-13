@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using SWAM.Controls.Pages;
 using SWAM.Models;
-using SWAM.Models.MagazineListViewModel;
 using SWAM.Models.ViewModels.ManageMagazinePage;
 using SWAM.Models.Warehouse;
 using SWAM.Strings;
@@ -19,52 +15,8 @@ namespace SWAM
     {
         #region Properties
         private int _quantity;
-
-        private MagazineListViewModel _stateList = new MagazineListViewModel();
-
-        private ApplicationDbContext _context = new ApplicationDbContext();
-
-        public ApplicationDbContext Context
-        {
-            get
-            {
-                try
-                {
-                    return _context;
-                }
-                catch (DbUpdateConcurrencyException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-                catch (DbUpdateException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-                catch (DbEntityValidationException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-                catch (NotSupportedException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-                catch (ObjectDisposedException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-                catch (InvalidOperationException e)
-                {
-                    MainWindow.Instance.WarningWindow.Show(e.Message, ErrorMesages.DATABASE_ERROR);
-                    return null;
-                }
-            }
-            set => _context = value;
-        }
+        private int _selectedWarehouse;
+        private int _selectedProduct;
         #endregion
         #region BasicConstructor
         public ManageMagazinePage()
@@ -82,6 +34,7 @@ namespace SWAM
         private void MagazineList_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
+            this._selectedProduct = this.ProductsList.SelectedIndex;
         }
         #endregion
 
@@ -95,7 +48,7 @@ namespace SWAM
         {
             if (ProductProfile.DataContext is State state)
             {
-                this.EditedQuantity.Text = "" + state.Quantity;
+                this.EditedQuantity.Text = $"{state.Quantity}";
             }
         }
         #endregion
@@ -116,18 +69,17 @@ namespace SWAM
                     this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
                     if (isConfirmed)
                     {
-                        State.EditState(state);
-                    }
-                    else
-                    {
-                        Context = new ApplicationDbContext();
-                        var dbState = Context.States.FirstOrDefault(p => p.Id == state.Id);
-                        state.Quantity = dbState.Quantity;
+                        if (int.TryParse(this.EditedQuantity.Text, out int editedQuantity))
+                        {
+                            state.Quantity = editedQuantity;
+                            State.EditState(state);
+                            StatesViewModel.Instance.Refresh();
+                            RefreshDataInProductProfile(this._selectedWarehouse, this._selectedProduct);
+                        }
                     }
                 }
                 else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
             }
-            this._stateList.Refresh();
         }
         #endregion
         #region ValidationTextBoxes
@@ -144,7 +96,29 @@ namespace SWAM
             return false;
         }
         #endregion
+        #region RefreshDataInProductProfile
+        /// <summary>
+        /// Refreshing data in product profile same as click on items in lists.
+        /// </summary>
+        /// <param name="warehouseListIndex">Index from the list of warehouses.</param>
+        /// <param name="productIndex">Index from the list of products.</param>
+        private void RefreshDataInProductProfile(int warehouseListIndex = 0, int productIndex = 0)
+        {
+            // Select all first buttons in current view.
+            if (this.warehouseListView.Items.Count > 0 && warehouseListIndex < this.warehouseListView.Items.Count)
+            {
+                this.warehouseListView.SelectedIndex = warehouseListIndex;
+                this.ProductsList.ItemsSource = StatesViewModel.Instance.States;
+                WarehouseListViewItem_PreviewMouseLeftButtonUp(this.warehouseListView, new RoutedEventArgs());
 
+                if (StatesViewModel.Instance.States.Count > 0 && productIndex < StatesViewModel.Instance.States.Count)
+                {
+                    this.ProductsList.SelectedIndex = productIndex;
+                    this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
+                }
+            }
+        }
+        #endregion
         #region Window_Loaded
         /// <summary>
         /// Provide initial configuration
@@ -159,18 +133,7 @@ namespace SWAM
             view.Filter = WarehouseFilter;
 
             // Select all first buttons in current view.
-            if (this.warehouseListView.Items.Count > 0)
-            {
-                this.warehouseListView.SelectedIndex = 0;
-                this.ProductsList.ItemsSource = StatesViewModel.Instance.States;
-                WarehouseListViewItem_PreviewMouseLeftButtonUp(this.warehouseListView, e);
-
-                if (StatesViewModel.Instance.States.Count > 0)
-                {
-                    this.ProductsList.SelectedIndex = 0;
-                    this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-                }
-            }
+            RefreshDataInProductProfile();
         }
         #endregion
 
@@ -210,20 +173,18 @@ namespace SWAM
         /// <param name="e"></param>
         private void WarehouseListViewItem_PreviewMouseLeftButtonUp(object sender, RoutedEventArgs e)
         {
-            var item = (sender as ListView).SelectedItem;
-            if ((sender as ListView).SelectedItem is Warehouse warehouse)
+            if (sender is ListView warehousesList)
             {
-                if (warehouse == null)
-                    return;
+                this._selectedWarehouse = warehousesList.SelectedIndex;
+                if (warehousesList.SelectedItem is Warehouse warehouse)
+                {
+                    if (warehouse == null)
+                        return;
 
-                StatesViewModel.Instance.SetStates(warehouse);
+                    StatesViewModel.Instance.SetStates(warehouse);
+                }
             }
         }
         #endregion
-
-        private void CancelEditButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

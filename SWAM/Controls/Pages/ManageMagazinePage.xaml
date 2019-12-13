@@ -175,7 +175,6 @@
 
                             </Button>
                             <Button Name="CancelButton"
-                                    Click="CancelEditButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
                                     ToolTip="Anuluj edycję"
                                     Visibility="{Binding ElementName=EditedQuantity, Path=Visibility}">
