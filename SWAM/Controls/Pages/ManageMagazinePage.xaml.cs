@@ -157,12 +157,14 @@ namespace SWAM
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(warehouseListView.ItemsSource);
             // assign a delegate to the Filter property
             view.Filter = WarehouseFilter;
+
+            // Select all first buttons in current view.
             if (this.warehouseListView.Items.Count > 0)
             {
                 this.warehouseListView.SelectedIndex = 0;
-               
                 this.ProductsList.ItemsSource = StatesViewModel.Instance.States;
                 WarehouseListViewItem_PreviewMouseLeftButtonUp(this.warehouseListView, e);
+
                 if (StatesViewModel.Instance.States.Count > 0)
                 {
                     this.ProductsList.SelectedIndex = 0;
