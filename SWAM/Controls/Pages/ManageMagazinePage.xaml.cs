@@ -23,12 +23,6 @@ namespace SWAM
         #region Properties
 
         Operation _currentOperation;
- 
-        private string _product;
-
-        private string _warehouse;
-
-        private int _available;
 
         private int _quantity;
 
@@ -94,13 +88,8 @@ namespace SWAM
         private void MagazineList_LeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.ProductProfile.DataContext = this.ProductsList.SelectedItem;
-            EditButton.IsEnabled = true;
-            SaveButton.IsEnabled = false;
-            if (this.EditedName.Visibility == Visibility.Visible)
-            {
-                Storyboard hideStory = (Storyboard)this.FindResource("HideEditStory");
-                hideStory.Begin();
-            }
+            this.EditButton.IsEnabled = true;
+            this.SaveButton.IsEnabled = false;
             this._currentOperation = Operation.none;
         }
         #endregion
@@ -115,7 +104,6 @@ namespace SWAM
         {
             if (ProductProfile.DataContext is State state)
             {
-                this.EditedName.Text = state.Product.Name;
                 this.EditedQuantity.Text = ""+state.Quantity;
                 if (Context.Products.FirstOrDefault(p => p.Id == state.Id) != null)
                 {
@@ -141,7 +129,7 @@ namespace SWAM
                 {
                     if (ProductProfile.DataContext is State state)
                     {
-                        this._confirmWindow.Show($"Potwierdź edycję zasobu {this.EditedName.Text}?", out bool isConfirmed, $"Edytuj {this.EditedName.Text}");
+                        this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
                         if (isConfirmed)
                         {
                             State.EditState(state);

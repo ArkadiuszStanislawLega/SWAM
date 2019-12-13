@@ -48,42 +48,22 @@
         <!--#region ShowEditStory-->
         <Storyboard x:Key="ShowEditStory">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="EditedName"
+                             Storyboard.TargetName="EditedQuantity"
                              Duration="0:0:0.4" 
                              From="0" To="1"/>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName" 
-                                           Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
-
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName" 
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Quantity" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditButton" 
-                                           Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <!--#endregion-->
         <!--#region HideEditStory-->
         <Storyboard x:Key="HideEditStory">
             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                             Storyboard.TargetName="EditedName"
+                             Storyboard.TargetName="EditedQuantity"
                              Duration="0:0:0.4" 
                              From="1" To="0"/>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditedName" 
-                                           Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LabelName" 
-                                           Storyboard.TargetProperty="(UIElement.Visibility)">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
-            
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EditButton" 
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Quantity" 
                                            Storyboard.TargetProperty="(UIElement.Visibility)">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
@@ -134,13 +114,6 @@
                             <!--#region Name-->
                             <TextBlock Text="Produkt:"  Style="{StaticResource ProfileProperties}"/>
                             <Label Name="LabelName" Content="{Binding Product.Name}" Visibility="Visible" HorizontalAlignment="Right"/>
-                            <TextBox  Name="EditedName"  
-                                      FontSize="14"
-                                      HorizontalAlignment="Stretch"
-                                      HorizontalContentAlignment="Right"
-                                      Visibility="{Binding Visibility,
-                                        ElementName=LabelName,
-                                        Converter={conv:VisibilityReverseConverter}}"/>
                             <!--#endregion-->
                             
                             <!--#region Nazwa magazynu-->
@@ -155,10 +128,9 @@
 
                             <!--#region Quantity-->
                             <TextBlock Text="Ilość całkowita:" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock HorizontalAlignment="Right" Text="{Binding Quantity}"
-                                       Visibility="{Binding ElementName=EditedQuantity, Path=Visibility, Converter={conv:VisibilityReverseConverter}}"/>
+                            <TextBlock Name="Quantity" HorizontalAlignment="Right" Text="{Binding Quantity}"/>
                             <TextBox Name="EditedQuantity" HorizontalContentAlignment="Right"
-                                     Visibility="{Binding ElementName=EditedName, Path=Visibility}"/>
+                                     Visibility="{Binding ElementName=Quantity, Path=Visibility, Converter={conv:VisibilityReverseConverter}}"/>
                             <!--#endregion-->
 
                             <!--#region Booked-->
@@ -177,7 +149,8 @@
                             <Button Name="EditButton"
                                     Click="EditButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
-                                    ToolTip="Edytuj stan">
+                                    ToolTip="Edytuj stan"
+                                    Visibility="{Binding ElementName=SaveButton, Path=Visibility, Converter={conv:VisibilityReverseConverter}}">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
                                         <BeginStoryboard Storyboard="{StaticResource ShowEditStory}"/>
@@ -191,7 +164,7 @@
                                     Click="SaveButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
                                     ToolTip="Zapisz zmiany"
-                                    Visibility="{Binding ElementName=EditButton, Path=Visibility, Converter={conv:VisibilityReverseConverter}}">
+                                    Visibility="{Binding ElementName=EditedQuantity, Path=Visibility}">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
                                         <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
@@ -205,7 +178,7 @@
                                     Click="CancelEditButton_Click"
                                     Style="{StaticResource BasicFunctionalButtons}"
                                     ToolTip="Anuluj edycję"
-                                    Visibility="{Binding ElementName=EditButton, Path=Visibility, Converter={conv:VisibilityReverseConverter}}">
+                                    Visibility="{Binding ElementName=EditedQuantity, Path=Visibility}">
                                 <Button.Triggers>
                                     <EventTrigger RoutedEvent="Button.Click">
                                         <BeginStoryboard Storyboard="{StaticResource HideEditStory}"/>
