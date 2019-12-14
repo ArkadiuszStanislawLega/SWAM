@@ -40,5 +40,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.New
 
             ProductOrderListViewModel.Instance.Add(warehouseOrderPosition);
         }
+
+        private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
