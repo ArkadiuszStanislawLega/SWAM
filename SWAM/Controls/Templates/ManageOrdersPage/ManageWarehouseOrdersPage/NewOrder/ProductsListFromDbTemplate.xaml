@@ -31,7 +31,7 @@
         </Grid>
         
         <DataGrid Grid.Row="1"
-                  Name="States"
+                  Name="Products"
                   IsReadOnly="True"
                   RowHeaderWidth="0"
                   AutoGenerateColumns="False" 
