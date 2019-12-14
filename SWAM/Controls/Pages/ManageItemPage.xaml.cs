@@ -235,5 +235,10 @@ namespace SWAM
 		}
 
 		private void CancelAddingButton_Click(object sender, RoutedEventArgs e) => ClearData();
+
+        private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
