@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
@@ -236,9 +238,24 @@ namespace SWAM
 
 		private void CancelAddingButton_Click(object sender, RoutedEventArgs e) => ClearData();
 
+        #region WarehouseDatagridFilter_TextChanged
         private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            TextBox filterTextBox = sender as TextBox;
+            string searchingText = filterTextBox.Text;
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(ProductsList.ItemsSource);
 
+            if (searchingText == string.Empty)
+                collectionView.Filter = null;
+            else
+            {
+                collectionView.Filter = @object =>
+                {
+                    Product product = @object as Product;
+                    return (product.Name.ToUpper().StartsWith(searchingText.ToUpper()));
+                };
+            }
         }
+        #endregion
     }
 }
