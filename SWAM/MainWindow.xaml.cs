@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using SWAM.Controls.Pages;
@@ -208,13 +209,33 @@ namespace SWAM
         #region BasicConstructor
         public MainWindow()
         {
+            SourceInitialized += Window_SourceInitialized;
             InitializeComponent();
-
+      
             SetUnloadStoryToAllPages();
             Instance = this;
         }
         #endregion
+        #region Window size counter
+        void Window_SourceInitialized(object sender, EventArgs e)
+        {
+            IntPtr handle = new WindowInteropHelper(this).Handle;
+            HwndSource.FromHwnd(handle)?.AddHook(WindowProc);
+        }
 
+        private IntPtr WindowProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (msg)
+            {
+                case 0x0024:
+                    Native.WmGetMinMaxInfo(hwnd, lParam, (int)MinWidth, (int)MinHeight-1);
+                    handled = true;
+                    break;
+            }
+
+            return (IntPtr)0;
+        }
+        #endregion
         #region Window Functions Buttons
         #region Maximize_Click
         /// <summary>
@@ -229,13 +250,13 @@ namespace SWAM
             {
                 //Property IsMaximized must by first to current count of list in AdministratorPage-UsersList!!!!
                 IsMaximized = true;
-                this.WindowState = WindowState.Maximized;
+                WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             }
             else
             {
                 //Property IsMaximized must by first to current count of list in AdministratorPage-UsersList!!!!
                 IsMaximized = false;
-                this.WindowState = WindowState.Normal;
+                WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
             }
         }
 
@@ -248,7 +269,7 @@ namespace SWAM
         /// <param name="e"></param>
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            WindowState = WindowState == WindowState.Minimized ? WindowState.Normal : WindowState.Minimized;
         }
         #endregion
         #region Exit_Click

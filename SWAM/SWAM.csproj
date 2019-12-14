@@ -337,6 +337,7 @@
     <Compile Include="Models\ViewModels\ManageMagazinePage\StatesViewModel.cs" />
     <Compile Include="Models\Warehouse\WarehouseAddress.cs" />
     <Compile Include="Models\Warehouse\WarehouseOrderListViewModel.cs" />
+    <Compile Include="Native.cs" />
     <Compile Include="Strings\PLStrings.cs" />
     <Compile Include="Windows\ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
