@@ -63,24 +63,30 @@ namespace SWAM
         /// <param name="e">Clicked.</param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidationTextBoxes())
+            if (ProductProfile.DataContext != null)
             {
-                if (ProductProfile.DataContext is State state)
+                if (ValidationTextBoxes())
                 {
-                    this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
-                    if (isConfirmed)
+                    if (ProductProfile.DataContext is State state)
                     {
-                        if (int.TryParse(this.EditedQuantity.Text, out int editedQuantity))
+                        this._confirmWindow.Show($"Potwierdź edycję zasobu {state.Product.Name}?", out bool isConfirmed, $"Edytuj {state.Product.Name}");
+                        if (isConfirmed)
                         {
-                            state.Quantity = editedQuantity;
-                            State.EditState(state);
-                            StatesViewModel.Instance.Refresh();
-                            RefreshDataInProductProfile(this._selectedWarehouse, this._selectedProduct);
+                            if (int.TryParse(this.EditedQuantity.Text, out int editedQuantity))
+                            {
+                                state.Quantity = editedQuantity;
+                                State.EditState(state);
+                                StatesViewModel.Instance.Refresh();
+                                RefreshDataInProductProfile(this._selectedWarehouse, this._selectedProduct);
+                                InformationToUser($"Edytowano stan magazynowy {state.Product.Name} w magazynie {state.Warehouse.Name}.");
+                            }
                         }
                     }
+                    else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
                 }
-                else InformationToUser($"{ErrorMesages.DURING_EDIT_PRODUCT_ERROR} {ErrorMesages.DATACONTEXT_ERROR}", true);
+                else InformationToUser($"Popraw wprowadzoną wartość. {this.EditedQuantity.Text} - ta jest błędna.", true);
             }
+            else InformationToUser($"Zaznacz produkt z listy.", true);
         }
         #endregion
         #region ValidationTextBoxes
