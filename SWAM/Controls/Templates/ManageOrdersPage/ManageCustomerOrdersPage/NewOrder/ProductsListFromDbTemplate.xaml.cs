@@ -48,5 +48,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
         {
             UserDependsAccessProductListViewModel.Instance.Refresh();
         }
+
+        private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
