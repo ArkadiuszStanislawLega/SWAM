@@ -3,8 +3,10 @@ using SWAM.Models.Customer;
 using SWAM.Models.ManageOrdersPage;
 using SWAM.Models.ProductOrderList;
 using SWAM.Models.ViewModels.CreateNewCustomerOrder;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder
 {
@@ -51,7 +53,20 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
 
         private void WarehouseDatagridFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
+            TextBox filterTextBox = sender as TextBox;
+            string searchingText = filterTextBox.Text;
+            ICollectionView collectionView = CollectionViewSource.GetDefaultView(States.ItemsSource);
 
+            if (searchingText == string.Empty)
+                collectionView.Filter = null;
+            else
+            {
+                collectionView.Filter = @object =>
+                {
+                    State state = @object as State;
+                    return (state.Product.Name.ToUpper().StartsWith(searchingText.ToUpper()));
+                };
+            }
         }
     }
 }
