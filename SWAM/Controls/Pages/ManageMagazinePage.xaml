@@ -121,11 +121,6 @@
                             <TextBlock Text="{Binding Warehouse.Name}" HorizontalAlignment="Right"/>
                             <!--#endregion-->
 
-                            <!--#region WarehouseName-->
-                            <TextBlock Text="Ilość dostępna:" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding Available }" HorizontalAlignment="Right"/>
-                            <!--#endregion-->
-
                             <!--#region Quantity-->
                             <TextBlock Text="Ilość całkowita:" Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Name="Quantity" HorizontalAlignment="Right" Text="{Binding Quantity}"/>
@@ -133,6 +128,11 @@
                                      Visibility="{Binding ElementName=Quantity, Path=Visibility, Converter={conv:VisibilityReverseConverter}}"/>
                             <!--#endregion-->
 
+                            <!--#region WarehouseName-->
+                            <TextBlock Text="Ilość dostępna:" Style="{StaticResource ProfileProperties}"/>
+                            <TextBlock Text="{Binding Available }" HorizontalAlignment="Right"/>
+                            <!--#endregion-->
+                            
                             <!--#region Booked-->
                             <TextBlock Text="Ilość zarezerwowana:" Style="{StaticResource ProfileProperties}"/>
                             <TextBlock Text="{Binding Booked}" HorizontalAlignment="Right"/>
@@ -279,7 +279,7 @@
                                     <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
-                                    <DataGridTextColumn Header="Stan" Binding="{Binding Quantity}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="Ilość całkowita" Binding="{Binding Quantity}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="Dostępne" Binding="{Binding Available}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="Zarezerwowane" Binding="{Binding Booked}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                 </DataGrid.Columns>
