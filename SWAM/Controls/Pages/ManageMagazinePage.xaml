@@ -140,7 +140,7 @@
 
                             <!--#region Price-->
                             <TextBlock Text="Cena sprzedaży:" Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Text="{Binding Product.Price, Converter={conv:DecimalToIntegerConverter}}"  HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding Product.Price, StringFormat={}{0:c}}"  HorizontalAlignment="Right"/>
                             <!--#endregion-->
                         </StackPanel>
                         <!--#endregion-->
