@@ -113,7 +113,7 @@
                             MinWidth="300">
                             <!--#region Name-->
                             <TextBlock Text="Produkt:"  Style="{StaticResource ProfileProperties}"/>
-                            <TextBlock Name="LabelName" Text="{Binding Product.Name}" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{Binding Product.Name}" HorizontalAlignment="Right"/>
                             <!--#endregion-->
 
                             <!--#region Nazwa magazynu-->
