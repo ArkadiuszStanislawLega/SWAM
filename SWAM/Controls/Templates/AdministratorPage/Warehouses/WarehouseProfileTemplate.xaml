@@ -18,6 +18,10 @@
     </class:BasicUserControl.DataContext>
     <!--#region Resources-->
     <class:BasicUserControl.Resources>
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
+        
         <ObjectDataProvider x:Key="UserType"
                 MethodName="GetValues" 
                 ObjectType="{x:Type System:Enum}">
@@ -111,17 +115,17 @@
                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
                         ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}"/>
+                        <DataGridTextColumn Header="Nazwa użytkownika"  Binding="{Binding  User.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         <DataGridTextColumn Header="Uprawnienia" 
-                                            Binding ="{Binding TypeOfAccess, Converter={conv:ENToPLUserTypeConverter}}"/>
+                                            Binding ="{Binding TypeOfAccess, Converter={conv:ENToPLUserTypeConverter}}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         <DataGridTextColumn Header="Administrator"  
-                                            Binding="{Binding Administrator.Name}"/>
+                                            Binding="{Binding Administrator.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         <DataGridTextColumn Header="Nazwa Magazynu"  
-                                            Binding="{Binding Warehouse.Name}"/>
+                                            Binding="{Binding Warehouse.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         <DataGridTextColumn Header="Data Nadania" 
-                                            Binding="{Binding DateOfGrantingAccess, Converter={conv:DateConverter}}"/>
+                                            Binding="{Binding DateOfGrantingAccess, Converter={conv:DateConverter}}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         <DataGridTextColumn Header="Data Wygaśnięcia"  
-                                            Binding="{Binding DateOfExpiredAcces, Converter={conv:DateConverter}}"/>
+                                            Binding="{Binding DateOfExpiredAcces, Converter={conv:DateConverter}}" ElementStyle="{StaticResource TextBlockMargin}"/>
                     </DataGrid.Columns>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
