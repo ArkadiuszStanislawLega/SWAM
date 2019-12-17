@@ -98,7 +98,7 @@
                     <!--#endregion-->
                     <!--#region Confirm password-->
                     <StackPanel Margin="10">
-                        <TextBlock Text="Potwierdź Hasło"
+                        <TextBlock Text="Potwierdź hasło"
                                    Style="{StaticResource ProfileProperties}"/>
                         <PasswordBox Name="ConfirmPassword"/>
                     </StackPanel>
