@@ -108,6 +108,7 @@
                 <DataGrid 
                         Grid.Column="1" 
                         HorizontalAlignment="Center"
+                        RowHeaderWidth="0"
                         Name="UserList" ItemsSource="{Binding Accesses}"  
                         Style="{StaticResource BasicDataGrid}"
                         AutoGenerateColumns="False" 
