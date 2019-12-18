@@ -77,7 +77,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             // Check if current page is last
             if (pages.Last().Key == visiblePage)
             {
-                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager 
+                if (!(SWAM.MainWindow.LoggedInUser.Permissions == UserType.Manager
                     || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Seller
                     || SWAM.MainWindow.LoggedInUser.Permissions == UserType.Owner))
                 {
@@ -277,6 +277,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             if ((bool)(!isPersonalCollected.IsChecked))
             {
                 customerOrder.DeliveryAddress = deliveryAddress;
+                customerOrder.CourierId = courier.Id;
             }
 
             // Decrease quantity of products in states that have been purchased from
