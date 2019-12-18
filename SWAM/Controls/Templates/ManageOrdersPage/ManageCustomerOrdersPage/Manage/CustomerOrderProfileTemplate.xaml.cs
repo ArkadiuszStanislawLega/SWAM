@@ -77,7 +77,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 DataContext = customerOrder;
             }
         }
-        #endregion 
-        
+        #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is CustomerOrder customerOrder && customerOrder.ShipmentType == ShipmentType.Reception)
+            {
+                this.CourierContainer.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
