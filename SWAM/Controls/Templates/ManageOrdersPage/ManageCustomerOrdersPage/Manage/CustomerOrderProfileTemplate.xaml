@@ -178,40 +178,11 @@
                     <!--#endregion-->
 
                     <!--#region Delivery Date-->
-                    <Grid Margin="5">
-                        <!--#region Columnd & rows definitions-->
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-                        <!--#endregion-->
-
-                        <TextBlock Grid.Row="0"
-                                   Grid.Column="0"
-                                   Text="Data dostawy"
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Data dostawy"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Grid.Row="1"
-                                   Grid.Column="0"
-                                   Text="{Binding DeliveryDate, StringFormat=\{0:dd.MM.yyyy\}}" />
-                        <Button Name="EditDeliveryDateButton"
-                                Grid.Column="2"
-                                Grid.Row="1"
-                                Style="{StaticResource BasicFunctionalButtons}"
-                                ToolTip="Edytuj datę dostawy.">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource ShowCalendarStory}" />
-                                </EventTrigger>
-                            </Button.Triggers>
-                            <fa:ImageAwesome Icon="Calendar"
-                                             Foreground="{StaticResource FontsBrash}" />
-                        </Button>
-                    </Grid>
+                        <TextBlock Text="{Binding DeliveryDate, StringFormat=\{0:dd.MM.yyyy\}}" />
+                    </StackPanel>
                     <!--#endregion-->
 
                     <!--#region Warehouse Id-->
