@@ -2,6 +2,7 @@
 using System.Windows;
 using SWAM.Models.Customer;
 using SWAM.Enumerators;
+using SWAM.Converters;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -51,11 +52,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         /// <param name="e"></param>
         private void ConfirmEditDeliveryStatus_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is CustomerOrder customerOrder && EditOrderStatus.SelectedItem != null)
+            if (DataContext is CustomerOrder customerOrder 
+                && EditOrderStatus.SelectedItem != null 
+                && customerOrder.CustomerOrderStatus != (CustomerOrderStatus)EditOrderStatus.SelectedItem)
             {
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
-                DataContext = new ApplicationDbContext();
-                DataContext = customerOrder;
+                customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
+                CusomterOrderStatus.Text = new ENtoPLcustomerOrderStatus().Convert(EditOrderStatus.SelectedItem, null, null, null).ToString();
             }
         }
         #endregion

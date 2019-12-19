@@ -183,11 +183,7 @@ namespace SWAM.Models.Customer
         }
         #endregion
 
-        #region EditDeliveryStatus
-        /// <summary>
-        /// Edit customer order delivery properties.
-        /// </summary>
-        /// <param name="customerOrderStatus">New customer order values.</param>     
+        #region ChangeDeliveryStatus
         public static void ChangeDeliveryStatus(CustomerOrderStatus status, CustomerOrder order)
         {
             var dbOrder = Context.CustomerOrders.FirstOrDefault(p => p.Id == order.Id);

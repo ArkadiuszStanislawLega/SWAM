@@ -272,7 +272,7 @@
                                    Grid.Row="0"
                                    Style="{StaticResource ProfileProperties}" Height="19" VerticalAlignment="Top" />
 
-                        <TextBlock Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}"
+                        <TextBlock Name="CusomterOrderStatus" Text="{Binding CustomerOrderStatus, Converter={conv:ENtoPLcustomerOrderStatus}}"
                                    Grid.Column="0"
                                    Grid.Row="1" />
 
