@@ -3,14 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage"
              xmlns:new="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses"
              xmlns:lvm="clr-namespace:SWAM.Models.Warehouse"
+             xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <!--#region Resources-->
     <UserControl.Resources>
+        <ObjectDataProvider x:Key="OrderStatus"
+                MethodName="GetValues" 
+                ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enum:WarehouseOrderStatus"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
         <!--#region LoadedStory-->
         <Storyboard x:Key="LoadedStory">
             <ThicknessAnimation Storyboard.TargetProperty="Margin"
@@ -39,7 +49,7 @@
                                 Storyboard.TargetName="FiltersContainer"
                                 Duration="0:0:0.5"
                                 From="0"
-                                To="110"
+                                To="140"
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
                                             Storyboard.TargetProperty="IsEnabled">
@@ -60,7 +70,7 @@
             <DoubleAnimation Storyboard.TargetProperty="Height"
                                 Storyboard.TargetName="FiltersContainer"
                                 Duration="0:0:0.5"
-                                From="110"
+                                From="140"
                                 To="0"
                                 DecelerationRatio="1"/>
             <BooleanAnimationUsingKeyFrames Storyboard.TargetName="FiltersButton"
@@ -90,7 +100,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <!--#endregion-->
-                    <!--#region Find User-->
+                    <!--#region Find Order-->
                     <StackPanel Orientation="Horizontal" Name="FindOrderOrCreate" Grid.Row="0">
                         <TextBox Name="FindWarehouseOrder"
                              Tag="Wyszukaj zamówienie" 
@@ -137,13 +147,25 @@
                             <TextBlock Text="Filtruj według:"/>
                             <RadioButton Name="FiltrById"
                                  Content="Numeru zamówienia" 
+                                 Checked="FiltrById_Checked"
                                  IsChecked="True" 
                                  Margin="5 0 0 0"
                                  GroupName="Filter"/>
-                            <RadioButton Name="FiltrByCustomerOrderStatus"
-                                 Content="Stanu zamówienia" 
-                                 Margin="5 0 0 0"
-                                 GroupName="Filter"/>
+                            <RadioButton Name="FiltrByWarehouseOrderStatus"
+                                         Checked="FiltrByWarehouseOrderStatus_Checked"
+                                         Content="Stanu zamówienia" 
+                                         Margin="5 0 0 0"
+                                         GroupName="Filter"/>   
+                            <ComboBox Name="OrderStatus" 
+                                      SelectedItem="WarehouseOrderStatus.Delivered"
+                                      ItemsSource="{Binding Source={StaticResource OrderStatus}}"
+                                      SelectionChanged="OrderStatus_SelectionChanged">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={conv:ENtoPLwarehouseOrderStatusConverter}}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <CheckBox Name="SortAscending"
                             Content="Rosnąco" 
                             IsChecked="True" 
@@ -171,7 +193,7 @@
                             Opacity="0.4"/>
                         <ScrollViewer Name="ScrollOfWarehouseList" 
                                   VerticalScrollBarVisibility="Auto">
-                            <ItemsControl Name="CustomersListView" 
+                            <ItemsControl Name="WarehouseOrderListView" 
                                     DataContext="{x:Static lvm:WarehouseOrderListViewModel.Instance}"
                                       ItemsSource="{Binding WarehouseOrders}">
                                 <ItemsControl.ItemTemplate>
