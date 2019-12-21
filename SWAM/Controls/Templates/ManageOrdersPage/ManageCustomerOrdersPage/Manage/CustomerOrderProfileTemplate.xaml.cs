@@ -3,6 +3,7 @@ using System.Windows;
 using SWAM.Models.Customer;
 using SWAM.Enumerators;
 using SWAM.Converters;
+using System.Linq;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -52,17 +53,21 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         /// <param name="e"></param>
         private void ConfirmEditDeliveryStatus_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is CustomerOrder customerOrder 
-                && EditOrderStatus.SelectedItem != null 
+            if (DataContext is CustomerOrder customerOrder
+                && EditOrderStatus.SelectedItem != null
                 && customerOrder.CustomerOrderStatus != (CustomerOrderStatus)EditOrderStatus.SelectedItem)
             {
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
                 customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
                 CusomterOrderStatus.Text = new ENtoPLcustomerOrderStatus().Convert(EditOrderStatus.SelectedItem, null, null, null).ToString();
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                {
+                    RemoveProductsFromState(customerOrder);
+                }
             }
         }
         #endregion
-
 
         #region ChangeDeliveryDate_Click
         /// <summary>
@@ -81,6 +86,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             }
         }
         #endregion
+
+        private void RemoveProductsFromState(CustomerOrder customerOrder)
+        {
+            var context = new ApplicationDbContext();
+
+            foreach (var position in customerOrder.CustomerOrderPositions)
+            {
+                var state = context.States.SingleOrDefault(s => s.Id == position.State.Id);
+                state.Quantity -= position.Quantity;
+                context.SaveChanges();
+            }
+        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
