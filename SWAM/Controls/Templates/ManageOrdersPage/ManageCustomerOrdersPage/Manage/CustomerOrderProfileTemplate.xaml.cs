@@ -95,6 +95,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             {
                 var state = context.States.SingleOrDefault(s => s.Id == position.State.Id);
                 state.Quantity -= position.Quantity;
+                state.Booked -= position.Quantity;
                 context.SaveChanges();
             }
         }
