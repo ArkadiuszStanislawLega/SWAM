@@ -285,6 +285,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             {
                 var state = context.States.FirstOrDefault(s => s.Id == item.State.Id);
                 state.Available -= item.Quantity;
+                state.Booked += item.Quantity;
                 context.SaveChanges();
             }
 
