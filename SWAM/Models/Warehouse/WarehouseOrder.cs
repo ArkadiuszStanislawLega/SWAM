@@ -159,7 +159,8 @@ namespace SWAM.Models.Warehouse
 			{
 				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
 				dbOrder.DeliveryDate = DateTime.Now;
-				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;				
+				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;
+				updateProductStateQuantity(order);
 			}
 			Context.SaveChanges();
 		}
@@ -175,6 +176,39 @@ namespace SWAM.Models.Warehouse
 		{	
 			orderPosition.Quantity = productQty;
 			Context.SaveChanges();
+		}
+
+		public static void updateProductStateQuantity(WarehouseOrder order)
+		{
+		
+			List<State> states = State.GetStatesFromWarehouse(order.WarehouseId);
+
+			foreach (var line in order.OrderPositions)
+			{
+				try
+				{
+					states.FirstOrDefault(s => s.ProductId == line.ProductId).Quantity += line.Quantity;
+					states.FirstOrDefault(s => s.ProductId == line.ProductId).Available += line.Quantity;
+					Context.SaveChanges();
+				}
+
+				catch (NullReferenceException)
+				{
+					State state = new State
+					{
+						Quantity = line.Quantity,
+						Available = line.Quantity,
+						Booked = 0,						
+						Product = line.Product,
+						ProductId = line.ProductId,
+						Warehouse = order.Warehouse,
+						WarehouseId = order.WarehouseId
+					};
+
+					Context.States.Add(state);
+					Context.SaveChanges();
+				}				
+			}
 		}
 	}
 }
