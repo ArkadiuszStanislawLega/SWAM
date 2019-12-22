@@ -2,7 +2,7 @@
 
 namespace SWAM.Models.Customer
 {
-    [Table("CustomerOrederDeliveryAddress")]
+    [Table("CustomerOrderDeliveryAddress")]
     public class CustomerOrderDeliveryAddress
     {
         /// <summary>

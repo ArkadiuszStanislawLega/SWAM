@@ -304,6 +304,10 @@
     <Compile Include="Migrations\201911201710260_DropPriceFromWarehouseOrderPositionsTable.Designer.cs">
       <DependentUpon>201911201710260_DropPriceFromWarehouseOrderPositionsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.cs" />
+    <Compile Include="Migrations\201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.Designer.cs">
+      <DependentUpon>201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -932,6 +936,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911201710260_DropPriceFromWarehouseOrderPositionsTable.resx">
       <DependentUpon>201911201710260_DropPriceFromWarehouseOrderPositionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.resx">
+      <DependentUpon>201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
