@@ -284,7 +284,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewO
             foreach (var item in orderedProducts)
             {
                 var state = context.States.FirstOrDefault(s => s.Id == item.State.Id);
-                state.Quantity -= item.Quantity;
                 state.Available -= item.Quantity;
                 context.SaveChanges();
             }
