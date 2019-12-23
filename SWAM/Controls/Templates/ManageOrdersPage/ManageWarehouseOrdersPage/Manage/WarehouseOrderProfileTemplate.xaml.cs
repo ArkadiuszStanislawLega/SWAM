@@ -35,7 +35,6 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		public WarehouseOrderProfileTemplate()
 		{
 			InitializeComponent();
-
 		}
 		
 		private void Window_Loaded(object sender, RoutedEventArgs e)

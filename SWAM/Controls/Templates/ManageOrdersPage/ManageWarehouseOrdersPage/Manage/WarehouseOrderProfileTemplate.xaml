@@ -389,10 +389,10 @@
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource GridViewConcealment}">
                                 
-                                <GridViewColumn Width="120">
+                                <GridViewColumn Width="auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ScrollViewer Width="110"
+                                            <ScrollViewer Width="auto"
                                                           HorizontalScrollBarVisibility="Auto">
                                                 <Grid Margin="5">
                                                     <TextBlock Text="{Binding Product.Name}" />
