@@ -4,6 +4,7 @@ using SWAM.Models.Customer;
 using SWAM.Enumerators;
 using SWAM.Converters;
 using System.Linq;
+using System;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -60,6 +61,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
                 customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
                 CusomterOrderStatus.Text = new ENtoPLcustomerOrderStatus().Convert(EditOrderStatus.SelectedItem, null, null, null).ToString();
+                DeliveryDate.Text = DateTime.Now.ToShortDateString();
 
                 if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
                 {

@@ -182,7 +182,7 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Data dostawy"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Text="{Binding DeliveryDate, StringFormat=\{0:dd.MM.yyyy\}}" />
+                        <TextBlock Name="DeliveryDate" Text="{Binding DeliveryDate, StringFormat=\{0:dd.MM.yyyy\}}" />
                     </StackPanel>
                     <!--#endregion-->
 
