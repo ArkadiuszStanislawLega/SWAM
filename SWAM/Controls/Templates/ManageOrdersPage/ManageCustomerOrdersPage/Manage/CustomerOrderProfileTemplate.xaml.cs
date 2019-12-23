@@ -61,11 +61,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
                 customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
                 CusomterOrderStatus.Text = new ENtoPLcustomerOrderStatus().Convert(EditOrderStatus.SelectedItem, null, null, null).ToString();
-                DeliveryDate.Text = DateTime.Now.ToShortDateString();
 
                 if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
-                {
                     RemoveProductsFromState(customerOrder);
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
+                {
+                    DeliveryDate.Text = DateTime.Now.ToShortDateString();
                 }
             }
         }
