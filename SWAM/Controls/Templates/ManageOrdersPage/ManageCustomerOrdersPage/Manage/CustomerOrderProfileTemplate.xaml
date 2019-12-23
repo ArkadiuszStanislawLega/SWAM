@@ -15,6 +15,9 @@
 
     <!--#region Resources-->
     <UserControl.Resources>
+        <Style x:Key="TextBlockMargin" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5 3 0 5" />
+        </Style>
 
         <!--#region ObjectDataProviders-->
         <ObjectDataProvider x:Key="CustomerOrderStatus"
@@ -444,14 +447,15 @@
                           ItemsSource="{Binding CustomerOrderPositions}"  
                           Style="{StaticResource BasicDataGrid}"
                           HorizontalAlignment="Stretch"
+                          RowHeaderWidth="0"
                           AutoGenerateColumns="False" 
                           IsReadOnly="True"  
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Nazwa produktu" Binding="{Binding Product.Name}"/>
-                            <DataGridTextColumn Header="Ilość produktu" Binding ="{Binding Quantity}"/>
-                            <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Nazwa produktu" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                            <DataGridTextColumn Header="Ilość produktu" Binding ="{Binding Quantity}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                            <DataGridTextColumn Header="Cena" Binding="{Binding Price}" ElementStyle="{StaticResource TextBlockMargin}"/>
                         </DataGrid.Columns>
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>

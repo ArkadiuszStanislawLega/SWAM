@@ -104,9 +104,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DataContext is CustomerOrder customerOrder && customerOrder.ShipmentType == ShipmentType.Reception)
+            if (DataContext is CustomerOrder customerOrder)
             {
-                this.CourierContainer.Visibility = Visibility.Hidden;
+                if (customerOrder.ShipmentType == ShipmentType.Reception)
+                {
+                    this.CourierContainer.Visibility = Visibility.Hidden;
+                }
             }
         }
     }
