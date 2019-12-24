@@ -247,13 +247,19 @@
                         </StackPanel>
                         <!--#endregion-->
 
-                        <!--#region Data2-->
-                        <StackPanel Name="CourierContainer" Margin="5">
-                            <TextBlock Text="Id kuriera"
+                        <StackPanel Name="CourierContainer">
+                            <StackPanel Margin="5">
+                                <TextBlock Text="Id kuriera"
                                    Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding CourierId}" />
+                                <TextBlock Text="{Binding CourierId}" />
+                            </StackPanel>
+
+                            <StackPanel  Margin="5">
+                                <TextBlock Text="Nazwa kuriera"
+                                   Style="{StaticResource ProfileProperties}" />
+                                <TextBlock Text="{Binding Courier.Name}" />
+                            </StackPanel>
                         </StackPanel>
-                        <!--#endregion-->
                     </StackPanel>
 
                     <StackPanel Margin="10">
