@@ -5,6 +5,7 @@ using SWAM.Enumerators;
 using SWAM.Converters;
 using System.Linq;
 using System;
+using System.Windows.Controls.Primitives;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -108,6 +109,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         {
             if (DataContext is CustomerOrder customerOrder)
             {
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.WaitingForPayment)
+                    EditOrderStatus.SelectedItem = CustomerOrderStatus.WaitingForPayment;
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
+                    EditOrderStatus.SelectedItem = CustomerOrderStatus.InProcess;
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                    EditOrderStatus.SelectedItem = CustomerOrderStatus.InDelivery;
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
+                    EditOrderStatus.SelectedItem = CustomerOrderStatus.Delivered;
+
                 if (customerOrder.ShipmentType == ShipmentType.Reception)
                 {
                     this.CourierContainer.Visibility = Visibility.Hidden;
