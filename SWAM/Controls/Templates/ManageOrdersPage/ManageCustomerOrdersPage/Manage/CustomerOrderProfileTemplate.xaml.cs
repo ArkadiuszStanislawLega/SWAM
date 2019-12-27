@@ -36,12 +36,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                     else
                         customerOrder.IsPaid = false;
 
+                    IsPaid.Text = new ENtoPLpaymentStatus().Convert(EditPaymentStatus.SelectedItem, null, null, null).ToString();
+
                     customerOrder.Edit(customerOrder);
-                    this.DataContext = CustomerOrder.Get(customerOrder.Id);
-
                     CustomerOrdersListViewModel.Instance.Refresh(customerOrder.Customer);
-
-                    this.EditOrderStatus.SelectedValue = null;
                 }
             }
         }
