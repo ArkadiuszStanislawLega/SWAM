@@ -109,21 +109,27 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         {
             if (DataContext is CustomerOrder customerOrder)
             {
+                #region Selection EditOrderStatus combobox items
                 if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.WaitingForPayment)
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.WaitingForPayment;
 
-                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.InProcess;
 
-                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.InDelivery;
 
-                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.Delivered;
+                #endregion
+
+                #region Selection EditPaymentStatus combobox items
+                EditPaymentStatus.SelectedItem = (customerOrder.IsPaid) ? PaymentStatus.Paid : PaymentStatus.AwaitingPayment;
+                #endregion
 
                 if (customerOrder.ShipmentType == ShipmentType.Reception)
                 {
-                    this.CourierContainer.Visibility = Visibility.Hidden;
+                    CourierContainer.Visibility = Visibility.Hidden;
                 }
             }
         }
