@@ -14,10 +14,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
     /// </summary>
     public partial class CustomerOrderProfileTemplate : UserControl
     {
+        #region Constructor
         public CustomerOrderProfileTemplate()
         {
             InitializeComponent();
         }
+        #endregion
 
         #region ConfirmEditPaymentStatus_Click
         /// <summary>
@@ -90,6 +92,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         }
         #endregion
 
+        #region RemoveProductsFromState
         private void RemoveProductsFromState(CustomerOrder customerOrder)
         {
             var context = new ApplicationDbContext();
@@ -102,7 +105,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 context.SaveChanges();
             }
         }
+        #endregion
 
+        #region UserControl_Loaded
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             if (DataContext is CustomerOrder customerOrder)
@@ -131,5 +136,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 }
             }
         }
+        #endregion
     }
 }
