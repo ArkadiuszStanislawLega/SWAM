@@ -2,6 +2,7 @@
 using SWAM.Strings;
 using System;
 using System.Globalization;
+using System.Windows;
 
 namespace SWAM.Converters
 {
@@ -36,7 +37,7 @@ namespace SWAM.Converters
 
 		public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			throw new NotImplementedException();
+			return DependencyProperty.UnsetValue;
 		}
 	}
 }
