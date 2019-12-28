@@ -58,7 +58,7 @@ namespace SWAM.Windows
         /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.EnabledEverything();
+            //MainWindow.EnabledEverything();
             this.Hide();
         }
         #endregion

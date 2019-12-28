@@ -5,7 +5,7 @@ using SWAM.Enumerators;
 using SWAM.Converters;
 using System.Linq;
 using System;
-using System.Windows.Controls.Primitives;
+using SWAM.Windows;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -67,7 +67,11 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 && customerOrder.CustomerOrderStatus != (CustomerOrderStatus)EditOrderStatus.SelectedItem)
             {
                 if (!ValidateChangeDeliveryStatus(customerOrder, (CustomerOrderStatus)EditOrderStatus.SelectedItem))
+                {
+                    EditOrderStatus.SelectedItem = customerOrder.CustomerOrderStatus;
+                    new WarningWindow().Show("Można wybrać tylko sąsiadujący status.");
                     return;
+                }
 
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
                 customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
