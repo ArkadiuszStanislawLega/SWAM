@@ -47,6 +47,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         }
         #endregion
 
+        private bool ValidateChangeDeliveryStatus(CustomerOrder customerOrder, CustomerOrderStatus selectedItem)
+        {
+            if (customerOrder.CustomerOrderStatus - selectedItem > 1)
+                return false;
+            return true;
+        }
+
         #region ConfirmEditDeliverytStatus_Click
         /// <summary>
         /// Action after click confirm change permision button.
@@ -59,6 +66,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                 && EditOrderStatus.SelectedItem != null
                 && customerOrder.CustomerOrderStatus != (CustomerOrderStatus)EditOrderStatus.SelectedItem)
             {
+                if (!ValidateChangeDeliveryStatus(customerOrder, (CustomerOrderStatus)EditOrderStatus.SelectedItem))
+                    return;
+
                 CustomerOrder.ChangeDeliveryStatus((CustomerOrderStatus)EditOrderStatus.SelectedItem, customerOrder);
                 customerOrder.CustomerOrderStatus = (CustomerOrderStatus)EditOrderStatus.SelectedItem;
                 CusomterOrderStatus.Text = new ENtoPLcustomerOrderStatus().Convert(EditOrderStatus.SelectedItem, null, null, null).ToString();
