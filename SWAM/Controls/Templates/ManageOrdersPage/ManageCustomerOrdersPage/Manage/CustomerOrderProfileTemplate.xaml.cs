@@ -49,7 +49,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
 
         private bool ValidateChangeDeliveryStatus(CustomerOrder customerOrder, CustomerOrderStatus selectedItem)
         {
-            if (customerOrder.CustomerOrderStatus - selectedItem > 1)
+            if (Math.Abs(customerOrder.CustomerOrderStatus - selectedItem) > 1)
                 return false;
             return true;
         }
