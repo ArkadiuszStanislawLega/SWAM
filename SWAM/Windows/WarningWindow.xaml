@@ -113,7 +113,7 @@
         </Grid>
         <Button Grid.Row="2"
                 Name="Confirm" Content="Ok" 
-                Style="{StaticResource  Button}" 
+                Style="{StaticResource ActionButton}" 
                 Width="100"
                 Margin="5 0 0 0"
                 Click="Exit_Click"/>
