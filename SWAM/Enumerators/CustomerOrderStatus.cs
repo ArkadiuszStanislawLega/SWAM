@@ -17,12 +17,12 @@ namespace SWAM.Enumerators
         /// </summary>
         InDelivery,
         /// <summary>
-        /// When the customer ordered product but hasn't payed yet.
-        /// </summary>
-        WaitingForPayment,
-        /// <summary>
         /// When product is not sent yet.
         /// </summary>
-        InProcess
+        InProcess,
+        /// <summary>
+        /// When the customer ordered product but hasn't payed yet.
+        /// </summary>
+        WaitingForPayment
     }
 }
