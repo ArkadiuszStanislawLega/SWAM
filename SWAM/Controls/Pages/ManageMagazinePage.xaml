@@ -275,7 +275,7 @@
                                   IsReadOnly="True" Style="{StaticResource BasicDataGrid}"                   
                                   MouseLeftButtonUp="MagazineList_LeftMouseButtonDown">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="ProduktId" Binding="{Binding Id}" ElementStyle="{StaticResource TextBlockMargin}"/>
+                                    <DataGridTextColumn Header="ProduktId" Binding="{Binding Product.Id}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="Produkt" Binding="{Binding Product.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="MagazynId" Binding="{Binding WarehouseId}" ElementStyle="{StaticResource TextBlockMargin}"/>
                                     <DataGridTextColumn Header="Magazyn" Binding="{Binding Warehouse.Name}" ElementStyle="{StaticResource TextBlockMargin}"/>
