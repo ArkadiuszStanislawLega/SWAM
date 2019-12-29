@@ -187,9 +187,22 @@ namespace SWAM.Models.Customer
         public static void ChangeDeliveryStatus(CustomerOrderStatus status, CustomerOrder order)
         {
             var dbOrder = Context.CustomerOrders.FirstOrDefault(p => p.Id == order.Id);
-            if (status == CustomerOrderStatus.WaitingForPayment) dbOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
-            else if (status == CustomerOrderStatus.InDelivery) dbOrder.CustomerOrderStatus = CustomerOrderStatus.InDelivery;
-            else if (status == CustomerOrderStatus.InProcess) dbOrder.CustomerOrderStatus = CustomerOrderStatus.InProcess;
+            if (status == CustomerOrderStatus.WaitingForPayment)
+            {
+                dbOrder.CustomerOrderStatus = CustomerOrderStatus.WaitingForPayment;
+                dbOrder.DeliveryDate = null;
+            }
+
+            else if (status == CustomerOrderStatus.InDelivery)
+            {
+                dbOrder.CustomerOrderStatus = CustomerOrderStatus.InDelivery;
+                dbOrder.DeliveryDate = null;
+            }
+            else if (status == CustomerOrderStatus.InProcess)
+            {
+                dbOrder.CustomerOrderStatus = CustomerOrderStatus.InProcess;
+                dbOrder.DeliveryDate = null;
+            }
             else if (status == CustomerOrderStatus.Delivered)
             {
                 dbOrder.CustomerOrderStatus = CustomerOrderStatus.Delivered;

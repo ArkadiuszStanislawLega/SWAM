@@ -90,6 +90,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                         DeliveryDate.Text = DateTime.Now.ToShortDateString();
                     }
                 }
+
+                else if (direction == StatusDirectionChange.Backward)
+                {
+                    if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
+                        AddProductsToState(customerOrder);
+
+                    if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                    {
+                        DeliveryDate.Text = null;
+                    }
+                }
             }
         }
         #endregion
