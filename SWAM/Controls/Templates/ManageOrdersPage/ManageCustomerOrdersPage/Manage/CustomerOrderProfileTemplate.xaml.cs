@@ -127,6 +127,21 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
         }
         #endregion
 
+        #region AddProductsToState
+        private void AddProductsToState(CustomerOrder customerOrder)
+        {
+            var context = new ApplicationDbContext();
+
+            foreach (var position in customerOrder.CustomerOrderPositions)
+            {
+                var state = context.States.SingleOrDefault(s => s.Id == position.State.Id);
+                state.Quantity += position.Quantity;
+                state.Booked += position.Quantity;
+                context.SaveChanges();
+            }
+        }
+        #endregion
+
         #region UserControl_Loaded
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
