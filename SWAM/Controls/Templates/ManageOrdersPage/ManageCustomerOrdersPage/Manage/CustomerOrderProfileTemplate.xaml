@@ -190,14 +190,6 @@
                         </StackPanel>
                         <!--#endregion-->
 
-                        <!--#region Warehouse Id-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Id Magazynu"
-                                   Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding WarehouseId}" />
-                        </StackPanel>
-                        <!--#endregion-->
-
                         <!--#region Warehouse Name-->
                         <StackPanel Margin="5">
                             <TextBlock Text="Nazwa Magazynu"
