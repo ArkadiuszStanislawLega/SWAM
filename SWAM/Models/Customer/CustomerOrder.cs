@@ -131,7 +131,7 @@ namespace SWAM.Models.Customer
                 .Include(c => c.Customer)
                 .Include(c => c.Courier)
                 .Include(c => c.Warehouse)
-                .Include(c => c.Creator)
+                .Include(c => c.Creator.Phones)
                 .Include(c => c.DeliveryAddress)
                 .Include(c => c.CustomerOrderPositions.Select(cop => cop.State))
                 .ToList();
