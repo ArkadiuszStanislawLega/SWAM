@@ -262,9 +262,23 @@
                             </StackPanel>
 
                             <StackPanel  Margin="5">
-                                <TextBlock Text="Nazwa kuriera"
+                                <TextBlock Text="Kurier"
                                    Style="{StaticResource ProfileProperties}" />
-                                <TextBlock Text="{Binding Courier.Name}" />
+                                <TextBlock Text="{Binding Courier.Name}">
+                                    <!--#region ToolTip-->
+                                    <TextBlock.ToolTip>
+                                        <StackPanel>
+                                            <TextBlock Text="Dane kontaktowe" 
+                                                    FontStyle="Italic"
+                                                    TextDecorations="Underline"
+                                                    FontSize="14" 
+                                                    Style="{StaticResource Title}">
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding Courier.Phone, StringFormat={}Telefon - {0}}"/>
+                                        </StackPanel>
+                                    </TextBlock.ToolTip>
+                                    <!--#endregion-->
+                                </TextBlock>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
