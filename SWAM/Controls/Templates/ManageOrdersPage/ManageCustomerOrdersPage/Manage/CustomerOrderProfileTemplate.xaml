@@ -209,13 +209,6 @@
                     </StackPanel>
 
                     <StackPanel Margin="10">
-                        <!--#region Creator Id-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Id twórcy zamówienia"
-                                   Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding CreatorId}" />
-                        </StackPanel>
-                        <!--#endregion-->
                         <!--#region Creator Name-->
                         <StackPanel Margin="5">
                             <TextBlock Text="Twórca zamówienia"
@@ -224,7 +217,7 @@
                             <!--#region ToolTip-->
                                 <TextBlock.ToolTip>
                                     <StackPanel>
-                                        <TextBlock Text="{Binding Creator.Name}" 
+                                        <TextBlock Text="Dane kontaktowe" 
                                                FontStyle="Italic"
                                                TextDecorations="Underline"
                                                FontSize="14" 
