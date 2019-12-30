@@ -234,9 +234,16 @@
 
                         <!--#region User Received Order Name-->
                         <StackPanel Margin="5">
-                            <TextBlock Text="Imię odbiorcy"
+                            <TextBlock Text="Odbiorca"
                                    Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding Customer.Name}">
+
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Customer.Name" />
+                                        <Binding Path="Customer.Surname" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
                             <!--#region ToolTip-->
                                 <TextBlock.ToolTip>
                                     <StackPanel>
@@ -252,16 +259,8 @@
                                     </StackPanel>
                                 </TextBlock.ToolTip>
                             <!--#endregion-->
-                        </TextBlock>
+                            </TextBlock>
                         </StackPanel>
-
-                        <!--#region User Received Order Surname-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Nazwisko odbiorcy"
-                                   Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding Customer.Surname}" />
-                        </StackPanel>
-                        <!--#endregion-->
 
                         <StackPanel Name="CourierContainer">
                             <StackPanel Margin="5">
