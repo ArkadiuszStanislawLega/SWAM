@@ -255,12 +255,6 @@
                         </StackPanel>
 
                         <StackPanel Name="CourierContainer">
-                            <StackPanel Margin="5">
-                                <TextBlock Text="Id kuriera"
-                                   Style="{StaticResource ProfileProperties}" />
-                                <TextBlock Text="{Binding CourierId}" />
-                            </StackPanel>
-
                             <StackPanel  Margin="5">
                                 <TextBlock Text="Kurier"
                                    Style="{StaticResource ProfileProperties}" />
