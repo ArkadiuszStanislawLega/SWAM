@@ -236,7 +236,23 @@
                         <StackPanel Margin="5">
                             <TextBlock Text="Imię odbiorcy"
                                    Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding Customer.Name}" />
+                            <TextBlock Text="{Binding Customer.Name}">
+                            <!--#region ToolTip-->
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="Dane kontaktowe" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}">
+                                        </TextBlock>
+                                        <Separator/>
+                                        <TextBlock Text="{Binding Customer.Phone, StringFormat={}Telefon - {0}}"/>
+                                        <TextBlock Text="{Binding Customer.EmailAddress, StringFormat={}E-mail - {0}}"/>
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            <!--#endregion-->
+                        </TextBlock>
                         </StackPanel>
 
                         <!--#region User Received Order Surname-->
