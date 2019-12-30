@@ -224,14 +224,6 @@
                         </StackPanel>
                         <!--#endregion-->
 
-                        <!--#region User Received Order Id-->
-                        <StackPanel Margin="5">
-                            <TextBlock Text="Id odbiorcy zamówienia"
-                                   Style="{StaticResource ProfileProperties}" />
-                            <TextBlock Text="{Binding CustomerId}" />
-                        </StackPanel>
-                        <!--#endregion-->
-
                         <!--#region User Received Order Name-->
                         <StackPanel Margin="5">
                             <TextBlock Text="Odbiorca"
