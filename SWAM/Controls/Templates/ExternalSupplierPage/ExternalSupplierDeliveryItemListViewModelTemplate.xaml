@@ -149,7 +149,15 @@
                     </StackPanel>
                     <!--#endregion-->
                 </Grid>
-                <DataGrid Grid.Row="1" Margin="5"
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid Margin="5"
                           RowHeaderWidth="0"
                           ItemsSource="{Binding OrderPositions}"  
                           Style="{StaticResource BasicDataGrid}"
@@ -158,15 +166,16 @@
                           IsReadOnly="True"  
                           ScrollViewer.HorizontalScrollBarVisibility="Auto"
                           ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
-                        <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
-                        <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
-                    </DataGrid.Columns>
-                    <DataGrid.ItemContainerStyle>
-                        <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
-                    </DataGrid.ItemContainerStyle>
-                </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
+                            <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
+                </Grid>
             </Grid>
         </Border>
         <Button Style="{StaticResource ArrowForwardButton}" 
