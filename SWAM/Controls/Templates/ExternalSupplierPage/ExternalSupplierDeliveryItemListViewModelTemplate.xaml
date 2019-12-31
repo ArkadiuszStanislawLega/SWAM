@@ -150,6 +150,7 @@
                     <!--#endregion-->
                 </Grid>
                 <DataGrid Grid.Row="1" Margin="5"
+                          RowHeaderWidth="0"
                           ItemsSource="{Binding OrderPositions}"  
                           Style="{StaticResource BasicDataGrid}"
                           HorizontalAlignment="Stretch"
