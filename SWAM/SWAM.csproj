@@ -309,6 +309,10 @@
     <Compile Include="Migrations\201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.Designer.cs">
       <DependentUpon>201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001011802096_EnableCascadeDeleteForCustomerOrderPositions.cs" />
+    <Compile Include="Migrations\202001011802096_EnableCascadeDeleteForCustomerOrderPositions.Designer.cs">
+      <DependentUpon>202001011802096_EnableCascadeDeleteForCustomerOrderPositions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -940,6 +944,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.resx">
       <DependentUpon>201912221747092_FixMisspellingOfCustomerOrderDeliveryAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001011802096_EnableCascadeDeleteForCustomerOrderPositions.resx">
+      <DependentUpon>202001011802096_EnableCascadeDeleteForCustomerOrderPositions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

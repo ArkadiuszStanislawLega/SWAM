@@ -9,11 +9,15 @@ namespace SWAM.EntityConfiguration
             HasRequired(c => c.Customer);
             HasRequired(c => c.Creator);
             HasRequired(c => c.Warehouse)
-                .WithMany(w=>w.CustomerOrders);
+                .WithMany(w => w.CustomerOrders);
             HasOptional(c => c.Courier);
 
             HasOptional(c => c.DeliveryAddress)
                 .WithOptionalPrincipal(c => c.CustomerOrder);
+
+            HasMany(c => c.CustomerOrderPositions)
+                .WithRequired(c => c.CustomerOrder)
+                .WillCascadeOnDelete(true);
         }
     }
 }
