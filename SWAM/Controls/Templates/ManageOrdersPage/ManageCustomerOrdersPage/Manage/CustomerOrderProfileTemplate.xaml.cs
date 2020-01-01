@@ -190,8 +190,15 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             {
                 var context = new ApplicationDbContext();
 
-                context.CustomerOrders.Remove(context.CustomerOrders.SingleOrDefault(c => c.Id == customerOrder.Id));
-                context.SaveChanges();
+                bool response;
+                new ConfirmWindow().Show("Czy na pewno usunąć zamówienie?",out response);
+
+                if(response)
+                {
+                    context.CustomerOrders.Remove(context.CustomerOrders.SingleOrDefault(c => c.Id == customerOrder.Id));
+                    context.SaveChanges();
+                }
+
             }
         }
     }
