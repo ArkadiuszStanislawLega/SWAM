@@ -6,6 +6,7 @@ using SWAM.Converters;
 using System.Linq;
 using System;
 using SWAM.Windows;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.NewOrder.Customers;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Manage
 {
@@ -189,16 +190,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             if (DataContext is CustomerOrder customerOrder)
             {
                 var context = new ApplicationDbContext();
+                new ConfirmWindow().Show("Czy na pewno usunąć zamówienie?", out bool response);
 
-                bool response;
-                new ConfirmWindow().Show("Czy na pewno usunąć zamówienie?",out response);
-
-                if(response)
+                if (response)
                 {
                     context.CustomerOrders.Remove(context.CustomerOrders.SingleOrDefault(c => c.Id == customerOrder.Id));
                     context.SaveChanges();
-                }
 
+                    Container.Visibility = Visibility.Hidden;
+                    Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();
+                    MainContent.Children.Add(new CreateNewCustomerOrderTemplate());
+                    DataContext = null;
+                }
             }
         }
     }

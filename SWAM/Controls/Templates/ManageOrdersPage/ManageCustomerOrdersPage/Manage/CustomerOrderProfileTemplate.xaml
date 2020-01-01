@@ -163,8 +163,8 @@
 
     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Border Name="Content" CornerRadius="10" Padding="10 10 10 0">
-            <Grid>
-                <StackPanel Orientation="Horizontal">
+            <Grid Name="MainContent">
+                <StackPanel Name="Container" Orientation="Horizontal">
                     <StackPanel Margin="10">
                         <!--#region Order Id-->
                         <StackPanel Margin="5">
