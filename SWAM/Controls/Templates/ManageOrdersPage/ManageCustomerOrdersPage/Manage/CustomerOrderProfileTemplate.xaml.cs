@@ -183,5 +183,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             }
         }
         #endregion
+
+        private void CancelOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -503,6 +503,12 @@
                         </DataGrid>
                     </StackPanel>
 
+                    <Button x:Name="CancelOrder"
+                    VerticalAlignment="Top"
+                    Content="Anuluj zamówienie"
+                    Click="CancelOrder_Click"
+                    Style="{StaticResource CreatePeople}"/>
+                    
                 </StackPanel>
 
                 <!--#region Callendar -->
