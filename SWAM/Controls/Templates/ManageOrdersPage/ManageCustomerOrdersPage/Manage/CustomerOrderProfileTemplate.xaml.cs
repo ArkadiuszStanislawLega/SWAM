@@ -186,7 +186,13 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
 
         private void CancelOrder_Click(object sender, RoutedEventArgs e)
         {
+            if (DataContext is CustomerOrder customerOrder)
+            {
+                var context = new ApplicationDbContext();
 
+                context.CustomerOrders.Remove(context.CustomerOrders.SingleOrDefault(c => c.Id == customerOrder.Id));
+                context.SaveChanges();
+            }
         }
     }
 }
