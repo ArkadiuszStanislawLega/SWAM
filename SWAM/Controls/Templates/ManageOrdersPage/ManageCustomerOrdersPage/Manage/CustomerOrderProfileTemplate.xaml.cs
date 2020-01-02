@@ -161,16 +161,29 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
             {
                 #region Selection EditOrderStatus combobox items
                 if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.WaitingForPayment)
+                {
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.WaitingForPayment;
+                    CancelOrder.IsEnabled = true;
+                }
 
                 else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
+                {
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.InProcess;
+                    CancelOrder.IsEnabled = true;
+                }
 
                 else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                {
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.InDelivery;
+                    CancelOrder.IsEnabled = false;
+                }
+
 
                 else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
+                {
                     EditOrderStatus.SelectedItem = CustomerOrderStatus.Delivered;
+                    CancelOrder.IsEnabled = false;
+                }
                 #endregion
 
                 #region Selection EditPaymentStatus combobox items
