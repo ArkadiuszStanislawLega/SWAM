@@ -102,6 +102,27 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
                         DeliveryDate.Text = null;
                     }
                 }
+
+                if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.WaitingForPayment)
+                {
+                    CancelOrder.IsEnabled = true;
+                }
+
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InProcess)
+                {
+                    CancelOrder.IsEnabled = true;
+                }
+
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.InDelivery)
+                {
+                    CancelOrder.IsEnabled = false;
+                }
+
+
+                else if (customerOrder.CustomerOrderStatus == CustomerOrderStatus.Delivered)
+                {
+                    CancelOrder.IsEnabled = false;
+                }
             }
         }
         #endregion
