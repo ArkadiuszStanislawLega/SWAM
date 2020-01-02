@@ -228,6 +228,14 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage.Mana
 
                 if (response)
                 {
+                    foreach (var position in customerOrder.CustomerOrderPositions)
+                    {
+                        var state = context.States.SingleOrDefault(s => s.Id == position.State.Id);
+                        state.Available += position.Quantity;
+                        state.Booked -= position.Quantity;
+                        context.SaveChanges();
+                    }
+
                     context.CustomerOrders.Remove(context.CustomerOrders.SingleOrDefault(c => c.Id == customerOrder.Id));
                     context.SaveChanges();
 
