@@ -157,7 +157,7 @@
 
                     <!--#region Warehouse Id-->
                     <StackPanel Margin="5">
-                        <TextBlock Text="Id Magazynu"
+                        <TextBlock Text="Nazwa Magazynu"
                                    Style="{StaticResource ProfileProperties}" />
                         <TextBlock Name="WarehouseName" />
                                    
@@ -180,7 +180,24 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Odbiorca zamówienia"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Name="OrderReceiver" />
+
+                        <TextBlock Name="OrderReceiver">
+                          <!--#region ToolTip-->
+                                <TextBlock.ToolTip>
+                                    <StackPanel>
+                                        <TextBlock Text="Dane kontaktowe" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}">
+                                        </TextBlock>
+                                        <Separator/>
+                                        <TextBlock Text="{Binding OrderReceiverPhone, StringFormat={}Telefon - {0}}"/>
+                                        <TextBlock Text="{Binding Customer.EmailAddress, StringFormat={}E-mail - {0}}"/>
+                                    </StackPanel>
+                                </TextBlock.ToolTip>
+                            <!--#endregion-->
+                        </TextBlock>
                     </StackPanel>
                     <!--#endregion-->
 

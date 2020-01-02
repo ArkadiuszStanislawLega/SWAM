@@ -22,6 +22,7 @@ using SWAM.Strings;
 using SWAM.Models.User;
 using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
 using System.Text.RegularExpressions;
+using SWAM.Windows;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 {
@@ -50,12 +51,48 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		
 		private void ConfirmStatusChange_Button(object sender, RoutedEventArgs e)
 		{
-			if (DataContext is WarehouseOrder warehouseOrder && EditOrderStatus.SelectedItem != null)
+			if (DataContext is WarehouseOrder warehouseOrder &&
+				EditOrderStatus.SelectedItem != null && 
+				warehouseOrder.WarehouseOrderStatus != (WarehouseOrderStatus)EditOrderStatus.SelectedItem)
 			{
-				WarehouseOrder.ChangeDeliveryStatus((WarehouseOrderStatus) EditOrderStatus.SelectedItem, warehouseOrder);
-				DataContext = new ApplicationDbContext();
-				DataContext = warehouseOrder;
-				if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered) OrderReceiver.Text = SWAM.MainWindow.LoggedInUser.Name;
+				if (!ValidateStatusChange (warehouseOrder, (WarehouseOrderStatus)EditOrderStatus.SelectedItem))
+				{
+					EditOrderStatus.SelectedItem = warehouseOrder.WarehouseOrderStatus;
+					new WarningWindow().Show("Można wybrać tylko sąsiadujący status.");
+					return;
+				}
+
+				else
+				{
+					var direction = ((int)warehouseOrder.WarehouseOrderStatus - (int)(WarehouseOrderStatus)EditOrderStatus.SelectedItem) == 1
+					? StatusDirectionChange.Forward : StatusDirectionChange.Backward;
+
+					WarehouseOrder.ChangeDeliveryStatus((WarehouseOrderStatus)EditOrderStatus.SelectedItem, warehouseOrder);
+					warehouseOrder.WarehouseOrderStatus = (WarehouseOrderStatus)EditOrderStatus.SelectedItem;
+
+					if (direction == StatusDirectionChange.Forward)
+					{
+						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered)
+						{
+							WarehouseOrder.AddProductQuantityToState(warehouseOrder);
+							
+								
+							OrderReceiver.Text = SWAM.MainWindow.LoggedInUser.Name;
+						}
+					}
+
+					if (direction == StatusDirectionChange.Backward)
+					{
+						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.InDelivery)
+						{
+							WarehouseOrder.SubtractProductQuantityFromState(warehouseOrder);
+						}
+					}
+
+					DataContext = new ApplicationDbContext();
+					DataContext = warehouseOrder;
+				}
+
 			}
 		} 
 
@@ -119,7 +156,12 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		}
 		#endregion
 
-		
+		private bool ValidateStatusChange(WarehouseOrder warehouseOrder, WarehouseOrderStatus selectedItem)
+		{
+			if (Math.Abs(warehouseOrder.WarehouseOrderStatus - selectedItem) > 1)
+				return false;
+			return true;
+		}
 
 	}
 }

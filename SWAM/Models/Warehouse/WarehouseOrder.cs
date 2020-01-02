@@ -152,18 +152,30 @@ namespace SWAM.Models.Warehouse
 
 		public static void ChangeDeliveryStatus(WarehouseOrderStatus status, WarehouseOrder order)
 		{
-			var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == order.Id);
-			if (status == WarehouseOrderStatus.Ordered) dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Ordered;
-			else if (status == WarehouseOrderStatus.InDelivery) dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;
+			var dbOrder = Context.WarehouseOrders.Include(o => o.ExternalSupplayer)
+				.FirstOrDefault(p => p.Id == order.Id);
+
+			if (status == WarehouseOrderStatus.Ordered)
+			{
+				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Ordered;				
+			}
+			else if (status == WarehouseOrderStatus.InDelivery)
+			{
+				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;				
+			}
 			else if (status == WarehouseOrderStatus.Delivered)
 			{
 				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
 				dbOrder.DeliveryDate = DateTime.Now;
-				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;
-				updateProductStateQuantity(order);
+				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;	
+				dbOrder.UserReceivedOrder = MainWindow.LoggedInUser;				
 			}
+
 			Context.SaveChanges();
+
 		}
+
+		
 
 		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
 		{			
@@ -177,10 +189,9 @@ namespace SWAM.Models.Warehouse
 			orderPosition.Quantity = productQty;
 			Context.SaveChanges();
 		}
-
-		public static void updateProductStateQuantity(WarehouseOrder order)
-		{
-		
+				
+		public static void AddProductQuantityToState(WarehouseOrder order)
+		{		
 			List<State> states = State.GetStatesFromWarehouse(order.WarehouseId);
 
 			foreach (var line in order.OrderPositions)
@@ -210,5 +221,19 @@ namespace SWAM.Models.Warehouse
 				}				
 			}
 		}
+
+		public static void SubtractProductQuantityFromState(WarehouseOrder order)
+		{
+			List<State> states = State.GetStatesFromWarehouse(order.WarehouseId);
+
+			foreach (var line in order.OrderPositions)
+			{				
+					states.FirstOrDefault(s => s.ProductId == line.ProductId).Quantity -= line.Quantity;
+					states.FirstOrDefault(s => s.ProductId == line.ProductId).Available -= line.Quantity;
+					Context.SaveChanges();
+			}
+		}
+
+
 	}
 }
