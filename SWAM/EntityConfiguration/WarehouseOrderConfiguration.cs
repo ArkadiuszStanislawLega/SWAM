@@ -9,10 +9,15 @@ namespace SWAM.EntityConfiguration
         {
             HasRequired(w => w.ExternalSupplayer);
             HasRequired(w => w.Warehouse);
+						
+            HasMany(w => w.OrderPositions)
+				.WithRequired(w => w.WarehouseOrder)
+				.WillCascadeOnDelete(true);
 
-            HasMany(w => w.OrderPositions);
             HasOptional(w => w.UserReceivedOrder)
                 .WithMany(u => u.WarehouseOrders);
+
+			
         }
     }
 }

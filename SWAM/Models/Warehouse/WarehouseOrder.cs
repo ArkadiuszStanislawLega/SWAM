@@ -155,28 +155,29 @@ namespace SWAM.Models.Warehouse
 			var dbOrder = Context.WarehouseOrders.Include(o => o.ExternalSupplayer)
 				.FirstOrDefault(p => p.Id == order.Id);
 
-			if (status == WarehouseOrderStatus.Ordered)
+			if (dbOrder != null)
 			{
-				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Ordered;				
-			}
-			else if (status == WarehouseOrderStatus.InDelivery)
-			{
-				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;				
-			}
-			else if (status == WarehouseOrderStatus.Delivered)
-			{
-				dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
-				dbOrder.DeliveryDate = DateTime.Now;
-				dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;	
-				dbOrder.UserReceivedOrder = MainWindow.LoggedInUser;				
-			}
+				if (status == WarehouseOrderStatus.Ordered)
+				{
+					dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Ordered;
+				}
+				else if (status == WarehouseOrderStatus.InDelivery)
+				{
+					dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;
+				}
+				else if (status == WarehouseOrderStatus.Delivered)
+				{
+					dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
+					dbOrder.DeliveryDate = DateTime.Now;
+					dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;
+					dbOrder.UserReceivedOrder = MainWindow.LoggedInUser;
+				}
 
-			Context.SaveChanges();
-
+				Context.SaveChanges();
+			}
+			
 		}
-
 		
-
 		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
 		{			
 			var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == orderPosition.WarehouseOrder.Id);

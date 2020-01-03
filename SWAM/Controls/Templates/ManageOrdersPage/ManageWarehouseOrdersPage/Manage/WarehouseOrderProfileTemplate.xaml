@@ -435,7 +435,7 @@
                                                          Background="Transparent"
                                                          Foreground="White"
                                                          BorderBrush="Transparent"
-                                                         BorderThickness="1.5"
+                                                         BorderThickness="1.5"                                                         
                                                          Style="{StaticResource TextBoxGrayBorder}"
                                                          Text="{Binding Quantity}"
                                                          PreviewTextInput="QuantityValidation"/>                                                
@@ -467,7 +467,13 @@
                         </ListView.View>                        
                     </ListView>
                 </StackPanel>
-                
+
+                <Button x:Name="CancelOrder"
+                        VerticalAlignment="Top"
+                        Content="Anuluj zamówienie"
+                        Click="CancelOrder_Click"
+                        Style="{StaticResource CreatePeople}" />
+
             </StackPanel>            
             <!--#endregion-->
         </Grid>

@@ -45,7 +45,7 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 				WarehouseName.Text = warehouseOrder.Warehouse.Name;
 				CreatorName.Text = warehouseOrder.Creator.Name;
 				SupplierName.Text = warehouseOrder.ExternalSupplayer.Name;
-				if (warehouseOrder.UserReceivedOrder != null) OrderReceiver.Text = warehouseOrder.UserReceivedOrder.Name;
+				if (warehouseOrder.UserReceivedOrder != null) OrderReceiver.Text = warehouseOrder.UserReceivedOrder.Name;				
 			}
 		}
 		
@@ -74,9 +74,8 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 					{
 						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered)
 						{
-							WarehouseOrder.AddProductQuantityToState(warehouseOrder);
-							
-								
+							WarehouseOrder.AddProductQuantityToState(warehouseOrder);															
+
 							OrderReceiver.Text = SWAM.MainWindow.LoggedInUser.Name;
 						}
 					}
@@ -116,7 +115,25 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 				DataContext = newContext;
 			}
 		}
-				
+
+		private void CancelOrder_Click(object sender, RoutedEventArgs e)
+		{
+			if (DataContext is WarehouseOrder warehouseOrder)
+			{
+				var context = new ApplicationDbContext();
+				new ConfirmWindow().Show("Czy na pewno usunąć zamówienie?", out bool response);
+
+				if (response)
+				{
+					context.WarehouseOrders.Remove(context.WarehouseOrders.SingleOrDefault(o => o.Id == warehouseOrder.Id));
+					context.SaveChanges();
+					
+					Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();					
+					DataContext = null;
+				}
+			}
+		}
+
 		private void UpdateQuantity(object sender, RoutedEventArgs e)
 		{
 			var quantity = sender as TextBox;
@@ -146,13 +163,13 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		/// <param name="e"></param>
 		private void QuantityValidation(object sender, TextCompositionEventArgs e)
 		{
-			TextBox quanity = sender as TextBox;
-			Regex regex = new Regex("[^1-9]+");
+				TextBox quanity = sender as TextBox;
+				Regex regex = new Regex("[^1-9]+");
 
-			if (quanity.Text.Length > 0)
-				regex = new Regex("[^0-9]+");
+				if (quanity.Text.Length > 0)
+					regex = new Regex("[^0-9]+");
 
-			e.Handled = regex.IsMatch(e.Text);
+				e.Handled = regex.IsMatch(e.Text);					
 		}
 		#endregion
 
