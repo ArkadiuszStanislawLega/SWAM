@@ -113,10 +113,27 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		{			
 			 if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
 			{
-				var newContext = warehouseOrderPosition.WarehouseOrder;
-				WarehouseOrder.DeleteProduct(warehouseOrderPosition);
-				DataContext = new ApplicationDbContext();
-				DataContext = newContext;
+				MessageBox.Show(WarehouseOrder.CountPositions(warehouseOrderPosition).ToString());
+
+				if (WarehouseOrder.CountPositions(warehouseOrderPosition) == 1)
+				{
+					MessageBox.Show("Ostatnia linia!");
+					var WarehouseOrdersContext = new ApplicationDbContext();
+					WarehouseOrdersContext.WarehouseOrders.Remove(WarehouseOrdersContext.WarehouseOrders.FirstOrDefault(o => o.Id == warehouseOrderPosition.WarehouseOrder.Id));
+					WarehouseOrdersContext.SaveChanges();
+					DataContext = new ApplicationDbContext();
+					//DataContext = newContext;
+				}
+
+				else
+				{
+					var newContext = warehouseOrderPosition.WarehouseOrder;
+					WarehouseOrder.DeleteProduct(warehouseOrderPosition);
+					DataContext = new ApplicationDbContext();
+					DataContext = newContext;
+				}
+				
+				
 			}
 		}
 

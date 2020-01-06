@@ -182,6 +182,7 @@ namespace SWAM.Models.Warehouse
 		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
 		{
 			Context.WarehouseOrderPositions.Remove(Context.WarehouseOrderPositions.FirstOrDefault(p => p.Id == orderPosition.Id));
+					   
 			Context.SaveChanges();
 		}
 
@@ -237,6 +238,11 @@ namespace SWAM.Models.Warehouse
 				dbState.Available -= line.Quantity;
 				Context.SaveChanges();
 			}
+		}
+
+		public static int CountPositions(WarehouseOrderPosition warehouseOrderPosition)
+		{			
+			return warehouseOrderPosition.WarehouseOrder.OrderPositions.Count();
 		}
 
 
