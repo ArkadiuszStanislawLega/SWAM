@@ -1,28 +1,14 @@
 ﻿using SWAM.Enumerators;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using SWAM.Models.Warehouse;
-using SWAM.Models.ExternalSupplier;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Data.Entity;
-using SWAM.Strings;
-using SWAM.Models.User;
-using SWAM.Models.ViewModels.CreateNewWarehouseOrder;
 using System.Text.RegularExpressions;
 using SWAM.Windows;
+using SWAM.Controls.Templates.AdministratorPage.Warehouses;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 {
@@ -30,8 +16,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 	/// Logika interakcji dla klasy WarehouseOrderProfileTemplate.xaml
 	/// </summary>
 	/// 
-	
-public partial class WarehouseOrderProfileTemplate : UserControl
+
+	public partial class WarehouseOrderProfileTemplate : UserControl
 	{
 		public WarehouseOrderProfileTemplate()
 		{
@@ -112,17 +98,17 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 		private void DeleteProduct_Click(object sender, RoutedEventArgs e)
 		{			
 			 if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
-			{
-				MessageBox.Show(WarehouseOrder.CountPositions(warehouseOrderPosition).ToString());
-
+			{				
 				if (WarehouseOrder.CountPositions(warehouseOrderPosition) == 1)
-				{
-					MessageBox.Show("Ostatnia linia!");
+				{					
 					var WarehouseOrdersContext = new ApplicationDbContext();
 					WarehouseOrdersContext.WarehouseOrders.Remove(WarehouseOrdersContext.WarehouseOrders.FirstOrDefault(o => o.Id == warehouseOrderPosition.WarehouseOrder.Id));
 					WarehouseOrdersContext.SaveChanges();
-					DataContext = new ApplicationDbContext();
-					//DataContext = newContext;
+				
+					WarehouseOrderListViewModel.Instance.Refresh();
+					Container.Visibility = Visibility.Hidden;
+					Content.Children.Add(new CreateNewWarehouseOrderTemplate());										
+					DataContext = null;
 				}
 
 				else
@@ -148,8 +134,10 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 				{
 					context.WarehouseOrders.Remove(context.WarehouseOrders.SingleOrDefault(o => o.Id == warehouseOrder.Id));
 					context.SaveChanges();
-					
-					Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();					
+
+					WarehouseOrderListViewModel.Instance.Refresh();
+					Container.Visibility = Visibility.Hidden;
+					Content.Children.Add(new CreateNewWarehouseOrderTemplate());
 					DataContext = null;
 				}
 			}
