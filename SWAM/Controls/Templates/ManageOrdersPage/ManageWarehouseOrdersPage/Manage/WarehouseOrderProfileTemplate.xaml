@@ -127,9 +127,9 @@
         </EventTrigger>
     </UserControl.Triggers>
 
-    <Border Name="Content" CornerRadius="10" Padding="10 10 10 0">
-        <Grid>
-            <StackPanel Orientation="Horizontal">
+    <Border CornerRadius="10" Padding="10 10 10 0">
+        <Grid Name="Content">
+            <StackPanel x:Name="Container" Orientation="Horizontal">
                 <StackPanel Margin="10">
                     <!--#region Order Id-->
                     <StackPanel Margin="5">

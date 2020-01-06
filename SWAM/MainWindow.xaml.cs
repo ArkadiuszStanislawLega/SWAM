@@ -791,6 +791,7 @@ namespace SWAM
             }
         }
         #endregion 
+        
         #region RefereshData_Click
         /// <summary>
         /// Action after pressing the context menu button "refresh data" at the top of the application.
