@@ -163,5 +163,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => FilterListById();
         #endregion
+
     }
 }

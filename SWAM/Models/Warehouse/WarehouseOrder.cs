@@ -116,6 +116,8 @@ namespace SWAM.Models.Warehouse
         #endregion
         public static IList<WarehouseOrder> GetAllOrders()
         {
+            Context = new ApplicationDbContext();
+
 			  var WarehouseOrders = Context
 				 .WarehouseOrders
                  .Include(w => w.ExternalSupplayer)

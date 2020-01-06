@@ -4,6 +4,10 @@ using SWAM.Controls.Templates.MainWindow;
 using SWAM.Controls.Templates.ManageOrdersPage.ManageCustomerOrdersPage;
 using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage;
 using SWAM.Enumerators;
+using SWAM.Models.ExternalSupplier;
+using SWAM.Models.ProductListViewModel;
+using SWAM.Models.ProductOrderList;
+using SWAM.Models.Warehouse;
 
 namespace SWAM.Controls.Pages
 {
@@ -19,7 +23,11 @@ namespace SWAM.Controls.Pages
         /// <summary>
         /// Current visible bookmark.
         /// </summary>
-        UserControl _currentContent;
+        private UserControl _currentContent;
+        /// <summary>
+        /// Currently selected bookmark in page.
+        /// </summary>
+        private BookmarkInPage _bookmarkInPage = BookmarkInPage.WarehouseOrdersPanel;
 
         public ManageOrdersPage()
         {
@@ -44,10 +52,13 @@ namespace SWAM.Controls.Pages
                 else nvb.IsSelected = false;
             }
 
-            this._userControls.TryGetValue(bookmarkManageOrders, out UserControl userControl);
-            ChangeContext(userControl);
+            if (this._userControls.TryGetValue(bookmarkManageOrders, out UserControl userControl))
+            {
+                this._bookmarkInPage = bookmarkManageOrders; 
+                ChangeContext(userControl);
+            }
         }
-        #endregion+
+        #endregion
 
         #region ChangeContext
         /// <summary>
@@ -67,5 +78,18 @@ namespace SWAM.Controls.Pages
         }
         #endregion
 
+        public override void RefreshData()
+        {
+            if (this._bookmarkInPage == BookmarkInPage.WarehouseOrdersPanel)
+            {
+                ProductListViewModel.Instance.Refresh();
+                WarehouseOrderListViewModel.Instance.Refresh();
+                ExternalSupplierListViewModel.Instance.Refresh();
+            }
+            else if(this._bookmarkInPage == BookmarkInPage.CustomerOrdersPanel)
+            {
+
+            }
+        }
     }
 }
