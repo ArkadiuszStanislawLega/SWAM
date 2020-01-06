@@ -45,7 +45,8 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 				WarehouseName.Text = warehouseOrder.Warehouse.Name;
 				CreatorName.Text = warehouseOrder.Creator.Name;
 				SupplierName.Text = warehouseOrder.ExternalSupplayer.Name;
-				if (warehouseOrder.UserReceivedOrder != null) OrderReceiver.Text = warehouseOrder.UserReceivedOrder.Name;				
+				if (warehouseOrder.UserReceivedOrder != null) OrderReceiver.Text = warehouseOrder.UserReceivedOrder.Name;
+				if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered) CancelOrder.IsEnabled = false;				
 			}
 		}
 		
@@ -87,6 +88,9 @@ public partial class WarehouseOrderProfileTemplate : UserControl
 							WarehouseOrder.SubtractProductQuantityFromState(warehouseOrder);
 						}
 					}
+
+					if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered) CancelOrder.IsEnabled = false;
+					else CancelOrder.IsEnabled = true;
 
 					DataContext = new ApplicationDbContext();
 					DataContext = warehouseOrder;

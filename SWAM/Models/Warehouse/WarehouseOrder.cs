@@ -169,8 +169,7 @@ namespace SWAM.Models.Warehouse
 				{
 					dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.Delivered;
 					dbOrder.DeliveryDate = DateTime.Now;
-					dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;
-					dbOrder.UserReceivedOrder = MainWindow.LoggedInUser;
+					dbOrder.UserReceivedOrderId = MainWindow.LoggedInUser.Id;					
 				}
 
 				Context.SaveChanges();
@@ -179,9 +178,9 @@ namespace SWAM.Models.Warehouse
 		}
 		
 		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
-		{			
-			var dbOrder = Context.WarehouseOrders.FirstOrDefault(p => p.Id == orderPosition.WarehouseOrder.Id);
-			dbOrder.OrderPositions.RemoveAt(dbOrder.OrderPositions.IndexOf(orderPosition));
+		{
+			//Context.WarehouseOrders.Remove(Context.WarehouseOrders.FirstOrDefault(p => p.Id == orderPosition.WarehouseOrder.Id));
+			Context.WarehouseOrderPositions.Remove(Context.WarehouseOrderPositions.FirstOrDefault(p => p.Id == orderPosition.Id));
 			Context.SaveChanges();			
 		}
 
@@ -194,18 +193,20 @@ namespace SWAM.Models.Warehouse
 		public static void AddProductQuantityToState(WarehouseOrder order)
 		{		
 			List<State> states = State.GetStatesFromWarehouse(order.WarehouseId);
+			var dbState = Context.States.FirstOrDefault();
 
 			foreach (var line in order.OrderPositions)
 			{
 				try
-				{
-					states.FirstOrDefault(s => s.ProductId == line.ProductId).Quantity += line.Quantity;
-					states.FirstOrDefault(s => s.ProductId == line.ProductId).Available += line.Quantity;
-					Context.SaveChanges();
+				{				
+					dbState = Context.States.FirstOrDefault(s => s.ProductId == line.ProductId);
+					dbState.Quantity += line.Quantity;
+					dbState.Available += line.Quantity;					
+					Context.SaveChanges();				
 				}
 
 				catch (NullReferenceException)
-				{
+				{					
 					State state = new State
 					{
 						Quantity = line.Quantity,
@@ -216,7 +217,7 @@ namespace SWAM.Models.Warehouse
 						Warehouse = order.Warehouse,
 						WarehouseId = order.WarehouseId
 					};
-
+					
 					Context.States.Add(state);
 					Context.SaveChanges();
 				}				
@@ -226,12 +227,14 @@ namespace SWAM.Models.Warehouse
 		public static void SubtractProductQuantityFromState(WarehouseOrder order)
 		{
 			List<State> states = State.GetStatesFromWarehouse(order.WarehouseId);
+			var dbState = Context.States.FirstOrDefault();
 
 			foreach (var line in order.OrderPositions)
-			{				
-					states.FirstOrDefault(s => s.ProductId == line.ProductId).Quantity -= line.Quantity;
-					states.FirstOrDefault(s => s.ProductId == line.ProductId).Available -= line.Quantity;
-					Context.SaveChanges();
+			{
+				dbState = Context.States.FirstOrDefault(s => s.ProductId == line.ProductId);
+				dbState.Quantity -= line.Quantity;
+				dbState.Available -= line.Quantity;
+				Context.SaveChanges();
 			}
 		}
 
