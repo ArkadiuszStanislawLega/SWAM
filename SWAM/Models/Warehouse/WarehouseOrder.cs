@@ -179,7 +179,6 @@ namespace SWAM.Models.Warehouse
 		
 		public static void DeleteProduct(WarehouseOrderPosition orderPosition)
 		{
-			//Context.WarehouseOrders.Remove(Context.WarehouseOrders.FirstOrDefault(p => p.Id == orderPosition.WarehouseOrder.Id));
 			Context.WarehouseOrderPositions.Remove(Context.WarehouseOrderPositions.FirstOrDefault(p => p.Id == orderPosition.Id));
 			Context.SaveChanges();			
 		}
