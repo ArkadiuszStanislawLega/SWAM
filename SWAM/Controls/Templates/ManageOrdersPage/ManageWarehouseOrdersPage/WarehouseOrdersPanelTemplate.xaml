@@ -194,8 +194,8 @@
                         <ScrollViewer Name="ScrollOfWarehouseList" 
                                   VerticalScrollBarVisibility="Auto">
                             <ItemsControl Name="WarehouseOrderListView" 
-                                    DataContext="{x:Static lvm:WarehouseOrderListViewModel.Instance}"
-                                      ItemsSource="{Binding WarehouseOrders}">
+                                            DataContext="{x:Static lvm:WarehouseOrderListViewModel.Instance}"
+                                            ItemsSource="{Binding WarehouseOrders}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage.WarehouseOrderProfileTemplate"
+﻿<basic:BasicUserControl x:Class="SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage.WarehouseOrderProfileTemplate"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,10 +6,10 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:enum="clr-namespace:SWAM.Enumerators"
              xmlns:local="clr-namespace:SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage"
+             xmlns:basic="clr-namespace:SWAM.Controls.Templates.AdministratorPage"
              xmlns:conv="clr-namespace:SWAM.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d"
-             Loaded="Window_Loaded"
              d:DesignHeight="450"
              d:DesignWidth="800">
 
@@ -159,7 +159,8 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Nazwa Magazynu"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Name="WarehouseName" />
+                        <TextBlock Name="WarehouseName"
+                                   Text="{Binding Warehouse.Name}"/>
                                    
                     </StackPanel>
                     <!--#endregion-->
@@ -172,30 +173,84 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Twórca zamówienia"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock Name="CreatorName"/>
+                        <TextBlock Name="CreatorName"
+                                   Text="{Binding Creator.Name}">
+                                      <!--#region ToolTip-->
+                            <TextBlock.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Dane kontaktowe" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}"/>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding Creator.Phones}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Note}"/>
+                                                    <TextBlock Text=" - "/>
+                                                    <TextBlock Text="{Binding PhoneNumber}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding Creator.EmailAddresses}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding AddressEmail}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
+                            <!--#endregion-->
+                            </TextBlock>
                     </StackPanel>
                     <!--#endregion-->
 
                     <!--#region User Received Order Id-->
                     <StackPanel Margin="5">
                         <TextBlock Text="Odbiorca zamówienia"
-                                   Style="{StaticResource ProfileProperties}" />
+                                   Style="{StaticResource ProfileProperties}" 
+                                   />
 
-                        <TextBlock Name="OrderReceiver">
+                        <TextBlock Name="OrderReceiver" Text="{Binding UserReceivedOrder.Name}">
                           <!--#region ToolTip-->
                                 <TextBlock.ToolTip>
-                                    <StackPanel>
-                                        <TextBlock Text="Dane kontaktowe" 
+                                <StackPanel>
+                                    <TextBlock Text="Dane kontaktowe" 
                                                FontStyle="Italic"
                                                TextDecorations="Underline"
                                                FontSize="14" 
-                                               Style="{StaticResource Title}">
-                                        </TextBlock>
-                                        <Separator/>
-                                        <TextBlock Text="{Binding OrderReceiverPhone, StringFormat={}Telefon - {0}}"/>
-                                        <TextBlock Text="{Binding Customer.EmailAddress, StringFormat={}E-mail - {0}}"/>
-                                    </StackPanel>
-                                </TextBlock.ToolTip>
+                                               Style="{StaticResource Title}"/>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding UserReceivedOrder.Phones}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Note}"/>
+                                                    <TextBlock Text=" - "/>
+                                                    <TextBlock Text="{Binding PhoneNumber}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding UserReceivedOrder.EmailAddresses}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding AddressEmail}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
                             <!--#endregion-->
                         </TextBlock>
                     </StackPanel>
@@ -205,7 +260,42 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="Dostawca"
                                    Style="{StaticResource ProfileProperties}" />
-                        <TextBlock x:Name="SupplierName"/>
+                        <TextBlock Name="SupplierName"
+                                   Text="{Binding ExternalSupplayer.Name}">
+                              <!--#region ToolTip-->
+                            <TextBlock.ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Dane kontaktowe" 
+                                               FontStyle="Italic"
+                                               TextDecorations="Underline"
+                                               FontSize="14" 
+                                               Style="{StaticResource Title}"/>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding ExternalSupplayer.Phones}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Note}"/>
+                                                    <TextBlock Text=" - "/>
+                                                    <TextBlock Text="{Binding PhoneNumber}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Separator/>
+                                    <ItemsControl ItemsSource="{Binding ExternalSupplayer.EmailAddresses}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding AddressEmail}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </TextBlock.ToolTip>
+                            <!--#endregion-->
+                        </TextBlock>
                     </StackPanel>
                     <!--#endregion-->
                 </StackPanel>
@@ -467,7 +557,7 @@
                         </ListView.View>                        
                     </ListView>
                 </StackPanel>
-
+                
                 <Button x:Name="CancelOrder"
                         VerticalAlignment="Top"
                         Content="Anuluj zamówienie"
@@ -480,4 +570,4 @@
     </Border>
     
     
-</UserControl>
+</basic:BasicUserControl>

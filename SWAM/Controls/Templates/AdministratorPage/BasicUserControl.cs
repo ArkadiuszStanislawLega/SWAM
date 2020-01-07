@@ -21,12 +21,14 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// Main window instance.
         /// </summary>
         /// <returns></returns>
-        protected SWAM.MainWindow _mainWindow { get => SWAM.MainWindow.FindParent<SWAM.MainWindow>(this); }
+        protected SWAM.MainWindow MainWindow { get => SWAM.MainWindow.FindParent<SWAM.MainWindow>(this); }
         /// <summary
         /// Confirm window instance.
         /// </summary>
         /// <returns>Confirm window.</returns>
-        protected ConfirmWindow _confirmWindow { get => this._mainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
+        protected ConfirmWindow ConfirmWindow { get => this.MainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
+
+        protected WarningWindow WarningWindow { get => this.MainWindow.Windows.TryGetValue(WindowType.Warning, out Window warningWindow) ? warningWindow as WarningWindow : null; }
 
         public Storyboard UnloadStory = new Storyboard();
 

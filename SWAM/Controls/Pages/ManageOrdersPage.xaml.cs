@@ -6,7 +6,6 @@ using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage;
 using SWAM.Enumerators;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Models.ProductListViewModel;
-using SWAM.Models.ProductOrderList;
 using SWAM.Models.Warehouse;
 
 namespace SWAM.Controls.Pages

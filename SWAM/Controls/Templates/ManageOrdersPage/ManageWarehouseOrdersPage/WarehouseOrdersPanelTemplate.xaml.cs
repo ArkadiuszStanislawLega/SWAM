@@ -2,6 +2,7 @@
 using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses;
 using SWAM.Enumerators;
 using SWAM.Models.Warehouse;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,8 +16,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
     public partial class WarehouseOrdersPanelTemplate : UserControl
     {
         #region Properties
-        private WarehouseOrder _defaultWarehuseOrder = new WarehouseOrder();
-        public BookmarkInPage CurrentBookmarkLoaded { get; private set; }
+        private readonly Dictionary<BookmarkInPage, UserControl> _pages = new Dictionary<BookmarkInPage, UserControl>()
+        {
+            { BookmarkInPage.WarehouseOrderProfile, new WarehouseOrderProfileTemplate() },
+            { BookmarkInPage.NewWarehouseOrder,  new CreateNewWarehouseOrderTemplate() }
+        };
+        private readonly WarehouseOrder _defaultWarehuseOrder = new WarehouseOrder();
         /// <summary>
         /// Current filter on customer orders list.
         /// </summary>
@@ -26,6 +31,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         public WarehouseOrdersPanelTemplate()
         {
             InitializeComponent();
+
+           
+            SwitchBetweenOrdersAndCreating(BookmarkInPage.NewWarehouseOrder);
         }
         #endregion
 
@@ -34,12 +42,23 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// Changing main content of this view.
         /// </summary>
         /// <param name="newContent">New content of main view.</param>
-        private void SwitchBetweenOrdersAndCreating(UserControl newContent)
+        private void SwitchBetweenOrdersAndCreating(BookmarkInPage bookmarkInPage, WarehouseOrder warehouseOrder = null)
         {
+
             if (this.MainContent.Children.Count > 0)
                 this.MainContent.Children.RemoveAt(this.MainContent.Children.Count - 1);
 
-            this.MainContent.Children.Add(newContent);
+            this._pages.TryGetValue(bookmarkInPage, out UserControl control);
+
+            if(warehouseOrder != null)
+            {
+                var profile = control as WarehouseOrderProfileTemplate;
+                profile.DataContext = warehouseOrder;
+                this.MainContent.Children.Add(profile);
+                return;
+            }
+
+            this.MainContent.Children.Add(control);
         }
         #endregion
  
@@ -104,10 +123,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// <param name="e">Event select item.</param>
         private void Item_Click(object sender, RoutedEventArgs e)
         {
-            this.CurrentBookmarkLoaded = BookmarkInPage.WarehouseOrderProfile;
             if (sender is Button button && button.DataContext is WarehouseOrder customerOrder)
             {
-                SwitchBetweenOrdersAndCreating(new WarehouseOrderProfileTemplate() { DataContext = customerOrder });
+                SwitchBetweenOrdersAndCreating(BookmarkInPage.WarehouseOrderProfile, customerOrder);
             }
         }
         #endregion
@@ -138,11 +156,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// </summary>
         /// <param name="sender">Button add new warehouse order.</param>
         /// <param name="e">Event button is clicked</param>
-        private void AddNewWarehouseOrder_Click(object sender, RoutedEventArgs e)
-        {
-            this.CurrentBookmarkLoaded = BookmarkInPage.NewWarehouseOrder;
-            SwitchBetweenOrdersAndCreating(new CreateNewWarehouseOrderTemplate());
-        }
+        private void AddNewWarehouseOrder_Click(object sender, RoutedEventArgs e) => SwitchBetweenOrdersAndCreating(BookmarkInPage.NewWarehouseOrder);  
         #endregion
 
         #region OrderStatus_SelectionChanged
@@ -163,6 +177,5 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// <param name="e">Event typed letter.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e) => FilterListById();
         #endregion
-
     }
 }
