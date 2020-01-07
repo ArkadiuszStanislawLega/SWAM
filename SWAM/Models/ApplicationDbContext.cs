@@ -4,6 +4,7 @@ using SWAM.Models;
 using SWAM.Models.Courier;
 using SWAM.Models.Customer;
 using SWAM.Models.ExternalSupplier;
+using SWAM.Models.User;
 using SWAM.Models.Warehouse;
 
 namespace SWAM
@@ -27,6 +28,7 @@ namespace SWAM
         public DbSet<Person> People { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
         public DbSet<WarehouseAddress> WarehouseAddresses { get; set; }
         public DbSet<WarehouseOrder> WarehouseOrders { get; set; }

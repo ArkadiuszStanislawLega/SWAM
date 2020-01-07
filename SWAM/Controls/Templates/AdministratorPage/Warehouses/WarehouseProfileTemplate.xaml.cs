@@ -56,7 +56,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
 
             if (DataContext is Warehouse data)
             {
-                this._confirmWindow.Show($"Czy na pewno chcesz usunąć magazyn {data.Name}?", out bool isConfirmed, "Potwierdź usunięcie magazynu");
+                this.ConfirmWindow.Show($"Czy na pewno chcesz usunąć magazyn {data.Name}?", out bool isConfirmed, "Potwierdź usunięcie magazynu");
                 if(isConfirmed)
                 {
                     if (data.Remove())
@@ -85,7 +85,7 @@ namespace SWAM.Controls.Templates.AdministratorPage.Warehouses
         {
             if (DataContext is Warehouse warehouse)
             {
-                this._confirmWindow.Show($"Czy napewno chcesz zachować zmiany magazynu {warehouse.Name}?", out bool isConfirmed, "Edytowanie włściwości magazynu");
+                this.ConfirmWindow.Show($"Czy napewno chcesz zachować zmiany magazynu {warehouse.Name}?", out bool isConfirmed, "Edytowanie włściwości magazynu");
                 if (isConfirmed && NameValidation())
                 {
                     if (long.TryParse(this.WarehouseTechnicalDate.EditHeight.Text, out long eHeight))

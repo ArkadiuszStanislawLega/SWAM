@@ -127,9 +127,9 @@ namespace SWAM.Controls.Templates.AdministratorPage.Users
         {
             if (SWAM.MainWindow.FindParent<UserProfileTemplate>(this).DataContext is User user)
             {
-                if (this._confirmWindow != null)
+                if (this.ConfirmWindow != null)
                 {
-                    this._confirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool isConfirmed, "Potiwerdź usunięcie uprawnień");
+                    this.ConfirmWindow.Show($"Czy na pewno chcesz usunąć uprawnienia użytkownika {user.Name}?", out bool isConfirmed, "Potiwerdź usunięcie uprawnień");
 
                     if (isConfirmed)
                     {

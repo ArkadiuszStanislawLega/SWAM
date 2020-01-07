@@ -38,12 +38,12 @@ namespace SWAM.Controls.Templates.AdministratorPage
                 if (EmailAddress.IsValidEmail(this.EditEmail.Text))
                 {
                     //Make sure confirm window is not null and is ready to show message for user.
-                    if (this._confirmWindow != null)
+                    if (this.ConfirmWindow != null)
                     {
                         var emailAddressBeforeEdited = emailAddress.Get();
 
                         //Show confirmation window about changes.
-                        this._confirmWindow.Show($"Potwierdź zmianę adresu e-mail {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
+                        this.ConfirmWindow.Show($"Potwierdź zmianę adresu e-mail {emailAddressBeforeEdited.AddressEmail} na {this.EditEmail.Text}?", out bool isConfirmed, "Potwierdź dokonanie zmiany");
 
                         //If user confirmed in dialog window changes...
                         if (isConfirmed)
@@ -86,10 +86,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
             if (DataContext is UserEmailAddress userEmailAddress)
             {
                 //Make sure confirm window is not null and is ready to show message for user.
-                if (this._confirmWindow != null)
+                if (this.ConfirmWindow != null)
                 {
                     //Show confirmation window about changes.
-                    this._confirmWindow.Show($"Czy na pewno chcesz usunąc adres email {userEmailAddress.AddressEmail}?", out bool isConfirmed, "Potwierdź usunięcie adresu email");
+                    this.ConfirmWindow.Show($"Czy na pewno chcesz usunąc adres email {userEmailAddress.AddressEmail}?", out bool isConfirmed, "Potwierdź usunięcie adresu email");
                     //If user confirmed in dialog window changes...
                     if (isConfirmed)
                     {

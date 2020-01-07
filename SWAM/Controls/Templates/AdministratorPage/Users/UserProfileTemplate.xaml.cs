@@ -48,9 +48,9 @@ namespace SWAM.Controls.Templates.AdministratorPage
         {
             if (DataContext is User user)
             {
-                if (this._confirmWindow != null)
+                if (this.ConfirmWindow != null)
                 {
-                    this._confirmWindow.Show($"Czy na pewno chcesz zablokować użytkownika {user.Name}?", out bool isConfirmed, "Potwierdź zablokowanie użykownika");
+                    this.ConfirmWindow.Show($"Czy na pewno chcesz zablokować użytkownika {user.Name}?", out bool isConfirmed, "Potwierdź zablokowanie użykownika");
                     if (isConfirmed)
                     {
                         //its needed to clear the datacontext because the refresh function did not work properly after downloading the data after the change

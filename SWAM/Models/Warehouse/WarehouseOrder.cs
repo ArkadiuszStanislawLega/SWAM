@@ -129,7 +129,24 @@ namespace SWAM.Models.Warehouse
 
 			foreach (var order in WarehouseOrders)
 			{
-				for (int i = 0; i < order.OrderPositions.Count; i++)
+                order.Creator = Context
+                    .Users
+                    .Include(u => u.Phones)
+                    .Include(u => u.EmailAddresses)                            
+                    .FirstOrDefault(u => u.Id == order.Creator.Id);
+
+                order.UserReceivedOrder = Context
+                     .Users
+                     .Include(u => u.Phones)
+                     .Include(u => u.EmailAddresses)
+                     .FirstOrDefault(u => u.Id == order.UserReceivedOrder.Id);
+
+                order.ExternalSupplayer = Context.ExternalSuppliers
+                     .Include(u => u.Phones)
+                     .Include(u => u.EmailAddress)
+                     .FirstOrDefault(u => u.Id == order.ExternalSupplayer.Id);
+
+                for (int i=0; i <order.OrderPositions.Count; i++)
 				{
 					var id = order.OrderPositions[i].Id;
 					order.OrderPositions[i] = Context.WarehouseOrderPositions
