@@ -3,6 +3,7 @@ Warehouse management application designed for usage in DIY store created with WP
 
 ## Table of contents
 * [General info](#general-info)
+* [Technologies](#technologies)
 * [Setup](#setup)
 
 ## General info
@@ -18,3 +19,9 @@ update-database
 ```
 
 This command will execute code in Up method of all existing migrations.
+
+## Technologies
+Project is created with:
+* Windows Presentation Foundation
+* .NET Framework V4.6.1
+* EntityFramework V6.2.0

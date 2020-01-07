@@ -59,9 +59,12 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
                         }
                     }
 
-                    DataContext = new ApplicationDbContext();
-                    DataContext = warehouseOrder;
-                }
+					if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered) CancelOrder.IsEnabled = false;
+					else CancelOrder.IsEnabled = true;
+
+					DataContext = new ApplicationDbContext();
+					DataContext = warehouseOrder;
+				}
 
             }
         }
@@ -76,16 +79,33 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
             }
         }
 
-        private void DeleteProduct_Click(object sender, RoutedEventArgs e)
-        {
-            if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
-            {
-                var newContext = warehouseOrderPosition.WarehouseOrder;
-                WarehouseOrder.DeleteProduct(warehouseOrderPosition);
-                DataContext = new ApplicationDbContext();
-                DataContext = newContext;
-            }
-        }
+		private void DeleteProduct_Click(object sender, RoutedEventArgs e)
+		{			
+			 if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
+			{				
+				if (WarehouseOrder.CountPositions(warehouseOrderPosition) == 1)
+				{					
+					var WarehouseOrdersContext = new ApplicationDbContext();
+					WarehouseOrdersContext.WarehouseOrders.Remove(WarehouseOrdersContext.WarehouseOrders.FirstOrDefault(o => o.Id == warehouseOrderPosition.WarehouseOrder.Id));
+					WarehouseOrdersContext.SaveChanges();
+				
+					WarehouseOrderListViewModel.Instance.Refresh();
+					Container.Visibility = Visibility.Hidden;
+					Content.Children.Add(new CreateNewWarehouseOrderTemplate());										
+					DataContext = null;
+				}
+
+				else
+				{
+					var newContext = warehouseOrderPosition.WarehouseOrder;
+					WarehouseOrder.DeleteProduct(warehouseOrderPosition);
+					DataContext = new ApplicationDbContext();
+					DataContext = newContext;
+				}
+				
+				
+			}
+		}
 
         private void CancelOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -94,16 +114,18 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
                 var context = new ApplicationDbContext();
                 this.ConfirmWindow.Show("Czy na pewno usunąć zamówienie?", out bool response);
 
-                if (response)
-                {
-                    context.WarehouseOrders.Remove(context.WarehouseOrders.SingleOrDefault(o => o.Id == warehouseOrder.Id));
-                    context.SaveChanges();
+				if (response)
+				{
+					context.WarehouseOrders.Remove(context.WarehouseOrders.SingleOrDefault(o => o.Id == warehouseOrder.Id));
+					context.SaveChanges();
 
-                    Models.ManageOrdersPage.CustomerOrdersListViewModel.Instance.Refresh();
-                    DataContext = null;
-                }
-            }
-        }
+					WarehouseOrderListViewModel.Instance.Refresh();
+					Container.Visibility = Visibility.Hidden;
+					Content.Children.Add(new CreateNewWarehouseOrderTemplate());
+					DataContext = null;
+				}
+			}
+		}
 
         private void UpdateQuantity(object sender, RoutedEventArgs e)
         {

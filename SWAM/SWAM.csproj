@@ -317,6 +317,10 @@
     <Compile Include="Migrations\202001031434592_EnableCascadeDeleteFromWarehouseOrderPositions.Designer.cs">
       <DependentUpon>202001031434592_EnableCascadeDeleteFromWarehouseOrderPositions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001031635232_UpdateDataTypeWarehouseOrdersToDatetime2.cs" />
+    <Compile Include="Migrations\202001031635232_UpdateDataTypeWarehouseOrdersToDatetime2.Designer.cs">
+      <DependentUpon>202001031635232_UpdateDataTypeWarehouseOrdersToDatetime2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Courier\CourierPhone.cs" />
     <Compile Include="Models\Courier\CouriersListViewModel.cs" />
     <Compile Include="Models\Courier\CourierOrdersListViewModel.cs" />
@@ -954,6 +958,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001031434592_EnableCascadeDeleteFromWarehouseOrderPositions.resx">
       <DependentUpon>202001031434592_EnableCascadeDeleteFromWarehouseOrderPositions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001031635232_UpdateDataTypeWarehouseOrdersToDatetime2.resx">
+      <DependentUpon>202001031635232_UpdateDataTypeWarehouseOrdersToDatetime2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
