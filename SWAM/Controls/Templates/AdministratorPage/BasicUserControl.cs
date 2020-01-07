@@ -27,7 +27,10 @@ namespace SWAM.Controls.Templates.AdministratorPage
         /// </summary>
         /// <returns>Confirm window.</returns>
         protected ConfirmWindow ConfirmWindow { get => this.MainWindow.Windows.TryGetValue(WindowType.Question, out Window messageWindow) ? messageWindow as ConfirmWindow : null; }
-
+        /// <summary
+        /// Warning window instance.
+        /// </summary>
+        /// <returns>Warning window.</returns>
         protected WarningWindow WarningWindow { get => this.MainWindow.Windows.TryGetValue(WindowType.Warning, out Window warningWindow) ? warningWindow as WarningWindow : null; }
 
         public Storyboard UnloadStory = new Storyboard();
