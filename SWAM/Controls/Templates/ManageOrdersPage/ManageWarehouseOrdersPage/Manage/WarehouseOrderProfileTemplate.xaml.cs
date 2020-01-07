@@ -7,6 +7,7 @@ using System.Windows.Input;
 using SWAM.Models.Warehouse;
 using System.Text.RegularExpressions;
 using SWAM.Controls.Templates.AdministratorPage;
+using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses;
 
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 {
