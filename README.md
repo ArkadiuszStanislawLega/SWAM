@@ -28,7 +28,7 @@ update-database
 This command will execute code in Up method of all existing migrations.
 
 ## User types and roles
-In application are three types of user:
+In application are six types of user:
 * **Administrator** - person who has the authority to manage the user database and warehouses,
 * **Warehouseman** - person who accepts the products to the warehouse,
 * **Seller** - person who can sell our products do the clients,
