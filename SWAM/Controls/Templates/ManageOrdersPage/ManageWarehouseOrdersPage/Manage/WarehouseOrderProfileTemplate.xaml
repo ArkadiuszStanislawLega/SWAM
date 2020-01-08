@@ -355,6 +355,7 @@
                                   Grid.Column="0"
                                   IsEditable="False"
                                   ItemsSource="{Binding Source={StaticResource WarehouseOrderStatus}}"
+                                  SelectedItem="{Binding WarehouseOrderStatus}"
                                   Grid.ColumnSpan="2">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -446,6 +447,7 @@
                                   Grid.Column="0"
                                   IsEditable="False"
                                   ItemsSource="{Binding Source={StaticResource PaymentStatus}}"
+                                  SelectedItem="{Binding PaymentStatus}"
                                   Grid.ColumnSpan="2">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
