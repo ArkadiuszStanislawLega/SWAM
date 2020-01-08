@@ -117,7 +117,7 @@
                     Value="Collapsed" />
         </Style>
         <!--#endregion-->
-        
+                
     </UserControl.Resources>
     <!--#endregion-->
 
@@ -524,8 +524,9 @@
                                                          LostFocus="UpdateQuantity" 
                                                          Background="Transparent"
                                                          Foreground="White"
-                                                         BorderBrush="Transparent"
-                                                         BorderThickness="1.5"                                                         
+                                                         BorderBrush="Transparent"                                                         
+                                                         BorderThickness="1.5"
+                                                         IsEnabled="{Binding WarehouseOrder.WarehouseOrderStatus, Converter={conv:StatusToBoolConverter}}"
                                                          Style="{StaticResource TextBoxGrayBorder}"
                                                          Text="{Binding Quantity}"
                                                          PreviewTextInput="QuantityValidation"/>                                                

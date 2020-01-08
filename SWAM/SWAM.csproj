@@ -66,6 +66,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -262,6 +263,7 @@
     <Compile Include="Converters\ENToPLUserTypeConverter.cs" />
     <Compile Include="Converters\ENtoPLwarehouseOrderStatusConverter.cs" />
     <Compile Include="Converters\InitialValueForProductQuantity.cs" />
+    <Compile Include="Converters\StatusToBoolConverter.cs" />
     <Compile Include="Converters\TextToVisibilityConverter.cs" />
     <Compile Include="Converters\VisibilityReverseConverter.cs" />
     <Compile Include="Converters\WarehouseOrderStatusToColourConverter.cs" />

@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using SWAM.Controls.Templates.AdministratorPage;
 using SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.NewOrder.Warehouses;
 
+
 namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Manage
 {
     /// <summary>
@@ -82,35 +83,47 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 
 		private void DeleteProduct_Click(object sender, RoutedEventArgs e)
 		{			
-			 if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition)
-			{				
-				if (WarehouseOrder.CountPositions(warehouseOrderPosition) == 1)
-				{					
-					var WarehouseOrdersContext = new ApplicationDbContext();
-					WarehouseOrdersContext.WarehouseOrders.Remove(WarehouseOrdersContext.WarehouseOrders.FirstOrDefault(o => o.Id == warehouseOrderPosition.WarehouseOrder.Id));
-					WarehouseOrdersContext.SaveChanges();
-				
-					WarehouseOrderListViewModel.Instance.Refresh();
-					Container.Visibility = Visibility.Hidden;
-					Content.Children.Add(new CreateNewWarehouseOrderTemplate());										
-					DataContext = null;
-				}
+			if (((FrameworkElement)sender).DataContext is WarehouseOrderPosition warehouseOrderPosition &&
+				warehouseOrderPosition.WarehouseOrder.WarehouseOrderStatus != WarehouseOrderStatus.Delivered)
+			{
+				this.ConfirmWindow.Show("Czy na pewno usunąć produkt?", out bool response);
 
-				else
+				if (response)
 				{
-					var newContext = warehouseOrderPosition.WarehouseOrder;
-					WarehouseOrder.DeleteProduct(warehouseOrderPosition);
-					DataContext = new ApplicationDbContext();
-					DataContext = newContext;
+					if (warehouseOrderPosition.WarehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered)
+					{
+						return;
+					}
+
+					else if (WarehouseOrder.CountPositions(warehouseOrderPosition) == 1)
+					{
+						var WarehouseOrdersContext = new ApplicationDbContext();
+						WarehouseOrdersContext.WarehouseOrders.Remove(WarehouseOrdersContext.WarehouseOrders.FirstOrDefault(o => o.Id == warehouseOrderPosition.WarehouseOrder.Id));
+						WarehouseOrdersContext.SaveChanges();
+
+						WarehouseOrderListViewModel.Instance.Refresh();
+						Container.Visibility = Visibility.Hidden;
+						Content.Children.Add(new CreateNewWarehouseOrderTemplate());
+						DataContext = null;
+					}
+
+					else
+					{
+						var newContext = warehouseOrderPosition.WarehouseOrder;
+						WarehouseOrder.DeleteProduct(warehouseOrderPosition);
+						DataContext = new ApplicationDbContext();
+						DataContext = newContext;
+					}
 				}
-				
-				
 			}
+
+			else
+				return;		
 		}
 
         private void CancelOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is WarehouseOrder warehouseOrder)
+            if (DataContext is WarehouseOrder warehouseOrder && warehouseOrder.WarehouseOrderStatus != WarehouseOrderStatus.Delivered)
             {
                 var context = new ApplicationDbContext();
                 this.ConfirmWindow.Show("Czy na pewno usunąć zamówienie?", out bool response);
@@ -156,8 +169,8 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void QuantityValidation(object sender, TextCompositionEventArgs e)
-        {
-            TextBox quanity = sender as TextBox;
+        {			
+			TextBox quanity = sender as TextBox;
             Regex regex = new Regex("[^1-9]+");
 
             if (quanity.Text.Length > 0)
@@ -165,13 +178,16 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 
             e.Handled = regex.IsMatch(e.Text);
         }
-        #endregion
+		#endregion
 
-        private bool ValidateStatusChange(WarehouseOrder warehouseOrder, WarehouseOrderStatus selectedItem)
+
+
+		private bool ValidateStatusChange(WarehouseOrder warehouseOrder, WarehouseOrderStatus selectedItem)
         {
             if (Math.Abs(warehouseOrder.WarehouseOrderStatus - selectedItem) > 1)
                 return false;
-            return true;
-        }
+            return true; 
+
+		}
     }
 }
