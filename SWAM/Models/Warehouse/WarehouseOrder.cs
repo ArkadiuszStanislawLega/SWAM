@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using SWAM.Enumerators;
-using System.Data.Entity;
 using System.Linq;
 using SWAM.Strings;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Windows;
 
 namespace SWAM.Models.Warehouse
 {
@@ -129,22 +128,31 @@ namespace SWAM.Models.Warehouse
 
 			foreach (var order in WarehouseOrders)
 			{
-                order.Creator = Context
-                    .Users
-                    .Include(u => u.Phones)
-                    .Include(u => u.EmailAddresses)                            
-                    .FirstOrDefault(u => u.Id == order.Creator.Id);
+				if (order.Creator is User.User)
+				{
+					order.Creator = Context
+						.Users
+						.Include(u => u.Phones)
+						.Include(u => u.EmailAddresses)
+						.FirstOrDefault(u => u.Id == order.Creator.Id);
+				}
 
-                order.UserReceivedOrder = Context
-                     .Users
-                     .Include(u => u.Phones)
-                     .Include(u => u.EmailAddresses)
-                     .FirstOrDefault(u => u.Id == order.UserReceivedOrder.Id);
+				if (order.UserReceivedOrder is User.User)
+				{
+					order.UserReceivedOrder = Context
+						 .Users
+						 .Include(u => u.Phones)
+						 .Include(u => u.EmailAddresses)
+						 .FirstOrDefault(u => u.Id == order.UserReceivedOrder.Id);
+				}
 
-                order.ExternalSupplayer = Context.ExternalSuppliers
-                     .Include(u => u.Phones)
-                     .Include(u => u.EmailAddress)
-                     .FirstOrDefault(u => u.Id == order.ExternalSupplayer.Id);
+				if (order.ExternalSupplayer is ExternalSupplier.ExternalSupplier)
+				{
+					order.ExternalSupplayer = Context.ExternalSuppliers
+						 .Include(u => u.Phones)
+						 .Include(u => u.EmailAddress)
+						 .FirstOrDefault(u => u.Id == order.ExternalSupplayer.Id);
+				}
 
                 for (int i=0; i <order.OrderPositions.Count; i++)
 				{
