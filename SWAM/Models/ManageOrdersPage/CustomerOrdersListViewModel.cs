@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using SWAM.Enumerators;
-using SWAM.Exceptions;
 using System;
 using SWAM.Strings;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Data.Entity;
 
 
 namespace SWAM.Models.ManageOrdersPage
@@ -110,14 +108,5 @@ namespace SWAM.Models.ManageOrdersPage
         public static List<CustomerOrder> AllCustomerOrdersList() => context
         .CustomerOrders.OfType<CustomerOrder>()
         .ToList();
-
-
-
-
-
-
-
-
-
     }
 }

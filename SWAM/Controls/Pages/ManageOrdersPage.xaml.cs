@@ -7,6 +7,8 @@ using SWAM.Enumerators;
 using SWAM.Models.ExternalSupplier;
 using SWAM.Models.ProductListViewModel;
 using SWAM.Models.Warehouse;
+using SWAM.Models.ManageOrdersPage;
+using SWAM.Models.Courier;
 
 namespace SWAM.Controls.Pages
 {
@@ -87,7 +89,9 @@ namespace SWAM.Controls.Pages
             }
             else if(this._bookmarkInPage == BookmarkInPage.CustomerOrdersPanel)
             {
-
+                CouriersListViewModel.Instance.Refresh();
+                CustomerOrdersListViewModel.Instance.Refresh();
+                UserDependsAccessProductListViewModel.Instance.Refresh();
             }
         }
     }
