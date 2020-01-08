@@ -490,7 +490,7 @@
                     <ListView MaxHeight="300"
                               Name="warehouseOrderPositionsListView"
                               ItemsSource="{Binding OrderPositions}"
-                              Background="Transparent"
+                              Background="{StaticResource MainBarBrash}"
                               Foreground="White"
                               BorderThickness="0">
                         <ListView.View>

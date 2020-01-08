@@ -18,9 +18,9 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
     public partial class WarehouseOrderProfileTemplate : BasicUserControl
     {
         public WarehouseOrderProfileTemplate()
-        {
-            InitializeComponent();
-        }
+        {		
+			InitializeComponent();			
+		}
 
         private void ConfirmStatusChange_Button(object sender, RoutedEventArgs e)
         {
