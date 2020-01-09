@@ -32,7 +32,6 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         {
             InitializeComponent();
 
-           
             SwitchBetweenOrdersAndCreating(BookmarkInPage.NewWarehouseOrder);
         }
         #endregion
@@ -42,7 +41,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
         /// Changing main content of this view.
         /// </summary>
         /// <param name="newContent">New content of main view.</param>
-        private void SwitchBetweenOrdersAndCreating(BookmarkInPage bookmarkInPage, WarehouseOrder warehouseOrder = null)
+        public void SwitchBetweenOrdersAndCreating(BookmarkInPage bookmarkInPage, WarehouseOrder warehouseOrder = null)
         {
 
             if (this.MainContent.Children.Count > 0)

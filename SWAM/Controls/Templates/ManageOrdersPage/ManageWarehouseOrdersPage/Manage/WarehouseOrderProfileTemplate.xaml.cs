@@ -133,10 +133,10 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 					context.WarehouseOrders.Remove(context.WarehouseOrders.SingleOrDefault(o => o.Id == warehouseOrder.Id));
 					context.SaveChanges();
 
-					WarehouseOrderListViewModel.Instance.Refresh();
-					Container.Visibility = Visibility.Hidden;
-					Content.Children.Add(new CreateNewWarehouseOrderTemplate());
-					DataContext = null;
+                    WarehouseOrderListViewModel.Instance.Refresh();
+
+                    if (SWAM.MainWindow.FindParent<WarehouseOrdersPanelTemplate>(this) is WarehouseOrdersPanelTemplate parent)
+                        parent.SwitchBetweenOrdersAndCreating(BookmarkInPage.NewWarehouseOrder);
 				}
 			}
 		}
