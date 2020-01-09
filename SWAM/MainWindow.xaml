@@ -84,15 +84,10 @@
                     <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
                         <Menu DockPanel.Dock="Top" >
                             <MenuItem Header="_Plik">
-                                <MenuItem Name="RefereshData" Header="_Odśwież dane" InputGestureText="F5" Click="RefereshData_Click"/>
-                                <MenuItem Header="_Zapisz"/>
-                                <Separator/>
+                                <MenuItem Name="RefereshData" Header="_Odśwież dane" 
+                                          Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
+                                          InputGestureText="F5" Click="RefereshData_Click"/>
                                 <MenuItem Header="_Zamknij"/>
-                            </MenuItem>
-                            <MenuItem Header="_Ustawienia">
-                                <MenuItem Header="_Opcje"/>
-                                <MenuItem Header="_Połączenie"/>
-                                <MenuItem Header="_Magazyny" IsEnabled="False"/>
                             </MenuItem>
                             <MenuItem Name="MenuUser" Header="_Użytkownik" 
                                       Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}">

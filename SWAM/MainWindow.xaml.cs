@@ -716,97 +716,100 @@ namespace SWAM
         /// </summary>
         private void RefreshDataOnPage()
         {
-            switch (this._currentPageLoaded)
+            if (loggedInUser != null)
             {
-                #region AdministratorPage
-                case PagesUserControls.AdministratorPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage))
+                switch (this._currentPageLoaded)
+                {
+                    #region AdministratorPage
+                    case PagesUserControls.AdministratorPage:
                         {
-                            currentPage.RefreshData();
+                            if (this._pages.TryGetValue(PagesUserControls.AdministratorPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
                         }
-                        break;
-                    }
-                #endregion
-                #region ManageCouriersPage
-                case PagesUserControls.ManageCouriersPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region ManageCustomersPage
-                case PagesUserControls.ManageCustomersPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region ManageExternalSuppliersPage
-                case PagesUserControls.ManageExternalSuppliersPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region ManageItemsPage
-                case PagesUserControls.ManageItemsPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageItemsPage, out BasicPage currentPage))
-                             currentPage.RefreshData();
-                        break;
-                    }
-                #endregion
-                #region ManageMagazinePage
-                case PagesUserControls.ManageMagazinePage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageMagazinePage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region ManageOrdersPage
-                case PagesUserControls.ManageOrdersPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.ManageOrdersPage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region MessagesPage
-                case PagesUserControls.MessagesPage:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
-                #endregion
-                #region LogedInUserProfile
-                case PagesUserControls.LogedInUserProfile:
-                    {
-                        if (this._pages.TryGetValue(PagesUserControls.LogedInUserProfile, out BasicPage currentPage))
-                        {
-                            currentPage.RefreshData();
-                        }
-                        break;
-                    }
                     #endregion
+                    #region ManageCouriersPage
+                    case PagesUserControls.ManageCouriersPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageCouriersPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region ManageCustomersPage
+                    case PagesUserControls.ManageCustomersPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageCustomersPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region ManageExternalSuppliersPage
+                    case PagesUserControls.ManageExternalSuppliersPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageExternalSuppliersPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region ManageItemsPage
+                    case PagesUserControls.ManageItemsPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageItemsPage, out BasicPage currentPage))
+                                currentPage.RefreshData();
+                            break;
+                        }
+                    #endregion
+                    #region ManageMagazinePage
+                    case PagesUserControls.ManageMagazinePage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageMagazinePage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region ManageOrdersPage
+                    case PagesUserControls.ManageOrdersPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.ManageOrdersPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region MessagesPage
+                    case PagesUserControls.MessagesPage:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.MessagesPage, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                    #endregion
+                    #region LogedInUserProfile
+                    case PagesUserControls.LogedInUserProfile:
+                        {
+                            if (this._pages.TryGetValue(PagesUserControls.LogedInUserProfile, out BasicPage currentPage))
+                            {
+                                currentPage.RefreshData();
+                            }
+                            break;
+                        }
+                        #endregion
 
+                }
             }
         }
         #endregion 
