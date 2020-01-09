@@ -83,7 +83,7 @@
                         Grid.Row="0">
                     <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
                         <Menu DockPanel.Dock="Top" >
-                            <MenuItem Header="_Plik">
+                            <MenuItem Header="_SWAM">
                                 <MenuItem Name="RefereshData" Header="_Odśwież dane" 
                                           Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
                                           InputGestureText="F5" Click="RefereshData_Click"/>

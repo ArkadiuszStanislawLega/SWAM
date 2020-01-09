@@ -140,7 +140,7 @@ namespace SWAM.Models.User
         /// <param name="name">Name of specific user.</param>
         /// <param name="password">Password to user account.</param>
         /// <returns>If  password is correct - User account with all informations from database. Else null.</returns>
-        public static bool TryLogIn(string name, string password)
+        public static LoginResultsType TryLogIn(string name, string password)
         {
             //Getting user password and password salt from database 
             if (context.People.FirstOrDefault(u => u.Name == name) is User userFinded)
@@ -184,7 +184,7 @@ namespace SWAM.Models.User
                                      MainWindow.Instance.InformationForUser($"Twoje konto jest pernamentnie zablokowane, skontaktuj się z administratorem.", true);
                                 }
 
-                                return false;
+                                return LoginResultsType.AccountBlocked;
                             }
                         }
 
@@ -192,7 +192,7 @@ namespace SWAM.Models.User
                         if (userFinded.DateOfExpiryOfTheAccount <= DateTime.Now)
                         {
                             MainWindow.Instance.InformationForUser($"Upłynął czas aktywności konta, skontaktuj się z administratorem.", true);
-                            return false;
+                            return LoginResultsType.InactiveAccount;
                         }
 
                         #region***************If the login attempt was successful***************
@@ -217,7 +217,7 @@ namespace SWAM.Models.User
                             MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}. Do wygaśnięcia konta pozostało: {timeLeft.Value.Days} {stringDay}, oraz {timeLeft.Value.Hours}:{timeLeft.Value.Minutes}:{timeLeft.Value.Seconds}");
                         else
                             MainWindow.Instance.InformationForUser($"Witaj w systemie {userFinded.Name}.");
-                        return true;
+                        return LoginResultsType.CorrectLogIn;
                         #endregion
                     }
                     else
@@ -233,7 +233,7 @@ namespace SWAM.Models.User
                 //There is no such login in the database.
                 MainWindow.Instance.InformationForUser($"{ErrorMesages.BAD_LOGIN_OR_PASSWORD}", true); 
 
-            return false;
+            return LoginResultsType.BadAttempt;
         }
         #endregion
 

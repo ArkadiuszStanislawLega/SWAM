@@ -31,32 +31,41 @@ namespace SWAM.Controls.Pages
         /// <param name="e">Action clicked</param>
         private async void  LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //Try to login in.
-            if (User.TryLogIn(this.UserLogin.Text, this.UserPassword.Password) && MainWindow.Instance != null)
+            if (MainWindow.Instance != null)
             {
-                MainWindow.Instance.ChangeContent(PagesUserControls.MessagesPage);
-                this._failedLogingAttempts = 0;
-                await MainWindow.Instance.RefreshMessageButton();
-            }
-            else
-            {
-                this._failedLogingAttempts++;
-                if (this._failedLogingAttempts >= MainWindow.MAX_FAILED_LOGING_ATTEMPTS)
-                    this.LoginButton.IsEnabled = false;
-                else
+                var result = User.TryLogIn(this.UserLogin.Text, this.UserPassword.Password);
+                switch (result)
                 {
-                    switch (this._failedLogingAttempts)
-                    {
-                        case 1:
-                            await LoginDelay(MainWindow.FIRST_ATTEMPT_DELAY);
-                            break;
-                        case 2:
-                            await LoginDelay(MainWindow.SECOND_ATTEMPT_DELAY);
-                            break;
-                    }
+                    case LoginResultsType.CorrectLogIn:
+                        MainWindow.Instance.ChangeContent(PagesUserControls.MessagesPage);
+                        this._failedLogingAttempts = 0;
+                        await MainWindow.Instance.RefreshMessageButton();
+                        break;
+
+                    case LoginResultsType.BadAttempt:
+                        this._failedLogingAttempts++;
+                        if (this._failedLogingAttempts >= MainWindow.MAX_FAILED_LOGING_ATTEMPTS)
+                            this.LoginButton.IsEnabled = false;
+                        else
+                        {
+                            switch (this._failedLogingAttempts)
+                            {
+                                case 1:
+                                    await LoginDelay(MainWindow.FIRST_ATTEMPT_DELAY);
+                                    break;
+                                case 2:
+                                    await LoginDelay(MainWindow.SECOND_ATTEMPT_DELAY);
+                                    break;
+                            }
+                        }
+                        break;
+                    case LoginResultsType.InactiveAccount:
+                        break;
+                    case LoginResultsType.AccountBlocked:
+                        break;
+
                 }
             }
-
             this.UserPassword.Password = string.Empty;
             this.UserLogin.Text = string.Empty;
         }

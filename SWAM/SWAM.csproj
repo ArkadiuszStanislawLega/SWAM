@@ -285,6 +285,7 @@
     <Compile Include="EntityConfiguration\WarehouseOrderConfiguration.cs" />
     <Compile Include="Enumerators\CustomerOrdersListSortingType.cs" />
     <Compile Include="Enumerators\CustomerOrderVisiblePage.cs" />
+    <Compile Include="Enumerators\LoginResultsType.cs" />
     <Compile Include="Enumerators\PaymentStatus.cs" />
     <Compile Include="Enumerators\StatusDirectionChange.cs" />
     <Compile Include="Enumerators\WarehouseOrderVisiblePage.cs" />
