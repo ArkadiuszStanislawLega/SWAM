@@ -25,8 +25,11 @@ namespace SWAM.Models.Messages
         {
             if(this._messagesListViewModel.Count > 0) this._messagesListViewModel.Clear();
 
-            foreach (Message message in Message.AllReceivedMessages(SWAM.MainWindow.LoggedInUser.Id))
-                this._messagesListViewModel.Add(message);
+            if (MainWindow.LoggedInUser != null && MainWindow.LoggedInUser.Id > 0)
+            {
+                foreach (Message message in Message.AllReceivedMessages(SWAM.MainWindow.LoggedInUser.Id))
+                    this._messagesListViewModel.Add(message);
+            }
         }
         #endregion
         #region RefreshSendedMessages

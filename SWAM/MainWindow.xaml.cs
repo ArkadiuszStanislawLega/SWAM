@@ -29,6 +29,14 @@ namespace SWAM
     {
         #region Constance values
         /// <summary>
+        /// First account name in database.
+        /// </summary>
+        private const string ADMINSTRATOR_ACCOUNT_NAME = "admin";
+        /// <summary>
+        /// First account password in database.
+        /// </summary>
+        private const string ADMINSTRATOR_ACCOUNT_PASSWORD = "admin";
+        /// <summary>
         /// Minimum courier name size.
         /// </summary>
         public const int MIN_NAME_LENGTH = 3;
@@ -60,12 +68,10 @@ namespace SWAM
         private const int TEMPORARY_USER_ID = 1;
         #endregion
         #region Private Statics
-        private static User loggedInUser = new User()
-        {
-            Id = TEMPORARY_USER_ID,
-            Name = "Admin",
-            Permissions = UserType.Programmer
-        };
+        /// <summary>
+        /// Current user logged in to application.
+        /// </summary>
+        private static User loggedInUser;
         #endregion
         #region Public statics
         /// <summary>
@@ -215,10 +221,12 @@ namespace SWAM
         {
             CheckDatabase();
 
-            SourceInitialized += Window_SourceInitialized;
+            this.SourceInitialized += Window_SourceInitialized;
             InitializeComponent();
       
             SetUnloadStoryToAllPages();
+
+            VisibleMode = Visibility.Collapsed;
             Instance = this;
         }
         #endregion
@@ -235,10 +243,10 @@ namespace SWAM
                 var passwordSalt = CryptoService.GenerateSalt();
                 var user = new User()
                 {
-                    Name = "admin",
+                    Name = ADMINSTRATOR_ACCOUNT_NAME,
                     DateOfCreate = DateTime.Now,
                     Permissions = UserType.Administrator,
-                    Password = CryptoService.ComputeHash("admin", passwordSalt),
+                    Password = CryptoService.ComputeHash(ADMINSTRATOR_ACCOUNT_PASSWORD, passwordSalt),
                     PasswordSalt = passwordSalt
                 };
 
@@ -623,7 +631,7 @@ namespace SWAM
             if (LoggedInUser != null)
             {
                 int number = Message.CountUnreadedMessages(LoggedInUser);
-                Instance.Messages.Content = number > 0 ? $"{number}" : "";
+                Instance.Messages.Content = number > 0 ? $"{number}" : string.Empty;
             }
         }
         #endregion
@@ -652,17 +660,10 @@ namespace SWAM
         /// <returns>Currently logged in user instance.</returns>
         public static User SetLoggedInUser(User user)
         {
-            LoggedInUser = user;
-
             if (LoggedInUser != null)
-            {
-                
-
-            }
+                return null;
             else
-            {
-
-            }
+                LoggedInUser = user;
 
             return LoggedInUser;
         }

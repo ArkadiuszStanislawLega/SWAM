@@ -45,8 +45,8 @@ namespace SWAM
 
 			if (ProductListViewModel.Instance.Products.Count > 0)
 				this.ProductProfile.DataContext = ProductListViewModel.Instance.Products[0];
-
-			if (MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Warehouseman || MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Seller)
+			
+			if (MainWindow.LoggedInUser != null && (MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Warehouseman || MainWindow.LoggedInUser.Permissions == Enumerators.UserType.Seller))
 			{
 				AddButton.IsEnabled = false;
 				EditButton.IsEnabled = false;

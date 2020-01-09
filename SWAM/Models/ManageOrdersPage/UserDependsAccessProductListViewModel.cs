@@ -24,20 +24,21 @@ namespace SWAM.Models.ManageOrdersPage
         #region Refresh
         public void Refresh()
         {
-            var accessUsersToWarehouses = (AccessUsersToWarehouses.GetUserAccesses(SWAM.MainWindow.LoggedInUser.Id)) as List<AccessUsersToWarehouses>;
-
-            if (accessUsersToWarehouses != null)
+            if (MainWindow.LoggedInUser != null)
             {
-                if (_warehouses.Count > 0)
-                    _warehouses.Clear();
-
-                foreach (var item in accessUsersToWarehouses)
+                if (AccessUsersToWarehouses.GetUserAccesses(MainWindow.LoggedInUser.Id) is List<AccessUsersToWarehouses> accessUsersToWarehouses)
                 {
-                    _warehouses.Add(item.Warehouse);
-                }
-            }
+                    if (_warehouses.Count > 0)
+                        _warehouses.Clear();
 
-            StatesRefresh();
+                    foreach (var item in accessUsersToWarehouses)
+                    {
+                        _warehouses.Add(item.Warehouse);
+                    }
+                }
+
+                StatesRefresh();
+            }
         }
         #endregion
 
