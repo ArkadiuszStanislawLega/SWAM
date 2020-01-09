@@ -37,11 +37,6 @@ namespace SWAM.Enumerators
         /// <summary>
         /// The user who is the owner of the application.
         /// </summary>
-        Owner,
-        /// <summary>
-        /// Option for debug whole pages.
-        /// Have permission to whole pages in appliaction.
-        /// </summary>
-        Programmer
+        Owner
     }
 }

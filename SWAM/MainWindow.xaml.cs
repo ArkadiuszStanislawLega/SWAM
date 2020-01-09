@@ -197,16 +197,7 @@ namespace SWAM
                                           /**/ PagesUserControls.ManageOrdersPage,
                                           /**/ PagesUserControls.ManageCustomersPage,
                                           /**/ PagesUserControls.ManageCouriersPage,
-                                          /**/ PagesUserControls.ManageExternalSuppliersPage}},
-            { UserType.Programmer,
-                new List<PagesUserControls>(){ PagesUserControls.LoginPage,
-                                          /**/ PagesUserControls.AdministratorPage,
-                                          /**/ PagesUserControls.ManageItemsPage,
-                                          /**/ PagesUserControls.ManageMagazinePage,
-                                          /**/ PagesUserControls.ManageOrdersPage,
-                                          /**/ PagesUserControls.ManageCustomersPage,
-                                          /**/ PagesUserControls.ManageCouriersPage,
-                                          /**/ PagesUserControls.ManageExternalSuppliersPage}},
+                                          /**/ PagesUserControls.ManageExternalSuppliersPage}}
         };
         /// <summary>
         /// List with cancellation tokens to cancel hide information.

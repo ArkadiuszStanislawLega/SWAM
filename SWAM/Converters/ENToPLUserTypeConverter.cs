@@ -17,7 +17,6 @@ namespace SWAM.Converters
                 switch (user)
                 {
                     case UserType.Administrator: return PLstrings.ADMINISTRATOR;
-                    case UserType.Programmer: return PLstrings.PROGRAMMER;
                     case UserType.Seller: return PLstrings.SELLER;
                     case UserType.Warehouseman: return PLstrings.WAREHOUSEMAN;
                     case UserType.Owner: return PLstrings.OWNER;
