@@ -23,7 +23,7 @@ namespace SWAM
     /// <summary>
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow : Window
     {
         #region Constance values
         /// <summary>
@@ -164,7 +164,8 @@ namespace SWAM
             { PagesUserControls.MessagesPage, new MessagesPage() },
             { PagesUserControls.ManageCustomersPage, new ManageCustomersPage() },
             { PagesUserControls.ManageCouriersPage, new ManageCouriersPage() },
-            { PagesUserControls.ManageExternalSuppliersPage, new ManageExternalSuppliersPage() }
+            { PagesUserControls.ManageExternalSuppliersPage, new ManageExternalSuppliersPage() },
+            { PagesUserControls.AboutPage, new AboutPage() }
         };
         /// <summary>
         /// Container with whole priviligase of UserType.
@@ -217,6 +218,8 @@ namespace SWAM
 
             VisibleMode = Visibility.Collapsed;
             Instance = this;
+
+            ChangeContent(PagesUserControls.LoginPage);
         }
         #endregion
 
@@ -402,6 +405,12 @@ namespace SWAM
                                 case PagesUserControls.MessagesPage:
                                     {
                                         var currentPage = (MessagesPage)pagetToUnload;
+                                        mainContent = currentPage.MainContent;
+                                        break;
+                                    }
+                                case PagesUserControls.AboutPage:
+                                    {
+                                        var currentPage = (AboutPage)pagetToUnload;
                                         mainContent = currentPage.MainContent;
                                         break;
                                     }
@@ -831,5 +840,6 @@ namespace SWAM
         /// <param name="e">Event button click.</param>
         private void RefreshDataCommand_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) => RefreshDataOnPage();
         #endregion
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e) => ChangeContent(PagesUserControls.AboutPage);
     }
 }

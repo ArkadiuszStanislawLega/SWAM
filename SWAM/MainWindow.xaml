@@ -54,167 +54,175 @@
     <Window.InputBindings>
         <KeyBinding Key="F5" Command="com:MainWindowCommands.RefreshData" />
     </Window.InputBindings>
-    <Grid Name="EverythingInWindow">
-        <!--#region Rows definitions-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <!--#endregion-->
-        <!--#region Top Window Title-->
-        <ContentControl Grid.Row="0" >
-            <Grid Name="TitlePanel"
+    <Grid>
+        <Border HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Opacity="0.04">
+            <TextBlock Text="SWAM" FontSize="400" Foreground="SlateGray" FontFamily="Times New Roman"/>
+        </Border>
+        <Grid Name="EverythingInWindow">
+            <!--#region Rows definitions-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--#endregion-->
+            <!--#region Top Window Title-->
+            <ContentControl Grid.Row="0" >
+                <Grid Name="TitlePanel"
                     Width="auto" Height="30"
                     Background="{StaticResource MainBarBrash}">
-                <!--#region ColumnDefinitions-->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--#endregion-->
-                <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
-                <!--#region Menu of Window-->
-                <StackPanel Name="MenuPanel" Height="25" 
+                    <!--#region ColumnDefinitions-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#endregion-->
+                    <Image Source="/Resorces/Pictures/icon.png" Width="20" Height="20" Margin="5"/>
+                    <!--#region Menu of Window-->
+                    <StackPanel Name="MenuPanel" Height="25" 
                         Grid.Column="1"
                         Grid.Row="0">
-                    <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
-                        <Menu DockPanel.Dock="Top" >
-                            <MenuItem Header="_SWAM">
-                                <MenuItem Name="RefereshData" Header="_Odśwież dane" 
+                        <DockPanel Name="Menu"  WindowChrome.IsHitTestVisibleInChrome="True">
+                            <Menu DockPanel.Dock="Top" >
+                                <MenuItem Header="_SWAM">
+                                    <MenuItem Name="RefereshData" Header="_Odśwież dane" 
                                           Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
                                           InputGestureText="F5" Click="RefereshData_Click"/>
-                                <MenuItem Header="_Zamknij"/>
-                            </MenuItem>
-                            <MenuItem Name="MenuUser" Header="_Użytkownik" 
+                                    <MenuItem Name="AboutMenuItem" Header="_O programie" Click="AboutMenuItem_Click"/>
+                                    <MenuItem Header="_Zamknij" Click="Exit_Click"/>
+                                </MenuItem>
+                                <MenuItem Name="MenuUser" Header="_Użytkownik" 
                                       Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}">
-                                <MenuItem Header="_Profil użytkownika" 
+                                    <MenuItem Header="_Profil użytkownika" 
                                           Click="UserProfile_Click"/>
-                                <MenuItem Header="_Wiadomości"
+                                    <MenuItem Header="_Wiadomości"
                                           Click="Messages_Click"/>
-                                <Separator/>
-                                <MenuItem Header="_Wyloguj"
+                                    <Separator/>
+                                    <MenuItem Header="_Wyloguj"
                                           Click="LoginOut_Click"/>
-                            </MenuItem>
-                        </Menu>
-                        <StackPanel></StackPanel>
-                    </DockPanel>
-                </StackPanel>
-                <!--#endregion-->
-                <!--#region Title buttons-->
-                <StackPanel
+                                </MenuItem>
+                            </Menu>
+                            <StackPanel></StackPanel>
+                        </DockPanel>
+                    </StackPanel>
+                    <!--#endregion-->
+                    <!--#region Title buttons-->
+                    <StackPanel
                     Name="TitlePanelButtons"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
                     Grid.Column="2">
-                    <Button Name="Minimize" 
+                        <Button Name="Minimize" 
                         Style="{StaticResource FAMinimizeButton}"
                         Click="Minimize_Click" 
                         WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <Button Name="Maximize"
+                        <Button Name="Maximize"
                         Style="{StaticResource FAMaxymizeButton}"
                         Click="Maximize_Click"
                         WindowChrome.IsHitTestVisibleInChrome="True"/>
-                    <Button Name="Exit" 
+                        <Button Name="Exit" 
                         Style="{StaticResource FAExitButton}"
                         Click="Exit_Click" 
                         WindowChrome.IsHitTestVisibleInChrome="True"/>
-                </StackPanel>
-                <!--#endregion-->
-            </Grid>
-        </ContentControl>
-        <!--#endregion-->
-        <!--#region NavigationBar -->
-        <Grid Grid.Row="2" 
+                    </StackPanel>
+                    <!--#endregion-->
+                </Grid>
+            </ContentControl>
+            <!--#endregion-->
+            <!--#region NavigationBar -->
+            <Grid Grid.Row="2" 
               Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="0" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Column="0" 
                           Height="30"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Disabled"
                           Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
                           VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal"  Name="NavigationBar">
-                    <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
+                    <StackPanel Orientation="Horizontal"  Name="NavigationBar">
+                        <nav:NavigationButtonTemplate Content="Narzędzia Administratora" 
                                           PageToOpen="AdministratorPage" 
                                           x:Name="SwitchToAdministratorPage"
                                           Click="NaviagionBar_Click"/>
 
-                    <nav:NavigationButtonTemplate Content="Strona Logowania" 
+                        <nav:NavigationButtonTemplate Content="Strona Logowania" 
                                           PageToOpen="LoginPage" 
                                           x:Name="SwitchToLoginPage"
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Produkty" 
+                        <nav:NavigationButtonTemplate Content="Produkty" 
                                           PageToOpen="ManageItemsPage"
                                           x:Name="SwitchToManageItemPage"
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
+                        <nav:NavigationButtonTemplate Content="Stan Magazynowy" 
                                           PageToOpen="ManageMagazinePage"
                                           x:Name="SwitchToManageMagazinePage"
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Zamówienia" 
+                        <nav:NavigationButtonTemplate Content="Zamówienia" 
                                           PageToOpen="ManageOrdersPage" 
                                           x:Name="SwitchToManageOrderPage" 
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Klienci" 
+                        <nav:NavigationButtonTemplate Content="Klienci" 
                                           PageToOpen="ManageCustomersPage" 
                                           x:Name="SwitchToManageClientsPage" 
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Kurierzy" 
+                        <nav:NavigationButtonTemplate Content="Kurierzy" 
                                           PageToOpen="ManageCouriersPage" 
                                           x:Name="SwitchToManageCouriersPage" 
                                           Click="NaviagionBar_Click" />
 
-                    <nav:NavigationButtonTemplate Content="Dostawcy zewnętrzni" 
+                        <nav:NavigationButtonTemplate Content="Dostawcy zewnętrzni" 
                                           PageToOpen="ManageExternalSuppliersPage" 
                                           x:Name="SwitchToManageExternalSuppliersPage" 
                                           Click="NaviagionBar_Click" />
-                </StackPanel>
-            </ScrollViewer>
-            <StackPanel Grid.Column="1"
+                    </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Column="1"
                         HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"
                         Orientation="Horizontal"
                         Visibility="{Binding  ElementName=SWAM, Path=VisibleMode}"
                         Name="MessageAndProfileContainer" 
                         Grid.ColumnSpan="2">
-                <Button x:Name="Messages" Style="{StaticResource MailButton}" 
+                    <Button x:Name="Messages" Style="{StaticResource MailButton}" 
                         Content="{Binding MessageNumber}"
                         ToolTip="Wiadomości"
                         Click="Messages_Click"/>
-                <Button x:Name="UserProfile" 
+                    <Button x:Name="UserProfile" 
                         Style="{StaticResource ProfileButton}" 
                         ToolTip="Profil użytkownika"
                         Click="UserProfile_Click"/>
-            </StackPanel>
-        </Grid>
-        <!--#endregion-->
-        <!--#region MainContent of the Window-->
-        <Grid Grid.Row="3" Name="ContentOfWindow" >
-            <page:LoginPage />
-        </Grid>
-        <!--#endregion-->
-        <!--#region Information-->
-        <StackPanel Name="Information"  Grid.Row="4"  
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
+            <!--#region MainContent of the Window-->
+            <Grid Grid.Row="3" Name="ContentOfWindow" >
+
+            </Grid>
+            <!--#endregion-->
+            <!--#region Information-->
+            <StackPanel Name="Information"  Grid.Row="4"  
                     Margin="5 0 0 10"
                     VerticalAlignment="Top" Height="20" >
-            <Grid Background="{StaticResource  MainBarBrash}" 
+                <Grid Background="{StaticResource  MainBarBrash}" 
                   Opacity="0.8">
-                <TextBlock Name="InformationLabel"
+                    <TextBlock Name="InformationLabel"
                            Text="Jesteś nie zalogowany" 
                            Padding="2"/>
-            </Grid>
-        </StackPanel>
-        <!--#endregion-->
+                </Grid>
+            </StackPanel>
+            <!--#endregion-->
+        </Grid>
     </Grid>
 </Window>
