@@ -31,44 +31,51 @@
             <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid  FocusManager.FocusedElement="{Binding ElementName=UserLogin}"
+    <Grid>
+        <Border HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Opacity="0.04">
+            <TextBlock Text="SWAM" FontSize="400" Foreground="SlateGray" FontFamily="Times New Roman"/>
+        </Border>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid  FocusManager.FocusedElement="{Binding ElementName=UserLogin}"
                HorizontalAlignment="Center"
                Name="MainContent"
                VerticalAlignment="Center">
-            <!--#region  RowsDefinition-->
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <!--#endregion-->
-            <TextBlock  Name="Title" Text="Logowanie do systemu" 
+                <!--#region  RowsDefinition-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!--#endregion-->
+                <TextBlock  Name="Title" Text="Logowanie do systemu" 
                     HorizontalAlignment="Center"
                     FontSize="30"
                     Margin="0 0 0 40"
                     Grid.Row="0"/>
-            <StackPanel HorizontalAlignment="Center" Grid.Row="1"  Width="200">
-                <TextBox Name="UserLogin" 
+                <StackPanel HorizontalAlignment="Center" Grid.Row="1"  Width="200">
+                    <TextBox Name="UserLogin" 
                          Tag="Wpisz login"  
                          Width="200" Height="30" 
                          Margin="5" Style="{StaticResource UserLogin}"/>
-                <PasswordBox Name="UserPassword" 
+                    <PasswordBox Name="UserPassword" 
                              Tag="Wpisz hasło" 
                              Height="30" Margin="5" 
                              Style="{StaticResource PasswordBox}"/>
-                <Button Name="LoginButton" Content="ZALOGUJ"
+                    <Button Name="LoginButton" Content="ZALOGUJ"
                         IsDefault="True"
                         Width="100" 
                         Margin="0 10 0 10"
                         Click="LoginButton_Click"
                         Style="{StaticResource ActionButton}">
-                </Button>
-                <TextBlock Name="TimeCounterView" 
+                    </Button>
+                    <TextBlock Name="TimeCounterView" 
                            HorizontalAlignment="Center"
                            FontSize="14"
                            Visibility="{Binding ElementName=LoginButton, Path=IsEnabled, Converter={conv:ReversBooleanToVisiblityConverter}}" />
-            </StackPanel>
-        </Grid>
-    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </local:BasicPage>

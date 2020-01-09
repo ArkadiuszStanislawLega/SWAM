@@ -1,0 +1,68 @@
+﻿<local:BasicPage x:Class="SWAM.Controls.Pages.AboutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SWAM.Controls.Pages"
+             xmlns:basic="clr-namespace:SWAM.Templates.AdministratorPage"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             Background="{StaticResource BackgroundOfPagesBrash}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--#region LoadedStory-->
+        <Storyboard x:Key="LoadedStory">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin"
+                                Storyboard.TargetName="MainContent"
+                                Duration="0:0:0.8"
+                                From="0 0 -250 0"
+                                To="0"
+                                DecelerationRatio="1"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             Storyboard.TargetName="MainContent"
+                             Duration="0:0:0.8" 
+                             From="0" To="1"/>
+        </Storyboard>
+        <!--#endregion-->
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="UserControl.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border HorizontalAlignment="Center" 
+                VerticalAlignment="Center"
+                Opacity="0.04">
+            <TextBlock Text="SWAM" FontSize="400" Foreground="SlateGray" FontFamily="Times New Roman"/>
+        </Border>
+        <Grid Name="MainContent" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Twórcy programu:" Grid.Row="0"/>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="5">
+                    <TextBlock Text="Sebastia Kozłowicz" />
+                    <TextBlock Text="Wojciech Sobczyk" />
+                    <TextBlock Text="Arkadiusz Łęga" />
+                    <TextBlock Text="Marcin Kupiński" />
+                </StackPanel>
+                <StackPanel Grid.Column="1"  Margin="5">
+                    <TextBlock Text="skozlowicz74@gmail.com" />
+                    <TextBlock Text="wojteksobczyk1@gmail.com" />
+                    <TextBlock Text="arkadiusz.stanislaw.lega@gmail.com" />
+                    <TextBlock Text="mlorism@gmail.com" />
+                </StackPanel>
+            </Grid>
+            <Button Grid.Row="2" Height="30" Width="50" x:Name="Back" Content="Back" Click="Back_Click" />
+        </Grid>
+    </Grid>
+</local:BasicPage>

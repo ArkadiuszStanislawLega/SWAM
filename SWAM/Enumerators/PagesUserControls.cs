@@ -46,6 +46,10 @@
         /// <summary>
         /// A page where you can manage your external suppliers database.
         /// </summary>
-        ManageExternalSuppliersPage
+        ManageExternalSuppliersPage,
+        /// <summary>
+        /// A page where you can read informatiom about application.
+        /// </summary>
+        AboutPage
     }
 }
