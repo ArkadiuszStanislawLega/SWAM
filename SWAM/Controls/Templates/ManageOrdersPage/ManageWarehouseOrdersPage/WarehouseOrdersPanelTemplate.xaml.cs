@@ -16,11 +16,17 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage
     public partial class WarehouseOrdersPanelTemplate : UserControl
     {
         #region Properties
+        /// <summary>
+        /// All pages that can be viewed in this tab.
+        /// </summary>
         private readonly Dictionary<BookmarkInPage, UserControl> _pages = new Dictionary<BookmarkInPage, UserControl>()
         {
             { BookmarkInPage.WarehouseOrderProfile, new WarehouseOrderProfileTemplate() },
             { BookmarkInPage.NewWarehouseOrder,  new CreateNewWarehouseOrderTemplate() }
         };
+        /// <summary>
+        /// Default warehouse order required for properly filters work.
+        /// </summary>
         private readonly WarehouseOrder _defaultWarehuseOrder = new WarehouseOrder();
         /// <summary>
         /// Current filter on customer orders list.
