@@ -31,7 +31,7 @@
             <BeginStoryboard Storyboard="{StaticResource LoadedStory}"/>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid>
         <Border HorizontalAlignment="Center" 
                 VerticalAlignment="Center"
                 Opacity="0.04">
@@ -42,15 +42,20 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Twórcy programu:" Grid.Row="0"/>
+            <TextBlock Text="Twórcy programu:" FontWeight="ExtraBold" Grid.Row="0"/>
             <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Margin="5">
-                    <TextBlock Text="Sebastia Kozłowicz" />
+                    <TextBlock Text="Sebastian Kozłowicz" />
                     <TextBlock Text="Wojciech Sobczyk" />
                     <TextBlock Text="Arkadiusz Łęga" />
                     <TextBlock Text="Marcin Kupiński" />
@@ -62,7 +67,40 @@
                     <TextBlock Text="mlorism@gmail.com" />
                 </StackPanel>
             </Grid>
-            <Button Grid.Row="2" Height="30" Width="50" x:Name="Back" Content="Back" Click="Back_Click" />
+            <TextBlock Text="Użyte technologie:" FontWeight="ExtraBold" Grid.Row="2"/>
+            <StackPanel Grid.Row="3"  Margin="5">
+                <TextBlock Text="Windows Presentation Foundation" />
+                <TextBlock Text=".NET Framework V4.6.1" />
+                <TextBlock Text="EntityFramework V6.2.0" />
+            </StackPanel>
+            <TextBlock Grid.Row="4" Text="Opis aplikacji:" Margin="5" FontWeight="ExtraBold"/>
+            <TextBlock Grid.Row="5" TextWrapping="Wrap" MaxWidth="600" Margin="5" 
+                       Text="Ta aplikacja jest przeznaczona do sprzedaży detalicznej materiałów budowlanych. W zależności od typu konta użytkownika masz uprawnienia do uzyskiwania dostępu do różnych części aplikacji w celu wykonywania działań. Jest przeznaczony dla pracowników, więc działania klienta w aplikacji nie są podejmowane." />
+            <TextBlock Grid.Row="6" FontWeight="ExtraBold" Text="Typy użytkowników:" Margin="5" />
+            <Grid Grid.Row="7" Margin="5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="5">
+                    <TextBlock Text="Administrator " />
+                    <TextBlock Text="Magazynier " />
+                    <TextBlock Text="Sprzedawca" />
+                    <TextBlock Text="Właściciel" />
+                </StackPanel> 
+                <StackPanel Grid.Column="1"  Margin="5">
+                    <TextBlock Text="osoba uprawniona do zarządzania bazą danych użytkowników i magazynami," />
+                    <TextBlock Text="osoba, która przyjmuje produkty do magazynu," />
+                    <TextBlock Text="osoba, która może sprzedawać nasze produkty, obsługuje klientów," />
+                    <TextBlock Text="osoba będąca właścicielem firmy prowadzącej handel detaliczny." />
+                </StackPanel>
+            </Grid>
         </Grid>
+        <Button Style="{StaticResource ArrowBackButton}" 
+                Grid.Row="2" Height="30" 
+                Width="50" Click="Back_Click"
+                ToolTip="Powrót do strony logowania."
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"/>
     </Grid>
 </local:BasicPage>
