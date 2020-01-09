@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Data.Entity;
 using System.Linq;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
@@ -660,10 +658,7 @@ namespace SWAM
         /// <returns>Currently logged in user instance.</returns>
         public static User SetLoggedInUser(User user)
         {
-            if (LoggedInUser != null)
-                return null;
-            else
-                LoggedInUser = user;
+            LoggedInUser = user;
 
             return LoggedInUser;
         }

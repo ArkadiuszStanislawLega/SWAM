@@ -203,7 +203,7 @@ namespace SWAM.Models.User
                             stringDay = timeLeft.Value.Days == 1 ? "dzień" : "dni";
 
                         //Geting profile of user from database.
-                        SWAM.MainWindow.SetLoggedInUser(context.People.OfType<User>()
+                        MainWindow.SetLoggedInUser(context.People.OfType<User>()
                             .Include(u => u.Accesess)
                             .Include(u => u.Phones)
                             .Include(u => u.EmailAddresses)
