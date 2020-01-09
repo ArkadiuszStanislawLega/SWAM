@@ -5,6 +5,7 @@ Warehouse management application designed for usage in DIY store created with WP
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Default credentials](#default-credentials)
 * [User types and roles](#user-types-and-roles)
 
 ## General info
@@ -25,7 +26,15 @@ To create database go to Package Manager Console and type
 update-database
 ```
 
-This command will execute code in Up method of all existing migrations.
+## Default credentials
+When you start application for the first time there is default administrator account that allow you to initial log in with following credentials:
+
+```
+login: admin
+password: admin
+```
+
+It is highly recommended to disable this account once you set up your environment. 
 
 ## User types and roles
 In application are six types of user:
