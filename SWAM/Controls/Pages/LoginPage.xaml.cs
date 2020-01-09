@@ -32,7 +32,7 @@ namespace SWAM.Controls.Pages
         private async void  LoginButton_Click(object sender, RoutedEventArgs e)
         {
             //Try to login in.
-            if (User.TryLogIn(UserLogin.Text, UserPassword.Password) && MainWindow.Instance != null)
+            if (User.TryLogIn(this.UserLogin.Text, this.UserPassword.Password) && MainWindow.Instance != null)
             {
                 MainWindow.Instance.ChangeContent(PagesUserControls.MessagesPage);
                 this._failedLogingAttempts = 0;
@@ -56,8 +56,9 @@ namespace SWAM.Controls.Pages
                     }
                 }
             }
-            
-            this.UserPassword.Password = "";
+
+            this.UserPassword.Password = string.Empty;
+            this.UserLogin.Text = string.Empty;
         }
         #endregion
 

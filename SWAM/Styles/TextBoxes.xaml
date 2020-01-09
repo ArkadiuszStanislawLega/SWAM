@@ -40,6 +40,8 @@
                         <TextBlock IsHitTestVisible="False"
                                    Text="{TemplateBinding Tag}"
                                    x:Name="placeholder"
+                                   FontFamily="Arial"
+                                   FontSize="12"
                                    Padding="{TemplateBinding Padding}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
