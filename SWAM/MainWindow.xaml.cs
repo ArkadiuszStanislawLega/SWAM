@@ -8,13 +8,17 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Data.Entity;
+using System.Linq;
 using SWAM.Controls.Pages;
 using SWAM.Controls.Templates.MainWindow;
+using SWAM.Cryptography;
 using SWAM.Enumerators;
 using SWAM.Models;
 using SWAM.Models.Messages;
 using SWAM.Models.User;
 using SWAM.Windows;
+
 
 namespace SWAM
 {
@@ -209,6 +213,8 @@ namespace SWAM
         #region BasicConstructor
         public MainWindow()
         {
+            CheckDatabase();
+
             SourceInitialized += Window_SourceInitialized;
             InitializeComponent();
       
@@ -216,6 +222,32 @@ namespace SWAM
             Instance = this;
         }
         #endregion
+
+        #region CheckDatabase
+        /// <summary>
+        /// Checks if the database has users, if it is empty it creates the user.
+        /// </summary>
+        private void CheckDatabase()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            if (context.Users.FirstOrDefault(u => u.Id == 1) == null)
+            {
+                var passwordSalt = CryptoService.GenerateSalt();
+                var user = new User()
+                {
+                    Name = "admin",
+                    DateOfCreate = DateTime.Now,
+                    Permissions = UserType.Administrator,
+                    Password = CryptoService.ComputeHash("admin", passwordSalt),
+                    PasswordSalt = passwordSalt
+                };
+
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+        }
+        #endregion
+
         #region Window size counter
         void Window_SourceInitialized(object sender, EventArgs e)
         {
