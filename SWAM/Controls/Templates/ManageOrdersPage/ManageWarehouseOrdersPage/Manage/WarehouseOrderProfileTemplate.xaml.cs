@@ -23,41 +23,42 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
 		}
 
         private void ConfirmStatusChange_Button(object sender, RoutedEventArgs e)
-        {
-            if (DataContext is WarehouseOrder warehouseOrder &&
+        {			
+			if (DataContext is WarehouseOrder warehouseOrder &&
                 EditOrderStatus.SelectedItem != null &&
-                warehouseOrder.WarehouseOrderStatus != (WarehouseOrderStatus)EditOrderStatus.SelectedItem)
+				warehouseOrder.WarehouseOrderStatus != (WarehouseOrderStatus)EditOrderStatus.SelectedItem)
             {
-                if (!ValidateStatusChange(warehouseOrder, (WarehouseOrderStatus)EditOrderStatus.SelectedItem))
+				if (!ValidateStatusChange(warehouseOrder, (WarehouseOrderStatus)EditOrderStatus.SelectedItem))
                 {
-                    EditOrderStatus.SelectedItem = warehouseOrder.WarehouseOrderStatus;
+					EditOrderStatus.SelectedItem = warehouseOrder.WarehouseOrderStatus;
                     this.WarningWindow.Show("Można wybrać tylko sąsiadujący status.");
-                    return;
-                }
+                    return;					
+				}
 
                 else
                 {
                     var direction = ((int)warehouseOrder.WarehouseOrderStatus - (int)(WarehouseOrderStatus)EditOrderStatus.SelectedItem) == 1
                     ? StatusDirectionChange.Forward : StatusDirectionChange.Backward;
-
-                    WarehouseOrder.ChangeDeliveryStatus((WarehouseOrderStatus)EditOrderStatus.SelectedItem, warehouseOrder);
+					
+					WarehouseOrder.ChangeDeliveryStatus((WarehouseOrderStatus)EditOrderStatus.SelectedItem, warehouseOrder);
                     warehouseOrder.WarehouseOrderStatus = (WarehouseOrderStatus)EditOrderStatus.SelectedItem;
 
                     if (direction == StatusDirectionChange.Forward)
                     {
-                        if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered)
+						
+						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.Delivered)
                         {
-                            WarehouseOrder.AddProductQuantityToState(warehouseOrder);
+							WarehouseOrder.AddProductQuantityToState(warehouseOrder);
 
                             OrderReceiver.Text = SWAM.MainWindow.LoggedInUser.Name;
                         }
                     }
 
                     if (direction == StatusDirectionChange.Backward)
-                    {
-                        if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.InDelivery)
-                        {
-                            WarehouseOrder.SubtractProductQuantityFromState(warehouseOrder);
+                    {						
+						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.InDelivery)
+                        {							
+							WarehouseOrder.SubtractProductQuantityFromState(warehouseOrder);
                         }
                     }
 
