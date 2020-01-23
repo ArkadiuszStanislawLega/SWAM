@@ -169,7 +169,6 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Nazwa produktu"  Binding="{Binding  Product.Name}"/>
                             <DataGridTextColumn Header="Ilość produktu"  Binding ="{Binding Quantity}"/>
-                            <DataGridTextColumn Header="Cena"  Binding="{Binding Price}"/>
                         </DataGrid.Columns>
                         <DataGrid.ItemContainerStyle>
                             <Style TargetType="DataGridRow" BasedOn="{StaticResource Basic}"/>
