@@ -117,7 +117,7 @@
                     Value="Collapsed" />
         </Style>
         <!--#endregion-->
-                
+
     </UserControl.Resources>
     <!--#endregion-->
 
@@ -355,7 +355,7 @@
                                   Grid.Column="0"
                                   IsEditable="False"
                                   ItemsSource="{Binding Source={StaticResource WarehouseOrderStatus}}"
-                                  SelectedItem="{Binding WarehouseOrderStatus}"
+                                  SelectedItem="{Binding WarehouseOrderStatus, Mode=OneTime}"
                                   Grid.ColumnSpan="2">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -492,12 +492,22 @@
                     <ListView MaxHeight="300"
                               Name="warehouseOrderPositionsListView"
                               ItemsSource="{Binding OrderPositions}"
-                              Background="{StaticResource MainBarBrash}"
+                              Background="{StaticResource MainBarBrash}"                              
                               Foreground="White"
                               BorderThickness="0">
+                        <ListView.Resources>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <GridViewRowPresenter />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.Resources>
                         <ListView.View>
-                            <GridView ColumnHeaderContainerStyle="{StaticResource GridViewConcealment}">
-                                
+                            <GridView ColumnHeaderContainerStyle="{StaticResource GridViewConcealment}">                                
                                 <GridViewColumn Width="auto">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
