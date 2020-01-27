@@ -57,7 +57,7 @@ namespace SWAM.Controls.Templates.ManageOrdersPage.ManageWarehouseOrdersPage.Man
                     if (direction == StatusDirectionChange.Backward)
                     {						
 						if (warehouseOrder.WarehouseOrderStatus == WarehouseOrderStatus.InDelivery)
-                        {							
+                        {
 							WarehouseOrder.SubtractProductQuantityFromState(warehouseOrder);
                         }
                     }

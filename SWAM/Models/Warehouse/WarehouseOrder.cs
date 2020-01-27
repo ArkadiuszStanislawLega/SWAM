@@ -191,6 +191,12 @@ namespace SWAM.Models.Warehouse
 				else if (status == WarehouseOrderStatus.InDelivery)
 				{
 					dbOrder.WarehouseOrderStatus = WarehouseOrderStatus.InDelivery;
+
+					if (dbOrder.UserReceivedOrder != null)
+					{
+						dbOrder.UserReceivedOrder = null;
+						dbOrder.UserReceivedOrderId = null;
+					}
 				}
 				else if (status == WarehouseOrderStatus.Delivered)
 				{
