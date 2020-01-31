@@ -83,19 +83,28 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Margin="5">
-                    <TextBlock Text="Administrator " />
-                    <TextBlock Text="Magazynier " />
-                    <TextBlock Text="Sprzedawca" />
-                    <TextBlock Text="Właściciel" />
-                </StackPanel> 
-                <StackPanel Grid.Column="1"  Margin="5">
-                    <TextBlock Text="osoba uprawniona do zarządzania bazą danych użytkowników i magazynami," />
-                    <TextBlock Text="osoba, która przyjmuje produkty do magazynu," />
-                    <TextBlock Text="osoba, która może sprzedawać nasze produkty, obsługuje klientów," />
-                    <TextBlock Text="osoba będąca właścicielem firmy prowadzącej handel detaliczny." />
-                </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Administrator " Grid.Row="0" Grid.Column="0"/>
+                <TextBlock Text="Magazynier " Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Text="Sprzedawca" Grid.Row="2" Grid.Column="0"/>
+                <TextBlock Text="Kierwonik" Grid.Row="3" Grid.Column="0"/>
+                <TextBlock Text="Właściciel" Grid.Row="4" Grid.Column="0"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="osoba uprawniona do zarządzania bazą danych użytkowników i magazynami," />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="osoba, która przyjmuje produkty do magazynu," />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="osoba, która może sprzedawać nasze produkty, obsługuje klientów," />
+                <TextBlock Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="osoba, która ma uprawnienia magazyniera i sprzedawcy oraz ma możliwość tworzenia zamówień magazynowych, dodawanie nowych dostawców zewnętrznych oraz kurirerów" />
+                <TextBlock Grid.Row="4" Grid.Column="1"  Text="osoba będąca właścicielem firmy prowadzącej handel detaliczny." />
+
             </Grid>
+
         </Grid>
         <Button Style="{StaticResource ArrowBackButton}" 
                 Grid.Row="2" Height="30" 
